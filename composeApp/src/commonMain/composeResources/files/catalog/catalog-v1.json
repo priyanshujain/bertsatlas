@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "catalogVersion": "1.0.0-draft.1",
+  "catalogVersion": "1.0.0-draft.2",
   "countryCanon": "un193-plus-palestine-and-vatican-city",
   "editorialPolicyVersion": "1.0.0",
   "generatedFromPinnedDataAt": "2026-09-09",
@@ -52,6 +52,126 @@
       "publisher": "Hampus Borgos and contributors",
       "retrievedAt": "2026-09-09",
       "revision": "c09927e63705529bbf59ca6684cd9b23225dddad"
+    },
+    {
+      "id": "source-rest-countries",
+      "title": "REST Countries V4 country data",
+      "url": "https://gitlab.com/restcountries/restcountries/-/tree/43f6260db10c54df9972e6e554ee14c2e7c85ef5",
+      "publisher": "REST Countries contributors",
+      "retrievedAt": "2026-09-10",
+      "revision": "43f6260db10c54df9972e6e554ee14c2e7c85ef5"
+    },
+    {
+      "id": "source-experience-oman-musandam",
+      "title": "Experience Oman: Musandam",
+      "url": "https://booking.experienceoman.om/en/destination/msd-93",
+      "publisher": "Ministry of Heritage and Tourism, Sultanate of Oman",
+      "retrievedAt": "2026-09-10",
+      "revision": "web snapshot 2026-09-10"
+    },
+    {
+      "id": "source-philippines-tourism-islands",
+      "title": "Island Hopping",
+      "url": "https://www.tourism.gov.ph/article/island-hopping-0-21/",
+      "publisher": "Department of Tourism, Republic of the Philippines",
+      "retrievedAt": "2026-09-10",
+      "revision": "web snapshot 2026-09-10"
+    },
+    {
+      "id": "source-geoscience-australia",
+      "title": "Australia's size compared",
+      "url": "https://www.ga.gov.au/scientific-topics/national-location-information/dimensions/australias-size-compared",
+      "publisher": "Geoscience Australia",
+      "retrievedAt": "2026-09-10",
+      "revision": "web snapshot 2026-09-10"
+    },
+    {
+      "id": "source-ibge-brazil",
+      "title": "Brazil: territory introduction",
+      "url": "https://educa.ibge.gov.br/jovens/conheca-o-brasil/territorio/20591-introducao.html",
+      "publisher": "Brazilian Institute of Geography and Statistics",
+      "retrievedAt": "2026-09-10",
+      "revision": "web snapshot 2026-09-10"
+    },
+    {
+      "id": "source-canada-coastlines",
+      "title": "Canada's coastlines",
+      "url": "https://www.canada.ca/en/services/environment/our-environment/nature-based-climate-solutions/coastlines.html",
+      "publisher": "Government of Canada",
+      "retrievedAt": "2026-09-10",
+      "revision": "web snapshot 2026-09-10"
+    },
+    {
+      "id": "source-incredible-india-dal-lake",
+      "title": "Dal Lake",
+      "url": "https://www.incredibleindia.gov.in/en/jammu-and-kashmir/srinagar/dal-lake",
+      "publisher": "Ministry of Tourism, Government of India",
+      "retrievedAt": "2026-09-10",
+      "revision": "web snapshot 2026-09-10"
+    },
+    {
+      "id": "source-gsi-japan-islands",
+      "title": "Re-counting the number of islands in Japan",
+      "url": "https://www.gsi.go.jp/kihonjohochousa/islands_index.html",
+      "publisher": "Geospatial Information Authority of Japan",
+      "retrievedAt": "2026-09-10",
+      "revision": "2022 digital-map recount published 2023-02-28"
+    },
+    {
+      "id": "source-mexico-flag-history",
+      "title": "Learn about the history of the Mexican flag",
+      "url": "https://www.gob.mx/sre/articulos/learn-about-the-history-of-the-mexican-flag-esmibandera",
+      "publisher": "Government of Mexico, Secretariat of Foreign Affairs",
+      "retrievedAt": "2026-09-10",
+      "revision": "web snapshot 2026-09-10"
+    },
+    {
+      "id": "source-south-africa-provinces",
+      "title": "South Africa's provinces",
+      "url": "https://www.gov.za/about-sa/south-africas-provinces",
+      "publisher": "Government of South Africa",
+      "retrievedAt": "2026-09-10",
+      "revision": "web snapshot 2026-09-10"
+    },
+    {
+      "id": "source-rmg-greenwich",
+      "title": "Discover the home of Greenwich Mean Time",
+      "url": "https://www.rmg.co.uk/plan-your-visit/visit-greenwich/discover-home-of-time",
+      "publisher": "Royal Museums Greenwich",
+      "retrievedAt": "2026-09-10",
+      "revision": "web snapshot 2026-09-10"
+    },
+    {
+      "id": "source-nz-womens-suffrage",
+      "title": "Women and the vote",
+      "url": "https://nzhistory.govt.nz/politics/womens-suffrage",
+      "publisher": "New Zealand Ministry for Culture and Heritage",
+      "retrievedAt": "2026-09-10",
+      "revision": "web snapshot 2026-09-10"
+    },
+    {
+      "id": "source-nepal-film-guide",
+      "title": "Filming in Nepal: a guide",
+      "url": "https://film.gov.np/media/filmgov/uploads/Filming_in_Nepal_2010_a_Guide_bOok_Chiranjibi_Guragain1.pdf",
+      "publisher": "Government of Nepal Film Development Board",
+      "retrievedAt": "2026-09-10",
+      "revision": "2010 guide"
+    },
+    {
+      "id": "source-netherlands-govtech",
+      "title": "GovTech in the Netherlands",
+      "url": "https://www.government.nl/binaries/government/documenten/reports/2021/06/30/govtech-in-the-netherlands/PUBLIC-GovTech-NL.pdf",
+      "publisher": "Government of the Netherlands",
+      "retrievedAt": "2026-09-10",
+      "revision": "2021-06 report"
+    },
+    {
+      "id": "source-cia-monaco-flag-archive",
+      "title": "Monaco flag",
+      "url": "https://www.cia.gov/the-world-factbook/about/archives/2023/countries/monaco/flag/",
+      "publisher": "CIA World Factbook archive",
+      "retrievedAt": "2026-09-10",
+      "revision": "2023 archive"
     }
   ],
   "countries": [
@@ -89,7 +209,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-af-m49-region"
+        "fact-af-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -131,7 +251,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-al-m49-region"
+        "fact-al-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -173,7 +293,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-dz-m49-region"
+        "fact-dz-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -215,7 +335,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-ad-m49-region"
+        "fact-ad-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -257,7 +377,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-ao-m49-region"
+        "fact-ao-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -301,7 +421,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-ag-m49-region"
+        "fact-ag-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -343,7 +463,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-ar-m49-region"
+        "fact-ar-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -385,7 +505,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-am-m49-region"
+        "fact-am-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -427,7 +547,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-au-m49-region"
+        "fact-au-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -469,7 +589,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-at-m49-region"
+        "fact-at-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -511,7 +631,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-az-m49-region"
+        "fact-az-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -553,7 +673,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-bs-m49-region"
+        "fact-bs-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -595,7 +715,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-bh-m49-region"
+        "fact-bh-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -637,7 +757,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-bd-m49-region"
+        "fact-bd-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -679,7 +799,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-bb-m49-region"
+        "fact-bb-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -721,7 +841,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-by-m49-region"
+        "fact-by-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -763,7 +883,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-be-m49-region"
+        "fact-be-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -805,7 +925,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-bz-m49-region"
+        "fact-bz-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -848,7 +968,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-bj-m49-region"
+        "fact-bj-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -890,7 +1010,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-bt-m49-region"
+        "fact-bt-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -935,7 +1055,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-bo-m49-region"
+        "fact-bo-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -979,7 +1099,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-ba-m49-region"
+        "fact-ba-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -1021,7 +1141,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-bw-m49-region"
+        "fact-bw-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -1063,7 +1183,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-br-m49-region"
+        "fact-br-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -1107,7 +1227,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-bn-m49-region"
+        "fact-bn-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -1149,7 +1269,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-bg-m49-region"
+        "fact-bg-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -1191,7 +1311,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-bf-m49-region"
+        "fact-bf-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -1233,7 +1353,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-bi-m49-region"
+        "fact-bi-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -1275,7 +1395,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-kh-m49-region"
+        "fact-kh-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -1317,7 +1437,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-cm-m49-region"
+        "fact-cm-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -1359,7 +1479,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-ca-m49-region"
+        "fact-ca-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -1401,7 +1521,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-cv-m49-region"
+        "fact-cv-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -1443,7 +1563,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-cf-m49-region"
+        "fact-cf-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -1485,7 +1605,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-td-m49-region"
+        "fact-td-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -1527,7 +1647,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-cl-m49-region"
+        "fact-cl-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -1569,7 +1689,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-cn-m49-region"
+        "fact-cn-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -1611,7 +1731,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-co-m49-region"
+        "fact-co-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -1653,7 +1773,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-km-m49-region"
+        "fact-km-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -1695,7 +1815,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-cr-m49-region"
+        "fact-cr-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -1737,7 +1857,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-hr-m49-region"
+        "fact-hr-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -1779,7 +1899,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-cu-m49-region"
+        "fact-cu-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -1821,7 +1941,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-cy-m49-region"
+        "fact-cy-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -1865,7 +1985,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-cz-m49-region"
+        "fact-cz-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -1911,7 +2031,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-ci-m49-region"
+        "fact-ci-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -1957,7 +2077,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-cd-m49-region"
+        "fact-cd-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -1999,7 +2119,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-dk-m49-region"
+        "fact-dk-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -2041,7 +2161,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-dj-m49-region"
+        "fact-dj-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -2083,7 +2203,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-dm-m49-region"
+        "fact-dm-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -2125,7 +2245,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-do-m49-region"
+        "fact-do-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -2167,7 +2287,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-ec-m49-region"
+        "fact-ec-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -2209,7 +2329,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-eg-m49-region"
+        "fact-eg-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -2251,7 +2371,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-sv-m49-region"
+        "fact-sv-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -2293,7 +2413,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-gq-m49-region"
+        "fact-gq-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -2335,7 +2455,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-er-m49-region"
+        "fact-er-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -2377,7 +2497,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-ee-m49-region"
+        "fact-ee-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -2420,7 +2540,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-sz-m49-region"
+        "fact-sz-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -2462,7 +2582,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-et-m49-region"
+        "fact-et-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -2504,7 +2624,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-fj-m49-region"
+        "fact-fj-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -2546,7 +2666,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-fi-m49-region"
+        "fact-fi-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -2588,7 +2708,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-fr-m49-region"
+        "fact-fr-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -2630,7 +2750,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-ga-m49-region"
+        "fact-ga-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -2674,7 +2794,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-gm-m49-region"
+        "fact-gm-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -2716,7 +2836,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-ge-m49-region"
+        "fact-ge-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -2758,7 +2878,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-de-m49-region"
+        "fact-de-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -2800,7 +2920,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-gh-m49-region"
+        "fact-gh-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -2842,7 +2962,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-gr-m49-region"
+        "fact-gr-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -2884,7 +3004,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-gd-m49-region"
+        "fact-gd-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -2926,7 +3046,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-gt-m49-region"
+        "fact-gt-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -2968,7 +3088,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-gn-m49-region"
+        "fact-gn-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -3010,7 +3130,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-gw-m49-region"
+        "fact-gw-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -3052,7 +3172,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-gy-m49-region"
+        "fact-gy-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -3094,7 +3214,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-ht-m49-region"
+        "fact-ht-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -3136,7 +3256,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-hn-m49-region"
+        "fact-hn-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -3178,7 +3298,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-hu-m49-region"
+        "fact-hu-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -3220,7 +3340,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-is-m49-region"
+        "fact-is-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -3262,7 +3382,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-in-m49-region"
+        "fact-in-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -3305,7 +3425,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-id-m49-region"
+        "fact-id-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -3349,7 +3469,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-ir-m49-region"
+        "fact-ir-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -3391,7 +3511,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-iq-m49-region"
+        "fact-iq-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -3433,7 +3553,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-ie-m49-region"
+        "fact-ie-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -3475,7 +3595,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-il-m49-region"
+        "fact-il-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -3517,7 +3637,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-it-m49-region"
+        "fact-it-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -3559,7 +3679,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-jm-m49-region"
+        "fact-jm-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -3601,7 +3721,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-jp-m49-region"
+        "fact-jp-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -3643,7 +3763,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-jo-m49-region"
+        "fact-jo-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -3685,7 +3805,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-kz-m49-region"
+        "fact-kz-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -3727,7 +3847,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-ke-m49-region"
+        "fact-ke-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -3769,7 +3889,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-ki-m49-region"
+        "fact-ki-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -3811,7 +3931,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-kw-m49-region"
+        "fact-kw-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -3853,7 +3973,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-kg-m49-region"
+        "fact-kg-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -3897,7 +4017,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-la-m49-region"
+        "fact-la-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -3939,7 +4059,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-lv-m49-region"
+        "fact-lv-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -3981,7 +4101,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-lb-m49-region"
+        "fact-lb-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -4023,7 +4143,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-ls-m49-region"
+        "fact-ls-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -4065,7 +4185,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-lr-m49-region"
+        "fact-lr-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -4107,7 +4227,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-ly-m49-region"
+        "fact-ly-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -4149,7 +4269,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-li-m49-region"
+        "fact-li-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -4191,7 +4311,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-lt-m49-region"
+        "fact-lt-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -4233,7 +4353,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-lu-m49-region"
+        "fact-lu-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -4275,7 +4395,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-mg-m49-region"
+        "fact-mg-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -4317,7 +4437,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-mw-m49-region"
+        "fact-mw-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -4360,7 +4480,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-my-m49-region"
+        "fact-my-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -4402,7 +4522,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-mv-m49-region"
+        "fact-mv-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -4444,7 +4564,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-ml-m49-region"
+        "fact-ml-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -4486,7 +4606,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-mt-m49-region"
+        "fact-mt-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -4528,7 +4648,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-mh-m49-region"
+        "fact-mh-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -4570,7 +4690,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-mr-m49-region"
+        "fact-mr-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -4612,7 +4732,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-mu-m49-region"
+        "fact-mu-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -4654,7 +4774,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-mx-m49-region"
+        "fact-mx-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -4698,7 +4818,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-fm-m49-region"
+        "fact-fm-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -4742,7 +4862,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-md-m49-region"
+        "fact-md-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -4784,7 +4904,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-mc-m49-region"
+        "fact-mc-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -4826,7 +4946,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-mn-m49-region"
+        "fact-mn-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -4868,7 +4988,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-me-m49-region"
+        "fact-me-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -4910,7 +5030,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-ma-m49-region"
+        "fact-ma-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -4952,7 +5072,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-mz-m49-region"
+        "fact-mz-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -4994,7 +5114,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-mm-m49-region"
+        "fact-mm-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -5036,7 +5156,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-na-m49-region"
+        "fact-na-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -5078,7 +5198,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-nr-m49-region"
+        "fact-nr-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -5120,7 +5240,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-np-m49-region"
+        "fact-np-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -5163,7 +5283,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-nl-m49-region"
+        "fact-nl-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -5205,7 +5325,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-nz-m49-region"
+        "fact-nz-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -5247,7 +5367,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-ni-m49-region"
+        "fact-ni-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -5289,7 +5409,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-ne-m49-region"
+        "fact-ne-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -5331,7 +5451,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-ng-m49-region"
+        "fact-ng-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -5375,7 +5495,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-kp-m49-region"
+        "fact-kp-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -5417,7 +5537,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-mk-m49-region"
+        "fact-mk-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -5459,7 +5579,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-no-m49-region"
+        "fact-no-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -5501,7 +5621,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-om-m49-region"
+        "fact-om-musandam"
       ],
       "review": {
         "state": "draft",
@@ -5543,7 +5663,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-pk-m49-region"
+        "fact-pk-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -5585,7 +5705,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-pw-m49-region"
+        "fact-pw-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -5630,7 +5750,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-ps-m49-region"
+        "fact-ps-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -5672,7 +5792,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-pa-m49-region"
+        "fact-pa-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -5714,7 +5834,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-pg-m49-region"
+        "fact-pg-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -5756,7 +5876,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-py-m49-region"
+        "fact-py-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -5798,7 +5918,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-pe-m49-region"
+        "fact-pe-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -5840,7 +5960,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-ph-m49-region"
+        "fact-ph-islands"
       ],
       "review": {
         "state": "draft",
@@ -5882,7 +6002,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-pl-m49-region"
+        "fact-pl-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -5924,7 +6044,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-pt-m49-region"
+        "fact-pt-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -5966,7 +6086,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-qa-m49-region"
+        "fact-qa-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -6012,7 +6132,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-cg-m49-region"
+        "fact-cg-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -6054,7 +6174,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-ro-m49-region"
+        "fact-ro-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -6098,7 +6218,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-ru-m49-region"
+        "fact-ru-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -6140,7 +6260,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-rw-m49-region"
+        "fact-rw-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -6184,7 +6304,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-kn-m49-region"
+        "fact-kn-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -6228,7 +6348,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-lc-m49-region"
+        "fact-lc-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -6272,7 +6392,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-vc-m49-region"
+        "fact-vc-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -6314,7 +6434,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-ws-m49-region"
+        "fact-ws-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -6356,7 +6476,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-sm-m49-region"
+        "fact-sm-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -6398,7 +6518,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-sa-m49-region"
+        "fact-sa-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -6440,7 +6560,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-sn-m49-region"
+        "fact-sn-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -6482,7 +6602,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-rs-m49-region"
+        "fact-rs-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -6524,7 +6644,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-sc-m49-region"
+        "fact-sc-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -6566,7 +6686,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-sl-m49-region"
+        "fact-sl-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -6608,7 +6728,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-sg-m49-region"
+        "fact-sg-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -6650,7 +6770,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-sk-m49-region"
+        "fact-sk-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -6692,7 +6812,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-si-m49-region"
+        "fact-si-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -6734,7 +6854,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-sb-m49-region"
+        "fact-sb-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -6776,7 +6896,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-so-m49-region"
+        "fact-so-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -6820,7 +6940,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-za-m49-region"
+        "fact-za-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -6864,7 +6984,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-kr-m49-region"
+        "fact-kr-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -6906,7 +7026,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-ss-m49-region"
+        "fact-ss-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -6948,7 +7068,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-es-m49-region"
+        "fact-es-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -6991,7 +7111,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-lk-m49-region"
+        "fact-lk-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -7033,7 +7153,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-sd-m49-region"
+        "fact-sd-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -7075,7 +7195,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-sr-m49-region"
+        "fact-sr-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -7117,7 +7237,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-se-m49-region"
+        "fact-se-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -7159,7 +7279,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-ch-m49-region"
+        "fact-ch-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -7203,7 +7323,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-sy-m49-region"
+        "fact-sy-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -7247,7 +7367,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-st-m49-region"
+        "fact-st-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -7289,7 +7409,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-tj-m49-region"
+        "fact-tj-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -7333,7 +7453,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-tz-m49-region"
+        "fact-tz-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -7375,7 +7495,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-th-m49-region"
+        "fact-th-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -7417,7 +7537,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-tl-m49-region"
+        "fact-tl-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -7459,7 +7579,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-tg-m49-region"
+        "fact-tg-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -7501,7 +7621,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-to-m49-region"
+        "fact-to-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -7545,7 +7665,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-tt-m49-region"
+        "fact-tt-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -7587,7 +7707,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-tn-m49-region"
+        "fact-tn-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -7629,7 +7749,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-tm-m49-region"
+        "fact-tm-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -7671,7 +7791,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-tv-m49-region"
+        "fact-tv-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -7713,7 +7833,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-tr-m49-region"
+        "fact-tr-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -7755,7 +7875,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-ug-m49-region"
+        "fact-ug-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -7797,7 +7917,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-ua-m49-region"
+        "fact-ua-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -7839,7 +7959,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-ae-m49-region"
+        "fact-ae-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -7884,7 +8004,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-gb-m49-region"
+        "fact-gb-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -7930,7 +8050,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-us-m49-region"
+        "fact-us-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -7972,7 +8092,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-uy-m49-region"
+        "fact-uy-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -8014,7 +8134,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-uz-m49-region"
+        "fact-uz-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -8056,7 +8176,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-vu-m49-region"
+        "fact-vu-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -8100,7 +8220,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-va-m49-region"
+        "fact-va-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -8144,7 +8264,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-ve-m49-region"
+        "fact-ve-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -8188,7 +8308,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-vn-m49-region"
+        "fact-vn-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -8230,7 +8350,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-ye-m49-region"
+        "fact-ye-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -8272,7 +8392,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-zm-m49-region"
+        "fact-zm-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -8314,7 +8434,7 @@
         "letter_bank"
       ],
       "factIds": [
-        "fact-zw-m49-region"
+        "fact-zw-land-neighbours"
       ],
       "review": {
         "state": "draft",
@@ -8325,17 +8445,17 @@
   ],
   "facts": [
     {
-      "id": "fact-af-m49-region",
+      "id": "fact-af-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "af"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Afghanistan",
-      "text": "The UN M49 standard groups Afghanistan in Southern Asia.",
+      "difficulty": "tricky",
+      "heading": "Landlocked, not isolated",
+      "text": "Afghanistan is landlocked, yet it touches six other countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -8345,17 +8465,17 @@
       }
     },
     {
-      "id": "fact-al-m49-region",
+      "id": "fact-al-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "al"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Albania",
-      "text": "The UN M49 standard groups Albania in Southern Europe.",
+      "difficulty": "tricky",
+      "heading": "Across the border",
+      "text": "Albania shares land borders with four countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -8365,17 +8485,17 @@
       }
     },
     {
-      "id": "fact-dz-m49-region",
+      "id": "fact-dz-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "dz"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Algeria",
-      "text": "The UN M49 standard groups Algeria in Northern Africa.",
+      "difficulty": "tricky",
+      "heading": "Across the border",
+      "text": "Algeria shares land borders with seven countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -8385,17 +8505,17 @@
       }
     },
     {
-      "id": "fact-ad-m49-region",
+      "id": "fact-ad-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "ad"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: Andorra",
-      "text": "The UN M49 standard groups Andorra in Southern Europe.",
+      "heading": "Landlocked, not isolated",
+      "text": "Andorra is landlocked, yet it touches two other countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -8405,17 +8525,17 @@
       }
     },
     {
-      "id": "fact-ao-m49-region",
+      "id": "fact-ao-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "ao"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Angola",
-      "text": "The UN M49 standard groups Angola in Sub-Saharan Africa.",
+      "difficulty": "tricky",
+      "heading": "Across the border",
+      "text": "Angola shares land borders with four countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -8425,17 +8545,17 @@
       }
     },
     {
-      "id": "fact-ag-m49-region",
+      "id": "fact-ag-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "ag"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: Antigua and Barbuda",
-      "text": "The UN M49 standard groups Antigua and Barbuda in Latin America and the Caribbean.",
+      "heading": "No neighbours by land",
+      "text": "Antigua and Barbuda shares no land border with another country.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -8445,17 +8565,17 @@
       }
     },
     {
-      "id": "fact-ar-m49-region",
+      "id": "fact-ar-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "ar"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Argentina",
-      "text": "The UN M49 standard groups Argentina in Latin America and the Caribbean.",
+      "difficulty": "tricky",
+      "heading": "Across the border",
+      "text": "Argentina shares land borders with five countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -8465,17 +8585,17 @@
       }
     },
     {
-      "id": "fact-am-m49-region",
+      "id": "fact-am-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "am"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Armenia",
-      "text": "The UN M49 standard groups Armenia in Western Asia.",
+      "difficulty": "tricky",
+      "heading": "Landlocked, not isolated",
+      "text": "Armenia is landlocked, yet it touches four other countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -8485,17 +8605,17 @@
       }
     },
     {
-      "id": "fact-au-m49-region",
+      "id": "fact-au-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "au"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: Australia",
-      "text": "The UN M49 standard groups Australia in Australia and New Zealand.",
+      "heading": "A continent of its own",
+      "text": "Australia is both a country and the smallest continental landmass.",
       "sourceIds": [
-        "source-un-m49"
+        "source-geoscience-australia"
       ],
       "asOf": null,
       "review": {
@@ -8505,17 +8625,17 @@
       }
     },
     {
-      "id": "fact-at-m49-region",
+      "id": "fact-at-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "at"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Austria",
-      "text": "The UN M49 standard groups Austria in Western Europe.",
+      "difficulty": "tricky",
+      "heading": "Landlocked, not isolated",
+      "text": "Austria is landlocked, yet it touches eight other countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -8525,17 +8645,17 @@
       }
     },
     {
-      "id": "fact-az-m49-region",
+      "id": "fact-az-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "az"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Azerbaijan",
-      "text": "The UN M49 standard groups Azerbaijan in Western Asia.",
+      "difficulty": "tricky",
+      "heading": "Landlocked, not isolated",
+      "text": "Azerbaijan is landlocked, yet it touches five other countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -8545,17 +8665,17 @@
       }
     },
     {
-      "id": "fact-bs-m49-region",
+      "id": "fact-bs-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "bs"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: Bahamas",
-      "text": "The UN M49 standard groups Bahamas in Latin America and the Caribbean.",
+      "heading": "No neighbours by land",
+      "text": "Bahamas shares no land border with another country.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -8565,17 +8685,17 @@
       }
     },
     {
-      "id": "fact-bh-m49-region",
+      "id": "fact-bh-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "bh"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: Bahrain",
-      "text": "The UN M49 standard groups Bahrain in Western Asia.",
+      "heading": "No neighbours by land",
+      "text": "Bahrain shares no land border with another country.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -8585,17 +8705,17 @@
       }
     },
     {
-      "id": "fact-bd-m49-region",
+      "id": "fact-bd-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "bd"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: Bangladesh",
-      "text": "The UN M49 standard groups Bangladesh in Southern Asia.",
+      "heading": "Across the border",
+      "text": "Bangladesh shares land borders with two countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -8605,17 +8725,17 @@
       }
     },
     {
-      "id": "fact-bb-m49-region",
+      "id": "fact-bb-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "bb"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: Barbados",
-      "text": "The UN M49 standard groups Barbados in Latin America and the Caribbean.",
+      "heading": "No neighbours by land",
+      "text": "Barbados shares no land border with another country.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -8625,17 +8745,17 @@
       }
     },
     {
-      "id": "fact-by-m49-region",
+      "id": "fact-by-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "by"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Belarus",
-      "text": "The UN M49 standard groups Belarus in Eastern Europe.",
+      "difficulty": "tricky",
+      "heading": "Landlocked, not isolated",
+      "text": "Belarus is landlocked, yet it touches five other countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -8645,17 +8765,17 @@
       }
     },
     {
-      "id": "fact-be-m49-region",
+      "id": "fact-be-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "be"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Belgium",
-      "text": "The UN M49 standard groups Belgium in Western Europe.",
+      "difficulty": "tricky",
+      "heading": "Across the border",
+      "text": "Belgium shares land borders with four countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -8665,17 +8785,17 @@
       }
     },
     {
-      "id": "fact-bz-m49-region",
+      "id": "fact-bz-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "bz"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: Belize",
-      "text": "The UN M49 standard groups Belize in Latin America and the Caribbean.",
+      "heading": "Across the border",
+      "text": "Belize shares land borders with two countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -8685,17 +8805,17 @@
       }
     },
     {
-      "id": "fact-bj-m49-region",
+      "id": "fact-bj-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "bj"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Benin",
-      "text": "The UN M49 standard groups Benin in Sub-Saharan Africa.",
+      "difficulty": "tricky",
+      "heading": "Across the border",
+      "text": "Benin shares land borders with four countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -8705,17 +8825,17 @@
       }
     },
     {
-      "id": "fact-bt-m49-region",
+      "id": "fact-bt-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "bt"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: Bhutan",
-      "text": "The UN M49 standard groups Bhutan in Southern Asia.",
+      "heading": "Landlocked, not isolated",
+      "text": "Bhutan is landlocked, yet it touches two other countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -8725,17 +8845,17 @@
       }
     },
     {
-      "id": "fact-bo-m49-region",
+      "id": "fact-bo-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "bo"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Bolivia",
-      "text": "The UN M49 standard groups Bolivia in Latin America and the Caribbean.",
+      "difficulty": "tricky",
+      "heading": "Landlocked, not isolated",
+      "text": "Bolivia is landlocked, yet it touches five other countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -8745,17 +8865,17 @@
       }
     },
     {
-      "id": "fact-ba-m49-region",
+      "id": "fact-ba-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "ba"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Bosnia and Herzegovina",
-      "text": "The UN M49 standard groups Bosnia and Herzegovina in Southern Europe.",
+      "difficulty": "tricky",
+      "heading": "Across the border",
+      "text": "Bosnia and Herzegovina shares land borders with three countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -8765,17 +8885,17 @@
       }
     },
     {
-      "id": "fact-bw-m49-region",
+      "id": "fact-bw-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "bw"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Botswana",
-      "text": "The UN M49 standard groups Botswana in Sub-Saharan Africa.",
+      "difficulty": "tricky",
+      "heading": "Landlocked, not isolated",
+      "text": "Botswana is landlocked, yet it touches four other countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -8785,17 +8905,17 @@
       }
     },
     {
-      "id": "fact-br-m49-region",
+      "id": "fact-br-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "br"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Brazil",
-      "text": "The UN M49 standard groups Brazil in Latin America and the Caribbean.",
+      "difficulty": "tricky",
+      "heading": "Two landmark lines",
+      "text": "Both the Equator and the Tropic of Capricorn cross Brazil.",
       "sourceIds": [
-        "source-un-m49"
+        "source-ibge-brazil"
       ],
       "asOf": null,
       "review": {
@@ -8805,17 +8925,17 @@
       }
     },
     {
-      "id": "fact-bn-m49-region",
+      "id": "fact-bn-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "bn"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: Brunei",
-      "text": "The UN M49 standard groups Brunei in South-eastern Asia.",
+      "heading": "A short border list",
+      "text": "Brunei has just one land neighbour: Malaysia.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -8825,17 +8945,17 @@
       }
     },
     {
-      "id": "fact-bg-m49-region",
+      "id": "fact-bg-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "bg"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Bulgaria",
-      "text": "The UN M49 standard groups Bulgaria in Eastern Europe.",
+      "difficulty": "tricky",
+      "heading": "Across the border",
+      "text": "Bulgaria shares land borders with five countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -8845,17 +8965,17 @@
       }
     },
     {
-      "id": "fact-bf-m49-region",
+      "id": "fact-bf-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "bf"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Burkina Faso",
-      "text": "The UN M49 standard groups Burkina Faso in Sub-Saharan Africa.",
+      "difficulty": "tricky",
+      "heading": "Landlocked, not isolated",
+      "text": "Burkina Faso is landlocked, yet it touches six other countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -8865,17 +8985,17 @@
       }
     },
     {
-      "id": "fact-bi-m49-region",
+      "id": "fact-bi-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "bi"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Burundi",
-      "text": "The UN M49 standard groups Burundi in Sub-Saharan Africa.",
+      "difficulty": "tricky",
+      "heading": "Landlocked, not isolated",
+      "text": "Burundi is landlocked, yet it touches three other countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -8885,17 +9005,17 @@
       }
     },
     {
-      "id": "fact-kh-m49-region",
+      "id": "fact-kh-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "kh"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Cambodia",
-      "text": "The UN M49 standard groups Cambodia in South-eastern Asia.",
+      "difficulty": "tricky",
+      "heading": "Across the border",
+      "text": "Cambodia shares land borders with three countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -8905,17 +9025,17 @@
       }
     },
     {
-      "id": "fact-cm-m49-region",
+      "id": "fact-cm-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "cm"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Cameroon",
-      "text": "The UN M49 standard groups Cameroon in Sub-Saharan Africa.",
+      "difficulty": "tricky",
+      "heading": "Across the border",
+      "text": "Cameroon shares land borders with six countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -8925,17 +9045,17 @@
       }
     },
     {
-      "id": "fact-ca-m49-region",
+      "id": "fact-ca-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "ca"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: Canada",
-      "text": "The UN M49 standard groups Canada in Northern America.",
+      "heading": "Three-ocean shores",
+      "text": "Canada's coastline reaches the Atlantic, Arctic and Pacific oceans.",
       "sourceIds": [
-        "source-un-m49"
+        "source-canada-coastlines"
       ],
       "asOf": null,
       "review": {
@@ -8945,17 +9065,17 @@
       }
     },
     {
-      "id": "fact-cv-m49-region",
+      "id": "fact-cv-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "cv"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: Cape Verde",
-      "text": "The UN M49 standard groups Cape Verde in Sub-Saharan Africa.",
+      "heading": "No neighbours by land",
+      "text": "Cape Verde shares no land border with another country.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -8965,17 +9085,17 @@
       }
     },
     {
-      "id": "fact-cf-m49-region",
+      "id": "fact-cf-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "cf"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Central African Republic",
-      "text": "The UN M49 standard groups Central African Republic in Sub-Saharan Africa.",
+      "difficulty": "tricky",
+      "heading": "Landlocked, not isolated",
+      "text": "Central African Republic is landlocked, yet it touches six other countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -8985,17 +9105,17 @@
       }
     },
     {
-      "id": "fact-td-m49-region",
+      "id": "fact-td-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "td"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Chad",
-      "text": "The UN M49 standard groups Chad in Sub-Saharan Africa.",
+      "difficulty": "tricky",
+      "heading": "Landlocked, not isolated",
+      "text": "Chad is landlocked, yet it touches six other countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -9005,17 +9125,17 @@
       }
     },
     {
-      "id": "fact-cl-m49-region",
+      "id": "fact-cl-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "cl"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Chile",
-      "text": "The UN M49 standard groups Chile in Latin America and the Caribbean.",
+      "difficulty": "tricky",
+      "heading": "Across the border",
+      "text": "Chile shares land borders with three countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -9025,17 +9145,17 @@
       }
     },
     {
-      "id": "fact-cn-m49-region",
+      "id": "fact-cn-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "cn"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: China",
-      "text": "The UN M49 standard groups China in Eastern Asia.",
+      "difficulty": "tricky",
+      "heading": "Many ways next door",
+      "text": "China shares land borders with 16 countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -9045,17 +9165,17 @@
       }
     },
     {
-      "id": "fact-co-m49-region",
+      "id": "fact-co-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "co"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Colombia",
-      "text": "The UN M49 standard groups Colombia in Latin America and the Caribbean.",
+      "difficulty": "tricky",
+      "heading": "Across the border",
+      "text": "Colombia shares land borders with five countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -9065,17 +9185,17 @@
       }
     },
     {
-      "id": "fact-km-m49-region",
+      "id": "fact-km-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "km"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: Comoros",
-      "text": "The UN M49 standard groups Comoros in Sub-Saharan Africa.",
+      "heading": "No neighbours by land",
+      "text": "Comoros shares no land border with another country.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -9085,17 +9205,17 @@
       }
     },
     {
-      "id": "fact-cr-m49-region",
+      "id": "fact-cr-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "cr"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: Costa Rica",
-      "text": "The UN M49 standard groups Costa Rica in Latin America and the Caribbean.",
+      "heading": "Across the border",
+      "text": "Costa Rica shares land borders with two countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -9105,17 +9225,17 @@
       }
     },
     {
-      "id": "fact-hr-m49-region",
+      "id": "fact-hr-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "hr"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Croatia",
-      "text": "The UN M49 standard groups Croatia in Southern Europe.",
+      "difficulty": "tricky",
+      "heading": "Across the border",
+      "text": "Croatia shares land borders with five countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -9125,17 +9245,17 @@
       }
     },
     {
-      "id": "fact-cu-m49-region",
+      "id": "fact-cu-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "cu"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: Cuba",
-      "text": "The UN M49 standard groups Cuba in Latin America and the Caribbean.",
+      "heading": "No neighbours by land",
+      "text": "Cuba shares no land border with another country.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -9145,17 +9265,17 @@
       }
     },
     {
-      "id": "fact-cy-m49-region",
+      "id": "fact-cy-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "cy"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: Cyprus",
-      "text": "The UN M49 standard groups Cyprus in Western Asia.",
+      "heading": "No neighbours by land",
+      "text": "Cyprus shares no land border with another country.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -9165,17 +9285,17 @@
       }
     },
     {
-      "id": "fact-cz-m49-region",
+      "id": "fact-cz-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "cz"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Czechia",
-      "text": "The UN M49 standard groups Czechia in Eastern Europe.",
+      "difficulty": "tricky",
+      "heading": "Landlocked, not isolated",
+      "text": "Czechia is landlocked, yet it touches four other countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -9185,17 +9305,17 @@
       }
     },
     {
-      "id": "fact-ci-m49-region",
+      "id": "fact-ci-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "ci"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Côte d’Ivoire",
-      "text": "The UN M49 standard groups Côte d’Ivoire in Sub-Saharan Africa.",
+      "difficulty": "tricky",
+      "heading": "Across the border",
+      "text": "Côte d’Ivoire shares land borders with five countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -9205,17 +9325,17 @@
       }
     },
     {
-      "id": "fact-cd-m49-region",
+      "id": "fact-cd-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "cd"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Democratic Republic of the Congo",
-      "text": "The UN M49 standard groups Democratic Republic of the Congo in Sub-Saharan Africa.",
+      "difficulty": "tricky",
+      "heading": "Many ways next door",
+      "text": "Democratic Republic of the Congo shares land borders with nine countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -9225,17 +9345,17 @@
       }
     },
     {
-      "id": "fact-dk-m49-region",
+      "id": "fact-dk-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "dk"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: Denmark",
-      "text": "The UN M49 standard groups Denmark in Northern Europe.",
+      "heading": "A short border list",
+      "text": "Denmark has just one land neighbour: Germany.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -9245,17 +9365,17 @@
       }
     },
     {
-      "id": "fact-dj-m49-region",
+      "id": "fact-dj-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "dj"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Djibouti",
-      "text": "The UN M49 standard groups Djibouti in Sub-Saharan Africa.",
+      "difficulty": "tricky",
+      "heading": "Across the border",
+      "text": "Djibouti shares land borders with three countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -9265,17 +9385,17 @@
       }
     },
     {
-      "id": "fact-dm-m49-region",
+      "id": "fact-dm-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "dm"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: Dominica",
-      "text": "The UN M49 standard groups Dominica in Latin America and the Caribbean.",
+      "heading": "No neighbours by land",
+      "text": "Dominica shares no land border with another country.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -9285,17 +9405,17 @@
       }
     },
     {
-      "id": "fact-do-m49-region",
+      "id": "fact-do-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "do"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: Dominican Republic",
-      "text": "The UN M49 standard groups Dominican Republic in Latin America and the Caribbean.",
+      "heading": "A short border list",
+      "text": "Dominican Republic has just one land neighbour: Haiti.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -9305,17 +9425,17 @@
       }
     },
     {
-      "id": "fact-ec-m49-region",
+      "id": "fact-ec-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "ec"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: Ecuador",
-      "text": "The UN M49 standard groups Ecuador in Latin America and the Caribbean.",
+      "heading": "Across the border",
+      "text": "Ecuador shares land borders with two countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -9325,17 +9445,17 @@
       }
     },
     {
-      "id": "fact-eg-m49-region",
+      "id": "fact-eg-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "eg"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Egypt",
-      "text": "The UN M49 standard groups Egypt in Northern Africa.",
+      "difficulty": "tricky",
+      "heading": "Across the border",
+      "text": "Egypt shares land borders with four countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -9345,17 +9465,17 @@
       }
     },
     {
-      "id": "fact-sv-m49-region",
+      "id": "fact-sv-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "sv"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: El Salvador",
-      "text": "The UN M49 standard groups El Salvador in Latin America and the Caribbean.",
+      "heading": "Across the border",
+      "text": "El Salvador shares land borders with two countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -9365,17 +9485,17 @@
       }
     },
     {
-      "id": "fact-gq-m49-region",
+      "id": "fact-gq-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "gq"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: Equatorial Guinea",
-      "text": "The UN M49 standard groups Equatorial Guinea in Sub-Saharan Africa.",
+      "heading": "Across the border",
+      "text": "Equatorial Guinea shares land borders with two countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -9385,17 +9505,17 @@
       }
     },
     {
-      "id": "fact-er-m49-region",
+      "id": "fact-er-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "er"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Eritrea",
-      "text": "The UN M49 standard groups Eritrea in Sub-Saharan Africa.",
+      "difficulty": "tricky",
+      "heading": "Across the border",
+      "text": "Eritrea shares land borders with three countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -9405,17 +9525,17 @@
       }
     },
     {
-      "id": "fact-ee-m49-region",
+      "id": "fact-ee-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "ee"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: Estonia",
-      "text": "The UN M49 standard groups Estonia in Northern Europe.",
+      "heading": "Across the border",
+      "text": "Estonia shares land borders with two countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -9425,17 +9545,17 @@
       }
     },
     {
-      "id": "fact-sz-m49-region",
+      "id": "fact-sz-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "sz"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: Eswatini",
-      "text": "The UN M49 standard groups Eswatini in Sub-Saharan Africa.",
+      "heading": "Landlocked, not isolated",
+      "text": "Eswatini is landlocked, yet it touches two other countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -9445,17 +9565,17 @@
       }
     },
     {
-      "id": "fact-et-m49-region",
+      "id": "fact-et-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "et"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Ethiopia",
-      "text": "The UN M49 standard groups Ethiopia in Sub-Saharan Africa.",
+      "difficulty": "tricky",
+      "heading": "Landlocked, not isolated",
+      "text": "Ethiopia is landlocked, yet it touches six other countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -9465,17 +9585,17 @@
       }
     },
     {
-      "id": "fact-fj-m49-region",
+      "id": "fact-fj-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "fj"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: Fiji",
-      "text": "The UN M49 standard groups Fiji in Melanesia.",
+      "heading": "No neighbours by land",
+      "text": "Fiji shares no land border with another country.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -9485,17 +9605,17 @@
       }
     },
     {
-      "id": "fact-fi-m49-region",
+      "id": "fact-fi-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "fi"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Finland",
-      "text": "The UN M49 standard groups Finland in Northern Europe.",
+      "difficulty": "tricky",
+      "heading": "Across the border",
+      "text": "Finland shares land borders with three countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -9505,17 +9625,17 @@
       }
     },
     {
-      "id": "fact-fr-m49-region",
+      "id": "fact-fr-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "fr"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: France",
-      "text": "The UN M49 standard groups France in Western Europe.",
+      "difficulty": "tricky",
+      "heading": "Many ways next door",
+      "text": "Counting its overseas territory in South America, France shares land borders with eight countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -9525,17 +9645,17 @@
       }
     },
     {
-      "id": "fact-ga-m49-region",
+      "id": "fact-ga-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "ga"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Gabon",
-      "text": "The UN M49 standard groups Gabon in Sub-Saharan Africa.",
+      "difficulty": "tricky",
+      "heading": "Across the border",
+      "text": "Gabon shares land borders with three countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -9545,17 +9665,17 @@
       }
     },
     {
-      "id": "fact-gm-m49-region",
+      "id": "fact-gm-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "gm"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: Gambia",
-      "text": "The UN M49 standard groups Gambia in Sub-Saharan Africa.",
+      "heading": "A short border list",
+      "text": "Gambia has just one land neighbour: Senegal.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -9565,17 +9685,17 @@
       }
     },
     {
-      "id": "fact-ge-m49-region",
+      "id": "fact-ge-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "ge"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Georgia",
-      "text": "The UN M49 standard groups Georgia in Western Asia.",
+      "difficulty": "tricky",
+      "heading": "Across the border",
+      "text": "Georgia shares land borders with four countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -9585,17 +9705,17 @@
       }
     },
     {
-      "id": "fact-de-m49-region",
+      "id": "fact-de-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "de"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Germany",
-      "text": "The UN M49 standard groups Germany in Western Europe.",
+      "difficulty": "tricky",
+      "heading": "Many ways next door",
+      "text": "Germany shares land borders with nine countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -9605,17 +9725,17 @@
       }
     },
     {
-      "id": "fact-gh-m49-region",
+      "id": "fact-gh-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "gh"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Ghana",
-      "text": "The UN M49 standard groups Ghana in Sub-Saharan Africa.",
+      "difficulty": "tricky",
+      "heading": "Across the border",
+      "text": "Ghana shares land borders with three countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -9625,17 +9745,17 @@
       }
     },
     {
-      "id": "fact-gr-m49-region",
+      "id": "fact-gr-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "gr"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Greece",
-      "text": "The UN M49 standard groups Greece in Southern Europe.",
+      "difficulty": "tricky",
+      "heading": "Across the border",
+      "text": "Greece shares land borders with four countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -9645,17 +9765,17 @@
       }
     },
     {
-      "id": "fact-gd-m49-region",
+      "id": "fact-gd-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "gd"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: Grenada",
-      "text": "The UN M49 standard groups Grenada in Latin America and the Caribbean.",
+      "heading": "No neighbours by land",
+      "text": "Grenada shares no land border with another country.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -9665,17 +9785,17 @@
       }
     },
     {
-      "id": "fact-gt-m49-region",
+      "id": "fact-gt-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "gt"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Guatemala",
-      "text": "The UN M49 standard groups Guatemala in Latin America and the Caribbean.",
+      "difficulty": "tricky",
+      "heading": "Across the border",
+      "text": "Guatemala shares land borders with four countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -9685,17 +9805,17 @@
       }
     },
     {
-      "id": "fact-gn-m49-region",
+      "id": "fact-gn-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "gn"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Guinea",
-      "text": "The UN M49 standard groups Guinea in Sub-Saharan Africa.",
+      "difficulty": "tricky",
+      "heading": "Across the border",
+      "text": "Guinea shares land borders with six countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -9705,17 +9825,17 @@
       }
     },
     {
-      "id": "fact-gw-m49-region",
+      "id": "fact-gw-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "gw"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: Guinea-Bissau",
-      "text": "The UN M49 standard groups Guinea-Bissau in Sub-Saharan Africa.",
+      "heading": "Across the border",
+      "text": "Guinea-Bissau shares land borders with two countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -9725,17 +9845,17 @@
       }
     },
     {
-      "id": "fact-gy-m49-region",
+      "id": "fact-gy-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "gy"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Guyana",
-      "text": "The UN M49 standard groups Guyana in Latin America and the Caribbean.",
+      "difficulty": "tricky",
+      "heading": "Across the border",
+      "text": "Guyana shares land borders with three countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -9745,17 +9865,17 @@
       }
     },
     {
-      "id": "fact-ht-m49-region",
+      "id": "fact-ht-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "ht"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: Haiti",
-      "text": "The UN M49 standard groups Haiti in Latin America and the Caribbean.",
+      "heading": "A short border list",
+      "text": "Haiti has just one land neighbour: Dominican Republic.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -9765,17 +9885,17 @@
       }
     },
     {
-      "id": "fact-hn-m49-region",
+      "id": "fact-hn-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "hn"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Honduras",
-      "text": "The UN M49 standard groups Honduras in Latin America and the Caribbean.",
+      "difficulty": "tricky",
+      "heading": "Across the border",
+      "text": "Honduras shares land borders with three countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -9785,17 +9905,17 @@
       }
     },
     {
-      "id": "fact-hu-m49-region",
+      "id": "fact-hu-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "hu"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Hungary",
-      "text": "The UN M49 standard groups Hungary in Eastern Europe.",
+      "difficulty": "tricky",
+      "heading": "Landlocked, not isolated",
+      "text": "Hungary is landlocked, yet it touches seven other countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -9805,17 +9925,17 @@
       }
     },
     {
-      "id": "fact-is-m49-region",
+      "id": "fact-is-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "is"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: Iceland",
-      "text": "The UN M49 standard groups Iceland in Northern Europe.",
+      "heading": "No neighbours by land",
+      "text": "Iceland shares no land border with another country.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -9825,17 +9945,17 @@
       }
     },
     {
-      "id": "fact-in-m49-region",
+      "id": "fact-in-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "in"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: India",
-      "text": "The UN M49 standard groups India in Southern Asia.",
+      "difficulty": "tricky",
+      "heading": "Post from the lake",
+      "text": "A floating post office on Srinagar's Dal Lake even has a small philately museum.",
       "sourceIds": [
-        "source-un-m49"
+        "source-incredible-india-dal-lake"
       ],
       "asOf": null,
       "review": {
@@ -9845,17 +9965,17 @@
       }
     },
     {
-      "id": "fact-id-m49-region",
+      "id": "fact-id-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "id"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Indonesia",
-      "text": "The UN M49 standard groups Indonesia in South-eastern Asia.",
+      "difficulty": "tricky",
+      "heading": "Across the border",
+      "text": "Indonesia shares land borders with three countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -9865,17 +9985,17 @@
       }
     },
     {
-      "id": "fact-ir-m49-region",
+      "id": "fact-ir-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "ir"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Iran",
-      "text": "The UN M49 standard groups Iran in Southern Asia.",
+      "difficulty": "tricky",
+      "heading": "Across the border",
+      "text": "Iran shares land borders with seven countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -9885,17 +10005,17 @@
       }
     },
     {
-      "id": "fact-iq-m49-region",
+      "id": "fact-iq-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "iq"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Iraq",
-      "text": "The UN M49 standard groups Iraq in Western Asia.",
+      "difficulty": "tricky",
+      "heading": "Across the border",
+      "text": "Iraq shares land borders with six countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -9905,17 +10025,17 @@
       }
     },
     {
-      "id": "fact-ie-m49-region",
+      "id": "fact-ie-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "ie"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: Ireland",
-      "text": "The UN M49 standard groups Ireland in Northern Europe.",
+      "heading": "A short border list",
+      "text": "Ireland has just one land neighbour: United Kingdom.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -9925,17 +10045,17 @@
       }
     },
     {
-      "id": "fact-il-m49-region",
+      "id": "fact-il-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "il"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Israel",
-      "text": "The UN M49 standard groups Israel in Western Asia.",
+      "difficulty": "tricky",
+      "heading": "Across the border",
+      "text": "Israel shares land borders with five countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -9945,17 +10065,17 @@
       }
     },
     {
-      "id": "fact-it-m49-region",
+      "id": "fact-it-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "it"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Italy",
-      "text": "The UN M49 standard groups Italy in Southern Europe.",
+      "difficulty": "tricky",
+      "heading": "Across the border",
+      "text": "Italy shares land borders with six countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -9965,17 +10085,17 @@
       }
     },
     {
-      "id": "fact-jm-m49-region",
+      "id": "fact-jm-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "jm"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: Jamaica",
-      "text": "The UN M49 standard groups Jamaica in Latin America and the Caribbean.",
+      "heading": "No neighbours by land",
+      "text": "Jamaica shares no land border with another country.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -9985,19 +10105,19 @@
       }
     },
     {
-      "id": "fact-jp-m49-region",
+      "id": "fact-jp-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "jp"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: Japan",
-      "text": "The UN M49 standard groups Japan in Eastern Asia.",
+      "heading": "An island recount",
+      "text": "Using its 2022 digital maps, Japan's mapping authority counted 14,125 islands.",
       "sourceIds": [
-        "source-un-m49"
+        "source-gsi-japan-islands"
       ],
-      "asOf": null,
+      "asOf": "2022-01",
       "review": {
         "state": "draft",
         "reviewer": null,
@@ -10005,17 +10125,17 @@
       }
     },
     {
-      "id": "fact-jo-m49-region",
+      "id": "fact-jo-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "jo"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Jordan",
-      "text": "The UN M49 standard groups Jordan in Western Asia.",
+      "difficulty": "tricky",
+      "heading": "Across the border",
+      "text": "Jordan shares land borders with five countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -10025,17 +10145,17 @@
       }
     },
     {
-      "id": "fact-kz-m49-region",
+      "id": "fact-kz-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "kz"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Kazakhstan",
-      "text": "The UN M49 standard groups Kazakhstan in Central Asia.",
+      "difficulty": "tricky",
+      "heading": "Landlocked, not isolated",
+      "text": "Kazakhstan is landlocked, yet it touches five other countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -10045,17 +10165,17 @@
       }
     },
     {
-      "id": "fact-ke-m49-region",
+      "id": "fact-ke-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "ke"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Kenya",
-      "text": "The UN M49 standard groups Kenya in Sub-Saharan Africa.",
+      "difficulty": "tricky",
+      "heading": "Across the border",
+      "text": "Kenya shares land borders with five countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -10065,17 +10185,17 @@
       }
     },
     {
-      "id": "fact-ki-m49-region",
+      "id": "fact-ki-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "ki"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: Kiribati",
-      "text": "The UN M49 standard groups Kiribati in Micronesia.",
+      "heading": "No neighbours by land",
+      "text": "Kiribati shares no land border with another country.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -10085,17 +10205,17 @@
       }
     },
     {
-      "id": "fact-kw-m49-region",
+      "id": "fact-kw-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "kw"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: Kuwait",
-      "text": "The UN M49 standard groups Kuwait in Western Asia.",
+      "heading": "Across the border",
+      "text": "Kuwait shares land borders with two countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -10105,17 +10225,17 @@
       }
     },
     {
-      "id": "fact-kg-m49-region",
+      "id": "fact-kg-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "kg"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Kyrgyzstan",
-      "text": "The UN M49 standard groups Kyrgyzstan in Central Asia.",
+      "difficulty": "tricky",
+      "heading": "Landlocked, not isolated",
+      "text": "Kyrgyzstan is landlocked, yet it touches four other countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -10125,17 +10245,17 @@
       }
     },
     {
-      "id": "fact-la-m49-region",
+      "id": "fact-la-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "la"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Laos",
-      "text": "The UN M49 standard groups Laos in South-eastern Asia.",
+      "difficulty": "tricky",
+      "heading": "Landlocked, not isolated",
+      "text": "Laos is landlocked, yet it touches five other countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -10145,17 +10265,17 @@
       }
     },
     {
-      "id": "fact-lv-m49-region",
+      "id": "fact-lv-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "lv"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Latvia",
-      "text": "The UN M49 standard groups Latvia in Northern Europe.",
+      "difficulty": "tricky",
+      "heading": "Across the border",
+      "text": "Latvia shares land borders with four countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -10165,17 +10285,17 @@
       }
     },
     {
-      "id": "fact-lb-m49-region",
+      "id": "fact-lb-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "lb"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: Lebanon",
-      "text": "The UN M49 standard groups Lebanon in Western Asia.",
+      "heading": "Across the border",
+      "text": "Lebanon shares land borders with two countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -10185,17 +10305,17 @@
       }
     },
     {
-      "id": "fact-ls-m49-region",
+      "id": "fact-ls-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "ls"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: Lesotho",
-      "text": "The UN M49 standard groups Lesotho in Sub-Saharan Africa.",
+      "heading": "A short border list",
+      "text": "Lesotho has just one land neighbour: South Africa.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -10205,17 +10325,17 @@
       }
     },
     {
-      "id": "fact-lr-m49-region",
+      "id": "fact-lr-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "lr"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Liberia",
-      "text": "The UN M49 standard groups Liberia in Sub-Saharan Africa.",
+      "difficulty": "tricky",
+      "heading": "Across the border",
+      "text": "Liberia shares land borders with three countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -10225,17 +10345,17 @@
       }
     },
     {
-      "id": "fact-ly-m49-region",
+      "id": "fact-ly-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "ly"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Libya",
-      "text": "The UN M49 standard groups Libya in Northern Africa.",
+      "difficulty": "tricky",
+      "heading": "Across the border",
+      "text": "Libya shares land borders with six countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -10245,17 +10365,17 @@
       }
     },
     {
-      "id": "fact-li-m49-region",
+      "id": "fact-li-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "li"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: Liechtenstein",
-      "text": "The UN M49 standard groups Liechtenstein in Western Europe.",
+      "heading": "Landlocked, not isolated",
+      "text": "Liechtenstein is landlocked, yet it touches two other countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -10265,17 +10385,17 @@
       }
     },
     {
-      "id": "fact-lt-m49-region",
+      "id": "fact-lt-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "lt"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Lithuania",
-      "text": "The UN M49 standard groups Lithuania in Northern Europe.",
+      "difficulty": "tricky",
+      "heading": "Across the border",
+      "text": "Lithuania shares land borders with four countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -10285,17 +10405,17 @@
       }
     },
     {
-      "id": "fact-lu-m49-region",
+      "id": "fact-lu-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "lu"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Luxembourg",
-      "text": "The UN M49 standard groups Luxembourg in Western Europe.",
+      "difficulty": "tricky",
+      "heading": "Landlocked, not isolated",
+      "text": "Luxembourg is landlocked, yet it touches three other countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -10305,17 +10425,17 @@
       }
     },
     {
-      "id": "fact-mg-m49-region",
+      "id": "fact-mg-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "mg"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: Madagascar",
-      "text": "The UN M49 standard groups Madagascar in Sub-Saharan Africa.",
+      "heading": "No neighbours by land",
+      "text": "Madagascar shares no land border with another country.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -10325,17 +10445,17 @@
       }
     },
     {
-      "id": "fact-mw-m49-region",
+      "id": "fact-mw-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "mw"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Malawi",
-      "text": "The UN M49 standard groups Malawi in Sub-Saharan Africa.",
+      "difficulty": "tricky",
+      "heading": "Landlocked, not isolated",
+      "text": "Malawi is landlocked, yet it touches three other countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -10345,17 +10465,17 @@
       }
     },
     {
-      "id": "fact-my-m49-region",
+      "id": "fact-my-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "my"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Malaysia",
-      "text": "The UN M49 standard groups Malaysia in South-eastern Asia.",
+      "difficulty": "tricky",
+      "heading": "Across the border",
+      "text": "Malaysia shares land borders with three countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -10365,17 +10485,17 @@
       }
     },
     {
-      "id": "fact-mv-m49-region",
+      "id": "fact-mv-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "mv"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: Maldives",
-      "text": "The UN M49 standard groups Maldives in Southern Asia.",
+      "heading": "No neighbours by land",
+      "text": "Maldives shares no land border with another country.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -10385,17 +10505,17 @@
       }
     },
     {
-      "id": "fact-ml-m49-region",
+      "id": "fact-ml-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "ml"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Mali",
-      "text": "The UN M49 standard groups Mali in Sub-Saharan Africa.",
+      "difficulty": "tricky",
+      "heading": "Landlocked, not isolated",
+      "text": "Mali is landlocked, yet it touches seven other countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -10405,17 +10525,17 @@
       }
     },
     {
-      "id": "fact-mt-m49-region",
+      "id": "fact-mt-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "mt"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: Malta",
-      "text": "The UN M49 standard groups Malta in Southern Europe.",
+      "heading": "No neighbours by land",
+      "text": "Malta shares no land border with another country.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -10425,17 +10545,17 @@
       }
     },
     {
-      "id": "fact-mh-m49-region",
+      "id": "fact-mh-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "mh"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: Marshall Islands",
-      "text": "The UN M49 standard groups Marshall Islands in Micronesia.",
+      "heading": "No neighbours by land",
+      "text": "Marshall Islands shares no land border with another country.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -10445,17 +10565,17 @@
       }
     },
     {
-      "id": "fact-mr-m49-region",
+      "id": "fact-mr-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "mr"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Mauritania",
-      "text": "The UN M49 standard groups Mauritania in Sub-Saharan Africa.",
+      "difficulty": "tricky",
+      "heading": "Across the border",
+      "text": "Mauritania shares land borders with four countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -10465,17 +10585,17 @@
       }
     },
     {
-      "id": "fact-mu-m49-region",
+      "id": "fact-mu-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "mu"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: Mauritius",
-      "text": "The UN M49 standard groups Mauritius in Sub-Saharan Africa.",
+      "heading": "No neighbours by land",
+      "text": "Mauritius shares no land border with another country.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -10485,17 +10605,17 @@
       }
     },
     {
-      "id": "fact-mx-m49-region",
+      "id": "fact-mx-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "mx"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Mexico",
-      "text": "The UN M49 standard groups Mexico in Latin America and the Caribbean.",
+      "difficulty": "tricky",
+      "heading": "An origin story on a flag",
+      "text": "The eagle, cactus and snake on Mexico's flag recall the founding of Tenochtitlan.",
       "sourceIds": [
-        "source-un-m49"
+        "source-mexico-flag-history"
       ],
       "asOf": null,
       "review": {
@@ -10505,17 +10625,17 @@
       }
     },
     {
-      "id": "fact-fm-m49-region",
+      "id": "fact-fm-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "fm"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: Micronesia",
-      "text": "The UN M49 standard groups Micronesia in Micronesia.",
+      "heading": "No neighbours by land",
+      "text": "Micronesia shares no land border with another country.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -10525,17 +10645,17 @@
       }
     },
     {
-      "id": "fact-md-m49-region",
+      "id": "fact-md-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "md"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: Moldova",
-      "text": "The UN M49 standard groups Moldova in Eastern Europe.",
+      "heading": "Landlocked, not isolated",
+      "text": "Moldova is landlocked, yet it touches two other countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -10545,19 +10665,19 @@
       }
     },
     {
-      "id": "fact-mc-m49-region",
+      "id": "fact-mc-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "mc"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: Monaco",
-      "text": "The UN M49 standard groups Monaco in Western Europe.",
+      "heading": "Centuries in two colours",
+      "text": "Monaco's red-and-white flag colours have been associated with its ruling house since 1339.",
       "sourceIds": [
-        "source-un-m49"
+        "source-cia-monaco-flag-archive"
       ],
-      "asOf": null,
+      "asOf": "1339",
       "review": {
         "state": "draft",
         "reviewer": null,
@@ -10565,17 +10685,17 @@
       }
     },
     {
-      "id": "fact-mn-m49-region",
+      "id": "fact-mn-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "mn"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: Mongolia",
-      "text": "The UN M49 standard groups Mongolia in Eastern Asia.",
+      "heading": "Landlocked, not isolated",
+      "text": "Mongolia is landlocked, yet it touches two other countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -10585,17 +10705,17 @@
       }
     },
     {
-      "id": "fact-me-m49-region",
+      "id": "fact-me-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "me"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Montenegro",
-      "text": "The UN M49 standard groups Montenegro in Southern Europe.",
+      "difficulty": "tricky",
+      "heading": "Across the border",
+      "text": "Montenegro shares land borders with five countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -10605,17 +10725,17 @@
       }
     },
     {
-      "id": "fact-ma-m49-region",
+      "id": "fact-ma-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "ma"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Morocco",
-      "text": "The UN M49 standard groups Morocco in Northern Africa.",
+      "difficulty": "tricky",
+      "heading": "Across the border",
+      "text": "Morocco shares land borders with three countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -10625,17 +10745,17 @@
       }
     },
     {
-      "id": "fact-mz-m49-region",
+      "id": "fact-mz-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "mz"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Mozambique",
-      "text": "The UN M49 standard groups Mozambique in Sub-Saharan Africa.",
+      "difficulty": "tricky",
+      "heading": "Across the border",
+      "text": "Mozambique shares land borders with six countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -10645,17 +10765,17 @@
       }
     },
     {
-      "id": "fact-mm-m49-region",
+      "id": "fact-mm-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "mm"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Myanmar",
-      "text": "The UN M49 standard groups Myanmar in South-eastern Asia.",
+      "difficulty": "tricky",
+      "heading": "Across the border",
+      "text": "Myanmar shares land borders with five countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -10665,17 +10785,17 @@
       }
     },
     {
-      "id": "fact-na-m49-region",
+      "id": "fact-na-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "na"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Namibia",
-      "text": "The UN M49 standard groups Namibia in Sub-Saharan Africa.",
+      "difficulty": "tricky",
+      "heading": "Across the border",
+      "text": "Namibia shares land borders with four countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -10685,17 +10805,17 @@
       }
     },
     {
-      "id": "fact-nr-m49-region",
+      "id": "fact-nr-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "nr"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: Nauru",
-      "text": "The UN M49 standard groups Nauru in Micronesia.",
+      "heading": "No neighbours by land",
+      "text": "Nauru shares no land border with another country.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -10705,17 +10825,17 @@
       }
     },
     {
-      "id": "fact-np-m49-region",
+      "id": "fact-np-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "np"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: Nepal",
-      "text": "The UN M49 standard groups Nepal in Southern Asia.",
+      "heading": "A flag with points",
+      "text": "Nepal has the world's only national flag that is not quadrilateral: it is formed from two joined pennants.",
       "sourceIds": [
-        "source-un-m49"
+        "source-nepal-film-guide"
       ],
       "asOf": null,
       "review": {
@@ -10725,19 +10845,19 @@
       }
     },
     {
-      "id": "fact-nl-m49-region",
+      "id": "fact-nl-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "nl"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: Netherlands",
-      "text": "The UN M49 standard groups Netherlands in Western Europe.",
+      "heading": "Living below the waves",
+      "text": "About 17 percent of the Netherlands lies below sea level.",
       "sourceIds": [
-        "source-un-m49"
+        "source-netherlands-govtech"
       ],
-      "asOf": null,
+      "asOf": "2021-06",
       "review": {
         "state": "draft",
         "reviewer": null,
@@ -10745,19 +10865,19 @@
       }
     },
     {
-      "id": "fact-nz-m49-region",
+      "id": "fact-nz-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "nz"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: New Zealand",
-      "text": "The UN M49 standard groups New Zealand in Australia and New Zealand.",
+      "heading": "A voting first",
+      "text": "In 1893, New Zealand became the first self-governing country where women could vote in parliamentary elections.",
       "sourceIds": [
-        "source-un-m49"
+        "source-nz-womens-suffrage"
       ],
-      "asOf": null,
+      "asOf": "1893",
       "review": {
         "state": "draft",
         "reviewer": null,
@@ -10765,17 +10885,17 @@
       }
     },
     {
-      "id": "fact-ni-m49-region",
+      "id": "fact-ni-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "ni"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: Nicaragua",
-      "text": "The UN M49 standard groups Nicaragua in Latin America and the Caribbean.",
+      "heading": "Across the border",
+      "text": "Nicaragua shares land borders with two countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -10785,17 +10905,17 @@
       }
     },
     {
-      "id": "fact-ne-m49-region",
+      "id": "fact-ne-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "ne"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Niger",
-      "text": "The UN M49 standard groups Niger in Sub-Saharan Africa.",
+      "difficulty": "tricky",
+      "heading": "Landlocked, not isolated",
+      "text": "Niger is landlocked, yet it touches seven other countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -10805,17 +10925,17 @@
       }
     },
     {
-      "id": "fact-ng-m49-region",
+      "id": "fact-ng-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "ng"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Nigeria",
-      "text": "The UN M49 standard groups Nigeria in Sub-Saharan Africa.",
+      "difficulty": "tricky",
+      "heading": "Across the border",
+      "text": "Nigeria shares land borders with four countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -10825,17 +10945,17 @@
       }
     },
     {
-      "id": "fact-kp-m49-region",
+      "id": "fact-kp-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "kp"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: North Korea",
-      "text": "The UN M49 standard groups North Korea in Eastern Asia.",
+      "difficulty": "tricky",
+      "heading": "Across the border",
+      "text": "North Korea shares land borders with three countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -10845,17 +10965,17 @@
       }
     },
     {
-      "id": "fact-mk-m49-region",
+      "id": "fact-mk-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "mk"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: North Macedonia",
-      "text": "The UN M49 standard groups North Macedonia in Southern Europe.",
+      "difficulty": "tricky",
+      "heading": "Landlocked, not isolated",
+      "text": "North Macedonia is landlocked, yet it touches five other countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -10865,17 +10985,17 @@
       }
     },
     {
-      "id": "fact-no-m49-region",
+      "id": "fact-no-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "no"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Norway",
-      "text": "The UN M49 standard groups Norway in Northern Europe.",
+      "difficulty": "tricky",
+      "heading": "Across the border",
+      "text": "Norway shares land borders with three countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -10885,17 +11005,17 @@
       }
     },
     {
-      "id": "fact-om-m49-region",
+      "id": "fact-om-musandam",
       "schemaVersion": 1,
       "countryIds": [
         "om"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Oman",
-      "text": "The UN M49 standard groups Oman in Western Asia.",
+      "difficulty": "tricky",
+      "heading": "A peninsula apart",
+      "text": "Oman's Musandam Peninsula is separated from the rest of the country by the United Arab Emirates.",
       "sourceIds": [
-        "source-un-m49"
+        "source-experience-oman-musandam"
       ],
       "asOf": null,
       "review": {
@@ -10905,17 +11025,17 @@
       }
     },
     {
-      "id": "fact-pk-m49-region",
+      "id": "fact-pk-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "pk"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Pakistan",
-      "text": "The UN M49 standard groups Pakistan in Southern Asia.",
+      "difficulty": "tricky",
+      "heading": "Across the border",
+      "text": "Pakistan shares land borders with four countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -10925,17 +11045,17 @@
       }
     },
     {
-      "id": "fact-pw-m49-region",
+      "id": "fact-pw-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "pw"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: Palau",
-      "text": "The UN M49 standard groups Palau in Micronesia.",
+      "heading": "No neighbours by land",
+      "text": "Palau shares no land border with another country.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -10945,17 +11065,17 @@
       }
     },
     {
-      "id": "fact-ps-m49-region",
+      "id": "fact-ps-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "ps"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Palestine",
-      "text": "The UN M49 standard groups Palestine in Western Asia.",
+      "difficulty": "tricky",
+      "heading": "Across the border",
+      "text": "Palestine shares land borders with three countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -10965,17 +11085,17 @@
       }
     },
     {
-      "id": "fact-pa-m49-region",
+      "id": "fact-pa-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "pa"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: Panama",
-      "text": "The UN M49 standard groups Panama in Latin America and the Caribbean.",
+      "heading": "Across the border",
+      "text": "Panama shares land borders with two countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -10985,17 +11105,17 @@
       }
     },
     {
-      "id": "fact-pg-m49-region",
+      "id": "fact-pg-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "pg"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: Papua New Guinea",
-      "text": "The UN M49 standard groups Papua New Guinea in Melanesia.",
+      "heading": "A short border list",
+      "text": "Papua New Guinea has just one land neighbour: Indonesia.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -11005,17 +11125,17 @@
       }
     },
     {
-      "id": "fact-py-m49-region",
+      "id": "fact-py-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "py"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Paraguay",
-      "text": "The UN M49 standard groups Paraguay in Latin America and the Caribbean.",
+      "difficulty": "tricky",
+      "heading": "Landlocked, not isolated",
+      "text": "Paraguay is landlocked, yet it touches three other countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -11025,17 +11145,17 @@
       }
     },
     {
-      "id": "fact-pe-m49-region",
+      "id": "fact-pe-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "pe"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Peru",
-      "text": "The UN M49 standard groups Peru in Latin America and the Caribbean.",
+      "difficulty": "tricky",
+      "heading": "Across the border",
+      "text": "Peru shares land borders with five countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -11045,17 +11165,17 @@
       }
     },
     {
-      "id": "fact-ph-m49-region",
+      "id": "fact-ph-islands",
       "schemaVersion": 1,
       "countryIds": [
         "ph"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: Philippines",
-      "text": "The UN M49 standard groups Philippines in South-eastern Asia.",
+      "heading": "Thousands of islands",
+      "text": "The Philippines has 7,641 islands. enough to visit a different one every day for almost 21 years.",
       "sourceIds": [
-        "source-un-m49"
+        "source-philippines-tourism-islands"
       ],
       "asOf": null,
       "review": {
@@ -11065,17 +11185,17 @@
       }
     },
     {
-      "id": "fact-pl-m49-region",
+      "id": "fact-pl-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "pl"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Poland",
-      "text": "The UN M49 standard groups Poland in Eastern Europe.",
+      "difficulty": "tricky",
+      "heading": "Across the border",
+      "text": "Poland shares land borders with seven countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -11085,17 +11205,17 @@
       }
     },
     {
-      "id": "fact-pt-m49-region",
+      "id": "fact-pt-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "pt"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: Portugal",
-      "text": "The UN M49 standard groups Portugal in Southern Europe.",
+      "heading": "A short border list",
+      "text": "Portugal has just one land neighbour: Spain.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -11105,17 +11225,17 @@
       }
     },
     {
-      "id": "fact-qa-m49-region",
+      "id": "fact-qa-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "qa"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: Qatar",
-      "text": "The UN M49 standard groups Qatar in Western Asia.",
+      "heading": "A short border list",
+      "text": "Qatar has just one land neighbour: Saudi Arabia.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -11125,17 +11245,17 @@
       }
     },
     {
-      "id": "fact-cg-m49-region",
+      "id": "fact-cg-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "cg"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Republic of the Congo",
-      "text": "The UN M49 standard groups Republic of the Congo in Sub-Saharan Africa.",
+      "difficulty": "tricky",
+      "heading": "Across the border",
+      "text": "Republic of the Congo shares land borders with five countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -11145,17 +11265,17 @@
       }
     },
     {
-      "id": "fact-ro-m49-region",
+      "id": "fact-ro-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "ro"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Romania",
-      "text": "The UN M49 standard groups Romania in Eastern Europe.",
+      "difficulty": "tricky",
+      "heading": "Across the border",
+      "text": "Romania shares land borders with five countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -11165,17 +11285,17 @@
       }
     },
     {
-      "id": "fact-ru-m49-region",
+      "id": "fact-ru-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "ru"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Russia",
-      "text": "The UN M49 standard groups Russia in Eastern Europe.",
+      "difficulty": "tricky",
+      "heading": "Many ways next door",
+      "text": "Russia shares land borders with fourteen countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -11185,17 +11305,17 @@
       }
     },
     {
-      "id": "fact-rw-m49-region",
+      "id": "fact-rw-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "rw"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Rwanda",
-      "text": "The UN M49 standard groups Rwanda in Sub-Saharan Africa.",
+      "difficulty": "tricky",
+      "heading": "Landlocked, not isolated",
+      "text": "Rwanda is landlocked, yet it touches four other countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -11205,17 +11325,17 @@
       }
     },
     {
-      "id": "fact-kn-m49-region",
+      "id": "fact-kn-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "kn"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: Saint Kitts and Nevis",
-      "text": "The UN M49 standard groups Saint Kitts and Nevis in Latin America and the Caribbean.",
+      "heading": "No neighbours by land",
+      "text": "Saint Kitts and Nevis shares no land border with another country.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -11225,17 +11345,17 @@
       }
     },
     {
-      "id": "fact-lc-m49-region",
+      "id": "fact-lc-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "lc"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: Saint Lucia",
-      "text": "The UN M49 standard groups Saint Lucia in Latin America and the Caribbean.",
+      "heading": "No neighbours by land",
+      "text": "Saint Lucia shares no land border with another country.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -11245,17 +11365,17 @@
       }
     },
     {
-      "id": "fact-vc-m49-region",
+      "id": "fact-vc-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "vc"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: Saint Vincent and the Grenadines",
-      "text": "The UN M49 standard groups Saint Vincent and the Grenadines in Latin America and the Caribbean.",
+      "heading": "No neighbours by land",
+      "text": "Saint Vincent and the Grenadines shares no land border with another country.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -11265,17 +11385,17 @@
       }
     },
     {
-      "id": "fact-ws-m49-region",
+      "id": "fact-ws-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "ws"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: Samoa",
-      "text": "The UN M49 standard groups Samoa in Polynesia.",
+      "heading": "No neighbours by land",
+      "text": "Samoa shares no land border with another country.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -11285,17 +11405,17 @@
       }
     },
     {
-      "id": "fact-sm-m49-region",
+      "id": "fact-sm-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "sm"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: San Marino",
-      "text": "The UN M49 standard groups San Marino in Southern Europe.",
+      "heading": "A short border list",
+      "text": "San Marino has just one land neighbour: Italy.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -11305,17 +11425,17 @@
       }
     },
     {
-      "id": "fact-sa-m49-region",
+      "id": "fact-sa-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "sa"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Saudi Arabia",
-      "text": "The UN M49 standard groups Saudi Arabia in Western Asia.",
+      "difficulty": "tricky",
+      "heading": "Across the border",
+      "text": "Saudi Arabia shares land borders with seven countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -11325,17 +11445,17 @@
       }
     },
     {
-      "id": "fact-sn-m49-region",
+      "id": "fact-sn-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "sn"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Senegal",
-      "text": "The UN M49 standard groups Senegal in Sub-Saharan Africa.",
+      "difficulty": "tricky",
+      "heading": "Across the border",
+      "text": "Senegal shares land borders with five countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -11345,17 +11465,17 @@
       }
     },
     {
-      "id": "fact-rs-m49-region",
+      "id": "fact-rs-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "rs"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Serbia",
-      "text": "The UN M49 standard groups Serbia in Southern Europe.",
+      "difficulty": "tricky",
+      "heading": "Landlocked, not isolated",
+      "text": "Serbia is landlocked, yet it touches eight other countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -11365,17 +11485,17 @@
       }
     },
     {
-      "id": "fact-sc-m49-region",
+      "id": "fact-sc-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "sc"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: Seychelles",
-      "text": "The UN M49 standard groups Seychelles in Sub-Saharan Africa.",
+      "heading": "No neighbours by land",
+      "text": "Seychelles shares no land border with another country.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -11385,17 +11505,17 @@
       }
     },
     {
-      "id": "fact-sl-m49-region",
+      "id": "fact-sl-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "sl"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: Sierra Leone",
-      "text": "The UN M49 standard groups Sierra Leone in Sub-Saharan Africa.",
+      "heading": "Across the border",
+      "text": "Sierra Leone shares land borders with two countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -11405,17 +11525,17 @@
       }
     },
     {
-      "id": "fact-sg-m49-region",
+      "id": "fact-sg-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "sg"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: Singapore",
-      "text": "The UN M49 standard groups Singapore in South-eastern Asia.",
+      "heading": "No neighbours by land",
+      "text": "Singapore shares no land border with another country.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -11425,17 +11545,17 @@
       }
     },
     {
-      "id": "fact-sk-m49-region",
+      "id": "fact-sk-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "sk"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Slovakia",
-      "text": "The UN M49 standard groups Slovakia in Eastern Europe.",
+      "difficulty": "tricky",
+      "heading": "Landlocked, not isolated",
+      "text": "Slovakia is landlocked, yet it touches five other countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -11445,17 +11565,17 @@
       }
     },
     {
-      "id": "fact-si-m49-region",
+      "id": "fact-si-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "si"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Slovenia",
-      "text": "The UN M49 standard groups Slovenia in Southern Europe.",
+      "difficulty": "tricky",
+      "heading": "Across the border",
+      "text": "Slovenia shares land borders with four countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -11465,17 +11585,17 @@
       }
     },
     {
-      "id": "fact-sb-m49-region",
+      "id": "fact-sb-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "sb"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: Solomon Islands",
-      "text": "The UN M49 standard groups Solomon Islands in Melanesia.",
+      "heading": "No neighbours by land",
+      "text": "Solomon Islands shares no land border with another country.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -11485,17 +11605,17 @@
       }
     },
     {
-      "id": "fact-so-m49-region",
+      "id": "fact-so-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "so"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Somalia",
-      "text": "The UN M49 standard groups Somalia in Sub-Saharan Africa.",
+      "difficulty": "tricky",
+      "heading": "Across the border",
+      "text": "Somalia shares land borders with three countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -11505,17 +11625,17 @@
       }
     },
     {
-      "id": "fact-za-m49-region",
+      "id": "fact-za-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "za"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: South Africa",
-      "text": "The UN M49 standard groups South Africa in Sub-Saharan Africa.",
+      "difficulty": "tricky",
+      "heading": "Three capital cities",
+      "text": "South Africa divides national capital duties among Pretoria, Cape Town and Bloemfontein.",
       "sourceIds": [
-        "source-un-m49"
+        "source-south-africa-provinces"
       ],
       "asOf": null,
       "review": {
@@ -11525,17 +11645,17 @@
       }
     },
     {
-      "id": "fact-kr-m49-region",
+      "id": "fact-kr-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "kr"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: South Korea",
-      "text": "The UN M49 standard groups South Korea in Eastern Asia.",
+      "heading": "A short border list",
+      "text": "South Korea has just one land neighbour: North Korea.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -11545,17 +11665,17 @@
       }
     },
     {
-      "id": "fact-ss-m49-region",
+      "id": "fact-ss-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "ss"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: South Sudan",
-      "text": "The UN M49 standard groups South Sudan in Sub-Saharan Africa.",
+      "difficulty": "tricky",
+      "heading": "Landlocked, not isolated",
+      "text": "South Sudan is landlocked, yet it touches six other countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -11565,17 +11685,17 @@
       }
     },
     {
-      "id": "fact-es-m49-region",
+      "id": "fact-es-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "es"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Spain",
-      "text": "The UN M49 standard groups Spain in Southern Europe.",
+      "difficulty": "tricky",
+      "heading": "Across the border",
+      "text": "Spain shares land borders with five countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -11585,17 +11705,17 @@
       }
     },
     {
-      "id": "fact-lk-m49-region",
+      "id": "fact-lk-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "lk"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: Sri Lanka",
-      "text": "The UN M49 standard groups Sri Lanka in Southern Asia.",
+      "heading": "No neighbours by land",
+      "text": "Sri Lanka shares no land border with another country.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -11605,17 +11725,17 @@
       }
     },
     {
-      "id": "fact-sd-m49-region",
+      "id": "fact-sd-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "sd"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Sudan",
-      "text": "The UN M49 standard groups Sudan in Northern Africa.",
+      "difficulty": "tricky",
+      "heading": "Across the border",
+      "text": "Sudan shares land borders with seven countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -11625,17 +11745,17 @@
       }
     },
     {
-      "id": "fact-sr-m49-region",
+      "id": "fact-sr-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "sr"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Suriname",
-      "text": "The UN M49 standard groups Suriname in Latin America and the Caribbean.",
+      "difficulty": "tricky",
+      "heading": "Across the border",
+      "text": "Suriname shares land borders with three countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -11645,17 +11765,17 @@
       }
     },
     {
-      "id": "fact-se-m49-region",
+      "id": "fact-se-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "se"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: Sweden",
-      "text": "The UN M49 standard groups Sweden in Northern Europe.",
+      "heading": "Across the border",
+      "text": "Sweden shares land borders with two countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -11665,17 +11785,17 @@
       }
     },
     {
-      "id": "fact-ch-m49-region",
+      "id": "fact-ch-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "ch"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Switzerland",
-      "text": "The UN M49 standard groups Switzerland in Western Europe.",
+      "difficulty": "tricky",
+      "heading": "Landlocked, not isolated",
+      "text": "Switzerland is landlocked, yet it touches five other countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -11685,17 +11805,17 @@
       }
     },
     {
-      "id": "fact-sy-m49-region",
+      "id": "fact-sy-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "sy"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Syria",
-      "text": "The UN M49 standard groups Syria in Western Asia.",
+      "difficulty": "tricky",
+      "heading": "Across the border",
+      "text": "Syria shares land borders with five countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -11705,17 +11825,17 @@
       }
     },
     {
-      "id": "fact-st-m49-region",
+      "id": "fact-st-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "st"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: São Tomé and Príncipe",
-      "text": "The UN M49 standard groups São Tomé and Príncipe in Sub-Saharan Africa.",
+      "heading": "No neighbours by land",
+      "text": "São Tomé and Príncipe shares no land border with another country.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -11725,17 +11845,17 @@
       }
     },
     {
-      "id": "fact-tj-m49-region",
+      "id": "fact-tj-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "tj"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Tajikistan",
-      "text": "The UN M49 standard groups Tajikistan in Central Asia.",
+      "difficulty": "tricky",
+      "heading": "Landlocked, not isolated",
+      "text": "Tajikistan is landlocked, yet it touches four other countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -11745,17 +11865,17 @@
       }
     },
     {
-      "id": "fact-tz-m49-region",
+      "id": "fact-tz-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "tz"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Tanzania",
-      "text": "The UN M49 standard groups Tanzania in Sub-Saharan Africa.",
+      "difficulty": "tricky",
+      "heading": "Many ways next door",
+      "text": "Tanzania shares land borders with eight countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -11765,17 +11885,17 @@
       }
     },
     {
-      "id": "fact-th-m49-region",
+      "id": "fact-th-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "th"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Thailand",
-      "text": "The UN M49 standard groups Thailand in South-eastern Asia.",
+      "difficulty": "tricky",
+      "heading": "Across the border",
+      "text": "Thailand shares land borders with four countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -11785,17 +11905,17 @@
       }
     },
     {
-      "id": "fact-tl-m49-region",
+      "id": "fact-tl-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "tl"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: Timor-Leste",
-      "text": "The UN M49 standard groups Timor-Leste in South-eastern Asia.",
+      "heading": "A short border list",
+      "text": "Timor-Leste has just one land neighbour: Indonesia.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -11805,17 +11925,17 @@
       }
     },
     {
-      "id": "fact-tg-m49-region",
+      "id": "fact-tg-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "tg"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Togo",
-      "text": "The UN M49 standard groups Togo in Sub-Saharan Africa.",
+      "difficulty": "tricky",
+      "heading": "Across the border",
+      "text": "Togo shares land borders with three countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -11825,17 +11945,17 @@
       }
     },
     {
-      "id": "fact-to-m49-region",
+      "id": "fact-to-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "to"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: Tonga",
-      "text": "The UN M49 standard groups Tonga in Polynesia.",
+      "heading": "No neighbours by land",
+      "text": "Tonga shares no land border with another country.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -11845,17 +11965,17 @@
       }
     },
     {
-      "id": "fact-tt-m49-region",
+      "id": "fact-tt-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "tt"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: Trinidad and Tobago",
-      "text": "The UN M49 standard groups Trinidad and Tobago in Latin America and the Caribbean.",
+      "heading": "No neighbours by land",
+      "text": "Trinidad and Tobago shares no land border with another country.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -11865,17 +11985,17 @@
       }
     },
     {
-      "id": "fact-tn-m49-region",
+      "id": "fact-tn-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "tn"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: Tunisia",
-      "text": "The UN M49 standard groups Tunisia in Northern Africa.",
+      "heading": "Across the border",
+      "text": "Tunisia shares land borders with two countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -11885,17 +12005,17 @@
       }
     },
     {
-      "id": "fact-tm-m49-region",
+      "id": "fact-tm-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "tm"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Turkmenistan",
-      "text": "The UN M49 standard groups Turkmenistan in Central Asia.",
+      "difficulty": "tricky",
+      "heading": "Landlocked, not isolated",
+      "text": "Turkmenistan is landlocked, yet it touches four other countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -11905,17 +12025,17 @@
       }
     },
     {
-      "id": "fact-tv-m49-region",
+      "id": "fact-tv-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "tv"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: Tuvalu",
-      "text": "The UN M49 standard groups Tuvalu in Polynesia.",
+      "heading": "No neighbours by land",
+      "text": "Tuvalu shares no land border with another country.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -11925,17 +12045,17 @@
       }
     },
     {
-      "id": "fact-tr-m49-region",
+      "id": "fact-tr-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "tr"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Türkiye",
-      "text": "The UN M49 standard groups Türkiye in Western Asia.",
+      "difficulty": "tricky",
+      "heading": "Many ways next door",
+      "text": "Türkiye shares land borders with eight countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -11945,17 +12065,17 @@
       }
     },
     {
-      "id": "fact-ug-m49-region",
+      "id": "fact-ug-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "ug"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Uganda",
-      "text": "The UN M49 standard groups Uganda in Sub-Saharan Africa.",
+      "difficulty": "tricky",
+      "heading": "Landlocked, not isolated",
+      "text": "Uganda is landlocked, yet it touches five other countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -11965,17 +12085,17 @@
       }
     },
     {
-      "id": "fact-ua-m49-region",
+      "id": "fact-ua-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "ua"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Ukraine",
-      "text": "The UN M49 standard groups Ukraine in Eastern Europe.",
+      "difficulty": "tricky",
+      "heading": "Across the border",
+      "text": "Ukraine shares land borders with seven countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -11985,17 +12105,17 @@
       }
     },
     {
-      "id": "fact-ae-m49-region",
+      "id": "fact-ae-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "ae"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: United Arab Emirates",
-      "text": "The UN M49 standard groups United Arab Emirates in Western Asia.",
+      "heading": "Across the border",
+      "text": "United Arab Emirates shares land borders with two countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -12005,17 +12125,17 @@
       }
     },
     {
-      "id": "fact-gb-m49-region",
+      "id": "fact-gb-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "gb"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: United Kingdom",
-      "text": "The UN M49 standard groups United Kingdom in Northern Europe.",
+      "heading": "Where east meets west",
+      "text": "The historic Prime Meridian at Greenwich marks zero degrees longitude.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rmg-greenwich"
       ],
       "asOf": null,
       "review": {
@@ -12025,17 +12145,17 @@
       }
     },
     {
-      "id": "fact-us-m49-region",
+      "id": "fact-us-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "us"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: United States",
-      "text": "The UN M49 standard groups United States in Northern America.",
+      "heading": "Across the border",
+      "text": "United States shares land borders with two countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -12045,17 +12165,17 @@
       }
     },
     {
-      "id": "fact-uy-m49-region",
+      "id": "fact-uy-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "uy"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: Uruguay",
-      "text": "The UN M49 standard groups Uruguay in Latin America and the Caribbean.",
+      "heading": "Across the border",
+      "text": "Uruguay shares land borders with two countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -12065,17 +12185,17 @@
       }
     },
     {
-      "id": "fact-uz-m49-region",
+      "id": "fact-uz-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "uz"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Uzbekistan",
-      "text": "The UN M49 standard groups Uzbekistan in Central Asia.",
+      "difficulty": "tricky",
+      "heading": "Landlocked, not isolated",
+      "text": "Uzbekistan is landlocked, yet it touches five other countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -12085,17 +12205,17 @@
       }
     },
     {
-      "id": "fact-vu-m49-region",
+      "id": "fact-vu-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "vu"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: Vanuatu",
-      "text": "The UN M49 standard groups Vanuatu in Melanesia.",
+      "heading": "No neighbours by land",
+      "text": "Vanuatu shares no land border with another country.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -12105,17 +12225,17 @@
       }
     },
     {
-      "id": "fact-va-m49-region",
+      "id": "fact-va-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "va"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: Vatican City",
-      "text": "The UN M49 standard groups Vatican City in Southern Europe.",
+      "heading": "A short border list",
+      "text": "Vatican City has just one land neighbour: Italy.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -12125,17 +12245,17 @@
       }
     },
     {
-      "id": "fact-ve-m49-region",
+      "id": "fact-ve-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "ve"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Venezuela",
-      "text": "The UN M49 standard groups Venezuela in Latin America and the Caribbean.",
+      "difficulty": "tricky",
+      "heading": "Across the border",
+      "text": "Venezuela shares land borders with three countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -12145,17 +12265,17 @@
       }
     },
     {
-      "id": "fact-vn-m49-region",
+      "id": "fact-vn-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "vn"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Vietnam",
-      "text": "The UN M49 standard groups Vietnam in South-eastern Asia.",
+      "difficulty": "tricky",
+      "heading": "Across the border",
+      "text": "Vietnam shares land borders with three countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -12165,17 +12285,17 @@
       }
     },
     {
-      "id": "fact-ye-m49-region",
+      "id": "fact-ye-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "ye"
       ],
       "topic": "mixed_geography",
       "difficulty": "casual",
-      "heading": "Atlas placement: Yemen",
-      "text": "The UN M49 standard groups Yemen in Western Asia.",
+      "heading": "Across the border",
+      "text": "Yemen shares land borders with two countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -12185,17 +12305,17 @@
       }
     },
     {
-      "id": "fact-zm-m49-region",
+      "id": "fact-zm-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "zm"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Zambia",
-      "text": "The UN M49 standard groups Zambia in Sub-Saharan Africa.",
+      "difficulty": "tricky",
+      "heading": "Landlocked, not isolated",
+      "text": "Zambia is landlocked, yet it touches eight other countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -12205,17 +12325,17 @@
       }
     },
     {
-      "id": "fact-zw-m49-region",
+      "id": "fact-zw-land-neighbours",
       "schemaVersion": 1,
       "countryIds": [
         "zw"
       ],
       "topic": "mixed_geography",
-      "difficulty": "casual",
-      "heading": "Atlas placement: Zimbabwe",
-      "text": "The UN M49 standard groups Zimbabwe in Sub-Saharan Africa.",
+      "difficulty": "tricky",
+      "heading": "Landlocked, not isolated",
+      "text": "Zimbabwe is landlocked, yet it touches four other countries.",
       "sourceIds": [
-        "source-un-m49"
+        "source-rest-countries"
       ],
       "asOf": null,
       "review": {
@@ -12249,8 +12369,7 @@
       ],
       "supportedHints": [
         "remove_choices",
-        "reveal_continent",
-        "factual_clue"
+        "reveal_continent"
       ],
       "explanation": "Algiers is the capital of Algeria.",
       "review": {
@@ -12282,8 +12401,7 @@
       ],
       "supportedHints": [
         "remove_choices",
-        "reveal_continent",
-        "factual_clue"
+        "reveal_continent"
       ],
       "explanation": "Kabul is the capital of Afghanistan.",
       "review": {
@@ -12315,8 +12433,7 @@
       ],
       "supportedHints": [
         "remove_choices",
-        "reveal_continent",
-        "factual_clue"
+        "reveal_continent"
       ],
       "explanation": "Tirana is the capital of Albania.",
       "review": {
@@ -12348,8 +12465,7 @@
       ],
       "supportedHints": [
         "remove_choices",
-        "reveal_continent",
-        "factual_clue"
+        "reveal_continent"
       ],
       "explanation": "St. John's is the capital of Antigua and Barbuda.",
       "review": {
@@ -12381,8 +12497,7 @@
       ],
       "supportedHints": [
         "remove_choices",
-        "reveal_continent",
-        "factual_clue"
+        "reveal_continent"
       ],
       "explanation": "Buenos Aires is the capital of Argentina.",
       "review": {
@@ -12414,8 +12529,7 @@
       ],
       "supportedHints": [
         "remove_choices",
-        "reveal_continent",
-        "factual_clue"
+        "reveal_continent"
       ],
       "explanation": "Canberra is the capital of Australia.",
       "review": {
@@ -12447,8 +12561,7 @@
       ],
       "supportedHints": [
         "remove_choices",
-        "reveal_continent",
-        "factual_clue"
+        "reveal_continent"
       ],
       "explanation": "Luanda is the capital of Angola.",
       "review": {
@@ -12480,8 +12593,7 @@
       ],
       "supportedHints": [
         "remove_choices",
-        "reveal_continent",
-        "factual_clue"
+        "reveal_continent"
       ],
       "explanation": "Yerevan is the capital of Armenia.",
       "review": {
@@ -12513,8 +12625,7 @@
       ],
       "supportedHints": [
         "remove_choices",
-        "reveal_continent",
-        "factual_clue"
+        "reveal_continent"
       ],
       "explanation": "Andorra la Vella is the capital of Andorra.",
       "review": {
@@ -12546,8 +12657,7 @@
       ],
       "supportedHints": [
         "remove_choices",
-        "reveal_continent",
-        "factual_clue"
+        "reveal_continent"
       ],
       "explanation": "Nassau is the capital of Bahamas.",
       "review": {
@@ -12579,8 +12689,7 @@
       ],
       "supportedHints": [
         "remove_choices",
-        "reveal_continent",
-        "factual_clue"
+        "reveal_continent"
       ],
       "explanation": "Brasilia is the capital of Brazil.",
       "review": {
@@ -12612,8 +12721,7 @@
       ],
       "supportedHints": [
         "remove_choices",
-        "reveal_continent",
-        "factual_clue"
+        "reveal_continent"
       ],
       "explanation": "Suva is the capital of Fiji.",
       "review": {
@@ -12645,8 +12753,7 @@
       ],
       "supportedHints": [
         "remove_choices",
-        "reveal_continent",
-        "factual_clue"
+        "reveal_continent"
       ],
       "explanation": "Gaborone is the capital of Botswana.",
       "review": {
@@ -12678,8 +12785,7 @@
       ],
       "supportedHints": [
         "remove_choices",
-        "reveal_continent",
-        "factual_clue"
+        "reveal_continent"
       ],
       "explanation": "Baku is the capital of Azerbaijan.",
       "review": {
@@ -12711,8 +12817,7 @@
       ],
       "supportedHints": [
         "remove_choices",
-        "reveal_continent",
-        "factual_clue"
+        "reveal_continent"
       ],
       "explanation": "Vienna is the capital of Austria.",
       "review": {
@@ -12744,8 +12849,7 @@
       ],
       "supportedHints": [
         "remove_choices",
-        "reveal_continent",
-        "factual_clue"
+        "reveal_continent"
       ],
       "explanation": "Bridgetown is the capital of Barbados.",
       "review": {
@@ -12777,8 +12881,7 @@
       ],
       "supportedHints": [
         "remove_choices",
-        "reveal_continent",
-        "factual_clue"
+        "reveal_continent"
       ],
       "explanation": "Santiago is the capital of Chile.",
       "review": {
@@ -12810,8 +12913,7 @@
       ],
       "supportedHints": [
         "remove_choices",
-        "reveal_continent",
-        "factual_clue"
+        "reveal_continent"
       ],
       "explanation": "Tarawa is the capital of Kiribati.",
       "review": {
@@ -12843,8 +12945,7 @@
       ],
       "supportedHints": [
         "remove_choices",
-        "reveal_continent",
-        "factual_clue"
+        "reveal_continent"
       ],
       "explanation": "Ouagadougou is the capital of Burkina Faso.",
       "review": {
@@ -12876,8 +12977,7 @@
       ],
       "supportedHints": [
         "remove_choices",
-        "reveal_continent",
-        "factual_clue"
+        "reveal_continent"
       ],
       "explanation": "Manama is the capital of Bahrain.",
       "review": {
@@ -12909,8 +13009,7 @@
       ],
       "supportedHints": [
         "remove_choices",
-        "reveal_continent",
-        "factual_clue"
+        "reveal_continent"
       ],
       "explanation": "Minsk is the capital of Belarus.",
       "review": {
@@ -12942,8 +13041,7 @@
       ],
       "supportedHints": [
         "remove_choices",
-        "reveal_continent",
-        "factual_clue"
+        "reveal_continent"
       ],
       "explanation": "Belmopan is the capital of Belize.",
       "review": {
@@ -12975,8 +13073,7 @@
       ],
       "supportedHints": [
         "remove_choices",
-        "reveal_continent",
-        "factual_clue"
+        "reveal_continent"
       ],
       "explanation": "Bogota is the capital of Colombia.",
       "review": {
@@ -13008,8 +13105,7 @@
       ],
       "supportedHints": [
         "remove_choices",
-        "reveal_continent",
-        "factual_clue"
+        "reveal_continent"
       ],
       "explanation": "Majuro is the capital of Marshall Islands.",
       "review": {
@@ -13041,8 +13137,7 @@
       ],
       "supportedHints": [
         "remove_choices",
-        "reveal_continent",
-        "factual_clue"
+        "reveal_continent"
       ],
       "explanation": "Gitega is the capital of Burundi.",
       "review": {
@@ -13074,8 +13169,7 @@
       ],
       "supportedHints": [
         "remove_choices",
-        "reveal_continent",
-        "factual_clue"
+        "reveal_continent"
       ],
       "explanation": "Dhaka is the capital of Bangladesh.",
       "review": {
@@ -13107,8 +13201,7 @@
       ],
       "supportedHints": [
         "remove_choices",
-        "reveal_continent",
-        "factual_clue"
+        "reveal_continent"
       ],
       "explanation": "Brussels is the capital of Belgium.",
       "review": {
@@ -13140,8 +13233,7 @@
       ],
       "supportedHints": [
         "remove_choices",
-        "reveal_continent",
-        "factual_clue"
+        "reveal_continent"
       ],
       "explanation": "Ottawa is the capital of Canada.",
       "review": {
@@ -13173,8 +13265,7 @@
       ],
       "supportedHints": [
         "remove_choices",
-        "reveal_continent",
-        "factual_clue"
+        "reveal_continent"
       ],
       "explanation": "Quito is the capital of Ecuador.",
       "review": {
@@ -13206,8 +13297,7 @@
       ],
       "supportedHints": [
         "remove_choices",
-        "reveal_continent",
-        "factual_clue"
+        "reveal_continent"
       ],
       "explanation": "Palikir is the capital of Micronesia.",
       "review": {
@@ -13239,8 +13329,7 @@
       ],
       "supportedHints": [
         "remove_choices",
-        "reveal_continent",
-        "factual_clue"
+        "reveal_continent"
       ],
       "explanation": "Yaounde is the capital of Cameroon.",
       "review": {
@@ -13272,8 +13361,7 @@
       ],
       "supportedHints": [
         "remove_choices",
-        "reveal_continent",
-        "factual_clue"
+        "reveal_continent"
       ],
       "explanation": "Thimphu is the capital of Bhutan.",
       "review": {
@@ -13305,8 +13393,7 @@
       ],
       "supportedHints": [
         "remove_choices",
-        "reveal_continent",
-        "factual_clue"
+        "reveal_continent"
       ],
       "explanation": "Sarajevo is the capital of Bosnia and Herzegovina.",
       "review": {
@@ -13338,8 +13425,7 @@
       ],
       "supportedHints": [
         "remove_choices",
-        "reveal_continent",
-        "factual_clue"
+        "reveal_continent"
       ],
       "explanation": "San Jose is the capital of Costa Rica.",
       "review": {
@@ -13371,8 +13457,7 @@
       ],
       "supportedHints": [
         "remove_choices",
-        "reveal_continent",
-        "factual_clue"
+        "reveal_continent"
       ],
       "explanation": "Georgetown is the capital of Guyana.",
       "review": {
@@ -13404,8 +13489,7 @@
       ],
       "supportedHints": [
         "remove_choices",
-        "reveal_continent",
-        "factual_clue"
+        "reveal_continent"
       ],
       "explanation": "Yaren is the capital of Nauru.",
       "review": {
@@ -13437,8 +13521,7 @@
       ],
       "supportedHints": [
         "remove_choices",
-        "reveal_continent",
-        "factual_clue"
+        "reveal_continent"
       ],
       "explanation": "Praia is the capital of Cape Verde.",
       "review": {
@@ -13470,8 +13553,7 @@
       ],
       "supportedHints": [
         "remove_choices",
-        "reveal_continent",
-        "factual_clue"
+        "reveal_continent"
       ],
       "explanation": "Bandar Seri Begawan is the capital of Brunei.",
       "review": {
@@ -13503,8 +13585,7 @@
       ],
       "supportedHints": [
         "remove_choices",
-        "reveal_continent",
-        "factual_clue"
+        "reveal_continent"
       ],
       "explanation": "Sofia is the capital of Bulgaria.",
       "review": {
@@ -13536,8 +13617,7 @@
       ],
       "supportedHints": [
         "remove_choices",
-        "reveal_continent",
-        "factual_clue"
+        "reveal_continent"
       ],
       "explanation": "Havana is the capital of Cuba.",
       "review": {
@@ -13569,8 +13649,7 @@
       ],
       "supportedHints": [
         "remove_choices",
-        "reveal_continent",
-        "factual_clue"
+        "reveal_continent"
       ],
       "explanation": "Asuncion is the capital of Paraguay.",
       "review": {
@@ -13602,8 +13681,7 @@
       ],
       "supportedHints": [
         "remove_choices",
-        "reveal_continent",
-        "factual_clue"
+        "reveal_continent"
       ],
       "explanation": "Wellington is the capital of New Zealand.",
       "review": {
@@ -13635,8 +13713,7 @@
       ],
       "supportedHints": [
         "remove_choices",
-        "reveal_continent",
-        "factual_clue"
+        "reveal_continent"
       ],
       "explanation": "Bangui is the capital of Central African Republic.",
       "review": {
@@ -13668,8 +13745,7 @@
       ],
       "supportedHints": [
         "remove_choices",
-        "reveal_continent",
-        "factual_clue"
+        "reveal_continent"
       ],
       "explanation": "Phnom Penh is the capital of Cambodia.",
       "review": {
@@ -13701,8 +13777,7 @@
       ],
       "supportedHints": [
         "remove_choices",
-        "reveal_continent",
-        "factual_clue"
+        "reveal_continent"
       ],
       "explanation": "Zagreb is the capital of Croatia.",
       "review": {
@@ -13734,8 +13809,7 @@
       ],
       "supportedHints": [
         "remove_choices",
-        "reveal_continent",
-        "factual_clue"
+        "reveal_continent"
       ],
       "explanation": "Roseau is the capital of Dominica.",
       "review": {
@@ -13767,8 +13841,7 @@
       ],
       "supportedHints": [
         "remove_choices",
-        "reveal_continent",
-        "factual_clue"
+        "reveal_continent"
       ],
       "explanation": "Lima is the capital of Peru.",
       "review": {
@@ -13800,8 +13873,7 @@
       ],
       "supportedHints": [
         "remove_choices",
-        "reveal_continent",
-        "factual_clue"
+        "reveal_continent"
       ],
       "explanation": "Melekeok is the capital of Palau.",
       "review": {
@@ -13833,8 +13905,7 @@
       ],
       "supportedHints": [
         "remove_choices",
-        "reveal_continent",
-        "factual_clue"
+        "reveal_continent"
       ],
       "explanation": "N'Djamena is the capital of Chad.",
       "review": {
@@ -13866,8 +13937,7 @@
       ],
       "supportedHints": [
         "remove_choices",
-        "reveal_continent",
-        "factual_clue"
+        "reveal_continent"
       ],
       "explanation": "Beijing is the capital of China.",
       "review": {
@@ -13899,8 +13969,7 @@
       ],
       "supportedHints": [
         "remove_choices",
-        "reveal_continent",
-        "factual_clue"
+        "reveal_continent"
       ],
       "explanation": "Prague is the capital of Czechia.",
       "review": {
@@ -13932,8 +14001,7 @@
       ],
       "supportedHints": [
         "remove_choices",
-        "reveal_continent",
-        "factual_clue"
+        "reveal_continent"
       ],
       "explanation": "Santo Domingo is the capital of Dominican Republic.",
       "review": {
@@ -13965,8 +14033,7 @@
       ],
       "supportedHints": [
         "remove_choices",
-        "reveal_continent",
-        "factual_clue"
+        "reveal_continent"
       ],
       "explanation": "Paramaribo is the capital of Suriname.",
       "review": {
@@ -13998,8 +14065,7 @@
       ],
       "supportedHints": [
         "remove_choices",
-        "reveal_continent",
-        "factual_clue"
+        "reveal_continent"
       ],
       "explanation": "Port Moresby is the capital of Papua New Guinea.",
       "review": {
@@ -14031,8 +14097,7 @@
       ],
       "supportedHints": [
         "remove_choices",
-        "reveal_continent",
-        "factual_clue"
+        "reveal_continent"
       ],
       "explanation": "Moroni is the capital of Comoros.",
       "review": {
@@ -14064,8 +14129,7 @@
       ],
       "supportedHints": [
         "remove_choices",
-        "reveal_continent",
-        "factual_clue"
+        "reveal_continent"
       ],
       "explanation": "Nicosia is the capital of Cyprus.",
       "review": {
@@ -14097,8 +14161,7 @@
       ],
       "supportedHints": [
         "remove_choices",
-        "reveal_continent",
-        "factual_clue"
+        "reveal_continent"
       ],
       "explanation": "Copenhagen is the capital of Denmark.",
       "review": {
@@ -14130,8 +14193,7 @@
       ],
       "supportedHints": [
         "remove_choices",
-        "reveal_continent",
-        "factual_clue"
+        "reveal_continent"
       ],
       "explanation": "San Salvador is the capital of El Salvador.",
       "review": {
@@ -14163,8 +14225,7 @@
       ],
       "supportedHints": [
         "remove_choices",
-        "reveal_continent",
-        "factual_clue"
+        "reveal_continent"
       ],
       "explanation": "Montevideo is the capital of Uruguay.",
       "review": {
@@ -14196,8 +14257,7 @@
       ],
       "supportedHints": [
         "remove_choices",
-        "reveal_continent",
-        "factual_clue"
+        "reveal_continent"
       ],
       "explanation": "Apia is the capital of Samoa.",
       "review": {
@@ -14229,8 +14289,7 @@
       ],
       "supportedHints": [
         "remove_choices",
-        "reveal_continent",
-        "factual_clue"
+        "reveal_continent"
       ],
       "explanation": "Kinshasa is the capital of Democratic Republic of the Congo.",
       "review": {
@@ -14262,8 +14321,7 @@
       ],
       "supportedHints": [
         "remove_choices",
-        "reveal_continent",
-        "factual_clue"
+        "reveal_continent"
       ],
       "explanation": "Tbilisi is the capital of Georgia.",
       "review": {
@@ -14295,8 +14353,7 @@
       ],
       "supportedHints": [
         "remove_choices",
-        "reveal_continent",
-        "factual_clue"
+        "reveal_continent"
       ],
       "explanation": "Tallinn is the capital of Estonia.",
       "review": {
@@ -14328,8 +14385,7 @@
       ],
       "supportedHints": [
         "remove_choices",
-        "reveal_continent",
-        "factual_clue"
+        "reveal_continent"
       ],
       "explanation": "St. George's is the capital of Grenada.",
       "review": {
@@ -14361,8 +14417,7 @@
       ],
       "supportedHints": [
         "remove_choices",
-        "reveal_continent",
-        "factual_clue"
+        "reveal_continent"
       ],
       "explanation": "Caracas is the capital of Venezuela.",
       "review": {
@@ -14394,8 +14449,7 @@
       ],
       "supportedHints": [
         "remove_choices",
-        "reveal_continent",
-        "factual_clue"
+        "reveal_continent"
       ],
       "explanation": "Honiara is the capital of Solomon Islands.",
       "review": {
@@ -14427,8 +14481,7 @@
       ],
       "supportedHints": [
         "remove_choices",
-        "reveal_continent",
-        "factual_clue"
+        "reveal_continent"
       ],
       "explanation": "Djibouti is the capital of Djibouti.",
       "review": {
@@ -14460,8 +14513,7 @@
       ],
       "supportedHints": [
         "remove_choices",
-        "reveal_continent",
-        "factual_clue"
+        "reveal_continent"
       ],
       "explanation": "New Delhi is the capital of India.",
       "review": {
@@ -14493,8 +14545,7 @@
       ],
       "supportedHints": [
         "remove_choices",
-        "reveal_continent",
-        "factual_clue"
+        "reveal_continent"
       ],
       "explanation": "Helsinki is the capital of Finland.",
       "review": {
@@ -14526,8 +14577,7 @@
       ],
       "supportedHints": [
         "remove_choices",
-        "reveal_continent",
-        "factual_clue"
+        "reveal_continent"
       ],
       "explanation": "Guatemala City is the capital of Guatemala.",
       "review": {
@@ -14559,8 +14609,7 @@
       ],
       "supportedHints": [
         "remove_choices",
-        "reveal_continent",
-        "factual_clue"
+        "reveal_continent"
       ],
       "explanation": "Nuku'alofa is the capital of Tonga.",
       "review": {
@@ -14592,8 +14641,7 @@
       ],
       "supportedHints": [
         "remove_choices",
-        "reveal_continent",
-        "factual_clue"
+        "reveal_continent"
       ],
       "explanation": "Cairo is the capital of Egypt.",
       "review": {
@@ -14625,8 +14673,7 @@
       ],
       "supportedHints": [
         "remove_choices",
-        "reveal_continent",
-        "factual_clue"
+        "reveal_continent"
       ],
       "explanation": "Tehran is the capital of Iran.",
       "review": {
@@ -14658,8 +14705,7 @@
       ],
       "supportedHints": [
         "remove_choices",
-        "reveal_continent",
-        "factual_clue"
+        "reveal_continent"
       ],
       "explanation": "Paris is the capital of France.",
       "review": {
@@ -14691,8 +14737,7 @@
       ],
       "supportedHints": [
         "remove_choices",
-        "reveal_continent",
-        "factual_clue"
+        "reveal_continent"
       ],
       "explanation": "Port-au-Prince is the capital of Haiti.",
       "review": {
@@ -14724,8 +14769,7 @@
       ],
       "supportedHints": [
         "remove_choices",
-        "reveal_continent",
-        "factual_clue"
+        "reveal_continent"
       ],
       "explanation": "Funafuti is the capital of Tuvalu.",
       "review": {
@@ -14757,8 +14801,7 @@
       ],
       "supportedHints": [
         "remove_choices",
-        "reveal_continent",
-        "factual_clue"
+        "reveal_continent"
       ],
       "explanation": "Ciudad de la Paz is the capital of Equatorial Guinea.",
       "review": {
@@ -14790,8 +14833,7 @@
       ],
       "supportedHints": [
         "remove_choices",
-        "reveal_continent",
-        "factual_clue"
+        "reveal_continent"
       ],
       "explanation": "Baghdad is the capital of Iraq.",
       "review": {
@@ -14823,8 +14865,7 @@
       ],
       "supportedHints": [
         "remove_choices",
-        "reveal_continent",
-        "factual_clue"
+        "reveal_continent"
       ],
       "explanation": "Berlin is the capital of Germany.",
       "review": {
@@ -14856,8 +14897,7 @@
       ],
       "supportedHints": [
         "remove_choices",
-        "reveal_continent",
-        "factual_clue"
+        "reveal_continent"
       ],
       "explanation": "Tegucigalpa is the capital of Honduras.",
       "review": {
@@ -15176,7 +15216,7 @@
         "at",
         "au"
       ],
-      "text": "These similarly named countries are separate catalog entries. Capital memory hook — Austria: Vienna; Australia: Canberra.",
+      "text": "These similarly named countries are separate catalog entries. Capital memory hook. Austria: Vienna; Australia: Canberra.",
       "sourceIds": [
         "source-country-codes-snapshot"
       ],
@@ -15192,7 +15232,7 @@
         "ne",
         "ng"
       ],
-      "text": "These similarly named countries are separate catalog entries. Capital memory hook — Niger: Niamey; Nigeria: Abuja.",
+      "text": "These similarly named countries are separate catalog entries. Capital memory hook. Niger: Niamey; Nigeria: Abuja.",
       "sourceIds": [
         "source-country-codes-snapshot"
       ],
@@ -15208,7 +15248,7 @@
         "dm",
         "do"
       ],
-      "text": "These similarly named countries are separate catalog entries. Capital memory hook — Dominica: Roseau; Dominican Republic: Santo Domingo.",
+      "text": "These similarly named countries are separate catalog entries. Capital memory hook. Dominica: Roseau; Dominican Republic: Santo Domingo.",
       "sourceIds": [
         "source-country-codes-snapshot"
       ],
@@ -15224,7 +15264,7 @@
         "sk",
         "si"
       ],
-      "text": "These similarly named countries are separate catalog entries. Capital memory hook — Slovakia: Bratislava; Slovenia: Ljubljana.",
+      "text": "These similarly named countries are separate catalog entries. Capital memory hook. Slovakia: Bratislava; Slovenia: Ljubljana.",
       "sourceIds": [
         "source-country-codes-snapshot"
       ],
@@ -15240,7 +15280,7 @@
         "ie",
         "is"
       ],
-      "text": "These similarly named countries are separate catalog entries. Capital memory hook — Ireland: Dublin; Iceland: Reykjavik.",
+      "text": "These similarly named countries are separate catalog entries. Capital memory hook. Ireland: Dublin; Iceland: Reykjavik.",
       "sourceIds": [
         "source-country-codes-snapshot"
       ],
@@ -15256,7 +15296,7 @@
         "se",
         "ch"
       ],
-      "text": "These similarly named countries are separate catalog entries. Capital memory hook — Sweden: Stockholm; Switzerland: Bern.",
+      "text": "These similarly named countries are separate catalog entries. Capital memory hook. Sweden: Stockholm; Switzerland: Bern.",
       "sourceIds": [
         "source-country-codes-snapshot"
       ],
@@ -15272,7 +15312,7 @@
         "gm",
         "zm"
       ],
-      "text": "These similarly named countries are separate catalog entries. Capital memory hook — Gambia: Banjul; Zambia: Lusaka.",
+      "text": "These similarly named countries are separate catalog entries. Capital memory hook. Gambia: Banjul; Zambia: Lusaka.",
       "sourceIds": [
         "source-country-codes-snapshot"
       ],
@@ -15288,7 +15328,7 @@
         "mr",
         "mu"
       ],
-      "text": "These similarly named countries are separate catalog entries. Capital memory hook — Mauritania: Nouakchott; Mauritius: Port Louis.",
+      "text": "These similarly named countries are separate catalog entries. Capital memory hook. Mauritania: Nouakchott; Mauritius: Port Louis.",
       "sourceIds": [
         "source-country-codes-snapshot"
       ],
@@ -15306,7 +15346,7 @@
         "gq",
         "pg"
       ],
-      "text": "These similarly named countries are separate catalog entries. Capital memory hook — Guinea: Conakry; Guinea-Bissau: Bissau; Equatorial Guinea: Ciudad de la Paz; Papua New Guinea: Port Moresby.",
+      "text": "These similarly named countries are separate catalog entries. Capital memory hook. Guinea: Conakry; Guinea-Bissau: Bissau; Equatorial Guinea: Ciudad de la Paz; Papua New Guinea: Port Moresby.",
       "sourceIds": [
         "source-country-codes-snapshot"
       ],
@@ -15322,7 +15362,7 @@
         "cg",
         "cd"
       ],
-      "text": "These similarly named countries are separate catalog entries. Capital memory hook — Republic of the Congo: Brazzaville; Democratic Republic of the Congo: Kinshasa.",
+      "text": "These similarly named countries are separate catalog entries. Capital memory hook. Republic of the Congo: Brazzaville; Democratic Republic of the Congo: Kinshasa.",
       "sourceIds": [
         "source-country-codes-snapshot"
       ],
@@ -15338,7 +15378,7 @@
         "kp",
         "kr"
       ],
-      "text": "These similarly named countries are separate catalog entries. Capital memory hook — North Korea: Pyongyang; South Korea: Seoul.",
+      "text": "These similarly named countries are separate catalog entries. Capital memory hook. North Korea: Pyongyang; South Korea: Seoul.",
       "sourceIds": [
         "source-country-codes-snapshot"
       ],
@@ -15354,7 +15394,7 @@
         "sd",
         "ss"
       ],
-      "text": "These similarly named countries are separate catalog entries. Capital memory hook — Sudan: Khartoum; South Sudan: Juba.",
+      "text": "These similarly named countries are separate catalog entries. Capital memory hook. Sudan: Khartoum; South Sudan: Juba.",
       "sourceIds": [
         "source-country-codes-snapshot"
       ],
@@ -15386,7 +15426,7 @@
         "id",
         "mc"
       ],
-      "text": "Both are red over white; their official proportions differ, so quiz choices keep the original ratios.",
+      "text": "Both are red over white; their official proportions differ, so trivia choices keep the original ratios.",
       "sourceIds": [
         "source-country-flags"
       ],
@@ -17651,6 +17691,6 @@
     "state": "draft",
     "reviewer": null,
     "reviewedAt": null,
-    "note": "Machine assembled from pinned sources. Every record still requires human fact, copy, sensitivity, and asset review."
+    "note": "Machine assembled from pinned sources. Land-border facts require human fact, copy, ambiguity, and sensitivity review; every flag requires visual audit."
   }
 }

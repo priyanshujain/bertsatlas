@@ -23,6 +23,8 @@ data class AtlasColors(
     val mutedPlum: Color,
     val atlasBlue: Color,
     val atlasBluePressed: Color,
+    val seaGlass: Color,
+    val orangeAccent: Color,
     val coral: Color,
     val mustard: Color,
     val success: Color,
@@ -42,19 +44,30 @@ data class AtlasTypography(
     val timer: TextStyle,
 )
 
+private val AtlasDeepGreen = Color(0xFF27635B)
+private val AtlasBlueGray = Color(0xFF778BA5)
+private val AtlasSeaGlass = Color(0xFFB7CFC8)
+private val AtlasShell = Color(0xFFF6E9E1)
+private val AtlasSand = Color(0xFFF1DCC7)
+private val AtlasPink = Color(0xFFF7BFBE)
+private val AtlasPeach = Color(0xFFE9AF8B)
+private val AtlasOrange = Color(0xFFE1814E)
+
 private val LightAtlasColors = AtlasColors(
-    parchment = Color(0xFFF7F0DF),
-    paper = Color(0xFFFFFBF2),
-    plum = Color(0xFF3E2447),
-    mutedPlum = Color(0xFF69536F),
-    atlasBlue = Color(0xFF17647E),
-    atlasBluePressed = Color(0xFF0E4B60),
-    coral = Color(0xFFE96E5B),
-    mustard = Color(0xFFE3AD35),
-    success = Color(0xFF147568),
-    error = Color(0xFF9C3E32),
-    outline = Color(0xFF8A748E),
-    white = Color(0xFFFFFFFF),
+    parchment = AtlasShell,
+    paper = AtlasSand,
+    plum = AtlasDeepGreen,
+    mutedPlum = AtlasDeepGreen,
+    atlasBlue = AtlasDeepGreen,
+    atlasBluePressed = AtlasDeepGreen,
+    seaGlass = AtlasSeaGlass,
+    orangeAccent = AtlasOrange,
+    coral = AtlasPink,
+    mustard = AtlasPeach,
+    success = AtlasDeepGreen,
+    error = AtlasDeepGreen,
+    outline = AtlasBlueGray,
+    white = AtlasShell,
 )
 
 private fun atlasTypography(fontFamily: FontFamily) = AtlasTypography(

@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
@@ -23,14 +24,22 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.safeDrawing
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.text.BasicText
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.getValue
+import androidx.compose.animation.core.RepeatMode
+import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.rememberInfiniteTransition
+import androidx.compose.animation.core.tween
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
@@ -59,12 +68,6 @@ import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.InternalResourceApi
 import org.jetbrains.compose.resources.ResourceItem
 import org.jetbrains.compose.resources.painterResource
-import berts_atlas.composeapp.generated.resources.Res
-import io.github.alexzhirkevich.compottie.Compottie
-import io.github.alexzhirkevich.compottie.LottieCompositionSpec
-import io.github.alexzhirkevich.compottie.animateLottieCompositionAsState
-import io.github.alexzhirkevich.compottie.rememberLottieComposition
-import io.github.alexzhirkevich.compottie.rememberLottiePainter
 
 private val ScreenShape = RoundedCornerShape(24.dp)
 private val ControlShape = RoundedCornerShape(16.dp)
@@ -77,12 +80,16 @@ fun AtlasScreen(
     content: @Composable BoxScope.() -> Unit,
 ) {
     Box(
-        modifier = modifier.fillMaxSize().background(AtlasTheme.colors.parchment),
+        modifier = modifier
+            .fillMaxSize()
+            .background(AtlasTheme.colors.parchment)
+            .windowInsetsPadding(WindowInsets.safeDrawing),
         contentAlignment = Alignment.TopCenter,
     ) {
         val contentModifier = Modifier
             .fillMaxWidth()
-            .widthIn(max = 760.dp)
+            .fillMaxHeight()
+            .widthIn(max = 720.dp)
             .padding(contentPadding)
             .let { if (scrollable) it.verticalScroll(rememberScrollState()) else it }
         Box(modifier = contentModifier, content = content)
@@ -134,12 +141,22 @@ fun AtlasButton(
         AtlasButtonStyle.Primary, AtlasButtonStyle.Destructive -> colors.white
         AtlasButtonStyle.Secondary, AtlasButtonStyle.Quiet -> colors.plum
     }
-    val border = if (style == AtlasButtonStyle.Secondary) Modifier.border(2.dp, colors.atlasBlue, ControlShape) else Modifier
+    val border = when (style) {
+        AtlasButtonStyle.Secondary -> Modifier.border(1.5.dp, colors.atlasBlue.copy(alpha = .75f), ControlShape)
+        AtlasButtonStyle.Destructive -> Modifier.border(1.5.dp, colors.orangeAccent, ControlShape)
+        else -> Modifier
+    }
+    val resolvedBackground = when {
+        !enabled -> colors.outline.copy(alpha = .45f)
+        style == AtlasButtonStyle.Destructive -> colors.paper
+        else -> background
+    }
+    val resolvedForeground = if (style == AtlasButtonStyle.Destructive) colors.error else foreground
     Box(
         modifier = modifier
             .heightIn(min = 52.dp)
             .then(border)
-            .background(if (enabled) background else colors.outline, ControlShape)
+            .background(resolvedBackground, ControlShape)
             .semantics {
                 role = Role.Button
                 this.contentDescription = contentDescription
@@ -149,7 +166,7 @@ fun AtlasButton(
             .padding(horizontal = 22.dp, vertical = 14.dp),
         contentAlignment = Alignment.Center,
     ) {
-        AtlasText(text, style = AtlasTheme.typography.label, color = foreground, textAlign = TextAlign.Center)
+        AtlasText(text, style = AtlasTheme.typography.label, color = resolvedForeground, textAlign = TextAlign.Center)
     }
 }
 
@@ -163,7 +180,7 @@ fun AtlasCard(
         modifier = modifier
             .fillMaxWidth()
             .background(AtlasTheme.colors.paper, ScreenShape)
-            .border(1.dp, AtlasTheme.colors.outline.copy(alpha = .45f), ScreenShape)
+            .border(1.dp, AtlasTheme.colors.outline.copy(alpha = .25f), ScreenShape)
             .then(if (contentDescription == null) Modifier else Modifier.semantics(mergeDescendants = true) { this.contentDescription = contentDescription })
             .padding(18.dp),
         verticalArrangement = Arrangement.spacedBy(10.dp),
@@ -180,24 +197,25 @@ fun AtlasChoice(
     val colors = AtlasTheme.colors
     val background = when (choice.state) {
         AnswerState.Available -> colors.paper
-        AnswerState.Selected -> colors.mustard.copy(alpha = .28f)
+        AnswerState.Selected -> colors.seaGlass
         AnswerState.Correct -> colors.success.copy(alpha = .16f)
-        AnswerState.Incorrect -> colors.error.copy(alpha = .14f)
+        AnswerState.Incorrect -> colors.orangeAccent.copy(alpha = .18f)
         AnswerState.Eliminated -> colors.outline.copy(alpha = .12f)
     }
     val outline = when (choice.state) {
         AnswerState.Available -> colors.outline
         AnswerState.Selected -> colors.mustard
         AnswerState.Correct -> colors.success
-        AnswerState.Incorrect -> colors.error
+        AnswerState.Incorrect -> colors.orangeAccent
         AnswerState.Eliminated -> colors.outline.copy(alpha = .5f)
     }
-    val stateText = when (choice.state) {
-        AnswerState.Available -> "Available"
-        AnswerState.Selected -> "Selected"
-        AnswerState.Correct -> "Correct answer"
-        AnswerState.Incorrect -> "Incorrect answer"
-        AnswerState.Eliminated -> "Eliminated"
+    val stateText = when {
+        !choice.enabled && choice.state == AnswerState.Selected -> "Used"
+        choice.state == AnswerState.Available -> "Available"
+        choice.state == AnswerState.Selected -> "Selected"
+        choice.state == AnswerState.Correct -> "Correct answer"
+        choice.state == AnswerState.Incorrect -> "Incorrect answer"
+        else -> "Eliminated"
     }
     Row(
         modifier = modifier
@@ -258,12 +276,13 @@ fun FlagImage(
             ),
         )
     }
+    val accessibleLabel = if (flag.countryName.startsWith("Flag ", ignoreCase = true)) flag.countryName else "Flag of ${flag.countryName}"
     val imageModifier = modifier
         .aspectRatio(3f / 2f)
         .clip(RoundedCornerShape(8.dp))
         .background(AtlasTheme.colors.paper, RoundedCornerShape(8.dp))
         .border(1.dp, AtlasTheme.colors.outline.copy(alpha = .55f), RoundedCornerShape(8.dp))
-        .then(if (accessible) Modifier.semantics { contentDescription = "Flag of ${flag.countryName}" } else Modifier)
+        .then(if (accessible) Modifier.semantics { contentDescription = accessibleLabel } else Modifier)
     if (validCode) {
         Image(
             painter = painterResource(resource),
@@ -314,7 +333,7 @@ fun AtlasToggle(setting: SettingToggleUi, onToggle: (String, Boolean) -> Unit) {
         }
         Box(
             Modifier.size(width = 54.dp, height = 32.dp)
-                .background(if (setting.checked) AtlasTheme.colors.success else AtlasTheme.colors.outline, CircleShape)
+                .background(if (setting.checked) AtlasTheme.colors.success else AtlasTheme.colors.seaGlass, CircleShape)
                 .padding(4.dp),
             contentAlignment = if (setting.checked) Alignment.CenterEnd else Alignment.CenterStart,
         ) {
@@ -351,50 +370,22 @@ fun BertIllustration(
         StaticBertIllustration(pose, modifier, contentDescription)
         return
     }
-    val compositionResult = rememberLottieComposition(pose) {
-        LottieCompositionSpec.JsonString(
-            Res.readBytes("files/${pose.animationFileName}").decodeToString(),
-        )
-    }
-    val composition = compositionResult.value
-    if (composition == null || compositionResult.isFailure) {
-        StaticBertIllustration(pose, modifier, contentDescription)
-        return
-    }
-    val progress by animateLottieCompositionAsState(
-        composition = composition,
-        iterations = Compottie.IterateForever,
+    val transition = rememberInfiniteTransition(label = "Bert bulb")
+    val rayLength by transition.animateFloat(
+        initialValue = .82f,
+        targetValue = 1.08f,
+        animationSpec = infiniteRepeatable(tween(800), RepeatMode.Reverse),
+        label = "Bulb ray length",
     )
-    Box(
-        modifier = modifier.size(180.dp).semantics { this.contentDescription = contentDescription },
-    ) {
-        StaticBertIllustration(pose, Modifier.matchParentSize(), contentDescription = null)
-        Image(
-            painter = rememberLottiePainter(composition = composition, progress = { progress }),
-            contentDescription = null,
-            modifier = Modifier.matchParentSize(),
-        )
-    }
+    StaticBertIllustration(pose, modifier, contentDescription, rayLength)
 }
-
-private val BertPose.animationFileName: String
-    get() = when (this) {
-        BertPose.Idle -> "bert_idle.json"
-        BertPose.Correct -> "bert_correct.json"
-        BertPose.Incorrect -> "bert_incorrect.json"
-        BertPose.Overtime -> "bert_overtime.json"
-        BertPose.Hint -> "bert_hint.json"
-        BertPose.Fact -> "bert_fact.json"
-        BertPose.Results -> "bert_results.json"
-        BertPose.Streak -> "bert_streak.json"
-        BertPose.Stamp -> "bert_stamp.json"
-    }
 
 @Composable
 private fun StaticBertIllustration(
     pose: BertPose,
     modifier: Modifier,
     contentDescription: String?,
+    rayLength: Float = 1f,
 ) {
     val colors = AtlasTheme.colors
     val accessibleModifier = if (contentDescription == null) Modifier else Modifier.semantics { this.contentDescription = contentDescription }
@@ -437,24 +428,75 @@ private fun StaticBertIllustration(
             quadraticTo(90f * scale, (if (pose == BertPose.Incorrect) 106f else 130f) * scale, 109f * scale, mouthY * scale)
         }
         drawPath(mouth, colors.plum, style = Stroke(4f * scale, cap = StrokeCap.Round))
-        val accent = when (pose) {
-            BertPose.Correct, BertPose.Streak, BertPose.Stamp -> colors.success
-            BertPose.Incorrect -> colors.error
-            BertPose.Overtime, BertPose.Hint -> colors.mustard
-            BertPose.Fact, BertPose.Results, BertPose.Idle -> colors.atlasBlue
-        }
+        val accent = colors.orangeAccent
         drawCircle(accent, 10f * scale, p(145f, 39f))
-        drawLine(accent, p(145f, 17f), p(145f, 7f), 4f * scale, StrokeCap.Round)
-        drawLine(accent, p(161f, 25f), p(169f, 18f), 4f * scale, StrokeCap.Round)
+        drawLine(accent, p(145f, 17f), p(145f, 17f - 10f * rayLength), 4f * scale, StrokeCap.Round)
+        drawLine(accent, p(161f, 25f), p(161f + 8f * rayLength, 25f - 7f * rayLength), 4f * scale, StrokeCap.Round)
     }
 }
 
 @Composable
 fun ScreenTopBar(title: String, onBack: (() -> Unit)? = null, trailing: (@Composable () -> Unit)? = null) {
-    Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-        if (onBack != null) AtlasButton("Back", onBack, style = AtlasButtonStyle.Quiet)
-        AtlasText(title, Modifier.weight(1f).semantics { heading() }, style = AtlasTheme.typography.heading)
-        trailing?.invoke()
+    Row(Modifier.fillMaxWidth().heightIn(min = 52.dp), verticalAlignment = Alignment.CenterVertically) {
+        if (onBack != null) AtlasBackButton(onBack) else Spacer(Modifier.size(48.dp))
+        AtlasText(
+            title,
+            Modifier.weight(1f).semantics { heading() },
+            style = AtlasTheme.typography.heading,
+            textAlign = TextAlign.Center,
+        )
+        if (trailing == null) Spacer(Modifier.size(48.dp)) else Box(Modifier.widthIn(min = 48.dp), contentAlignment = Alignment.CenterEnd) { trailing() }
+    }
+}
+
+@Composable
+fun AtlasBackButton(onClick: () -> Unit, contentDescription: String = "Back") {
+    val color = AtlasTheme.colors.plum
+    Box(
+        Modifier.size(48.dp)
+            .semantics { role = Role.Button; this.contentDescription = contentDescription }
+            .clickable(onClick = onClick),
+        contentAlignment = Alignment.Center,
+    ) {
+        Canvas(Modifier.size(24.dp)) {
+            drawLine(color, Offset(size.width * .7f, size.height * .16f), Offset(size.width * .3f, size.height * .5f), 3.2.dp.toPx(), StrokeCap.Round)
+            drawLine(color, Offset(size.width * .3f, size.height * .5f), Offset(size.width * .7f, size.height * .84f), 3.2.dp.toPx(), StrokeCap.Round)
+        }
+    }
+}
+
+@Composable
+fun AtlasExitButton(onClick: () -> Unit, contentDescription: String = "Leave trivia") {
+    val color = AtlasTheme.colors.plum
+    Box(
+        Modifier.size(48.dp)
+            .semantics { role = Role.Button; this.contentDescription = contentDescription }
+            .clickable(onClick = onClick),
+        contentAlignment = Alignment.Center,
+    ) {
+        Canvas(Modifier.size(26.dp)) {
+            val stroke = 2.6.dp.toPx()
+            drawLine(color, Offset(size.width * .18f, size.height * .12f), Offset(size.width * .18f, size.height * .88f), stroke, StrokeCap.Round)
+            drawLine(color, Offset(size.width * .18f, size.height * .12f), Offset(size.width * .56f, size.height * .12f), stroke, StrokeCap.Round)
+            drawLine(color, Offset(size.width * .18f, size.height * .88f), Offset(size.width * .56f, size.height * .88f), stroke, StrokeCap.Round)
+            drawLine(color, Offset(size.width * .48f, size.height * .5f), Offset(size.width * .9f, size.height * .5f), stroke, StrokeCap.Round)
+            drawLine(color, Offset(size.width * .73f, size.height * .32f), Offset(size.width * .9f, size.height * .5f), stroke, StrokeCap.Round)
+            drawLine(color, Offset(size.width * .9f, size.height * .5f), Offset(size.width * .73f, size.height * .68f), stroke, StrokeCap.Round)
+        }
+    }
+}
+
+@Composable
+fun AtlasLinkRow(text: String, onClick: () -> Unit, destructive: Boolean = false) {
+    Row(
+        Modifier.fillMaxWidth().heightIn(min = 56.dp)
+            .semantics { role = Role.Button; contentDescription = text }
+            .clickable(onClick = onClick)
+            .padding(horizontal = 4.dp, vertical = 10.dp),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        AtlasText(text, Modifier.weight(1f), style = AtlasTheme.typography.label, color = if (destructive) AtlasTheme.colors.error else AtlasTheme.colors.plum)
+        AtlasText("›", style = AtlasTheme.typography.heading, color = AtlasTheme.colors.mutedPlum)
     }
 }
 

@@ -33,12 +33,15 @@ fun SettingsScreen(
     AtlasScreen(modifier) {
         Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(12.dp)) {
             ScreenTopBar("Settings", onBack)
+            SectionGap()
             AtlasCard {
                 settings.forEach { AtlasToggle(it, onToggle) }
             }
-            AtlasButton("Privacy", onPrivacy, Modifier.fillMaxWidth(), AtlasButtonStyle.Secondary)
-            AtlasButton("Credits and licenses", onCredits, Modifier.fillMaxWidth(), AtlasButtonStyle.Secondary)
-            AtlasButton("Reset local data", onReset, Modifier.fillMaxWidth(), AtlasButtonStyle.Destructive)
+            AtlasCard {
+                AtlasLinkRow("Privacy", onPrivacy)
+                AtlasLinkRow("Credits and licenses", onCredits)
+                AtlasLinkRow("Reset local data", onReset, destructive = true)
+            }
             AtlasText(
                 "Bert's Atlas $version",
                 Modifier.fillMaxWidth()
@@ -84,7 +87,7 @@ fun PrivacyScreen(onBack: () -> Unit, modifier: Modifier = Modifier) {
         title = "Privacy",
         paragraphs = listOf(
             "Bert's Atlas works entirely offline. It does not ask for an account or personal information.",
-            "Your quiz history, progress, streaks, stamps, and preferences stay on this device. The app has no advertising, analytics, remote configuration, or product telemetry.",
+            "Your trivia history, progress, streaks, stamps, and preferences stay on this device. The app has no advertising, analytics, remote configuration, or product telemetry.",
             "Clearing app data or deleting the app may permanently remove your progress. Operating-system and store diagnostics are controlled by your platform settings.",
         ),
         onBack = onBack,

@@ -22,6 +22,7 @@ data class Attempt(
     val hintPointsDeducted: Int = 0,
     val questionWindowMillis: Long = 0,
     val questionRemainingMillis: Long = 0,
+    val hintTypes: Set<HintType> = emptySet(),
 )
 
 @Serializable
@@ -88,6 +89,7 @@ data class RunResult(
     val improvedMasteryItems: Int,
     val revisitCountryIds: List<String>,
     val completedAtEpochMillis: Long,
+    val status: RunStatus = RunStatus.Completed,
 ) {
     val accuracyPercent: Int
         get() = if (answeredQuestions == 0) 0 else (correctAnswers * 100) / answeredQuestions

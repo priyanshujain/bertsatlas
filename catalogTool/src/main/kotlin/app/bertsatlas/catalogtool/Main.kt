@@ -123,6 +123,11 @@ private class Validator(private val path: Path) {
             val label = "fact ${id(fact)}"
             expectInt(fact, "schemaVersion", 1, label)
             listOf("heading", "text").forEach { text(fact, it, label) }
+            val heading = value(fact, "heading")
+            val copy = value(fact, "text")
+            if (heading == "Atlas placement" || copy.contains("UN M49", ignoreCase = true)) {
+                errors += "$label exposes catalog metadata as lesson copy"
+            }
             refs(label, strings(fact, "countryIds"), countryIds, "country")
             val sourcesForFact = strings(fact, "sourceIds")
             if (sourcesForFact.isEmpty()) errors += "$label has no factual source"
@@ -207,6 +212,9 @@ private class Validator(private val path: Path) {
         }
         val hints = strings(question, "supportedHints")
         (hints - validHints).forEach { errors += "$label has unsupported hint $it" }
+        if ("factual_clue" in hints && value(question, "explanation").contains(answer, ignoreCase = true)) {
+            errors += "$label factual clue contains its answer"
+        }
         if (format != "letter_bank" && "reveal_letter" in hints) errors += "$label has an incompatible letter hint"
         if (format != "multiple_choice" && "remove_choices" in hints) errors += "$label has incompatible choice removal"
         refs(label, strings(question, "countryIds"), countryIds, "country")

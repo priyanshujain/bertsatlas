@@ -16,6 +16,10 @@ The initial draft was normalized from datasets/country-codes at commit `6a595f1a
 
 The aggregate commit is a reproducibility aid, not an editorial signoff. Capital arrangements with ambiguity or recent change are explicitly marked and removed from one-answer question eligibility.
 
+Land-border draft facts use the REST Countries V4 data pinned at commit `43f6260db10c54df9972e6e554ee14c2e7c85ef5`. These are concise fallback copy, not inferred lessons about UN regions. Editors must check disputed boundaries and whether overseas territories affect a claim before approval.
+
+The early-play pool has twelve more varied draft facts sourced directly from public institutions: Geoscience Australia, Brazil's IBGE, the governments of Canada, India, Japan, Mexico, South Africa, New Zealand, Nepal and the Netherlands, Royal Museums Greenwich, and the archived CIA World Factbook. Their exact page URLs and retrieval snapshots are recorded in the catalog. A source link proves provenance; it does not constitute fact or copy approval.
+
 Primary review locations:
 
 - United Nations member states: https://www.un.org/en/about-us/member-states

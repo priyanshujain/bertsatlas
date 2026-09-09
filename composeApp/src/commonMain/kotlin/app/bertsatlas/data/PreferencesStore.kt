@@ -22,7 +22,7 @@ import kotlinx.coroutines.CancellationException
 import okio.Path.Companion.toPath
 
 data class SavedPreferences(
-    val hasPreviouslyLaunched: Boolean = false,
+    val hasStartedTrivia: Boolean = false,
     val duration: String = "FiveMinutes",
     val topic: String = "MostlyFlags",
     val soundEnabled: Boolean = true,
@@ -41,7 +41,7 @@ class PreferencesStore(
         }
         .map { preferences ->
             SavedPreferences(
-                hasPreviouslyLaunched = preferences[Keys.previouslyLaunched] ?: false,
+                hasStartedTrivia = preferences[Keys.hasStartedTrivia] ?: false,
                 duration = preferences[Keys.duration] ?: "FiveMinutes",
                 topic = preferences[Keys.topic] ?: "MostlyFlags",
                 soundEnabled = preferences[Keys.soundEnabled] ?: true,
@@ -51,10 +51,10 @@ class PreferencesStore(
             )
         }
 
-    override suspend fun hasLaunchedBefore(): Boolean = values.first().hasPreviouslyLaunched
+    override suspend fun hasStartedTrivia(): Boolean = values.first().hasStartedTrivia
 
-    override suspend fun markLaunched() {
-        dataStore.edit { it[Keys.previouslyLaunched] = true }
+    override suspend fun markTriviaStarted() {
+        dataStore.edit { it[Keys.hasStartedTrivia] = true }
     }
 
     override suspend fun loadConfiguration(): QuizConfiguration {
@@ -70,8 +70,8 @@ class PreferencesStore(
     }
 
     suspend fun saveConfiguration(duration: String, topic: String) {
-        require(QuizDuration.entries.any { it.name == duration }) { "Unknown quiz duration: $duration" }
-        require(QuizTopic.entries.any { it.name == topic }) { "Unknown quiz topic: $topic" }
+        require(QuizDuration.entries.any { it.name == duration }) { "Unknown trivia duration: $duration" }
+        require(QuizTopic.entries.any { it.name == topic }) { "Unknown trivia topic: $topic" }
         dataStore.edit {
             it[Keys.duration] = duration
             it[Keys.topic] = topic
@@ -114,7 +114,7 @@ class PreferencesStore(
     }
 
     suspend fun resetFirstLaunch() {
-        dataStore.edit { it.remove(Keys.previouslyLaunched) }
+        dataStore.edit { it.remove(Keys.hasStartedTrivia) }
     }
 
     suspend fun resetConfiguration() {
@@ -135,7 +135,7 @@ class PreferencesStore(
 
     suspend fun resetFirstLaunchAndConfiguration() {
         dataStore.edit {
-            it.remove(Keys.previouslyLaunched)
+            it.remove(Keys.hasStartedTrivia)
             it.remove(Keys.duration)
             it.remove(Keys.topic)
         }
@@ -146,7 +146,7 @@ class PreferencesStore(
     }
 
     private object Keys {
-        val previouslyLaunched = booleanPreferencesKey("previously_launched")
+        val hasStartedTrivia = booleanPreferencesKey("has_started_trivia")
         val duration = stringPreferencesKey("quiz_duration")
         val topic = stringPreferencesKey("quiz_topic")
         val soundEnabled = booleanPreferencesKey("sound_enabled")

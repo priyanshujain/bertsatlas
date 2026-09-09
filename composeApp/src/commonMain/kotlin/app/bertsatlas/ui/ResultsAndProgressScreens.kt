@@ -31,11 +31,28 @@ fun ResultsScreen(
     onPlayAgain: () -> Unit,
     onHome: () -> Unit,
     modifier: Modifier = Modifier,
+    abandoned: Boolean = false,
 ) {
     AtlasScreen(modifier) {
         Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(16.dp)) {
-            BertIllustration(BertPose.Results, contentDescription = "Bert celebrates a completed atlas run")
-            AtlasHeading(if (newPersonalBest) "New personal best" else "Run complete", Modifier.fillMaxWidth(), centered = true)
+            BertIllustration(if (abandoned) BertPose.Hint else BertPose.Results, contentDescription = if (abandoned) "Bert keeps your practice progress" else "Bert celebrates completed trivia")
+            AtlasHeading(
+                when {
+                    abandoned -> "Trivia ended"
+                    newPersonalBest -> "New personal best"
+                    else -> "Trivia complete"
+                },
+                Modifier.fillMaxWidth(),
+                centered = true,
+            )
+            if (abandoned) {
+                AtlasText(
+                    "Your answers still shaped what you'll practise next. This trivia run didn't count toward your personal best or daily streak.",
+                    Modifier.fillMaxWidth(),
+                    color = AtlasTheme.colors.mutedPlum,
+                    textAlign = TextAlign.Center,
+                )
+            }
             AtlasText(score.toString(), style = AtlasTheme.typography.display, color = AtlasTheme.colors.atlasBlue)
             AtlasText("points", color = AtlasTheme.colors.mutedPlum)
             StatRow(
@@ -46,7 +63,7 @@ fun ResultsScreen(
                 ),
             )
             AtlasCard {
-                AtlasText("Run notes", style = AtlasTheme.typography.heading)
+                AtlasText("Highlights", style = AtlasTheme.typography.heading)
                 AtlasText("Average response · $averageResponseTime")
                 AtlasText("New or improved knowledge · $masteryImproved")
             }
@@ -56,7 +73,7 @@ fun ResultsScreen(
                     AtlasText(revisitCountries.joinToString(" · "), color = AtlasTheme.colors.mutedPlum)
                 }
             }
-            AtlasButton("Play again", onPlayAgain, Modifier.fillMaxWidth())
+            AtlasButton(if (abandoned) "Start new trivia" else "Play again", onPlayAgain, Modifier.fillMaxWidth())
             AtlasButton("Home", onHome, Modifier.fillMaxWidth(), AtlasButtonStyle.Secondary)
         }
     }

@@ -6,4 +6,4 @@ local.properties
 DerivedData/
 *.xcuserstate
 xcuserdata/
-
+.DS_Store

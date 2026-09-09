@@ -4,7 +4,7 @@ Bert's Atlas is an offline geography trivia game for Android and iOS. Product be
 
 ## Architecture
 
-- `domain`: pure Kotlin Multiplatform quiz, timing, scoring, mastery, streak, and selection rules
+- `domain`: pure Kotlin Multiplatform trivia, timing, scoring, mastery, streak, and selection rules
 - `composeApp`: shared Compose UI, bundled resources, Room persistence, and platform adapters
 - `catalogTool`: non-test JVM catalog validator and editorial report generator
 - `androidApp`: thin Android application host

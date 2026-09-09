@@ -55,8 +55,8 @@ data class PlayerSettings(
 )
 
 interface LaunchPreferences {
-    suspend fun hasLaunchedBefore(): Boolean
-    suspend fun markLaunched()
+    suspend fun hasStartedTrivia(): Boolean
+    suspend fun markTriviaStarted()
 }
 
 interface QuizConfigurationPreferences {

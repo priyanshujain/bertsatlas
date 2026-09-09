@@ -42,6 +42,9 @@ object CatalogLoader {
         val similarityGroupsByCountry = source.similarityGroups
             .flatMap { group -> group.countryIds.map { it to group.id } }
             .groupBy({ it.first }, { it.second })
+        val curatedCapitalCountryIds = source.curatedQuestions
+            .filter { it.id.startsWith("mixed-capital-") }
+            .flatMapTo(mutableSetOf()) { it.countryIds }
         val domainCountries = source.countries.map { country ->
             country.toDomain(similarityGroupsByCountry[country.id].orEmpty())
         }
@@ -53,11 +56,10 @@ object CatalogLoader {
                 similarityGroupIds = similarityGroupsByCountry[country.id].orEmpty(),
                 similarityGroups = source.similarityGroups,
                 relatedFacts = factsByCountry[country.id].orEmpty(),
+                hasCuratedCapitalQuestion = country.id in curatedCapitalCountryIds,
             )
         }
-        val curatedQuestions = source.curatedQuestions.map { question ->
-            question.toDomain(countriesById)
-        }
+        val curatedQuestions = source.curatedQuestions.map { question -> question.toDomain(countriesById) }
         return Catalog(
             schemaVersion = source.schemaVersion,
             contentVersion = source.catalogVersion,
@@ -76,6 +78,7 @@ object CatalogLoader {
         similarityGroupIds: List<String>,
         similarityGroups: List<SourceSimilarityGroup>,
         relatedFacts: List<SourceFact>,
+        hasCuratedCapitalQuestion: Boolean,
     ): List<Question> {
         val distractors = chooseDistractors(
             country = country,
@@ -94,13 +97,22 @@ object CatalogLoader {
         require(capitalChoices.size == 4) { "Not enough unique capital choices for ${country.id}" }
         val difficulty = generatedDifficulty(countryIndex)
         val continentHint = country.region.toContinent().displayName()
-        val factualClue = relatedFacts.firstOrNull()?.text
+        val factualClue = relatedFacts.firstOrNull()?.text?.withoutAnswer(country)
+        val capitalFactualClue = factualClue?.takeUnless { clue ->
+            country.capital.names.any { capital -> clue.contains(capital, ignoreCase = true) }
+        }
         val commonHintText = buildMap {
             put(HintType.RevealContinent, continentHint)
             factualClue?.let { put(HintType.FunnyFactualClue, it) }
         }
         val factualHint = if (factualClue == null) emptySet() else setOf(HintType.FunnyFactualClue)
         val sharedHints = setOf(HintType.RevealContinent) + factualHint
+        val capitalHintText = buildMap {
+            put(HintType.RevealContinent, continentHint)
+            capitalFactualClue?.let { put(HintType.FunnyFactualClue, it) }
+        }
+        val capitalHints = setOf(HintType.RevealContinent) +
+            if (capitalFactualClue == null) emptySet() else setOf(HintType.FunnyFactualClue)
         val flagToCountry = Question.MultipleChoice(
             id = "generated-flag-to-country-${country.id}",
             prompt = "Which country does this flag belong to?",
@@ -125,8 +137,12 @@ object CatalogLoader {
             explanation = "This is the flag of ${country.displayName}.",
             supportedHints = sharedHints + HintType.RemoveIncorrectOptions,
             hintText = commonHintText,
-            choices = choices.map {
-                Choice(id = it.id, label = it.displayName, assetId = it.flagAssetId)
+            choices = choices.mapIndexed { choiceIndex, choice ->
+                Choice(
+                    id = choice.id,
+                    label = "Flag ${('A'.code + choiceIndex).toChar()}",
+                    assetId = choice.flagAssetId,
+                )
             },
             correctChoiceId = country.id,
         )
@@ -155,26 +171,34 @@ object CatalogLoader {
             skill = Skill.CapitalRecall,
             topic = QuizTopic.Capitals,
             difficulty = difficulty,
-            explanation = country.capital.note ?: "${country.capital.acceptedAnswer} is the capital answer used for ${country.displayName}.",
-            supportedHints = sharedHints + HintType.RemoveIncorrectOptions,
-            hintText = commonHintText,
+            explanation = country.capital.note ?: "${country.capital.acceptedAnswer} is the capital of ${country.displayName}.",
+            supportedHints = capitalHints + HintType.RemoveIncorrectOptions,
+            hintText = capitalHintText,
             choices = capitalChoices.map { Choice(it.id, it.capital.acceptedAnswer) },
             correctChoiceId = country.id,
         )
         val capitalToCountry = Question.MultipleChoice(
             id = "generated-capital-to-country-${country.id}",
-            prompt = "${country.capital.acceptedAnswer} is the capital answer for which country?",
+            prompt = "${country.capital.acceptedAnswer} is the capital of which country?",
             countryIds = listOf(country.id),
             skill = Skill.CapitalRecognition,
             topic = QuizTopic.Capitals,
             difficulty = difficulty,
-            explanation = country.capital.note ?: "${country.capital.acceptedAnswer} is the capital answer used for ${country.displayName}.",
-            supportedHints = sharedHints + HintType.RemoveIncorrectOptions,
-            hintText = commonHintText,
+            explanation = country.capital.note ?: "${country.capital.acceptedAnswer} is the capital of ${country.displayName}.",
+            supportedHints = capitalHints + HintType.RemoveIncorrectOptions,
+            hintText = capitalHintText,
             choices = choices.map { Choice(it.id, it.displayName) },
             correctChoiceId = country.id,
         )
-        return listOf(flagToCountry, countryToFlag, letterBank, countryToCapital, capitalToCountry)
+        return buildList {
+            add(flagToCountry)
+            add(countryToFlag)
+            add(letterBank)
+            if (country.capital.questionEligible) {
+                if (!hasCuratedCapitalQuestion) add(countryToCapital)
+                add(capitalToCountry)
+            }
+        }
     }
 
     private fun chooseDistractors(
@@ -209,7 +233,11 @@ object CatalogLoader {
         val answerIndex = choices.indexOf(answer)
         require(answerIndex >= 0) { "Curated question $id does not contain its answer" }
         val primaryCountry = countryIds.firstNotNullOfOrNull(countriesById::get)
-        val mappedHints = supportedHints.mapTo(linkedSetOf()) { it.toHintType() }
+        val mappedHints = supportedHints
+            .mapTo(linkedSetOf()) { it.toHintType() }
+            .apply {
+                if (explanation.contains(answer, ignoreCase = true)) remove(HintType.FunnyFactualClue)
+            }
         val hintText = buildMap {
             if (HintType.RevealContinent in mappedHints && primaryCountry != null) {
                 put(HintType.RevealContinent, primaryCountry.region.toContinent().displayName())
@@ -335,6 +363,14 @@ object CatalogLoader {
 
     private const val DECOY_ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     private val decoder = Json { ignoreUnknownKeys = true }
+
+    private fun String.withoutAnswer(country: SourceCountry): String {
+        val names = (country.acceptedAliases + country.displayName).sortedByDescending(String::length)
+        val redacted = names.fold(this) { text, name ->
+            text.replace(Regex(Regex.escape(name), RegexOption.IGNORE_CASE), "this country")
+        }
+        return redacted.replaceFirstChar { it.uppercase() }
+    }
 }
 
 @Serializable
@@ -373,6 +409,7 @@ private data class SourceCapital(
     val kind: String,
     val names: List<String>,
     val acceptedAnswer: String,
+    val questionEligible: Boolean,
     val note: String?,
 )
 

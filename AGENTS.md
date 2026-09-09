@@ -13,6 +13,7 @@
 ## Coding Guidelines
 
   - Keep code simple and easy to read.
+  - Never use em dashes in app user-facing copy.
   - Avoid excessive comments. We want code itself to be super readable. Only comment when absolutely necessary.
   - Do not create or modify implementation code unless the user explicitly asks for code changes.
   - Do not create or modify tests unless the user explicitly asks for tests.

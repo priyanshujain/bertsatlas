@@ -102,25 +102,25 @@ The first screen contains:
 
 `Start` is the only interactive choice on the first-launch screen. System accessibility and silent-mode preferences are honored without requiring setup.
 
-Tapping `Start` immediately begins a quiz with these defaults:
+Tapping `Start` immediately begins a trivia run with these defaults:
 
 - Duration: 5 minutes
 - Geography: worldwide
 - Question mix: flags-heavy mixed geography
 - Difficulty: adaptive
 
-No configuration questionnaire or modal tutorial appears before the first quiz. The interface teaches mechanics contextually without delaying the first question.
+No configuration questionnaire or modal tutorial appears before the first trivia run. The interface teaches mechanics contextually without delaying the first question.
 
 ### 6.2 Returning launch
 
 From the second app launch onward, the home screen contains:
 
-- `Start`, which immediately uses the most recently saved quiz configuration
+- `Start`, which immediately uses the most recently saved trivia configuration
 - `Options`, a secondary action
 - Current streak and a compact recent-progress summary
 - Settings
 
-The app must distinguish first launch from later launches using local state. Completing a quiz is not required for the returning layout to appear on the next launch.
+The minimal first-use Home remains until the player starts their first trivia run. Merely opening and closing the app does not reveal returning-player controls. Completing the run is not required.
 
 ### 6.3 Options flow
 
@@ -138,13 +138,13 @@ The initial V1 sequence is:
    - Capitals
    - Mixed geography
 
-The final answer is saved and immediately starts the quiz. All answers are saved as one configuration. Abandoning the flow leaves the previously saved configuration unchanged.
+The final answer is saved and immediately starts the trivia. All answers are saved as one configuration. Abandoning the flow leaves the previously saved configuration unchanged.
 
 Difficulty is always adaptive in V1 and has no player-facing configuration.
 
 V1 does not ask the player to choose a question count or continent. These controls may be added later only if evidence shows they improve play without adding friction.
 
-### 6.4 Quiz run
+### 6.4 Trivia run
 
 A run repeatedly moves through:
 
@@ -258,14 +258,14 @@ Examples for either question format are 100 points at the initial instant, 75 po
 
 ### 8.3 Hints
 
-Each question permits at most one hint. Opening the hint chooser pauses the question timer. The player chooses among the hint types supported by that question:
+Each supported hint type may be used once per question. Opening the hint chooser pauses the question timer. Used hints remain visible, disabled, and marked with a check. The player may return for another unused hint among the types supported by that question:
 
 - Reveal one correct letter
 - Remove decoy letters or incorrect choices
 - Reveal the continent
 - Show a funny factual clue
 
-All hint types use the same debit rule. When a hint is chosen, the app first deducts up to 25 points from the score already earned in the current run. The score can never become negative: a zero balance makes the hint free, while a balance below 25 is reduced to zero. A subsequent correct answer then awards points using the normal speed or overtime formula. An incorrect hinted answer awards zero.
+All hint types use the same debit rule. Choosing a hint deducts half of the currently available score using whole points. The chooser displays the exact deduction as a compact negative-points label and hides it at a zero balance. A subsequent correct answer then awards points using the normal speed or overtime formula. An incorrect hinted answer awards zero.
 
 A hinted correct answer is recorded as correct for accuracy and keeps the item in `learning`, but it does not satisfy the unhinted thresholds for `familiar` or `mastered`. Using a hint never blocks progression or triggers negative copy.
 
@@ -561,7 +561,7 @@ V1 is ready only when:
 - A fresh install can start and finish every quiz configuration in airplane mode on Android and iOS.
 - First launch shows only the immediate-start experience; later launches show `Start` and `Options`.
 - `Start` correctly reuses the most recently completed options configuration.
-- Each timed duration ends after the current question, and unlimited mode ends only by player choice.
+- Each timed duration moves directly to Results when the overall trivia timer expires, and unlimited mode ends only by player choice.
 - Question and session clocks pause in every specified non-answering state.
 - Abandoned and completed runs apply mastery, results, personal-best, and streak rules correctly.
 - Correct-before-timeout, correct-after-timeout, incorrect, and hinted scoring follow the specified rules.

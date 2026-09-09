@@ -7,7 +7,9 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
@@ -31,12 +33,12 @@ fun QuizScreen(
     prompt: String,
     imageDescription: String?,
     score: Int,
-    sessionTime: String,
     questionTime: String,
     timerExpired: Boolean,
     choices: List<ChoiceUi> = emptyList(),
     letterSlots: List<LetterSlotUi> = emptyList(),
     letterTiles: List<LetterTileUi> = emptyList(),
+    appliedHintMessages: List<String> = emptyList(),
     hintAvailable: Boolean,
     unlimited: Boolean,
     canSubmit: Boolean = false,
@@ -50,46 +52,46 @@ fun QuizScreen(
     onLeave: () -> Unit,
     modifier: Modifier = Modifier,
     promptFlag: FlagUi? = null,
+    runProgress: Float? = null,
+    runProgressDescription: String = "Trivia progress",
+    overtimeMessage: String = "Time's up. Keep going for half points",
 ) {
-    AtlasScreen(modifier) {
-        Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(14.dp)) {
-            BoxWithConstraints(Modifier.fillMaxWidth()) {
-                if (maxWidth < 480.dp) {
-                    Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                        AtlasButton("Leave", onLeave, style = AtlasButtonStyle.Quiet)
-                        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                            QuizMetric("Score", score.toString(), Modifier.weight(1f))
-                            QuizMetric(if (unlimited) "Elapsed" else "Run", sessionTime, Modifier.weight(1f))
-                            QuizMetric("Question", questionTime, Modifier.weight(1f), warning = timerExpired)
-                        }
-                    }
-                } else {
-                    Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                        AtlasButton("Leave", onLeave, style = AtlasButtonStyle.Quiet)
-                        QuizMetric("Score", score.toString(), Modifier.weight(1f))
-                        QuizMetric(if (unlimited) "Elapsed" else "Run", sessionTime, Modifier.weight(1f))
-                        QuizMetric("Question", questionTime, Modifier.weight(1f), warning = timerExpired)
-                    }
-                }
+    AtlasScreen(modifier, contentPadding = PaddingValues(0.dp)) {
+        Column(Modifier.fillMaxWidth()) {
+            runProgress?.let { SubtleRunProgress(it, runProgressDescription) }
+            Column(
+                Modifier.fillMaxWidth().padding(horizontal = 20.dp, vertical = 24.dp),
+                verticalArrangement = Arrangement.spacedBy(16.dp),
+            ) {
+            Row(Modifier.fillMaxWidth().heightIn(min = 56.dp), verticalAlignment = Alignment.CenterVertically) {
+                QuizMetric("Score", score.toString(), Modifier.weight(1f))
+                QuizMetric("Question", questionTime, Modifier.weight(1f), warning = timerExpired)
+                AtlasExitButton(onLeave)
             }
             if (timerExpired) {
-                AtlasText("Overtime · you can still answer for half points", color = AtlasTheme.colors.error, style = AtlasTheme.typography.label)
+                AtlasText(overtimeMessage, Modifier.fillMaxWidth(), color = AtlasTheme.colors.error, style = AtlasTheme.typography.label, textAlign = TextAlign.Center)
             }
             if (promptFlag != null || imageDescription != null) {
-                AtlasCard(contentDescription = imageDescription ?: "Flag of ${promptFlag?.countryName}") {
-                    Box(Modifier.fillMaxWidth().heightIn(min = 116.dp), contentAlignment = Alignment.Center) {
+                Box(
+                    Modifier.fillMaxWidth().heightIn(min = 148.dp)
+                        .semantics { contentDescription = imageDescription ?: "Flag to identify" },
+                    contentAlignment = Alignment.Center,
+                ) {
+                    Box(Modifier.width(230.dp).padding(8.dp), contentAlignment = Alignment.Center) {
                         if (promptFlag != null) {
-                            FlagImage(promptFlag, Modifier.fillMaxWidth().heightIn(min = 116.dp))
+                            FlagImage(promptFlag, Modifier.fillMaxWidth(), accessible = false, showFallbackLabel = false)
                         } else {
                             AtlasText("⚑", style = AtlasTheme.typography.display, color = AtlasTheme.colors.atlasBlue)
                         }
                     }
-                    imageDescription?.let {
-                        AtlasText(it, Modifier.fillMaxWidth(), style = AtlasTheme.typography.detail, color = AtlasTheme.colors.mutedPlum, textAlign = TextAlign.Center)
-                    }
                 }
             }
-            AtlasHeading(prompt)
+            AtlasHeading(prompt, Modifier.fillMaxWidth(), centered = true)
+            appliedHintMessages.forEach { message ->
+                AtlasCard(contentDescription = "Applied hint: $message") {
+                    AtlasText("Hint: $message", color = AtlasTheme.colors.atlasBlue)
+                }
+            }
             if (choices.isNotEmpty()) ResponsiveChoices(choices, onChoice)
             if (letterSlots.isNotEmpty() || letterTiles.isNotEmpty()) {
                 LetterBank(letterSlots, letterTiles, onLetter, onRemoveLetter)
@@ -99,8 +101,9 @@ fun QuizScreen(
                 }
             }
             Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                AtlasButton("Hint", onHint, Modifier.weight(1f), AtlasButtonStyle.Secondary, enabled = hintAvailable)
+                AtlasButton("Get a hint", onHint, Modifier.weight(1f), AtlasButtonStyle.Secondary, enabled = hintAvailable)
                 if (unlimited) AtlasButton("Finish", onFinish, Modifier.weight(1f), AtlasButtonStyle.Quiet)
+            }
             }
         }
     }
@@ -108,9 +111,29 @@ fun QuizScreen(
 
 @Composable
 private fun QuizMetric(label: String, value: String, modifier: Modifier, warning: Boolean = false) {
-    Column(modifier.semantics(mergeDescendants = true) { contentDescription = "$label: $value" }, horizontalAlignment = Alignment.CenterHorizontally) {
-        AtlasText(value, style = AtlasTheme.typography.timer, color = if (warning) AtlasTheme.colors.error else AtlasTheme.colors.plum, textAlign = TextAlign.Center)
+    Column(
+        modifier.semantics(mergeDescendants = true) { contentDescription = "$label: $value" },
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ) {
+        AtlasText(
+            value,
+            style = AtlasTheme.typography.timer,
+            color = if (warning) AtlasTheme.colors.error else AtlasTheme.colors.plum,
+            textAlign = TextAlign.Center,
+        )
         AtlasText(label, style = AtlasTheme.typography.detail, color = AtlasTheme.colors.mutedPlum, textAlign = TextAlign.Center)
+    }
+}
+
+@Composable
+private fun SubtleRunProgress(progress: Float, description: String) {
+    val value = progress.coerceIn(0f, 1f)
+    Box(
+        Modifier.fillMaxWidth().heightIn(min = 4.dp)
+            .background(AtlasTheme.colors.outline.copy(alpha = .14f), RoundedCornerShape(4.dp))
+            .semantics { contentDescription = description; stateDescription = "${(value * 100).toInt()} percent" },
+    ) {
+        Box(Modifier.fillMaxWidth(value).heightIn(min = 4.dp).background(AtlasTheme.colors.coral, RoundedCornerShape(4.dp)))
     }
 }
 
@@ -144,27 +167,51 @@ private fun LetterBank(
             val slot = slots[index]
             val label = slot.character ?: "blank"
             Box(
-                Modifier.size(52.dp).background(AtlasTheme.colors.paper, RoundedCornerShape(12.dp))
-                    .border(2.dp, AtlasTheme.colors.atlasBlue, RoundedCornerShape(12.dp))
+                Modifier.size(48.dp)
                     .semantics { contentDescription = "Answer position ${slot.position + 1}: $label" }
                     .clickable(enabled = slot.tileId != null && !slot.fixed) { slot.tileId?.let(onRemoveLetter) },
                 contentAlignment = Alignment.Center,
-            ) { AtlasText(slot.character ?: "_", style = AtlasTheme.typography.heading) }
+            ) {
+                Box(
+                    Modifier.size(38.dp)
+                        .background(AtlasTheme.colors.paper, RoundedCornerShape(10.dp))
+                        .border(2.dp, AtlasTheme.colors.atlasBlue, RoundedCornerShape(10.dp)),
+                    contentAlignment = Alignment.Center,
+                ) {
+                    AtlasText(slot.character ?: "_", style = AtlasTheme.typography.heading)
+                }
+            }
         }
         WrappingCells(tiles.size) { index ->
             val tile = tiles[index]
             val available = tile.enabled && tile.placedSlot == null
             Box(
-                Modifier.size(52.dp).background(if (available) AtlasTheme.colors.mustard.copy(alpha = .3f) else AtlasTheme.colors.outline.copy(alpha = .12f), RoundedCornerShape(12.dp))
-                    .border(1.dp, AtlasTheme.colors.outline, RoundedCornerShape(12.dp))
+                Modifier.size(48.dp)
                     .semantics {
                         role = Role.Button
                         contentDescription = "Letter ${tile.letter}"
-                        stateDescription = if (available) "Available" else "Placed"
+                        stateDescription = when {
+                            available -> "Available"
+                            !tile.enabled -> "Removed"
+                            else -> "Placed"
+                        }
                     }
                     .clickable(enabled = available) { onLetter(tile.id) },
                 contentAlignment = Alignment.Center,
-            ) { AtlasText(tile.letter, style = AtlasTheme.typography.label) }
+            ) {
+                Box(
+                    Modifier.size(44.dp)
+                        .background(
+                            if (available) AtlasTheme.colors.mustard.copy(alpha = .3f)
+                            else AtlasTheme.colors.outline.copy(alpha = .12f),
+                            RoundedCornerShape(11.dp),
+                        )
+                        .border(1.dp, AtlasTheme.colors.outline, RoundedCornerShape(11.dp)),
+                    contentAlignment = Alignment.Center,
+                ) {
+                    AtlasText(tile.letter, style = AtlasTheme.typography.label)
+                }
+            }
         }
     }
 }
@@ -172,7 +219,7 @@ private fun LetterBank(
 @Composable
 private fun WrappingCells(count: Int, content: @Composable (Int) -> Unit) {
     BoxWithConstraints(Modifier.fillMaxWidth()) {
-        val columns = (maxWidth / 60.dp).toInt().coerceAtLeast(1)
+        val columns = (maxWidth / 56.dp).toInt().coerceAtLeast(1)
         Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
             (0 until count).chunked(columns).forEach { indices ->
                 Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
@@ -190,15 +237,17 @@ fun HintChooserScreen(
     onChooseHint: (String) -> Unit,
     onCancel: () -> Unit,
     modifier: Modifier = Modifier,
+    introText: String = "Choose the clue that sounds most useful.",
+    chargedHintLabel: String = "−25 points",
 ) {
     AtlasScreen(modifier) {
-        Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(14.dp), horizontalAlignment = Alignment.CenterHorizontally) {
+        Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(16.dp), horizontalAlignment = Alignment.CenterHorizontally) {
             ScreenTopBar("Choose a hint", onCancel)
-            BertIllustration(BertPose.Hint)
+            BertIllustration(BertPose.Hint, Modifier.size(150.dp))
             AtlasHeading("A little nudge?", Modifier.fillMaxWidth(), centered = true)
-            AtlasText("Every hint costs up to 25 points. Your score can never drop below zero.", textAlign = TextAlign.Center)
-            AtlasCard(contentDescription = "Current score $score. Score after hint ${maxOf(0, score - 25)}") {
-                StatRow(listOf(StatUi("Now", score.toString()), StatUi("After hint", maxOf(0, score - 25).toString())))
+            AtlasText(introText, textAlign = TextAlign.Center, color = AtlasTheme.colors.mutedPlum)
+            if (score > 0) {
+                AtlasText(chargedHintLabel, style = AtlasTheme.typography.label, color = AtlasTheme.colors.outline, textAlign = TextAlign.Center)
             }
             hints.forEach { AtlasChoice(it, onChooseHint) }
         }
@@ -217,12 +266,14 @@ fun FeedbackScreen(
     autoAdvanceMessage: String?,
     onContinue: () -> Unit,
     modifier: Modifier = Modifier,
+    continueLabel: String = "Continue",
 ) {
     val pose = when { overtime && correct -> BertPose.Overtime; correct -> BertPose.Correct; else -> BertPose.Incorrect }
     val status = when { overtime && correct -> "Overtime correct"; correct -> "Correct"; else -> "Incorrect" }
     AtlasScreen(modifier) {
-        Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(14.dp)) {
-            BertIllustration(pose, contentDescription = "Bert reacts: $status")
+        Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(16.dp)) {
+            Spacer(Modifier.heightIn(min = 8.dp))
+            BertIllustration(pose, Modifier.size(190.dp), contentDescription = "Bert reacts: $status")
             AtlasHeading(heading, Modifier.fillMaxWidth(), centered = true)
             AtlasText(
                 if (correct) "+$pointsAwarded points" else "No points this time",
@@ -235,7 +286,7 @@ fun FeedbackScreen(
                 explanation?.let { AtlasText(it) }
             }
             if (overtime && correct) AtlasText("The clock gave up. You didn't. Half points.", textAlign = TextAlign.Center)
-            AtlasButton("Continue", onContinue, Modifier.fillMaxWidth())
+            AtlasButton(continueLabel, onContinue, Modifier.fillMaxWidth())
             autoAdvanceMessage?.let { AtlasText(it, style = AtlasTheme.typography.detail, color = AtlasTheme.colors.mutedPlum, textAlign = TextAlign.Center) }
         }
     }
@@ -249,14 +300,39 @@ fun FunFactScreen(
     artDescription: String? = null,
     onContinue: () -> Unit,
     modifier: Modifier = Modifier,
+    kicker: String = "Fun fact about",
+    continueLabel: String = "Continue",
 ) {
     AtlasScreen(modifier) {
         Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(16.dp)) {
             BertIllustration(BertPose.Fact, contentDescription = "Bert has found an oddly specific fact")
-            AtlasText("FIELD NOTE · $relatedTo", style = AtlasTheme.typography.label, color = AtlasTheme.colors.atlasBlue)
+            AtlasText("${kicker} $relatedTo", style = AtlasTheme.typography.label, color = AtlasTheme.colors.atlasBlue)
             AtlasHeading(heading, Modifier.fillMaxWidth(), centered = true)
             AtlasCard(contentDescription = artDescription) { AtlasText(fact, style = AtlasTheme.typography.heading, textAlign = TextAlign.Center) }
-            AtlasButton("Back to the atlas", onContinue, Modifier.fillMaxWidth())
+            AtlasButton(continueLabel, onContinue, Modifier.fillMaxWidth())
+        }
+    }
+}
+
+@Composable
+fun LeaveQuizConfirmationScreen(
+    onCancel: () -> Unit,
+    onLeave: () -> Unit,
+    modifier: Modifier = Modifier,
+    title: String = "Leave this trivia run?",
+    body: String = "Your answered questions will stay in your practice progress. Ending now won't count toward your personal best or daily streak.",
+) {
+    AtlasScreen(modifier, scrollable = false) {
+        Column(
+            Modifier.fillMaxWidth().align(Alignment.Center),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.spacedBy(16.dp),
+        ) {
+            BertIllustration(BertPose.Hint, Modifier.size(160.dp), contentDescription = "Bert keeps your practice progress safe")
+            AtlasHeading(title, Modifier.fillMaxWidth(), centered = true)
+            AtlasText(body, Modifier.fillMaxWidth(), color = AtlasTheme.colors.mutedPlum, textAlign = TextAlign.Center)
+            AtlasButton("Keep playing", onCancel, Modifier.fillMaxWidth())
+            AtlasButton("Leave trivia", onLeave, Modifier.fillMaxWidth(), AtlasButtonStyle.Destructive)
         }
     }
 }

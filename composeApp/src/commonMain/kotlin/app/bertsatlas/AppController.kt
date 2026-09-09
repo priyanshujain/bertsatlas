@@ -43,6 +43,7 @@ import app.bertsatlas.ui.StampUi
 import kotlin.time.Clock
 import kotlin.time.TimeSource
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -85,6 +86,8 @@ data class AtlasAppState(
     val completedRuns: List<RunEntity> = emptyList(),
     val streak: Streak = Streak(),
     val stamps: List<PassportStamp> = emptyList(),
+    val leaveConfirmationRequested: Boolean = false,
+    val resumeRunAfterLeaveCancellation: Boolean = false,
 )
 
 class AppController(
@@ -97,6 +100,7 @@ class AppController(
 ) {
     private val json = Json { ignoreUnknownKeys = true }
     private val mutex = Mutex()
+    private var lastRunPersistence: Job? = null
     private val monotonicOrigin = TimeSource.Monotonic.markNow()
     private val monotonicClock = MonotonicClock { monotonicOrigin.elapsedNow().inWholeMilliseconds }
     private val wallClock = WallClock { Clock.System.now().toEpochMilliseconds() }
@@ -114,7 +118,9 @@ class AppController(
                 delay(100)
                 val current = _state.value.run
                 if (current?.phase == RunPhase.Answering) {
-                    _state.value = _state.value.copy(run = engine.advanceClocks(current))
+                    val advanced = engine.advanceClocks(current)
+                    if (advanced.sessionExpired) acceptTransition(engine.finishExpiredRun(advanced))
+                    else _state.value = _state.value.copy(run = advanced)
                 }
             }
         }
@@ -132,9 +138,11 @@ class AppController(
             runCatching { engine.restoreRun(json.decodeFromString<ActiveRunSnapshot>(it.snapshotJson)) }.getOrNull()
         }
         if (snapshot != null && restored == null) database.runWriter().clearActiveRun()
+        val hasStartedTrivia = preferences.hasStartedTrivia || restored != null || attempts.isNotEmpty() || runs.isNotEmpty()
+        if (hasStartedTrivia && !preferences.hasStartedTrivia) preferencesStore.markTriviaStarted()
         _state.value = AtlasAppState(
             destination = if (restored == null) Destination.Home else Destination.Recovery,
-            firstLaunch = !preferences.hasPreviouslyLaunched,
+            firstLaunch = !hasStartedTrivia,
             preferences = preferences,
             selectedDuration = enumValueOrDefault(preferences.duration, QuizDuration.FiveMinutes),
             run = restored,
@@ -144,7 +152,6 @@ class AppController(
             streak = streak,
             stamps = stamps,
         )
-        preferencesStore.markLaunched()
     }
 
     fun start() {
@@ -184,11 +191,38 @@ class AppController(
         }
     }
 
-    fun back() {
-        _state.value = when (val destination = _state.value.destination) {
-            is Destination.Options -> _state.value.copy(destination = if (destination.step == 2) Destination.Options(1) else Destination.Home)
-            Destination.Privacy, Destination.Credits, Destination.Reset, Destination.Debug -> _state.value.copy(destination = Destination.Settings)
-            else -> _state.value.copy(destination = Destination.Home)
+    fun back() { handleBack() }
+
+    fun handleBack(): Boolean {
+        val current = _state.value
+        if (current.leaveConfirmationRequested) {
+            cancelLeave()
+            return true
+        }
+        return when (val destination = current.destination) {
+            Destination.Bootstrap, Destination.Home -> false
+            is Destination.Options -> {
+                _state.value = current.copy(
+                    destination = if (destination.step == 2) Destination.Options(1) else Destination.Home,
+                )
+                true
+            }
+            Destination.Recovery -> {
+                requestLeave()
+                true
+            }
+            Destination.Quiz -> {
+                if (current.run?.phase == RunPhase.HintChooser) cancelHint() else requestLeave()
+                true
+            }
+            Destination.Results, Destination.Progress, Destination.Settings -> {
+                _state.value = current.copy(destination = Destination.Home)
+                true
+            }
+            Destination.Privacy, Destination.Credits, Destination.Reset, Destination.Debug -> {
+                _state.value = current.copy(destination = Destination.Settings)
+                true
+            }
         }
     }
 
@@ -196,6 +230,7 @@ class AppController(
         val now = wallClock.nowEpochMillis()
         val run = engine.startRun("run-$now", configuration, now xor monotonicClock.nowMillis(), _state.value.mastery)
         _state.value = _state.value.copy(destination = Destination.Quiz, firstLaunch = false, run = run, result = null)
+        scope.launch { preferencesStore.markTriviaStarted() }
         persistSnapshot(run)
     }
 
@@ -206,9 +241,11 @@ class AppController(
         persistSnapshot(resumed)
     }
 
-    fun answerChoice(choiceId: String) = mutateRun { engine.answerQuestion(it, SubmittedAnswer.ChoiceAnswer(choiceId)) }.also {
-        playAnswerFeedback()
-        persistAcceptedAnswer()
+    fun answerChoice(choiceId: String) {
+        if (mutateRun { engine.answerQuestion(it, SubmittedAnswer.ChoiceAnswer(choiceId)) }) {
+            playAnswerFeedback()
+            persistAcceptedAnswer()
+        }
     }
 
     fun placeLetter(tileId: String) = mutateRun { engine.placeLetter(it, tileId) }
@@ -220,14 +257,18 @@ class AppController(
 
     fun clearLetters() = mutateRun(engine::clearLetters)
 
-    fun submitLetters() = mutateRun(engine::submitLetters).also {
-        playAnswerFeedback()
-        persistAcceptedAnswer()
+    fun submitLetters() {
+        if (mutateRun(engine::submitLetters)) {
+            playAnswerFeedback()
+            persistAcceptedAnswer()
+        }
     }
 
     fun openHint() = mutateRun(engine::openHintChooser)
     fun cancelHint() = mutateRun { state -> engine.resumeRun(state.copy(phase = RunPhase.Paused, pausedFromPhase = RunPhase.Answering)) }
-    fun chooseHint(type: HintType) = mutateRun { engine.chooseHint(it, type) }.also { persistSnapshot(_state.value.run) }
+    fun chooseHint(type: HintType) {
+        if (mutateRun { engine.chooseHint(it, type) }) persistSnapshot(_state.value.run)
+    }
 
     fun continueRun() {
         val before = _state.value.run ?: return
@@ -244,17 +285,65 @@ class AppController(
         acceptTransition(engine.finishUnlimitedRun(run, _state.value.mastery))
     }
 
-    fun requestLeave() { abandon() }
+    fun requestLeave() {
+        val current = _state.value
+        val run = current.run ?: return
+        if (run.status != RunStatus.Active || current.leaveConfirmationRequested) return
+        val shouldResumeOnCancel = run.phase != RunPhase.Paused
+        val paused = if (shouldResumeOnCancel) engine.pauseForInterruption(run) else run
+        _state.value = current.copy(
+            run = paused,
+            leaveConfirmationRequested = true,
+            resumeRunAfterLeaveCancellation = shouldResumeOnCancel,
+        )
+        persistSnapshot(paused)
+    }
+
+    fun cancelLeave() {
+        val current = _state.value
+        if (!current.leaveConfirmationRequested) return
+        val run = current.run
+        val resumed = if (
+            current.resumeRunAfterLeaveCancellation &&
+            run?.status == RunStatus.Active &&
+            run.phase == RunPhase.Paused
+        ) {
+            engine.resumeRun(run)
+        } else {
+            run
+        }
+        _state.value = current.copy(
+            run = resumed,
+            leaveConfirmationRequested = false,
+            resumeRunAfterLeaveCancellation = false,
+        )
+        persistSnapshot(resumed)
+    }
+
+    fun confirmLeave() { abandon() }
 
     fun abandon() {
         val run = _state.value.run ?: return
         val abandoned = if (run.status == RunStatus.Active) engine.abandonRun(run) else run
-        _state.value = _state.value.copy(destination = Destination.Home, run = null)
-        scope.launch {
-            mutex.withLock {
-                database.runWriter().abandonRun(abandoned.toRunEntity())
-                refreshProgress()
-            }
+        if (abandoned.status != RunStatus.Abandoned) return
+        val summary = engine.abandonedRunSummary(
+            abandoned,
+            improvedMasteryItems = abandoned.attempts
+                .flatMap { attempt -> attempt.countryIds.map { it to attempt.skill } }
+                .distinct()
+                .size,
+        )
+        _state.value = _state.value.copy(
+            destination = Destination.Results,
+            run = abandoned,
+            result = summary,
+            newPersonalBest = false,
+            leaveConfirmationRequested = false,
+            resumeRunAfterLeaveCancellation = false,
+        )
+        enqueueRunPersistence {
+            database.runWriter().abandonRun(abandoned.toRunEntity(summary))
+            refreshProgress()
         }
     }
 
@@ -268,16 +357,18 @@ class AppController(
 
     fun resumeAfterInterruption() {
         val run = _state.value.run ?: return
+        if (_state.value.leaveConfirmationRequested) return
         if (_state.value.destination != Destination.Quiz || run.phase != RunPhase.Paused) return
         val resumed = engine.resumeRun(run)
         _state.value = _state.value.copy(run = resumed)
         persistSnapshot(resumed)
     }
 
-    private fun mutateRun(change: (QuizRunState) -> QuizRunState) {
-        val current = _state.value.run ?: return
-        val next = runCatching { change(current) }.getOrNull() ?: return
+    private fun mutateRun(change: (QuizRunState) -> QuizRunState): Boolean {
+        val current = _state.value.run ?: return false
+        val next = runCatching { change(current) }.getOrNull() ?: return false
         _state.value = _state.value.copy(destination = destinationFor(next), run = next)
+        return true
     }
 
     private fun acceptTransition(next: QuizRunState) {
@@ -291,18 +382,16 @@ class AppController(
     private fun persistAcceptedAnswer() {
         val run = _state.value.run ?: return
         val attempt = run.attempts.lastOrNull() ?: return
-        scope.launch {
-            mutex.withLock {
-                val before = _state.value.mastery
-                val after = MasteryRules.applyAttemptToCountries(before, attempt)
-                val changed = after.filter { updated -> before.none { it.countryId == updated.countryId && it.skill == updated.skill && it == updated } }
-                database.runWriter().recordAcceptedAnswer(
-                    attempt.toEntity(json),
-                    changed.map { it.toEntity() },
-                    run.toSnapshotEntity(engine, json),
-                )
-                _state.value = _state.value.copy(mastery = after)
-            }
+        enqueueRunPersistence {
+            val before = _state.value.mastery
+            val after = MasteryRules.applyAttemptToCountries(before, attempt)
+            val changed = after.filter { updated -> before.none { it.countryId == updated.countryId && it.skill == updated.skill && it == updated } }
+            database.runWriter().recordAcceptedAnswer(
+                attempt.toEntity(json),
+                changed.map { it.toEntity() },
+                run.toSnapshotEntity(engine, json),
+            )
+            _state.value = _state.value.copy(mastery = after)
         }
     }
 
@@ -314,18 +403,15 @@ class AppController(
 
     private fun persistSnapshot(run: QuizRunState?) {
         if (run == null || run.status != RunStatus.Active) return
-        scope.launch {
-            mutex.withLock {
-                database.runWriter().saveActiveRun(run.toSnapshotEntity(engine, json))
-            }
+        enqueueRunPersistence {
+            database.runWriter().saveActiveRun(run.toSnapshotEntity(engine, json))
         }
     }
 
     private fun complete(run: QuizRunState) {
         val result = engine.runResult(run, improvedMasteryItems = run.attempts.map { it.countryIds.firstOrNull() to it.skill }.distinct().size)
         _state.value = _state.value.copy(destination = Destination.Results, run = run, result = result)
-        scope.launch {
-            mutex.withLock {
+        enqueueRunPersistence {
                 val reader = database.progressReader()
                 val oldBest = reader.personalBestsNow().firstOrNull {
                     it.duration == run.configuration.duration.name && it.topic == run.configuration.topic.name
@@ -357,7 +443,14 @@ class AppController(
                 )
                 _state.value = _state.value.copy(newPersonalBest = isBest, streak = newStreak, stamps = existingStamps + newlyEarned)
                 refreshProgress()
-            }
+        }
+    }
+
+    private fun enqueueRunPersistence(block: suspend () -> Unit) {
+        val precedingWrite = lastRunPersistence
+        lastRunPersistence = scope.launch {
+            precedingWrite?.join()
+            mutex.withLock { block() }
         }
     }
 
@@ -387,7 +480,7 @@ class AppController(
     }
 
     fun resetAll() {
-        scope.launch {
+        enqueueRunPersistence {
             database.runWriter().resetProgress()
             preferencesStore.resetAll()
             _state.value = AtlasAppState(destination = Destination.Home)
@@ -398,10 +491,12 @@ class AppController(
         if (!debugBuild) return
         when (id) {
             "reset-first" -> scope.launch { preferencesStore.resetFirstLaunchAndConfiguration(); _state.value = _state.value.copy(firstLaunch = true, destination = Destination.Home) }
-            "reset-progress" -> scope.launch { database.runWriter().resetProgress(); refreshProgress(); _state.value = _state.value.copy(destination = Destination.Home, run = null) }
+            "reset-progress" -> enqueueRunPersistence { database.runWriter().resetProgress(); refreshProgress(); _state.value = _state.value.copy(destination = Destination.Home, run = null) }
             "reset-all" -> resetAll()
             "question-zero" -> updateRunDebug { it.copy(activeQuestion = it.activeQuestion.copy(questionRemainingMillis = 0)) }
-            "session-zero" -> updateRunDebug { it.copy(sessionRemainingMillis = 0, sessionExpired = true) }
+            "session-zero" -> updateRunDebug {
+                it.copy(sessionRemainingMillis = 0, sessionExpired = true, runCompletionPending = true)
+            }
             "score-100" -> updateRunDebug { it.copy(score = 100) }
         }
     }

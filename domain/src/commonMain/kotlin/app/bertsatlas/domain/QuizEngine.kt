@@ -107,13 +107,20 @@ class QuizEngine(
         require(state.sessionRemainingMillis == null || state.sessionRemainingMillis >= 0) {
             "A snapshot has an invalid session timer"
         }
+        val completionPending = state.runCompletionPending ||
+            state.sessionExpired ||
+            (state.configuration.duration != QuizDuration.Unlimited && state.sessionRemainingMillis == 0L)
         if (state.phase == RunPhase.Paused) {
             require(state.pausedFromPhase in PAUSABLE_PHASES) { "A paused snapshot has no resumable phase" }
-            return state.copy(tickingSinceMillis = null)
+            return state.copy(
+                runCompletionPending = completionPending,
+                tickingSinceMillis = null,
+            )
         }
         return state.copy(
             phase = RunPhase.Paused,
             pausedFromPhase = state.phase,
+            runCompletionPending = completionPending,
             tickingSinceMillis = null,
         )
     }
@@ -130,7 +137,7 @@ class QuizEngine(
         } else {
             0
         }
-        val hinted = timed.activeQuestion.hint != null
+        val hinted = timed.activeQuestion.appliedHints.isNotEmpty()
         val overtime = evaluation.correct && timed.activeQuestion.questionRemainingMillis == 0L
         val attempt = Attempt(
             id = "${timed.runId}:${timed.attempts.size + 1}",
@@ -147,10 +154,11 @@ class QuizEngine(
             pointsAwarded = points,
             answeredAtEpochMillis = wallClock.nowEpochMillis(),
             localEpochDay = localDateProvider.currentEpochDay(),
-            hintType = timed.activeQuestion.hint?.type,
+            hintType = timed.activeQuestion.appliedHints.lastOrNull()?.type,
             hintPointsDeducted = timed.activeQuestion.hintPointsDeducted,
             questionWindowMillis = timed.activeQuestion.questionWindowMillis,
             questionRemainingMillis = timed.activeQuestion.questionRemainingMillis,
+            hintTypes = timed.activeQuestion.usedHintTypes,
         )
         val correctStreak = if (evaluation.correct) timed.currentCorrectStreak + 1 else 0
         return timed.copy(
@@ -180,8 +188,9 @@ class QuizEngine(
 
     fun openHintChooser(state: QuizRunState): QuizRunState {
         requireAnswering(state)
-        require(state.activeQuestion.hint == null) { "A hint has already been used for this question" }
-        require(state.activeQuestion.question.supportedHints.isNotEmpty()) { "This question does not offer hints" }
+        require(state.activeQuestion.question.supportedHints.any { it !in state.activeQuestion.usedHintTypes }) {
+            "Every available hint has already been used for this question"
+        }
         return freezeClocks(state).copy(phase = RunPhase.HintChooser)
     }
 
@@ -189,11 +198,14 @@ class QuizEngine(
         requireActive(state)
         require(state.phase == RunPhase.HintChooser) { "Hints can only be chosen from the hint chooser" }
         require(type in state.activeQuestion.question.supportedHints) { "This question does not support $type" }
-        require(state.activeQuestion.hint == null) { "A hint has already been used for this question" }
+        require(type !in state.activeQuestion.usedHintTypes) { "$type has already been used for this question" }
 
         val scoreAfterHint = Scoring.deductHint(state.score)
-        val hintedQuestion = applyHint(state.activeQuestion, type).copy(
-            hintPointsDeducted = state.score - scoreAfterHint,
+        val appliedQuestion = applyHint(state.activeQuestion, type)
+        val chosenHint = requireNotNull(appliedQuestion.hint)
+        val hintedQuestion = appliedQuestion.copy(
+            usedHints = state.activeQuestion.appliedHints + chosenHint,
+            hintPointsDeducted = state.activeQuestion.hintPointsDeducted + state.score - scoreAfterHint,
         )
         return state.copy(
             phase = RunPhase.Answering,
@@ -207,8 +219,9 @@ class QuizEngine(
         requireActive(state)
         require(state.phase == RunPhase.Feedback) { "Feedback is not visible" }
         if (state.runAbandonmentPending) return abandonRun(state)
-        if (state.runCompletionPending || shouldShowScheduledFact(state)) {
-            return showRelatedFact(state, finalFact = state.runCompletionPending, mastery = mastery)
+        val timedRunComplete = state.runCompletionPending || state.sessionExpired
+        if (timedRunComplete || shouldShowScheduledFact(state)) {
+            return showRelatedFact(state, finalFact = timedRunComplete, mastery = mastery)
         }
         return moveToNextQuestion(state, mastery)
     }
@@ -292,6 +305,23 @@ class QuizEngine(
         }
     }
 
+    fun finishExpiredRun(state: QuizRunState): QuizRunState {
+        requireActive(state)
+        require(state.configuration.duration != QuizDuration.Unlimited) { "Unlimited trivia does not expire" }
+        val frozen = freezeClocks(state)
+        require(frozen.sessionExpired || frozen.sessionRemainingMillis == 0L) { "Trivia time has not expired" }
+        return frozen.copy(
+            phase = RunPhase.Completed,
+            status = RunStatus.Completed,
+            feedback = null,
+            visibleFact = null,
+            finalFactPending = false,
+            runCompletionPending = false,
+            runAbandonmentPending = false,
+            tickingSinceMillis = null,
+        )
+    }
+
     fun abandonRun(state: QuizRunState): QuizRunState {
         requireActive(state)
         return freezeClocks(state).copy(
@@ -329,7 +359,11 @@ class QuizEngine(
         requireAnswering(state)
         val timed = advanceClocks(state)
         require(timed.activeQuestion.question is Question.LetterBank) { "The active question is not a letter bank" }
-        require(timed.activeQuestion.placements.any { it.slotIndex == slotIndex }) { "The answer slot is empty" }
+        val placement = timed.activeQuestion.placements.firstOrNull { it.slotIndex == slotIndex }
+            ?: error("The answer slot is empty")
+        require(placement.tileId !in timed.activeQuestion.revealedTileIds()) {
+            "A revealed letter cannot be removed"
+        }
         return timed.copy(
             activeQuestion = timed.activeQuestion.copy(
                 placements = timed.activeQuestion.placements.filterNot { it.slotIndex == slotIndex },
@@ -341,7 +375,12 @@ class QuizEngine(
         requireAnswering(state)
         val timed = advanceClocks(state)
         require(timed.activeQuestion.question is Question.LetterBank) { "The active question is not a letter bank" }
-        return timed.copy(activeQuestion = timed.activeQuestion.copy(placements = emptyList()))
+        val revealedTileIds = timed.activeQuestion.revealedTileIds()
+        return timed.copy(
+            activeQuestion = timed.activeQuestion.copy(
+                placements = timed.activeQuestion.placements.filter { it.tileId in revealedTileIds },
+            ),
+        )
     }
 
     fun submitLetters(state: QuizRunState): QuizRunState {
@@ -356,6 +395,15 @@ class QuizEngine(
 
     fun runResult(state: QuizRunState, improvedMasteryItems: Int): RunResult {
         require(state.status == RunStatus.Completed) { "Only a completed run has results" }
+        return buildRunSummary(state, improvedMasteryItems)
+    }
+
+    fun abandonedRunSummary(state: QuizRunState, improvedMasteryItems: Int): RunResult {
+        require(state.status == RunStatus.Abandoned) { "Only an abandoned run has an abandoned summary" }
+        return buildRunSummary(state, improvedMasteryItems)
+    }
+
+    private fun buildRunSummary(state: QuizRunState, improvedMasteryItems: Int): RunResult {
         val correct = state.attempts.count { it.correct }
         val averageResponse = if (state.attempts.isEmpty()) 0 else {
             state.attempts.sumOf { it.responseMillis } / state.attempts.size
@@ -374,6 +422,7 @@ class QuizEngine(
                 .flatMap { it.countryIds }
                 .distinct(),
             completedAtEpochMillis = wallClock.nowEpochMillis(),
+            status = state.status,
         )
     }
 
@@ -539,6 +588,9 @@ class QuizEngine(
                 AnswerEvaluation(submitted.equals(expected, ignoreCase = true), submitted)
             }
         }
+
+    private fun ActiveQuestion.revealedTileIds(): Set<String> =
+        appliedHints.mapNotNullTo(linkedSetOf()) { it.revealedTileId }
 
     private fun correctAnswer(question: Question): String = when (question) {
         is Question.MultipleChoice -> question.choices.first { it.id == question.correctChoiceId }.label

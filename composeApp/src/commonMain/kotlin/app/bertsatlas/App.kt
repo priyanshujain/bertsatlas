@@ -16,6 +16,7 @@ import app.bertsatlas.domain.model.HintType
 import app.bertsatlas.domain.model.Question
 import app.bertsatlas.domain.model.QuizDuration
 import app.bertsatlas.domain.model.RunPhase
+import app.bertsatlas.domain.model.RunStatus
 import app.bertsatlas.ui.AnswerState
 import app.bertsatlas.ui.BertsAtlasTheme
 import app.bertsatlas.ui.BootstrapScreen
@@ -27,6 +28,7 @@ import app.bertsatlas.ui.FlagUi
 import app.bertsatlas.ui.FunFactScreen
 import app.bertsatlas.ui.HintChooserScreen
 import app.bertsatlas.ui.HomeScreen
+import app.bertsatlas.ui.LeaveQuizConfirmationScreen
 import app.bertsatlas.ui.LetterSlotUi
 import app.bertsatlas.ui.LetterTileUi
 import app.bertsatlas.ui.OptionsScreen
@@ -66,12 +68,21 @@ fun App(
 @Composable
 private fun AtlasDestination(controller: AppController, state: AtlasAppState) {
     val run = state.run
+    if (state.leaveConfirmationRequested) {
+        LeaveQuizConfirmationScreen(
+            onCancel = controller::cancelLeave,
+            onLeave = controller::confirmLeave,
+        )
+        return
+    }
     when (val destination = state.destination) {
         Destination.Bootstrap -> BootstrapScreen()
         Destination.Home -> HomeScreen(
             isFirstLaunch = state.firstLaunch,
             streakDays = state.streak.currentDays,
             progressSummary = "${state.attempts.size} questions explored",
+            totalPoints = state.attempts.sumOf { it.pointsAwarded } - state.attempts.sumOf { it.hintPointsDeducted },
+            hasStartedTrivia = !state.firstLaunch,
             onStart = controller::start,
             onOptions = controller::openOptions,
             onProgress = { controller.navigate(Destination.Progress) },
@@ -88,7 +99,7 @@ private fun AtlasDestination(controller: AppController, state: AtlasAppState) {
             score = run.score,
             timeRemaining = run.sessionRemainingMillis.formatTime(),
             onResume = controller::resume,
-            onAbandon = controller::abandon,
+            onAbandon = controller::requestLeave,
         )
         Destination.Quiz -> if (run == null) BootstrapScreen() else RunDestination(controller, state)
         Destination.Results -> {
@@ -98,19 +109,20 @@ private fun AtlasDestination(controller: AppController, state: AtlasAppState) {
                 correctAnswers = result.correctAnswers,
                 answeredQuestions = result.answeredQuestions,
                 accuracy = "${result.accuracyPercent}%",
-                averageResponseTime = "${result.averageResponseMillis / 1_000.0}s",
+                averageResponseTime = result.averageResponseMillis.formatSeconds(),
                 bestCorrectStreak = result.bestCorrectStreak,
                 masteryImproved = result.improvedMasteryItems,
                 revisitCountries = result.revisitCountryIds.mapNotNull { id -> controller.catalog.countries.firstOrNull { it.id == id }?.displayName },
                 newPersonalBest = state.newPersonalBest,
                 onPlayAgain = controller::start,
                 onHome = { controller.navigate(Destination.Home) },
+                abandoned = result.status == RunStatus.Abandoned,
             )
         }
         Destination.Progress -> ProgressScreen(
             currentStreak = state.streak.currentDays,
             bestStreak = state.streak.bestDays,
-            overallAccuracy = if (state.attempts.isEmpty()) "—" else "${state.attempts.count { it.correct } * 100 / state.attempts.size}%",
+            overallAccuracy = if (state.attempts.isEmpty()) "Not yet" else "${state.attempts.count { it.correct } * 100 / state.attempts.size}%",
             totalAnswered = state.attempts.size,
             masteryGroups = controller.progressGroups,
             strongCountries = countryNames(controller, state.mastery.filter { it.level.name in setOf("Familiar", "Mastered") }.map { it.countryId }),
@@ -163,28 +175,32 @@ private fun RunDestination(controller: AppController, state: AtlasAppState) {
                 prompt = question.prompt,
                 imageDescription = if (promptFlag == null) null else "A flag to identify",
                 score = run.score,
-                sessionTime = if (run.configuration.duration == QuizDuration.Unlimited) {
-                    (run.attempts.sumOf { it.responseMillis } + run.activeQuestion.questionElapsedMillis).formatTime()
-                } else run.sessionRemainingMillis.formatTime(),
                 questionTime = run.activeQuestion.questionRemainingMillis.formatTime(),
                 timerExpired = run.activeQuestion.questionRemainingMillis == 0L,
                 choices = (question as? Question.MultipleChoice)?.let {
                     run.activeQuestion.orderedChoices.map { choice ->
-                        val choiceCountry = controller.catalog.countries.firstOrNull { it.id == choice.id }
                         ChoiceUi(
                             id = choice.id,
                             label = choice.label,
                             state = if (choice.id in run.activeQuestion.removedChoiceIds) AnswerState.Eliminated else AnswerState.Available,
                             enabled = choice.id !in run.activeQuestion.removedChoiceIds && run.phase == RunPhase.Answering,
-                            flag = choice.assetId?.let { FlagUi(it.removePrefix("flag-"), choiceCountry?.displayName ?: choice.label) },
+                            flag = choice.assetId?.let { FlagUi(it.removePrefix("flag-"), choice.label) },
                         )
                     }
                 }.orEmpty(),
-                letterSlots = letterSlots(question, run.activeQuestion.placements, run.activeQuestion.letterTiles),
+                letterSlots = letterSlots(
+                    question,
+                    run.activeQuestion.placements,
+                    run.activeQuestion.letterTiles,
+                    run.activeQuestion.appliedHints.mapNotNullTo(linkedSetOf()) { it.revealedTileId },
+                ),
                 letterTiles = run.activeQuestion.letterTiles.map { tile ->
                     LetterTileUi(tile.id, tile.character.toString(), run.activeQuestion.placements.firstOrNull { it.tileId == tile.id }?.slotIndex, tile.id !in run.activeQuestion.removedTileIds)
                 },
-                hintAvailable = run.activeQuestion.hint == null && run.phase == RunPhase.Answering,
+                appliedHintMessages = run.activeQuestion.appliedHints.mapNotNull { it.message },
+                hintAvailable = run.activeQuestion.question.supportedHints.any {
+                    it !in run.activeQuestion.usedHintTypes
+                } && run.phase == RunPhase.Answering,
                 unlimited = run.configuration.duration == QuizDuration.Unlimited,
                 canSubmit = question is Question.LetterBank && run.activeQuestion.placements.size == question.displayAnswer.count { it.isLetter() },
                 onChoice = controller::answerChoice,
@@ -196,11 +212,25 @@ private fun RunDestination(controller: AppController, state: AtlasAppState) {
                 onFinish = controller::finishUnlimited,
                 onLeave = controller::requestLeave,
                 promptFlag = promptFlag,
+                runProgress = run.configuration.duration.activeDurationMillis?.let { duration ->
+                    1f - ((run.sessionRemainingMillis ?: duration).toFloat() / duration.toFloat())
+                },
+                runProgressDescription = "Trivia time remaining ${run.sessionRemainingMillis.formatTime()}",
             )
         }
         RunPhase.HintChooser -> HintChooserScreen(
             score = run.score,
-            hints = run.activeQuestion.question.supportedHints.map { ChoiceUi(it.name, it.displayName()) },
+            hints = run.activeQuestion.question.supportedHints.map { hint ->
+                val used = hint in run.activeQuestion.usedHintTypes
+                ChoiceUi(
+                    id = hint.name,
+                    label = hint.displayName(),
+                    supportingText = if (used) "✓ Used" else null,
+                    state = if (used) AnswerState.Selected else AnswerState.Available,
+                    enabled = !used,
+                )
+            },
+            chargedHintLabel = "−${run.score / 2} points",
             onChooseHint = { id -> controller.chooseHint(HintType.valueOf(id)) },
             onCancel = controller::cancelHint,
         )
@@ -227,7 +257,7 @@ private fun RunDestination(controller: AppController, state: AtlasAppState) {
         RunPhase.FunFact -> requireNotNull(run.visibleFact).let { fact ->
             FunFactScreen(fact.heading, fact.body, countryNames(controller, fact.countryIds).joinToString(), onContinue = controller::continueRun)
         }
-        RunPhase.Completed -> BootstrapScreen("Finishing your field notes…")
+        RunPhase.Completed -> BootstrapScreen("Preparing your summary…")
     }
 }
 
@@ -241,7 +271,12 @@ private fun topicChoices() = listOf(
     ChoiceUi("MixedGeography", "Mixed geography", "A broader grab bag"),
 )
 
-private fun letterSlots(question: Question, placements: List<app.bertsatlas.domain.model.LetterPlacement>, tiles: List<app.bertsatlas.domain.model.LetterTile>): List<LetterSlotUi> {
+private fun letterSlots(
+    question: Question,
+    placements: List<app.bertsatlas.domain.model.LetterPlacement>,
+    tiles: List<app.bertsatlas.domain.model.LetterTile>,
+    revealedTileIds: Set<String>,
+): List<LetterSlotUi> {
     val letterBank = question as? Question.LetterBank ?: return emptyList()
     val tileById = tiles.associateBy { it.id }
     var editableIndex = 0
@@ -249,7 +284,12 @@ private fun letterSlots(question: Question, placements: List<app.bertsatlas.doma
         if (!character.isLetter()) LetterSlotUi(displayIndex, character.toString(), fixed = true)
         else {
             val placement = placements.firstOrNull { it.slotIndex == editableIndex }
-            LetterSlotUi(displayIndex, placement?.let { tileById[it.tileId]?.character?.toString() }, placement?.tileId).also { editableIndex++ }
+            LetterSlotUi(
+                position = displayIndex,
+                character = placement?.let { tileById[it.tileId]?.character?.toString() },
+                tileId = placement?.tileId,
+                fixed = placement?.tileId in revealedTileIds,
+            ).also { editableIndex++ }
         }
     }
 }
@@ -266,6 +306,8 @@ private fun Long?.formatTime(): String {
     val seconds = (this.coerceAtLeast(0) + 999) / 1_000
     return "${seconds / 60}:${(seconds % 60).toString().padStart(2, '0')}"
 }
+
+private fun Long.formatSeconds(): String = "${((coerceAtLeast(0) + 500) / 1_000)} sec"
 
 private fun countryNames(controller: AppController, ids: List<String>): List<String> = ids.distinct().mapNotNull { id ->
     controller.catalog.countries.firstOrNull { it.id == id }?.displayName

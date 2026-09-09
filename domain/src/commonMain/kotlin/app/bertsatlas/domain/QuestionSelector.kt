@@ -27,10 +27,22 @@ class QuestionSelector(
         val topicQuestions = questions.filter { matchesTopic(it, topic) }
         require(topicQuestions.isNotEmpty()) { "No questions are available for $topic" }
 
-        val withoutRecentFive = topicQuestions.filter { it.id !in recentQuestionIds.takeLast(5) }
-        val withoutImmediateRepeat = topicQuestions.filter { it.id != recentQuestionIds.lastOrNull() }
+        val priorQuestionIds = recentQuestionIds.takeLast(RECENT_QUESTION_WINDOW).toSet()
+        val priorQuestions = questions.filter { it.id in priorQuestionIds }
+        val immediateQuestion = questions.firstOrNull { it.id == recentQuestionIds.lastOrNull() }
+        val withoutRecentConcepts = topicQuestions.filter { candidate ->
+            candidate.id !in priorQuestionIds && priorQuestions.none { recent -> candidate.repeatsConceptFrom(recent) }
+        }
+        val withoutImmediateConcept = topicQuestions.filter { candidate ->
+            candidate.id != immediateQuestion?.id &&
+                (immediateQuestion == null || !candidate.repeatsConceptFrom(immediateQuestion))
+        }
+        val withoutPriorQuestions = topicQuestions.filter { it.id !in priorQuestionIds }
+        val withoutImmediateRepeat = topicQuestions.filter { it.id != immediateQuestion?.id }
         val candidates = when {
-            withoutRecentFive.isNotEmpty() -> withoutRecentFive
+            withoutRecentConcepts.isNotEmpty() -> withoutRecentConcepts
+            withoutImmediateConcept.isNotEmpty() -> withoutImmediateConcept
+            withoutPriorQuestions.isNotEmpty() -> withoutPriorQuestions
             withoutImmediateRepeat.isNotEmpty() -> withoutImmediateRepeat
             else -> topicQuestions
         }
@@ -39,6 +51,24 @@ class QuestionSelector(
         }
         val random = randomSource.nextInt(randomState, weighted.size)
         return SelectedQuestion(weighted[random.value], random.nextState)
+    }
+
+    private fun Question.repeatsConceptFrom(other: Question): Boolean {
+        if (countryIds.none { it in other.countryIds }) return false
+        val family = skill.selectionFamily()
+        return family != SelectionFamily.Mixed && family == other.skill.selectionFamily()
+    }
+
+    private fun Skill.selectionFamily(): SelectionFamily = when (this) {
+        Skill.FlagRecognition,
+        Skill.CountryToFlag,
+        -> SelectionFamily.Flag
+        Skill.CapitalRecall,
+        Skill.CapitalRecognition,
+        -> SelectionFamily.Capital
+        Skill.MixedGeography,
+        Skill.FlagSymbolism,
+        -> SelectionFamily.Mixed
     }
 
     private fun matchesTopic(question: Question, topic: QuizTopic): Boolean = when (topic) {
@@ -71,14 +101,14 @@ class QuestionSelector(
         }
         val topicWeight = when (topic) {
             QuizTopic.MostlyFlags -> when (question.skill) {
-                Skill.FlagRecognition -> 4
-                Skill.CountryToFlag -> 2
+                Skill.FlagRecognition -> 8
+                Skill.CountryToFlag -> 6
                 Skill.CapitalRecall,
                 Skill.CapitalRecognition,
-                -> 8
+                -> 1
                 Skill.MixedGeography,
                 Skill.FlagSymbolism,
-                -> 8
+                -> 2
             }
             QuizTopic.Capitals -> 1
             QuizTopic.MixedGeography -> when (question.skill) {
@@ -95,4 +125,12 @@ class QuestionSelector(
         }
         return (difficultyWeight + reviewWeight) * topicWeight
     }
+}
+
+private const val RECENT_QUESTION_WINDOW = 5
+
+private enum class SelectionFamily {
+    Flag,
+    Capital,
+    Mixed,
 }

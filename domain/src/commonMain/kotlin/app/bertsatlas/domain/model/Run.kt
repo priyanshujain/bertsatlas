@@ -52,10 +52,17 @@ data class ActiveQuestion(
     val questionRemainingMillis: Long,
     val questionElapsedMillis: Long = 0,
     val hint: HintPresentation? = null,
+    val usedHints: List<HintPresentation> = emptyList(),
     val hintPointsDeducted: Int = 0,
     val removedChoiceIds: Set<String> = emptySet(),
     val removedTileIds: Set<String> = emptySet(),
-)
+) {
+    val appliedHints: List<HintPresentation>
+        get() = if (usedHints.isEmpty()) listOfNotNull(hint) else usedHints
+
+    val usedHintTypes: Set<HintType>
+        get() = appliedHints.mapTo(linkedSetOf()) { it.type }
+}
 
 @Serializable
 data class QuizRunState(
