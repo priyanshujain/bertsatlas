@@ -546,7 +546,7 @@ The initial compatibility target is Android 8.0/API 26 and iOS 15.0 or newer. Pr
 ### 17.1 Implementation baseline
 
 - Android application ID and iOS bundle ID: `app.bertsatlas`
-- Android compile and target SDK: 36; minimum SDK: 26
+- Android compile SDK: 37; target SDK: 36; minimum SDK: 26. Compose Multiplatform 1.12.0 requires compile SDK 37 while target SDK remains an independent runtime-behavior choice.
 - iOS deployment target: 15.0
 - Dependencies use the newest mutually compatible stable releases available when V1 implementation begins and are pinned exactly. Preview, snapshot, and dynamic versions are excluded.
 - The repository contains `:domain`, `:composeApp`, and `:catalogTool` Gradle modules plus a thin `iosApp` Xcode host.
