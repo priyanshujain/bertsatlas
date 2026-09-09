@@ -76,11 +76,11 @@ object MasteryRules {
 }
 
 object StreakRules {
-    fun recordCompletedRun(current: Streak, completedEpochDay: Int): Streak {
-        val lastDay = current.lastCompletedEpochDay
-        if (lastDay != null && completedEpochDay <= lastDay) return current
+    fun recordActivity(current: Streak, activityEpochDay: Int): Streak {
+        val lastDay = current.lastActivityEpochDay
+        if (lastDay != null && activityEpochDay <= lastDay) return current
 
-        val currentDays = if (lastDay != null && completedEpochDay == lastDay + 1) {
+        val currentDays = if (lastDay != null && activityEpochDay == lastDay + 1) {
             current.currentDays + 1
         } else {
             1
@@ -88,9 +88,12 @@ object StreakRules {
         return Streak(
             currentDays = currentDays,
             bestDays = maxOf(current.bestDays, currentDays),
-            lastCompletedEpochDay = completedEpochDay,
+            lastCompletedEpochDay = activityEpochDay,
         )
     }
+
+    fun recordCompletedRun(current: Streak, completedEpochDay: Int): Streak =
+        recordActivity(current, completedEpochDay)
 }
 
 data class PassportEvidence(

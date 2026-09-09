@@ -109,7 +109,8 @@ class QuizEngine(
         }
         val completionPending = state.runCompletionPending ||
             state.sessionExpired ||
-            (state.configuration.duration != QuizDuration.Unlimited && state.sessionRemainingMillis == 0L)
+            (state.configuration.duration != QuizDuration.Unlimited && state.sessionRemainingMillis == 0L) ||
+            state.hasReachedAnsweredQuestionLimit()
         if (state.phase == RunPhase.Paused) {
             require(state.pausedFromPhase in PAUSABLE_PHASES) { "A paused snapshot has no resumable phase" }
             return state.copy(
@@ -161,13 +162,17 @@ class QuizEngine(
             hintTypes = timed.activeQuestion.usedHintTypes,
         )
         val correctStreak = if (evaluation.correct) timed.currentCorrectStreak + 1 else 0
+        val attempts = timed.attempts + attempt
+        val answeredQuestionLimitReached = timed.configuration.duration.answeredQuestionLimit
+            ?.let { attempts.size >= it }
+            ?: false
         return timed.copy(
             phase = RunPhase.Feedback,
             score = timed.score + points,
             answeredQuestionIds = timed.answeredQuestionIds + timed.activeQuestion.question.id,
             recentQuestionIds = (timed.recentQuestionIds + timed.activeQuestion.question.id).takeLast(10),
             answeredCountryIds = (timed.answeredCountryIds + timed.activeQuestion.question.countryIds).takeLast(10),
-            attempts = timed.attempts + attempt,
+            attempts = attempts,
             feedback = AnswerFeedback(
                 kind = when {
                     !evaluation.correct -> FeedbackKind.Incorrect
@@ -182,6 +187,7 @@ class QuizEngine(
             adaptive = AdaptiveDifficulty.afterAnswer(timed.adaptive, evaluation.correct, hinted),
             currentCorrectStreak = correctStreak,
             bestCorrectStreak = maxOf(timed.bestCorrectStreak, correctStreak),
+            runCompletionPending = timed.runCompletionPending || answeredQuestionLimitReached,
             tickingSinceMillis = null,
         )
     }
@@ -592,6 +598,9 @@ class QuizEngine(
     private fun ActiveQuestion.revealedTileIds(): Set<String> =
         appliedHints.mapNotNullTo(linkedSetOf()) { it.revealedTileId }
 
+    private fun QuizRunState.hasReachedAnsweredQuestionLimit(): Boolean =
+        configuration.duration.answeredQuestionLimit?.let { attempts.size >= it } == true
+
     private fun correctAnswer(question: Question): String = when (question) {
         is Question.MultipleChoice -> question.choices.first { it.id == question.correctChoiceId }.label
         is Question.LetterBank -> question.displayAnswer
@@ -667,8 +676,8 @@ class QuizEngine(
     private data class AnswerEvaluation(val correct: Boolean, val submittedText: String)
 
     companion object {
-        const val MULTIPLE_CHOICE_WINDOW_MILLIS = 10_000L
-        const val LETTER_BANK_WINDOW_MILLIS = 20_000L
+        const val MULTIPLE_CHOICE_WINDOW_MILLIS = 30_000L
+        const val LETTER_BANK_WINDOW_MILLIS = 30_000L
         const val LETTER_BANK_DECOY_COUNT = 3
         const val MINIMUM_UNLIMITED_ANSWERS = 5
         const val ACTIVE_RUN_SNAPSHOT_SCHEMA_VERSION = 1

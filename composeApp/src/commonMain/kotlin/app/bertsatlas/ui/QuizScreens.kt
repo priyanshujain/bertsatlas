@@ -56,21 +56,33 @@ fun QuizScreen(
     runProgressDescription: String = "Trivia progress",
     overtimeMessage: String = "Time's up. Keep going for half points",
 ) {
-    AtlasScreen(modifier, contentPadding = PaddingValues(0.dp)) {
-        Column(Modifier.fillMaxWidth()) {
-            runProgress?.let { SubtleRunProgress(it, runProgressDescription) }
-            Column(
-                Modifier.fillMaxWidth().padding(horizontal = 20.dp, vertical = 24.dp),
-                verticalArrangement = Arrangement.spacedBy(16.dp),
-            ) {
-            Row(Modifier.fillMaxWidth().heightIn(min = 56.dp), verticalAlignment = Alignment.CenterVertically) {
-                QuizMetric("Score", score.toString(), Modifier.weight(1f))
-                QuizMetric("Question", questionTime, Modifier.weight(1f), warning = timerExpired)
-                AtlasExitButton(onLeave)
+    AtlasScreen(
+        modifier = modifier,
+        contentPadding = PaddingValues(horizontal = 20.dp, vertical = 16.dp),
+        header = {
+            Column(Modifier.fillMaxWidth().padding(vertical = 8.dp)) {
+                runProgress?.let { SubtleRunProgress(it, runProgressDescription) }
+                Row(
+                    Modifier.fillMaxWidth().heightIn(min = 56.dp).padding(horizontal = 20.dp, vertical = 4.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    QuizMetric("Score", score.toString(), Modifier.weight(1f))
+                    QuizMetric("Question", questionTime, Modifier.weight(1f), warning = timerExpired)
+                    AtlasExitButton(onLeave)
+                }
+                if (timerExpired) {
+                    AtlasText(
+                        overtimeMessage,
+                        Modifier.fillMaxWidth().padding(horizontal = 20.dp, vertical = 4.dp),
+                        color = AtlasTheme.colors.error,
+                        style = AtlasTheme.typography.label,
+                        textAlign = TextAlign.Center,
+                    )
+                }
             }
-            if (timerExpired) {
-                AtlasText(overtimeMessage, Modifier.fillMaxWidth(), color = AtlasTheme.colors.error, style = AtlasTheme.typography.label, textAlign = TextAlign.Center)
-            }
+        },
+    ) {
+        Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(16.dp)) {
             if (promptFlag != null || imageDescription != null) {
                 Box(
                     Modifier.fillMaxWidth().heightIn(min = 148.dp)
@@ -103,7 +115,6 @@ fun QuizScreen(
             Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 AtlasButton("Get a hint", onHint, Modifier.weight(1f), AtlasButtonStyle.Secondary, enabled = hintAvailable)
                 if (unlimited) AtlasButton("Finish", onFinish, Modifier.weight(1f), AtlasButtonStyle.Quiet)
-            }
             }
         }
     }
@@ -240,9 +251,8 @@ fun HintChooserScreen(
     introText: String = "Choose the clue that sounds most useful.",
     chargedHintLabel: String = "−25 points",
 ) {
-    AtlasScreen(modifier) {
+    AtlasScreenScaffold("Choose a hint", onCancel, modifier) {
         Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(16.dp), horizontalAlignment = Alignment.CenterHorizontally) {
-            ScreenTopBar("Choose a hint", onCancel)
             BertIllustration(BertPose.Hint, Modifier.size(150.dp))
             AtlasHeading("A little nudge?", Modifier.fillMaxWidth(), centered = true)
             AtlasText(introText, textAlign = TextAlign.Center, color = AtlasTheme.colors.mutedPlum)

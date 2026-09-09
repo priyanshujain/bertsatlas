@@ -47,7 +47,7 @@ fun ResultsScreen(
             )
             if (abandoned) {
                 AtlasText(
-                    "Your answers still shaped what you'll practise next. This trivia run didn't count toward your personal best or daily streak.",
+                    "Your answers still shaped what you'll practise next and counted toward today's activity. This trivia run didn't count toward your personal best.",
                     Modifier.fillMaxWidth(),
                     color = AtlasTheme.colors.mutedPlum,
                     textAlign = TextAlign.Center,
@@ -92,14 +92,28 @@ fun ProgressScreen(
     onBack: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    AtlasScreen(modifier) {
+    AtlasScreenScaffold("Your atlas", onBack, modifier) {
         Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(16.dp)) {
-            ScreenTopBar("Your atlas", onBack)
             Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
                 BertIllustration(BertPose.Streak, Modifier.weight(.8f), "Bert celebrates your curiosity streak")
                 Column(Modifier.weight(1.2f), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                    AtlasText("$currentStreak day streak", style = AtlasTheme.typography.heading, color = AtlasTheme.colors.coral)
-                    AtlasText("Best · $bestStreak days", color = AtlasTheme.colors.mutedPlum)
+                    AtlasText(
+                        when (currentStreak) {
+                            0 -> "Start your streak"
+                            1 -> "1 day streak"
+                            else -> "$currentStreak day streak"
+                        },
+                        style = AtlasTheme.typography.heading,
+                        color = AtlasTheme.colors.coral,
+                    )
+                    AtlasText(
+                        when (bestStreak) {
+                            0 -> "Answer a question to begin"
+                            1 -> "Best · 1 day"
+                            else -> "Best · $bestStreak days"
+                        },
+                        color = AtlasTheme.colors.mutedPlum,
+                    )
                 }
             }
             StatRow(listOf(StatUi("Accuracy", overallAccuracy), StatUi("Questions", totalAnswered.toString())))

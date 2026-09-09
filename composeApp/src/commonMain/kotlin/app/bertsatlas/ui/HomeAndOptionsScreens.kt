@@ -4,10 +4,12 @@ import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.size
@@ -39,18 +41,23 @@ fun HomeScreen(
     onSettings: () -> Unit = {},
     modifier: Modifier = Modifier,
 ) {
-    AtlasScreen(modifier) {
+    AtlasScreen(
+        modifier = modifier,
+        headerPadding = PaddingValues(start = 20.dp, top = 12.dp, end = 20.dp),
+        header = if (hasStartedTrivia) {
+            {
+                Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+                    PointsBadge(totalPoints, onProgress, Modifier.weight(1f))
+                    SettingsIconButton(onSettings)
+                }
+            }
+        } else null,
+    ) {
         Column(
             Modifier.fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {
-            if (hasStartedTrivia) {
-                Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-                    PointsBadge(totalPoints, Modifier.weight(1f))
-                    SettingsIconButton(onSettings)
-                }
-            }
             Spacer(Modifier.height(if (hasStartedTrivia) 8.dp else 24.dp))
             HomeBertIllustration(large = !hasStartedTrivia)
             AtlasText(
@@ -65,11 +72,16 @@ fun HomeScreen(
             if (hasStartedTrivia) {
                 AtlasButton("Options", onOptions, Modifier.fillMaxWidth().widthIn(max = 420.dp), AtlasButtonStyle.Secondary)
                 SectionGap()
-                AtlasCard(Modifier.widthIn(max = 420.dp), "Current streak: $streakDays days. $progressSummary") {
+                val streakSummary = when (streakDays) {
+                    0 -> "Your curiosity streak starts with your first answer"
+                    1 -> "1 curious day"
+                    else -> "$streakDays curious days"
+                }
+                AtlasCard(Modifier.widthIn(max = 420.dp), "$streakSummary. $progressSummary") {
                     Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
                         AtlasText("✦", style = AtlasTheme.typography.title, color = AtlasTheme.colors.coral)
                         Column(Modifier.weight(1f).padding(horizontal = 12.dp)) {
-                            AtlasText(if (streakDays == 1) "1 curious day" else "$streakDays curious days", style = AtlasTheme.typography.label)
+                            AtlasText(streakSummary, style = AtlasTheme.typography.label)
                             AtlasText(progressSummary, style = AtlasTheme.typography.detail, color = AtlasTheme.colors.mutedPlum)
                         }
                     }
@@ -85,35 +97,45 @@ private fun HomeBertIllustration(large: Boolean) {
     val size = if (large) 270.dp else 200.dp
     val colors = AtlasTheme.colors
     androidx.compose.foundation.layout.Box(Modifier.size(size), contentAlignment = Alignment.Center) {
-        BertIllustration(BertPose.Idle, Modifier.fillMaxWidth(), contentDescription = "Bert smiles with a bright idea and a folded map")
+        BertIllustration(BertPose.Idle, Modifier.size(size), contentDescription = "Bert smiles with a bright idea and a folded map")
         Canvas(Modifier.fillMaxWidth().size(size)) {
             val w = this.size.width
             val h = this.size.height
             val outline = 4.dp.toPx()
             val map = Path().apply {
-                moveTo(w * .04f, h * .68f)
-                lineTo(w * .14f, h * .63f)
-                lineTo(w * .25f, h * .68f)
-                lineTo(w * .36f, h * .63f)
-                lineTo(w * .36f, h * .88f)
-                lineTo(w * .25f, h * .93f)
-                lineTo(w * .14f, h * .88f)
-                lineTo(w * .04f, h * .93f)
+                moveTo(w * .01f, h * .68f)
+                lineTo(w * .11f, h * .63f)
+                lineTo(w * .22f, h * .68f)
+                lineTo(w * .33f, h * .63f)
+                lineTo(w * .33f, h * .88f)
+                lineTo(w * .22f, h * .93f)
+                lineTo(w * .11f, h * .88f)
+                lineTo(w * .01f, h * .93f)
                 close()
             }
             drawPath(map, colors.paper)
             drawPath(map, colors.plum, style = Stroke(outline, join = androidx.compose.ui.graphics.StrokeJoin.Round))
-            drawLine(colors.plum, Offset(w * .14f, h * .63f), Offset(w * .14f, h * .88f), outline)
-            drawLine(colors.plum, Offset(w * .25f, h * .68f), Offset(w * .25f, h * .93f), outline)
-            drawLine(colors.orangeAccent, Offset(w * .06f, h * .83f), Offset(w * .34f, h * .76f), outline * .7f, StrokeCap.Round)
+            drawLine(colors.plum, Offset(w * .11f, h * .63f), Offset(w * .11f, h * .88f), outline)
+            drawLine(colors.plum, Offset(w * .22f, h * .68f), Offset(w * .22f, h * .93f), outline)
+            drawLine(colors.orangeAccent, Offset(w * .03f, h * .83f), Offset(w * .31f, h * .76f), outline * .7f, StrokeCap.Round)
         }
     }
 }
 
 @Composable
-private fun PointsBadge(points: Int, modifier: Modifier = Modifier) {
+private fun PointsBadge(points: Int, onClick: () -> Unit, modifier: Modifier = Modifier) {
     val colors = AtlasTheme.colors
-    Row(modifier, verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+    Row(
+        modifier
+            .heightIn(min = 48.dp)
+            .semantics(mergeDescendants = true) {
+                role = Role.Button
+                contentDescription = "View progress, $points total points"
+            }
+            .clickable(role = Role.Button, onClick = onClick),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
+    ) {
         Canvas(Modifier.size(24.dp)) {
             drawCircle(colors.mustard, size.minDimension * .40f)
             drawCircle(colors.plum, size.minDimension * .40f, style = Stroke(2.4.dp.toPx()))
@@ -148,28 +170,50 @@ private fun SettingsIconButton(onClick: () -> Unit) {
 fun OptionsScreen(
     step: Int,
     choices: List<ChoiceUi>,
+    durationSummary: String,
+    topicSummary: String,
     onChoose: (String) -> Unit,
+    onStart: () -> Unit,
     onBack: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val isTimeStep = step <= 1
-    AtlasScreen(modifier) {
+    val title = when (step) {
+        1 -> "Options · 1 of 2"
+        2 -> "Options · 2 of 2"
+        else -> "Options saved"
+    }
+    AtlasScreenScaffold(title, onBack, modifier) {
         Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(16.dp)) {
-            ScreenTopBar(if (isTimeStep) "Options · 1 of 2" else "Options · 2 of 2", onBack)
-            SectionGap()
-            BertIllustration(if (isTimeStep) BertPose.Idle else BertPose.Fact, Modifier.align(Alignment.CenterHorizontally))
-            AtlasHeading(
-                if (isTimeStep) "How much time have you got?" else "What are we nerding out about?",
-                Modifier.fillMaxWidth(),
-                centered = true,
-            )
-            AtlasText(
-                if (isTimeStep) "The clock only runs while you're answering." else "Difficulty adapts quietly as you play.",
-                Modifier.fillMaxWidth(),
-                color = AtlasTheme.colors.mutedPlum,
-                textAlign = TextAlign.Center,
-            )
-            choices.forEach { AtlasChoice(it, onChoose) }
+            if (step <= 2) {
+                BertIllustration(if (isTimeStep) BertPose.Idle else BertPose.Fact, Modifier.align(Alignment.CenterHorizontally))
+                AtlasHeading(
+                    if (isTimeStep) "How much time have you got?" else "What are we nerding out about?",
+                    Modifier.fillMaxWidth(),
+                    centered = true,
+                )
+                AtlasText(
+                    if (isTimeStep) "The clock only runs while you're answering." else "Difficulty adapts quietly as you play.",
+                    Modifier.fillMaxWidth(),
+                    color = AtlasTheme.colors.mutedPlum,
+                    textAlign = TextAlign.Center,
+                )
+                choices.forEach { AtlasChoice(it, onChoose) }
+            } else {
+                SectionGap()
+                BertIllustration(BertPose.Correct, Modifier.align(Alignment.CenterHorizontally))
+                AtlasHeading("Saved and ready", Modifier.fillMaxWidth(), centered = true)
+                AtlasText(
+                    "Your next trivia run is set up.",
+                    Modifier.fillMaxWidth(),
+                    color = AtlasTheme.colors.mutedPlum,
+                    textAlign = TextAlign.Center,
+                )
+                AtlasCard(contentDescription = "Saved options. Duration: $durationSummary. Topic: $topicSummary") {
+                    StatRow(listOf(StatUi("Duration", durationSummary), StatUi("Topic", topicSummary)))
+                }
+                AtlasButton("Start", onStart, Modifier.fillMaxWidth())
+            }
         }
     }
 }

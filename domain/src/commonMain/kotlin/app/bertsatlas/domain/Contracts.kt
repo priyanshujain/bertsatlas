@@ -28,6 +28,7 @@ interface ProgressWriter {
         attempt: Attempt,
         updatedMastery: List<Mastery>,
         activeRunSnapshot: ActiveRunSnapshot,
+        streak: Streak,
     )
 
     suspend fun recordCompletedRun(
@@ -36,7 +37,7 @@ interface ProgressWriter {
         newlyEarnedStamps: List<PassportStamp>,
     )
 
-    suspend fun recordAbandonedRun(runId: String)
+    suspend fun recordAbandonedRun(runId: String, streak: Streak? = null)
     suspend fun resetProgress()
 }
 

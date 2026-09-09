@@ -30,10 +30,8 @@ fun SettingsScreen(
     onBack: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    AtlasScreen(modifier) {
+    AtlasScreenScaffold("Settings", onBack, modifier) {
         Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(12.dp)) {
-            ScreenTopBar("Settings", onBack)
-            SectionGap()
             AtlasCard {
                 settings.forEach { AtlasToggle(it, onToggle) }
             }
@@ -69,9 +67,8 @@ fun ResetConfirmationScreen(
     onCancel: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    AtlasScreen(modifier) {
+    AtlasScreenScaffold("Reset local data", onCancel, modifier) {
         Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(16.dp)) {
-            ScreenTopBar("Reset local data", onCancel)
             BertIllustration(BertPose.Incorrect, Modifier.fillMaxWidth())
             AtlasHeading("Clear this atlas?")
             AtlasText("This removes your progress, streaks, stamps, settings, and any saved run from this device. It cannot be undone.")
@@ -103,9 +100,8 @@ fun CreditsScreen(
     onBack: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    AtlasScreen(modifier) {
+    AtlasScreenScaffold("Credits and licenses", onBack, modifier) {
         Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(16.dp)) {
-            ScreenTopBar("Credits and licenses", onBack)
             AtlasText("Bert, the writing, and the interface artwork are original to Bert's Atlas.")
             AtlasCard {
                 AtlasText("Content", style = AtlasTheme.typography.heading)
@@ -123,9 +119,8 @@ fun CreditsScreen(
 
 @Composable
 private fun InformationScreen(title: String, paragraphs: List<String>, onBack: () -> Unit, modifier: Modifier = Modifier) {
-    AtlasScreen(modifier) {
+    AtlasScreenScaffold(title, onBack, modifier) {
         Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(16.dp)) {
-            ScreenTopBar(title, onBack)
             paragraphs.forEach { AtlasText(it) }
         }
     }
@@ -141,9 +136,8 @@ fun DebugPanelScreen(
     onClose: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    AtlasScreen(modifier) {
+    AtlasScreenScaffold("Debug QA", onClose, modifier) {
         Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(12.dp)) {
-            ScreenTopBar("Debug QA", onClose)
             AtlasCard {
                 AtlasText("Build $buildVersion", style = AtlasTheme.typography.label)
                 AtlasText("Catalog $catalogVersion")

@@ -80,7 +80,7 @@ private fun AtlasDestination(controller: AppController, state: AtlasAppState) {
         Destination.Home -> HomeScreen(
             isFirstLaunch = state.firstLaunch,
             streakDays = state.streak.currentDays,
-            progressSummary = "${state.attempts.size} questions explored",
+            progressSummary = if (state.attempts.size == 1) "1 question explored" else "${state.attempts.size} questions explored",
             totalPoints = state.attempts.sumOf { it.pointsAwarded } - state.attempts.sumOf { it.hintPointsDeducted },
             hasStartedTrivia = !state.firstLaunch,
             onStart = controller::start,
@@ -90,8 +90,15 @@ private fun AtlasDestination(controller: AppController, state: AtlasAppState) {
         )
         is Destination.Options -> OptionsScreen(
             step = destination.step,
-            choices = if (destination.step == 1) durationChoices(state.selectedDuration) else topicChoices(),
+            choices = when (destination.step) {
+                1 -> durationChoices(state.selectedDuration)
+                2 -> topicChoices(state.selectedTopic)
+                else -> emptyList()
+            },
+            durationSummary = state.selectedDuration.displayName(),
+            topicSummary = state.selectedTopic.displayName(),
             onChoose = controller::chooseOption,
+            onStart = controller::startSavedOptions,
             onBack = controller::back,
         )
         Destination.Recovery -> if (run == null) BootstrapScreen() else RecoveryScreen(
@@ -262,14 +269,27 @@ private fun RunDestination(controller: AppController, state: AtlasAppState) {
 }
 
 private fun durationChoices(selected: QuizDuration) = QuizDuration.entries.map { duration ->
-    ChoiceUi(duration.name, when (duration) { QuizDuration.FiveMinutes -> "5 minutes"; QuizDuration.TenMinutes -> "10 minutes"; QuizDuration.TwentyMinutes -> "20 minutes"; QuizDuration.Unlimited -> "Unlimited" }, state = if (duration == selected) AnswerState.Selected else AnswerState.Available)
+    ChoiceUi(duration.name, duration.displayName(), state = if (duration == selected) AnswerState.Selected else AnswerState.Available)
 }
 
-private fun topicChoices() = listOf(
-    ChoiceUi("MostlyFlags", "Mostly flags", "Recognize flags and spell country names"),
-    ChoiceUi("Capitals", "Capitals", "Match countries and capitals"),
-    ChoiceUi("MixedGeography", "Mixed geography", "A broader grab bag"),
+private fun topicChoices(selected: app.bertsatlas.domain.model.QuizTopic) = listOf(
+    ChoiceUi("MostlyFlags", "Mostly flags", "Recognize flags and spell country names", state = if (selected == app.bertsatlas.domain.model.QuizTopic.MostlyFlags) AnswerState.Selected else AnswerState.Available),
+    ChoiceUi("Capitals", "Capitals", "Match countries and capitals", state = if (selected == app.bertsatlas.domain.model.QuizTopic.Capitals) AnswerState.Selected else AnswerState.Available),
+    ChoiceUi("MixedGeography", "Mixed geography", "A broader grab bag", state = if (selected == app.bertsatlas.domain.model.QuizTopic.MixedGeography) AnswerState.Selected else AnswerState.Available),
 )
+
+private fun QuizDuration.displayName() = when (this) {
+    QuizDuration.FiveMinutes -> "5 minutes"
+    QuizDuration.TenMinutes -> "10 minutes"
+    QuizDuration.TwentyMinutes -> "20 minutes"
+    QuizDuration.Unlimited -> "Unlimited"
+}
+
+private fun app.bertsatlas.domain.model.QuizTopic.displayName() = when (this) {
+    app.bertsatlas.domain.model.QuizTopic.MostlyFlags -> "Mostly flags"
+    app.bertsatlas.domain.model.QuizTopic.Capitals -> "Capitals"
+    app.bertsatlas.domain.model.QuizTopic.MixedGeography -> "Mixed geography"
+}
 
 private fun letterSlots(
     question: Question,

@@ -111,14 +111,15 @@ Tapping `Start` immediately begins a trivia run with these defaults:
 
 No configuration questionnaire or modal tutorial appears before the first trivia run. The interface teaches mechanics contextually without delaying the first question.
 
-### 6.2 Returning launch
+### 6.2 Returning home
 
-From the second app launch onward, the home screen contains:
+After the player starts their first trivia run, the home screen contains:
 
 - `Start`, which immediately uses the most recently saved trivia configuration
 - `Options`, a secondary action
+- A tappable lifetime-points summary that opens Progress
 - Current streak and a compact recent-progress summary
-- Settings
+- A Settings icon
 
 The minimal first-use Home remains until the player starts their first trivia run. Merely opening and closing the app does not reveal returning-player controls. Completing the run is not required.
 
@@ -138,7 +139,7 @@ The initial V1 sequence is:
    - Capitals
    - Mixed geography
 
-The final answer is saved and immediately starts the trivia. All answers are saved as one configuration. Abandoning the flow leaves the previously saved configuration unchanged.
+The final answer is saved atomically and opens a full-screen success step that summarizes the chosen duration and topic. The player starts the trivia from that screen. Abandoning the flow before saving leaves the previously saved configuration unchanged.
 
 Difficulty is always adaptive in V1 and has no player-facing configuration.
 
@@ -156,11 +157,11 @@ A run repeatedly moves through:
 6. Occasionally present a full-screen fun fact.
 7. End with a result screen when the selected duration expires.
 
-Timed runs finish the question currently on screen when the session clock expires. They do not begin another question. Unlimited runs continue until the player chooses to finish; elapsed time and score remain visible.
+Timed runs also have fixed question caps: 10 questions in 5 minutes, 20 in 10 minutes, and 40 in 20 minutes. Reaching the cap completes the run after feedback. The session clock remains a fallback and moves directly to Results when it expires. Unlimited runs continue until the player chooses to finish; elapsed time and score remain visible.
 
 The selected duration measures active answering time. The session and question clocks run only while an unanswered question is interactive. Both clocks pause during answer feedback, the hint chooser, fun-fact cards, lifecycle interruptions, and backgrounding. This gives the player the full chosen duration for play rather than charging them for reading.
 
-An interrupted active run is saved locally and can be resumed after process death or relaunch. A `Finish` action is always available in unlimited mode. Finishing after at least five answered questions produces results and maintains the daily streak. Leaving any mode early, or finishing unlimited mode before five answers, is an abandoned run: answered questions still update mastery, but it produces no result, personal best, or daily-streak credit.
+An interrupted active run is saved locally and can be resumed after process death or relaunch. A `Finish` action is always available in unlimited mode. Finishing after at least five answered questions produces results. Leaving any mode early, or finishing unlimited mode before five answers, is an abandoned run: answered questions still update mastery and daily activity, but it produces no personal best or completed-run credit.
 
 ## 7. Question system
 
@@ -239,8 +240,8 @@ Time pressure is central to scoring, but never prevents an answer.
 
 ### 8.1 Question timer
 
-- Multiple choice starts with a 10-second response window.
-- Letter-bank questions start with a 20-second response window.
+- Multiple choice starts with a 30-second response window.
+- Letter-bank questions start with a 30-second response window.
 - The interface warns visually and haptically near expiration without relying on color alone.
 - When the timer reaches zero, the question stays active and the player may still answer.
 
@@ -316,7 +317,7 @@ Personal bests are recorded separately for each duration and topic configuration
 
 ### 11.1 Gentle daily streak
 
-- Finishing any quiz run counts toward the current local calendar day.
+- Answering at least one question counts toward the current local calendar day, including in a run the player later leaves.
 - Multiple runs in one day do not inflate the streak.
 - Missing a day resets the number without guilt-oriented language or loss animation.
 - There are no streak freezes, repairs, purchases, or notifications in V1.
@@ -359,7 +360,7 @@ Core traits:
 - Supportive after mistakes without excessive praise
 - Never smug about a player's lack of knowledge
 
-The provided brain-with-glasses reference establishes only the broad character archetype. Final artwork must use an original silhouette, facial design, proportions, clothing/accessories, poses, and rendering style. Its licensing status is unknown and it must not be shipped or traced.
+The user-supplied `logo-bert.svg` is the canonical launcher and splash artwork. In-app poses preserve Bert's recognizable brain, glasses, and palette while adding state-specific supporting motion that never covers the face.
 
 ### 12.2 Art direction
 
@@ -371,9 +372,13 @@ The provided brain-with-glasses reference establishes only the broad character a
 
 ### 12.3 Motion
 
-Compottie animations support state and personality:
+Animations support state and personality:
 
-- Bert reacts to correct, incorrect, overtime, hint, streak, and milestone events.
+- Idle uses restrained breathing motion.
+- Correct answers use stars behind Bert; overtime adds a clock at bottom right.
+- Incorrect answers use a restrained wobble.
+- Hints use a thought cloud, while fun facts animate only the bulb rays.
+- Results, streaks, and stamps use distinct non-overlapping motifs.
 - Answer cards respond immediately to selection.
 - Passport stamps land with a short satisfying animation.
 - Fun facts can use a restrained entrance and supporting loop.

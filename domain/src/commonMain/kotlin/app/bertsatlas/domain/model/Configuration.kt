@@ -9,11 +9,14 @@ data class QuizConfiguration(
 )
 
 @Serializable
-enum class QuizDuration(val activeDurationMillis: Long?) {
-    FiveMinutes(5 * 60 * 1_000L),
-    TenMinutes(10 * 60 * 1_000L),
-    TwentyMinutes(20 * 60 * 1_000L),
-    Unlimited(null),
+enum class QuizDuration(
+    val activeDurationMillis: Long?,
+    val answeredQuestionLimit: Int?,
+) {
+    FiveMinutes(5 * 60 * 1_000L, 10),
+    TenMinutes(10 * 60 * 1_000L, 20),
+    TwentyMinutes(20 * 60 * 1_000L, 40),
+    Unlimited(null, null),
 }
 
 @Serializable

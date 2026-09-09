@@ -78,6 +78,7 @@ data class AtlasAppState(
     val firstLaunch: Boolean = true,
     val preferences: SavedPreferences = SavedPreferences(),
     val selectedDuration: QuizDuration = QuizDuration.FiveMinutes,
+    val selectedTopic: QuizTopic = QuizTopic.MostlyFlags,
     val run: QuizRunState? = null,
     val result: RunResult? = null,
     val newPersonalBest: Boolean = false,
@@ -131,7 +132,16 @@ class AppController(
         val mastery = readMastery()
         val attempts = database.progressReader().attemptsNow()
         val runs = database.progressReader().completedRunsNow()
-        val streak = database.progressReader().streakNow().toDomain()
+        val storedStreak = database.progressReader().streakNow().toDomain()
+        val streak = if (attempts.isNotEmpty() && storedStreak.currentDays == 0) {
+            attempts.map { it.localEpochDay }
+                .distinct()
+                .sorted()
+                .fold(Streak(), StreakRules::recordActivity)
+                .also { database.runWriter().saveStreak(it.toEntity()) }
+        } else {
+            storedStreak
+        }
         val stamps = database.progressReader().stampsNow().mapNotNull { it.toDomain() }
         val snapshot = database.progressReader().activeRun()
         val restored = snapshot?.let {
@@ -145,6 +155,7 @@ class AppController(
             firstLaunch = !hasStartedTrivia,
             preferences = preferences,
             selectedDuration = enumValueOrDefault(preferences.duration, QuizDuration.FiveMinutes),
+            selectedTopic = enumValueOrDefault(preferences.topic, QuizTopic.MostlyFlags),
             run = restored,
             mastery = mastery,
             attempts = attempts,
@@ -168,7 +179,14 @@ class AppController(
         }
     }
 
-    fun openOptions() { _state.value = _state.value.copy(destination = Destination.Options(1)) }
+    fun openOptions() {
+        val current = _state.value
+        _state.value = current.copy(
+            destination = Destination.Options(1),
+            selectedDuration = enumValueOrDefault(current.preferences.duration, QuizDuration.FiveMinutes),
+            selectedTopic = enumValueOrDefault(current.preferences.topic, QuizTopic.MostlyFlags),
+        )
+    }
 
     fun chooseOption(id: String) {
         when (val destination = _state.value.destination) {
@@ -180,15 +198,29 @@ class AppController(
             } else {
                 val topic = enumValueOrDefault(id, QuizTopic.MostlyFlags)
                 val duration = _state.value.selectedDuration
+                _state.value = _state.value.copy(selectedTopic = topic)
                 scope.launch {
                     preferencesStore.saveConfiguration(duration.name, topic.name)
                     val saved = preferencesStore.values.first()
-                    _state.value = _state.value.copy(preferences = saved)
-                    beginRun(QuizConfiguration(duration, topic))
+                    val current = _state.value
+                    val showSavedStep = current.destination == Destination.Options(2) &&
+                        current.selectedDuration == duration &&
+                        current.selectedTopic == topic
+                    _state.value = if (showSavedStep) {
+                        current.copy(preferences = saved, destination = Destination.Options(3))
+                    } else {
+                        current.copy(preferences = saved)
+                    }
                 }
             }
             else -> Unit
         }
+    }
+
+    fun startSavedOptions() {
+        val current = _state.value
+        if (current.destination != Destination.Options(3)) return
+        beginRun(QuizConfiguration(current.selectedDuration, current.selectedTopic))
     }
 
     fun back() { handleBack() }
@@ -203,7 +235,11 @@ class AppController(
             Destination.Bootstrap, Destination.Home -> false
             is Destination.Options -> {
                 _state.value = current.copy(
-                    destination = if (destination.step == 2) Destination.Options(1) else Destination.Home,
+                    destination = when (destination.step) {
+                        3 -> Destination.Options(2)
+                        2 -> Destination.Options(1)
+                        else -> Destination.Home
+                    },
                 )
                 true
             }
@@ -333,16 +369,22 @@ class AppController(
                 .distinct()
                 .size,
         )
+        val activityDays = abandoned.attempts.map { it.localEpochDay }.distinct().sorted()
+        val activityStreak = activityDays.fold(_state.value.streak, StreakRules::recordActivity)
         _state.value = _state.value.copy(
             destination = Destination.Results,
             run = abandoned,
             result = summary,
             newPersonalBest = false,
+            streak = activityStreak,
             leaveConfirmationRequested = false,
             resumeRunAfterLeaveCancellation = false,
         )
         enqueueRunPersistence {
-            database.runWriter().abandonRun(abandoned.toRunEntity(summary))
+            database.runWriter().abandonRun(
+                abandoned.toRunEntity(summary),
+                activityStreak.takeIf { activityDays.isNotEmpty() }?.toEntity(),
+            )
             refreshProgress()
         }
     }
@@ -385,13 +427,15 @@ class AppController(
         enqueueRunPersistence {
             val before = _state.value.mastery
             val after = MasteryRules.applyAttemptToCountries(before, attempt)
+            val activityStreak = StreakRules.recordActivity(_state.value.streak, attempt.localEpochDay)
             val changed = after.filter { updated -> before.none { it.countryId == updated.countryId && it.skill == updated.skill && it == updated } }
             database.runWriter().recordAcceptedAnswer(
                 attempt.toEntity(json),
                 changed.map { it.toEntity() },
                 run.toSnapshotEntity(engine, json),
+                activityStreak.toEntity(),
             )
-            _state.value = _state.value.copy(mastery = after)
+            _state.value = _state.value.copy(mastery = after, streak = activityStreak)
         }
     }
 

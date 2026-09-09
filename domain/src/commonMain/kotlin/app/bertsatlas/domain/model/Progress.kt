@@ -60,7 +60,10 @@ data class Streak(
     val currentDays: Int = 0,
     val bestDays: Int = 0,
     val lastCompletedEpochDay: Int? = null,
-)
+) {
+    val lastActivityEpochDay: Int?
+        get() = lastCompletedEpochDay
+}
 
 @Serializable
 enum class PassportStampKind {

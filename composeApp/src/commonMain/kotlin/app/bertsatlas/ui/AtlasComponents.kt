@@ -48,6 +48,7 @@ import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.StrokeCap
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.draw.clip
@@ -63,6 +64,7 @@ import androidx.compose.ui.state.ToggleableState
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.platform.LocalDensity
 import kotlin.math.min
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.InternalResourceApi
@@ -77,6 +79,8 @@ fun AtlasScreen(
     modifier: Modifier = Modifier,
     scrollable: Boolean = true,
     contentPadding: PaddingValues = PaddingValues(horizontal = 20.dp, vertical = 24.dp),
+    headerPadding: PaddingValues = PaddingValues(0.dp),
+    header: (@Composable () -> Unit)? = null,
     content: @Composable BoxScope.() -> Unit,
 ) {
     Box(
@@ -86,14 +90,39 @@ fun AtlasScreen(
             .windowInsetsPadding(WindowInsets.safeDrawing),
         contentAlignment = Alignment.TopCenter,
     ) {
-        val contentModifier = Modifier
-            .fillMaxWidth()
-            .fillMaxHeight()
-            .widthIn(max = 720.dp)
-            .padding(contentPadding)
-            .let { if (scrollable) it.verticalScroll(rememberScrollState()) else it }
-        Box(modifier = contentModifier, content = content)
+        Column(Modifier.fillMaxSize().widthIn(max = 720.dp)) {
+            header?.let {
+                Box(Modifier.fillMaxWidth().padding(headerPadding), contentAlignment = Alignment.TopCenter) {
+                    it()
+                }
+            }
+            val contentModifier = Modifier
+                .fillMaxWidth()
+                .weight(1f)
+                .let { base -> if (scrollable) base.verticalScroll(rememberScrollState()) else base }
+                .padding(contentPadding)
+            Box(modifier = contentModifier, content = content)
+        }
     }
+}
+
+@Composable
+fun AtlasScreenScaffold(
+    title: String,
+    onBack: (() -> Unit)?,
+    modifier: Modifier = Modifier,
+    scrollable: Boolean = true,
+    trailing: (@Composable () -> Unit)? = null,
+    content: @Composable BoxScope.() -> Unit,
+) {
+    AtlasScreen(
+        modifier = modifier,
+        scrollable = scrollable,
+        contentPadding = PaddingValues(start = 20.dp, top = 12.dp, end = 20.dp, bottom = 24.dp),
+        headerPadding = PaddingValues(start = 20.dp, top = 12.dp, end = 20.dp),
+        header = { ScreenTopBar(title, onBack, trailing) },
+        content = content,
+    )
 }
 
 @Composable
@@ -204,7 +233,7 @@ fun AtlasChoice(
     }
     val outline = when (choice.state) {
         AnswerState.Available -> colors.outline
-        AnswerState.Selected -> colors.mustard
+        AnswerState.Selected -> colors.success
         AnswerState.Correct -> colors.success
         AnswerState.Incorrect -> colors.orangeAccent
         AnswerState.Eliminated -> colors.outline.copy(alpha = .5f)
@@ -334,6 +363,11 @@ fun AtlasToggle(setting: SettingToggleUi, onToggle: (String, Boolean) -> Unit) {
         Box(
             Modifier.size(width = 54.dp, height = 32.dp)
                 .background(if (setting.checked) AtlasTheme.colors.success else AtlasTheme.colors.seaGlass, CircleShape)
+                .border(
+                    2.dp,
+                    if (setting.checked) AtlasTheme.colors.success else AtlasTheme.colors.outline,
+                    CircleShape,
+                )
                 .padding(4.dp),
             contentAlignment = if (setting.checked) Alignment.CenterEnd else Alignment.CenterStart,
         ) {
@@ -366,18 +400,121 @@ fun BertIllustration(
     contentDescription: String = "Bert, the curious atlas brain",
     reducedMotion: Boolean = AtlasTheme.reducedMotion,
 ) {
-    if (reducedMotion) {
-        StaticBertIllustration(pose, modifier, contentDescription)
-        return
-    }
     val transition = rememberInfiniteTransition(label = "Bert bulb")
-    val rayLength by transition.animateFloat(
-        initialValue = .82f,
-        targetValue = 1.08f,
-        animationSpec = infiniteRepeatable(tween(800), RepeatMode.Reverse),
-        label = "Bulb ray length",
+    val animatedProgress by transition.animateFloat(
+        initialValue = 0f,
+        targetValue = 1f,
+        animationSpec = infiniteRepeatable(
+            animation = tween(
+                when (pose) {
+                    BertPose.Correct, BertPose.Overtime -> 520
+                    BertPose.Incorrect -> 260
+                    BertPose.Hint -> 1_100
+                    BertPose.Fact -> 800
+                    BertPose.Results, BertPose.Stamp -> 900
+                    BertPose.Streak -> 700
+                    BertPose.Idle -> 1_400
+                },
+            ),
+            repeatMode = RepeatMode.Reverse,
+        ),
+        label = "Bert ${pose.name.lowercase()} motion",
     )
-    StaticBertIllustration(pose, modifier, contentDescription, rayLength)
+    val progress = if (reducedMotion) .5f else animatedProgress
+    val wobble = with(LocalDensity.current) { ((progress - .5f) * 6f).dp.toPx() }
+    Box(
+        modifier.size(180.dp).semantics { this.contentDescription = contentDescription },
+        contentAlignment = Alignment.Center,
+    ) {
+        Canvas(Modifier.matchParentSize()) { drawBertDecoration(pose, progress) }
+        StaticBertIllustration(
+            pose = pose,
+            modifier = Modifier.matchParentSize().graphicsLayer {
+                when (pose) {
+                    BertPose.Incorrect -> translationX = wobble
+                    BertPose.Idle -> {
+                        scaleX = .99f + progress * .01f
+                        scaleY = .99f + progress * .01f
+                    }
+                    else -> Unit
+                }
+            },
+            contentDescription = null,
+        )
+    }
+}
+
+private fun androidx.compose.ui.graphics.drawscope.DrawScope.drawBertDecoration(pose: BertPose, progress: Float) {
+    val green = Color(0xFF27635B)
+    val blue = Color(0xFF778BA5)
+    val seaGlass = Color(0xFFB7CFC8)
+    val coral = Color(0xFFF7BFBE)
+    val peach = Color(0xFFE9AF8B)
+    val orange = Color(0xFFE1814E)
+    val unit = size.minDimension / 180f
+    fun p(x: Float, y: Float) = Offset(x * unit, y * unit)
+    fun star(center: Offset, radius: Float, color: Color) {
+        val path = Path()
+        repeat(10) { index ->
+            val angle = -kotlin.math.PI.toFloat() / 2f + index * kotlin.math.PI.toFloat() / 5f
+            val length = if (index % 2 == 0) radius else radius * .42f
+            val point = Offset(center.x + kotlin.math.cos(angle) * length, center.y + kotlin.math.sin(angle) * length)
+            if (index == 0) path.moveTo(point.x, point.y) else path.lineTo(point.x, point.y)
+        }
+        path.close()
+        drawPath(path, color)
+    }
+    fun successBurst(includeClock: Boolean) {
+        val alpha = .35f + progress * .65f
+        val radius = (5f + progress * 4f) * unit
+        star(p(22f, 38f), radius, seaGlass.copy(alpha = alpha))
+        star(p(158f, 42f), radius * .82f, coral.copy(alpha = alpha))
+        star(p(24f, 142f), radius * .72f, peach.copy(alpha = alpha))
+        star(p(155f, 136f), radius, seaGlass.copy(alpha = alpha))
+        if (includeClock) {
+            val center = p(155f, 151f)
+            drawCircle(Color(0xFFF6E9E1), 15f * unit, center)
+            drawCircle(green, 15f * unit, center, style = Stroke(3f * unit))
+            drawLine(green, center, p(155f, 140f), 2.5f * unit, StrokeCap.Round)
+            drawLine(green, center, p(163f, 155f), 2.5f * unit, StrokeCap.Round)
+        }
+    }
+    when (pose) {
+        BertPose.Idle, BertPose.Incorrect -> Unit
+        BertPose.Correct -> successBurst(includeClock = false)
+        BertPose.Overtime -> successBurst(includeClock = true)
+        BertPose.Hint -> {
+            val lift = progress * 3f
+            drawCircle(seaGlass.copy(alpha = .7f), 4f * unit, p(139f, 38f + lift))
+            drawCircle(seaGlass.copy(alpha = .8f), 7f * unit, p(151f, 27f + lift))
+            drawCircle(seaGlass, 10f * unit, p(165f, 17f + lift))
+        }
+        BertPose.Fact -> {
+            val center = p(151f, 32f)
+            drawCircle(peach, 10f * unit, center)
+            val rayLength = 7f + 4f * progress
+            drawLine(orange, p(151f, 14f), p(151f, 14f - rayLength), 3.5f * unit, StrokeCap.Round)
+            drawLine(orange, p(165f, 19f), p(165f + rayLength * .7f, 19f - rayLength * .7f), 3.5f * unit, StrokeCap.Round)
+        }
+        BertPose.Results -> {
+            drawCircle(blue.copy(alpha = .18f + progress * .12f), (72f + progress * 5f) * unit, p(90f, 88f), style = Stroke(4f * unit))
+        }
+        BertPose.Streak -> {
+            val flame = Path().apply {
+                moveTo(158f * unit, 161f * unit)
+                cubicTo(139f * unit, 151f * unit, 151f * unit, (127f - progress * 5f) * unit, 159f * unit, 121f * unit)
+                cubicTo(177f * unit, 141f * unit, 174f * unit, 157f * unit, 158f * unit, 161f * unit)
+                close()
+            }
+            drawPath(flame, orange.copy(alpha = .8f + progress * .2f))
+        }
+        BertPose.Stamp -> {
+            val center = p(155f, 150f)
+            drawCircle(blue.copy(alpha = .7f), (13f + progress * 2f) * unit, center, style = Stroke(3f * unit))
+            drawLine(green, p(148f, 150f), p(153f, 155f), 3f * unit, StrokeCap.Round)
+            drawLine(green, p(153f, 155f), p(163f, 143f), 3f * unit, StrokeCap.Round)
+        }
+    }
 }
 
 @Composable
@@ -385,7 +522,6 @@ private fun StaticBertIllustration(
     pose: BertPose,
     modifier: Modifier,
     contentDescription: String?,
-    rayLength: Float = 1f,
 ) {
     val colors = AtlasTheme.colors
     val accessibleModifier = if (contentDescription == null) Modifier else Modifier.semantics { this.contentDescription = contentDescription }
@@ -428,10 +564,6 @@ private fun StaticBertIllustration(
             quadraticTo(90f * scale, (if (pose == BertPose.Incorrect) 106f else 130f) * scale, 109f * scale, mouthY * scale)
         }
         drawPath(mouth, colors.plum, style = Stroke(4f * scale, cap = StrokeCap.Round))
-        val accent = colors.orangeAccent
-        drawCircle(accent, 10f * scale, p(145f, 39f))
-        drawLine(accent, p(145f, 17f), p(145f, 17f - 10f * rayLength), 4f * scale, StrokeCap.Round)
-        drawLine(accent, p(161f, 25f), p(161f + 8f * rayLength, 25f - 7f * rayLength), 4f * scale, StrokeCap.Round)
     }
 }
 

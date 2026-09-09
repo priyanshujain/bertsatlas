@@ -306,7 +306,7 @@ abstract class RunWriteDao {
     protected abstract suspend fun upsertPersonalBest(personalBest: PersonalBestEntity)
 
     @Upsert
-    protected abstract suspend fun upsertStreak(streak: StreakEntity)
+    abstract suspend fun saveStreak(streak: StreakEntity)
 
     @Upsert
     protected abstract suspend fun upsertStamps(stamps: List<StampEntity>)
@@ -319,6 +319,7 @@ abstract class RunWriteDao {
         attempt: AttemptEntity,
         updatedMastery: List<MasteryEntity>,
         snapshot: ActiveRunSnapshotEntity,
+        streak: StreakEntity,
     ) {
         require(updatedMastery.isNotEmpty()) { "An accepted answer must update at least one mastery item" }
         val countryIds = updatedMastery.mapTo(linkedSetOf()) { it.countryId }
@@ -329,6 +330,7 @@ abstract class RunWriteDao {
         require(snapshot.runId == attempt.runId) { "Attempt and snapshot must belong to the same run" }
         insertAttempt(attempt.copy(countryIdsJson = countryIds.encodeStringSet()))
         upsertMastery(updatedMastery)
+        saveStreak(streak)
         saveActiveRun(snapshot)
     }
 
@@ -346,7 +348,7 @@ abstract class RunWriteDao {
         if (existingBest == null || run.score > existingBest.score) {
             upsertPersonalBest(PersonalBestEntity(duration, topic, run.score, run.id))
         }
-        upsertStreak(streak)
+        saveStreak(streak)
         if (stamps.isNotEmpty()) upsertStamps(stamps)
         clearActiveRun(run.id)
     }
@@ -364,7 +366,7 @@ abstract class RunWriteDao {
             val existingBest = personalBest(it.duration, it.topic)
             if (existingBest == null || it.score > existingBest.score) upsertPersonalBest(it)
         }
-        upsertStreak(streak)
+        saveStreak(streak)
         if (stamps.isNotEmpty()) upsertStamps(stamps)
         clearActiveRun(run.id)
     }
@@ -387,7 +389,7 @@ abstract class RunWriteDao {
     }
 
     @Transaction
-    open suspend fun abandonRun(runId: String) {
+    open suspend fun abandonRun(runId: String, streak: StreakEntity? = null) {
         upsertRun(
             RunEntity(
                 id = runId,
@@ -404,12 +406,14 @@ abstract class RunWriteDao {
                 completedAtEpochMillis = null,
             ),
         )
+        if (streak != null) saveStreak(streak)
         clearActiveRun(runId)
     }
 
     @Transaction
-    open suspend fun abandonRun(run: RunEntity) {
+    open suspend fun abandonRun(run: RunEntity, streak: StreakEntity? = null) {
         upsertRun(run.copy(status = "Abandoned", completedAtEpochMillis = null))
+        if (streak != null) saveStreak(streak)
         clearActiveRun(run.id)
     }
 
@@ -520,6 +524,7 @@ class RoomProgressRepository(
         attempt: Attempt,
         updatedMastery: List<Mastery>,
         activeRunSnapshot: ActiveRunSnapshot,
+        streak: Streak,
     ) {
         require(attempt.countryIds.isNotEmpty())
         writer.recordAcceptedAnswer(
@@ -528,6 +533,7 @@ class RoomProgressRepository(
                 .filter { it.countryId in attempt.countryIds && it.skill == attempt.skill }
                 .map { it.toEntity(json) },
             snapshot = activeRunSnapshot.toEntity(json),
+            streak = streak.toEntity(),
         )
     }
 
@@ -539,7 +545,8 @@ class RoomProgressRepository(
         writer.completeRun(result.toEntity(json), streak.toEntity(), newlyEarnedStamps.map(PassportStamp::toEntity))
     }
 
-    override suspend fun recordAbandonedRun(runId: String) = writer.abandonRun(runId)
+    override suspend fun recordAbandonedRun(runId: String, streak: Streak?) =
+        writer.abandonRun(runId, streak?.toEntity())
 
     override suspend fun resetProgress() = writer.resetProgress()
 
