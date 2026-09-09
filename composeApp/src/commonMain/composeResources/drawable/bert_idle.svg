@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <title>Bert smiling behind oversized glasses</title>
+  <path fill="#E96E5B" stroke="#3E2447" stroke-width="12" d="M105 270C47 237 68 151 135 146c3-72 96-92 137-39 55-45 142-2 130 70 63 30 42 120-15 135-18 85-123 103-173 51-62 32-135-28-109-93z"/>
+  <path fill="none" stroke="#C45348" stroke-width="8" stroke-linecap="round" d="M153 150c-19 22-20 49-7 69m58-119c-15 31-10 54 7 72m67-66c21 22 21 49 8 73m64-27c-17 21-18 43-7 64M123 260c26 8 39 28 36 54m194-74c-27 13-36 35-29 60"/>
+  <rect x="126" y="205" width="119" height="92" rx="28" fill="#FFFBF2" stroke="#3E2447" stroke-width="15"/>
+  <rect x="268" y="205" width="119" height="92" rx="28" fill="#FFFBF2" stroke="#3E2447" stroke-width="15"/>
+  <path stroke="#3E2447" stroke-width="15" stroke-linecap="round" d="M245 245h23"/>
+  <circle cx="185" cy="250" r="12" fill="#3E2447"/><circle cx="328" cy="250" r="12" fill="#3E2447"/>
+  <path fill="none" stroke="#3E2447" stroke-width="12" stroke-linecap="round" d="M204 325q52 47 105 0"/>
+  <circle cx="418" cy="120" r="27" fill="#17647E"/><path stroke="#17647E" stroke-width="11" stroke-linecap="round" d="M418 72V42m35 44 23-22"/>
+</svg>

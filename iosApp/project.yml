@@ -12,6 +12,12 @@ targets:
     dependencies:
       - framework: ../composeApp/build/bin/iosSimulatorArm64/debugFramework/ComposeApp.framework
         embed: false
+    preBuildScripts:
+      - name: Sync Compose resources
+        script: |
+          cd "$SRCROOT/.."
+          ./gradlew :composeApp:syncComposeResourcesForIos
+        basedOnDependencyAnalysis: false
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: app.bertsatlas

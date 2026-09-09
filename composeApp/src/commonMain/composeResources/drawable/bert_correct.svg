@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <title>Bert cheering after a correct answer</title>
+  <path fill="#E96E5B" stroke="#3E2447" stroke-width="12" d="M104 278C48 238 71 153 137 149c7-67 90-87 134-41 59-44 139 0 130 72 60 34 35 119-20 132-17 86-126 99-172 46-64 29-132-29-105-80z"/>
+  <rect x="126" y="207" width="119" height="90" rx="27" fill="#FFFBF2" stroke="#3E2447" stroke-width="15"/><rect x="268" y="207" width="119" height="90" rx="27" fill="#FFFBF2" stroke="#3E2447" stroke-width="15"/><path stroke="#3E2447" stroke-width="15" d="M245 246h23"/>
+  <path fill="none" stroke="#3E2447" stroke-width="11" stroke-linecap="round" d="m158 252 21 17 31-34m140 0-31 34-21-17M200 324q57 62 113 0"/>
+  <path fill="#147568" d="m425 61 15 34 37 4-28 25 8 36-32-19-32 19 8-36-28-25 37-4z"/>
+</svg>
