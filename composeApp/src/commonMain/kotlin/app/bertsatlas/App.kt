@@ -176,6 +176,9 @@ private fun AtlasDestination(controller: AppController, state: AtlasAppState) {
                 onEditCards = { controller.openCardEditor(pack) },
                 onEditPack = { controller.openPackDetailsEditor(pack.packId) },
                 onMakeCopy = { controller.makePackCopy(pack.packId) },
+                showLevelPicker = pack.levels.isNotEmpty(),
+                selectedLevel = pack.level,
+                onChooseLevel = { controller.chooseLevel(pack.packId, it) },
                 banner = {
                     val storeState by controller.store.state.collectAsState()
                     PackUpdateBanner(controller.store, storeState, pack.packId, pack.title)

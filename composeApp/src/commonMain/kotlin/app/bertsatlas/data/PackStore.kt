@@ -36,6 +36,7 @@ import app.bertsatlas.domain.pack.BertTags
 import app.bertsatlas.domain.pack.DeckSelection
 import app.bertsatlas.domain.pack.ImportPlan
 import app.bertsatlas.domain.pack.ImportedPack
+import app.bertsatlas.domain.pack.LevelSetting
 import app.bertsatlas.domain.pack.ManifestReading
 import app.bertsatlas.domain.pack.PackImporter
 import app.bertsatlas.domain.pack.PackLibraryLayout
@@ -70,6 +71,17 @@ class PackStore(val libraryDirectory: String) {
     private val catalogs = mutableMapOf<String, Catalog>()
     private val workingDirectory = Path(libraryDirectory, "incoming").toString()
     private var observedDataVersions: Map<String, Long> = emptyMap()
+    private val levelSettings = mutableMapOf<String, LevelSetting>()
+
+    suspend fun chooseLevel(packId: String, level: LevelSetting) = onStore {
+        levelSettings[packId] = level
+        catalogs.keys.removeAll { it.startsWith("$packId|") }
+    }
+
+    suspend fun forgetLevels() = onStore {
+        levelSettings.clear()
+        catalogs.clear()
+    }
 
     suspend fun summaries(): List<PackSummary> = onStore {
         installedPackIds().mapNotNull { packId -> runCatching { pack(packId).summary() }.getOrNull() }
@@ -238,12 +250,18 @@ class PackStore(val libraryDirectory: String) {
             return schedulers.getOrPut(configId) { CardScheduler(presetFor(deckId)) }
         }
 
+        val level: LevelSetting get() = levelSettings[packId] ?: LevelSetting.All
+
+        fun noteIdsOutsideLevel(): Set<Long> =
+            if (level == LevelSetting.All) emptySet() else collection.notes().filterNot { level.admits(it.tags) }.mapTo(mutableSetOf()) { it.id }
+
         fun studyQueue(section: String?): StudyQueue {
             val deckIds = deckIds(section)
             val timing = timing()
             val rootDeckId = deckIds.firstOrNull { collection.deck(it)?.name == (if (section == null) deck.name else deck.name + DECK_NAME_SEPARATOR + section) } ?: deck.id
+            val outsideLevel = noteIdsOutsideLevel()
             return StudyQueue.build(
-                cards = collection.cardsInDecks(deckIds),
+                cards = collection.cardsInDecks(deckIds).filter { it.noteId !in outsideLevel },
                 preset = presetFor(rootDeckId),
                 studiedToday = collection.studiedToday(rootDeckId, timing.today),
                 timing = timing,
@@ -298,7 +316,9 @@ class PackStore(val libraryDirectory: String) {
         }
 
         fun summary(): PackSummary {
-            val retiredNoteIds = collection.notes().filter { BertTags.RETIRED in it.tags }.map { it.id }.toSet()
+            val notes = collection.notes()
+            val retiredNoteIds = notes.filter { BertTags.RETIRED in it.tags }.map { it.id }.toSet()
+            val tagLevels = notes.filter { it.id !in retiredNoteIds }.flatMapTo(linkedSetOf()) { BertTags.levels(it.tags) }
             val cards = collection.cardsInDecks(deckIds(null)).filter { it.noteId !in retiredNoteIds }
             val revlogByCard = collection.revlog().groupBy { it.cardId }
             val levels = cards.map { CardMastery.level(it, revlogByCard[it.id].orEmpty()) }
@@ -319,6 +339,8 @@ class PackStore(val libraryDirectory: String) {
                 familiarCount = levels.count { it == MasteryLevel.Familiar },
                 studySettings = config?.let(FriendlyStudySettingsMapping::read),
                 coverMedia = manifest.coverMedia,
+                levels = LevelSetting.entries.filter { it in tagLevels },
+                level = level,
             )
         }
 
@@ -364,7 +386,8 @@ class PackStore(val libraryDirectory: String) {
             val decksById = collection.decks().associateBy { it.id }
             val notesById = collection.notes().associateBy { it.id }
             val notetypesById = collection.notetypes().associateBy { it.id }
-            val playable = collection.cardsInDecks(deckIds).filter { it.scheduling.queue != CardScheduler.QUEUE_SUSPENDED }
+            val outsideLevel = noteIdsOutsideLevel()
+            val playable = collection.cardsInDecks(deckIds).filter { it.scheduling.queue != CardScheduler.QUEUE_SUSPENDED && it.noteId !in outsideLevel }
             val runCards = cardsForRun(playable)
             val runCardIds = runCards.mapTo(mutableSetOf()) { it.id }
             val distractorCards = if (runCards.size == playable.size) emptyList() else playable.filter { it.id !in runCardIds }.shuffled(Random(timing().today)).take(DISTRACTOR_CARD_LIMIT)

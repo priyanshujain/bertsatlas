@@ -13,6 +13,7 @@ import app.bertsatlas.domain.PlayerSettingsRepository
 import app.bertsatlas.domain.QuizConfigurationPreferences
 import app.bertsatlas.domain.model.QuizConfiguration
 import app.bertsatlas.domain.model.QuizDuration
+import app.bertsatlas.domain.pack.LevelSetting
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.first
@@ -27,6 +28,7 @@ data class SavedPreferences(
     val hapticsEnabled: Boolean = true,
     val motionMode: String = "System",
     val autoAdvanceEnabled: Boolean = true,
+    val packLevels: Map<String, LevelSetting> = emptyMap(),
 )
 
 class PreferencesStore(
@@ -45,6 +47,11 @@ class PreferencesStore(
                 hapticsEnabled = preferences[Keys.hapticsEnabled] ?: true,
                 motionMode = preferences[Keys.motionMode] ?: "System",
                 autoAdvanceEnabled = preferences[Keys.autoAdvanceEnabled] ?: true,
+                packLevels = preferences.asMap().entries.mapNotNull { (key, value) ->
+                    val packId = key.name.removePrefix(Keys.PACK_LEVEL_PREFIX).takeIf { key.name.startsWith(Keys.PACK_LEVEL_PREFIX) }
+                    val level = LevelSetting.entries.firstOrNull { it.name == value }
+                    if (packId != null && level != null) packId to level else null
+                }.toMap(),
             )
         }
 
@@ -80,6 +87,10 @@ class PreferencesStore(
 
     suspend fun setAutoAdvanceEnabled(enabled: Boolean) {
         dataStore.edit { it[Keys.autoAdvanceEnabled] = enabled }
+    }
+
+    suspend fun savePackLevel(packId: String, level: LevelSetting) {
+        dataStore.edit { it[Keys.packLevel(packId)] = level.name }
     }
 
     override fun observeSettings(): Flow<PlayerSettings> = values.map { preferences ->
@@ -137,6 +148,9 @@ class PreferencesStore(
         val hapticsEnabled = booleanPreferencesKey("haptics_enabled")
         val motionMode = stringPreferencesKey("motion_mode")
         val autoAdvanceEnabled = booleanPreferencesKey("auto_advance_enabled")
+        const val PACK_LEVEL_PREFIX = "pack_level_"
+
+        fun packLevel(packId: String) = stringPreferencesKey(PACK_LEVEL_PREFIX + packId)
     }
 }
 

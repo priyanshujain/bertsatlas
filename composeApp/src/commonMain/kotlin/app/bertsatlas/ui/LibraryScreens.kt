@@ -1,5 +1,6 @@
 package app.bertsatlas.ui
 
+import app.bertsatlas.domain.pack.LevelSetting
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -270,6 +271,9 @@ fun PackHomeScreen(
     onEditCards: () -> Unit = {},
     onEditPack: () -> Unit = {},
     onMakeCopy: () -> Unit = {},
+    showLevelPicker: Boolean = false,
+    selectedLevel: LevelSetting = LevelSetting.All,
+    onChooseLevel: (LevelSetting) -> Unit = {},
 ) {
     AtlasScreenScaffold("", onBack, modifier, maxContentWidth = WIDE_CONTENT_WIDTH) {
         AdaptivePanes(
@@ -285,6 +289,7 @@ fun PackHomeScreen(
                     PackStat("Due today", pack.dueCount, Modifier.weight(1f))
                     PackStat("Mastered", pack.masteredCount, Modifier.weight(1f))
                 }
+                if (showLevelPicker) LevelPicker(selectedLevel, onChooseLevel)
                 if (sections.isNotEmpty()) SectionPicker(sections, selectedSection, onChooseSection)
             },
             trailing = {
@@ -336,6 +341,20 @@ private fun ReviewPrompt(dueCount: Int, onReview: () -> Unit) {
             Modifier.fillMaxWidth(),
             if (dueCount == 0) AtlasButtonStyle.Secondary else AtlasButtonStyle.Primary,
         )
+    }
+}
+
+@Composable
+private fun LevelPicker(selected: LevelSetting, onChoose: (LevelSetting) -> Unit) {
+    AtlasText("Level", Modifier.semantics { heading() }, AtlasTheme.typography.heading)
+    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+        LevelSetting.entries.forEach { level ->
+            AtlasChoice(
+                ChoiceUi(level.name, level.name, state = if (level == selected) AnswerState.Selected else AnswerState.Available),
+                { onChoose(level) },
+                Modifier.weight(1f),
+            )
+        }
     }
 }
 

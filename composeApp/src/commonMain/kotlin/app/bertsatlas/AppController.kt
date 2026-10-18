@@ -1,5 +1,6 @@
 package app.bertsatlas
 
+import app.bertsatlas.domain.pack.LevelSetting
 import app.bertsatlas.anki.pkg.ImportCancelledException
 import app.bertsatlas.anki.pkg.ImportMonitor
 import app.bertsatlas.anki.pkg.ImportStage
@@ -275,6 +276,7 @@ class AppController(
 
     private suspend fun bootstrap() = mutex.withLock {
         val preferences = preferencesStore.values.first()
+        preferences.packLevels.forEach { (packId, level) -> packStore.chooseLevel(packId, level) }
         publishPacks(packStore.summaries())
         if (_taxonomyState.value == null) _taxonomyState.value = BundledTaxonomy.taxonomy
         val mastery = packStore.mastery()
@@ -367,6 +369,14 @@ class AppController(
     fun saveStudySettings(packId: String, settings: FriendlyStudySettings) {
         scope.launch {
             packStore.saveStudySettings(packId, settings)
+            publishPacks(packStore.summaries())
+        }
+    }
+
+    fun chooseLevel(packId: String, level: LevelSetting) {
+        scope.launch {
+            preferencesStore.savePackLevel(packId, level)
+            packStore.chooseLevel(packId, level)
             publishPacks(packStore.summaries())
         }
     }
@@ -812,6 +822,7 @@ class AppController(
             database.runWriter().resetProgress()
             packStore.resetAllProgress()
             preferencesStore.resetAll()
+            packStore.forgetLevels()
             publishPacks(packStore.summaries())
             _state.value = AtlasAppState(destination = Destination.Home, mastery = packStore.mastery())
         }

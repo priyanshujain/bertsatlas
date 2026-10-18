@@ -1,6 +1,7 @@
 package app.bertsatlas
 
 import app.bertsatlas.domain.fsrs.FriendlyStudySettings
+import app.bertsatlas.domain.pack.LevelSetting
 
 data class PackSummary(
     val packId: String,
@@ -18,4 +19,6 @@ data class PackSummary(
     val familiarCount: Int = 0,
     val studySettings: FriendlyStudySettings? = null,
     val coverMedia: String? = null,
+    val levels: List<LevelSetting> = emptyList(),
+    val level: LevelSetting = LevelSetting.All,
 )
