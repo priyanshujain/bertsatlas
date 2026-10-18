@@ -42,6 +42,7 @@ val renderCovers = tasks.register<JavaExec>("renderCovers") {
     description = "Renders content/packs/<id>/cover/cover.svg to cover.png."
     classpath = sourceSets.main.get().runtimeClasspath
     mainClass.set("app.bertsatlas.catalogtool.CoverRendererKt")
+    jvmArgs("-Djava.awt.headless=true")
     workingDir = rootProject.projectDir
 }
 
