@@ -28,6 +28,7 @@ data class PackSourceContents(
     val mediaDirectory: String?,
     val sectionTitles: Map<String, String> = emptyMap(),
     val bundled: Boolean = false,
+    val coverFile: String? = null,
 )
 
 data class BuiltPack(val outputPath: String, val notes: Int, val mediaFiles: Int, val sizeBytes: Long, val issues: List<ValidationIssue>)
@@ -37,6 +38,7 @@ class PackBuildException(message: String, val issues: List<ValidationIssue> = em
 object PackSourceBuilder {
     const val MANIFEST_FILE = "pack.json"
     const val CARDS_FILE = "cards.json"
+    const val COVER_DIRECTORY = "cover"
     const val BUILD_EPOCH_MILLIS = 1_767_225_600_000L
 
     fun read(sourceDirectory: String): PackSourceContents {
@@ -54,6 +56,7 @@ object PackSourceBuilder {
             mediaDirectory = mediaDirectory,
             sectionTitles = (buildKeys["sections"] as? JsonObject).orEmpty().mapValues { (_, title) -> title.jsonPrimitive.content },
             bundled = (buildKeys["bundled"] as? JsonPrimitive)?.content == "true",
+            coverFile = sourceManifest.coverMedia?.let { Path(sourceDirectory, COVER_DIRECTORY, it).toString() },
         )
     }
 
@@ -81,13 +84,19 @@ object PackSourceBuilder {
     fun validate(contents: PackSourceContents): List<ValidationIssue> {
         val referenced = referencedMedia(contents.cards)
         val present = referenced.filter { name -> contents.mediaDirectory?.let { SystemFileSystem.exists(Path(it, name)) } == true }.toSet()
-        return PackValidator.validate(
+        return coverIssues(contents) + PackValidator.validate(
             PackContents(
                 manifest = ManifestReading.Found(contents.manifest, contents.manifest.subtitle.orEmpty()),
                 notes = contents.cards.map { PackNote(it.guid, it.noteTypeName, it.fields, it.tags) },
                 mediaFiles = present,
             ),
         )
+    }
+
+    private fun coverIssues(contents: PackSourceContents): List<ValidationIssue> {
+        val coverFile = contents.coverFile ?: return emptyList()
+        if (SystemFileSystem.exists(Path(coverFile))) return emptyList()
+        return listOf(ValidationIssue(IssueSeverity.Error, IssueCode.MediaMissing, "cover $coverFile is missing", field = "coverMedia"))
     }
 
     fun build(
@@ -107,6 +116,7 @@ object PackSourceBuilder {
         removeRecursively(Path(workingDirectory))
         val mediaDirectory = Path(workingDirectory, "media").also { SystemFileSystem.createDirectories(it) }
         referenced.forEach { name -> copyFile(Path(contents.mediaDirectory!!, name), Path(mediaDirectory, name)) }
+        contents.coverFile?.let { copyFile(Path(it), Path(mediaDirectory, contents.manifest.coverMedia!!)) }
         val collectionPath = Path(workingDirectory, "collection.anki2").toString()
         writeCollection(collectionPath, contents.manifest, contents.cards, nowMillis, contents.sectionTitles)
         if (SystemFileSystem.exists(Path(outputPath))) SystemFileSystem.delete(Path(outputPath))
@@ -118,7 +128,7 @@ object PackSourceBuilder {
             format = format,
         )
         verifyBuiltPack(outputPath, Path(workingDirectory, "verify").toString(), contents.cards.size)
-        return BuiltPack(outputPath, contents.cards.size, referenced.size, SystemFileSystem.metadataOrNull(Path(outputPath))?.size ?: 0, issues)
+        return BuiltPack(outputPath, contents.cards.size, (referenced + listOfNotNull(contents.manifest.coverMedia)).size, SystemFileSystem.metadataOrNull(Path(outputPath))?.size ?: 0, issues)
     }
 
     fun sectionDeckName(packTitle: String, section: String, sectionTitles: Map<String, String>): String {
