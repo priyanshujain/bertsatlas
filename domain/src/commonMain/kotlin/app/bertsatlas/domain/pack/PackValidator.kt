@@ -16,6 +16,7 @@ enum class IssueCode {
     BertTagInvalid,
     SimilarGroupUnknown,
     MediaMissing,
+    ChoicesInvalid,
 }
 
 data class ValidationIssue(
@@ -90,6 +91,11 @@ object PackValidator {
                 val reading = BertMetaCodec.readFor(noteType, meta)
                 if (reading is BertMetaReading.Invalid) {
                     add(warning(IssueCode.BertMetaInvalid, reading.reason, note.guid, BertNoteTypes.BERT_META_FIELD))
+                }
+            }
+            if (noteType == BertNoteTypes.Choice) {
+                BertChoices.problems(note.fields["Choices"].orEmpty(), note.fields["Correct"].orEmpty()).forEach {
+                    add(error(IssueCode.ChoicesInvalid, it, note.guid, "Choices"))
                 }
             }
         }

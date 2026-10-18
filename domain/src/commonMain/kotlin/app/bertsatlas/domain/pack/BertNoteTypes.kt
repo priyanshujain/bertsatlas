@@ -175,7 +175,24 @@ object BertNoteTypes {
         ),
     )
 
-    val all: List<BertNoteType> = listOf(Basic, TwoWay, Cloze, Typed, Image, Occlusion, Flag, Capital)
+    val Choice = BertNoteType(
+        id = 1_760_000_000_009,
+        name = "Bert Choice",
+        version = 1,
+        kind = NoteTypeKind.Standard,
+        fields = listOf("Question", "Choices", "Correct", "Explanation", "Hint", "Source", BERT_META_FIELD),
+        sortFieldIndex = 0,
+        requiredFields = setOf("Question", "Choices", "Correct"),
+        templates = listOf(
+            CardTemplateDefinition(
+                name = "Choice",
+                questionFormat = "{{Question}}\n<div class=list>{{Choices}}</div>\n$HINT_BLOCK",
+                answerFormat = "$ANSWER_DIVIDER{{Correct}}\n{{#Explanation}}<div class=extra>{{Explanation}}</div>{{/Explanation}}",
+            ),
+        ),
+    )
+
+    val all: List<BertNoteType> = listOf(Basic, TwoWay, Cloze, Typed, Image, Occlusion, Flag, Capital, Choice)
 
     fun byName(name: String): BertNoteType? = all.firstOrNull { it.name == name }
 
