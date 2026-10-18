@@ -110,7 +110,7 @@ fun main(arguments: Array<String>) {
             val subcategory = manifest.subcategory.orEmpty()
             storeTaxonomy.placementProblem(category, subcategory)?.let { problems += "${manifest.packId}: $it" }
             try {
-                buildStorePack(sourceDirectory, contents.mediaDirectory, manifest.packId, manifest.version, packCuration, output, working.resolve(manifest.packId), baseUrl, publish)
+                buildStorePack(sourceDirectory, contents.mediaDirectory, contents.coverFile, manifest.packId, manifest.version, packCuration, output, working.resolve(manifest.packId), baseUrl, publish)
                     .copy(
                         title = manifest.title,
                         subtitle = manifest.subtitle.orEmpty(),
@@ -158,6 +158,7 @@ fun main(arguments: Array<String>) {
 private fun buildStorePack(
     sourceDirectory: Path,
     sourceMediaDirectory: String?,
+    coverFile: String?,
     packId: String,
     version: String,
     curation: PackCuration,
@@ -190,12 +191,20 @@ private fun buildStorePack(
         source.copyTo(target, overwrite = true)
         publish += PublishEntry("$samplesKey/$name", target, contentTypeOf(target), IMMUTABLE_CACHE_CONTROL)
     }
+    val coverUrl = coverFile?.let { Path.of(it) }?.let { cover ->
+        val coverKey = "${StoreUrls.COVERS_PREFIX}/$packId-$version.${cover.extension}"
+        val target = output.resolve(coverKey).also { it.parent.createDirectories() }
+        cover.copyTo(target, overwrite = true)
+        publish += PublishEntry(coverKey, target, contentTypeOf(target), IMMUTABLE_CACHE_CONTROL)
+        StoreUrls.resolve(baseUrl, coverKey)
+    }
     return StorePack(
         packId = packId,
         version = version,
         title = packId,
         category = "",
         subcategory = "",
+        coverUrl = coverUrl,
         sampleCards = samples,
         sampleMediaBaseUrl = if (samples.any { it.media.isNotEmpty() }) StoreUrls.resolve(baseUrl, samplesKey) else null,
         description = curation.description,
