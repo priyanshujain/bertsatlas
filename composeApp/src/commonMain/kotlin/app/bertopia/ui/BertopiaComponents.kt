@@ -527,12 +527,10 @@ fun BertIllustration(
 }
 
 private fun androidx.compose.ui.graphics.drawscope.DrawScope.drawBertDecoration(pose: BertPose, progress: Float) {
-    val green = Color(0xFF27635B)
+    val deepOrange = Color(0xFFD9703C)
     val blue = Color(0xFF778BA5)
-    val seaGlass = Color(0xFFB7CFC8)
-    val coral = Color(0xFFF7BFBE)
-    val peach = Color(0xFFE9AF8B)
-    val orange = Color(0xFFE1814E)
+    val sand = Color(0xFFE8C9A8)
+    val warmYellow = Color(0xFFF2B84B)
     val unit = size.minDimension / 180f
     fun p(x: Float, y: Float) = Offset(x * unit, y * unit)
     fun star(center: Offset, radius: Float, color: Color) {
@@ -549,16 +547,16 @@ private fun androidx.compose.ui.graphics.drawscope.DrawScope.drawBertDecoration(
     fun successBurst(includeClock: Boolean) {
         val alpha = .35f + progress * .65f
         val radius = (5f + progress * 4f) * unit
-        star(p(22f, 38f), radius, seaGlass.copy(alpha = alpha))
-        star(p(158f, 42f), radius * .82f, coral.copy(alpha = alpha))
-        star(p(24f, 142f), radius * .72f, peach.copy(alpha = alpha))
-        star(p(155f, 136f), radius, seaGlass.copy(alpha = alpha))
+        star(p(22f, 38f), radius, sand.copy(alpha = alpha))
+        star(p(158f, 42f), radius * .82f, blue.copy(alpha = alpha))
+        star(p(24f, 142f), radius * .72f, warmYellow.copy(alpha = alpha))
+        star(p(155f, 136f), radius, sand.copy(alpha = alpha))
         if (includeClock) {
             val center = p(155f, 151f)
             drawCircle(Color(0xFFF6E9E1), 15f * unit, center)
-            drawCircle(green, 15f * unit, center, style = Stroke(3f * unit))
-            drawLine(green, center, p(155f, 140f), 2.5f * unit, StrokeCap.Round)
-            drawLine(green, center, p(163f, 155f), 2.5f * unit, StrokeCap.Round)
+            drawCircle(deepOrange, 15f * unit, center, style = Stroke(3f * unit))
+            drawLine(deepOrange, center, p(155f, 140f), 2.5f * unit, StrokeCap.Round)
+            drawLine(deepOrange, center, p(163f, 155f), 2.5f * unit, StrokeCap.Round)
         }
     }
     when (pose) {
@@ -567,16 +565,16 @@ private fun androidx.compose.ui.graphics.drawscope.DrawScope.drawBertDecoration(
         BertPose.Overtime -> successBurst(includeClock = true)
         BertPose.Hint -> {
             val lift = progress * 3f
-            drawCircle(seaGlass.copy(alpha = .7f), 4f * unit, p(139f, 38f + lift))
-            drawCircle(seaGlass.copy(alpha = .8f), 7f * unit, p(151f, 27f + lift))
-            drawCircle(seaGlass, 10f * unit, p(165f, 17f + lift))
+            drawCircle(sand.copy(alpha = .7f), 4f * unit, p(139f, 38f + lift))
+            drawCircle(sand.copy(alpha = .8f), 7f * unit, p(151f, 27f + lift))
+            drawCircle(sand, 10f * unit, p(165f, 17f + lift))
         }
         BertPose.Fact -> {
             val center = p(151f, 32f)
-            drawCircle(peach, 10f * unit, center)
+            drawCircle(warmYellow, 10f * unit, center)
             val rayLength = 7f + 4f * progress
-            drawLine(orange, p(151f, 14f), p(151f, 14f - rayLength), 3.5f * unit, StrokeCap.Round)
-            drawLine(orange, p(165f, 19f), p(165f + rayLength * .7f, 19f - rayLength * .7f), 3.5f * unit, StrokeCap.Round)
+            drawLine(warmYellow, p(151f, 14f), p(151f, 14f - rayLength), 3.5f * unit, StrokeCap.Round)
+            drawLine(warmYellow, p(165f, 19f), p(165f + rayLength * .7f, 19f - rayLength * .7f), 3.5f * unit, StrokeCap.Round)
         }
         BertPose.Results -> {
             drawCircle(blue.copy(alpha = .18f + progress * .12f), (72f + progress * 5f) * unit, p(90f, 88f), style = Stroke(4f * unit))
@@ -588,13 +586,13 @@ private fun androidx.compose.ui.graphics.drawscope.DrawScope.drawBertDecoration(
                 cubicTo(177f * unit, 141f * unit, 174f * unit, 157f * unit, 158f * unit, 161f * unit)
                 close()
             }
-            drawPath(flame, orange.copy(alpha = .8f + progress * .2f))
+            drawPath(flame, deepOrange.copy(alpha = .8f + progress * .2f))
         }
         BertPose.Stamp -> {
             val center = p(155f, 150f)
             drawCircle(blue.copy(alpha = .7f), (13f + progress * 2f) * unit, center, style = Stroke(3f * unit))
-            drawLine(green, p(148f, 150f), p(153f, 155f), 3f * unit, StrokeCap.Round)
-            drawLine(green, p(153f, 155f), p(163f, 143f), 3f * unit, StrokeCap.Round)
+            drawLine(deepOrange, p(148f, 150f), p(153f, 155f), 3f * unit, StrokeCap.Round)
+            drawLine(deepOrange, p(153f, 155f), p(163f, 143f), 3f * unit, StrokeCap.Round)
         }
     }
 }
@@ -620,32 +618,38 @@ private fun StaticBertIllustration(
             cubicTo(53f * scale, 139f * scale, 29f * scale, 119f * scale, 38f * scale, 96f * scale)
             close()
         }
-        drawPath(brain, colors.coral)
-        drawPath(brain, colors.plum, style = Stroke(width = 4f * scale))
+        val brainColor = when (pose) {
+            BertPose.Incorrect -> colors.bertBrainIncorrect
+            BertPose.Correct, BertPose.Overtime -> colors.bertBrainCorrect
+            else -> colors.bertBrain
+        }
+        drawPath(brain, brainColor)
+        val frameWidth = 4f * scale
         listOf(Rect(p(43f, 67f), Size(43f * scale, 34f * scale)), Rect(p(94f, 67f), Size(43f * scale, 34f * scale))).forEach {
             drawRoundRect(
-                color = colors.paper,
-                topLeft = it.topLeft,
-                size = it.size,
-                cornerRadius = androidx.compose.ui.geometry.CornerRadius(10f * scale),
+                color = colors.bertFrame,
+                topLeft = Offset(it.left - frameWidth, it.top - frameWidth),
+                size = Size(it.width + frameWidth * 2f, it.height + frameWidth * 2f),
+                cornerRadius = androidx.compose.ui.geometry.CornerRadius(12f * scale),
             )
             drawRoundRect(
-                color = colors.plum,
+                color = Color.White,
                 topLeft = it.topLeft,
                 size = it.size,
-                cornerRadius = androidx.compose.ui.geometry.CornerRadius(10f * scale),
-                style = Stroke(5f * scale),
+                cornerRadius = androidx.compose.ui.geometry.CornerRadius(9f * scale),
             )
         }
-        drawLine(colors.plum, p(86f, 82f), p(94f, 82f), 5f * scale, StrokeCap.Round)
-        drawCircle(colors.plum, 4f * scale, p(65f, 84f))
-        drawCircle(colors.plum, 4f * scale, p(115f, 84f))
+        drawLine(colors.bertFrame, p(84f, 82f), p(96f, 82f), 5f * scale, StrokeCap.Round)
+        listOf(p(65f, 84f), p(115f, 84f)).forEach { center ->
+            drawOval(colors.bertPupil, Offset(center.x - 4.5f * scale, center.y - 6f * scale), Size(9f * scale, 12f * scale))
+            drawCircle(Color.White, 1.6f * scale, Offset(center.x + 1.5f * scale, center.y - 2.5f * scale))
+        }
         val mouthY = if (pose == BertPose.Incorrect) 121f else 113f
         val mouth = Path().apply {
             moveTo(72f * scale, mouthY * scale)
             quadraticTo(90f * scale, (if (pose == BertPose.Incorrect) 106f else 130f) * scale, 109f * scale, mouthY * scale)
         }
-        drawPath(mouth, colors.plum, style = Stroke(4f * scale, cap = StrokeCap.Round))
+        drawPath(mouth, colors.bertFrame, style = Stroke(4.5f * scale, cap = StrokeCap.Round))
     }
 }
 

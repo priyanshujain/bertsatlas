@@ -225,7 +225,7 @@ private fun SubtleRunProgress(progress: Float, description: String) {
             .background(BertopiaTheme.colors.outline.copy(alpha = .14f), RoundedCornerShape(4.dp))
             .semantics { contentDescription = description; stateDescription = "${(value * 100).toInt()} percent" },
     ) {
-        Box(Modifier.fillMaxWidth(value).heightIn(min = 4.dp).background(BertopiaTheme.colors.coral, RoundedCornerShape(4.dp)))
+        Box(Modifier.fillMaxWidth(value).heightIn(min = 4.dp).background(BertopiaTheme.colors.orangeAccent, RoundedCornerShape(4.dp)))
     }
 }
 

@@ -25,7 +25,11 @@ data class BertopiaColors(
     val bertopiaBluePressed: Color,
     val seaGlass: Color,
     val orangeAccent: Color,
-    val coral: Color,
+    val bertBrain: Color,
+    val bertBrainCorrect: Color,
+    val bertBrainIncorrect: Color,
+    val bertFrame: Color,
+    val bertPupil: Color,
     val mustard: Color,
     val success: Color,
     val error: Color,
@@ -49,7 +53,6 @@ private val BertopiaBlueGray = Color(0xFF778BA5)
 private val BertopiaSeaGlass = Color(0xFFB7CFC8)
 private val BertopiaShell = Color(0xFFF6E9E1)
 private val BertopiaSand = Color(0xFFF1DCC7)
-private val BertopiaPink = Color(0xFFF7BFBE)
 private val BertopiaPeach = Color(0xFFE9AF8B)
 private val BertopiaOrange = Color(0xFFE1814E)
 
@@ -62,7 +65,11 @@ private val LightBertopiaColors = BertopiaColors(
     bertopiaBluePressed = BertopiaDeepGreen,
     seaGlass = BertopiaSeaGlass,
     orangeAccent = BertopiaOrange,
-    coral = BertopiaPink,
+    bertBrain = Color(0xFFEE9A63),
+    bertBrainCorrect = Color(0xFFF4A47E),
+    bertBrainIncorrect = Color(0xFFD2603F),
+    bertFrame = Color(0xFFD9703C),
+    bertPupil = Color(0xFF3B2A22),
     mustard = BertopiaPeach,
     success = BertopiaDeepGreen,
     error = BertopiaDeepGreen,
