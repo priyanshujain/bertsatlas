@@ -1,0 +1,156 @@
+{
+  "packId": "dsa",
+  "version": "1.0.0",
+  "official": true,
+  "title": "Data Structures and Algorithms",
+  "subtitle": "Complexity, structures and interview patterns",
+  "category": "programming",
+  "subcategory": "dsa",
+  "accentColor": "#3E5C8A",
+  "coverMedia": null,
+  "languages": [
+    "en"
+  ],
+  "sources": [
+    {
+      "id": "source-clrs",
+      "title": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein",
+      "url": "https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/",
+      "publisher": "MIT Press",
+      "retrievedAt": null,
+      "revision": null
+    },
+    {
+      "id": "source-algs4",
+      "title": "Algorithms, 4th edition, Sedgewick and Wayne",
+      "url": "https://algs4.cs.princeton.edu/home/",
+      "publisher": "Princeton University",
+      "retrievedAt": null,
+      "revision": null
+    },
+    {
+      "id": "source-pytc",
+      "title": "Python Wiki: TimeComplexity",
+      "url": "https://wiki.python.org/moin/TimeComplexity",
+      "publisher": "Python Software Foundation",
+      "retrievedAt": null,
+      "revision": null
+    },
+    {
+      "id": "source-heapq",
+      "title": "Python heapq documentation",
+      "url": "https://docs.python.org/3/library/heapq.html",
+      "publisher": "Python Software Foundation",
+      "retrievedAt": null,
+      "revision": null
+    },
+    {
+      "id": "source-bisect",
+      "title": "Python bisect documentation",
+      "url": "https://docs.python.org/3/library/bisect.html",
+      "publisher": "Python Software Foundation",
+      "retrievedAt": null,
+      "revision": null
+    },
+    {
+      "id": "source-pycoll",
+      "title": "Python collections documentation",
+      "url": "https://docs.python.org/3/library/collections.html",
+      "publisher": "Python Software Foundation",
+      "retrievedAt": null,
+      "revision": null
+    },
+    {
+      "id": "source-pysort",
+      "title": "Python Sorting Techniques",
+      "url": "https://docs.python.org/3/howto/sorting.html",
+      "publisher": "Python Software Foundation",
+      "retrievedAt": null,
+      "revision": null
+    },
+    {
+      "id": "source-pydict",
+      "title": "Python built-in types: mapping types",
+      "url": "https://docs.python.org/3/library/stdtypes.html#mapping-types-dict",
+      "publisher": "Python Software Foundation",
+      "retrievedAt": null,
+      "revision": null
+    },
+    {
+      "id": "source-jhash",
+      "title": "Java SE 21 API: HashMap",
+      "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/HashMap.html",
+      "publisher": "Oracle",
+      "retrievedAt": null,
+      "revision": null
+    },
+    {
+      "id": "source-jtree",
+      "title": "Java SE 21 API: TreeMap",
+      "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/TreeMap.html",
+      "publisher": "Oracle",
+      "retrievedAt": null,
+      "revision": null
+    },
+    {
+      "id": "source-jarrays",
+      "title": "Java SE 21 API: Arrays",
+      "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Arrays.html",
+      "publisher": "Oracle",
+      "retrievedAt": null,
+      "revision": null
+    },
+    {
+      "id": "source-cppsort",
+      "title": "cppreference: std::stable_sort",
+      "url": "https://en.cppreference.com/w/cpp/algorithm/stable_sort",
+      "publisher": "cppreference.com",
+      "retrievedAt": null,
+      "revision": null
+    },
+    {
+      "id": "source-jdkhash",
+      "title": "OpenJDK source: java.util.HashMap",
+      "url": "https://github.com/openjdk/jdk/blob/master/src/java.base/share/classes/java/util/HashMap.java",
+      "publisher": "OpenJDK",
+      "retrievedAt": null,
+      "revision": null
+    },
+    {
+      "id": "source-erickson",
+      "title": "Algorithms, Jeff Erickson",
+      "url": "https://jeffe.cs.illinois.edu/teaching/algorithms/",
+      "publisher": "University of Illinois",
+      "retrievedAt": null,
+      "revision": null
+    },
+    {
+      "id": "source-ods",
+      "title": "Open Data Structures, Pat Morin",
+      "url": "https://opendatastructures.org/",
+      "publisher": "Pat Morin",
+      "retrievedAt": null,
+      "revision": null
+    },
+    {
+      "id": "source-mit6006",
+      "title": "MIT 6.006 Introduction to Algorithms, Spring 2020",
+      "url": "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/",
+      "publisher": "MIT OpenCourseWare",
+      "retrievedAt": null,
+      "revision": null
+    }
+  ],
+  "assetLicenses": [],
+  "stamps": [],
+  "bertSchemaVersion": 1,
+  "sections": {
+    "basics": "Basics and linear structures",
+    "hash": "Hashing and heaps",
+    "trees": "Trees",
+    "graphs": "Graphs",
+    "sort": "Sorting and searching",
+    "design": "Algorithm design",
+    "patterns": "Interview patterns"
+  }
+}

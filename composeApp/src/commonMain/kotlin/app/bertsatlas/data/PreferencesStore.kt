@@ -13,7 +13,6 @@ import app.bertsatlas.domain.PlayerSettingsRepository
 import app.bertsatlas.domain.QuizConfigurationPreferences
 import app.bertsatlas.domain.model.QuizConfiguration
 import app.bertsatlas.domain.model.QuizDuration
-import app.bertsatlas.domain.model.QuizTopic
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.first
@@ -24,7 +23,6 @@ import okio.Path.Companion.toPath
 data class SavedPreferences(
     val hasStartedTrivia: Boolean = false,
     val duration: String = "FiveMinutes",
-    val topic: String = "MostlyFlags",
     val soundEnabled: Boolean = true,
     val hapticsEnabled: Boolean = true,
     val motionMode: String = "System",
@@ -43,7 +41,6 @@ class PreferencesStore(
             SavedPreferences(
                 hasStartedTrivia = preferences[Keys.hasStartedTrivia] ?: false,
                 duration = preferences[Keys.duration] ?: "FiveMinutes",
-                topic = preferences[Keys.topic] ?: "MostlyFlags",
                 soundEnabled = preferences[Keys.soundEnabled] ?: true,
                 hapticsEnabled = preferences[Keys.hapticsEnabled] ?: true,
                 motionMode = preferences[Keys.motionMode] ?: "System",
@@ -61,21 +58,11 @@ class PreferencesStore(
         val preferences = values.first()
         return QuizConfiguration(
             duration = QuizDuration.entries.firstOrNull { it.name == preferences.duration } ?: QuizDuration.FiveMinutes,
-            topic = QuizTopic.entries.firstOrNull { it.name == preferences.topic } ?: QuizTopic.MostlyFlags,
         )
     }
 
-    override suspend fun saveConfiguration(duration: QuizDuration, topic: QuizTopic) {
-        saveConfiguration(duration.name, topic.name)
-    }
-
-    suspend fun saveConfiguration(duration: String, topic: String) {
-        require(QuizDuration.entries.any { it.name == duration }) { "Unknown trivia duration: $duration" }
-        require(QuizTopic.entries.any { it.name == topic }) { "Unknown trivia topic: $topic" }
-        dataStore.edit {
-            it[Keys.duration] = duration
-            it[Keys.topic] = topic
-        }
+    override suspend fun saveDuration(duration: QuizDuration) {
+        dataStore.edit { it[Keys.duration] = duration.name }
     }
 
     suspend fun setSoundEnabled(enabled: Boolean) {
@@ -120,7 +107,6 @@ class PreferencesStore(
     suspend fun resetConfiguration() {
         dataStore.edit {
             it.remove(Keys.duration)
-            it.remove(Keys.topic)
         }
     }
 
@@ -137,7 +123,6 @@ class PreferencesStore(
         dataStore.edit {
             it.remove(Keys.hasStartedTrivia)
             it.remove(Keys.duration)
-            it.remove(Keys.topic)
         }
     }
 
@@ -148,7 +133,6 @@ class PreferencesStore(
     private object Keys {
         val hasStartedTrivia = booleanPreferencesKey("has_started_trivia")
         val duration = stringPreferencesKey("quiz_duration")
-        val topic = stringPreferencesKey("quiz_topic")
         val soundEnabled = booleanPreferencesKey("sound_enabled")
         val hapticsEnabled = booleanPreferencesKey("haptics_enabled")
         val motionMode = stringPreferencesKey("motion_mode")

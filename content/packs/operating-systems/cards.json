@@ -1,0 +1,3692 @@
+{
+  "cards": [
+    {
+      "guid": "6c704ca8-e9b7-5d99-9464-061bbca7276c",
+      "noteType": "Bert Basic",
+      "section": "processes-threads",
+      "fields": {
+        "Question": "What is the OS abstraction for a running program with its own address space?",
+        "Answer": "Process",
+        "Aliases": "A process",
+        "Hint": "It is the unit that fork() duplicates.",
+        "Fact": "OSTEP calls this one of the most fundamental abstractions an operating system provides to users.",
+        "Source": "OSTEP: The Abstraction: The Process (https://pages.cs.wisc.edu/~remzi/OSTEP/cpu-intro.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "b650b0d1-bd30-57e8-bb81-8a0606140e62",
+      "noteType": "Bert Cloze",
+      "section": "processes-threads",
+      "fields": {
+        "Text": "Threads in the same process share the {{c1::address space}}, but each thread has its own {{c2::stack}} and registers.",
+        "Extra": "Shared memory makes communication between threads cheap but requires synchronization.",
+        "Hint": "Think about what one thread can see of another's variables.",
+        "Fact": "Because each thread has its own program counter, threads of one process can run different code at the same time.",
+        "Source": "OSTEP: Concurrency: An Introduction (https://pages.cs.wisc.edu/~remzi/OSTEP/threads-intro.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "0f1e8cac-0fc0-5d94-8737-46ccccbcd1a0",
+      "noteType": "Bert Typed",
+      "section": "processes-threads",
+      "fields": {
+        "Question": "Which Unix system call creates a new process by duplicating the caller?",
+        "Answer": "fork",
+        "Aliases": "fork()",
+        "Hint": "The caller and the new process both return from the same call.",
+        "Fact": "The child gets copies of the parent's file descriptors, which refer to the same open file descriptions.",
+        "Source": "fork(2), Linux manual page (https://man7.org/linux/man-pages/man2/fork.2.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::process-syscalls",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "539f4b39-4beb-5353-a386-c8c96cde83c4",
+      "noteType": "Bert Typed",
+      "section": "processes-threads",
+      "fields": {
+        "Question": "What value does fork() return in the child process?",
+        "Answer": "0",
+        "Aliases": "zero",
+        "Hint": "The parent gets something more useful to identify the child.",
+        "Fact": "In the parent, fork() returns the child's PID, and on failure it returns -1 with no child created.",
+        "Source": "fork(2), Linux manual page (https://man7.org/linux/man-pages/man2/fork.2.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "ef17183a-582c-5a36-81c5-3bd1a6e38b11",
+      "noteType": "Bert Typed",
+      "section": "processes-threads",
+      "fields": {
+        "Question": "Which system call replaces the calling process's program with a new one?",
+        "Answer": "execve",
+        "Aliases": "exec\nexecve()\nexec()\nexecl\nexecvp",
+        "Hint": "The library wraps it in several variants such as execl and execvp.",
+        "Fact": "On success execve() does not return, because the code that called it no longer exists in the process.",
+        "Source": "execve(2), Linux manual page (https://man7.org/linux/man-pages/man2/execve.2.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::process-syscalls",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "527c1bb2-673a-5b65-ac48-c48049a291a7",
+      "noteType": "Bert Typed",
+      "section": "processes-threads",
+      "fields": {
+        "Question": "Which system call lets a parent block until one of its children changes state?",
+        "Answer": "wait",
+        "Aliases": "waitpid\nwait()\nwaitpid()\nwaitid",
+        "Hint": "Shells use it to know when a foreground command has finished.",
+        "Fact": "waitpid() can wait for a specific child and, with WNOHANG, return immediately if none has changed state.",
+        "Source": "wait(2), Linux manual page (https://man7.org/linux/man-pages/man2/wait.2.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::process-syscalls",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "21b703f5-80a6-5aa0-955a-7a49e9f567da",
+      "noteType": "Bert Cloze",
+      "section": "processes-threads",
+      "fields": {
+        "Text": "A child that has terminated but has not yet been waited for by its parent is a {{c1::zombie}} process.",
+        "Extra": "The kernel keeps a minimal entry so the parent can still collect the exit status.",
+        "Hint": "It is neither alive nor fully gone.",
+        "Fact": "If a parent never reaps its children, zombies can fill the process table and block new process creation.",
+        "Source": "wait(2), Linux manual page (https://man7.org/linux/man-pages/man2/wait.2.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "4ad299aa-8709-5e2b-a9c0-044c51bc0670",
+      "noteType": "Bert Cloze",
+      "section": "processes-threads",
+      "fields": {
+        "Text": "When a parent exits first, its {{c1::orphaned}} children are reparented to init (PID 1) or the nearest subreaper.",
+        "Extra": "The new parent reaps them when they exit.",
+        "Hint": "Think of a child that has lost its parent.",
+        "Fact": "Linux lets a process mark itself as a child subreaper with prctl(PR_SET_CHILD_SUBREAPER).",
+        "Source": "wait(2), Linux manual page (https://man7.org/linux/man-pages/man2/wait.2.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "c8697930-8896-540c-942c-33c5855429ea",
+      "noteType": "Bert Basic",
+      "section": "processes-threads",
+      "fields": {
+        "Question": "What PID does the init process have on Unix-like systems?",
+        "Answer": "1",
+        "Aliases": "PID 1\none",
+        "Hint": "It is the first user space process the kernel starts.",
+        "Fact": "On Linux, if the init process of a PID namespace terminates, the kernel kills every other process in that namespace.",
+        "Source": "pid_namespaces(7), Linux manual page (https://man7.org/linux/man-pages/man7/pid_namespaces.7.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "f82e0927-9b0c-5276-81db-9825beaec209",
+      "noteType": "Bert Cloze",
+      "section": "processes-threads",
+      "fields": {
+        "Text": "The kernel keeps each process's state, saved registers and resources in a {{c1::process control block}} (PCB).",
+        "Extra": "It is what the scheduler saves and restores on a context switch.",
+        "Hint": "Its abbreviation is three letters.",
+        "Fact": "OSTEP describes the PCB as the per-process data structure the OS uses to track each process.",
+        "Source": "OSTEP: The Abstraction: The Process (https://pages.cs.wisc.edu/~remzi/OSTEP/cpu-intro.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "230b129d-56fe-5d82-81f6-3ecd5442bc13",
+      "noteType": "Bert Typed",
+      "section": "processes-threads",
+      "fields": {
+        "Question": "What is the name of the Linux kernel structure that represents a process or thread?",
+        "Answer": "task_struct",
+        "Aliases": "struct task_struct",
+        "Hint": "Linux calls schedulable entities tasks.",
+        "Fact": "Linux uses the same structure for processes and threads, because both are tasks to the scheduler.",
+        "Source": "clone(2), Linux manual page (https://man7.org/linux/man-pages/man2/clone.2.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "5d70a09a-7a1a-537c-a472-7cd881c471a8",
+      "noteType": "Bert Cloze",
+      "section": "processes-threads",
+      "fields": {
+        "Text": "In OSTEP's simple model, a process is {{c1::running}}, {{c2::ready}} or {{c3::blocked}}.",
+        "Extra": "A process waiting for I/O to complete cannot be scheduled until the I/O finishes.",
+        "Hint": "One state means it could run but is waiting for the CPU.",
+        "Fact": "Moving a process from ready to running is called scheduling it; moving it back is descheduling.",
+        "Source": "OSTEP: The Abstraction: The Process (https://pages.cs.wisc.edu/~remzi/OSTEP/cpu-intro.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "e1637385-ac70-513a-b1c4-ed939b96bd15",
+      "noteType": "Bert Typed",
+      "section": "processes-threads",
+      "fields": {
+        "Question": "Which Linux system call creates new tasks with flags that control what they share with the caller?",
+        "Answer": "clone",
+        "Aliases": "clone()\nclone3\nclone3()",
+        "Hint": "Both fork() and pthread_create() are built on top of it in glibc.",
+        "Fact": "Linux 5.3 added clone3(), which takes its arguments in a structure.",
+        "Source": "clone(2), Linux manual page (https://man7.org/linux/man-pages/man2/clone.2.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::process-syscalls",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "01fb2c1e-52e5-553f-84ad-4bb46f8e9864",
+      "noteType": "Bert Cloze",
+      "section": "processes-threads",
+      "fields": {
+        "Text": "Linux creates threads with clone() using the {{c1::CLONE_VM}} flag so the new task shares the caller's memory.",
+        "Extra": "Other flags such as CLONE_FILES and CLONE_SIGHAND share descriptors and signal handlers.",
+        "Hint": "The flag name refers to virtual memory.",
+        "Fact": "Without CLONE_VM, the child runs in a separate copy of the caller's memory, as with fork().",
+        "Source": "clone(2), Linux manual page (https://man7.org/linux/man-pages/man2/clone.2.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "7f1d2c4a-1d7e-544b-a108-fd1db4af44ec",
+      "noteType": "Bert Cloze",
+      "section": "processes-threads",
+      "fields": {
+        "Text": "fork() on Linux uses {{c1::copy-on-write}} pages, so memory is copied only when the parent or child writes to it.",
+        "Extra": "Until then both processes map the same physical pages read-only.",
+        "Hint": "The copy is deferred until a modification happens.",
+        "Fact": "This is why fork() followed quickly by exec() is cheap even for a large parent.",
+        "Source": "fork(2), Linux manual page (https://man7.org/linux/man-pages/man2/fork.2.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "1caad6fc-fd8a-5dd0-9905-183791dd20d5",
+      "noteType": "Bert Basic",
+      "section": "processes-threads",
+      "fields": {
+        "Question": "Which threading model maps many user threads onto a single kernel thread?",
+        "Answer": "Many-to-one",
+        "Aliases": "many to one\nN:1\nM:1",
+        "Hint": "A blocking system call in one thread can block them all.",
+        "Fact": "Pure user level thread libraries cannot run threads of one process on several CPUs at once.",
+        "Source": "pthreads(7), Linux manual page (https://man7.org/linux/man-pages/man7/pthreads.7.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::thread-models",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "fdd241f4-e742-5323-9eed-70d6f627c3d7",
+      "noteType": "Bert Basic",
+      "section": "processes-threads",
+      "fields": {
+        "Question": "Which threading model does the Linux NPTL implementation use?",
+        "Answer": "One-to-one",
+        "Aliases": "one to one\n1:1",
+        "Hint": "Each pthread is backed by its own kernel scheduling entity.",
+        "Fact": "NPTL replaced the older LinuxThreads implementation, which was also 1:1 but had many POSIX conformance gaps.",
+        "Source": "pthreads(7), Linux manual page (https://man7.org/linux/man-pages/man7/pthreads.7.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::thread-models",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "976d3384-c1bd-5a80-b96a-7da21aee9b88",
+      "noteType": "Bert Basic",
+      "section": "processes-threads",
+      "fields": {
+        "Question": "Which threading model multiplexes many user threads over a smaller or equal number of kernel threads?",
+        "Answer": "Many-to-many",
+        "Aliases": "many to many\nM:N",
+        "Hint": "Goroutines in Go are scheduled in a similar way.",
+        "Fact": "This hybrid approach needs cooperation between the user scheduler and the kernel scheduler.",
+        "Source": "pthreads(7), Linux manual page (https://man7.org/linux/man-pages/man7/pthreads.7.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::thread-models",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "dca8b4b4-f2ec-575d-b5de-36a30dfdefe4",
+      "noteType": "Bert Cloze",
+      "section": "processes-threads",
+      "fields": {
+        "Text": "pthread_create() starts a thread and {{c1::pthread_join}}() waits for it to terminate.",
+        "Extra": "Joining also collects the thread's return value.",
+        "Hint": "It is the thread equivalent of waiting for a child process.",
+        "Fact": "A thread that is neither joined nor detached keeps some resources after it exits, similar to a zombie process.",
+        "Source": "pthreads(7), Linux manual page (https://man7.org/linux/man-pages/man7/pthreads.7.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "01e7bb0d-b61a-5158-960a-181a47573660",
+      "noteType": "Bert Cloze",
+      "section": "processes-threads",
+      "fields": {
+        "Text": "pipe() returns two file descriptors: fd[0] is the {{c1::read}} end and fd[1] is the {{c2::write}} end.",
+        "Extra": "Data written to the pipe is buffered by the kernel until read.",
+        "Hint": "Remember: 0 is like standard input.",
+        "Fact": "Shells connect commands such as ls | wc by creating a pipe before forking both processes.",
+        "Source": "pipe(2), Linux manual page (https://man7.org/linux/man-pages/man2/pipe.2.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "e141aa8c-ee45-5098-8f89-51e74502e28d",
+      "noteType": "Bert Cloze",
+      "section": "processes-threads",
+      "fields": {
+        "Text": "After fork(), parent and child descriptors refer to the same open file description, so they share the file {{c1::offset}}.",
+        "Extra": "A read by one moves the position seen by the other.",
+        "Hint": "It records where the next read or write happens.",
+        "Fact": "Opening the same file twice with open() creates separate descriptions with independent offsets.",
+        "Source": "fork(2), Linux manual page (https://man7.org/linux/man-pages/man2/fork.2.html)\nopen(2), Linux manual page (https://man7.org/linux/man-pages/man2/open.2.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "1a434109-7be4-51f1-8a6f-e7dd11498c2a",
+      "noteType": "Bert Basic",
+      "section": "processes-threads",
+      "fields": {
+        "Question": "Which IPC mechanism gives a one-way byte stream between related processes, created by a call of the same name?",
+        "Answer": "Pipe",
+        "Aliases": "pipe\nanonymous pipe\npipe()",
+        "Hint": "Shells use it to connect commands.",
+        "Fact": "A named version created with mkfifo() lets unrelated processes use the same mechanism.",
+        "Source": "pipe(2), Linux manual page (https://man7.org/linux/man-pages/man2/pipe.2.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "3f31629c-b2c2-57ab-a19a-69d01e62a9f1",
+      "noteType": "Bert Basic",
+      "section": "processes-threads",
+      "fields": {
+        "Question": "Which IPC mechanism lets processes map the same physical memory into their address spaces?",
+        "Answer": "Shared memory",
+        "Aliases": "shm\nshared mem",
+        "Hint": "It is the fastest IPC method once set up, but needs separate synchronization.",
+        "Fact": "POSIX shared memory objects live under /dev/shm on Linux.",
+        "Source": "mmap(2), Linux manual page (https://man7.org/linux/man-pages/man2/mmap.2.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "bd41adbc-ec53-5e4e-8bbd-1e9affdfd328",
+      "noteType": "Bert Two Way",
+      "section": "processes-threads",
+      "fields": {
+        "Side A": "PID",
+        "Side B": "Process identifier",
+        "Aliases": "process ID",
+        "Hint": "Each process has one, shown by ps.",
+        "Fact": "Linux's default pid_max is 32768, and it can be raised through /proc/sys/kernel/pid_max.",
+        "Source": "proc(5), Linux manual page (https://man7.org/linux/man-pages/man5/proc.5.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::os-abbreviations",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "028923e3-6b9f-5930-aa37-419fa4125974",
+      "noteType": "Bert Two Way",
+      "section": "processes-threads",
+      "fields": {
+        "Side A": "IPC",
+        "Side B": "Inter-process communication",
+        "Aliases": "interprocess communication",
+        "Hint": "Pipes, sockets and shared memory are examples.",
+        "Fact": "Unix domain sockets can pass open file descriptors between processes with SCM_RIGHTS.",
+        "Source": "pipe(2), Linux manual page (https://man7.org/linux/man-pages/man2/pipe.2.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::os-abbreviations",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "7bea2935-ecd8-541a-99e4-e052031ab1f5",
+      "noteType": "Bert Cloze",
+      "section": "scheduling",
+      "fields": {
+        "Text": "A {{c1::context switch}} saves the registers of the currently running task and restores those of the next one.",
+        "Extra": "It is done by low level kernel code, often in assembly.",
+        "Hint": "It is how the kernel changes which task is on the CPU.",
+        "Fact": "Besides saving registers, a context switch can leave caches and the TLB cold for the next task.",
+        "Source": "OSTEP: Mechanism: Limited Direct Execution (https://pages.cs.wisc.edu/~remzi/OSTEP/cpu-mechanisms.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "c1878025-a494-5e90-99b4-65b26c1195a7",
+      "noteType": "Bert Basic",
+      "section": "scheduling",
+      "fields": {
+        "Question": "Which scheduling policy runs jobs strictly in the order they arrive?",
+        "Answer": "FIFO",
+        "Aliases": "FCFS\nfirst come first served\nfirst in first out",
+        "Hint": "It is the simplest policy and easy to implement.",
+        "Fact": "Its average turnaround time is poor when a long job arrives before short ones.",
+        "Source": "OSTEP: Scheduling: Introduction (https://pages.cs.wisc.edu/~remzi/OSTEP/cpu-sched.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::sched-algos",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "192166fe-f1c5-5b09-8c96-9af6b7381801",
+      "noteType": "Bert Basic",
+      "section": "scheduling",
+      "fields": {
+        "Question": "Which non-preemptive policy runs the job with the shortest total run time first?",
+        "Answer": "SJF",
+        "Aliases": "shortest job first",
+        "Hint": "It needs to know job lengths in advance.",
+        "Fact": "If all jobs arrive at the same time, it is optimal for average turnaround time.",
+        "Source": "OSTEP: Scheduling: Introduction (https://pages.cs.wisc.edu/~remzi/OSTEP/cpu-sched.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::sched-algos",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "58fdebca-69f9-501c-a5cf-82f93bc54e29",
+      "noteType": "Bert Basic",
+      "section": "scheduling",
+      "fields": {
+        "Question": "Which preemptive policy always runs the job with the least remaining time?",
+        "Answer": "STCF",
+        "Aliases": "shortest time-to-completion first\nSRTF\nshortest remaining time first\nPSJF",
+        "Hint": "It is the preemptive version of a well known non-preemptive policy.",
+        "Fact": "OSTEP shows it is optimal for average turnaround time when jobs arrive at different times.",
+        "Source": "OSTEP: Scheduling: Introduction (https://pages.cs.wisc.edu/~remzi/OSTEP/cpu-sched.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::sched-algos",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "05c6757e-138d-536f-b952-0d8317e7a11c",
+      "noteType": "Bert Basic",
+      "section": "scheduling",
+      "fields": {
+        "Question": "Which policy runs each job for a fixed time slice and then moves to the next in the queue?",
+        "Answer": "Round robin",
+        "Aliases": "RR\nround-robin",
+        "Hint": "It is fair over short time scales.",
+        "Fact": "It gives good response time but is among the worst policies for turnaround time.",
+        "Source": "OSTEP: Scheduling: Introduction (https://pages.cs.wisc.edu/~remzi/OSTEP/cpu-sched.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::sched-algos",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "fdeab3e5-937d-56f4-b942-409582857643",
+      "noteType": "Bert Cloze",
+      "section": "scheduling",
+      "fields": {
+        "Text": "The {{c1::convoy effect}} is when short jobs queue behind a long running job, as under FIFO.",
+        "Extra": "It hurts average turnaround time.",
+        "Hint": "Picture cars stuck behind a slow truck.",
+        "Fact": "Preemptive policies such as STCF avoid it by letting short jobs run first.",
+        "Source": "OSTEP: Scheduling: Introduction (https://pages.cs.wisc.edu/~remzi/OSTEP/cpu-sched.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "4f4601d2-d0ba-51a4-8de1-4ac5163f3b3c",
+      "noteType": "Bert Cloze",
+      "section": "scheduling",
+      "fields": {
+        "Text": "In round robin, a shorter time slice improves {{c1::response time}} but increases context switch overhead.",
+        "Extra": "The slice must be long enough to amortize the cost of switching.",
+        "Hint": "It measures how soon a job first gets to run.",
+        "Fact": "OSTEP uses the term amortization for making the slice long enough that switch cost is a small fraction.",
+        "Source": "OSTEP: Scheduling: Introduction (https://pages.cs.wisc.edu/~remzi/OSTEP/cpu-sched.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "fd1b1549-263a-54eb-ad01-b79ddea6c9e8",
+      "noteType": "Bert Basic",
+      "section": "scheduling",
+      "fields": {
+        "Question": "Which scheduler uses several priority queues and adjusts a job's priority based on its observed behavior?",
+        "Answer": "MLFQ",
+        "Aliases": "multi-level feedback queue\nmultilevel feedback queue",
+        "Hint": "Jobs that use their whole time slice move down.",
+        "Fact": "OSTEP credits Corbató et al. with first describing it in 1962 for CTSS.",
+        "Source": "OSTEP: Scheduling: The Multi-Level Feedback Queue (https://pages.cs.wisc.edu/~remzi/OSTEP/cpu-sched-mlfq.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::sched-algos",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "4dcb5d55-52f6-52df-873e-ae716a9c4f55",
+      "noteType": "Bert Cloze",
+      "section": "scheduling",
+      "fields": {
+        "Text": "MLFQ periodically performs a {{c1::priority boost}}, moving every job to the topmost queue.",
+        "Extra": "This prevents starvation of long running jobs and adapts to jobs that become interactive.",
+        "Hint": "It is a periodic reset of priorities.",
+        "Fact": "OSTEP calls the boost interval a voodoo constant because it is hard to choose well.",
+        "Source": "OSTEP: Scheduling: The Multi-Level Feedback Queue (https://pages.cs.wisc.edu/~remzi/OSTEP/cpu-sched-mlfq.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "2cdca87f-d985-5615-9c7d-63c5fdaed357",
+      "noteType": "Bert Basic",
+      "section": "scheduling",
+      "fields": {
+        "Question": "Which scheduler became Linux's default for normal tasks in version 2.6.23?",
+        "Answer": "CFS",
+        "Aliases": "Completely Fair Scheduler",
+        "Hint": "It was written by Ingo Molnar.",
+        "Fact": "Its documentation says it models an ideal, precise multitasking CPU on real hardware.",
+        "Source": "Linux kernel docs: CFS Scheduler (https://docs.kernel.org/scheduler/sched-design-CFS.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::sched-algos",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "0c8ed497-14ed-5df0-bfac-8b99663dce28",
+      "noteType": "Bert Basic",
+      "section": "scheduling",
+      "fields": {
+        "Question": "Which scheduling algorithm replaced CFS's task selection in Linux 6.6?",
+        "Answer": "EEVDF",
+        "Aliases": "Earliest Eligible Virtual Deadline First",
+        "Hint": "It adds the idea of a virtual deadline.",
+        "Fact": "The algorithm comes from a 1995 paper by Ion Stoica and Hussein Abdel-Wahab.",
+        "Source": "Linux kernel docs: EEVDF Scheduler (https://docs.kernel.org/scheduler/sched-eevdf.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::sched-algos",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "f0639024-090b-5d49-8878-11c8a612374c",
+      "noteType": "Bert Cloze",
+      "section": "scheduling",
+      "fields": {
+        "Text": "CFS runs the task with the smallest {{c1::vruntime}} (virtual runtime).",
+        "Extra": "Virtual runtime grows more slowly for higher weight tasks.",
+        "Hint": "It is time spent running, scaled by the task's weight.",
+        "Fact": "Niceness changes a task's weight, which changes how fast its virtual runtime increases.",
+        "Source": "Linux kernel docs: CFS Scheduler (https://docs.kernel.org/scheduler/sched-design-CFS.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "6397e184-253a-5068-8d63-961fd2cdf8c1",
+      "noteType": "Bert Cloze",
+      "section": "scheduling",
+      "fields": {
+        "Text": "CFS keeps runnable tasks in a {{c1::red-black tree}} ordered by virtual runtime.",
+        "Extra": "The leftmost node is the next task to run.",
+        "Hint": "It is a self-balancing binary search tree.",
+        "Fact": "Inserting and removing tasks in this tree takes O(log n) time.",
+        "Source": "Linux kernel docs: CFS Scheduler (https://docs.kernel.org/scheduler/sched-design-CFS.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "e30097aa-d74f-52c9-ac60-9291a086ac4e",
+      "noteType": "Bert Typed",
+      "section": "scheduling",
+      "fields": {
+        "Question": "Which Linux real-time scheduling policy is like SCHED_FIFO but with time slices?",
+        "Answer": "SCHED_RR",
+        "Aliases": "sched_rr",
+        "Hint": "The suffix names a classic policy.",
+        "Fact": "Real-time policies use static priorities from 1 to 99 on Linux.",
+        "Source": "sched(7), Linux manual page (https://man7.org/linux/man-pages/man7/sched.7.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::linux-policies",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "2c443411-e34f-5450-b7c2-f24ee8c0fb67",
+      "noteType": "Bert Typed",
+      "section": "scheduling",
+      "fields": {
+        "Question": "Which Linux real-time policy runs a task until it blocks, yields or is preempted by a higher priority task?",
+        "Answer": "SCHED_FIFO",
+        "Aliases": "sched_fifo",
+        "Hint": "It has no time slicing.",
+        "Fact": "A runaway task under this policy can starve normal tasks, which is why Linux has real-time throttling.",
+        "Source": "sched(7), Linux manual page (https://man7.org/linux/man-pages/man7/sched.7.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::linux-policies",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "750d1948-b16f-5cd3-b181-c459a1bf15f6",
+      "noteType": "Bert Typed",
+      "section": "scheduling",
+      "fields": {
+        "Question": "What is the name of Linux's default time-sharing scheduling policy?",
+        "Answer": "SCHED_OTHER",
+        "Aliases": "SCHED_NORMAL\nsched_other",
+        "Hint": "Inside the kernel it has a different alias.",
+        "Fact": "Its nice values range from -20 to 19.",
+        "Source": "sched(7), Linux manual page (https://man7.org/linux/man-pages/man7/sched.7.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::linux-policies",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "b70cea59-5e2d-5006-991c-718ed32f5e8d",
+      "noteType": "Bert Cloze",
+      "section": "scheduling",
+      "fields": {
+        "Text": "On Linux, the nice value ranges from {{c1::-20}} (highest priority) to {{c2::19}} (lowest priority).",
+        "Extra": "Only privileged processes can lower their nice value.",
+        "Hint": "A nicer process lets others go first.",
+        "Fact": "The nice value only affects non real-time policies such as SCHED_OTHER.",
+        "Source": "sched(7), Linux manual page (https://man7.org/linux/man-pages/man7/sched.7.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "42a661f6-7570-5636-bca5-7928bd9c1403",
+      "noteType": "Bert Cloze",
+      "section": "scheduling",
+      "fields": {
+        "Text": "{{c1::Lottery}} scheduling gives each job tickets and picks a random winner, so CPU share is proportional to tickets held.",
+        "Extra": "It is a proportional share scheduler.",
+        "Hint": "Think of a raffle.",
+        "Fact": "It was described by Carl Waldspurger and William Weihl in 1994.",
+        "Source": "OSTEP: Scheduling: Proportional Share (https://pages.cs.wisc.edu/~remzi/OSTEP/cpu-sched-lottery.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "c741b7a7-2278-57bc-b86a-a49df51e3648",
+      "noteType": "Bert Cloze",
+      "section": "scheduling",
+      "fields": {
+        "Text": "{{c1::Stride}} scheduling is a deterministic proportional share scheduler that runs the job with the lowest pass value.",
+        "Extra": "Each job's pass value advances by its stride, which is inversely proportional to its tickets.",
+        "Hint": "It is a deterministic cousin of lottery scheduling.",
+        "Fact": "Unlike lottery scheduling, it needs global state, which makes adding new jobs harder.",
+        "Source": "OSTEP: Scheduling: Proportional Share (https://pages.cs.wisc.edu/~remzi/OSTEP/cpu-sched-lottery.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "9f7d69ff-59c3-54fa-835c-6448c6bdf9aa",
+      "noteType": "Bert Cloze",
+      "section": "scheduling",
+      "fields": {
+        "Text": "Turnaround time is the completion time minus the {{c1::arrival time}}.",
+        "Extra": "It is a performance metric rather than a fairness metric.",
+        "Hint": "When did the job show up?",
+        "Fact": "Optimizing turnaround and response time usually pulls a scheduler in opposite directions.",
+        "Source": "OSTEP: Scheduling: Introduction (https://pages.cs.wisc.edu/~remzi/OSTEP/cpu-sched.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "6b1a9fa9-ebb0-5bd2-81d9-46a29d52135f",
+      "noteType": "Bert Cloze",
+      "section": "scheduling",
+      "fields": {
+        "Text": "Response time is the time a job first runs minus its {{c1::arrival time}}.",
+        "Extra": "Interactive users care most about this metric.",
+        "Hint": "It measures how quickly the job starts.",
+        "Fact": "Round robin minimizes response time well but gives poor turnaround.",
+        "Source": "OSTEP: Scheduling: Introduction (https://pages.cs.wisc.edu/~remzi/OSTEP/cpu-sched.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "00366d01-5562-50a5-bfb7-12ea177d555c",
+      "noteType": "Bert Basic",
+      "section": "scheduling",
+      "fields": {
+        "Question": "Which hardware mechanism lets the OS regain the CPU from a process that never yields?",
+        "Answer": "Timer interrupt",
+        "Aliases": "timer\nclock interrupt\ntimer interrupts",
+        "Hint": "It fires periodically regardless of what the process does.",
+        "Fact": "Starting the timer is a privileged operation, so user code cannot disable it.",
+        "Source": "OSTEP: Mechanism: Limited Direct Execution (https://pages.cs.wisc.edu/~remzi/OSTEP/cpu-mechanisms.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "19c07d31-1ec9-5f12-93d4-36f1b4264525",
+      "noteType": "Bert Cloze",
+      "section": "scheduling",
+      "fields": {
+        "Text": "{{c1::Starvation}} is when a runnable task never gets the CPU because others always take priority.",
+        "Extra": "Aging or priority boosts are common fixes.",
+        "Hint": "The task goes hungry.",
+        "Fact": "Basic MLFQ without boosting can starve long running jobs when many interactive jobs exist.",
+        "Source": "OSTEP: Scheduling: The Multi-Level Feedback Queue (https://pages.cs.wisc.edu/~remzi/OSTEP/cpu-sched-mlfq.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "a6a3eb17-0627-5343-a1a6-dd6bc3187a6c",
+      "noteType": "Bert Cloze",
+      "section": "scheduling",
+      "fields": {
+        "Text": "To avoid priority inversion, a lock holder can temporarily run at the waiter's priority, which is called {{c1::priority inheritance}}.",
+        "Extra": "The low priority holder finishes its critical section sooner.",
+        "Hint": "The holder borrows a higher priority.",
+        "Fact": "NASA's 1997 Mars Pathfinder lander suffered resets from priority inversion until priority inheritance was enabled.",
+        "Source": "OSTEP: Locks (https://pages.cs.wisc.edu/~remzi/OSTEP/threads-locks.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "ddc5d453-d609-53da-801b-96744c2489aa",
+      "noteType": "Bert Cloze",
+      "section": "scheduling",
+      "fields": {
+        "Text": "{{c1::CPU affinity}} restricts which CPUs a thread may run on; Linux sets it with sched_setaffinity().",
+        "Extra": "Pinning can improve cache locality.",
+        "Hint": "Think of a preference for a particular processor.",
+        "Fact": "The taskset command is a common front end for this setting.",
+        "Source": "sched_setaffinity(2), Linux manual page (https://man7.org/linux/man-pages/man2/sched_setaffinity.2.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "c3b67f96-014d-5946-a01a-62f3be8a2ee5",
+      "noteType": "Bert Cloze",
+      "section": "scheduling",
+      "fields": {
+        "Text": "Switching between processes also switches the {{c1::page table}}, which can force TLB entries to be flushed unless they are tagged.",
+        "Extra": "Threads of the same process avoid this cost.",
+        "Hint": "It is the structure that maps virtual pages to frames.",
+        "Fact": "On x86, the page table base address is held in the CR3 register.",
+        "Source": "OSTEP: Paging: Faster Translations (TLBs) (https://pages.cs.wisc.edu/~remzi/OSTEP/vm-tlbs.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "6641b05a-9ab9-5aa6-8da9-9aa7de582c2f",
+      "noteType": "Bert Two Way",
+      "section": "scheduling",
+      "fields": {
+        "Side A": "MLFQ",
+        "Side B": "Multi-level feedback queue",
+        "Aliases": "multilevel feedback queue",
+        "Hint": "A classic priority-based scheduler.",
+        "Fact": "Variants of it have been used in BSD Unix, Solaris and Windows NT according to OSTEP.",
+        "Source": "OSTEP: Scheduling: The Multi-Level Feedback Queue (https://pages.cs.wisc.edu/~remzi/OSTEP/cpu-sched-mlfq.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::os-abbreviations",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "643750e7-5eb0-555c-ae57-71f167992974",
+      "noteType": "Bert Two Way",
+      "section": "scheduling",
+      "fields": {
+        "Side A": "CFS",
+        "Side B": "Completely Fair Scheduler",
+        "Aliases": "completely fair scheduler",
+        "Hint": "Linux's former default scheduler.",
+        "Fact": "It replaced the earlier O(1) scheduler.",
+        "Source": "Linux kernel docs: CFS Scheduler (https://docs.kernel.org/scheduler/sched-design-CFS.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::os-abbreviations",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "6c5b9f75-948f-5d7b-89aa-364d9bc9d411",
+      "noteType": "Bert Two Way",
+      "section": "scheduling",
+      "fields": {
+        "Side A": "EEVDF",
+        "Side B": "Earliest Eligible Virtual Deadline First",
+        "Aliases": "",
+        "Hint": "The current Linux scheduler algorithm.",
+        "Fact": "It considers both a task's lag and its virtual deadline.",
+        "Source": "Linux kernel docs: EEVDF Scheduler (https://docs.kernel.org/scheduler/sched-eevdf.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::os-abbreviations",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "e9037c78-1cf9-511a-b28c-8133917d82b0",
+      "noteType": "Bert Cloze",
+      "section": "system-calls",
+      "fields": {
+        "Text": "A {{c1::system call}} is a controlled entry from user mode into the kernel to request a service.",
+        "Extra": "The kernel chooses the handler, not the caller.",
+        "Hint": "read() and write() are examples.",
+        "Fact": "OSTEP explains that system calls look like ordinary procedure calls because the C library wraps a trap instruction.",
+        "Source": "OSTEP: Mechanism: Limited Direct Execution (https://pages.cs.wisc.edu/~remzi/OSTEP/cpu-mechanisms.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "92430ae1-ce7d-5153-8a64-d3f29bc46ee3",
+      "noteType": "Bert Cloze",
+      "section": "system-calls",
+      "fields": {
+        "Text": "CPUs separate {{c1::user mode}} from {{c2::kernel mode}}, and privileged instructions run only in the latter.",
+        "Extra": "Attempting a privileged instruction in user mode raises an exception.",
+        "Hint": "One mode is restricted, the other is not.",
+        "Fact": "x86 calls these privilege levels rings, with the kernel in ring 0 and applications in ring 3.",
+        "Source": "OSTEP: Mechanism: Limited Direct Execution (https://pages.cs.wisc.edu/~remzi/OSTEP/cpu-mechanisms.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "024adfdf-db78-5779-9a96-9dae994e7977",
+      "noteType": "Bert Typed",
+      "section": "system-calls",
+      "fields": {
+        "Question": "Which x86-64 instruction do Linux programs use to enter the kernel for a system call?",
+        "Answer": "syscall",
+        "Aliases": "SYSCALL",
+        "Hint": "It replaced int 0x80 as the fast 64-bit entry path.",
+        "Fact": "The older int 0x80 path is the 32-bit system call entry.",
+        "Source": "syscall(2), Linux manual page (https://man7.org/linux/man-pages/man2/syscall.2.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "adb78b4b-ce67-5ddc-8605-aff2fefee8d2",
+      "noteType": "Bert Cloze",
+      "section": "system-calls",
+      "fields": {
+        "Text": "On x86-64 Linux, the system call number is passed in register {{c1::rax}}.",
+        "Extra": "Arguments go in rdi, rsi, rdx, r10, r8 and r9.",
+        "Hint": "It is also where the return value comes back.",
+        "Fact": "The fourth argument uses r10 instead of rcx because the syscall instruction overwrites rcx.",
+        "Source": "syscall(2), Linux manual page (https://man7.org/linux/man-pages/man2/syscall.2.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "bd0e8933-e4ae-5430-b295-99e96fd67a5d",
+      "noteType": "Bert Basic",
+      "section": "system-calls",
+      "fields": {
+        "Question": "In OSTEP, what does the kernel set up at boot to tell hardware where its trap handlers are?",
+        "Answer": "Trap table",
+        "Aliases": "trap tables\ninterrupt vector table\nIDT\ninterrupt descriptor table",
+        "Hint": "It is configured by a privileged instruction.",
+        "Fact": "On x86 this is the interrupt descriptor table, loaded with the lidt instruction.",
+        "Source": "OSTEP: Mechanism: Limited Direct Execution (https://pages.cs.wisc.edu/~remzi/OSTEP/cpu-mechanisms.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "2ae43a30-677f-546c-905d-b3924920f0a1",
+      "noteType": "Bert Cloze",
+      "section": "system-calls",
+      "fields": {
+        "Text": "Most libc system call wrappers return -1 on failure and store the error code in {{c1::errno}}.",
+        "Extra": "Its value is only meaningful right after a call reports failure.",
+        "Hint": "Check it only after the call reports failure.",
+        "Fact": "errno is thread-local, so one thread's failure does not overwrite another's error code.",
+        "Source": "errno(3), Linux manual page (https://man7.org/linux/man-pages/man3/errno.3.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "d5720a30-8aed-59c8-8b51-c353fa253602",
+      "noteType": "Bert Typed",
+      "section": "system-calls",
+      "fields": {
+        "Question": "Which Linux tool prints the system calls a process makes?",
+        "Answer": "strace",
+        "Aliases": "",
+        "Hint": "Its output lists each call with its arguments and return value.",
+        "Fact": "strace is built on the ptrace() system call.",
+        "Source": "strace(1), Linux manual page (https://man7.org/linux/man-pages/man1/strace.1.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "9dbe4e53-901a-56ce-a31b-daf070c20f63",
+      "noteType": "Bert Cloze",
+      "section": "system-calls",
+      "fields": {
+        "Text": "The {{c1::vDSO}} lets calls such as clock_gettime() run in user space without entering the kernel.",
+        "Extra": "The kernel maps it into every process automatically.",
+        "Hint": "A small shared library the kernel provides.",
+        "Fact": "Its name stands for virtual dynamic shared object.",
+        "Source": "vdso(7), Linux manual page (https://man7.org/linux/man-pages/man7/vdso.7.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "46177cb6-2fa1-5bd9-bfea-828d3f8aa489",
+      "noteType": "Bert Basic",
+      "section": "system-calls",
+      "fields": {
+        "Question": "<pre><code class=\"language-c\">ssize_t n = read(fd, buf, sizeof buf);</code></pre>What does read() return at end of file?",
+        "Answer": "0",
+        "Aliases": "zero",
+        "Hint": "Errors are reported with a different value.",
+        "Fact": "read() may return fewer bytes than requested even when the file has more data.",
+        "Source": "read(2), Linux manual page (https://man7.org/linux/man-pages/man2/read.2.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "0b00dc19-13b7-5b1d-a22e-26d11f83799c",
+      "noteType": "Bert Typed",
+      "section": "system-calls",
+      "fields": {
+        "Question": "Which system call returns the process ID of the caller?",
+        "Answer": "getpid",
+        "Aliases": "getpid()",
+        "Hint": "Its name is a verb plus an abbreviation.",
+        "Fact": "getppid() returns the parent's process ID instead.",
+        "Source": "proc(5), Linux manual page (https://man7.org/linux/man-pages/man5/proc.5.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::syscall-names",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "42e047ce-6ac8-551e-b6ba-b8736d75b40b",
+      "noteType": "Bert Typed",
+      "section": "system-calls",
+      "fields": {
+        "Question": "Which system call moves the program break to grow or shrink the heap?",
+        "Answer": "brk",
+        "Aliases": "sbrk\nbrk()\nsbrk()",
+        "Hint": "Classic malloc implementations used it to get memory.",
+        "Fact": "The program break marks the end of the process's data segment.",
+        "Source": "brk(2), Linux manual page (https://man7.org/linux/man-pages/man2/brk.2.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::syscall-names",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "d05a8867-ea4d-57f3-af14-06e72792246e",
+      "noteType": "Bert Typed",
+      "section": "system-calls",
+      "fields": {
+        "Question": "Which system call releases a file descriptor?",
+        "Answer": "close",
+        "Aliases": "close()",
+        "Hint": "Leaking descriptors eventually makes open() fail.",
+        "Fact": "Closing a descriptor releases any POSIX record locks the process holds on that file.",
+        "Source": "open(2), Linux manual page (https://man7.org/linux/man-pages/man2/open.2.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::syscall-names",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "033fe816-79a3-5dea-97f6-56c4361abd82",
+      "noteType": "Bert Typed",
+      "section": "system-calls",
+      "fields": {
+        "Question": "Which call makes a descriptor a copy of another at a chosen number, as shells do for redirection?",
+        "Answer": "dup2",
+        "Aliases": "dup2()\ndup3",
+        "Hint": "It is a numbered variant of a shorter call.",
+        "Fact": "If the target descriptor is already open, it is closed first, atomically.",
+        "Source": "dup(2), Linux manual page (https://man7.org/linux/man-pages/man2/dup.2.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::syscall-names",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "83a4e24e-380b-5d2b-b388-b25773425f61",
+      "noteType": "Bert Cloze",
+      "section": "system-calls",
+      "fields": {
+        "Text": "File descriptors 0, 1 and 2 are standard {{c1::input}}, standard {{c2::output}} and standard {{c3::error}}.",
+        "Extra": "Programs inherit them from their parent.",
+        "Hint": "Think of the shell redirections <, > and 2>.",
+        "Fact": "stderr is typically unbuffered in C so error messages appear immediately.",
+        "Source": "stdin(3), Linux manual page (https://man7.org/linux/man-pages/man3/stdin.3.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "7ade0bd8-2dd0-5f27-b882-f563500fd598",
+      "noteType": "Bert Cloze",
+      "section": "system-calls",
+      "fields": {
+        "Text": "The {{c1::mmap}}() system call maps files or anonymous memory into a process's address space.",
+        "Extra": "munmap() removes the mapping.",
+        "Hint": "Its name is short for memory map.",
+        "Fact": "With MAP_SHARED, writes to a file mapping are visible to other processes that map the same file.",
+        "Source": "mmap(2), Linux manual page (https://man7.org/linux/man-pages/man2/mmap.2.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "7b3e0070-03b8-5c20-8eef-f9d13d613154",
+      "noteType": "Bert Cloze",
+      "section": "system-calls",
+      "fields": {
+        "Text": "An {{c1::interrupt}} is an asynchronous signal from hardware, such as a device or timer, that diverts the CPU to a kernel handler.",
+        "Extra": "System calls, in contrast, are requested synchronously by the program.",
+        "Hint": "It arrives at a time the program did not choose.",
+        "Fact": "OSTEP describes interrupts as a way to overlap CPU work with I/O instead of polling.",
+        "Source": "OSTEP: I/O Devices (https://pages.cs.wisc.edu/~remzi/OSTEP/file-devices.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "87a26812-dc2d-55f0-a076-c8b3fb4a480f",
+      "noteType": "Bert Typed",
+      "section": "system-calls",
+      "fields": {
+        "Question": "Which system call returns a new file descriptor for a path?",
+        "Answer": "open",
+        "Aliases": "open()\nopenat\nopenat()",
+        "Hint": "Its flags include O_RDONLY and O_CREAT.",
+        "Fact": "open() returns the lowest numbered descriptor not currently open in the process.",
+        "Source": "open(2), Linux manual page (https://man7.org/linux/man-pages/man2/open.2.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::syscall-names",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "f080f42d-eb9e-5456-b4d0-4fb57dbe7faf",
+      "noteType": "Bert Two Way",
+      "section": "system-calls",
+      "fields": {
+        "Side A": "POSIX",
+        "Side B": "Portable Operating System Interface",
+        "Aliases": "portable operating system interface",
+        "Hint": "An IEEE family of standards.",
+        "Fact": "Richard Stallman suggested the name POSIX to the IEEE committee.",
+        "Source": "pthreads(7), Linux manual page (https://man7.org/linux/man-pages/man7/pthreads.7.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "57c5392f-5360-59dd-ba25-4ceed3bb3644",
+      "noteType": "Bert Cloze",
+      "section": "memory",
+      "fields": {
+        "Text": "Virtual memory gives each process the illusion of its own private {{c1::address space}}.",
+        "Extra": "The OS and hardware translate each access to a physical location.",
+        "Hint": "It is the range of addresses a program can use.",
+        "Fact": "OSTEP lists transparency, efficiency and protection as the goals of virtual memory.",
+        "Source": "OSTEP: The Abstraction: Address Spaces (https://pages.cs.wisc.edu/~remzi/OSTEP/vm-intro.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "1837ac8e-910a-588b-8e36-16c8344c55b0",
+      "noteType": "Bert Two Way",
+      "section": "memory",
+      "fields": {
+        "Side A": "MMU",
+        "Side B": "Memory management unit",
+        "Aliases": "memory management unit",
+        "Hint": "Hardware that translates addresses.",
+        "Fact": "Address translation by the MMU happens on every memory access a program makes.",
+        "Source": "OSTEP: The Abstraction: Address Spaces (https://pages.cs.wisc.edu/~remzi/OSTEP/vm-intro.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::os-abbreviations",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "7ca743e8-cb51-5658-a0dd-32d83af82ff4",
+      "noteType": "Bert Cloze",
+      "section": "memory",
+      "fields": {
+        "Text": "Paging splits virtual memory into fixed-size {{c1::pages}} and physical memory into page {{c2::frames}}.",
+        "Extra": "Any page can be placed in any frame.",
+        "Hint": "Fixed-size units avoid external fragmentation.",
+        "Fact": "Because all pieces have the same size, paging does not suffer from external fragmentation.",
+        "Source": "OSTEP: Paging: Introduction (https://pages.cs.wisc.edu/~remzi/OSTEP/vm-paging.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "9c9ec1d8-bed1-56c1-b45f-8aa48268cac5",
+      "noteType": "Bert Basic",
+      "section": "memory",
+      "fields": {
+        "Question": "What is the most common base page size on x86-64?",
+        "Answer": "4 KiB",
+        "Aliases": "4 KB\n4096 bytes\n4096\n4K\n4KB\n4KiB",
+        "Hint": "It is a power of two in kilobytes.",
+        "Fact": "macOS on Apple silicon uses a larger 16 KiB base page size.",
+        "Source": "OSTEP: Paging: Introduction (https://pages.cs.wisc.edu/~remzi/OSTEP/vm-paging.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "eeb9df49-5d00-5c10-af49-a64ccde8b118",
+      "noteType": "Bert Basic",
+      "section": "memory",
+      "fields": {
+        "Question": "With 4 KiB pages, how many low bits of a virtual address form the page offset?",
+        "Answer": "12",
+        "Aliases": "twelve\n12 bits",
+        "Hint": "Think of the power of two that equals 4096.",
+        "Fact": "The offset is copied unchanged into the physical address.",
+        "Source": "OSTEP: Paging: Introduction (https://pages.cs.wisc.edu/~remzi/OSTEP/vm-paging.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "ba51c0c4-6a03-5c1e-a113-31635ee4d361",
+      "noteType": "Bert Cloze",
+      "section": "memory",
+      "fields": {
+        "Text": "A virtual address is split into a virtual page number and an {{c1::offset}}, which is not translated.",
+        "Extra": "Only the page number is looked up in the page table.",
+        "Hint": "It locates a byte within the page.",
+        "Fact": "OSTEP abbreviates the virtual page number as VPN and the physical frame number as PFN.",
+        "Source": "OSTEP: Paging: Introduction (https://pages.cs.wisc.edu/~remzi/OSTEP/vm-paging.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "3b94466f-3f84-58b6-bb8f-f3dd4cea9092",
+      "noteType": "Bert Two Way",
+      "section": "memory",
+      "fields": {
+        "Side A": "TLB",
+        "Side B": "Translation lookaside buffer",
+        "Aliases": "translation lookaside buffer",
+        "Hint": "A small hardware cache in the MMU.",
+        "Fact": "A program that touches more pages than the TLB can cover runs noticeably slower.",
+        "Source": "OSTEP: Paging: Faster Translations (TLBs) (https://pages.cs.wisc.edu/~remzi/OSTEP/vm-tlbs.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::os-abbreviations",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "8e52674f-085d-5cbb-9b0a-b9b946b0dd86",
+      "noteType": "Bert Cloze",
+      "section": "memory",
+      "fields": {
+        "Text": "On a TLB {{c1::miss}}, the translation must be found by walking the page table, which x86 hardware does itself.",
+        "Extra": "Some architectures, such as MIPS, leave this to software.",
+        "Hint": "The translation was not cached.",
+        "Fact": "Software-managed TLBs let the OS use any page table structure it likes.",
+        "Source": "OSTEP: Paging: Faster Translations (TLBs) (https://pages.cs.wisc.edu/~remzi/OSTEP/vm-tlbs.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "bf88dc54-e018-54de-92a3-1cd731e8c94c",
+      "noteType": "Bert Cloze",
+      "section": "memory",
+      "fields": {
+        "Text": "Some TLBs tag entries with an {{c1::ASID}} so they need not be flushed on every context switch.",
+        "Extra": "The tag tells which address space an entry belongs to.",
+        "Hint": "The tag is a small number per address space.",
+        "Fact": "x86-64 calls its version of this tag a PCID, a process-context identifier.",
+        "Source": "OSTEP: Paging: Faster Translations (TLBs) (https://pages.cs.wisc.edu/~remzi/OSTEP/vm-tlbs.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "dad1746e-032d-55c9-929e-2df8ae65856d",
+      "noteType": "Bert Basic",
+      "section": "memory",
+      "fields": {
+        "Question": "How many virtual address bits does x86-64 translate with 4-level paging?",
+        "Answer": "48",
+        "Aliases": "48 bits\nforty-eight",
+        "Hint": "5-level paging raises it to 57.",
+        "Fact": "Canonical addresses require bits above the translated range to copy the top translated bit.",
+        "Source": "Linux kernel docs: Memory Management (https://docs.kernel.org/admin-guide/mm/index.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "9f4651c4-621d-5718-ab0a-84fc702e8452",
+      "noteType": "Bert Cloze",
+      "section": "memory",
+      "fields": {
+        "Text": "{{c1::Multi-level}} page tables save memory because table pages for unused regions of the address space need not exist.",
+        "Extra": "Each level indexes the next, like a tree.",
+        "Hint": "Think of a tree of tables.",
+        "Fact": "The cost is extra memory lookups on a TLB miss, one per level.",
+        "Source": "OSTEP: Paging: Smaller Tables (https://pages.cs.wisc.edu/~remzi/OSTEP/vm-smalltables.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "f650c680-a0f1-5119-b642-95507b53082d",
+      "noteType": "Bert Two Way",
+      "section": "memory",
+      "fields": {
+        "Side A": "PTE",
+        "Side B": "Page table entry",
+        "Aliases": "page table entry",
+        "Hint": "One per mapped virtual page.",
+        "Fact": "x86 PTEs include an NX bit that marks a page as non-executable.",
+        "Source": "OSTEP: Paging: Introduction (https://pages.cs.wisc.edu/~remzi/OSTEP/vm-paging.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::os-abbreviations",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "d93a0ae9-5b54-5f3d-902c-b4fbca9761e2",
+      "noteType": "Bert Cloze",
+      "section": "memory",
+      "fields": {
+        "Text": "Besides the frame number, a page table entry typically has bits such as {{c1::present}} (or valid), {{c2::dirty}} and accessed.",
+        "Extra": "The hardware sets the dirty bit when the page is written.",
+        "Hint": "One bit says whether the page is in memory at all.",
+        "Fact": "The dirty bit lets the OS skip writing unmodified pages back to disk on eviction.",
+        "Source": "OSTEP: Paging: Introduction (https://pages.cs.wisc.edu/~remzi/OSTEP/vm-paging.pdf)\nOSTEP: Beyond Physical Memory: Mechanisms (https://pages.cs.wisc.edu/~remzi/OSTEP/vm-beyondphys.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "ebb7ce64-3f18-54b2-a0ef-126acd4f06b6",
+      "noteType": "Bert Basic",
+      "section": "memory",
+      "fields": {
+        "Question": "What is the event when a program accesses a page that is not currently mapped to a frame?",
+        "Answer": "Page fault",
+        "Aliases": "page-fault\npage faults\nfault",
+        "Hint": "The hardware hands control to the OS to fix it up.",
+        "Fact": "Most page faults are handled transparently and the program never notices.",
+        "Source": "OSTEP: Beyond Physical Memory: Mechanisms (https://pages.cs.wisc.edu/~remzi/OSTEP/vm-beyondphys.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "56da8f3a-7dee-5bde-b31d-8d88d94b250f",
+      "noteType": "Bert Cloze",
+      "section": "memory",
+      "fields": {
+        "Text": "On Linux, a {{c1::minor}} page fault is resolved without disk I/O, while a {{c2::major}} fault needs to read from storage.",
+        "Extra": "Both are counted per process, for example by /usr/bin/time -v.",
+        "Hint": "The two words also describe a scale of importance.",
+        "Fact": "A minor fault can happen when a page is already in the page cache but not yet mapped by this process.",
+        "Source": "proc(5), Linux manual page (https://man7.org/linux/man-pages/man5/proc.5.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "dccfa12d-566a-5988-8737-3d2a145d3ba6",
+      "noteType": "Bert Cloze",
+      "section": "memory",
+      "fields": {
+        "Text": "An access to an unmapped or forbidden address usually delivers {{c1::SIGSEGV}} to the process.",
+        "Extra": "This is what a segmentation fault is.",
+        "Hint": "Its name refers to segmentation.",
+        "Fact": "The default action for this signal is to terminate the process and dump core.",
+        "Source": "signal(7), Linux manual page (https://man7.org/linux/man-pages/man7/signal.7.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "e8fb5549-7d3a-5d68-96c7-f56043af107d",
+      "noteType": "Bert Cloze",
+      "section": "memory",
+      "fields": {
+        "Text": "{{c1::Demand paging}} loads a page into memory only when it is first accessed.",
+        "Extra": "Programs can start before their whole image is in memory.",
+        "Hint": "Pages arrive when asked for.",
+        "Fact": "Executables are typically mapped this way, so unused code is never read from disk.",
+        "Source": "OSTEP: Beyond Physical Memory: Mechanisms (https://pages.cs.wisc.edu/~remzi/OSTEP/vm-beyondphys.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "8f7e5964-1efe-5a76-a023-5376dcd64731",
+      "noteType": "Bert Basic",
+      "section": "memory",
+      "fields": {
+        "Question": "Which page replacement policy evicts the page that has gone unused the longest?",
+        "Answer": "LRU",
+        "Aliases": "least recently used",
+        "Hint": "It uses the recent past to predict the future.",
+        "Fact": "Exact LRU is expensive, so real systems approximate it with reference bits.",
+        "Source": "OSTEP: Beyond Physical Memory: Policies (https://pages.cs.wisc.edu/~remzi/OSTEP/vm-beyondphys-policy.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::page-replacement",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "5cbb0673-3c80-5645-833b-0f169bbe5961",
+      "noteType": "Bert Basic",
+      "section": "memory",
+      "fields": {
+        "Question": "Which theoretical policy evicts the page that will next be used furthest in the future?",
+        "Answer": "OPT",
+        "Aliases": "optimal\nMIN\nBelady's MIN\nBelady's algorithm",
+        "Hint": "It is unimplementable but useful as a benchmark.",
+        "Fact": "It was described by László Bélády in 1966.",
+        "Source": "OSTEP: Beyond Physical Memory: Policies (https://pages.cs.wisc.edu/~remzi/OSTEP/vm-beyondphys-policy.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::page-replacement",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "4b20a66a-e1c0-599f-b84d-f7d678dfe4b8",
+      "noteType": "Bert Basic",
+      "section": "memory",
+      "fields": {
+        "Question": "Which page replacement policy evicts the page that was loaded earliest, regardless of use?",
+        "Answer": "FIFO",
+        "Aliases": "first in first out",
+        "Hint": "It ignores how recently a page was touched.",
+        "Fact": "This policy can suffer from Belady's anomaly.",
+        "Source": "OSTEP: Beyond Physical Memory: Policies (https://pages.cs.wisc.edu/~remzi/OSTEP/vm-beyondphys-policy.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::page-replacement",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "3ef511c7-ad2f-54ba-b95c-2d9323a167f2",
+      "noteType": "Bert Basic",
+      "section": "memory",
+      "fields": {
+        "Question": "Which policy approximates LRU by sweeping a circular list and clearing use bits?",
+        "Answer": "Clock",
+        "Aliases": "clock algorithm\nsecond chance",
+        "Hint": "Picture a hand moving around a circle.",
+        "Fact": "A page with its use bit set gets a second chance and is skipped once.",
+        "Source": "OSTEP: Beyond Physical Memory: Policies (https://pages.cs.wisc.edu/~remzi/OSTEP/vm-beyondphys-policy.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::page-replacement",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "c0602f5c-6dc2-55f6-b668-3efa1cd949c2",
+      "noteType": "Bert Cloze",
+      "section": "memory",
+      "fields": {
+        "Text": "{{c1::Belady's anomaly}} is when adding frames increases the number of page faults, as can happen under FIFO.",
+        "Extra": "LRU and OPT never show it, because they are stack algorithms.",
+        "Hint": "It is named after a researcher.",
+        "Fact": "Bélády, Nelson and Shedler published the anomaly in 1969.",
+        "Source": "OSTEP: Beyond Physical Memory: Policies (https://pages.cs.wisc.edu/~remzi/OSTEP/vm-beyondphys-policy.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "841dc730-24aa-515b-abe0-47f8d75377af",
+      "noteType": "Bert Cloze",
+      "section": "memory",
+      "fields": {
+        "Text": "{{c1::Thrashing}} is when a system spends most of its time paging because active memory demands exceed physical memory.",
+        "Extra": "Throughput collapses while the disk is busy.",
+        "Hint": "The system is busy but makes little progress.",
+        "Fact": "Linux may respond to severe memory pressure by running the OOM killer.",
+        "Source": "OSTEP: Beyond Physical Memory: Policies (https://pages.cs.wisc.edu/~remzi/OSTEP/vm-beyondphys-policy.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "853f3dd4-3457-55bb-8944-6104d934145d",
+      "noteType": "Bert Cloze",
+      "section": "memory",
+      "fields": {
+        "Text": "A process's {{c1::working set}} is the set of pages it has referenced in a recent window of time.",
+        "Extra": "Keeping it in memory avoids frequent faults.",
+        "Hint": "Peter Denning introduced the idea.",
+        "Fact": "Denning proposed the working set model in 1968.",
+        "Source": "OSTEP: Beyond Physical Memory: Policies (https://pages.cs.wisc.edu/~remzi/OSTEP/vm-beyondphys-policy.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "3217a788-5c5c-5700-9765-fae9ed04eabf",
+      "noteType": "Bert Basic",
+      "section": "memory",
+      "fields": {
+        "Question": "Which Linux kernel mechanism terminates a process when memory is exhausted?",
+        "Answer": "OOM killer",
+        "Aliases": "out of memory killer\nOOM\noom-killer",
+        "Hint": "Its name abbreviates the situation it handles.",
+        "Fact": "Each process's /proc/[pid]/oom_score_adj can make it more or less likely to be chosen.",
+        "Source": "proc(5), Linux manual page (https://man7.org/linux/man-pages/man5/proc.5.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "9f89f267-0271-51fb-b1c6-d22bf97d2944",
+      "noteType": "Bert Cloze",
+      "section": "memory",
+      "fields": {
+        "Text": "Linux's vm.overcommit_memory value of {{c1::0}}, the default, uses heuristic overcommit.",
+        "Extra": "A value of 2 enables strict accounting.",
+        "Hint": "It is the lowest of the three allowed values.",
+        "Fact": "With overcommit, malloc() can succeed for memory the system cannot actually back later.",
+        "Source": "Linux kernel docs: Overcommit Accounting (https://docs.kernel.org/mm/overcommit-accounting.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "909fbb86-4ab8-5d06-a60a-6ae8a65deaae",
+      "noteType": "Bert Cloze",
+      "section": "memory",
+      "fields": {
+        "Text": "Huge pages on x86-64 are commonly {{c1::2 MiB}} or 1 GiB in size.",
+        "Extra": "Larger pages increase TLB reach.",
+        "Hint": "It is 512 times the base page size.",
+        "Fact": "One 2 MiB huge page covers what would otherwise need 512 TLB entries for 4 KiB pages.",
+        "Source": "Linux kernel docs: Transparent Hugepage Support (https://docs.kernel.org/admin-guide/mm/transhuge.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "f7b90c76-b0b4-5be9-b329-195f0b244f03",
+      "noteType": "Bert Cloze",
+      "section": "memory",
+      "fields": {
+        "Text": "{{c1::Transparent Huge Pages}} let Linux back memory with huge pages without application changes.",
+        "Extra": "Applications can also give hints with madvise().",
+        "Hint": "It works without the program noticing.",
+        "Fact": "The khugepaged kernel thread collapses ranges of small pages into huge pages in the background.",
+        "Source": "Linux kernel docs: Transparent Hugepage Support (https://docs.kernel.org/admin-guide/mm/transhuge.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "519d7012-263c-524c-9dc1-1ccccf67421a",
+      "noteType": "Bert Two Way",
+      "section": "memory",
+      "fields": {
+        "Side A": "ASLR",
+        "Side B": "Address space layout randomization",
+        "Aliases": "address space layout randomisation",
+        "Hint": "A security hardening technique.",
+        "Fact": "Linux controls it with /proc/sys/kernel/randomize_va_space.",
+        "Source": "proc(5), Linux manual page (https://man7.org/linux/man-pages/man5/proc.5.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::os-abbreviations",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "80ac7d74-e57c-5299-a0e9-5fc220f7345e",
+      "noteType": "Bert Cloze",
+      "section": "memory",
+      "fields": {
+        "Text": "{{c1::Swap space}} on disk holds pages evicted from physical memory.",
+        "Extra": "Swapped pages are read back on a major fault.",
+        "Hint": "It is space reserved for moving pages out.",
+        "Fact": "OSTEP notes that the present bit tells the hardware whether a page is in memory or swapped out.",
+        "Source": "OSTEP: Beyond Physical Memory: Mechanisms (https://pages.cs.wisc.edu/~remzi/OSTEP/vm-beyondphys.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "ff717955-4625-555b-b421-c12dedd930f7",
+      "noteType": "Bert Cloze",
+      "section": "memory",
+      "fields": {
+        "Text": "{{c1::External fragmentation}} is free memory split into pieces too small to satisfy a request.",
+        "Extra": "Coalescing adjacent free blocks reduces it.",
+        "Hint": "The waste is outside allocated blocks.",
+        "Fact": "Variable-sized allocation schemes, such as segmentation, suffer from it.",
+        "Source": "OSTEP: Free-Space Management (https://pages.cs.wisc.edu/~remzi/OSTEP/vm-freespace.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "7b5424a6-004a-5427-9779-d7778ecd6633",
+      "noteType": "Bert Cloze",
+      "section": "memory",
+      "fields": {
+        "Text": "{{c1::Internal fragmentation}} is wasted space inside an allocated block that is larger than requested.",
+        "Extra": "Rounding to fixed sizes causes it.",
+        "Hint": "The waste is inside allocated blocks.",
+        "Fact": "Paging trades external fragmentation for internal fragmentation in the last page.",
+        "Source": "OSTEP: Free-Space Management (https://pages.cs.wisc.edu/~remzi/OSTEP/vm-freespace.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "0c8c90d6-284b-57f1-92ff-9c6f02f07bad",
+      "noteType": "Bert Basic",
+      "section": "memory",
+      "fields": {
+        "Question": "Which allocation strategy picks the smallest free block that is large enough?",
+        "Answer": "Best fit",
+        "Aliases": "best-fit",
+        "Hint": "It tries to waste as little as possible per request.",
+        "Fact": "It must search the whole free list unless the list is sorted.",
+        "Source": "OSTEP: Free-Space Management (https://pages.cs.wisc.edu/~remzi/OSTEP/vm-freespace.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::alloc-fit",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "d28a80ec-21da-587d-a1e1-fe661f6dc405",
+      "noteType": "Bert Basic",
+      "section": "memory",
+      "fields": {
+        "Question": "Which allocation strategy takes the first free block that is large enough?",
+        "Answer": "First fit",
+        "Aliases": "first-fit",
+        "Hint": "It stops searching early.",
+        "Fact": "It tends to leave small fragments near the start of the free list.",
+        "Source": "OSTEP: Free-Space Management (https://pages.cs.wisc.edu/~remzi/OSTEP/vm-freespace.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::alloc-fit",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "7e916d8f-6b2f-56ea-a912-4a3569c51bf6",
+      "noteType": "Bert Basic",
+      "section": "memory",
+      "fields": {
+        "Question": "Which allocation strategy picks the largest free block?",
+        "Answer": "Worst fit",
+        "Aliases": "worst-fit",
+        "Hint": "It aims to leave large remainders.",
+        "Fact": "OSTEP reports that studies show it usually performs badly.",
+        "Source": "OSTEP: Free-Space Management (https://pages.cs.wisc.edu/~remzi/OSTEP/vm-freespace.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::alloc-fit",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "6d72ae4b-2bfd-5749-a377-ea32e26951a4",
+      "noteType": "Bert Basic",
+      "section": "memory",
+      "fields": {
+        "Question": "Which variant of first fit resumes searching where the previous search ended?",
+        "Answer": "Next fit",
+        "Aliases": "next-fit",
+        "Hint": "It keeps a pointer into the free list.",
+        "Fact": "It spreads searches more evenly through the list.",
+        "Source": "OSTEP: Free-Space Management (https://pages.cs.wisc.edu/~remzi/OSTEP/vm-freespace.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::alloc-fit",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "2a17b252-673a-5ddd-8a6e-278931802c04",
+      "noteType": "Bert Cloze",
+      "section": "memory",
+      "fields": {
+        "Text": "A {{c1::buddy}} allocator splits memory into power-of-two blocks and merges a freed block with its neighbor when both are free.",
+        "Extra": "Linux's page allocator uses this scheme.",
+        "Hint": "Each block has a partner of the same size.",
+        "Fact": "Finding a block's partner is cheap because their addresses differ in a single bit.",
+        "Source": "OSTEP: Free-Space Management (https://pages.cs.wisc.edu/~remzi/OSTEP/vm-freespace.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "9a1089c4-7ce1-5bf6-bd4d-b25d47fa1cff",
+      "noteType": "Bert Cloze",
+      "section": "memory",
+      "fields": {
+        "Text": "A {{c1::slab}} allocator keeps caches of same-size kernel objects so they can be reused quickly.",
+        "Extra": "It reduces fragmentation and initialization cost.",
+        "Hint": "It was introduced by Jeff Bonwick for Solaris.",
+        "Fact": "Linux today uses the SLUB implementation of this design.",
+        "Source": "OSTEP: Free-Space Management (https://pages.cs.wisc.edu/~remzi/OSTEP/vm-freespace.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "2e488ec9-59b9-5d8b-9026-a77ea2a4ee8c",
+      "noteType": "Bert Cloze",
+      "section": "memory",
+      "fields": {
+        "Text": "glibc malloc() serves large requests with {{c1::mmap}} instead of the heap.",
+        "Extra": "The default threshold is 128 KiB and adjusts dynamically.",
+        "Hint": "It is the same call used to map files.",
+        "Fact": "Memory from such allocations goes straight back to the OS when freed.",
+        "Source": "mallopt(3), Linux manual page (https://man7.org/linux/man-pages/man3/mallopt.3.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "8c30e405-0296-52df-be68-d185bac8a295",
+      "noteType": "Bert Basic",
+      "section": "memory",
+      "fields": {
+        "Question": "<pre><code class=\"language-c\">char *p = malloc(16);\nfree(p);\nfree(p);</code></pre>What bug does this code contain?",
+        "Answer": "Double free",
+        "Aliases": "double-free",
+        "Hint": "Count how many times the memory is released.",
+        "Fact": "This is undefined behavior and can corrupt the allocator's internal data.",
+        "Source": "OSTEP: Interlude: Memory API (https://pages.cs.wisc.edu/~remzi/OSTEP/vm-api.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::memory-bugs",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "cbed722c-f3fb-5833-905b-7fd9dca10364",
+      "noteType": "Bert Basic",
+      "section": "memory",
+      "fields": {
+        "Question": "<pre><code class=\"language-c\">char *p = malloc(16);\nfree(p);\np[0] = 'x';</code></pre>What bug does this code contain?",
+        "Answer": "Use after free",
+        "Aliases": "use-after-free\ndangling pointer",
+        "Hint": "Look at what happens after the memory is released.",
+        "Fact": "OSTEP calls a pointer to freed memory a dangling pointer.",
+        "Source": "OSTEP: Interlude: Memory API (https://pages.cs.wisc.edu/~remzi/OSTEP/vm-api.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::memory-bugs",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "4bdd7518-4eab-5466-9bd2-f553ef035378",
+      "noteType": "Bert Basic",
+      "section": "memory",
+      "fields": {
+        "Question": "What is the bug called when a program allocates memory and never frees it after it is no longer needed?",
+        "Answer": "Memory leak",
+        "Aliases": "leak\nmemory leaks",
+        "Hint": "Long-running programs suffer most.",
+        "Fact": "Memory still in use when a process exits is reclaimed by the OS anyway.",
+        "Source": "OSTEP: Interlude: Memory API (https://pages.cs.wisc.edu/~remzi/OSTEP/vm-api.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::memory-bugs",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "b1f59d8a-23e3-53dd-96cf-5e8b896cefec",
+      "noteType": "Bert Cloze",
+      "section": "synchronization",
+      "fields": {
+        "Text": "A {{c1::race condition}} is when the result depends on the timing of concurrent accesses to shared data.",
+        "Extra": "Incrementing a shared counter from two threads is the classic example.",
+        "Hint": "Two threads compete to get there first.",
+        "Fact": "A data race specifically means unsynchronized concurrent accesses where at least one is a write.",
+        "Source": "OSTEP: Concurrency: An Introduction (https://pages.cs.wisc.edu/~remzi/OSTEP/threads-intro.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "c6dfe697-3422-5606-aebb-c56ca0b28c98",
+      "noteType": "Bert Cloze",
+      "section": "synchronization",
+      "fields": {
+        "Text": "A {{c1::critical section}} is code that accesses a shared resource and must not run in more than one thread at a time.",
+        "Extra": "Locks surround it.",
+        "Hint": "It is the part that needs protection.",
+        "Fact": "OSTEP uses the term mutual exclusion for guaranteeing only one thread is inside.",
+        "Source": "OSTEP: Concurrency: An Introduction (https://pages.cs.wisc.edu/~remzi/OSTEP/threads-intro.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "3df71a2e-451b-5fca-a2bc-80957a8bf87d",
+      "noteType": "Bert Basic",
+      "section": "synchronization",
+      "fields": {
+        "Question": "Which primitive provides mutual exclusion through lock and unlock operations by its owner?",
+        "Answer": "Mutex",
+        "Aliases": "lock\nmutual exclusion lock\npthread_mutex_t",
+        "Hint": "Its name is a contraction.",
+        "Fact": "glibc builds its pthread mutexes on Linux futexes.",
+        "Source": "OSTEP: Locks (https://pages.cs.wisc.edu/~remzi/OSTEP/threads-locks.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::sync-primitives",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "60dfa3d0-c0b1-5d46-9e20-f41630694ec2",
+      "noteType": "Bert Basic",
+      "section": "synchronization",
+      "fields": {
+        "Question": "Which primitive is an integer with wait and post operations?",
+        "Answer": "Semaphore",
+        "Aliases": "counting semaphore\nsem_t",
+        "Hint": "Wait decrements and may block; post increments.",
+        "Fact": "Dijkstra introduced this primitive in the 1960s.",
+        "Source": "OSTEP: Semaphores (https://pages.cs.wisc.edu/~remzi/OSTEP/threads-sema.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::sync-primitives",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "a4a4142d-16fe-5706-8806-9b1a9c10d335",
+      "noteType": "Bert Basic",
+      "section": "synchronization",
+      "fields": {
+        "Question": "Which primitive lets a thread sleep, with a mutex held, until another thread signals that a condition may be true?",
+        "Answer": "Condition variable",
+        "Aliases": "condvar\ncond var\npthread_cond_t",
+        "Hint": "It always works together with a mutex.",
+        "Fact": "Signaling it when no thread is waiting has no lasting effect, unlike a semaphore post.",
+        "Source": "OSTEP: Condition Variables (https://pages.cs.wisc.edu/~remzi/OSTEP/threads-cv.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::sync-primitives",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "d2da5b44-80a4-5456-b63a-cfd474ffa28f",
+      "noteType": "Bert Basic",
+      "section": "synchronization",
+      "fields": {
+        "Question": "Which lock lets many readers in at once, or a single writer?",
+        "Answer": "Reader-writer lock",
+        "Aliases": "rwlock\nreaders-writer lock\nread-write lock",
+        "Hint": "It suits data that is read far more often than written.",
+        "Fact": "Simple implementations can starve writers if readers keep arriving.",
+        "Source": "OSTEP: Semaphores (https://pages.cs.wisc.edu/~remzi/OSTEP/threads-sema.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::sync-primitives",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "b2a3944a-573a-5829-8d5a-df64c163e236",
+      "noteType": "Bert Basic",
+      "section": "synchronization",
+      "fields": {
+        "Question": "Which kind of lock busy waits in a loop until it becomes free?",
+        "Answer": "Spinlock",
+        "Aliases": "spin lock\nspin-lock",
+        "Hint": "It never puts the thread to sleep.",
+        "Fact": "Spinning wastes CPU on a single processor, since the holder cannot run while the waiter spins.",
+        "Source": "OSTEP: Locks (https://pages.cs.wisc.edu/~remzi/OSTEP/threads-locks.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::sync-primitives",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "e362a3c2-0b0e-599e-8098-5f18bac65744",
+      "noteType": "Bert Cloze",
+      "section": "synchronization",
+      "fields": {
+        "Text": "Dijkstra named the two semaphore operations {{c1::P}} and {{c2::V}}.",
+        "Extra": "They correspond to wait and post.",
+        "Hint": "Both are single letters taken from Dutch words.",
+        "Fact": "Dijkstra was Dutch, which is why the operation names come from Dutch.",
+        "Source": "OSTEP: Semaphores (https://pages.cs.wisc.edu/~remzi/OSTEP/threads-sema.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "08923b29-4138-5a98-a764-87a04b05bade",
+      "noteType": "Bert Cloze",
+      "section": "synchronization",
+      "fields": {
+        "Text": "A semaphore initialized to {{c1::1}} can be used as a lock.",
+        "Extra": "This is called a binary semaphore.",
+        "Hint": "Only one thread should be able to pass.",
+        "Fact": "OSTEP shows that a semaphore initialized to 0 can be used for ordering instead.",
+        "Source": "OSTEP: Semaphores (https://pages.cs.wisc.edu/~remzi/OSTEP/threads-sema.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "a4ac8220-2b46-5e05-8ea3-6eefc24ef39e",
+      "noteType": "Bert Basic",
+      "section": "synchronization",
+      "fields": {
+        "Question": "<pre><code class=\"language-c\">pthread_mutex_lock(&m);\nwhile (!ready)\n    pthread_cond_wait(&c, &m);\npthread_mutex_unlock(&m);</code></pre>Why is the condition checked in a while loop instead of an if?",
+        "Answer": "Spurious wakeups",
+        "Aliases": "spurious wakeup\nthe condition may be false on wakeup",
+        "Hint": "Waking up does not prove the condition holds.",
+        "Fact": "Another thread may also consume the state between the signal and the wakeup, so rechecking is always required.",
+        "Source": "pthread_cond_wait, The Open Group Base Specifications (https://pubs.opengroup.org/onlinepubs/9799919799/functions/pthread_cond_wait.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "5264db34-2c09-5450-815e-63773c1f1fa3",
+      "noteType": "Bert Cloze",
+      "section": "synchronization",
+      "fields": {
+        "Text": "pthread_cond_wait() atomically {{c1::releases the mutex}} and sleeps, then reacquires the mutex before returning.",
+        "Extra": "This prevents a lost wakeup between checking and sleeping.",
+        "Hint": "Think about what must happen to the lock while sleeping.",
+        "Fact": "Calling it without holding the mutex is undefined behavior.",
+        "Source": "pthread_cond_wait, The Open Group Base Specifications (https://pubs.opengroup.org/onlinepubs/9799919799/functions/pthread_cond_wait.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "ed509070-6fed-52ad-b2ce-9c6c1857c2af",
+      "noteType": "Bert Basic",
+      "section": "synchronization",
+      "fields": {
+        "Question": "Which atomic instruction writes a new value only if the current value equals an expected one?",
+        "Answer": "Compare-and-swap",
+        "Aliases": "CAS\ncompare and swap\ncompare-and-exchange\ncmpxchg",
+        "Hint": "x86 implements it as cmpxchg.",
+        "Fact": "It is the building block of most lock-free data structures.",
+        "Source": "OSTEP: Locks (https://pages.cs.wisc.edu/~remzi/OSTEP/threads-locks.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::atomics",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "631ad1a5-de9c-5d00-9bb4-9c3ecf70b8cc",
+      "noteType": "Bert Basic",
+      "section": "synchronization",
+      "fields": {
+        "Question": "Which atomic instruction sets a memory location and returns its old value, used for simple spinlocks?",
+        "Answer": "Test-and-set",
+        "Aliases": "test and set\nTAS\nxchg",
+        "Hint": "Its name describes both steps.",
+        "Fact": "OSTEP builds its first working spinlock from this instruction.",
+        "Source": "OSTEP: Locks (https://pages.cs.wisc.edu/~remzi/OSTEP/threads-locks.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::atomics",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "b528e4a9-56f7-5455-9e6d-ea43e1783818",
+      "noteType": "Bert Basic",
+      "section": "synchronization",
+      "fields": {
+        "Question": "Which atomic instruction increments a value and returns the old one, used to build ticket locks?",
+        "Answer": "Fetch-and-add",
+        "Aliases": "fetch and add\natomic add\nxadd",
+        "Hint": "Ticket locks hand out numbers with it.",
+        "Fact": "Ticket locks built this way serve threads in order, so they guarantee progress for every waiter.",
+        "Source": "OSTEP: Locks (https://pages.cs.wisc.edu/~remzi/OSTEP/threads-locks.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::atomics",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "dd3891ff-0adb-559c-9aec-5134f4bd7543",
+      "noteType": "Bert Cloze",
+      "section": "synchronization",
+      "fields": {
+        "Text": "A Linux {{c1::futex}} lets an uncontended lock be taken entirely in user space, entering the kernel only to wait or wake.",
+        "Extra": "glibc builds pthread mutexes on it.",
+        "Hint": "Its name is a contraction that describes speed.",
+        "Fact": "Futexes first appeared in a stable kernel with Linux 2.6.0.",
+        "Source": "futex(7), Linux manual page (https://man7.org/linux/man-pages/man7/futex.7.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "cafc8c37-d73c-5591-8b0f-5d2bc5bb7071",
+      "noteType": "Bert Cloze",
+      "section": "synchronization",
+      "fields": {
+        "Text": "{{c1::Peterson's}} algorithm achieves mutual exclusion for two threads using only loads and stores.",
+        "Extra": "It assumes memory operations are not reordered.",
+        "Hint": "It is named after its author, published in 1981.",
+        "Fact": "On modern CPUs with relaxed memory ordering it needs memory fences to work.",
+        "Source": "OSTEP: Locks (https://pages.cs.wisc.edu/~remzi/OSTEP/threads-locks.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "2841b471-edd8-5b9d-a227-bea8577bd900",
+      "noteType": "Bert Cloze",
+      "section": "synchronization",
+      "fields": {
+        "Text": "OSTEP's bounded buffer uses semaphores named {{c1::empty}} and {{c2::full}}, plus a mutex.",
+        "Extra": "One counts free slots and the other counts filled slots.",
+        "Hint": "The names describe slot states.",
+        "Fact": "The mutex must be acquired inside the semaphore waits, or the code can deadlock.",
+        "Source": "OSTEP: Semaphores (https://pages.cs.wisc.edu/~remzi/OSTEP/threads-sema.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "72abb240-d63c-58c4-9567-ea1fd3c3f22a",
+      "noteType": "Bert Cloze",
+      "section": "synchronization",
+      "fields": {
+        "Text": "A {{c1::memory barrier}} restricts how the CPU and compiler reorder memory operations around it.",
+        "Extra": "Lock implementations include them.",
+        "Hint": "It is also called a fence.",
+        "Fact": "x86 provides mfence, while ARM uses dmb.",
+        "Source": "OSTEP: Locks (https://pages.cs.wisc.edu/~remzi/OSTEP/threads-locks.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "84dbacfa-a826-58b4-9488-0d0722b56bd6",
+      "noteType": "Bert Cloze",
+      "section": "synchronization",
+      "fields": {
+        "Text": "OSTEP finds that most non-deadlock concurrency bugs are {{c1::atomicity violation}} or order violation bugs.",
+        "Extra": "One assumes code runs as a unit; the other assumes an order.",
+        "Hint": "A sequence was assumed to happen without interruption.",
+        "Fact": "The study OSTEP cites, by Lu et al. in 2008, examined bugs in MySQL, Apache, Mozilla and OpenOffice.",
+        "Source": "OSTEP: Common Concurrency Problems (https://pages.cs.wisc.edu/~remzi/OSTEP/threads-bugs.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "850d35ff-597d-5632-bf19-387f2bc7d152",
+      "noteType": "Bert Cloze",
+      "section": "synchronization",
+      "fields": {
+        "Text": "Deadlock requires {{c1::mutual exclusion}}, {{c2::hold and wait}}, {{c3::no preemption}} and {{c4::circular wait}}.",
+        "Extra": "Breaking any one of them prevents deadlock.",
+        "Hint": "Four conditions in total.",
+        "Fact": "These are often called the Coffman conditions, after a 1971 survey paper.",
+        "Source": "Coffman, Elphick, Shoshani: System Deadlocks (ACM Computing Surveys, 1971) (https://dl.acm.org/doi/10.1145/356586.356588)\nOSTEP: Common Concurrency Problems (https://pages.cs.wisc.edu/~remzi/OSTEP/threads-bugs.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "4f20aeda-6c80-519f-923b-830c569b2238",
+      "noteType": "Bert Basic",
+      "section": "synchronization",
+      "fields": {
+        "Question": "Which deadlock condition is broken by always acquiring locks in one global order?",
+        "Answer": "Circular wait",
+        "Aliases": "circular-wait",
+        "Hint": "A cycle in the wait graph becomes impossible.",
+        "Fact": "OSTEP points to Linux memory mapping code whose comments list the required lock acquisition orders.",
+        "Source": "OSTEP: Common Concurrency Problems (https://pages.cs.wisc.edu/~remzi/OSTEP/threads-bugs.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::deadlock-conditions",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "ef50f823-5467-56ac-a6a5-6a26e8c40b88",
+      "noteType": "Bert Basic",
+      "section": "synchronization",
+      "fields": {
+        "Question": "Which deadlock condition is broken by acquiring all needed locks at once, atomically?",
+        "Answer": "Hold and wait",
+        "Aliases": "hold-and-wait",
+        "Hint": "Threads never hold one resource while waiting for another.",
+        "Fact": "OSTEP notes this approach reduces concurrency, since locks are taken early.",
+        "Source": "OSTEP: Common Concurrency Problems (https://pages.cs.wisc.edu/~remzi/OSTEP/threads-bugs.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::deadlock-conditions",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "e3bf9d3c-2686-5dd9-be69-a44e2ad29e67",
+      "noteType": "Bert Basic",
+      "section": "synchronization",
+      "fields": {
+        "Question": "Which deadlock condition does pthread_mutex_trylock() help break, by letting a thread back off and release what it holds?",
+        "Answer": "No preemption",
+        "Aliases": "no-preemption",
+        "Hint": "Resources are normally not forcibly taken away.",
+        "Fact": "Backing off and retrying can cause livelock instead.",
+        "Source": "OSTEP: Common Concurrency Problems (https://pages.cs.wisc.edu/~remzi/OSTEP/threads-bugs.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::deadlock-conditions",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "c86baece-b46b-5c30-9ae0-9011545b002b",
+      "noteType": "Bert Basic",
+      "section": "synchronization",
+      "fields": {
+        "Question": "Which deadlock condition do lock-free data structures avoid?",
+        "Answer": "Mutual exclusion",
+        "Aliases": "mutual-exclusion",
+        "Hint": "They rely on atomic hardware instructions instead of locks.",
+        "Fact": "OSTEP builds such structures from compare-and-swap.",
+        "Source": "OSTEP: Common Concurrency Problems (https://pages.cs.wisc.edu/~remzi/OSTEP/threads-bugs.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::deadlock-conditions",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "fbd9b9fc-beba-57aa-b70f-1cd8ccd3c180",
+      "noteType": "Bert Cloze",
+      "section": "synchronization",
+      "fields": {
+        "Text": "Dijkstra's {{c1::banker's algorithm}} avoids deadlock by granting only requests that keep the system in a safe state.",
+        "Extra": "It needs each process's maximum demand in advance.",
+        "Hint": "It is named after a lender with limited cash.",
+        "Fact": "Because maximum demands are rarely known, general purpose OSes seldom use it.",
+        "Source": "OSTEP: Common Concurrency Problems (https://pages.cs.wisc.edu/~remzi/OSTEP/threads-bugs.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "4ba11d17-b495-5e33-9772-185d4880035b",
+      "noteType": "Bert Cloze",
+      "section": "synchronization",
+      "fields": {
+        "Text": "{{c1::Livelock}} is when threads keep reacting to each other and change state, but none makes progress.",
+        "Extra": "Random backoff before retrying helps.",
+        "Hint": "Busy rather than blocked.",
+        "Fact": "Unlike deadlocked threads, livelocked threads consume CPU time.",
+        "Source": "OSTEP: Common Concurrency Problems (https://pages.cs.wisc.edu/~remzi/OSTEP/threads-bugs.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "3ea4d3a7-1f8f-5e1d-a105-54503ca8dd7d",
+      "noteType": "Bert Cloze",
+      "section": "synchronization",
+      "fields": {
+        "Text": "Deadlock detection often searches a {{c1::wait-for graph}} for cycles.",
+        "Extra": "Each edge means one task waits for another.",
+        "Hint": "A graph of who waits on whom.",
+        "Fact": "Many database systems detect deadlocks this way and abort one transaction.",
+        "Source": "OSTEP: Common Concurrency Problems (https://pages.cs.wisc.edu/~remzi/OSTEP/threads-bugs.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "407211e8-6af0-521b-8f31-ef3b4a2e8e6c",
+      "noteType": "Bert Basic",
+      "section": "synchronization",
+      "fields": {
+        "Question": "Who first posed the problem now known as the dining philosophers?",
+        "Answer": "Edsger Dijkstra",
+        "Aliases": "Dijkstra\nE. W. Dijkstra",
+        "Hint": "He also invented semaphores.",
+        "Fact": "Tony Hoare later gave the problem its familiar dining philosophers form.",
+        "Source": "OSTEP: Semaphores (https://pages.cs.wisc.edu/~remzi/OSTEP/threads-sema.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "b00bb3f7-a3d9-5881-bfd4-4e3b0a05e0be",
+      "noteType": "Bert Basic",
+      "section": "synchronization",
+      "fields": {
+        "Question": "<pre><code class=\"language-c\">// thread 1\nlock(&a); lock(&b);\n// thread 2\nlock(&b); lock(&a);</code></pre>What can happen when these threads run concurrently?",
+        "Answer": "Deadlock",
+        "Aliases": "a deadlock\ndeadlocks",
+        "Hint": "Each thread may end up holding what the other wants.",
+        "Fact": "Acquiring a and b in the same order in both threads removes the problem.",
+        "Source": "OSTEP: Common Concurrency Problems (https://pages.cs.wisc.edu/~remzi/OSTEP/threads-bugs.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "eab84f4f-8118-51bd-9325-824092d2a9ce",
+      "noteType": "Bert Cloze",
+      "section": "synchronization",
+      "fields": {
+        "Text": "The Linux kernel's {{c1::lockdep}} validator reports lock ordering problems that could deadlock, even if no deadlock has happened yet.",
+        "Extra": "It tracks the order in which lock classes are acquired.",
+        "Hint": "The validator is enabled with CONFIG_PROVE_LOCKING.",
+        "Fact": "It works by learning ordering from every run rather than waiting for an actual hang.",
+        "Source": "Linux kernel docs: Runtime locking correctness validator (https://docs.kernel.org/locking/lockdep-design.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "3dda6cf6-4ace-5e0a-b187-0e7efc1275bd",
+      "noteType": "Bert Cloze",
+      "section": "file-systems",
+      "fields": {
+        "Text": "An {{c1::inode}} stores a file's metadata and the location of its data, but not its name.",
+        "Extra": "Names live elsewhere.",
+        "Hint": "ls -i prints its number.",
+        "Fact": "Running out of inodes can stop new files being created even when disk space remains.",
+        "Source": "inode(7), Linux manual page (https://man7.org/linux/man-pages/man7/inode.7.html)\nOSTEP: File System Implementation (https://pages.cs.wisc.edu/~remzi/OSTEP/file-implementation.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "231118d2-f5f9-5c0d-a962-6ccc6587f713",
+      "noteType": "Bert Basic",
+      "section": "file-systems",
+      "fields": {
+        "Question": "Where is a file's name stored in a Unix file system?",
+        "Answer": "Directory entry",
+        "Aliases": "directory\ndentry\nin the directory\nparent directory",
+        "Hint": "The inode does not hold it.",
+        "Fact": "Linux caches name lookups in the dentry cache.",
+        "Source": "OSTEP: Interlude: Files and Directories (https://pages.cs.wisc.edu/~remzi/OSTEP/file-intro.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "1cc0d4db-fd69-5d79-9512-97567397f1c7",
+      "noteType": "Bert Cloze",
+      "section": "file-systems",
+      "fields": {
+        "Text": "A {{c1::hard link}} is an additional directory entry that refers to the same inode.",
+        "Extra": "Deleting one name leaves the file reachable by the other.",
+        "Hint": "Created with ln without options.",
+        "Fact": "Most systems forbid hard links to directories to keep the tree acyclic.",
+        "Source": "OSTEP: Interlude: Files and Directories (https://pages.cs.wisc.edu/~remzi/OSTEP/file-intro.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "2370cfcf-bbd1-5348-a1f4-0b157ee51023",
+      "noteType": "Bert Cloze",
+      "section": "file-systems",
+      "fields": {
+        "Text": "A {{c1::symbolic link}} is a file that stores a path to another file and can dangle if the target is removed.",
+        "Extra": "It can point across file systems.",
+        "Hint": "Created with ln -s.",
+        "Fact": "Its length is the length of the stored path, not of the target file.",
+        "Source": "OSTEP: Interlude: Files and Directories (https://pages.cs.wisc.edu/~remzi/OSTEP/file-intro.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "29590901-e742-56fc-8533-44298618a3f0",
+      "noteType": "Bert Typed",
+      "section": "file-systems",
+      "fields": {
+        "Question": "Which system call removes a name from the file system?",
+        "Answer": "unlink",
+        "Aliases": "unlink()\nunlinkat",
+        "Hint": "rm uses it.",
+        "Fact": "The file's data is freed only when its link count is zero and no process has it open.",
+        "Source": "unlink(2), Linux manual page (https://man7.org/linux/man-pages/man2/unlink.2.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::syscall-names",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "b0238810-cdd6-57ec-8064-5dea0eca9d13",
+      "noteType": "Bert Typed",
+      "section": "file-systems",
+      "fields": {
+        "Question": "Which field of struct stat counts a file's hard links?",
+        "Answer": "st_nlink",
+        "Aliases": "nlink",
+        "Hint": "Its prefix is shared by every field of the struct.",
+        "Fact": "A new directory has a link count of 2: its name in the parent and its own . entry.",
+        "Source": "stat(2), Linux manual page (https://man7.org/linux/man-pages/man2/stat.2.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "6140c70e-0bb3-5c29-9047-ae09838f001d",
+      "noteType": "Bert Typed",
+      "section": "file-systems",
+      "fields": {
+        "Question": "Which system call returns a file's metadata, such as size and owner?",
+        "Answer": "stat",
+        "Aliases": "stat()\nfstat\nlstat\nstatx",
+        "Hint": "The shell command has the same name.",
+        "Fact": "lstat() reports on a symbolic link itself instead of following it.",
+        "Source": "stat(2), Linux manual page (https://man7.org/linux/man-pages/man2/stat.2.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::syscall-names",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "7e3234d3-256b-516a-85d9-c71fe076d6d8",
+      "noteType": "Bert Typed",
+      "section": "file-systems",
+      "fields": {
+        "Question": "Which ls option prints each file's inode number?",
+        "Answer": "-i",
+        "Aliases": "i\n--inode\nls -i",
+        "Hint": "The option is a single lowercase letter.",
+        "Fact": "Two hard links to the same file show the same inode number.",
+        "Source": "ls(1), Linux manual page (https://man7.org/linux/man-pages/man1/ls.1.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "ee4c83d8-4b8d-553e-8122-68cfc8670bdd",
+      "noteType": "Bert Cloze",
+      "section": "file-systems",
+      "fields": {
+        "Text": "Hard links cannot span file systems because inode numbers are only unique within a single {{c1::file system}}.",
+        "Extra": "Symbolic links have no such limit.",
+        "Hint": "Each mounted volume numbers its own inodes.",
+        "Fact": "link() fails with EXDEV when the paths are on different mounted file systems.",
+        "Source": "unlink(2), Linux manual page (https://man7.org/linux/man-pages/man2/unlink.2.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "22c225bb-b2d6-5c8e-8f9d-42530e6b18b8",
+      "noteType": "Bert Cloze",
+      "section": "file-systems",
+      "fields": {
+        "Text": "{{c1::Journaling}} file systems write intended updates to a log first, so they can recover consistently after a crash.",
+        "Extra": "It replaces a full fsck scan with a short log replay.",
+        "Hint": "Also called write-ahead logging.",
+        "Fact": "OSTEP describes how ext3 added journaling on top of the ext2 layout.",
+        "Source": "OSTEP: Crash Consistency: FSCK and Journaling (https://pages.cs.wisc.edu/~remzi/OSTEP/file-journaling.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "e67fdb49-7388-57a6-b916-3bf74bd1bed3",
+      "noteType": "Bert Cloze",
+      "section": "file-systems",
+      "fields": {
+        "Text": "ext4's default data mode is {{c1::ordered}}, which journals metadata and writes data blocks before their metadata is committed.",
+        "Extra": "The other modes are journal and writeback.",
+        "Hint": "The mode name describes a write ordering.",
+        "Fact": "OSTEP calls this approach metadata journaling.",
+        "Source": "Linux kernel docs: ext4 General Information (https://docs.kernel.org/admin-guide/ext4.html)\nOSTEP: Crash Consistency: FSCK and Journaling (https://pages.cs.wisc.edu/~remzi/OSTEP/file-journaling.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "36fdbab0-8e4e-569f-af00-8cf128373d09",
+      "noteType": "Bert Typed",
+      "section": "file-systems",
+      "fields": {
+        "Question": "Which Unix tool scans a file system to find and repair inconsistencies after a crash?",
+        "Answer": "fsck",
+        "Aliases": "fsck.ext4\ne2fsck",
+        "Hint": "It is usually run at boot after an unclean shutdown.",
+        "Fact": "OSTEP notes its main problem is that it is too slow for large disks.",
+        "Source": "OSTEP: Crash Consistency: FSCK and Journaling (https://pages.cs.wisc.edu/~remzi/OSTEP/file-journaling.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "8b5617e7-4afc-5c89-84f1-6b02df03b18b",
+      "noteType": "Bert Two Way",
+      "section": "file-systems",
+      "fields": {
+        "Side A": "VFS",
+        "Side B": "Virtual file system",
+        "Aliases": "virtual filesystem\nvirtual file system switch",
+        "Hint": "The kernel layer above concrete file systems.",
+        "Fact": "Through it, the same read() works on ext4, NFS and /proc.",
+        "Source": "Linux kernel docs: Overview of the Linux Virtual File System (https://docs.kernel.org/filesystems/vfs.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::os-abbreviations",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "e1279444-70eb-55e7-aefd-6e1efee60b21",
+      "noteType": "Bert Two Way",
+      "section": "file-systems",
+      "fields": {
+        "Side A": "FD",
+        "Side B": "File descriptor",
+        "Aliases": "file descriptor",
+        "Hint": "A small integer.",
+        "Fact": "It indexes the process's table of open files.",
+        "Source": "open(2), Linux manual page (https://man7.org/linux/man-pages/man2/open.2.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::os-abbreviations",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "18916eff-03d1-56b1-a8fc-064fd9794fdb",
+      "noteType": "Bert Basic",
+      "section": "file-systems",
+      "fields": {
+        "Question": "Classic Unix inodes use direct pointers plus single, double and which other indirect pointer?",
+        "Answer": "Triple indirect",
+        "Aliases": "triple\ntriple indirect pointer\ntriple indirect block",
+        "Hint": "Count one level more.",
+        "Fact": "Indirect pointers let small files stay cheap while still allowing very large files.",
+        "Source": "OSTEP: File System Implementation (https://pages.cs.wisc.edu/~remzi/OSTEP/file-implementation.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "acc6a984-0467-5ffa-90d6-63a189cedfef",
+      "noteType": "Bert Cloze",
+      "section": "file-systems",
+      "fields": {
+        "Text": "ext4 records file data with {{c1::extents}}, each a starting block and a length, instead of one pointer per block.",
+        "Extra": "Large contiguous files need very little metadata.",
+        "Hint": "A contiguous run of blocks.",
+        "Fact": "With 4 KiB blocks, a single ext4 extent can cover up to 128 MiB of contiguous data.",
+        "Source": "Linux kernel docs: ext4 General Information (https://docs.kernel.org/admin-guide/ext4.html)\nOSTEP: File System Implementation (https://pages.cs.wisc.edu/~remzi/OSTEP/file-implementation.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "a8c16971-678e-5730-bc83-3234535327ea",
+      "noteType": "Bert Cloze",
+      "section": "file-systems",
+      "fields": {
+        "Text": "{{c1::fsync}}() blocks until a file's modified data and metadata have been passed to the storage device.",
+        "Extra": "Without it, write() may only reach the page cache.",
+        "Hint": "Databases call it before acknowledging a commit.",
+        "Fact": "To make a new file's name durable, the containing directory may also need to be synced.",
+        "Source": "fsync(2), Linux manual page (https://man7.org/linux/man-pages/man2/fsync.2.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "bc6516d8-af82-5229-9493-c48e9d247f2f",
+      "noteType": "Bert Cloze",
+      "section": "file-systems",
+      "fields": {
+        "Text": "The {{c1::page cache}} keeps file data in RAM so repeated reads avoid disk I/O.",
+        "Extra": "Writes are usually buffered here and flushed later.",
+        "Hint": "It caches pages of files.",
+        "Fact": "free on Linux reports this memory as buff/cache, and it can be reclaimed when needed.",
+        "Source": "fsync(2), Linux manual page (https://man7.org/linux/man-pages/man2/fsync.2.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "761626bf-e210-5348-8b99-cd1fb6c371e6",
+      "noteType": "Bert Cloze",
+      "section": "file-systems",
+      "fields": {
+        "Text": "A directory's contents map file names to {{c1::inode numbers}}.",
+        "Extra": "Path lookup reads these mappings one component at a time.",
+        "Hint": "What identifies a file inside the file system?",
+        "Fact": "Path resolution starts at / for absolute paths and the current directory for relative ones.",
+        "Source": "OSTEP: Interlude: Files and Directories (https://pages.cs.wisc.edu/~remzi/OSTEP/file-intro.pdf)\npath_resolution(7), Linux manual page (https://man7.org/linux/man-pages/man7/path_resolution.7.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "eff0f1c1-8748-5041-b8ce-e3082d7c4d1d",
+      "noteType": "Bert Basic",
+      "section": "file-systems",
+      "fields": {
+        "Question": "What does the execute permission bit allow on a directory?",
+        "Answer": "Search",
+        "Aliases": "traverse\nsearch permission\nenter\naccess",
+        "Hint": "It is not about running a program.",
+        "Fact": "Without it, a path through the directory cannot be resolved even if names can be listed.",
+        "Source": "path_resolution(7), Linux manual page (https://man7.org/linux/man-pages/man7/path_resolution.7.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "f6afd410-c753-5e1c-8cc4-f670e5bb1575",
+      "noteType": "Bert Cloze",
+      "section": "file-systems",
+      "fields": {
+        "Text": "The {{c1::superblock}} holds information about the whole file system, such as its size and number of inodes.",
+        "Extra": "It is read at mount time.",
+        "Hint": "It sits above the other metadata.",
+        "Fact": "ext file systems store backup copies of it in several block groups.",
+        "Source": "OSTEP: File System Implementation (https://pages.cs.wisc.edu/~remzi/OSTEP/file-implementation.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "c56c6f36-931e-5ecd-afef-a10a157141df",
+      "noteType": "Bert Cloze",
+      "section": "file-systems",
+      "fields": {
+        "Text": "Simple file systems such as OSTEP's vsfs track free inodes and data blocks with {{c1::bitmaps}}.",
+        "Extra": "Each bit marks one item as used or free.",
+        "Hint": "One bit per item.",
+        "Fact": "OSTEP's crash examples show bitmaps and inodes getting out of sync after a crash.",
+        "Source": "OSTEP: File System Implementation (https://pages.cs.wisc.edu/~remzi/OSTEP/file-implementation.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "aacfcc3f-3425-56a1-b8b7-773096f0732b",
+      "noteType": "Bert Basic",
+      "section": "io-models",
+      "fields": {
+        "Question": "In which I/O model does read() put the thread to sleep until data is ready?",
+        "Answer": "Blocking I/O",
+        "Aliases": "blocking\nblocking io",
+        "Hint": "It is the default for file descriptors.",
+        "Fact": "A thread-per-connection server relies on this model.",
+        "Source": "read(2), Linux manual page (https://man7.org/linux/man-pages/man2/read.2.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "cd39133a-ce12-5e56-bd61-2528a5855f38",
+      "noteType": "Bert Basic",
+      "section": "io-models",
+      "fields": {
+        "Question": "Which I/O model makes read() fail immediately instead of waiting when no data is ready?",
+        "Answer": "Non-blocking I/O",
+        "Aliases": "nonblocking\nnon-blocking\nnonblocking io",
+        "Hint": "It is enabled with a flag on the descriptor.",
+        "Fact": "It is usually paired with a readiness API so the program knows when to retry.",
+        "Source": "open(2), Linux manual page (https://man7.org/linux/man-pages/man2/open.2.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "38f62249-b76d-568b-9cba-3ab7c30d2cc0",
+      "noteType": "Bert Typed",
+      "section": "io-models",
+      "fields": {
+        "Question": "Which open() flag makes I/O on a descriptor non-blocking?",
+        "Answer": "O_NONBLOCK",
+        "Aliases": "O_NDELAY",
+        "Hint": "It can also be set later with fcntl().",
+        "Fact": "For regular files on Linux, this flag has no effect on reads and writes.",
+        "Source": "open(2), Linux manual page (https://man7.org/linux/man-pages/man2/open.2.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "6d857684-647e-5ba5-9da0-e6a95aa63843",
+      "noteType": "Bert Typed",
+      "section": "io-models",
+      "fields": {
+        "Question": "Which errno does a non-blocking read return when no data is available?",
+        "Answer": "EAGAIN",
+        "Aliases": "EWOULDBLOCK",
+        "Hint": "It suggests trying once more.",
+        "Fact": "On Linux the two names for this error have the same value.",
+        "Source": "errno(3), Linux manual page (https://man7.org/linux/man-pages/man3/errno.3.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "27fa5dcb-1488-5eee-a137-8661ab54f6cf",
+      "noteType": "Bert Typed",
+      "section": "io-models",
+      "fields": {
+        "Question": "Which Linux API monitors many file descriptors for readiness and scales well to large numbers of them?",
+        "Answer": "epoll",
+        "Aliases": "epoll(7)",
+        "Hint": "It was added in the Linux 2.5 development series.",
+        "Fact": "Unlike poll(), the interest list stays in the kernel between calls.",
+        "Source": "epoll(7), Linux manual page (https://man7.org/linux/man-pages/man7/epoll.7.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::readiness-apis",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "9dca2f22-cf75-5a3f-bbfa-bba79cd3ab0c",
+      "noteType": "Bert Typed",
+      "section": "io-models",
+      "fields": {
+        "Question": "Which event notification API do FreeBSD and macOS provide in place of epoll?",
+        "Answer": "kqueue",
+        "Aliases": "kqueue()\nkevent",
+        "Hint": "Events are submitted and returned with kevent().",
+        "Fact": "kqueue first appeared in FreeBSD 4.1.",
+        "Source": "kqueue(2), FreeBSD manual page (https://man.freebsd.org/cgi/man.cgi?query=kqueue&sektion=2)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::readiness-apis",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "22d0ea10-628f-51bb-ab3b-13bce644d6ee",
+      "noteType": "Bert Typed",
+      "section": "io-models",
+      "fields": {
+        "Question": "Which POSIX call takes an array of pollfd structures to wait on several descriptors?",
+        "Answer": "poll",
+        "Aliases": "poll()",
+        "Hint": "It is named after the act of checking.",
+        "Fact": "It avoids select()'s fixed descriptor limit, but still scans every entry on each call.",
+        "Source": "select(2), Linux manual page (https://man7.org/linux/man-pages/man2/select.2.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::readiness-apis",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "7eef5fd9-2b0b-57e6-9b2a-e724e4c185af",
+      "noteType": "Bert Cloze",
+      "section": "io-models",
+      "fields": {
+        "Text": "In {{c1::edge-triggered}} mode (EPOLLET), epoll reports only changes in readiness, so the program should read until EAGAIN.",
+        "Extra": "Stopping early can leave data unreported.",
+        "Hint": "Think of a signal's rising edge.",
+        "Fact": "The epoll man page recommends non-blocking descriptors with this mode.",
+        "Source": "epoll(7), Linux manual page (https://man7.org/linux/man-pages/man7/epoll.7.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "4de83791-d8dd-51fd-ae4d-40d20a2300e6",
+      "noteType": "Bert Cloze",
+      "section": "io-models",
+      "fields": {
+        "Text": "epoll's default mode is {{c1::level-triggered}}, which reports a descriptor as long as it remains ready.",
+        "Extra": "It behaves like a faster poll().",
+        "Hint": "It is the opposite of edge-triggered.",
+        "Fact": "Level-triggered mode is more forgiving if a program does not drain a socket completely.",
+        "Source": "epoll(7), Linux manual page (https://man7.org/linux/man-pages/man7/epoll.7.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "fabb2490-f229-5961-8231-a7ecaf637beb",
+      "noteType": "Bert Cloze",
+      "section": "io-models",
+      "fields": {
+        "Text": "An epoll program creates an instance with {{c1::epoll_create1}}(), registers descriptors with {{c2::epoll_ctl}}(), and waits with {{c3::epoll_wait}}().",
+        "Extra": "The instance itself is a file descriptor.",
+        "Hint": "All three start with the same prefix.",
+        "Fact": "Because the epoll instance is a descriptor, it can be nested inside another epoll instance.",
+        "Source": "epoll(7), Linux manual page (https://man7.org/linux/man-pages/man7/epoll.7.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "1d36a917-0330-53f1-ab39-9c6894eab243",
+      "noteType": "Bert Cloze",
+      "section": "io-models",
+      "fields": {
+        "Text": "select() can only handle descriptor numbers below FD_SETSIZE, which is {{c1::1024}} on Linux.",
+        "Extra": "Higher descriptors cause undefined behavior.",
+        "Hint": "It is a power of two.",
+        "Fact": "The select man page recommends poll() or epoll for modern applications for this reason.",
+        "Source": "select(2), Linux manual page (https://man7.org/linux/man-pages/man2/select.2.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "7dc164d8-b68f-5c10-bbca-36e4fcae7305",
+      "noteType": "Bert Basic",
+      "section": "io-models",
+      "fields": {
+        "Question": "In which Linux kernel version was io_uring introduced?",
+        "Answer": "5.1",
+        "Aliases": "Linux 5.1\nv5.1",
+        "Hint": "It arrived in 2019.",
+        "Fact": "io_uring was created by Jens Axboe.",
+        "Source": "io_uring(7), Linux manual page (https://man7.org/linux/man-pages/man7/io_uring.7.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "71781341-7683-55d3-a518-374f48c6c1c0",
+      "noteType": "Bert Cloze",
+      "section": "io-models",
+      "fields": {
+        "Text": "io_uring shares two ring buffers with the kernel: the {{c1::submission queue}} and the {{c2::completion queue}}.",
+        "Extra": "Applications write requests to one and read results from the other.",
+        "Hint": "One ring goes in each direction.",
+        "Fact": "Sharing the rings in memory lets many operations be submitted with a single system call, or none.",
+        "Source": "io_uring(7), Linux manual page (https://man7.org/linux/man-pages/man7/io_uring.7.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "343059b8-7466-5598-83ed-38d4cf907df6",
+      "noteType": "Bert Cloze",
+      "section": "io-models",
+      "fields": {
+        "Text": "io_uring is a {{c1::completion}}-based interface: operations are submitted and their results collected later, unlike epoll's readiness model.",
+        "Extra": "The kernel performs the I/O itself.",
+        "Hint": "The program learns when work is done, not when it could start.",
+        "Fact": "Unlike epoll, io_uring can perform reads and writes on regular files asynchronously.",
+        "Source": "io_uring(7), Linux manual page (https://man7.org/linux/man-pages/man7/io_uring.7.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "464ed0fa-3f0e-5178-9645-03e4c41475ad",
+      "noteType": "Bert Typed",
+      "section": "io-models",
+      "fields": {
+        "Question": "Which system call tells the kernel to consume io_uring submissions and optionally wait for completions?",
+        "Answer": "io_uring_enter",
+        "Aliases": "io_uring_enter()",
+        "Hint": "It is one of the three io_uring syscalls.",
+        "Fact": "The other two are io_uring_setup() and io_uring_register().",
+        "Source": "io_uring_enter(2), Linux manual page (https://man7.org/linux/man-pages/man2/io_uring_enter.2.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::syscall-names",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "7a78bccf-a78f-51fc-bce1-d08f980bc1d2",
+      "noteType": "Bert Typed",
+      "section": "io-models",
+      "fields": {
+        "Question": "Which system call creates an io_uring instance?",
+        "Answer": "io_uring_setup",
+        "Aliases": "io_uring_setup()",
+        "Hint": "It returns a file descriptor for the instance.",
+        "Fact": "The rings are then mapped into the process with mmap().",
+        "Source": "io_uring_setup(2), Linux manual page (https://man7.org/linux/man-pages/man2/io_uring_setup.2.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::syscall-names",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "6d56a304-8ced-55b8-9d6f-cd013cb5a038",
+      "noteType": "Bert Typed",
+      "section": "io-models",
+      "fields": {
+        "Question": "Which library provides helpers that hide io_uring's raw ring setup?",
+        "Answer": "liburing",
+        "Aliases": "",
+        "Hint": "It is maintained alongside the kernel interface.",
+        "Fact": "Its helpers include io_uring_queue_init() and io_uring_get_sqe().",
+        "Source": "io_uring(7), Linux manual page (https://man7.org/linux/man-pages/man7/io_uring.7.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "add3faa2-b694-574d-a692-c752c2347b8a",
+      "noteType": "Bert Cloze",
+      "section": "io-models",
+      "fields": {
+        "Text": "With IORING_SETUP_{{c1::SQPOLL}}, a kernel thread polls the submission queue so the program can submit without system calls.",
+        "Extra": "The thread sleeps after an idle period.",
+        "Hint": "The flag is passed to io_uring_setup().",
+        "Fact": "This trades a busy kernel thread for lower submission latency.",
+        "Source": "io_uring_setup(2), Linux manual page (https://man7.org/linux/man-pages/man2/io_uring_setup.2.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "7bc4d181-7dd4-5d9b-80e0-fb423872e2c5",
+      "noteType": "Bert Two Way",
+      "section": "io-models",
+      "fields": {
+        "Side A": "SQE",
+        "Side B": "Submission queue entry",
+        "Aliases": "submission queue entry",
+        "Hint": "One io_uring request.",
+        "Fact": "Each entry names an operation, such as a read, and its arguments.",
+        "Source": "io_uring(7), Linux manual page (https://man7.org/linux/man-pages/man7/io_uring.7.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::os-abbreviations",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "2ec66395-cbdc-532a-acb0-c725a5179c47",
+      "noteType": "Bert Two Way",
+      "section": "io-models",
+      "fields": {
+        "Side A": "CQE",
+        "Side B": "Completion queue entry",
+        "Aliases": "completion queue entry",
+        "Hint": "One io_uring result.",
+        "Fact": "Each carries the user_data value from its request, so results can be matched to requests.",
+        "Source": "io_uring(7), Linux manual page (https://man7.org/linux/man-pages/man7/io_uring.7.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::os-abbreviations",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "cee79048-953d-5be5-9253-8905447a9055",
+      "noteType": "Bert Two Way",
+      "section": "io-models",
+      "fields": {
+        "Side A": "DMA",
+        "Side B": "Direct memory access",
+        "Aliases": "direct memory access",
+        "Hint": "Devices copy data without the CPU.",
+        "Fact": "The CPU is notified with an interrupt when the transfer is done.",
+        "Source": "OSTEP: I/O Devices (https://pages.cs.wisc.edu/~remzi/OSTEP/file-devices.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::os-abbreviations",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "097e3ac1-0296-5eb8-91b5-e9627c1703c3",
+      "noteType": "Bert Cloze",
+      "section": "io-models",
+      "fields": {
+        "Text": "For very fast devices, {{c1::polling}} can outperform interrupts by avoiding interrupt handling overhead.",
+        "Extra": "Hybrid approaches poll briefly, then fall back to interrupts.",
+        "Hint": "Repeatedly checking a status register.",
+        "Fact": "OSTEP warns that interrupts can cause livelock under a flood of network packets.",
+        "Source": "OSTEP: I/O Devices (https://pages.cs.wisc.edu/~remzi/OSTEP/file-devices.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "1e6ff07b-5179-5306-898e-98d223d4ad85",
+      "noteType": "Bert Cloze",
+      "section": "io-models",
+      "fields": {
+        "Text": "Opening a file with O_DIRECT tries to bypass the {{c1::page cache}}.",
+        "Extra": "Buffers often need specific alignment.",
+        "Hint": "The kernel's cache for file data.",
+        "Fact": "Databases use it because they manage their own caching.",
+        "Source": "open(2), Linux manual page (https://man7.org/linux/man-pages/man2/open.2.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "7c20643c-f923-541f-93f0-08cc1f199ac3",
+      "noteType": "Bert Typed",
+      "section": "io-models",
+      "fields": {
+        "Question": "Which Linux call copies data between descriptors inside the kernel, often to send a file to a socket?",
+        "Answer": "sendfile",
+        "Aliases": "sendfile()",
+        "Hint": "It avoids copying through a user space buffer.",
+        "Fact": "Because data stays in the kernel, no user space buffer is needed for the copy.",
+        "Source": "sendfile(2), Linux manual page (https://man7.org/linux/man-pages/man2/sendfile.2.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "02f1d47d-b92a-51b2-80ce-4630ec046da6",
+      "noteType": "Bert Typed",
+      "section": "signals-containers",
+      "fields": {
+        "Question": "Which signal terminates a process and cannot be caught, blocked or ignored?",
+        "Answer": "SIGKILL",
+        "Aliases": "kill -9\nKILL",
+        "Hint": "It is a last resort.",
+        "Fact": "The only other signal that cannot be caught, blocked or ignored is SIGSTOP.",
+        "Source": "signal(7), Linux manual page (https://man7.org/linux/man-pages/man7/signal.7.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::signals",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "665a05c4-f2a1-59eb-91d3-7a79e0695902",
+      "noteType": "Bert Typed",
+      "section": "signals-containers",
+      "fields": {
+        "Question": "Which signal stops a process and cannot be caught, blocked or ignored?",
+        "Answer": "SIGSTOP",
+        "Aliases": "STOP",
+        "Hint": "The process can later be resumed.",
+        "Fact": "SIGTSTP, sent by Ctrl+Z, is the catchable version.",
+        "Source": "signal(7), Linux manual page (https://man7.org/linux/man-pages/man7/signal.7.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::signals",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "9b9602e7-2d47-5eb2-8abc-75ee04daef61",
+      "noteType": "Bert Typed",
+      "section": "signals-containers",
+      "fields": {
+        "Question": "Which signal does the kill command send by default?",
+        "Answer": "SIGTERM",
+        "Aliases": "TERM\n15",
+        "Hint": "It politely asks a process to exit.",
+        "Fact": "Its number is 15.",
+        "Source": "kill(1), Linux manual page (https://man7.org/linux/man-pages/man1/kill.1.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::signals",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "91beb220-cbea-5e66-beac-e2bdbf65d58a",
+      "noteType": "Bert Typed",
+      "section": "signals-containers",
+      "fields": {
+        "Question": "Which signal does pressing Ctrl+C in a terminal send to the foreground process group?",
+        "Answer": "SIGINT",
+        "Aliases": "INT\n2",
+        "Hint": "It is the usual way to cancel a running command.",
+        "Fact": "Its default action is to terminate the process.",
+        "Source": "signal(7), Linux manual page (https://man7.org/linux/man-pages/man7/signal.7.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::signals",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "088d5109-b50d-5ba7-a6fe-b1ef0b4c2510",
+      "noteType": "Bert Typed",
+      "section": "signals-containers",
+      "fields": {
+        "Question": "Which signal does a parent receive when a child terminates or stops?",
+        "Answer": "SIGCHLD",
+        "Aliases": "SIGCLD\nCHLD",
+        "Hint": "Shells rely on it to notice finished background jobs.",
+        "Fact": "Setting its action to SIG_IGN makes Linux reap children automatically, so no zombies form.",
+        "Source": "signal(7), Linux manual page (https://man7.org/linux/man-pages/man7/signal.7.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::signals",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "ef21f9ad-e7a4-5757-8443-eedd06d14bd3",
+      "noteType": "Bert Typed",
+      "section": "signals-containers",
+      "fields": {
+        "Question": "Which signal is sent when writing to a pipe with no readers?",
+        "Answer": "SIGPIPE",
+        "Aliases": "PIPE",
+        "Hint": "It is named after the channel involved.",
+        "Fact": "If the signal is ignored, write() fails with EPIPE instead.",
+        "Source": "pipe(2), Linux manual page (https://man7.org/linux/man-pages/man2/pipe.2.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::signals",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "e4ec4777-2684-53c5-8c18-de4a95dfc18c",
+      "noteType": "Bert Typed",
+      "section": "signals-containers",
+      "fields": {
+        "Question": "Which signal resumes a stopped process?",
+        "Answer": "SIGCONT",
+        "Aliases": "CONT",
+        "Hint": "Shells send it when you run fg or bg.",
+        "Fact": "It is the only signal that resumes a process stopped by SIGSTOP.",
+        "Source": "signal(7), Linux manual page (https://man7.org/linux/man-pages/man7/signal.7.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::signals",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "80e94410-e6b3-582c-b7f0-645178dc3635",
+      "noteType": "Bert Basic",
+      "section": "signals-containers",
+      "fields": {
+        "Question": "What is the signal number of SIGKILL?",
+        "Answer": "9",
+        "Aliases": "nine",
+        "Hint": "It is the famous number in kill -9.",
+        "Fact": "SIGKILL has the value 9 on every common architecture, unlike some other signals.",
+        "Source": "signal(7), Linux manual page (https://man7.org/linux/man-pages/man7/signal.7.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "2f1120b3-dca3-5103-bcc5-9d71781e4785",
+      "noteType": "Bert Cloze",
+      "section": "signals-containers",
+      "fields": {
+        "Text": "{{c1::sigaction}}() is the preferred way to install signal handlers, because signal() behaves differently across systems.",
+        "Extra": "It lets you set flags such as SA_RESTART.",
+        "Hint": "It takes a struct of the same name as an argument.",
+        "Fact": "SA_RESTART makes some interrupted system calls restart instead of failing with EINTR.",
+        "Source": "sigaction(2), Linux manual page (https://man7.org/linux/man-pages/man2/sigaction.2.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "99a58aff-83d2-5b58-a7c9-db1f006c9cf9",
+      "noteType": "Bert Cloze",
+      "section": "signals-containers",
+      "fields": {
+        "Text": "A signal handler may only safely call {{c1::async-signal-safe}} functions, and printf() is not one of them.",
+        "Extra": "write() is on the list.",
+        "Hint": "The rule is about functions safe to call asynchronously.",
+        "Fact": "The signal-safety man page lists the functions POSIX requires to be safe.",
+        "Source": "signal-safety(7), Linux manual page (https://man7.org/linux/man-pages/man7/signal-safety.7.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "7097b8c6-f474-54d9-a3ad-77fdb691fe0b",
+      "noteType": "Bert Typed",
+      "section": "signals-containers",
+      "fields": {
+        "Question": "Which system call changes the set of signals blocked by a single-threaded process?",
+        "Answer": "sigprocmask",
+        "Aliases": "sigprocmask()\npthread_sigmask",
+        "Hint": "Multithreaded programs use a pthread variant.",
+        "Fact": "Blocked signals stay pending until they are unblocked.",
+        "Source": "sigprocmask(2), Linux manual page (https://man7.org/linux/man-pages/man2/sigprocmask.2.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "3780b0f9-7b40-597e-96bb-d3cfc56cc39b",
+      "noteType": "Bert Cloze",
+      "section": "signals-containers",
+      "fields": {
+        "Text": "Linux containers are built mainly from {{c1::namespaces}} for isolation and {{c2::cgroups}} for resource control.",
+        "Extra": "Neither feature was designed only for containers.",
+        "Hint": "One limits what a process sees, the other how much it uses.",
+        "Fact": "There is no single container object in the Linux kernel.",
+        "Source": "namespaces(7), Linux manual page (https://man7.org/linux/man-pages/man7/namespaces.7.html)\ncgroups(7), Linux manual page (https://man7.org/linux/man-pages/man7/cgroups.7.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "7410e7b5-91c4-5b70-8d0c-75988f0a7768",
+      "noteType": "Bert Basic",
+      "section": "signals-containers",
+      "fields": {
+        "Question": "Which namespace gives processes their own process ID numbering?",
+        "Answer": "PID namespace",
+        "Aliases": "pid\nCLONE_NEWPID\npid ns",
+        "Hint": "Inside, the first process gets ID 1.",
+        "Fact": "A process can see processes in its own and descendant PID namespaces, but not in its ancestors.",
+        "Source": "pid_namespaces(7), Linux manual page (https://man7.org/linux/man-pages/man7/pid_namespaces.7.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::namespaces",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "98c91a85-f969-5120-b736-4b1f73d625a4",
+      "noteType": "Bert Basic",
+      "section": "signals-containers",
+      "fields": {
+        "Question": "Which namespace isolates the list of mount points a process sees?",
+        "Answer": "Mount namespace",
+        "Aliases": "mnt\nCLONE_NEWNS\nmount ns",
+        "Hint": "It was the first namespace Linux added.",
+        "Fact": "Its clone flag is CLONE_NEWNS, a name chosen when it was the only namespace type.",
+        "Source": "namespaces(7), Linux manual page (https://man7.org/linux/man-pages/man7/namespaces.7.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::namespaces",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "6fa753d6-d6cf-51db-a48b-f41d8f89629d",
+      "noteType": "Bert Basic",
+      "section": "signals-containers",
+      "fields": {
+        "Question": "Which namespace gives a process its own network devices, addresses and routing tables?",
+        "Answer": "Network namespace",
+        "Aliases": "net\nCLONE_NEWNET\nnetns",
+        "Hint": "The ip netns command manages them.",
+        "Fact": "A virtual Ethernet (veth) pair is commonly used to connect two of them.",
+        "Source": "namespaces(7), Linux manual page (https://man7.org/linux/man-pages/man7/namespaces.7.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::namespaces",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "0522e64c-ffa5-5f83-a0d3-42b655351f6c",
+      "noteType": "Bert Basic",
+      "section": "signals-containers",
+      "fields": {
+        "Question": "Which namespace lets a process be root inside it while unprivileged outside?",
+        "Answer": "User namespace",
+        "Aliases": "user\nCLONE_NEWUSER\nuserns",
+        "Hint": "It maps user and group IDs.",
+        "Fact": "Since Linux 3.8, unprivileged processes can create this namespace.",
+        "Source": "user_namespaces(7), Linux manual page (https://man7.org/linux/man-pages/man7/user_namespaces.7.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::namespaces",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "6e82cdfd-a101-54f0-9726-b42582e7008c",
+      "noteType": "Bert Basic",
+      "section": "signals-containers",
+      "fields": {
+        "Question": "Which namespace isolates the hostname and NIS domain name?",
+        "Answer": "UTS namespace",
+        "Aliases": "uts\nCLONE_NEWUTS",
+        "Hint": "Its name comes from the uname() structure.",
+        "Fact": "UTS stands for UNIX Time-sharing System.",
+        "Source": "namespaces(7), Linux manual page (https://man7.org/linux/man-pages/man7/namespaces.7.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::namespaces",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "cea0843c-7696-586c-831d-90b6199f0460",
+      "noteType": "Bert Cloze",
+      "section": "signals-containers",
+      "fields": {
+        "Text": "The first process created in a new PID namespace has PID {{c1::1}} inside it.",
+        "Extra": "It acts as init for that namespace.",
+        "Hint": "Same as init on the host.",
+        "Fact": "If this process exits, every other process in the namespace is killed.",
+        "Source": "pid_namespaces(7), Linux manual page (https://man7.org/linux/man-pages/man7/pid_namespaces.7.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "8ae8ddf0-4a1e-59d0-abb6-83d7c63f79c5",
+      "noteType": "Bert Two Way",
+      "section": "signals-containers",
+      "fields": {
+        "Side A": "cgroup",
+        "Side B": "Control group",
+        "Aliases": "control group\ncontrol groups",
+        "Hint": "Limits CPU, memory and I/O.",
+        "Fact": "cgroups were merged into Linux 2.6.24.",
+        "Source": "cgroups(7), Linux manual page (https://man7.org/linux/man-pages/man7/cgroups.7.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::os-abbreviations",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "a5f4272f-246c-5933-b1d7-3004936e6bf4",
+      "noteType": "Bert Two Way",
+      "section": "signals-containers",
+      "fields": {
+        "Side A": "OCI",
+        "Side B": "Open Container Initiative",
+        "Aliases": "open container initiative",
+        "Hint": "It publishes runtime and image specifications.",
+        "Fact": "It was founded in 2015 under the Linux Foundation.",
+        "Source": "Open Container Initiative Runtime Specification (https://github.com/opencontainers/runtime-spec)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::os-abbreviations",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "e6cb0500-2c79-55c8-bbbc-cab0248d8a76",
+      "noteType": "Bert Cloze",
+      "section": "signals-containers",
+      "fields": {
+        "Text": "cgroup {{c1::v2}} organizes all controllers in a single unified hierarchy.",
+        "Extra": "v1 allowed a separate hierarchy per controller.",
+        "Hint": "A version number.",
+        "Fact": "cgroup v2 was declared non-experimental in Linux 4.5.",
+        "Source": "Linux kernel docs: Control Group v2 (https://docs.kernel.org/admin-guide/cgroup-v2.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "89dd2d5d-bb37-5805-b9a7-bc585d92d9dc",
+      "noteType": "Bert Cloze",
+      "section": "signals-containers",
+      "fields": {
+        "Text": "Containers share the host's {{c1::kernel}}, while virtual machines run their own.",
+        "Extra": "This is why containers start quickly.",
+        "Hint": "The core part of the OS.",
+        "Fact": "A kernel vulnerability can therefore affect every container on a host.",
+        "Source": "namespaces(7), Linux manual page (https://man7.org/linux/man-pages/man7/namespaces.7.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "0b0f78d4-3ab1-5900-b392-444aa5b4836d",
+      "noteType": "Bert Typed",
+      "section": "signals-containers",
+      "fields": {
+        "Question": "Which system call moves the calling thread into an existing namespace?",
+        "Answer": "setns",
+        "Aliases": "setns()",
+        "Hint": "The nsenter command uses it.",
+        "Fact": "Namespaces are referred to by file descriptors from /proc/[pid]/ns.",
+        "Source": "setns(2), Linux manual page (https://man7.org/linux/man-pages/man2/setns.2.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::syscall-names",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "e02ce653-e2f6-5e8d-b24f-dd19ffe7f00d",
+      "noteType": "Bert Typed",
+      "section": "signals-containers",
+      "fields": {
+        "Question": "Which system call moves the caller into new namespaces without creating a new process?",
+        "Answer": "unshare",
+        "Aliases": "unshare()",
+        "Hint": "A command of the same name exposes it.",
+        "Fact": "For a new PID namespace, only children created afterward are placed in it.",
+        "Source": "unshare(2), Linux manual page (https://man7.org/linux/man-pages/man2/unshare.2.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::syscall-names",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "a19c1f5c-7000-5b67-9d81-af75ad96e389",
+      "noteType": "Bert Cloze",
+      "section": "signals-containers",
+      "fields": {
+        "Text": "{{c1::seccomp}} filters restrict which system calls a process may make.",
+        "Extra": "Filters are written as BPF programs.",
+        "Hint": "It is configured with prctl() or a system call of the same name.",
+        "Fact": "Docker applies a default seccomp profile that blocks some rarely needed system calls.",
+        "Source": "seccomp(2), Linux manual page (https://man7.org/linux/man-pages/man2/seccomp.2.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "678a0d8b-cc97-5a7d-ba10-938fc1f677fb",
+      "noteType": "Bert Cloze",
+      "section": "signals-containers",
+      "fields": {
+        "Text": "{{c1::chroot}}() changes a process's root directory for path lookup, but it is not a security boundary on its own.",
+        "Extra": "Privileged processes can escape it.",
+        "Hint": "Build environments have used it for decades.",
+        "Fact": "Its man page notes it does not change the current working directory.",
+        "Source": "chroot(2), Linux manual page (https://man7.org/linux/man-pages/man2/chroot.2.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "860031ff-3f44-5a27-9a05-6505ade208e5",
+      "noteType": "Bert Typed",
+      "section": "signals-containers",
+      "fields": {
+        "Question": "What is the name of the OCI reference container runtime?",
+        "Answer": "runc",
+        "Aliases": "",
+        "Hint": "It is a command line tool written in Go.",
+        "Fact": "Docker donated it to the OCI.",
+        "Source": "runc, Open Container Initiative (https://github.com/opencontainers/runc)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "7be311d7-2170-50e2-8313-ef3598c586ae",
+      "noteType": "Bert Cloze",
+      "section": "signals-containers",
+      "fields": {
+        "Text": "Linux {{c1::capabilities}} divide root's privileges into separate units such as CAP_NET_ADMIN.",
+        "Extra": "Containers usually run with a reduced set.",
+        "Hint": "Each unit is named CAP_ something.",
+        "Fact": "CAP_SYS_ADMIN covers so many operations that it is often described as the new root.",
+        "Source": "capabilities(7), Linux manual page (https://man7.org/linux/man-pages/man7/capabilities.7.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::status::draft"
+      ]
+    }
+  ]
+}

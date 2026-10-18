@@ -9,14 +9,16 @@ targets:
     platform: iOS
     sources:
       - path: iosApp
-    dependencies:
-      - framework: ../composeApp/build/bin/iosSimulatorArm64/debugFramework/ComposeApp.framework
-        embed: false
     preBuildScripts:
       - name: Sync Compose resources
         script: |
           cd "$SRCROOT/.."
           ./gradlew :composeApp:syncComposeResourcesForIos
+        basedOnDependencyAnalysis: false
+      - name: Compile Kotlin Framework
+        script: |
+          cd "$SRCROOT/.."
+          ./gradlew :composeApp:embedAndSignAppleFrameworkForXcode
         basedOnDependencyAnalysis: false
     settings:
       base:
@@ -26,3 +28,6 @@ targets:
         INFOPLIST_FILE: iosApp/Info.plist
         TARGETED_DEVICE_FAMILY: "1,2"
         SWIFT_VERSION: "6.0"
+        ENABLE_USER_SCRIPT_SANDBOXING: NO
+        FRAMEWORK_SEARCH_PATHS: "$(SRCROOT)/../composeApp/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)"
+        OTHER_LDFLAGS: ["$(inherited)", "-framework", "ComposeApp"]

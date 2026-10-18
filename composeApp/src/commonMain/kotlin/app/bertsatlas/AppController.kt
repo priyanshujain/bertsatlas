@@ -1,15 +1,35 @@
 package app.bertsatlas
 
-import app.bertsatlas.data.ActiveRunSnapshotEntity
-import app.bertsatlas.data.AttemptEntity
+import app.bertsatlas.anki.pkg.ImportCancelledException
+import app.bertsatlas.anki.pkg.ImportMonitor
+import app.bertsatlas.anki.pkg.ImportStage
+import app.bertsatlas.domain.taxonomy.BundledTaxonomy
+import app.bertsatlas.domain.taxonomy.Taxonomy
+import app.bertsatlas.data.PackStore
+import app.bertsatlas.ui.editor.mobile.PackEditingController
+import app.bertsatlas.data.ReviewCard
+import app.bertsatlas.domain.fsrs.FriendlyStudySettings
+import app.bertsatlas.domain.fsrs.QuizAnswerFormat
+import app.bertsatlas.domain.fsrs.QuizAnswerOutcome
+import app.bertsatlas.domain.fsrs.QuizGrading
+import app.bertsatlas.domain.fsrs.Rating
+import app.bertsatlas.domain.pack.DeckSelection
+import app.bertsatlas.domain.pack.ImportPlan
+import app.bertsatlas.domain.pack.ImportedPack
+import app.bertsatlas.domain.quiz.combineCatalogs
+import kotlin.concurrent.Volatile
+import app.bertsatlas.catalog.InstalledLibrary
+import app.bertsatlas.catalog.PackLibrary
+import app.bertsatlas.data.AnswerTotals
 import app.bertsatlas.data.BertsAtlasDatabase
-import app.bertsatlas.data.MasteryEntity
-import app.bertsatlas.data.PersonalBestEntity
 import app.bertsatlas.data.PreferencesStore
 import app.bertsatlas.data.RunEntity
 import app.bertsatlas.data.SavedPreferences
-import app.bertsatlas.data.StampEntity
 import app.bertsatlas.data.StreakEntity
+import app.bertsatlas.data.toEntity
+import app.bertsatlas.data.toPassportStamp
+import app.bertsatlas.data.toRunEntity
+import app.bertsatlas.data.toStreak
 import app.bertsatlas.domain.LocalDateProvider
 import app.bertsatlas.domain.MasteryRules
 import app.bertsatlas.domain.MonotonicClock
@@ -19,6 +39,7 @@ import app.bertsatlas.domain.QuizEngine
 import app.bertsatlas.domain.StreakRules
 import app.bertsatlas.domain.WallClock
 import app.bertsatlas.domain.model.ActiveRunSnapshot
+import app.bertsatlas.domain.model.BuiltInPacks
 import app.bertsatlas.domain.model.Catalog
 import app.bertsatlas.domain.model.Continent
 import app.bertsatlas.domain.model.HintType
@@ -30,12 +51,19 @@ import app.bertsatlas.domain.model.Question
 import app.bertsatlas.domain.model.QuizConfiguration
 import app.bertsatlas.domain.model.QuizDuration
 import app.bertsatlas.domain.model.QuizRunState
-import app.bertsatlas.domain.model.QuizTopic
+import app.bertsatlas.domain.model.PlayScope
+import app.bertsatlas.domain.pack.BundledMixes
+import app.bertsatlas.domain.pack.Mix
+import app.bertsatlas.store.StoreController
+import app.bertsatlas.store.StorePage
 import app.bertsatlas.domain.model.RunPhase
 import app.bertsatlas.domain.model.RunResult
 import app.bertsatlas.domain.model.RunStatus
+import app.bertsatlas.domain.model.Skill
+import app.bertsatlas.domain.pack.PackStamp
 import app.bertsatlas.domain.model.Streak
 import app.bertsatlas.domain.model.SubmittedAnswer
+import app.bertsatlas.domain.model.packId
 import app.bertsatlas.ui.DebugActionUi
 import app.bertsatlas.ui.ProgressGroupUi
 import app.bertsatlas.ui.SettingToggleUi
@@ -62,7 +90,10 @@ sealed interface Destination {
     data object Bootstrap : Destination
     data object Recovery : Destination
     data object Home : Destination
-    data class Options(val step: Int) : Destination
+    data class PackHome(val packId: String) : Destination
+    data class MixHome(val mixId: String) : Destination
+    data class Review(val packId: String) : Destination
+    data object Import : Destination
     data object Quiz : Destination
     data object Results : Destination
     data object Progress : Destination
@@ -71,6 +102,8 @@ sealed interface Destination {
     data object Credits : Destination
     data object Reset : Destination
     data object Debug : Destination
+    data object Editor : Destination
+    data object Store : Destination
 }
 
 data class AtlasAppState(
@@ -78,27 +111,79 @@ data class AtlasAppState(
     val firstLaunch: Boolean = true,
     val preferences: SavedPreferences = SavedPreferences(),
     val selectedDuration: QuizDuration = QuizDuration.FiveMinutes,
-    val selectedTopic: QuizTopic = QuizTopic.MostlyFlags,
     val run: QuizRunState? = null,
     val result: RunResult? = null,
     val newPersonalBest: Boolean = false,
     val mastery: List<Mastery> = emptyList(),
-    val attempts: List<AttemptEntity> = emptyList(),
+    val answerTotals: AnswerTotals = AnswerTotals(),
     val completedRuns: List<RunEntity> = emptyList(),
     val streak: Streak = Streak(),
     val stamps: List<PassportStamp> = emptyList(),
     val leaveConfirmationRequested: Boolean = false,
     val resumeRunAfterLeaveCancellation: Boolean = false,
+    val loadingMessage: String? = null,
+    val selectedSection: String? = null,
+    val packNotice: String? = null,
+    val review: ReviewSessionState? = null,
+    val importFlow: ImportFlowState? = null,
 )
 
+data class ReviewSessionState(
+    val packId: String,
+    val section: String?,
+    val card: ReviewCard? = null,
+    val loading: Boolean = true,
+    val revealed: Boolean = false,
+    val typedAnswer: String = "",
+    val reviewedCount: Int = 0,
+    val gradeCounts: Map<Rating, Int> = emptyMap(),
+    val shownAtMillis: Long = 0,
+) {
+    val finished: Boolean get() = !loading && card == null
+}
+
+enum class ImportPhase { Reading, ChooseDecks, ChooseCategories, Importing, Done, Failed }
+
+data class ImportDeckChoice(
+    val deckId: Long,
+    val title: String,
+    val cardCount: Long,
+    val sections: List<String>,
+    val previewHtml: String?,
+    val existingPackTitle: String?,
+)
+
+data class ImportFlowState(
+    val phase: ImportPhase,
+    val fileName: String,
+    val decks: List<ImportDeckChoice> = emptyList(),
+    val selectedDeckIds: Set<Long> = emptySet(),
+    val categories: Map<Long, Pair<String, String>> = emptyMap(),
+    val progressLabel: String = "",
+    val progressFraction: Float? = null,
+    val results: List<ImportedPack> = emptyList(),
+    val failure: String? = null,
+) {
+    val selectedDecks: List<ImportDeckChoice> get() = decks.filter { it.deckId in selectedDeckIds }
+    val decksNeedingCategory: List<ImportDeckChoice> get() = selectedDecks.filter { it.existingPackTitle == null }
+}
+
 class AppController(
-    val catalog: Catalog,
+    library: InstalledLibrary,
+    private val packLibrary: PackLibrary,
     private val database: BertsAtlasDatabase,
     private val preferencesStore: PreferencesStore,
     private val scope: CoroutineScope,
     val debugBuild: Boolean,
     private val deviceFeedback: DeviceFeedback = NoDeviceFeedback,
+    private val packStore: PackStore,
+    private val filePicker: PackFilePicker = NoPackFilePicker,
+    packSharer: PackSharer = NoPackSharer,
+    imagePicker: ImagePicker = NoImagePicker,
 ) {
+    private var geography: InstalledLibrary = library
+    val catalog: Catalog get() = geography.catalog
+    val flagMediaDirectory: String = library.flagMediaDirectory
     private val json = Json { ignoreUnknownKeys = true }
     private val mutex = Mutex()
     private var lastRunPersistence: Job? = null
@@ -108,20 +193,81 @@ class AppController(
     private val localDateProvider = LocalDateProvider {
         Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault()).date.toEpochDays().toInt()
     }
-    private val engine = QuizEngine(catalog, monotonicClock, wallClock, localDateProvider, allowUnapprovedContent = debugBuild)
+    private var engine = engineFor(catalog)
+    private var importPlan: ImportPlan? = null
+    @Volatile
+    private var importCancelRequested = false
     private val _state = MutableStateFlow(AtlasAppState())
     val state: StateFlow<AtlasAppState> = _state.asStateFlow()
+    private val _installedPacks = MutableStateFlow<List<PackSummary>>(emptyList())
+    val installedPacks: StateFlow<List<PackSummary>> = _installedPacks.asStateFlow()
+    private val installedPackIds: Set<String> get() = _installedPacks.value.map { it.packId }.toSet()
+    private val _installedMixes = MutableStateFlow<List<MixSummary>>(emptyList())
+    val installedMixes: StateFlow<List<MixSummary>> = _installedMixes.asStateFlow()
+    private val _taxonomyState = MutableStateFlow<Taxonomy?>(null)
+    val taxonomyState: StateFlow<Taxonomy?> = _taxonomyState.asStateFlow()
+    private var knownMixes: List<Mix> = BundledMixes.all
+    val store = StoreController(
+        packStore = packStore,
+        scope = scope,
+        debugBuild = debugBuild,
+        packSharer = packSharer,
+        onPackInstalled = { packId -> mutex.withLock { reloadGeographyIfChanged(packId); refreshProgress() } },
+        onIndexChanged = ::useStoreIndex,
+    )
+
+    fun mediaDirectory(packId: String): String = packStore.mediaDirectory(packId)
+
+    private var editorReturn: Destination = Destination.Home
+    val editor = PackEditingController(
+        packStore,
+        scope,
+        imagePicker,
+        onLibraryChanged = { mutex.withLock { refreshProgress() } },
+        onOpenPack = { packId -> openPack(packId) },
+        onLeave = { leaveEditor() },
+    )
+
+    fun openCreatePack() = enterEditor(Destination.Home) { editor.startCreatingPack() }
+
+    fun openPackDetailsEditor(packId: String) = enterEditor(Destination.PackHome(packId)) { editor.openPackDetails(packId) }
+
+    fun openCardEditor(pack: PackSummary) = enterEditor(Destination.PackHome(pack.packId)) { editor.openCards(pack.packId, pack.title) }
+
+    fun makePackCopy(packId: String) = enterEditor(Destination.PackHome(packId)) { editor.makeCopy(packId) }
+
+    private fun enterEditor(returnTo: Destination, open: () -> Unit) {
+        editorReturn = returnTo
+        open()
+        _state.value = _state.value.copy(destination = Destination.Editor)
+    }
+
+    private fun leaveEditor() {
+        if (_state.value.destination != Destination.Editor) return
+        val target = editorReturn
+        val stillInstalled = target !is Destination.PackHome || _installedPacks.value.any { it.packId == target.packId }
+        _state.value = _state.value.copy(destination = if (stillInstalled) target else Destination.Home)
+    }
 
     init {
         scope.launch { bootstrap() }
         scope.launch {
+            var ticksSinceSnapshot = 0
             while (isActive) {
-                delay(100)
+                delay(CLOCK_TICK_MILLIS)
                 val current = _state.value.run
                 if (current?.phase == RunPhase.Answering) {
                     val advanced = engine.advanceClocks(current)
-                    if (advanced.sessionExpired) acceptTransition(engine.finishExpiredRun(advanced))
-                    else _state.value = _state.value.copy(run = advanced)
+                    if (advanced.sessionExpired) {
+                        acceptTransition(engine.finishExpiredRun(advanced))
+                    } else {
+                        _state.value = _state.value.copy(run = advanced)
+                        ticksSinceSnapshot += 1
+                        if (ticksSinceSnapshot >= TICKS_BETWEEN_CLOCK_SNAPSHOTS) {
+                            ticksSinceSnapshot = 0
+                            persistSnapshot(advanced)
+                        }
+                    }
                 }
             }
         }
@@ -129,98 +275,134 @@ class AppController(
 
     private suspend fun bootstrap() = mutex.withLock {
         val preferences = preferencesStore.values.first()
-        val mastery = readMastery()
-        val attempts = database.progressReader().attemptsNow()
+        publishPacks(packStore.summaries())
+        if (_taxonomyState.value == null) _taxonomyState.value = BundledTaxonomy.taxonomy
+        val mastery = packStore.mastery()
+        val answerTotals = database.progressReader().answerTotalsAcrossPacksNow()
         val runs = database.progressReader().completedRunsNow()
-        val storedStreak = database.progressReader().streakNow().toDomain()
-        val streak = if (attempts.isNotEmpty() && storedStreak.currentDays == 0) {
-            attempts.map { it.localEpochDay }
-                .distinct()
-                .sorted()
-                .fold(Streak(), StreakRules::recordActivity)
-                .also { database.runWriter().saveStreak(it.toEntity()) }
-        } else {
-            storedStreak
-        }
-        val stamps = database.progressReader().stampsNow().mapNotNull { it.toDomain() }
+        val streak = database.progressReader().streakNow()?.toStreak() ?: Streak()
+        val stamps = readStamps()
         val snapshot = database.progressReader().activeRun()
         val restored = snapshot?.let {
-            runCatching { engine.restoreRun(json.decodeFromString<ActiveRunSnapshot>(it.snapshotJson)) }.getOrNull()
+            runCatching {
+                val decoded = json.decodeFromString<ActiveRunSnapshot>(it.snapshotJson)
+                engine = engineFor(catalogFor(decoded.state.configuration.scope))
+                engine.restoreRun(decoded)
+            }.getOrNull()
         }
         if (snapshot != null && restored == null) database.runWriter().clearActiveRun()
-        val hasStartedTrivia = preferences.hasStartedTrivia || restored != null || attempts.isNotEmpty() || runs.isNotEmpty()
+        val hasStartedTrivia = preferences.hasStartedTrivia || restored != null || answerTotals.answeredQuestions > 0 || runs.isNotEmpty()
         if (hasStartedTrivia && !preferences.hasStartedTrivia) preferencesStore.markTriviaStarted()
         _state.value = AtlasAppState(
             destination = if (restored == null) Destination.Home else Destination.Recovery,
             firstLaunch = !hasStartedTrivia,
             preferences = preferences,
             selectedDuration = enumValueOrDefault(preferences.duration, QuizDuration.FiveMinutes),
-            selectedTopic = enumValueOrDefault(preferences.topic, QuizTopic.MostlyFlags),
             run = restored,
             mastery = mastery,
-            attempts = attempts,
+            answerTotals = answerTotals,
             completedRuns = runs,
             streak = streak,
             stamps = stamps,
         )
+        scope.launch {
+            IncomingPackFiles.pendingPath.collect { path ->
+                if (path != null) IncomingPackFiles.take()?.let(::importFile)
+            }
+        }
+    }
+
+    fun watchLibraryForExternalChanges() {
+        scope.launch {
+            while (isActive) {
+                delay(LIBRARY_WATCH_MILLIS)
+                if (packStore.takeExternalChanges()) mutex.withLock { refreshProgress() }
+            }
+        }
+    }
+
+    private fun publishPacks(packs: List<PackSummary>) {
+        _installedPacks.value = packs
+        val ids = packs.map { it.packId }.toSet()
+        _installedMixes.value = knownMixes.map { it.toSummary(ids) }
+    }
+
+    private fun engineFor(runCatalog: Catalog) =
+        QuizEngine(runCatalog, monotonicClock, wallClock, localDateProvider, allowUnapprovedContent = debugBuild)
+
+    private suspend fun catalogFor(playScope: PlayScope): Catalog {
+        val sections = (playScope as? PlayScope.Pack)?.sections.orEmpty()
+        val genericCatalogs = playScope.packIds
+            .filter { it !in BuiltInPacks.GEOGRAPHY }
+            .map { packStore.catalogFor(it, sections) }
+        val geographyCatalogs = if (playScope.packIds.any { it in BuiltInPacks.GEOGRAPHY }) listOf(catalog) else emptyList()
+        return combineCatalogs(catalog.contentVersion, geographyCatalogs + genericCatalogs)
     }
 
     fun start() {
         val current = _state.value
-        if (current.firstLaunch) {
-            beginRun(QuizConfiguration())
-        } else {
-            beginRun(
-                QuizConfiguration(
-                    enumValueOrDefault(current.preferences.duration, QuizDuration.FiveMinutes),
-                    enumValueOrDefault(current.preferences.topic, QuizTopic.MostlyFlags),
-                ),
-            )
-        }
-    }
-
-    fun openOptions() {
-        val current = _state.value
-        _state.value = current.copy(
-            destination = Destination.Options(1),
-            selectedDuration = enumValueOrDefault(current.preferences.duration, QuizDuration.FiveMinutes),
-            selectedTopic = enumValueOrDefault(current.preferences.topic, QuizTopic.MostlyFlags),
+        val lastScope = current.result?.configuration?.scope ?: current.run?.configuration?.scope
+        beginRun(
+            QuizConfiguration(
+                enumValueOrDefault(current.preferences.duration, QuizDuration.FiveMinutes),
+                lastScope ?: PlayScope.Pack(BuiltInPacks.FLAGS),
+            ),
         )
     }
 
-    fun chooseOption(id: String) {
-        when (val destination = _state.value.destination) {
-            is Destination.Options -> if (destination.step == 1) {
-                _state.value = _state.value.copy(
-                    selectedDuration = enumValueOrDefault(id, QuizDuration.FiveMinutes),
-                    destination = Destination.Options(2),
-                )
-            } else {
-                val topic = enumValueOrDefault(id, QuizTopic.MostlyFlags)
-                val duration = _state.value.selectedDuration
-                _state.value = _state.value.copy(selectedTopic = topic)
-                scope.launch {
-                    preferencesStore.saveConfiguration(duration.name, topic.name)
-                    val saved = preferencesStore.values.first()
-                    val current = _state.value
-                    val showSavedStep = current.destination == Destination.Options(2) &&
-                        current.selectedDuration == duration &&
-                        current.selectedTopic == topic
-                    _state.value = if (showSavedStep) {
-                        current.copy(preferences = saved, destination = Destination.Options(3))
-                    } else {
-                        current.copy(preferences = saved)
-                    }
-                }
-            }
-            else -> Unit
+    fun openPack(packId: String) {
+        val current = _state.value
+        _state.value = current.copy(
+            destination = Destination.PackHome(packId),
+            selectedDuration = enumValueOrDefault(current.preferences.duration, QuizDuration.FiveMinutes),
+            selectedSection = null,
+            packNotice = null,
+        )
+    }
+
+    fun chooseSection(section: String?) {
+        _state.value = _state.value.copy(selectedSection = section)
+    }
+
+    fun saveStudySettings(packId: String, settings: FriendlyStudySettings) {
+        scope.launch {
+            packStore.saveStudySettings(packId, settings)
+            publishPacks(packStore.summaries())
         }
     }
 
-    fun startSavedOptions() {
+    fun openMix(mixId: String) {
         val current = _state.value
-        if (current.destination != Destination.Options(3)) return
-        beginRun(QuizConfiguration(current.selectedDuration, current.selectedTopic))
+        _state.value = current.copy(
+            destination = Destination.MixHome(mixId),
+            selectedDuration = enumValueOrDefault(current.preferences.duration, QuizDuration.FiveMinutes),
+        )
+    }
+
+    fun startMixRun(mixId: String, duration: QuizDuration) {
+        val mix = knownMixes.firstOrNull { it.mixId == mixId } ?: return
+        val mixScope = mix.playScope(installedPackIds) ?: return
+        rememberDuration(duration)
+        beginRun(QuizConfiguration(duration, mixScope))
+    }
+
+    fun choosePackDuration(duration: QuizDuration) {
+        _state.value = _state.value.copy(selectedDuration = duration)
+    }
+
+    fun playPack(pack: PackSummary) {
+        val duration = _state.value.selectedDuration
+        rememberDuration(duration)
+        val section = _state.value.selectedSection
+        beginRun(QuizConfiguration(duration, PlayScope.Pack(pack.packId, listOfNotNull(section))))
+    }
+
+    private fun rememberDuration(duration: QuizDuration) {
+        scope.launch {
+            preferencesStore.saveDuration(duration)
+            val saved = preferencesStore.values.first()
+            _state.value = _state.value.copy(preferences = saved)
+        }
     }
 
     fun back() { handleBack() }
@@ -233,14 +415,16 @@ class AppController(
         }
         return when (val destination = current.destination) {
             Destination.Bootstrap, Destination.Home -> false
-            is Destination.Options -> {
-                _state.value = current.copy(
-                    destination = when (destination.step) {
-                        3 -> Destination.Options(2)
-                        2 -> Destination.Options(1)
-                        else -> Destination.Home
-                    },
-                )
+            is Destination.PackHome, is Destination.MixHome -> {
+                _state.value = current.copy(destination = Destination.Home)
+                true
+            }
+            is Destination.Review -> {
+                finishReview()
+                true
+            }
+            Destination.Import -> {
+                closeImport()
                 true
             }
             Destination.Recovery -> {
@@ -255,7 +439,19 @@ class AppController(
                 _state.value = current.copy(destination = Destination.Home)
                 true
             }
-            Destination.Privacy, Destination.Credits, Destination.Reset, Destination.Debug -> {
+            Destination.Debug -> {
+                if (current.run?.phase == RunPhase.Paused) resume() else _state.value = current.copy(destination = Destination.Settings)
+                true
+            }
+            Destination.Store -> {
+                if (!store.back()) _state.value = current.copy(destination = Destination.Home)
+                true
+            }
+            Destination.Editor -> {
+                if (!editor.back()) leaveEditor()
+                true
+            }
+            Destination.Privacy, Destination.Credits, Destination.Reset -> {
                 _state.value = current.copy(destination = Destination.Settings)
                 true
             }
@@ -263,11 +459,34 @@ class AppController(
     }
 
     private fun beginRun(configuration: QuizConfiguration) {
-        val now = wallClock.nowEpochMillis()
-        val run = engine.startRun("run-$now", configuration, now xor monotonicClock.nowMillis(), _state.value.mastery)
-        _state.value = _state.value.copy(destination = Destination.Quiz, firstLaunch = false, run = run, result = null)
-        scope.launch { preferencesStore.markTriviaStarted() }
-        persistSnapshot(run)
+        val returnTo = _state.value.destination
+        _state.value = _state.value.copy(destination = Destination.Bootstrap, loadingMessage = "Shuffling the cards…", packNotice = null)
+        scope.launch {
+            val runCatalog = runCatching { catalogFor(configuration.scope) }.getOrNull()
+            if (runCatalog == null || runCatalog.questions.none { it.packId in configuration.scope.packIds }) {
+                _state.value = _state.value.copy(destination = returnTo, loadingMessage = null, packNotice = "Bert couldn't find cards to quiz you on here yet.")
+                return@launch
+            }
+            val runEngine = engineFor(runCatalog)
+            val now = wallClock.nowEpochMillis()
+            val run = runCatching { runEngine.startRun("run-$now", configuration, now xor monotonicClock.nowMillis(), _state.value.mastery) }
+                .getOrNull()
+            if (run == null) {
+                _state.value = _state.value.copy(destination = returnTo, loadingMessage = null, packNotice = "Bert couldn't start a round from these cards yet.")
+                return@launch
+            }
+            engine = runEngine
+            _state.value = _state.value.copy(destination = Destination.Quiz, firstLaunch = false, run = run, result = null, loadingMessage = null)
+            preferencesStore.markTriviaStarted()
+            persistSnapshot(run)
+        }
+    }
+
+    fun selfGrade(remembered: Boolean) {
+        if (mutateRun { engine.answerQuestion(it, SubmittedAnswer.SelfGrade(remembered)) }) {
+            playAnswerFeedback()
+            persistAcceptedAnswer()
+        }
     }
 
     fun resume() {
@@ -382,7 +601,7 @@ class AppController(
         )
         enqueueRunPersistence {
             database.runWriter().abandonRun(
-                abandoned.toRunEntity(summary),
+                summary.toRunEntity(abandoned.configuration.scope.progressKey, json),
                 activityStreak.takeIf { activityDays.isNotEmpty() }?.toEntity(),
             )
             refreshProgress()
@@ -414,29 +633,64 @@ class AppController(
     }
 
     private fun acceptTransition(next: QuizRunState) {
-        if (next.status == RunStatus.Completed) complete(next)
-        else {
-            _state.value = _state.value.copy(destination = destinationFor(next), run = next)
-            persistSnapshot(next)
+        when (next.status) {
+            RunStatus.Completed -> complete(next)
+            RunStatus.Abandoned -> {
+                _state.value = _state.value.copy(run = next)
+                abandon()
+            }
+            else -> {
+                _state.value = _state.value.copy(destination = destinationFor(next), run = next)
+                persistSnapshot(next)
+            }
         }
     }
 
     private fun persistAcceptedAnswer() {
         val run = _state.value.run ?: return
         val attempt = run.attempts.lastOrNull() ?: return
+        val question = run.activeQuestion.question
         enqueueRunPersistence {
-            val before = _state.value.mastery
-            val after = MasteryRules.applyAttemptToCountries(before, attempt)
             val activityStreak = StreakRules.recordActivity(_state.value.streak, attempt.localEpochDay)
-            val changed = after.filter { updated -> before.none { it.countryId == updated.countryId && it.skill == updated.skill && it == updated } }
+            val netPoints = attempt.pointsAwarded - attempt.hintPointsDeducted
+            val cardPackId = attempt.packId.ifEmpty { question.packId }
             database.runWriter().recordAcceptedAnswer(
-                attempt.toEntity(json),
-                changed.map { it.toEntity() },
-                run.toSnapshotEntity(engine, json),
-                activityStreak.toEntity(),
+                cardPackId = cardPackId,
+                correct = attempt.correct,
+                netPoints = netPoints,
+                snapshot = run.toSnapshotEntity(engine, json),
+                streak = activityStreak.toEntity(),
             )
-            _state.value = _state.value.copy(mastery = after, streak = activityStreak)
+            val rating = quizRating(question, attempt)
+            val refreshed = attempt.countryIds.distinct().flatMap { itemId ->
+                runCatching { packStore.recordQuizAnswer(cardPackId, itemId, rating, attempt.responseMillis) }.getOrDefault(emptyList())
+            }
+            val refreshedKeys = refreshed.map { it.countryId to it.skill }.toSet()
+            val totals = _state.value.answerTotals
+            _state.value = _state.value.copy(
+                mastery = _state.value.mastery.filterNot { (it.countryId to it.skill) in refreshedKeys } + refreshed,
+                streak = activityStreak,
+                answerTotals = AnswerTotals(
+                    answeredQuestions = totals.answeredQuestions + 1,
+                    correctAnswers = totals.correctAnswers + if (attempt.correct) 1 else 0,
+                    netPoints = totals.netPoints + netPoints,
+                ),
+            )
         }
+    }
+
+    private fun quizRating(question: Question, attempt: app.bertsatlas.domain.model.Attempt): Rating {
+        val format = QuizAnswerFormat.of(question) ?: return if (attempt.correct) Rating.Good else Rating.Again
+        return QuizGrading.ratingFor(
+            QuizAnswerOutcome(
+                correct = attempt.correct,
+                timedOut = false,
+                usedHint = attempt.hinted,
+                answeredInOvertime = attempt.overtime,
+                responseMillis = attempt.responseMillis,
+                format = format,
+            ),
+        )
     }
 
     private fun playAnswerFeedback() {
@@ -457,33 +711,40 @@ class AppController(
         _state.value = _state.value.copy(destination = Destination.Results, run = run, result = result)
         enqueueRunPersistence {
                 val reader = database.progressReader()
-                val oldBest = reader.personalBestsNow().firstOrNull {
-                    it.duration == run.configuration.duration.name && it.topic == run.configuration.topic.name
-                }
-                val isBest = oldBest == null || result.score > oldBest.score
+                val packId = run.configuration.scope.progressKey
+                val oldBest = reader.personalBestNow(packId, run.configuration.duration.name)
+                val isBest = result.score > (oldBest?.score ?: 0)
                 val newStreak = StreakRules.recordCompletedRun(_state.value.streak, localDateProvider.currentEpochDay())
                 val existingStamps = _state.value.stamps
-                val attempts = reader.attemptsNow()
+                val answerTotals = reader.answerTotalsAcrossPacksNow()
                 val mastery = _state.value.mastery
                 val flagContinents = mastery.filter { it.skill.name.contains("Flag") && it.correctAnswers > 0 }
                     .flatMap { masteryItem -> catalog.countries.firstOrNull { it.id == masteryItem.countryId }?.continentIds.orEmpty() }.toSet()
+                val summaries = packStore.summaries()
+                publishPacks(summaries)
+                val playedPack = (run.configuration.scope as? PlayScope.Pack)?.let { played -> summaries.firstOrNull { it.packId == played.packId } }
                 val newlyEarned = PassportRules.newlyEarned(
                     PassportEvidence(
                         completedRunCount = reader.completedRunsNow().size + 1,
                         recognizedFlagContinents = flagContinents,
-                        totalAnswered = attempts.size,
-                        totalCorrect = attempts.count { it.correct },
-                        confusedFlagMastery = emptyList(),
+                        totalAnswered = answerTotals.answeredQuestions,
+                        totalCorrect = answerTotals.correctAnswers,
+                        confusedFlagMastery = lookalikeFlagMastery(mastery),
                         streak = newStreak,
+                        packCardCount = playedPack?.cardCount ?: 0,
+                        packMasteredCardCount = playedPack?.masteredCount ?: 0,
                     ),
                     existingStamps,
                     wallClock.nowEpochMillis(),
-                )
+                ).filter { it.kind in offeredStampKinds }
+                val touchedMasteryItems = run.attempts
+                    .flatMap { attempt -> attempt.countryIds.map { it to attempt.skill } }
+                    .distinct()
+                    .size
                 database.runWriter().completeRun(
-                    run.toRunEntity(result),
-                    if (isBest) PersonalBestEntity(run.configuration.duration.name, run.configuration.topic.name, result.score, run.runId) else null,
+                    result.copy(improvedMasteryItems = maxOf(result.improvedMasteryItems, touchedMasteryItems)).toRunEntity(packId, json),
                     newStreak.toEntity(),
-                    newlyEarned.map { StampEntity(it.kind.name, it.earnedAtEpochMillis) },
+                    newlyEarned.map { it.toEntity(packId) },
                 )
                 _state.value = _state.value.copy(newPersonalBest = isBest, streak = newStreak, stamps = existingStamps + newlyEarned)
                 refreshProgress()
@@ -498,15 +759,37 @@ class AppController(
         }
     }
 
+    private suspend fun reloadGeographyIfChanged(packId: String) {
+        if (packId !in BuiltInPacks.GEOGRAPHY) return
+        runCatching { packLibrary.readInstalled() }.onSuccess { geography = it }
+    }
+
     private suspend fun refreshProgress() {
         val reader = database.progressReader()
+        publishPacks(packStore.summaries())
+        val mastery = packStore.mastery()
+        val answerTotals = reader.answerTotalsAcrossPacksNow()
+        val completedRuns = reader.completedRunsNow()
+        val streak = reader.streakNow()?.toStreak() ?: Streak()
+        val stamps = readStamps()
         _state.value = _state.value.copy(
-            mastery = readMastery(),
-            attempts = reader.attemptsNow(),
-            completedRuns = reader.completedRunsNow(),
-            streak = reader.streakNow().toDomain(),
-            stamps = reader.stampsNow().mapNotNull { it.toDomain() },
+            mastery = mastery,
+            answerTotals = answerTotals,
+            completedRuns = completedRuns,
+            streak = streak,
+            stamps = stamps,
         )
+    }
+
+    fun openStore(page: StorePage = StorePage.Home) {
+        store.open(page)
+        _state.value = _state.value.copy(destination = Destination.Store)
+    }
+
+    private fun useStoreIndex(taxonomy: Taxonomy, storeMixes: List<Mix>) {
+        _taxonomyState.value = taxonomy
+        knownMixes = (BundledMixes.all.associateBy { it.mixId } + storeMixes.associateBy { it.mixId }).values.toList()
+        _installedMixes.value = knownMixes.map { it.toSummary(installedPackIds) }
     }
 
     fun navigate(destination: Destination) { _state.value = _state.value.copy(destination = destination) }
@@ -519,28 +802,246 @@ class AppController(
                 "motion" -> preferencesStore.setMotionMode(if (enabled) "Reduced" else "System")
                 "auto" -> preferencesStore.setAutoAdvanceEnabled(enabled)
             }
-            _state.value = _state.value.copy(preferences = preferencesStore.values.first())
+            val saved = preferencesStore.values.first()
+            _state.value = _state.value.copy(preferences = saved)
         }
     }
 
     fun resetAll() {
         enqueueRunPersistence {
             database.runWriter().resetProgress()
+            packStore.resetAllProgress()
             preferencesStore.resetAll()
-            _state.value = AtlasAppState(destination = Destination.Home)
+            publishPacks(packStore.summaries())
+            _state.value = AtlasAppState(destination = Destination.Home, mastery = packStore.mastery())
         }
+    }
+
+    fun startReview(packId: String) {
+        val section = _state.value.selectedSection
+        _state.value = _state.value.copy(destination = Destination.Review(packId), review = ReviewSessionState(packId, section))
+        loadNextReviewCard()
+    }
+
+    private fun loadNextReviewCard() {
+        val session = _state.value.review ?: return
+        scope.launch {
+            val card = runCatching { packStore.nextReviewCard(session.packId, session.section) }.getOrNull()
+            val current = _state.value.review ?: return@launch
+            if (current.packId != session.packId) return@launch
+            _state.value = _state.value.copy(
+                review = current.copy(card = card, loading = false, revealed = false, typedAnswer = "", shownAtMillis = monotonicClock.nowMillis()),
+            )
+        }
+    }
+
+    fun revealReviewAnswer() {
+        val session = _state.value.review ?: return
+        if (session.card == null || session.revealed) return
+        _state.value = _state.value.copy(review = session.copy(revealed = true))
+    }
+
+    fun typeReviewAnswer(text: String) {
+        val session = _state.value.review ?: return
+        _state.value = _state.value.copy(review = session.copy(typedAnswer = text))
+    }
+
+    fun gradeReview(rating: Rating) {
+        val session = _state.value.review ?: return
+        val card = session.card ?: return
+        if (!session.revealed || session.loading) return
+        val answerMillis = (monotonicClock.nowMillis() - session.shownAtMillis).coerceAtLeast(0)
+        _state.value = _state.value.copy(
+            review = session.copy(
+                loading = true,
+                reviewedCount = session.reviewedCount + 1,
+                gradeCounts = session.gradeCounts + (rating to (session.gradeCounts[rating] ?: 0) + 1),
+            ),
+        )
+        enqueueRunPersistence {
+            packStore.answerReview(session.packId, card.cardId, rating, answerMillis)
+            val streak = StreakRules.recordActivity(_state.value.streak, localDateProvider.currentEpochDay())
+            database.runWriter().saveStreak(streak.toEntity())
+            _state.value = _state.value.copy(streak = streak)
+            loadNextReviewCard()
+        }
+    }
+
+    fun finishReview() {
+        val packId = _state.value.review?.packId
+        _state.value = _state.value.copy(destination = packId?.let { Destination.PackHome(it) } ?: Destination.Home, review = null)
+        enqueueRunPersistence { refreshProgress() }
+    }
+
+    fun pickPackFile() {
+        filePicker.pickPackFile { path -> if (path != null) importFile(path) }
+    }
+
+    fun importFile(path: String) {
+        val run = _state.value.run
+        if (run != null && run.status == RunStatus.Active) pauseForInterruption()
+        importPlan?.let { stale -> scope.launch { packStore.discardImport(stale) } }
+        importPlan = null
+        importCancelRequested = false
+        val fileName = path.substringAfterLast('/')
+        _state.value = _state.value.copy(
+            destination = Destination.Import,
+            importFlow = ImportFlowState(ImportPhase.Reading, fileName, progressLabel = "Opening $fileName"),
+        )
+        scope.launch {
+            try {
+                val plan = packStore.planImport(packStore.importer(), path, importMonitor())
+                importPlan = plan
+                val decks = plan.decks.map { deck ->
+                    ImportDeckChoice(deck.deckId, deck.title, deck.cardCount, deck.sections, deck.preview?.question, deck.existingPack?.title)
+                }
+                if (decks.isEmpty()) {
+                    failImport("This file has no cards Bert can read.")
+                    return@launch
+                }
+                updateImportFlow {
+                    it.copy(
+                        phase = ImportPhase.ChooseDecks,
+                        decks = decks,
+                        selectedDeckIds = decks.map(ImportDeckChoice::deckId).toSet(),
+                        progressFraction = null,
+                    )
+                }
+                if (!plan.needsDeckPicker) confirmImportDecks()
+            } catch (cancelled: ImportCancelledException) {
+                leaveImportFlow()
+            } catch (failure: Throwable) {
+                failImport("Bert couldn't open this file. It may not be an Anki deck.")
+            }
+        }
+    }
+
+    fun toggleImportDeck(deckId: Long) = updateImportFlow { flow ->
+        val selected = if (deckId in flow.selectedDeckIds) flow.selectedDeckIds - deckId else flow.selectedDeckIds + deckId
+        flow.copy(selectedDeckIds = selected)
+    }
+
+    fun confirmImportDecks() {
+        val flow = _state.value.importFlow ?: return
+        if (flow.selectedDeckIds.isEmpty()) return
+        if (flow.decksNeedingCategory.isEmpty()) startImport() else updateImportFlow { it.copy(phase = ImportPhase.ChooseCategories) }
+    }
+
+    fun chooseImportCategory(deckId: Long, categoryId: String, subcategoryId: String) = updateImportFlow { flow ->
+        if (categoryId.isEmpty()) flow.copy(categories = flow.categories - deckId)
+        else flow.copy(categories = flow.categories + (deckId to (categoryId to subcategoryId)))
+    }
+
+    fun startImport() {
+        val flow = _state.value.importFlow ?: return
+        val plan = importPlan ?: return
+        if (flow.decksNeedingCategory.any { deck -> flow.categories[deck.deckId]?.let { it.first.isBlank() || it.second.isBlank() } ?: true }) return
+        val selections = flow.selectedDecks.map { deck ->
+            val (category, subcategory) = flow.categories[deck.deckId] ?: ("" to "")
+            DeckSelection(deck.deckId, deck.title, category, subcategory)
+        }
+        importPlan = null
+        updateImportFlow { it.copy(phase = ImportPhase.Importing, progressLabel = "Getting ready", progressFraction = null) }
+        scope.launch {
+            try {
+                val results = packStore.runImport(packStore.importer(), plan, selections, importMonitor())
+                publishPacks(packStore.summaries())
+                val mastery = packStore.mastery()
+                _state.value = _state.value.copy(mastery = mastery)
+                updateImportFlow { it.copy(phase = ImportPhase.Done, results = results) }
+            } catch (cancelled: ImportCancelledException) {
+                leaveImportFlow()
+            } catch (failure: Throwable) {
+                failImport("The import stopped before it finished. Nothing was added.")
+            }
+        }
+    }
+
+    fun cancelImport() {
+        val phase = _state.value.importFlow?.phase ?: return
+        if (phase == ImportPhase.Reading || phase == ImportPhase.Importing) importCancelRequested = true else closeImport()
+    }
+
+    fun closeImport() {
+        val phase = _state.value.importFlow?.phase
+        if (phase == ImportPhase.Reading || phase == ImportPhase.Importing) {
+            importCancelRequested = true
+            return
+        }
+        importPlan?.let { plan -> scope.launch { packStore.discardImport(plan) } }
+        importPlan = null
+        leaveImportFlow()
+    }
+
+    fun openImportedPack(packId: String) {
+        importPlan = null
+        _state.value = _state.value.copy(importFlow = null)
+        openPack(packId)
+    }
+
+    private fun leaveImportFlow() {
+        val run = _state.value.run
+        val destination = if (run != null && run.status == RunStatus.Active) Destination.Recovery else Destination.Home
+        _state.value = _state.value.copy(destination = destination, importFlow = null)
+    }
+
+    private fun failImport(message: String) = updateImportFlow { it.copy(phase = ImportPhase.Failed, failure = message) }
+
+    private fun updateImportFlow(change: (ImportFlowState) -> ImportFlowState) {
+        val flow = _state.value.importFlow ?: return
+        _state.value = _state.value.copy(importFlow = change(flow))
+    }
+
+    private fun importMonitor(): ImportMonitor {
+        var lastLabel = ""
+        var lastFraction = -1f
+        return ImportMonitor(
+            onProgress = { progress ->
+                val label = when (progress.stage) {
+                    ImportStage.ReadingPackage -> "Reading the file"
+                    ImportStage.CopyingCards -> "Copying cards"
+                    ImportStage.CopyingMedia -> "Copying pictures and sounds"
+                }
+                val fraction = progress.total?.takeIf { it > 0 }?.let { (progress.completed.toFloat() / it).coerceIn(0f, 1f) }
+                if (label != lastLabel || fraction == null || fraction - lastFraction >= 0.01f || fraction >= 1f) {
+                    lastLabel = label
+                    lastFraction = fraction ?: -1f
+                    updateImportFlow { it.copy(progressLabel = label, progressFraction = fraction) }
+                }
+            },
+            isCancelled = { importCancelRequested },
+        )
+    }
+
+    val currentStreakDays: Int
+        get() = StreakRules.currentDaysOn(_state.value.streak, localDateProvider.currentEpochDay())
+
+    fun openDebugFromRun() {
+        if (!debugBuild) return
+        val run = _state.value.run ?: return
+        if (run.phase != RunPhase.Answering) return
+        val paused = engine.pauseForInterruption(run)
+        _state.value = _state.value.copy(run = paused, destination = Destination.Debug)
+        persistSnapshot(paused)
     }
 
     fun debugAction(id: String) {
         if (!debugBuild) return
         when (id) {
             "reset-first" -> scope.launch { preferencesStore.resetFirstLaunchAndConfiguration(); _state.value = _state.value.copy(firstLaunch = true, destination = Destination.Home) }
-            "reset-progress" -> enqueueRunPersistence { database.runWriter().resetProgress(); refreshProgress(); _state.value = _state.value.copy(destination = Destination.Home, run = null) }
+            "reset-progress" -> enqueueRunPersistence { database.runWriter().resetProgress(); packStore.resetAllProgress(); refreshProgress(); _state.value = _state.value.copy(destination = Destination.Home, run = null) }
             "reset-all" -> resetAll()
-            "question-zero" -> updateRunDebug { it.copy(activeQuestion = it.activeQuestion.copy(questionRemainingMillis = 0)) }
+            "question-full" -> setDebugQuestionRemaining(QuizEngine.MULTIPLE_CHOICE_WINDOW_MILLIS)
+            "question-half" -> setDebugQuestionRemaining(QuizEngine.MULTIPLE_CHOICE_WINDOW_MILLIS / 2)
+            "question-almost-zero" -> setDebugQuestionRemaining(1_000)
+            "question-zero" -> setDebugQuestionRemaining(0)
             "session-zero" -> updateRunDebug {
-                it.copy(sessionRemainingMillis = 0, sessionExpired = true, runCompletionPending = true)
+                if (it.configuration.duration == QuizDuration.Unlimited) it
+                else it.copy(sessionRemainingMillis = 0, sessionExpired = true, runCompletionPending = true)
             }
+            "score-0" -> updateRunDebug { it.copy(score = 0) }
+            "score-1" -> updateRunDebug { it.copy(score = 1) }
+            "score-25" -> updateRunDebug { it.copy(score = 25) }
             "score-100" -> updateRunDebug { it.copy(score = 100) }
         }
     }
@@ -553,7 +1054,13 @@ class AppController(
     )
 
     val debugActions: List<DebugActionUi> get() = listOf(
+        DebugActionUi("score-0", "Set run score to 0"),
+        DebugActionUi("score-1", "Set run score to 1"),
+        DebugActionUi("score-25", "Set run score to 25"),
         DebugActionUi("score-100", "Set run score to 100"),
+        DebugActionUi("question-full", "Set question timer to full"),
+        DebugActionUi("question-half", "Set question timer to half"),
+        DebugActionUi("question-almost-zero", "Set question timer to 1 second"),
         DebugActionUi("question-zero", "Set question timer to zero"),
         DebugActionUi("session-zero", "Expire session after this question"),
         DebugActionUi("reset-first", "Reset first launch"),
@@ -561,13 +1068,51 @@ class AppController(
         DebugActionUi("reset-all", "Reset all local data", destructive = true),
     )
 
-    val progressGroups: List<ProgressGroupUi> get() = MasteryLevel.entries.map { level ->
-        val count = _state.value.mastery.count { it.level == level }
-        ProgressGroupUi(level.name, count / (catalog.countries.size * 6f), "$count knowledge items")
+    val progressGroups: List<ProgressGroupUi> get() {
+        val packs = _installedPacks.value
+        val totalCards = packs.sumOf { it.cardCount }.coerceAtLeast(1)
+        val mastered = packs.sumOf { it.masteredCount }
+        val familiar = packs.sumOf { it.familiarCount }
+        val learning = packs.sumOf { it.learningCount } - familiar
+        val counts = mapOf(
+            MasteryLevel.New to packs.sumOf { it.cardCount } - mastered - familiar - learning,
+            MasteryLevel.Learning to learning,
+            MasteryLevel.Familiar to familiar,
+            MasteryLevel.Mastered to mastered,
+        )
+        return MasteryLevel.entries.map { level ->
+            val count = counts.getValue(level)
+            ProgressGroupUi(level.name, count / totalCards.toFloat(), if (count == 1) "1 card" else "$count cards")
+        }
     }
 
-    val stampUi: List<StampUi> get() = PassportStampKind.entries.map { kind ->
-        StampUi(kind.name, kind.displayName(), kind.description(), _state.value.stamps.any { it.kind == kind })
+    private val geographyStamps: Map<PassportStampKind, PackStamp> get() = geography.geographyStamps
+        .mapNotNull { stamp -> GEOGRAPHY_STAMP_KINDS[stamp.id]?.let { it to stamp } }
+        .toMap()
+
+    private val offeredStampKinds: List<PassportStampKind> get() =
+        PassportStampKind.entries.filter {
+            it !in GEOGRAPHY_STAMP_KINDS.values || it in geographyStamps
+        }
+
+    val stampUi: List<StampUi> get() = offeredStampKinds.map { kind ->
+        val packStamp = geographyStamps[kind]
+        StampUi(
+            kind.name,
+            packStamp?.title ?: kind.displayName(),
+            packStamp?.description ?: kind.description(),
+            _state.value.stamps.any { it.kind == kind },
+        )
+    }
+
+    private fun lookalikeFlagMastery(mastery: List<Mastery>): List<Mastery> =
+        catalog.countries.filter { it.similarityGroupIds.isNotEmpty() }.map { country ->
+            mastery.firstOrNull { it.countryId == country.id && it.skill == Skill.FlagRecognition }
+                ?: Mastery(country.id, Skill.FlagRecognition)
+        }
+
+    private fun setDebugQuestionRemaining(millis: Long) = updateRunDebug {
+        it.copy(activeQuestion = it.activeQuestion.copy(questionRemainingMillis = millis.coerceAtMost(it.activeQuestion.questionWindowMillis)))
     }
 
     private fun updateRunDebug(change: (QuizRunState) -> QuizRunState) {
@@ -577,9 +1122,8 @@ class AppController(
         persistSnapshot(updated)
     }
 
-    private suspend fun readMastery(): List<Mastery> = database.progressReader().masteryNow().mapNotNull { entity ->
-        runCatching { json.decodeFromString<Mastery>(entity.recentOutcomes) }.getOrNull()
-    }
+    private suspend fun readStamps(): List<PassportStamp> =
+        database.progressReader().allStampsNow().mapNotNull { it.toPassportStamp() }.distinctBy { it.kind }
 }
 
 private fun destinationFor(run: QuizRunState): Destination = when (run.phase) {
@@ -590,57 +1134,20 @@ private fun destinationFor(run: QuizRunState): Destination = when (run.phase) {
     RunPhase.Completed -> Destination.Results
 }
 
-private fun app.bertsatlas.domain.model.Attempt.toEntity(json: Json) = AttemptEntity(
-    id = id,
-    runId = runId,
-    questionId = questionId,
-    countryIdsJson = json.encodeToString(countryIds.toSet()),
-    skill = skill.name,
-    correct = correct,
-    hinted = hinted,
-    overtime = overtime,
-    submittedAnswer = submittedAnswer,
-    correctAnswer = correctAnswer,
-    responseMillis = responseMillis,
-    pointsAwarded = pointsAwarded,
-    answeredAtEpochMillis = answeredAtEpochMillis,
-    localEpochDay = localEpochDay,
-    hintType = hintType?.name,
-    hintPointsDeducted = hintPointsDeducted,
-    questionWindowMillis = questionWindowMillis,
-    questionRemainingMillis = questionRemainingMillis,
-)
-
-private fun Mastery.toEntity() = MasteryEntity(
-    countryId, skill.name, level.name, attempts, unhintedCorrectAnswers, unhintedCorrectRunIds.size,
-    unhintedCorrectEpochDays.size, nextReviewEpochDay?.toString().orEmpty(), Json.encodeToString(this),
-)
-
-private fun QuizRunState.toSnapshotEntity(engine: QuizEngine, json: Json) = engine.snapshotActiveRun(this).let {
-    ActiveRunSnapshotEntity(schemaVersion = it.schemaVersion, catalogVersion = it.catalogVersion, snapshotJson = json.encodeToString(it))
-}
-
-private fun QuizRunState.toRunEntity(result: RunResult? = null) = RunEntity(
-    id = runId,
-    duration = configuration.duration.name,
-    topic = configuration.topic.name,
-    status = status.name,
-    score = score,
-    correctAnswers = attempts.count { it.correct },
-    answeredQuestions = attempts.size,
-    totalResponseMillis = attempts.sumOf { it.responseMillis },
-    bestCorrectStreak = bestCorrectStreak,
-    completedAtEpochMillis = result?.completedAtEpochMillis,
-    completedLocalDate = result?.completedAtEpochMillis?.let { attempts.lastOrNull()?.localEpochDay?.toString() },
-    completedTimeZoneId = result?.let { TimeZone.currentSystemDefault().id },
-)
-
-private fun Streak.toEntity() = StreakEntity(currentDays = currentDays, bestDays = bestDays, lastCompletionDate = lastCompletedEpochDay?.toString(), lastCompletionTimeZoneId = TimeZone.currentSystemDefault().id)
-private fun StreakEntity?.toDomain() = this?.let { Streak(currentDays, bestDays, lastCompletionDate?.toIntOrNull()) } ?: Streak()
-private fun StampEntity.toDomain() = runCatching { PassportStamp(PassportStampKind.valueOf(id), earnedAtEpochMillis) }.getOrNull()
+private fun QuizRunState.toSnapshotEntity(engine: QuizEngine, json: Json) =
+    engine.snapshotActiveRun(this).toEntity(configuration.scope.progressKey, json)
 
 private inline fun <reified T : Enum<T>> enumValueOrDefault(name: String, fallback: T): T =
     enumValues<T>().firstOrNull { it.name == name } ?: fallback
+
+private const val CLOCK_TICK_MILLIS = 100L
+private const val LIBRARY_WATCH_MILLIS = 1_000L
+private const val TICKS_BETWEEN_CLOCK_SNAPSHOTS = 50
+
+private val GEOGRAPHY_STAMP_KINDS = mapOf(
+    "flags-from-every-continent" to PassportStampKind.FlagsFromEveryContinent,
+    "confused-flags-mastered" to PassportStampKind.ConfusedFlagsMastered,
+)
 
 private fun PassportStampKind.displayName() = when (this) {
     PassportStampKind.FirstCompletedRun -> "First expedition"
@@ -648,6 +1155,7 @@ private fun PassportStampKind.displayName() = when (this) {
     PassportStampKind.SustainedAccuracy -> "Sharp atlas"
     PassportStampKind.ConfusedFlagsMastered -> "Lookalike detective"
     PassportStampKind.SevenActiveDays -> "Seven-day curiosity"
+    PassportStampKind.PackMastered -> "Pack mastered"
 }
 
 private fun PassportStampKind.description() = when (this) {
@@ -656,4 +1164,5 @@ private fun PassportStampKind.description() = when (this) {
     PassportStampKind.SustainedAccuracy -> "Reach 80% over 50 answers"
     PassportStampKind.ConfusedFlagsMastered -> "Master the confusing flag groups"
     PassportStampKind.SevenActiveDays -> "Complete runs on seven consecutive days"
+    PassportStampKind.PackMastered -> "Master every card in a pack"
 }

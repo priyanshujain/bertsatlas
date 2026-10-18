@@ -1,0 +1,872 @@
+{
+  "bundled": true,
+  "packId": "capitals",
+  "version": "1.0.0-draft.2",
+  "official": true,
+  "title": "Capitals",
+  "subtitle": "Capital cities of every country",
+  "category": "geography",
+  "subcategory": "capitals",
+  "accentColor": "#E1814E",
+  "coverMedia": null,
+  "languages": [
+    "en"
+  ],
+  "sources": [
+    {
+      "id": "source-un-members",
+      "title": "United Nations Member States",
+      "url": "https://www.un.org/en/about-us/member-states",
+      "publisher": "United Nations",
+      "retrievedAt": "2026-09-09",
+      "revision": "web snapshot 2026-09-09"
+    },
+    {
+      "id": "source-un-m49",
+      "title": "Standard country or area codes for statistical use (M49)",
+      "url": "https://unstats.un.org/unsd/methodology/m49/",
+      "publisher": "United Nations Statistics Division",
+      "retrievedAt": "2026-09-09",
+      "revision": "web snapshot 2026-09-09"
+    },
+    {
+      "id": "source-cldr",
+      "title": "Unicode CLDR territory display names",
+      "url": "https://github.com/unicode-org/cldr",
+      "publisher": "Unicode Consortium",
+      "retrievedAt": "2026-09-09",
+      "revision": "country-codes aggregate pin 6a595f1a6f10b3d00175fe67375da88f64f7f76b"
+    },
+    {
+      "id": "source-wikidata",
+      "title": "Wikidata country and capital records",
+      "url": "https://www.wikidata.org/",
+      "publisher": "Wikimedia Foundation",
+      "retrievedAt": "2026-09-09",
+      "revision": "country-codes aggregate pin 6a595f1a6f10b3d00175fe67375da88f64f7f76b"
+    },
+    {
+      "id": "source-country-codes-snapshot",
+      "title": "Data Package country codes",
+      "url": "https://github.com/datasets/country-codes",
+      "publisher": "Data Package contributors",
+      "retrievedAt": "2026-09-09",
+      "revision": "6a595f1a6f10b3d00175fe67375da88f64f7f76b"
+    },
+    {
+      "id": "source-country-flags",
+      "title": "Country Flags",
+      "url": "https://github.com/hampusborgos/country-flags",
+      "publisher": "Hampus Borgos and contributors",
+      "retrievedAt": "2026-09-09",
+      "revision": "c09927e63705529bbf59ca6684cd9b23225dddad"
+    },
+    {
+      "id": "source-rest-countries",
+      "title": "REST Countries V4 country data",
+      "url": "https://gitlab.com/restcountries/restcountries/-/tree/43f6260db10c54df9972e6e554ee14c2e7c85ef5",
+      "publisher": "REST Countries contributors",
+      "retrievedAt": "2026-09-10",
+      "revision": "43f6260db10c54df9972e6e554ee14c2e7c85ef5"
+    },
+    {
+      "id": "source-experience-oman-musandam",
+      "title": "Experience Oman: Musandam",
+      "url": "https://booking.experienceoman.om/en/destination/msd-93",
+      "publisher": "Ministry of Heritage and Tourism, Sultanate of Oman",
+      "retrievedAt": "2026-09-10",
+      "revision": "web snapshot 2026-09-10"
+    },
+    {
+      "id": "source-philippines-tourism-islands",
+      "title": "Island Hopping",
+      "url": "https://www.tourism.gov.ph/article/island-hopping-0-21/",
+      "publisher": "Department of Tourism, Republic of the Philippines",
+      "retrievedAt": "2026-09-10",
+      "revision": "web snapshot 2026-09-10"
+    },
+    {
+      "id": "source-geoscience-australia",
+      "title": "Australia's size compared",
+      "url": "https://www.ga.gov.au/scientific-topics/national-location-information/dimensions/australias-size-compared",
+      "publisher": "Geoscience Australia",
+      "retrievedAt": "2026-09-10",
+      "revision": "web snapshot 2026-09-10"
+    },
+    {
+      "id": "source-ibge-brazil",
+      "title": "Brazil: territory introduction",
+      "url": "https://educa.ibge.gov.br/jovens/conheca-o-brasil/territorio/20591-introducao.html",
+      "publisher": "Brazilian Institute of Geography and Statistics",
+      "retrievedAt": "2026-09-10",
+      "revision": "web snapshot 2026-09-10"
+    },
+    {
+      "id": "source-canada-coastlines",
+      "title": "Canada's coastlines",
+      "url": "https://www.canada.ca/en/services/environment/our-environment/nature-based-climate-solutions/coastlines.html",
+      "publisher": "Government of Canada",
+      "retrievedAt": "2026-09-10",
+      "revision": "web snapshot 2026-09-10"
+    },
+    {
+      "id": "source-incredible-india-dal-lake",
+      "title": "Dal Lake",
+      "url": "https://www.incredibleindia.gov.in/en/jammu-and-kashmir/srinagar/dal-lake",
+      "publisher": "Ministry of Tourism, Government of India",
+      "retrievedAt": "2026-09-10",
+      "revision": "web snapshot 2026-09-10"
+    },
+    {
+      "id": "source-gsi-japan-islands",
+      "title": "Re-counting the number of islands in Japan",
+      "url": "https://www.gsi.go.jp/kihonjohochousa/islands_index.html",
+      "publisher": "Geospatial Information Authority of Japan",
+      "retrievedAt": "2026-09-10",
+      "revision": "2022 digital-map recount published 2023-02-28"
+    },
+    {
+      "id": "source-mexico-flag-history",
+      "title": "Learn about the history of the Mexican flag",
+      "url": "https://www.gob.mx/sre/articulos/learn-about-the-history-of-the-mexican-flag-esmibandera",
+      "publisher": "Government of Mexico, Secretariat of Foreign Affairs",
+      "retrievedAt": "2026-09-10",
+      "revision": "web snapshot 2026-09-10"
+    },
+    {
+      "id": "source-south-africa-provinces",
+      "title": "South Africa's provinces",
+      "url": "https://www.gov.za/about-sa/south-africas-provinces",
+      "publisher": "Government of South Africa",
+      "retrievedAt": "2026-09-10",
+      "revision": "web snapshot 2026-09-10"
+    },
+    {
+      "id": "source-rmg-greenwich",
+      "title": "Discover the home of Greenwich Mean Time",
+      "url": "https://www.rmg.co.uk/plan-your-visit/visit-greenwich/discover-home-of-time",
+      "publisher": "Royal Museums Greenwich",
+      "retrievedAt": "2026-09-10",
+      "revision": "web snapshot 2026-09-10"
+    },
+    {
+      "id": "source-nz-womens-suffrage",
+      "title": "Women and the vote",
+      "url": "https://nzhistory.govt.nz/politics/womens-suffrage",
+      "publisher": "New Zealand Ministry for Culture and Heritage",
+      "retrievedAt": "2026-09-10",
+      "revision": "web snapshot 2026-09-10"
+    },
+    {
+      "id": "source-nepal-film-guide",
+      "title": "Filming in Nepal: a guide",
+      "url": "https://film.gov.np/media/filmgov/uploads/Filming_in_Nepal_2010_a_Guide_bOok_Chiranjibi_Guragain1.pdf",
+      "publisher": "Government of Nepal Film Development Board",
+      "retrievedAt": "2026-09-10",
+      "revision": "2010 guide"
+    },
+    {
+      "id": "source-netherlands-govtech",
+      "title": "GovTech in the Netherlands",
+      "url": "https://www.government.nl/binaries/government/documenten/reports/2021/06/30/govtech-in-the-netherlands/PUBLIC-GovTech-NL.pdf",
+      "publisher": "Government of the Netherlands",
+      "retrievedAt": "2026-09-10",
+      "revision": "2021-06 report"
+    },
+    {
+      "id": "source-cia-monaco-flag-archive",
+      "title": "Monaco flag",
+      "url": "https://www.cia.gov/the-world-factbook/about/archives/2023/countries/monaco/flag/",
+      "publisher": "CIA World Factbook archive",
+      "retrievedAt": "2026-09-10",
+      "revision": "2023 archive"
+    }
+  ],
+  "assetLicenses": [],
+  "stamps": [
+    {
+      "id": "capitals-from-every-continent",
+      "title": "Around the world",
+      "description": "Name capitals from all six regions",
+      "rule": {
+        "kind": "correctAcrossFieldValues",
+        "field": "Continent",
+        "values": [
+          "Africa",
+          "Asia",
+          "Europe",
+          "North America",
+          "South America",
+          "Oceania"
+        ]
+      }
+    }
+  ],
+  "bertSchemaVersion": 1,
+  "similarGroups": [
+    {
+      "id": "austria-australia",
+      "kind": "name",
+      "countryIds": [
+        "at",
+        "au"
+      ],
+      "explanation": {
+        "id": "confusion-austria-australia",
+        "text": "These similarly named countries are separate catalog entries. Capital memory hook. Austria: Vienna; Australia: Canberra.",
+        "sourceIds": [
+          "source-country-codes-snapshot"
+        ],
+        "review": {
+          "state": "draft",
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      }
+    },
+    {
+      "id": "niger-nigeria",
+      "kind": "name",
+      "countryIds": [
+        "ne",
+        "ng"
+      ],
+      "explanation": {
+        "id": "confusion-niger-nigeria",
+        "text": "These similarly named countries are separate catalog entries. Capital memory hook. Niger: Niamey; Nigeria: Abuja.",
+        "sourceIds": [
+          "source-country-codes-snapshot"
+        ],
+        "review": {
+          "state": "draft",
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      }
+    },
+    {
+      "id": "dominica-dominican-republic",
+      "kind": "name",
+      "countryIds": [
+        "dm",
+        "do"
+      ],
+      "explanation": {
+        "id": "confusion-dominica-dominican-republic",
+        "text": "These similarly named countries are separate catalog entries. Capital memory hook. Dominica: Roseau; Dominican Republic: Santo Domingo.",
+        "sourceIds": [
+          "source-country-codes-snapshot"
+        ],
+        "review": {
+          "state": "draft",
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      }
+    },
+    {
+      "id": "slovakia-slovenia",
+      "kind": "name",
+      "countryIds": [
+        "sk",
+        "si"
+      ],
+      "explanation": {
+        "id": "confusion-slovakia-slovenia",
+        "text": "These similarly named countries are separate catalog entries. Capital memory hook. Slovakia: Bratislava; Slovenia: Ljubljana.",
+        "sourceIds": [
+          "source-country-codes-snapshot"
+        ],
+        "review": {
+          "state": "draft",
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      }
+    },
+    {
+      "id": "ireland-iceland",
+      "kind": "name",
+      "countryIds": [
+        "ie",
+        "is"
+      ],
+      "explanation": {
+        "id": "confusion-ireland-iceland",
+        "text": "These similarly named countries are separate catalog entries. Capital memory hook. Ireland: Dublin; Iceland: Reykjavik.",
+        "sourceIds": [
+          "source-country-codes-snapshot"
+        ],
+        "review": {
+          "state": "draft",
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      }
+    },
+    {
+      "id": "sweden-switzerland",
+      "kind": "name",
+      "countryIds": [
+        "se",
+        "ch"
+      ],
+      "explanation": {
+        "id": "confusion-sweden-switzerland",
+        "text": "These similarly named countries are separate catalog entries. Capital memory hook. Sweden: Stockholm; Switzerland: Bern.",
+        "sourceIds": [
+          "source-country-codes-snapshot"
+        ],
+        "review": {
+          "state": "draft",
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      }
+    },
+    {
+      "id": "gambia-zambia",
+      "kind": "name",
+      "countryIds": [
+        "gm",
+        "zm"
+      ],
+      "explanation": {
+        "id": "confusion-gambia-zambia",
+        "text": "These similarly named countries are separate catalog entries. Capital memory hook. Gambia: Banjul; Zambia: Lusaka.",
+        "sourceIds": [
+          "source-country-codes-snapshot"
+        ],
+        "review": {
+          "state": "draft",
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      }
+    },
+    {
+      "id": "mauritania-mauritius",
+      "kind": "name",
+      "countryIds": [
+        "mr",
+        "mu"
+      ],
+      "explanation": {
+        "id": "confusion-mauritania-mauritius",
+        "text": "These similarly named countries are separate catalog entries. Capital memory hook. Mauritania: Nouakchott; Mauritius: Port Louis.",
+        "sourceIds": [
+          "source-country-codes-snapshot"
+        ],
+        "review": {
+          "state": "draft",
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      }
+    },
+    {
+      "id": "guinea-family",
+      "kind": "name",
+      "countryIds": [
+        "gn",
+        "gw",
+        "gq",
+        "pg"
+      ],
+      "explanation": {
+        "id": "confusion-guinea-family",
+        "text": "These similarly named countries are separate catalog entries. Capital memory hook. Guinea: Conakry; Guinea-Bissau: Bissau; Equatorial Guinea: Ciudad de la Paz; Papua New Guinea: Port Moresby.",
+        "sourceIds": [
+          "source-country-codes-snapshot"
+        ],
+        "review": {
+          "state": "draft",
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      }
+    },
+    {
+      "id": "congo-pair",
+      "kind": "name",
+      "countryIds": [
+        "cg",
+        "cd"
+      ],
+      "explanation": {
+        "id": "confusion-congo-pair",
+        "text": "These similarly named countries are separate catalog entries. Capital memory hook. Republic of the Congo: Brazzaville; Democratic Republic of the Congo: Kinshasa.",
+        "sourceIds": [
+          "source-country-codes-snapshot"
+        ],
+        "review": {
+          "state": "draft",
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      }
+    },
+    {
+      "id": "korea-pair",
+      "kind": "name",
+      "countryIds": [
+        "kp",
+        "kr"
+      ],
+      "explanation": {
+        "id": "confusion-korea-pair",
+        "text": "These similarly named countries are separate catalog entries. Capital memory hook. North Korea: Pyongyang; South Korea: Seoul.",
+        "sourceIds": [
+          "source-country-codes-snapshot"
+        ],
+        "review": {
+          "state": "draft",
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      }
+    },
+    {
+      "id": "sudan-pair",
+      "kind": "name",
+      "countryIds": [
+        "sd",
+        "ss"
+      ],
+      "explanation": {
+        "id": "confusion-sudan-pair",
+        "text": "These similarly named countries are separate catalog entries. Capital memory hook. Sudan: Khartoum; South Sudan: Juba.",
+        "sourceIds": [
+          "source-country-codes-snapshot"
+        ],
+        "review": {
+          "state": "draft",
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      }
+    },
+    {
+      "id": "chad-romania",
+      "kind": "flag",
+      "countryIds": [
+        "td",
+        "ro"
+      ],
+      "explanation": {
+        "id": "confusion-chad-romania",
+        "text": "The layouts are nearly identical; Chad normally uses a darker blue stripe than Romania.",
+        "sourceIds": [
+          "source-country-flags"
+        ],
+        "review": {
+          "state": "draft",
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      }
+    },
+    {
+      "id": "indonesia-monaco",
+      "kind": "flag",
+      "countryIds": [
+        "id",
+        "mc"
+      ],
+      "explanation": {
+        "id": "confusion-indonesia-monaco",
+        "text": "Both are red over white; their official proportions differ, so trivia choices keep the original ratios.",
+        "sourceIds": [
+          "source-country-flags"
+        ],
+        "review": {
+          "state": "draft",
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      }
+    },
+    {
+      "id": "ireland-cote-divoire",
+      "kind": "flag",
+      "countryIds": [
+        "ie",
+        "ci"
+      ],
+      "explanation": {
+        "id": "confusion-ireland-cote-divoire",
+        "text": "Both use green, white, and orange vertical bands, but the order is reversed.",
+        "sourceIds": [
+          "source-country-flags"
+        ],
+        "review": {
+          "state": "draft",
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      }
+    },
+    {
+      "id": "netherlands-luxembourg",
+      "kind": "flag",
+      "countryIds": [
+        "nl",
+        "lu"
+      ],
+      "explanation": {
+        "id": "confusion-netherlands-luxembourg",
+        "text": "Both use horizontal red, white, and blue; Luxembourg normally uses a lighter blue and a longer proportion.",
+        "sourceIds": [
+          "source-country-flags"
+        ],
+        "review": {
+          "state": "draft",
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      }
+    },
+    {
+      "id": "australia-new-zealand",
+      "kind": "flag",
+      "countryIds": [
+        "au",
+        "nz"
+      ],
+      "explanation": {
+        "id": "confusion-australia-new-zealand",
+        "text": "Australia includes the Commonwealth Star and more stars; New Zealand's four Southern Cross stars are red-edged in white.",
+        "sourceIds": [
+          "source-country-flags"
+        ],
+        "review": {
+          "state": "draft",
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      }
+    },
+    {
+      "id": "qatar-bahrain",
+      "kind": "flag",
+      "countryIds": [
+        "qa",
+        "bh"
+      ],
+      "explanation": {
+        "id": "confusion-qatar-bahrain",
+        "text": "Qatar is maroon with nine white serration points; Bahrain is red with five.",
+        "sourceIds": [
+          "source-country-flags"
+        ],
+        "review": {
+          "state": "draft",
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      }
+    },
+    {
+      "id": "colombia-ecuador-venezuela",
+      "kind": "flag",
+      "countryIds": [
+        "co",
+        "ec",
+        "ve"
+      ],
+      "explanation": {
+        "id": "confusion-colombia-ecuador-venezuela",
+        "text": "All use yellow, blue, and red; Ecuador adds its coat of arms and Venezuela adds an arc of stars.",
+        "sourceIds": [
+          "source-country-flags"
+        ],
+        "review": {
+          "state": "draft",
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      }
+    },
+    {
+      "id": "mali-guinea",
+      "kind": "flag",
+      "countryIds": [
+        "ml",
+        "gn"
+      ],
+      "explanation": {
+        "id": "confusion-mali-guinea",
+        "text": "Both use the same three colours in vertical bands, but in opposite order.",
+        "sourceIds": [
+          "source-country-flags"
+        ],
+        "review": {
+          "state": "draft",
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      }
+    },
+    {
+      "id": "italy-mexico",
+      "kind": "flag",
+      "countryIds": [
+        "it",
+        "mx"
+      ],
+      "explanation": {
+        "id": "confusion-italy-mexico",
+        "text": "Both use green, white, and red vertical bands; Mexico places its national coat of arms in the centre.",
+        "sourceIds": [
+          "source-country-flags"
+        ],
+        "review": {
+          "state": "draft",
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      }
+    },
+    {
+      "id": "belgium-germany",
+      "kind": "flag",
+      "countryIds": [
+        "be",
+        "de"
+      ],
+      "explanation": {
+        "id": "confusion-belgium-germany",
+        "text": "Both use black, red, and yellow; Belgium's bands are vertical and Germany's are horizontal.",
+        "sourceIds": [
+          "source-country-flags"
+        ],
+        "review": {
+          "state": "draft",
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      }
+    },
+    {
+      "id": "norway-iceland",
+      "kind": "flag",
+      "countryIds": [
+        "no",
+        "is"
+      ],
+      "explanation": {
+        "id": "confusion-norway-iceland",
+        "text": "Both use an offset Nordic cross; Norway is red with a blue inner cross, while Iceland reverses those dominant colours.",
+        "sourceIds": [
+          "source-country-flags"
+        ],
+        "review": {
+          "state": "draft",
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      }
+    },
+    {
+      "id": "denmark-norway",
+      "kind": "flag",
+      "countryIds": [
+        "dk",
+        "no"
+      ],
+      "explanation": {
+        "id": "confusion-denmark-norway",
+        "text": "Both use a white Nordic cross on red, but Norway adds a blue cross inside the white one.",
+        "sourceIds": [
+          "source-country-flags"
+        ],
+        "review": {
+          "state": "draft",
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      }
+    },
+    {
+      "id": "russia-slovenia-slovakia",
+      "kind": "flag",
+      "countryIds": [
+        "ru",
+        "si",
+        "sk"
+      ],
+      "explanation": {
+        "id": "confusion-russia-slovenia-slovakia",
+        "text": "All use white, blue, and red horizontal bands; Slovenia and Slovakia add different national arms, while Russia does not.",
+        "sourceIds": [
+          "source-country-flags"
+        ],
+        "review": {
+          "state": "draft",
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      }
+    },
+    {
+      "id": "croatia-paraguay-netherlands",
+      "kind": "flag",
+      "countryIds": [
+        "hr",
+        "py",
+        "nl"
+      ],
+      "explanation": {
+        "id": "confusion-croatia-paraguay-netherlands",
+        "text": "All use red, white, and blue horizontal bands; Croatia and Paraguay add national emblems, while the Netherlands does not.",
+        "sourceIds": [
+          "source-country-flags"
+        ],
+        "review": {
+          "state": "draft",
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      }
+    },
+    {
+      "id": "honduras-nicaragua-el-salvador",
+      "kind": "flag",
+      "countryIds": [
+        "hn",
+        "ni",
+        "sv"
+      ],
+      "explanation": {
+        "id": "confusion-honduras-nicaragua-el-salvador",
+        "text": "All are blue-white-blue; Honduras has five stars, while Nicaragua and El Salvador use different central arms.",
+        "sourceIds": [
+          "source-country-flags"
+        ],
+        "review": {
+          "state": "draft",
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      }
+    },
+    {
+      "id": "egypt-iraq-syria-yemen",
+      "kind": "flag",
+      "countryIds": [
+        "eg",
+        "iq",
+        "sy",
+        "ye"
+      ],
+      "explanation": {
+        "id": "confusion-egypt-iraq-syria-yemen",
+        "text": "These flags share red, white, and black bands; their central stars, text, emblems, or lack of them distinguish the designs.",
+        "sourceIds": [
+          "source-country-flags"
+        ],
+        "review": {
+          "state": "draft",
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      }
+    },
+    {
+      "id": "senegal-cameroon-mali-guinea",
+      "kind": "flag",
+      "countryIds": [
+        "sn",
+        "cm",
+        "ml",
+        "gn"
+      ],
+      "explanation": {
+        "id": "confusion-senegal-cameroon-mali-guinea",
+        "text": "These flags reuse green, yellow, and red vertical bands; order and central stars are the quickest clues.",
+        "sourceIds": [
+          "source-country-flags"
+        ],
+        "review": {
+          "state": "draft",
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      }
+    },
+    {
+      "id": "uae-kuwait-jordan-palestine",
+      "kind": "flag",
+      "countryIds": [
+        "ae",
+        "kw",
+        "jo",
+        "ps"
+      ],
+      "explanation": {
+        "id": "confusion-uae-kuwait-jordan-palestine",
+        "text": "These flags share Pan-Arab colours; compare the hoist shape and the order of the horizontal bands.",
+        "sourceIds": [
+          "source-country-flags"
+        ],
+        "review": {
+          "state": "draft",
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      }
+    },
+    {
+      "id": "costa-rica-thailand",
+      "kind": "flag",
+      "countryIds": [
+        "cr",
+        "th"
+      ],
+      "explanation": {
+        "id": "confusion-costa-rica-thailand",
+        "text": "Both have five horizontal red, white, and blue bands; the broad centre band is red for Costa Rica and blue for Thailand.",
+        "sourceIds": [
+          "source-country-flags"
+        ],
+        "review": {
+          "state": "draft",
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      }
+    },
+    {
+      "id": "poland-indonesia",
+      "kind": "flag",
+      "countryIds": [
+        "pl",
+        "id"
+      ],
+      "explanation": {
+        "id": "confusion-poland-indonesia",
+        "text": "Both are simple white-and-red bicolours; Poland is white over red and Indonesia is red over white.",
+        "sourceIds": [
+          "source-country-flags"
+        ],
+        "review": {
+          "state": "draft",
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      }
+    }
+  ],
+  "upstream": {
+    "catalogSchemaVersion": 1,
+    "countryCanon": "un193-plus-palestine-and-vatican-city",
+    "editorialPolicyVersion": "1.0.0",
+    "generatedFromPinnedDataAt": "2026-09-09",
+    "review": {
+      "state": "draft",
+      "reviewer": null,
+      "reviewedAt": null,
+      "note": "Machine assembled from pinned sources. Land-border facts require human fact, copy, ambiguity, and sensitivity review; every flag requires visual audit."
+    }
+  }
+}

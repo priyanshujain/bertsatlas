@@ -1,0 +1,3028 @@
+{
+  "cards": [
+    {
+      "guid": "2c54e396-a30a-5692-9e98-d980be34d603",
+      "noteType": "Bert Cloze",
+      "section": "model",
+      "fields": {
+        "Text": "In the relational model, a table is called a {{c1::relation}}, a row a tuple, and a column an attribute.",
+        "Extra": "",
+        "Hint": "Codd borrowed the word from set theory.",
+        "Fact": "Codd defined relations as sets, so in theory a relation has no duplicate tuples and no row order.",
+        "Source": "A Relational Model of Data for Large Shared Data Banks, E. F. Codd, 1970 (https://dl.acm.org/doi/10.1145/362384.362685)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::norm-terms",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "8fa7d1a0-9560-5f22-92df-820313962363",
+      "noteType": "Bert Typed",
+      "section": "model",
+      "fields": {
+        "Question": "In what year did E. F. Codd publish \"A Relational Model of Data for Large Shared Data Banks\"?",
+        "Answer": "1970",
+        "Aliases": "",
+        "Hint": "The very start of a decade.",
+        "Fact": "Codd wrote the paper while working at IBM, and it appeared in Communications of the ACM.",
+        "Source": "A Relational Model of Data for Large Shared Data Banks, E. F. Codd, 1970 (https://dl.acm.org/doi/10.1145/362384.362685)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::history",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "d522b2aa-f2de-526f-8db3-b1f1b9291070",
+      "noteType": "Bert Cloze",
+      "section": "model",
+      "fields": {
+        "Text": "A {{c1::primary key}} is a chosen candidate key that uniquely identifies each row and cannot be NULL.",
+        "Extra": "",
+        "Hint": "Every table should usually have exactly one of these.",
+        "Fact": "A table can have several candidate keys, but only one is designated primary.",
+        "Source": "PostgreSQL Documentation: SELECT (https://www.postgresql.org/docs/current/sql-select.html)\nA Relational Model of Data for Large Shared Data Banks, E. F. Codd, 1970 (https://dl.acm.org/doi/10.1145/362384.362685)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::norm-terms",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "45d3d417-f0b3-50ba-b94a-ccec792b54ad",
+      "noteType": "Bert Cloze",
+      "section": "model",
+      "fields": {
+        "Text": "A {{c1::foreign key}} is a column set whose values must match a key in another (or the same) table, enforcing referential integrity.",
+        "Extra": "",
+        "Hint": "It points across tables.",
+        "Fact": "A foreign key can reference its own table, which is a common way to model hierarchies like managers.",
+        "Source": "SQLite: Foreign Key Support (https://www.sqlite.org/foreignkeys.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::norm-terms",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "345bf0d7-a8a3-5f4b-95b9-7d2bb155ea94",
+      "noteType": "Bert Basic",
+      "section": "model",
+      "fields": {
+        "Question": "Which join returns only rows that have a match in both tables?",
+        "Answer": "INNER JOIN",
+        "Aliases": "inner\njoin",
+        "Hint": "It is what plain JOIN means.",
+        "Fact": "In SQL, JOIN with no qualifier is an inner join.",
+        "Source": "PostgreSQL Documentation: Table Expressions (https://www.postgresql.org/docs/current/queries-table-expressions.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::join-types",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "b2273313-452c-5506-8d89-66102f46854f",
+      "noteType": "Bert Basic",
+      "section": "model",
+      "fields": {
+        "Question": "Which join keeps every row from the first table and fills unmatched columns from the second with NULL?",
+        "Answer": "LEFT OUTER JOIN",
+        "Aliases": "LEFT JOIN\nleft outer\nleft",
+        "Hint": "Think about which side is preserved.",
+        "Fact": "A LEFT JOIN followed by WHERE right.col IS NULL is a classic way to find rows with no match.",
+        "Source": "PostgreSQL Documentation: Table Expressions (https://www.postgresql.org/docs/current/queries-table-expressions.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::join-types",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "1d2fe7b0-ad59-577d-9d77-9ea9ae7f4080",
+      "noteType": "Bert Basic",
+      "section": "model",
+      "fields": {
+        "Question": "Which join keeps unmatched rows from both tables, padding the missing side with NULLs?",
+        "Answer": "FULL OUTER JOIN",
+        "Aliases": "FULL JOIN\nfull outer\nfull",
+        "Hint": "It preserves both sides.",
+        "Fact": "MySQL does not support FULL OUTER JOIN directly; it is usually emulated with a UNION of left and right joins.",
+        "Source": "PostgreSQL Documentation: Table Expressions (https://www.postgresql.org/docs/current/queries-table-expressions.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::join-types",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "54c8ff0d-2e0d-59ce-9bb6-0d00eecd0960",
+      "noteType": "Bert Basic",
+      "section": "model",
+      "fields": {
+        "Question": "Which join produces the Cartesian product of two tables?",
+        "Answer": "CROSS JOIN",
+        "Aliases": "cross\ncartesian product",
+        "Hint": "Every row pairs with every row.",
+        "Fact": "A cross join of a 1,000 row table with itself yields 1,000,000 rows.",
+        "Source": "PostgreSQL Documentation: Table Expressions (https://www.postgresql.org/docs/current/queries-table-expressions.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::join-types",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "e4ffe06f-8410-5309-9e8f-ffcdb8d3a587",
+      "noteType": "Bert Cloze",
+      "section": "model",
+      "fields": {
+        "Text": "<code>WHERE EXISTS (subquery)</code> expresses a {{c1::semi join}}: each outer row is returned at most once if any match exists.",
+        "Extra": "",
+        "Hint": "The opposite with NOT EXISTS has a related name.",
+        "Fact": "Unlike an inner join, a semi join never duplicates outer rows when there are several matches.",
+        "Source": "PostgreSQL Documentation: Subquery Expressions (https://www.postgresql.org/docs/current/functions-subquery.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::join-types",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "fe26cbe9-f52a-5369-bf8b-ed173b8a1425",
+      "noteType": "Bert Cloze",
+      "section": "model",
+      "fields": {
+        "Text": "<code>WHERE NOT EXISTS (subquery)</code> expresses an {{c1::anti join}}: rows with no match on the other side.",
+        "Extra": "",
+        "Hint": "The negated cousin of a semi join.",
+        "Fact": "NOT EXISTS is usually safer than NOT IN, because NOT IN behaves surprisingly when the subquery returns NULL.",
+        "Source": "PostgreSQL Documentation: Subquery Expressions (https://www.postgresql.org/docs/current/functions-subquery.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::join-types",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "3b4a7d7c-a89c-57a5-852a-a0aa01c2d6e1",
+      "noteType": "Bert Basic",
+      "section": "model",
+      "fields": {
+        "Question": "If the subquery in <code>x NOT IN (subquery)</code> returns a NULL and no match is found, what does the predicate evaluate to?",
+        "Answer": "NULL",
+        "Aliases": "unknown",
+        "Hint": "Three valued logic is involved.",
+        "Fact": "Because the result is never true, the outer query returns no rows for such x.",
+        "Source": "PostgreSQL Documentation: Subquery Expressions (https://www.postgresql.org/docs/current/functions-subquery.html)\nPostgreSQL Documentation: Comparison Functions and Operators (https://www.postgresql.org/docs/current/functions-comparison.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::sql-clauses",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "1eea6723-104b-5098-8a42-02a3d8f4debf",
+      "noteType": "Bert Basic",
+      "section": "model",
+      "fields": {
+        "Question": "What does <code>NULL = NULL</code> evaluate to in standard SQL?",
+        "Answer": "NULL",
+        "Aliases": "unknown",
+        "Hint": "It is not TRUE.",
+        "Fact": "Use IS NULL, or IS NOT DISTINCT FROM, to compare values that may be NULL.",
+        "Source": "PostgreSQL Documentation: Comparison Functions and Operators (https://www.postgresql.org/docs/current/functions-comparison.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::sql-clauses",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "fac8dc18-d680-5861-8dab-25f0ce1f91fc",
+      "noteType": "Bert Basic",
+      "section": "model",
+      "fields": {
+        "Question": "Which counts rows including those where <code>col</code> is NULL: <code>COUNT(*)</code> or <code>COUNT(col)</code>?",
+        "Answer": "COUNT(*)",
+        "Aliases": "count star",
+        "Hint": "One of them skips NULLs.",
+        "Fact": "Most aggregates, such as SUM and AVG, also ignore NULL inputs.",
+        "Source": "PostgreSQL Documentation: Aggregate Functions (https://www.postgresql.org/docs/current/functions-aggregate.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::sql-clauses",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "8d2b5fb1-f072-50c6-9a3b-e1a10b5d998f",
+      "noteType": "Bert Basic",
+      "section": "model",
+      "fields": {
+        "Question": "Which clause filters groups after aggregation?",
+        "Answer": "HAVING",
+        "Aliases": "",
+        "Hint": "WHERE runs too early for this.",
+        "Fact": "HAVING can reference aggregates like COUNT(*), which WHERE cannot.",
+        "Source": "PostgreSQL Documentation: SELECT (https://www.postgresql.org/docs/current/sql-select.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::sql-clauses",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "fd1453d6-0592-541e-9d37-4e9343c6404c",
+      "noteType": "Bert Basic",
+      "section": "model",
+      "fields": {
+        "Question": "In logical query processing, which clause is evaluated first: FROM, WHERE, SELECT or ORDER BY?",
+        "Answer": "FROM",
+        "Aliases": "",
+        "Hint": "You need rows before you can filter them.",
+        "Fact": "This is why a column alias defined in SELECT is not visible in WHERE.",
+        "Source": "PostgreSQL Documentation: SELECT (https://www.postgresql.org/docs/current/sql-select.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::sql-clauses",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "1bd8439f-0ac2-5ae4-bd16-55e280a34133",
+      "noteType": "Bert Basic",
+      "section": "model",
+      "fields": {
+        "Question": "Can a column alias defined in the SELECT list be referenced in the WHERE clause of the same query in standard SQL?",
+        "Answer": "No",
+        "Aliases": "",
+        "Hint": "Recall the logical processing order.",
+        "Fact": "ORDER BY can use SELECT aliases because it is logically evaluated after SELECT.",
+        "Source": "PostgreSQL Documentation: SELECT (https://www.postgresql.org/docs/current/sql-select.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::yes-no",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "db85ef5e-81d5-5ecc-b4c4-6fa857dda62b",
+      "noteType": "Bert Basic",
+      "section": "model",
+      "fields": {
+        "Question": "Which operator combines two result sets without removing duplicates?",
+        "Answer": "UNION ALL",
+        "Aliases": "",
+        "Hint": "The plain version deduplicates.",
+        "Fact": "UNION ALL is usually cheaper because it skips the deduplication step.",
+        "Source": "PostgreSQL Documentation: Combining Queries (https://www.postgresql.org/docs/current/queries-union.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::sql-clauses",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "8a61279c-42e0-5694-9e43-d1950dbac2b0",
+      "noteType": "Bert Basic",
+      "section": "model",
+      "fields": {
+        "Question": "Which standard SQL set operator returns rows from the first query that are not in the second?",
+        "Answer": "EXCEPT",
+        "Aliases": "MINUS",
+        "Hint": "Oracle spells it differently.",
+        "Fact": "Like UNION, EXCEPT removes duplicates unless written as EXCEPT ALL.",
+        "Source": "PostgreSQL Documentation: Combining Queries (https://www.postgresql.org/docs/current/queries-union.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::sql-clauses",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "43983d3f-e3b1-5abd-b3c5-5c3e4c2dab8d",
+      "noteType": "Bert Cloze",
+      "section": "model",
+      "fields": {
+        "Text": "A {{c1::window function}} computes a value across a set of rows related to the current row without collapsing them into one output row.",
+        "Extra": "",
+        "Hint": "It uses an OVER clause.",
+        "Fact": "PostgreSQL added window functions in version 8.4.",
+        "Source": "PostgreSQL Documentation: Window Functions tutorial (https://www.postgresql.org/docs/current/tutorial-window.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::sql-features",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "98596d9d-6bd8-5cd3-8041-03caed4ce8bd",
+      "noteType": "Bert Typed",
+      "section": "model",
+      "fields": {
+        "Question": "Inside an OVER clause, which two words split rows into independent groups for the window function?",
+        "Answer": "PARTITION BY",
+        "Aliases": "",
+        "Hint": "Similar in spirit to GROUP BY but rows are kept.",
+        "Fact": "Without it, the whole result set is one partition.",
+        "Source": "PostgreSQL Documentation: Window Functions tutorial (https://www.postgresql.org/docs/current/tutorial-window.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::sql-keywords",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "948c28f8-26ec-5d99-bd24-fd9ee6989774",
+      "noteType": "Bert Basic",
+      "section": "model",
+      "fields": {
+        "Question": "Which ranking function leaves gaps after ties, giving 1, 1, 3?",
+        "Answer": "RANK",
+        "Aliases": "RANK()",
+        "Hint": "One of its siblings does not leave gaps.",
+        "Fact": "RANK equals one plus the number of rows that sort strictly before the current row.",
+        "Source": "PostgreSQL Documentation: Window Functions (https://www.postgresql.org/docs/current/functions-window.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::window-ranking",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "28f104b9-6fff-5317-b349-724003c0ef5d",
+      "noteType": "Bert Basic",
+      "section": "model",
+      "fields": {
+        "Question": "Which ranking function gives ties the same rank with no gaps, producing 1, 1, 2?",
+        "Answer": "DENSE_RANK",
+        "Aliases": "DENSE_RANK()\ndense rank",
+        "Hint": "Its name says the ranks are packed.",
+        "Fact": "DENSE_RANK counts distinct peer groups rather than rows.",
+        "Source": "PostgreSQL Documentation: Window Functions (https://www.postgresql.org/docs/current/functions-window.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::window-ranking",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "7e12ca69-7794-587e-babc-ec4b70e32e5a",
+      "noteType": "Bert Basic",
+      "section": "model",
+      "fields": {
+        "Question": "Which window function assigns a unique sequential integer to each row in a partition, even for ties?",
+        "Answer": "ROW_NUMBER",
+        "Aliases": "ROW_NUMBER()\nrow number",
+        "Hint": "Ties get broken arbitrarily unless ORDER BY is fully determined.",
+        "Fact": "A common use is picking the latest row per group with WHERE rn = 1 in an outer query.",
+        "Source": "PostgreSQL Documentation: Window Functions (https://www.postgresql.org/docs/current/functions-window.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::window-ranking",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "eb8c4f0b-901d-50c5-972b-6c285dac0a49",
+      "noteType": "Bert Basic",
+      "section": "model",
+      "fields": {
+        "Question": "Which window function returns a value from a previous row in the partition?",
+        "Answer": "LAG",
+        "Aliases": "LAG()",
+        "Hint": "Its partner looks forward.",
+        "Fact": "LAG accepts an offset and a default value used when no such row exists.",
+        "Source": "PostgreSQL Documentation: Window Functions (https://www.postgresql.org/docs/current/functions-window.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::window-ranking",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "cdcb0012-c651-5a1b-8e76-5cd8a650094f",
+      "noteType": "Bert Cloze",
+      "section": "model",
+      "fields": {
+        "Text": "When a window has ORDER BY but no frame clause, the default frame is {{c1::RANGE BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW}}.",
+        "Extra": "This makes SUM produce a running total that includes all peers of the current row.",
+        "Hint": "Running totals come from this default.",
+        "Fact": "Because it is RANGE, tied rows share the same running total.",
+        "Source": "PostgreSQL Documentation: Window Function Calls (https://www.postgresql.org/docs/current/sql-expressions.html#SYNTAX-WINDOW-FUNCTIONS)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::sql-features",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "2e2db8fb-e460-5815-8390-4bd3b92d9cde",
+      "noteType": "Bert Cloze",
+      "section": "model",
+      "fields": {
+        "Text": "<pre><code class=\"language-sql\">SELECT day, amount,\n  {{c1::SUM(amount)}} OVER (ORDER BY day) AS running_total\nFROM sales;</code></pre>",
+        "Extra": "The default frame accumulates from the first row to the current row.",
+        "Hint": "An aggregate used with OVER.",
+        "Fact": "Window functions run after WHERE and GROUP BY, so they cannot be filtered in the same query level.",
+        "Source": "PostgreSQL Documentation: Window Functions tutorial (https://www.postgresql.org/docs/current/tutorial-window.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::sql-clauses",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "fca202c1-1346-550a-b940-bcd37f24256c",
+      "noteType": "Bert Cloze",
+      "section": "model",
+      "fields": {
+        "Text": "A {{c1::common table expression}} is a named subquery defined with WITH and referenced in the main statement.",
+        "Extra": "",
+        "Hint": "It reads like a temporary named view.",
+        "Fact": "CTEs can also wrap INSERT, UPDATE and DELETE statements in PostgreSQL.",
+        "Source": "PostgreSQL Documentation: WITH Queries (https://www.postgresql.org/docs/current/queries-with.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::sql-features",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "9c25c72b-2959-5d7a-907d-a42b3d5c73e2",
+      "noteType": "Bert Cloze",
+      "section": "model",
+      "fields": {
+        "Text": "<pre><code class=\"language-sql\">WITH {{c1::RECURSIVE}} t(n) AS (\n  SELECT 1\n  UNION ALL\n  SELECT n + 1 FROM t WHERE n &lt; 5\n)\nSELECT n FROM t;</code></pre>",
+        "Extra": "Returns 1 through 5.",
+        "Hint": "The keyword that lets a CTE refer to itself.",
+        "Fact": "A recursive CTE has a non recursive term, then UNION or UNION ALL, then the recursive term.",
+        "Source": "PostgreSQL Documentation: WITH Queries (https://www.postgresql.org/docs/current/queries-with.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::sql-keywords",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "f939cc1c-76c2-5622-b645-307a6bc9c9e4",
+      "noteType": "Bert Two Way",
+      "section": "model",
+      "fields": {
+        "Side A": "DDL",
+        "Side B": "Data Definition Language",
+        "Aliases": "data definition language",
+        "Hint": "CREATE, ALTER, DROP.",
+        "Fact": "DDL statements are transactional in PostgreSQL, so a failed migration can be rolled back.",
+        "Source": "PostgreSQL Documentation: SELECT (https://www.postgresql.org/docs/current/sql-select.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::acronyms",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "53c6f277-d575-5748-92d0-83940bcba5bc",
+      "noteType": "Bert Two Way",
+      "section": "model",
+      "fields": {
+        "Side A": "DML",
+        "Side B": "Data Manipulation Language",
+        "Aliases": "data manipulation language",
+        "Hint": "INSERT, UPDATE, DELETE.",
+        "Fact": "SELECT is often grouped with DML, though some texts list it separately as DQL.",
+        "Source": "PostgreSQL Documentation: SELECT (https://www.postgresql.org/docs/current/sql-select.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::acronyms",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "03bc3eed-ce8d-529d-a594-9eeebd20e285",
+      "noteType": "Bert Two Way",
+      "section": "model",
+      "fields": {
+        "Side A": "CTE",
+        "Side B": "Common Table Expression",
+        "Aliases": "common table expression",
+        "Hint": "Introduced with WITH.",
+        "Fact": "Recursive CTEs became part of standard SQL in SQL:1999.",
+        "Source": "PostgreSQL Documentation: WITH Queries (https://www.postgresql.org/docs/current/queries-with.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::acronyms",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "bc119ac1-c4b1-5893-addc-4aba8ecb7539",
+      "noteType": "Bert Cloze",
+      "section": "model",
+      "fields": {
+        "Text": "<pre><code class=\"language-sql\">INSERT INTO counters (id, n) VALUES (1, 1)\nON CONFLICT (id) DO {{c1::UPDATE SET n = counters.n + 1}};</code></pre>",
+        "Extra": "PostgreSQL upsert syntax, added in 9.5.",
+        "Hint": "The action that changes the existing row.",
+        "Fact": "The proposed row is available as EXCLUDED inside the DO UPDATE clause.",
+        "Source": "PostgreSQL Documentation: INSERT (https://www.postgresql.org/docs/current/sql-insert.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::sql-keywords",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "85981cc9-8f42-5935-b058-e70a1f0b8ccd",
+      "noteType": "Bert Cloze",
+      "section": "model",
+      "fields": {
+        "Text": "PostgreSQL's {{c1::RETURNING}} clause makes INSERT, UPDATE or DELETE return the affected rows.",
+        "Extra": "",
+        "Hint": "Saves a second round trip to read generated ids.",
+        "Fact": "SQLite also supports RETURNING since version 3.35.0.",
+        "Source": "PostgreSQL Documentation: INSERT (https://www.postgresql.org/docs/current/sql-insert.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::sql-keywords",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "2fd0327e-304f-51aa-9960-c32159ad2c99",
+      "noteType": "Bert Cloze",
+      "section": "norm",
+      "fields": {
+        "Text": "{{c1::First normal form}} requires every attribute to hold a single atomic value, with no repeating groups.",
+        "Extra": "",
+        "Hint": "The most basic normal form.",
+        "Fact": "What counts as atomic is debated; arrays and JSON columns blur the line.",
+        "Source": "A Simple Guide to Five Normal Forms in Relational Database Theory, William Kent, 1983 (https://dl.acm.org/doi/10.1145/358024.358054)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::normal-forms",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "f19bd50d-e98f-50d5-a883-f88ba9436bbd",
+      "noteType": "Bert Cloze",
+      "section": "norm",
+      "fields": {
+        "Text": "{{c1::Second normal form}} requires 1NF and that no non key attribute depends on only part of a composite candidate key.",
+        "Extra": "",
+        "Hint": "Only relevant when keys have more than one column.",
+        "Fact": "A 1NF table whose candidate keys are all single columns is automatically in 2NF.",
+        "Source": "A Simple Guide to Five Normal Forms in Relational Database Theory, William Kent, 1983 (https://dl.acm.org/doi/10.1145/358024.358054)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::normal-forms",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "b4bb8df2-4677-5708-984b-9a29469de81f",
+      "noteType": "Bert Cloze",
+      "section": "norm",
+      "fields": {
+        "Text": "{{c1::Third normal form}} requires 2NF and that no non key attribute depends transitively on a key through another non key attribute.",
+        "Extra": "",
+        "Hint": "Watch out for a column that determines another column.",
+        "Fact": "Storing both zip code and city can violate it if zip code determines city.",
+        "Source": "A Simple Guide to Five Normal Forms in Relational Database Theory, William Kent, 1983 (https://dl.acm.org/doi/10.1145/358024.358054)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::normal-forms",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "8a3ee074-b7f9-5fae-9b47-6268d8e8067c",
+      "noteType": "Bert Cloze",
+      "section": "norm",
+      "fields": {
+        "Text": "In {{c1::Boyce Codd normal form}}, the left side of every nontrivial functional dependency is a superkey.",
+        "Extra": "",
+        "Hint": "A stricter version of 3NF.",
+        "Fact": "Every BCNF relation is in 3NF, but not every 3NF relation is in BCNF.",
+        "Source": "A Simple Guide to Five Normal Forms in Relational Database Theory, William Kent, 1983 (https://dl.acm.org/doi/10.1145/358024.358054)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::normal-forms",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "ca78e489-41f3-5170-b114-d9d7a5419d7c",
+      "noteType": "Bert Cloze",
+      "section": "norm",
+      "fields": {
+        "Text": "{{c1::Fourth normal form}} removes nontrivial multivalued dependencies that are not implied by a key.",
+        "Extra": "",
+        "Hint": "Two independent lists stored in one table.",
+        "Fact": "Kent's example: an employee's skills and languages stored in one table create spurious combinations.",
+        "Source": "A Simple Guide to Five Normal Forms in Relational Database Theory, William Kent, 1983 (https://dl.acm.org/doi/10.1145/358024.358054)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::normal-forms",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "ed147e95-d0b0-51ba-b8fa-bbf377934e58",
+      "noteType": "Bert Cloze",
+      "section": "norm",
+      "fields": {
+        "Text": "{{c1::Fifth normal form}} deals with join dependencies: a table that can be losslessly rebuilt only by joining three or more projections.",
+        "Extra": "",
+        "Hint": "It concerns tables rebuilt from three or more pieces.",
+        "Fact": "Fifth normal form is also known as project join normal form.",
+        "Source": "A Simple Guide to Five Normal Forms in Relational Database Theory, William Kent, 1983 (https://dl.acm.org/doi/10.1145/358024.358054)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::normal-forms",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "c944b2d8-6add-501c-a6a5-abc479c73fd1",
+      "noteType": "Bert Two Way",
+      "section": "norm",
+      "fields": {
+        "Side A": "BCNF",
+        "Side B": "Boyce Codd normal form",
+        "Aliases": "boyce-codd normal form\nboyce codd",
+        "Hint": "Named after two IBM researchers.",
+        "Fact": "Raymond Boyce and Edgar Codd described it in 1974.",
+        "Source": "A Simple Guide to Five Normal Forms in Relational Database Theory, William Kent, 1983 (https://dl.acm.org/doi/10.1145/358024.358054)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::acronyms",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "150fdd5a-1373-58e5-a631-ed92a599e4b4",
+      "noteType": "Bert Cloze",
+      "section": "norm",
+      "fields": {
+        "Text": "The mnemonic for 3NF says every non key attribute must depend on \"the key, {{c1::the whole key}}, and {{c2::nothing but the key}}\".",
+        "Extra": "",
+        "Hint": "Kent's famous phrasing.",
+        "Fact": "The middle part corresponds to 2NF and the last part to 3NF.",
+        "Source": "A Simple Guide to Five Normal Forms in Relational Database Theory, William Kent, 1983 (https://dl.acm.org/doi/10.1145/358024.358054)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::normal-forms",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "93fae7b5-ac2b-5929-b306-2a3c5950bc39",
+      "noteType": "Bert Cloze",
+      "section": "norm",
+      "fields": {
+        "Text": "A {{c1::functional dependency}} X → Y holds when any two rows that agree on X must also agree on Y.",
+        "Extra": "",
+        "Hint": "The basis of all normal form definitions up to BCNF.",
+        "Fact": "A key is exactly a set of attributes that functionally determines every attribute.",
+        "Source": "A Simple Guide to Five Normal Forms in Relational Database Theory, William Kent, 1983 (https://dl.acm.org/doi/10.1145/358024.358054)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::norm-terms",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "05c2f0fb-865f-54e9-9ba1-2b80e8b4ca1a",
+      "noteType": "Bert Cloze",
+      "section": "norm",
+      "fields": {
+        "Text": "Storing the same fact in many rows risks an {{c1::update anomaly}}, where changing one copy leaves others inconsistent.",
+        "Extra": "",
+        "Hint": "One of three classic anomalies normalization prevents.",
+        "Fact": "The other two classic ones are insertion and deletion anomalies.",
+        "Source": "A Simple Guide to Five Normal Forms in Relational Database Theory, William Kent, 1983 (https://dl.acm.org/doi/10.1145/358024.358054)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::norm-terms",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "3b0ffa96-c9ab-5bb2-a0d1-066726fc9a69",
+      "noteType": "Bert Cloze",
+      "section": "norm",
+      "fields": {
+        "Text": "A {{c1::deletion anomaly}} occurs when removing a row unintentionally loses an unrelated fact stored only in that row.",
+        "Extra": "",
+        "Hint": "Deleting the last student of a course loses the course.",
+        "Fact": "Splitting the table so each fact lives in one place removes it.",
+        "Source": "A Simple Guide to Five Normal Forms in Relational Database Theory, William Kent, 1983 (https://dl.acm.org/doi/10.1145/358024.358054)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::norm-terms",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "bbb838ba-639c-5990-a183-a8dc96975258",
+      "noteType": "Bert Cloze",
+      "section": "norm",
+      "fields": {
+        "Text": "{{c1::Denormalization}} deliberately reintroduces redundancy, trading write complexity for faster reads.",
+        "Extra": "",
+        "Hint": "Common in reporting and analytics schemas.",
+        "Fact": "Star schemas in data warehouses are intentionally denormalized dimension tables around fact tables.",
+        "Source": "A Simple Guide to Five Normal Forms in Relational Database Theory, William Kent, 1983 (https://dl.acm.org/doi/10.1145/358024.358054)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::norm-terms",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "3943683e-f3d4-5cae-b360-44533b764310",
+      "noteType": "Bert Typed",
+      "section": "norm",
+      "fields": {
+        "Question": "Which normal form specifically targets transitive dependencies on the key?",
+        "Answer": "3NF",
+        "Aliases": "third normal form\nthird",
+        "Hint": "One step after removing partial dependencies.",
+        "Fact": "Codd defined 1NF, 2NF and 3NF in the early 1970s.",
+        "Source": "A Simple Guide to Five Normal Forms in Relational Database Theory, William Kent, 1983 (https://dl.acm.org/doi/10.1145/358024.358054)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::normal-forms",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "d79d74c5-df13-51cb-8b2b-23cb441ebac7",
+      "noteType": "Bert Typed",
+      "section": "norm",
+      "fields": {
+        "Question": "Which normal form specifically targets partial dependencies on a composite key?",
+        "Answer": "2NF",
+        "Aliases": "second normal form\nsecond",
+        "Hint": "It only matters for multi column keys.",
+        "Fact": "2NF is defined relative to every candidate key, not just the primary key.",
+        "Source": "A Simple Guide to Five Normal Forms in Relational Database Theory, William Kent, 1983 (https://dl.acm.org/doi/10.1145/358024.358054)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::normal-forms",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "8646b93d-6158-5bf4-b3b7-00f894480bef",
+      "noteType": "Bert Cloze",
+      "section": "index",
+      "fields": {
+        "Text": "A {{c1::B-tree}} index keeps keys sorted in a balanced tree, supporting equality, range queries and ordered scans.",
+        "Extra": "",
+        "Hint": "The default index type almost everywhere.",
+        "Fact": "Bayer and McCreight described B-trees in 1970 while at Boeing Research Labs; the journal paper followed in 1972.",
+        "Source": "Organization and Maintenance of Large Ordered Indexes, R. Bayer and E. McCreight, 1972 (https://link.springer.com/article/10.1007/BF00288683)\nPostgreSQL Documentation: Index Types (https://www.postgresql.org/docs/current/indexes-types.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::index-types",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "f649ff22-80ce-5e53-88c7-60dfcbb19d12",
+      "noteType": "Bert Basic",
+      "section": "index",
+      "fields": {
+        "Question": "What index type does PostgreSQL create when CREATE INDEX specifies no method?",
+        "Answer": "B-tree",
+        "Aliases": "btree\nb tree",
+        "Hint": "The balanced and sorted one.",
+        "Fact": "B-tree is the only built in PostgreSQL index type that can back a UNIQUE constraint.",
+        "Source": "PostgreSQL Documentation: CREATE INDEX (https://www.postgresql.org/docs/current/sql-createindex.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::index-types",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "0c70e5df-c457-5eff-a521-20f0a244c7dc",
+      "noteType": "Bert Basic",
+      "section": "index",
+      "fields": {
+        "Question": "Which PostgreSQL index type supports only equality comparisons?",
+        "Answer": "Hash",
+        "Aliases": "hash index",
+        "Hint": "It does not preserve order.",
+        "Fact": "PostgreSQL hash indexes have been WAL logged and crash safe since version 10.",
+        "Source": "PostgreSQL Documentation: Index Types (https://www.postgresql.org/docs/current/indexes-types.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::index-types",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "44813c01-057d-5a07-ae98-cf873029957f",
+      "noteType": "Bert Basic",
+      "section": "index",
+      "fields": {
+        "Question": "Which PostgreSQL index type is designed for values containing many elements, such as arrays, jsonb and full text?",
+        "Answer": "GIN",
+        "Aliases": "generalized inverted index",
+        "Hint": "It is an inverted index.",
+        "Fact": "GIN stands for Generalized Inverted Index.",
+        "Source": "PostgreSQL Documentation: Index Types (https://www.postgresql.org/docs/current/indexes-types.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::index-types",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "3d487311-f06d-5483-b3f6-bb625951b103",
+      "noteType": "Bert Basic",
+      "section": "index",
+      "fields": {
+        "Question": "Which PostgreSQL index framework underlies most geometric and range type indexing, including PostGIS?",
+        "Answer": "GiST",
+        "Aliases": "gist\ngeneralized search tree",
+        "Hint": "A generalized search tree.",
+        "Fact": "GiST supports nearest neighbor ordering searches for some operator classes.",
+        "Source": "PostgreSQL Documentation: Index Types (https://www.postgresql.org/docs/current/indexes-types.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::index-types",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "4abd2345-d743-589f-9180-f9b118fc04d2",
+      "noteType": "Bert Basic",
+      "section": "index",
+      "fields": {
+        "Question": "Which PostgreSQL index stores summaries per block range, staying tiny on huge naturally ordered tables?",
+        "Answer": "BRIN",
+        "Aliases": "block range index",
+        "Hint": "Great for append only timestamp data.",
+        "Fact": "A BRIN index can be orders of magnitude smaller than a B-tree on the same column.",
+        "Source": "PostgreSQL Documentation: Index Types (https://www.postgresql.org/docs/current/indexes-types.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::index-types",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "03774fc2-a341-5895-a89a-565f6ea82e67",
+      "noteType": "Bert Two Way",
+      "section": "index",
+      "fields": {
+        "Side A": "BRIN",
+        "Side B": "Block Range Index",
+        "Aliases": "block range index",
+        "Hint": "Summarizes physical ranges of pages.",
+        "Fact": "BRIN was added in PostgreSQL 9.5.",
+        "Source": "PostgreSQL Documentation: Index Types (https://www.postgresql.org/docs/current/indexes-types.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::acronyms",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "dc855bbe-ec01-5e99-be18-9957bee37174",
+      "noteType": "Bert Two Way",
+      "section": "index",
+      "fields": {
+        "Side A": "GIN",
+        "Side B": "Generalized Inverted Index",
+        "Aliases": "generalized inverted index",
+        "Hint": "Maps elements to rows.",
+        "Fact": "The default full text indexing choice in PostgreSQL.",
+        "Source": "PostgreSQL Documentation: Index Types (https://www.postgresql.org/docs/current/indexes-types.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::acronyms",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "e396bb15-a06f-5a92-8c76-f1b753dbbd64",
+      "noteType": "Bert Cloze",
+      "section": "index",
+      "fields": {
+        "Text": "A {{c1::covering index}} contains every column a query needs, so the query can be answered from the index alone.",
+        "Extra": "",
+        "Hint": "The table itself need not be read.",
+        "Fact": "In PostgreSQL 11 and later, INCLUDE adds non key payload columns to a B-tree for this purpose.",
+        "Source": "PostgreSQL Documentation: Index-Only Scans and Covering Indexes (https://www.postgresql.org/docs/current/indexes-index-only-scans.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::index-terms",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "0ba171de-2496-5556-b471-4ef4b97ff10a",
+      "noteType": "Bert Cloze",
+      "section": "index",
+      "fields": {
+        "Text": "In PostgreSQL an {{c1::index-only scan}} still consults the visibility map, and visits the heap for pages not marked all visible.",
+        "Extra": "",
+        "Hint": "Recent VACUUM matters for this.",
+        "Fact": "On a freshly bulk loaded table that has not been vacuumed, index-only scans may still fetch most heap pages.",
+        "Source": "PostgreSQL Documentation: Index-Only Scans and Covering Indexes (https://www.postgresql.org/docs/current/indexes-index-only-scans.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::scan-types",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "22affbb7-c111-521a-bef0-d9bbc2c4a2c0",
+      "noteType": "Bert Basic",
+      "section": "index",
+      "fields": {
+        "Question": "A B-tree index on (a, b) is most useful for queries that constrain which column?",
+        "Answer": "a",
+        "Aliases": "leading column\nthe leading column\nfirst column",
+        "Hint": "Order of columns in the index matters.",
+        "Fact": "Equality on the leading columns plus a range on the next one is the most efficient pattern.",
+        "Source": "PostgreSQL Documentation: Multicolumn Indexes (https://www.postgresql.org/docs/current/indexes-multicolumn.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::index-terms",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "53caa136-3c9a-5ecb-96f9-316cd1f4dd4e",
+      "noteType": "Bert Cloze",
+      "section": "index",
+      "fields": {
+        "Text": "A composite B-tree index can serve queries that filter on a {{c1::leftmost prefix}} of its columns.",
+        "Extra": "",
+        "Hint": "Phone books sort by surname, then first name.",
+        "Fact": "This is why column order in a composite index should follow your most common filters.",
+        "Source": "PostgreSQL Documentation: Multicolumn Indexes (https://www.postgresql.org/docs/current/indexes-multicolumn.html)\nSQLite: Query Planning (https://www.sqlite.org/queryplanner.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::index-terms",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "47a9b7cf-2663-5854-b333-b3f485b156a6",
+      "noteType": "Bert Cloze",
+      "section": "index",
+      "fields": {
+        "Text": "<pre><code class=\"language-sql\">CREATE INDEX ON orders (created_at)\n  {{c1::WHERE status = 'open'}};</code></pre>",
+        "Extra": "Only rows matching the predicate are indexed.",
+        "Hint": "This clause makes it a partial index.",
+        "Fact": "Partial unique indexes can enforce uniqueness only among a subset of rows.",
+        "Source": "PostgreSQL Documentation: Partial Indexes (https://www.postgresql.org/docs/current/indexes-partial.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::index-terms",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "91f83c87-e4af-5cd3-aab4-e742c84906c7",
+      "noteType": "Bert Cloze",
+      "section": "index",
+      "fields": {
+        "Text": "<pre><code class=\"language-sql\">CREATE INDEX ON users ({{c1::lower(email)}});</code></pre>",
+        "Extra": "Lets WHERE lower(email) = ... use an index.",
+        "Hint": "An index on an expression rather than a column.",
+        "Fact": "The query must use the same expression for the planner to match the index.",
+        "Source": "PostgreSQL Documentation: Indexes on Expressions (https://www.postgresql.org/docs/current/indexes-expressional.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::index-terms",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "0c6ac835-aa45-5517-90ff-b676814aa221",
+      "noteType": "Bert Cloze",
+      "section": "index",
+      "fields": {
+        "Text": "PostgreSQL's <code>CREATE INDEX {{c1::CONCURRENTLY}}</code> builds an index without blocking writes on the table.",
+        "Extra": "",
+        "Hint": "Useful on busy production tables.",
+        "Fact": "It cannot run inside a transaction block and takes longer than a normal build.",
+        "Source": "PostgreSQL Documentation: CREATE INDEX (https://www.postgresql.org/docs/current/sql-createindex.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::sql-keywords",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "5e60f97b-f154-58fc-a423-d4b896dc2649",
+      "noteType": "Bert Cloze",
+      "section": "index",
+      "fields": {
+        "Text": "In MySQL's InnoDB, table rows are stored in the {{c1::clustered index}}, which is ordered by the primary key.",
+        "Extra": "Secondary indexes store the primary key value to find the row.",
+        "Hint": "The table is the index.",
+        "Fact": "A long primary key in InnoDB makes every secondary index larger.",
+        "Source": "MySQL Reference Manual: Clustered and Secondary Indexes (https://dev.mysql.com/doc/refman/8.0/en/innodb-index-types.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::index-terms",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "3d299ff9-8d0f-5cd9-93af-c676a104844f",
+      "noteType": "Bert Cloze",
+      "section": "index",
+      "fields": {
+        "Text": "An index is most useful when the predicate is highly {{c1::selective}}, matching a small fraction of rows.",
+        "Extra": "",
+        "Hint": "A boolean column with 50 percent true is a poor candidate.",
+        "Fact": "Planners often prefer a sequential scan when a large share of the table matches.",
+        "Source": "PostgreSQL Documentation: Planner/Optimizer (https://www.postgresql.org/docs/current/planner-optimizer.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::index-terms",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "202a5720-f4ac-5ccd-958e-8fc498014058",
+      "noteType": "Bert Cloze",
+      "section": "index",
+      "fields": {
+        "Text": "A predicate is {{c1::sargable}} when it can use an index to narrow the search, such as <code>col &gt;= 10</code> rather than <code>col + 1 &gt;= 11</code>.",
+        "Extra": "",
+        "Hint": "Wrapping the column in arithmetic or a function often breaks this.",
+        "Fact": "The term comes from \"search argument\" in early IBM System R work.",
+        "Source": "Access Path Selection in a Relational Database Management System, Selinger et al., 1979 (https://dl.acm.org/doi/10.1145/582095.582099)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::index-terms",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "4c4490c5-d36c-5274-8c92-895bc5b015e0",
+      "noteType": "Bert Basic",
+      "section": "index",
+      "fields": {
+        "Question": "In PostgreSQL, which command shows the plan along with actual run times and row counts?",
+        "Answer": "EXPLAIN ANALYZE",
+        "Aliases": "explain (analyze)",
+        "Hint": "Plain EXPLAIN only estimates.",
+        "Fact": "EXPLAIN ANALYZE really executes the statement, so wrap data changing statements in a transaction you roll back.",
+        "Source": "PostgreSQL Documentation: Using EXPLAIN (https://www.postgresql.org/docs/current/using-explain.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::pg-commands",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "3217db02-6135-5221-9fca-38f04f3092ef",
+      "noteType": "Bert Basic",
+      "section": "index",
+      "fields": {
+        "Question": "Does EXPLAIN ANALYZE on an UPDATE actually modify rows?",
+        "Answer": "Yes",
+        "Aliases": "",
+        "Hint": "It measures real execution.",
+        "Fact": "The PostgreSQL docs suggest BEGIN; EXPLAIN ANALYZE ...; ROLLBACK; to avoid side effects.",
+        "Source": "PostgreSQL Documentation: Using EXPLAIN (https://www.postgresql.org/docs/current/using-explain.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::yes-no",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "53c8cffb-198e-577e-aeb7-59c64186255f",
+      "noteType": "Bert Basic",
+      "section": "index",
+      "fields": {
+        "Question": "Which PostgreSQL command collects table statistics that the planner uses for estimates?",
+        "Answer": "ANALYZE",
+        "Aliases": "",
+        "Hint": "Autovacuum also runs it automatically.",
+        "Fact": "Statistics include most common values and histograms per column.",
+        "Source": "PostgreSQL Documentation: Statistics Used by the Planner (https://www.postgresql.org/docs/current/planner-stats.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::pg-commands",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "b302a080-2291-54af-96c6-31cb975bec18",
+      "noteType": "Bert Basic",
+      "section": "index",
+      "fields": {
+        "Question": "What is the PostgreSQL plan node that reads every row of a table in physical order?",
+        "Answer": "Seq Scan",
+        "Aliases": "sequential scan\nseqscan",
+        "Hint": "No index involved.",
+        "Fact": "For small tables or low selectivity filters, it is often the cheapest plan.",
+        "Source": "PostgreSQL Documentation: Using EXPLAIN (https://www.postgresql.org/docs/current/using-explain.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::scan-types",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "b4717434-e394-5882-966a-bc642b53e5ea",
+      "noteType": "Bert Basic",
+      "section": "index",
+      "fields": {
+        "Question": "Which PostgreSQL scan builds a bitmap of matching pages from an index, then reads those pages in physical order?",
+        "Answer": "Bitmap Heap Scan",
+        "Aliases": "bitmap scan\nbitmap index scan",
+        "Hint": "It sits between index scans and sequential scans.",
+        "Fact": "Bitmaps from several indexes can be combined with AND or OR.",
+        "Source": "PostgreSQL Documentation: Using EXPLAIN (https://www.postgresql.org/docs/current/using-explain.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::scan-types",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "42ed8238-66ab-5600-bc02-6b13cd0a9c0b",
+      "noteType": "Bert Basic",
+      "section": "index",
+      "fields": {
+        "Question": "Which join algorithm builds an in memory table from the smaller input, then probes it with the other?",
+        "Answer": "Hash join",
+        "Aliases": "hash",
+        "Hint": "It needs an equality condition.",
+        "Fact": "Hash joins only work for equality join conditions.",
+        "Source": "PostgreSQL Documentation: Planner/Optimizer (https://www.postgresql.org/docs/current/planner-optimizer.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::join-algorithms",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "b58e4464-93fd-5dcf-b41c-8e84e1e5349b",
+      "noteType": "Bert Basic",
+      "section": "index",
+      "fields": {
+        "Question": "Which join algorithm walks two inputs sorted on the join key side by side?",
+        "Answer": "Merge join",
+        "Aliases": "sort merge join\nmerge",
+        "Hint": "Both inputs must be ordered.",
+        "Fact": "An index that already provides the order can avoid an explicit sort step.",
+        "Source": "PostgreSQL Documentation: Planner/Optimizer (https://www.postgresql.org/docs/current/planner-optimizer.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::join-algorithms",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "2f55cf4d-3aff-5ce9-b1bb-9b11df0dfba4",
+      "noteType": "Bert Basic",
+      "section": "index",
+      "fields": {
+        "Question": "Which join algorithm scans the inner input once for every outer row, and is good when the outer side is tiny?",
+        "Answer": "Nested loop",
+        "Aliases": "nested loop join\nnested loops",
+        "Hint": "The simplest of the three PostgreSQL join methods.",
+        "Fact": "With an index on the inner side, a nested loop join can be very fast for few outer rows.",
+        "Source": "PostgreSQL Documentation: Planner/Optimizer (https://www.postgresql.org/docs/current/planner-optimizer.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::join-algorithms",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "4c0a5663-866d-55db-b06b-89191fb2609d",
+      "noteType": "Bert Cloze",
+      "section": "index",
+      "fields": {
+        "Text": "The cost based optimizer approach, choosing plans by estimated cost and join order, was described for IBM's {{c1::System R}} by Selinger et al. in 1979.",
+        "Extra": "",
+        "Hint": "An IBM research prototype that shaped SQL.",
+        "Fact": "The paper introduced the idea of interesting orders when choosing join plans.",
+        "Source": "Access Path Selection in a Relational Database Management System, Selinger et al., 1979 (https://dl.acm.org/doi/10.1145/582095.582099)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::history",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "62d80316-4ce6-58e1-9946-df5f88808854",
+      "noteType": "Bert Cloze",
+      "section": "tx",
+      "fields": {
+        "Text": "{{c1::Atomicity}} means a transaction's changes take effect entirely or not at all.",
+        "Extra": "",
+        "Hint": "The A in ACID.",
+        "Fact": "After a crash, recovery undoes changes from transactions that never committed.",
+        "Source": "Principles of Transaction-Oriented Database Recovery, T. Haerder and A. Reuter, 1983 (https://dl.acm.org/doi/10.1145/289.291)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::acid",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "62f8c278-aab4-5071-abec-b822536fc0b4",
+      "noteType": "Bert Cloze",
+      "section": "tx",
+      "fields": {
+        "Text": "In ACID, {{c1::consistency}} means a transaction moves the database from one valid state to another, respecting constraints.",
+        "Extra": "",
+        "Hint": "Not the same word as in CAP.",
+        "Fact": "The C in CAP refers to linearizability, a different concept.",
+        "Source": "Principles of Transaction-Oriented Database Recovery, T. Haerder and A. Reuter, 1983 (https://dl.acm.org/doi/10.1145/289.291)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::acid",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "e3522e0a-2ccd-557e-be90-dc3590ab1fcf",
+      "noteType": "Bert Cloze",
+      "section": "tx",
+      "fields": {
+        "Text": "{{c1::Isolation}} means concurrent transactions do not see each other's intermediate effects, to a degree set by the isolation level.",
+        "Extra": "",
+        "Hint": "The I in ACID.",
+        "Fact": "Full isolation corresponds to serializability.",
+        "Source": "Principles of Transaction-Oriented Database Recovery, T. Haerder and A. Reuter, 1983 (https://dl.acm.org/doi/10.1145/289.291)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::acid",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "8e907704-e9c3-5e7e-84cc-62361767205f",
+      "noteType": "Bert Cloze",
+      "section": "tx",
+      "fields": {
+        "Text": "{{c1::Durability}} means once a transaction commits, its effects survive crashes.",
+        "Extra": "",
+        "Hint": "The D in ACID.",
+        "Fact": "Most databases achieve this by flushing a log to stable storage before acknowledging commit.",
+        "Source": "Principles of Transaction-Oriented Database Recovery, T. Haerder and A. Reuter, 1983 (https://dl.acm.org/doi/10.1145/289.291)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::acid",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "42087f8b-1f8d-53f9-83e3-3ada3497bd50",
+      "noteType": "Bert Typed",
+      "section": "tx",
+      "fields": {
+        "Question": "Which two authors coined the acronym ACID in 1983?",
+        "Answer": "Haerder and Reuter",
+        "Aliases": "Härder and Reuter\nTheo Haerder and Andreas Reuter\nReuter and Haerder",
+        "Hint": "Two German computer scientists.",
+        "Fact": "The term appeared in their paper on transaction oriented database recovery.",
+        "Source": "Principles of Transaction-Oriented Database Recovery, T. Haerder and A. Reuter, 1983 (https://dl.acm.org/doi/10.1145/289.291)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::people",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "96cb8c02-0e38-50db-b8f8-0a2d8b5a7311",
+      "noteType": "Bert Basic",
+      "section": "tx",
+      "fields": {
+        "Question": "What anomaly occurs when a transaction reads data written by another transaction that has not yet committed?",
+        "Answer": "Dirty read",
+        "Aliases": "dirty reads",
+        "Hint": "The data might later be rolled back.",
+        "Fact": "PostgreSQL never allows dirty reads, even at READ UNCOMMITTED.",
+        "Source": "PostgreSQL Documentation: Transaction Isolation (https://www.postgresql.org/docs/current/transaction-iso.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::anomalies",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "64b0ade6-c3dc-5344-8502-36e3c6774728",
+      "noteType": "Bert Basic",
+      "section": "tx",
+      "fields": {
+        "Question": "What anomaly occurs when a transaction reads the same row twice and sees different values because another transaction committed in between?",
+        "Answer": "Non-repeatable read",
+        "Aliases": "nonrepeatable read\nfuzzy read",
+        "Hint": "Same row, different value.",
+        "Fact": "REPEATABLE READ is named after preventing exactly this.",
+        "Source": "PostgreSQL Documentation: Transaction Isolation (https://www.postgresql.org/docs/current/transaction-iso.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::anomalies",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "655d79e9-cdca-57f5-9f71-c5f29bf2ca47",
+      "noteType": "Bert Basic",
+      "section": "tx",
+      "fields": {
+        "Question": "What anomaly occurs when rerunning a query with the same search condition returns a different set of rows due to another committed transaction?",
+        "Answer": "Phantom read",
+        "Aliases": "phantom\nphantoms",
+        "Hint": "New rows appear like ghosts.",
+        "Fact": "The ANSI standard allows it at REPEATABLE READ, but PostgreSQL's REPEATABLE READ prevents it.",
+        "Source": "PostgreSQL Documentation: Transaction Isolation (https://www.postgresql.org/docs/current/transaction-iso.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::anomalies",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "10c404bc-2e96-57a0-9245-2445666a233c",
+      "noteType": "Bert Basic",
+      "section": "tx",
+      "fields": {
+        "Question": "What anomaly occurs when two transactions read a value, both modify it, and one write silently overwrites the other?",
+        "Answer": "Lost update",
+        "Aliases": "lost updates",
+        "Hint": "A classic read modify write race.",
+        "Fact": "SELECT ... FOR UPDATE or an atomic UPDATE x = x + 1 prevents it.",
+        "Source": "A Critique of ANSI SQL Isolation Levels, Berenson et al., 1995 (https://arxiv.org/abs/cs/0701157)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::anomalies",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "56f355be-85c0-55bc-9343-eabb205b9bd5",
+      "noteType": "Bert Basic",
+      "section": "tx",
+      "fields": {
+        "Question": "Which anomaly lets two transactions read overlapping data, write disjoint rows, and together break an invariant, even under snapshot isolation?",
+        "Answer": "Write skew",
+        "Aliases": "write skew anomaly",
+        "Hint": "The classic example is two doctors both going off call.",
+        "Fact": "Berenson et al. described it while showing snapshot isolation is weaker than serializable.",
+        "Source": "A Critique of ANSI SQL Isolation Levels, Berenson et al., 1995 (https://arxiv.org/abs/cs/0701157)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::anomalies",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "2db260aa-d7dd-51e9-a9f8-3848a4eb89d6",
+      "noteType": "Bert Basic",
+      "section": "tx",
+      "fields": {
+        "Question": "What is PostgreSQL's default transaction isolation level?",
+        "Answer": "Read Committed",
+        "Aliases": "READ COMMITTED",
+        "Hint": "Each statement sees a fresh snapshot.",
+        "Fact": "In PostgreSQL, READ UNCOMMITTED behaves the same as READ COMMITTED.",
+        "Source": "PostgreSQL Documentation: Transaction Isolation (https://www.postgresql.org/docs/current/transaction-iso.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::isolation-levels",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "6c4c218b-0f85-5173-9f1c-cc376a2add46",
+      "noteType": "Bert Basic",
+      "section": "tx",
+      "fields": {
+        "Question": "What is the default isolation level of MySQL's InnoDB engine?",
+        "Answer": "Repeatable Read",
+        "Aliases": "REPEATABLE READ",
+        "Hint": "It differs from PostgreSQL's default.",
+        "Fact": "InnoDB uses next key locks at this level to limit phantoms for locking reads.",
+        "Source": "MySQL Reference Manual: Transaction Isolation Levels (https://dev.mysql.com/doc/refman/8.0/en/innodb-transaction-isolation-levels.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::isolation-levels",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "960a6a2a-a02f-5512-bc90-227b810cddb0",
+      "noteType": "Bert Basic",
+      "section": "tx",
+      "fields": {
+        "Question": "Which ANSI SQL isolation level is the strongest?",
+        "Answer": "Serializable",
+        "Aliases": "SERIALIZABLE",
+        "Hint": "Results equal some one at a time order.",
+        "Fact": "It is the only level the standard says forbids all three named phenomena.",
+        "Source": "PostgreSQL Documentation: Transaction Isolation (https://www.postgresql.org/docs/current/transaction-iso.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::isolation-levels",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "1165248e-3ca6-568e-a882-52b371aed87d",
+      "noteType": "Bert Basic",
+      "section": "tx",
+      "fields": {
+        "Question": "Which ANSI SQL isolation level is the weakest and permits dirty reads?",
+        "Answer": "Read Uncommitted",
+        "Aliases": "READ UNCOMMITTED",
+        "Hint": "Its name says what it can see.",
+        "Fact": "Many engines, including PostgreSQL, quietly treat it as something stronger.",
+        "Source": "PostgreSQL Documentation: Transaction Isolation (https://www.postgresql.org/docs/current/transaction-iso.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::isolation-levels",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "ac65751d-dea7-59d5-af62-9dade281e27c",
+      "noteType": "Bert Cloze",
+      "section": "tx",
+      "fields": {
+        "Text": "In PostgreSQL, a transaction at {{c1::Repeatable Read}} sees a snapshot taken at the start of its first statement, not of each statement.",
+        "Extra": "",
+        "Hint": "One level above the default.",
+        "Fact": "Updating a row another transaction has changed since the snapshot raises a serialization failure.",
+        "Source": "PostgreSQL Documentation: Transaction Isolation (https://www.postgresql.org/docs/current/transaction-iso.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::isolation-levels",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "ecd89cfd-e102-5881-af9a-7a3a463ddca5",
+      "noteType": "Bert Cloze",
+      "section": "tx",
+      "fields": {
+        "Text": "{{c1::Snapshot isolation}} lets each transaction read from a consistent snapshot and aborts one of two concurrent writers to the same row.",
+        "Extra": "",
+        "Hint": "Formalized by Berenson et al. in 1995.",
+        "Fact": "It prevents lost updates and the ANSI phantom anomaly but still allows write skew.",
+        "Source": "A Critique of ANSI SQL Isolation Levels, Berenson et al., 1995 (https://arxiv.org/abs/cs/0701157)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::isolation-levels",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "f4b927f4-f02b-535b-9d28-15bad92718cd",
+      "noteType": "Bert Cloze",
+      "section": "tx",
+      "fields": {
+        "Text": "Since 9.1, PostgreSQL implements SERIALIZABLE using {{c1::Serializable Snapshot Isolation}}, which tracks read write dependencies and aborts transactions that could form an anomaly.",
+        "Extra": "",
+        "Hint": "Built on top of snapshot isolation.",
+        "Fact": "SSI was proposed by Cahill, Röhm and Fekete in 2008.",
+        "Source": "Serializable Snapshot Isolation in PostgreSQL, D. Ports and K. Grittner, 2012 (https://arxiv.org/abs/1208.4179)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::isolation-levels",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "a2eaed6a-b174-50b8-928b-ea9694ce84e8",
+      "noteType": "Bert Two Way",
+      "section": "tx",
+      "fields": {
+        "Side A": "SSI",
+        "Side B": "Serializable Snapshot Isolation",
+        "Aliases": "serializable snapshot isolation",
+        "Hint": "PostgreSQL's SERIALIZABLE.",
+        "Fact": "Applications using it must be ready to retry on serialization failures.",
+        "Source": "Serializable Snapshot Isolation in PostgreSQL, D. Ports and K. Grittner, 2012 (https://arxiv.org/abs/1208.4179)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::acronyms",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "11c839dd-8836-5d98-8d86-da93c3ea0d76",
+      "noteType": "Bert Typed",
+      "section": "tx",
+      "fields": {
+        "Question": "What SQLSTATE does PostgreSQL return for a serialization failure that the client should retry?",
+        "Answer": "40001",
+        "Aliases": "",
+        "Hint": "Class 40 is transaction rollback.",
+        "Fact": "The PostgreSQL docs recommend retrying the whole transaction on this error.",
+        "Source": "PostgreSQL Documentation: Transaction Isolation (https://www.postgresql.org/docs/current/transaction-iso.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::numbers",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "9aa96590-deba-5b02-b974-47c61839572d",
+      "noteType": "Bert Cloze",
+      "section": "tx",
+      "fields": {
+        "Text": "{{c1::Multiversion concurrency control}} keeps multiple versions of rows so readers see a snapshot and do not block writers.",
+        "Extra": "",
+        "Hint": "Abbreviated MVCC.",
+        "Fact": "In PostgreSQL, reading never blocks writing and writing never blocks reading under MVCC.",
+        "Source": "PostgreSQL Documentation: Concurrency Control (https://www.postgresql.org/docs/current/mvcc-intro.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::concurrency-terms",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "d168d0cd-77cd-5020-ba35-c001f7b2c567",
+      "noteType": "Bert Two Way",
+      "section": "tx",
+      "fields": {
+        "Side A": "MVCC",
+        "Side B": "Multiversion Concurrency Control",
+        "Aliases": "multiversion concurrency control\nmulti-version concurrency control",
+        "Hint": "Many row versions.",
+        "Fact": "PostgreSQL, Oracle and InnoDB all use forms of it.",
+        "Source": "PostgreSQL Documentation: Concurrency Control (https://www.postgresql.org/docs/current/mvcc-intro.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::acronyms",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "719b9466-a1bf-5785-bce1-556a57e1eacd",
+      "noteType": "Bert Cloze",
+      "section": "tx",
+      "fields": {
+        "Text": "{{c1::Two phase locking}} acquires locks in a growing phase and releases them in a shrinking phase, which guarantees serializability.",
+        "Extra": "",
+        "Hint": "No new lock after the first release.",
+        "Fact": "Strict 2PL holds write locks until commit to avoid cascading aborts.",
+        "Source": "A Critique of ANSI SQL Isolation Levels, Berenson et al., 1995 (https://arxiv.org/abs/cs/0701157)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::concurrency-terms",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "648d6511-6721-5c89-b8a7-1335afaf4c7b",
+      "noteType": "Bert Two Way",
+      "section": "tx",
+      "fields": {
+        "Side A": "2PL",
+        "Side B": "Two phase locking",
+        "Aliases": "two-phase locking\ntwo phase locking",
+        "Hint": "Growing then shrinking.",
+        "Fact": "Not to be confused with 2PC, which coordinates distributed commits.",
+        "Source": "A Critique of ANSI SQL Isolation Levels, Berenson et al., 1995 (https://arxiv.org/abs/cs/0701157)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::acronyms",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "3209844f-8b92-554b-8925-d179ceb8f822",
+      "noteType": "Bert Two Way",
+      "section": "tx",
+      "fields": {
+        "Side A": "2PC",
+        "Side B": "Two phase commit",
+        "Aliases": "two-phase commit\ntwo phase commit",
+        "Hint": "Prepare then commit.",
+        "Fact": "PostgreSQL exposes it as PREPARE TRANSACTION and COMMIT PREPARED.",
+        "Source": "PostgreSQL Documentation: PREPARE TRANSACTION (https://www.postgresql.org/docs/current/sql-prepare-transaction.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::acronyms",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "9ffa5524-9615-5846-8bd2-0adce11b39fe",
+      "noteType": "Bert Cloze",
+      "section": "tx",
+      "fields": {
+        "Text": "Two {{c1::shared}} locks on the same item are compatible, but an {{c2::exclusive}} lock conflicts with every other lock on it.",
+        "Extra": "",
+        "Hint": "Readers share, writers exclude.",
+        "Fact": "Lock compatibility matrices generalize this to many lock modes.",
+        "Source": "PostgreSQL Documentation: Explicit Locking (https://www.postgresql.org/docs/current/explicit-locking.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::concurrency-terms",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "129d6bed-bf89-50a9-9313-c22b16e72dbd",
+      "noteType": "Bert Cloze",
+      "section": "tx",
+      "fields": {
+        "Text": "<pre><code class=\"language-sql\">SELECT balance FROM accounts WHERE id = 1 {{c1::FOR UPDATE}};</code></pre>",
+        "Extra": "Locks the selected rows until the transaction ends.",
+        "Hint": "A locking read clause.",
+        "Fact": "Adding SKIP LOCKED makes it useful for job queues.",
+        "Source": "PostgreSQL Documentation: Explicit Locking (https://www.postgresql.org/docs/current/explicit-locking.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::sql-keywords",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "7a7d874c-6b89-54c3-86eb-74f6af0fdb8c",
+      "noteType": "Bert Cloze",
+      "section": "tx",
+      "fields": {
+        "Text": "<code>FOR UPDATE {{c1::SKIP LOCKED}}</code> ignores rows already locked by others, a common way to build a work queue on PostgreSQL.",
+        "Extra": "",
+        "Hint": "Workers do not wait for each other.",
+        "Fact": "NOWAIT is the alternative that raises an error instead of skipping.",
+        "Source": "PostgreSQL Documentation: Explicit Locking (https://www.postgresql.org/docs/current/explicit-locking.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::sql-keywords",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "e63bcc80-41df-5a17-8fd2-ccdef5f2b4b6",
+      "noteType": "Bert Cloze",
+      "section": "tx",
+      "fields": {
+        "Text": "A {{c1::deadlock}} occurs when transactions wait on each other's locks in a cycle; PostgreSQL detects it and aborts one of them.",
+        "Extra": "",
+        "Hint": "A cycle in the wait for graph.",
+        "Fact": "Acquiring locks in a consistent order across transactions prevents most deadlocks.",
+        "Source": "PostgreSQL Documentation: Explicit Locking (https://www.postgresql.org/docs/current/explicit-locking.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::concurrency-terms",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "d0220a85-b137-5282-8ff5-6dca97a1298c",
+      "noteType": "Bert Typed",
+      "section": "tx",
+      "fields": {
+        "Question": "What is PostgreSQL's default deadlock_timeout?",
+        "Answer": "1s",
+        "Aliases": "1 second\none second\n1000ms",
+        "Hint": "The wait before running the detector.",
+        "Fact": "The check is deferred because deadlock detection is relatively expensive.",
+        "Source": "PostgreSQL Documentation: Lock Management settings (https://www.postgresql.org/docs/current/runtime-config-locks.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::numbers",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "c5969207-d327-5162-9087-269076334232",
+      "noteType": "Bert Basic",
+      "section": "tx",
+      "fields": {
+        "Question": "Which PostgreSQL table lock mode conflicts with every other mode, including plain SELECT?",
+        "Answer": "ACCESS EXCLUSIVE",
+        "Aliases": "access exclusive lock",
+        "Hint": "DROP TABLE takes it.",
+        "Fact": "Many ALTER TABLE forms take this lock, so they can block reads on a busy table.",
+        "Source": "PostgreSQL Documentation: Explicit Locking (https://www.postgresql.org/docs/current/explicit-locking.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::concurrency-terms",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "0b61fccc-c2e0-52f0-9be4-bab2df93d571",
+      "noteType": "Bert Cloze",
+      "section": "wal",
+      "fields": {
+        "Text": "With {{c1::write-ahead logging}}, changes are recorded in a log that is flushed to durable storage before the data pages are written.",
+        "Extra": "",
+        "Hint": "The log goes first.",
+        "Fact": "It lets a database recover after a crash by replaying the log.",
+        "Source": "PostgreSQL Documentation: Write-Ahead Logging (WAL) (https://www.postgresql.org/docs/current/wal-intro.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::storage-structures",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "27d37101-c8fd-52fb-bec8-2afd9ddee13b",
+      "noteType": "Bert Two Way",
+      "section": "wal",
+      "fields": {
+        "Side A": "WAL",
+        "Side B": "Write-Ahead Log",
+        "Aliases": "write-ahead logging\nwrite ahead log\nwrite-ahead log",
+        "Hint": "Logged before data pages.",
+        "Fact": "PostgreSQL stores WAL in the pg_wal directory.",
+        "Source": "PostgreSQL Documentation: Write-Ahead Logging (WAL) (https://www.postgresql.org/docs/current/wal-intro.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::acronyms",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "d498a69c-95e4-57c5-8327-69f27de8f6c1",
+      "noteType": "Bert Cloze",
+      "section": "wal",
+      "fields": {
+        "Text": "A {{c1::checkpoint}} flushes dirty data pages so older WAL is no longer needed for crash recovery.",
+        "Extra": "",
+        "Hint": "It bounds recovery time.",
+        "Fact": "In PostgreSQL, checkpoint_timeout defaults to 5 minutes.",
+        "Source": "PostgreSQL Documentation: WAL Configuration (https://www.postgresql.org/docs/current/wal-configuration.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::storage-structures",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "08cde700-f6c3-5c00-8dc1-2c4b12337841",
+      "noteType": "Bert Cloze",
+      "section": "wal",
+      "fields": {
+        "Text": "The {{c1::ARIES}} recovery algorithm uses three passes after a crash: analysis, redo, and undo.",
+        "Extra": "",
+        "Hint": "A 1992 IBM algorithm.",
+        "Fact": "ARIES redoes history, including changes of losing transactions, before undoing them.",
+        "Source": "ARIES: A Transaction Recovery Method, C. Mohan et al., 1992 (https://dl.acm.org/doi/10.1145/128765.128770)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::history",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "9c8c9b2a-e2b9-5bfa-88b2-d3bcb088eabe",
+      "noteType": "Bert Cloze",
+      "section": "wal",
+      "fields": {
+        "Text": "Setting PostgreSQL's <code>{{c1::synchronous_commit}} = off</code> can lose the last few transactions on crash but never corrupts the database.",
+        "Extra": "",
+        "Hint": "Trades durability for latency.",
+        "Fact": "Unlike fsync = off, it does not risk inconsistency, only recent commits.",
+        "Source": "PostgreSQL Documentation: WAL Configuration (https://www.postgresql.org/docs/current/wal-configuration.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::pg-commands",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "5b7bd06d-381b-5607-9dc4-076c6ddca981",
+      "noteType": "Bert Cloze",
+      "section": "wal",
+      "fields": {
+        "Text": "In {{c1::single leader}} replication, all writes go to one node, which streams changes to read only followers.",
+        "Extra": "",
+        "Hint": "Also called primary replica.",
+        "Fact": "Followers can serve reads, but they may lag behind the leader.",
+        "Source": "PostgreSQL Documentation: High Availability, Load Balancing, and Replication (https://www.postgresql.org/docs/current/high-availability.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::replication-modes",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "546f8a25-0229-5860-afc4-00dd9370adc9",
+      "noteType": "Bert Cloze",
+      "section": "wal",
+      "fields": {
+        "Text": "{{c1::Multi-leader}} replication accepts writes on several nodes, so it must resolve conflicting concurrent writes.",
+        "Extra": "",
+        "Hint": "Useful across data centers.",
+        "Fact": "Last write wins is a simple but lossy conflict resolution strategy.",
+        "Source": "PostgreSQL Documentation: High Availability, Load Balancing, and Replication (https://www.postgresql.org/docs/current/high-availability.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::replication-modes",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "c8338eb5-e244-595b-878f-27a868154f92",
+      "noteType": "Bert Cloze",
+      "section": "wal",
+      "fields": {
+        "Text": "In {{c1::leaderless}} replication, as in Dynamo, clients write to and read from several replicas directly.",
+        "Extra": "",
+        "Hint": "No single node orders writes.",
+        "Fact": "Cassandra and Riak follow this Dynamo style design.",
+        "Source": "Dynamo: Amazon's Highly Available Key-value Store, DeCandia et al., 2007 (https://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::replication-modes",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "edd6aa97-aa4e-5317-b39f-81b8357895e0",
+      "noteType": "Bert Cloze",
+      "section": "wal",
+      "fields": {
+        "Text": "With N replicas, reads from R nodes and writes to W nodes overlap on at least one node when {{c1::R + W &gt; N}}.",
+        "Extra": "",
+        "Hint": "A pigeonhole argument.",
+        "Fact": "Dynamo described this as a quorum like system with configurable N, R and W.",
+        "Source": "Dynamo: Amazon's Highly Available Key-value Store, DeCandia et al., 2007 (https://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::dist-terms",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "7c2cca97-ca7b-576a-8b74-8b0b85ed9e34",
+      "noteType": "Bert Cloze",
+      "section": "wal",
+      "fields": {
+        "Text": "With {{c1::asynchronous}} replication, the primary acknowledges commits before standbys confirm, so failover can lose recent transactions.",
+        "Extra": "",
+        "Hint": "Default in PostgreSQL streaming replication.",
+        "Fact": "The lost window is bounded by replication lag.",
+        "Source": "PostgreSQL Documentation: High Availability, Load Balancing, and Replication (https://www.postgresql.org/docs/current/high-availability.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::replication-modes",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "4ef7356a-002a-5e5e-aa86-2362ff86a058",
+      "noteType": "Bert Cloze",
+      "section": "wal",
+      "fields": {
+        "Text": "With {{c1::synchronous}} replication, a commit waits until a standby confirms it has the WAL.",
+        "Extra": "",
+        "Hint": "Configured with synchronous_standby_names.",
+        "Fact": "It adds at least one network round trip to every commit.",
+        "Source": "PostgreSQL Documentation: Synchronous Replication (https://www.postgresql.org/docs/current/warm-standby.html#SYNCHRONOUS-REPLICATION)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::replication-modes",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "81807924-df20-52f6-a90f-44e97ff45edd",
+      "noteType": "Bert Cloze",
+      "section": "wal",
+      "fields": {
+        "Text": "PostgreSQL {{c1::streaming replication}} ships WAL records to standbys, which replay them to stay a physical copy of the primary.",
+        "Extra": "",
+        "Hint": "Physical, byte level replicas.",
+        "Fact": "Physical standbys must run the same major PostgreSQL version as the primary.",
+        "Source": "PostgreSQL Documentation: High Availability, Load Balancing, and Replication (https://www.postgresql.org/docs/current/high-availability.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::replication-modes",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "4fe5d8d5-c84b-510e-838f-7d5e6726d227",
+      "noteType": "Bert Cloze",
+      "section": "wal",
+      "fields": {
+        "Text": "PostgreSQL {{c1::logical replication}} uses publications and subscriptions to replicate row changes for chosen tables.",
+        "Extra": "",
+        "Hint": "Added in version 10.",
+        "Fact": "Because it is row based, it can replicate between different major versions.",
+        "Source": "PostgreSQL Documentation: Logical Replication (https://www.postgresql.org/docs/current/logical-replication.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::replication-modes",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "74a2c33c-1c24-5916-9b4e-ce7f4888eddd",
+      "noteType": "Bert Cloze",
+      "section": "wal",
+      "fields": {
+        "Text": "{{c1::Raft}} is a consensus algorithm with leader election and log replication, designed to be easier to understand than Paxos.",
+        "Extra": "",
+        "Hint": "Ongaro and Ousterhout, 2014.",
+        "Fact": "etcd and CockroachDB both build on Raft.",
+        "Source": "In Search of an Understandable Consensus Algorithm, D. Ongaro and J. Ousterhout, 2014 (https://raft.github.io/raft.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::replication-modes",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "f1c15c11-384e-5aa2-be6b-2d822719504a",
+      "noteType": "Bert Typed",
+      "section": "wal",
+      "fields": {
+        "Question": "How many node failures can a 5 node Raft cluster tolerate while still making progress?",
+        "Answer": "2",
+        "Aliases": "two",
+        "Hint": "A majority must remain.",
+        "Fact": "In general, 2f + 1 nodes tolerate f failures.",
+        "Source": "In Search of an Understandable Consensus Algorithm, D. Ongaro and J. Ousterhout, 2014 (https://raft.github.io/raft.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::numbers",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "e3a979ac-b5cc-564a-95b4-8304526921e2",
+      "noteType": "Bert Cloze",
+      "section": "dist",
+      "fields": {
+        "Text": "{{c1::Sharding}} splits a dataset horizontally across multiple machines, each holding a subset of rows.",
+        "Extra": "",
+        "Hint": "Horizontal partitioning across nodes.",
+        "Fact": "Cross shard joins and transactions are usually much more expensive than local ones.",
+        "Source": "Bigtable: A Distributed Storage System for Structured Data, Chang et al., 2006 (https://research.google/pubs/bigtable-a-distributed-storage-system-for-structured-data/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::partitioning",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "6ff0d639-d92c-5f99-b4e0-837fe9b573a1",
+      "noteType": "Bert Cloze",
+      "section": "dist",
+      "fields": {
+        "Text": "{{c1::Hash partitioning}} spreads keys evenly but makes range queries touch every partition.",
+        "Extra": "",
+        "Hint": "Good for uniform load.",
+        "Fact": "Cassandra's default partitioner hashes keys with Murmur3.",
+        "Source": "Apache Cassandra Documentation: Dynamo (https://cassandra.apache.org/doc/latest/cassandra/architecture/dynamo.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::partitioning",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "b04508ea-475e-5c84-82d4-393d7112dfb1",
+      "noteType": "Bert Cloze",
+      "section": "dist",
+      "fields": {
+        "Text": "{{c1::Range partitioning}} keeps adjacent keys together, enabling efficient range scans but risking hot spots on sequential keys.",
+        "Extra": "",
+        "Hint": "Bigtable splits tables into tablets this way.",
+        "Fact": "Timestamp keys are a classic source of a hot last partition.",
+        "Source": "Bigtable: A Distributed Storage System for Structured Data, Chang et al., 2006 (https://research.google/pubs/bigtable-a-distributed-storage-system-for-structured-data/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::partitioning",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "ccd4903a-ee42-5e16-b196-1d0c07195626",
+      "noteType": "Bert Cloze",
+      "section": "dist",
+      "fields": {
+        "Text": "{{c1::Consistent hashing}} maps keys and nodes onto a ring, so adding a node moves only about 1/n of the keys.",
+        "Extra": "",
+        "Hint": "Karger et al., 1997.",
+        "Fact": "Dynamo used virtual nodes on the ring to balance load across machines.",
+        "Source": "Consistent Hashing and Random Trees, Karger et al., 1997 (https://dl.acm.org/doi/10.1145/258533.258660)\nDynamo: Amazon's Highly Available Key-value Store, DeCandia et al., 2007 (https://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::partitioning",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "99fb4def-4fe0-5c4a-90d7-bb8d57bca0a3",
+      "noteType": "Bert Cloze",
+      "section": "dist",
+      "fields": {
+        "Text": "PostgreSQL declarative partitioning supports {{c1::range}}, {{c2::list}} and {{c3::hash}} partitioning.",
+        "Extra": "",
+        "Hint": "Three strategies.",
+        "Fact": "Declarative partitioning arrived in PostgreSQL 10; hash partitioning was added in 11.",
+        "Source": "PostgreSQL Documentation: Table Partitioning (https://www.postgresql.org/docs/current/ddl-partitioning.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::partitioning",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "7b67eabf-1ed1-51a7-bec5-4be5185e6d96",
+      "noteType": "Bert Cloze",
+      "section": "dist",
+      "fields": {
+        "Text": "The CAP theorem says that during a network {{c1::partition}}, a distributed system must choose between consistency and availability.",
+        "Extra": "",
+        "Hint": "The P in CAP.",
+        "Fact": "Gilbert and Lynch proved the formal version in 2002.",
+        "Source": "Brewer's Conjecture and the Feasibility of Consistent, Available, Partition-Tolerant Web Services, S. Gilbert and N. Lynch, 2002 (https://dl.acm.org/doi/10.1145/564585.564601)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::cap",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "fd57e479-7602-5327-a11e-b1c247913d50",
+      "noteType": "Bert Typed",
+      "section": "dist",
+      "fields": {
+        "Question": "Who presented the CAP conjecture in a 2000 PODC keynote?",
+        "Answer": "Eric Brewer",
+        "Aliases": "Brewer",
+        "Hint": "A Berkeley professor.",
+        "Fact": "Gilbert and Lynch turned the conjecture into a proven theorem in 2002.",
+        "Source": "Brewer's Conjecture and the Feasibility of Consistent, Available, Partition-Tolerant Web Services, S. Gilbert and N. Lynch, 2002 (https://dl.acm.org/doi/10.1145/564585.564601)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::people",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "e9030aa1-a670-59c8-b709-4783dd3c6cf7",
+      "noteType": "Bert Cloze",
+      "section": "dist",
+      "fields": {
+        "Text": "PACELC says: if there is a Partition, choose Availability or Consistency; Else, choose {{c1::Latency}} or Consistency.",
+        "Extra": "",
+        "Hint": "The tradeoff that exists even without failures.",
+        "Fact": "Daniel Abadi proposed PACELC to capture the normal operation tradeoff CAP ignores.",
+        "Source": "Consistency Tradeoffs in Modern Distributed Database System Design, D. Abadi, 2012 (https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::cap",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "046431fd-a55b-5dbf-b511-87901555a1cd",
+      "noteType": "Bert Typed",
+      "section": "dist",
+      "fields": {
+        "Question": "Who proposed the PACELC formulation?",
+        "Answer": "Daniel Abadi",
+        "Aliases": "Abadi",
+        "Hint": "A database researcher, then at Yale.",
+        "Fact": "His 2012 IEEE Computer article classified systems like Dynamo and PNUTS.",
+        "Source": "Consistency Tradeoffs in Modern Distributed Database System Design, D. Abadi, 2012 (https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::people",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "374eabfb-42ff-593e-9add-08284e93fa0a",
+      "noteType": "Bert Basic",
+      "section": "dist",
+      "fields": {
+        "Question": "Under PACELC, Abadi classifies default Dynamo, Cassandra and Riak as which type?",
+        "Answer": "PA/EL",
+        "Aliases": "PA EL\nPAEL",
+        "Hint": "They favor availability and latency.",
+        "Fact": "Abadi noted that fully ACID systems like VoltDB are PC/EC.",
+        "Source": "Consistency Tradeoffs in Modern Distributed Database System Design, D. Abadi, 2012 (https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::cap",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "b59e830a-04e3-5c77-ba33-6fa4b67dd419",
+      "noteType": "Bert Basic",
+      "section": "dist",
+      "fields": {
+        "Question": "Under PACELC, Abadi classifies fully ACID systems such as VoltDB as which type?",
+        "Answer": "PC/EC",
+        "Aliases": "PC EC\nPCEC",
+        "Hint": "They never give up consistency.",
+        "Fact": "He grouped Megastore with them as well.",
+        "Source": "Consistency Tradeoffs in Modern Distributed Database System Design, D. Abadi, 2012 (https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::cap",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "9879473a-ea10-5879-9d92-dbdfc79e4609",
+      "noteType": "Bert Cloze",
+      "section": "dist",
+      "fields": {
+        "Text": "{{c1::Eventual consistency}} guarantees that if no new updates are made, all replicas eventually converge to the same value.",
+        "Extra": "",
+        "Hint": "No promise about when.",
+        "Fact": "Amazon's Dynamo is a well known example of an eventually consistent store.",
+        "Source": "Dynamo: Amazon's Highly Available Key-value Store, DeCandia et al., 2007 (https://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::cap",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "c05746b1-9951-5d28-94ad-421ddf51ece1",
+      "noteType": "Bert Cloze",
+      "section": "dist",
+      "fields": {
+        "Text": "{{c1::Linearizability}} requires every operation to appear to take effect atomically at some point between its start and end, respecting real time order.",
+        "Extra": "",
+        "Hint": "The strongest single object consistency model.",
+        "Fact": "It is what CAP means by consistency.",
+        "Source": "Brewer's Conjecture and the Feasibility of Consistent, Available, Partition-Tolerant Web Services, S. Gilbert and N. Lynch, 2002 (https://dl.acm.org/doi/10.1145/564585.564601)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::cap",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "3df0fb9b-2469-536c-a3b8-6a0e3ff849d6",
+      "noteType": "Bert Cloze",
+      "section": "dist",
+      "fields": {
+        "Text": "Dynamo used {{c1::vector clocks}} to detect concurrent conflicting versions of an object.",
+        "Extra": "",
+        "Hint": "A list of counters, one per node.",
+        "Fact": "Conflicting versions were returned to the client to reconcile, as in the shopping cart example.",
+        "Source": "Dynamo: Amazon's Highly Available Key-value Store, DeCandia et al., 2007 (https://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::dist-terms",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "3e76a24d-cddf-5b54-ab8d-00e9fdf64ea2",
+      "noteType": "Bert Cloze",
+      "section": "dist",
+      "fields": {
+        "Text": "With {{c1::hinted handoff}}, a node temporarily accepts writes meant for an unreachable replica and forwards them when it returns.",
+        "Extra": "",
+        "Hint": "Part of Dynamo's sloppy quorum.",
+        "Fact": "This keeps writes available during temporary failures.",
+        "Source": "Dynamo: Amazon's Highly Available Key-value Store, DeCandia et al., 2007 (https://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::dist-terms",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "e0f6e1ba-a471-5a5d-b324-b9227c34309a",
+      "noteType": "Bert Cloze",
+      "section": "nosql",
+      "fields": {
+        "Text": "A {{c1::key-value}} store maps opaque keys to values and offers get and put by key.",
+        "Extra": "",
+        "Hint": "The simplest NoSQL family.",
+        "Fact": "Amazon's Dynamo paper described one of the most influential designs.",
+        "Source": "Dynamo: Amazon's Highly Available Key-value Store, DeCandia et al., 2007 (https://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::nosql-families",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "e8e46979-b12e-579b-958b-e5176a76e314",
+      "noteType": "Bert Cloze",
+      "section": "nosql",
+      "fields": {
+        "Text": "A {{c1::document}} store keeps self describing records, such as JSON like objects, that can be queried by their fields.",
+        "Extra": "",
+        "Hint": "MongoDB is the best known.",
+        "Fact": "MongoDB stores documents in BSON, a binary JSON like format.",
+        "Source": "MongoDB Manual: Documents (https://www.mongodb.com/docs/manual/core/document/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::nosql-families",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "22fd2e79-2439-5d9e-860e-dc11309246a2",
+      "noteType": "Bert Cloze",
+      "section": "nosql",
+      "fields": {
+        "Text": "A {{c1::wide-column}} store, like Bigtable or Cassandra, organizes data by row key and column families, with sparse columns.",
+        "Extra": "",
+        "Hint": "Inspired by a 2006 Google paper.",
+        "Fact": "Bigtable is a sparse, distributed, persistent multidimensional sorted map.",
+        "Source": "Bigtable: A Distributed Storage System for Structured Data, Chang et al., 2006 (https://research.google/pubs/bigtable-a-distributed-storage-system-for-structured-data/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::nosql-families",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "71f713b3-284c-5c53-9403-0f3d8a61a186",
+      "noteType": "Bert Cloze",
+      "section": "nosql",
+      "fields": {
+        "Text": "A {{c1::graph}} database stores nodes and relationships as first class objects, making multi hop traversals cheap.",
+        "Extra": "",
+        "Hint": "Neo4j is an example.",
+        "Fact": "Neo4j's query language Cypher uses ASCII art like (a)-[:KNOWS]->(b) patterns.",
+        "Source": "Neo4j Cypher Manual: Introduction (https://neo4j.com/docs/cypher-manual/current/introduction/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::nosql-families",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "634af3cb-b321-53d9-94c5-cd068c2ddcf5",
+      "noteType": "Bert Basic",
+      "section": "nosql",
+      "fields": {
+        "Question": "MongoDB belongs to which NoSQL family?",
+        "Answer": "Document store",
+        "Aliases": "document\ndocument database",
+        "Hint": "It stores BSON.",
+        "Fact": "A MongoDB document is limited to 16 MB in BSON.",
+        "Source": "MongoDB Manual: Documents (https://www.mongodb.com/docs/manual/core/document/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::nosql-families",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "6f3aa37d-a6b0-56cd-adcd-7665104ec3b4",
+      "noteType": "Bert Basic",
+      "section": "nosql",
+      "fields": {
+        "Question": "Apache Cassandra belongs to which NoSQL family?",
+        "Answer": "Wide-column store",
+        "Aliases": "wide column\nwide-column\ncolumn family",
+        "Hint": "It combines Dynamo distribution with a Bigtable like data model.",
+        "Fact": "Cassandra was originally developed at Facebook.",
+        "Source": "Apache Cassandra Documentation: Dynamo (https://cassandra.apache.org/doc/latest/cassandra/architecture/dynamo.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::nosql-families",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "f48b7eba-5489-5310-a761-65ebaf83e938",
+      "noteType": "Bert Basic",
+      "section": "nosql",
+      "fields": {
+        "Question": "Neo4j belongs to which NoSQL family?",
+        "Answer": "Graph database",
+        "Aliases": "graph",
+        "Hint": "Nodes and relationships.",
+        "Fact": "Cypher was originally created by Neo4j.",
+        "Source": "Neo4j Cypher Manual: Introduction (https://neo4j.com/docs/cypher-manual/current/introduction/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::nosql-families",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "de0d5800-240c-5abb-b4a3-a1d63e8acc60",
+      "noteType": "Bert Basic",
+      "section": "nosql",
+      "fields": {
+        "Question": "Redis is primarily described as which kind of data store?",
+        "Answer": "In-memory key-value store",
+        "Aliases": "key-value\nkey value\nin-memory data structure store",
+        "Hint": "Data lives in RAM.",
+        "Fact": "Redis values can be strings, lists, sets, sorted sets, hashes, streams and more.",
+        "Source": "Redis Documentation: Data types (https://redis.io/docs/latest/develop/data-types/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::nosql-families",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "6d018e36-0ef3-5898-912b-341aa60806de",
+      "noteType": "Bert Typed",
+      "section": "nosql",
+      "fields": {
+        "Question": "What binary serialization format does MongoDB use to store documents?",
+        "Answer": "BSON",
+        "Aliases": "binary json",
+        "Hint": "A binary relative of JSON.",
+        "Fact": "BSON adds types JSON lacks, such as dates and binary data.",
+        "Source": "MongoDB Manual: Documents (https://www.mongodb.com/docs/manual/core/document/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::nosql-families",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "a138e5c5-dddb-504e-b1fe-15d6205b3736",
+      "noteType": "Bert Typed",
+      "section": "nosql",
+      "fields": {
+        "Question": "What is the name of Neo4j's declarative graph query language?",
+        "Answer": "Cypher",
+        "Aliases": "",
+        "Hint": "It shares its name with a secret code.",
+        "Fact": "Its MATCH clause describes graph patterns to find.",
+        "Source": "Neo4j Cypher Manual: Introduction (https://neo4j.com/docs/cypher-manual/current/introduction/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::nosql-families",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "f4ae5ab3-7742-530c-aad2-5a90e46438fd",
+      "noteType": "Bert Cloze",
+      "section": "nosql",
+      "fields": {
+        "Text": "A {{c1::log-structured merge tree}} buffers writes in memory and flushes them as immutable sorted files that are later merged.",
+        "Extra": "",
+        "Hint": "Write optimized storage.",
+        "Fact": "LSM trees power Cassandra, RocksDB and LevelDB.",
+        "Source": "The Log-Structured Merge-Tree (LSM-Tree), O'Neil et al., 1996 (https://www.cs.umb.edu/~poneil/lsmtree.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::storage-structures",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "dd4c4187-9b77-51dd-9a87-0bcb9aea7214",
+      "noteType": "Bert Two Way",
+      "section": "nosql",
+      "fields": {
+        "Side A": "LSM tree",
+        "Side B": "Log-structured merge tree",
+        "Aliases": "log structured merge tree\nlog-structured merge-tree",
+        "Hint": "Write optimized storage structure.",
+        "Fact": "O'Neil et al. described it in 1996.",
+        "Source": "The Log-Structured Merge-Tree (LSM-Tree), O'Neil et al., 1996 (https://www.cs.umb.edu/~poneil/lsmtree.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::acronyms",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "23ca38d8-5843-53b3-b9ec-7fda3c437463",
+      "noteType": "Bert Cloze",
+      "section": "nosql",
+      "fields": {
+        "Text": "In Bigtable style storage, recent writes go to an in memory {{c1::memtable}}, which is flushed to an immutable {{c2::SSTable}} on disk.",
+        "Extra": "",
+        "Hint": "Memory first, then disk.",
+        "Fact": "A commit log is written first so the memtable can be rebuilt after a crash.",
+        "Source": "Bigtable: A Distributed Storage System for Structured Data, Chang et al., 2006 (https://research.google/pubs/bigtable-a-distributed-storage-system-for-structured-data/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::storage-structures",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "5dabaa8b-d88b-5ebf-b671-6befa4bea7fd",
+      "noteType": "Bert Cloze",
+      "section": "nosql",
+      "fields": {
+        "Text": "LSM based stores keep a {{c1::Bloom filter}} per SSTable to skip files that definitely lack a key.",
+        "Extra": "",
+        "Hint": "Probabilistic, with no false negatives.",
+        "Fact": "Bigtable lets clients enable Bloom filters per locality group to cut disk reads.",
+        "Source": "Bigtable: A Distributed Storage System for Structured Data, Chang et al., 2006 (https://research.google/pubs/bigtable-a-distributed-storage-system-for-structured-data/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::storage-structures",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "c260d7b8-1658-5b81-8ae3-3b2154c4332f",
+      "noteType": "Bert Cloze",
+      "section": "nosql",
+      "fields": {
+        "Text": "Compared with a B-tree, an LSM tree typically favors {{c1::writes}}, at the cost of extra read work and background compaction.",
+        "Extra": "",
+        "Hint": "Sequential flushes versus in place updates.",
+        "Fact": "B-trees update pages in place, which means random writes.",
+        "Source": "The Log-Structured Merge-Tree (LSM-Tree), O'Neil et al., 1996 (https://www.cs.umb.edu/~poneil/lsmtree.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::storage-structures",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "5d76dea4-3ca0-5dea-8459-7f1d1a2f736a",
+      "noteType": "Bert Typed",
+      "section": "engines",
+      "fields": {
+        "Question": "What is PostgreSQL's default page (block) size?",
+        "Answer": "8 kB",
+        "Aliases": "8kb\n8 KB\n8192 bytes\n8192",
+        "Hint": "A power of two in kilobytes.",
+        "Fact": "It can only be changed when compiling PostgreSQL.",
+        "Source": "PostgreSQL Documentation: Database Page Layout (https://www.postgresql.org/docs/current/storage-page-layout.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::numbers",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "48499e59-bf94-56c3-9b68-847ccefaddb8",
+      "noteType": "Bert Cloze",
+      "section": "engines",
+      "fields": {
+        "Text": "PostgreSQL's {{c1::VACUUM}} reclaims space from dead row versions left behind by updates and deletes.",
+        "Extra": "",
+        "Hint": "Cleans up after MVCC.",
+        "Fact": "Autovacuum runs it automatically based on how many rows have changed.",
+        "Source": "PostgreSQL Documentation: Routine Vacuuming (https://www.postgresql.org/docs/current/routine-vacuuming.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::pg-commands",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "3035bba0-8426-5dc4-b356-e5d66a989c8b",
+      "noteType": "Bert Cloze",
+      "section": "engines",
+      "fields": {
+        "Text": "PostgreSQL transaction IDs are {{c1::32}} bits, so tables must be vacuumed regularly to freeze old rows and avoid wraparound.",
+        "Extra": "",
+        "Hint": "About four billion values.",
+        "Fact": "If wraparound gets too close, PostgreSQL refuses new transactions to protect data.",
+        "Source": "PostgreSQL Documentation: Routine Vacuuming (https://www.postgresql.org/docs/current/routine-vacuuming.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::pg-internals",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "7669e619-b872-5ef6-87f3-240f77382bb4",
+      "noteType": "Bert Cloze",
+      "section": "engines",
+      "fields": {
+        "Text": "PostgreSQL stores large field values out of line using {{c1::TOAST}}, compressing and splitting them into chunks.",
+        "Extra": "",
+        "Hint": "Its name is a breakfast pun.",
+        "Fact": "TOAST usually triggers when a row exceeds about 2 kB.",
+        "Source": "PostgreSQL Documentation: TOAST (https://www.postgresql.org/docs/current/storage-toast.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::pg-internals",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "83a4a985-a65a-5b52-bccb-f54a66ecfe83",
+      "noteType": "Bert Two Way",
+      "section": "engines",
+      "fields": {
+        "Side A": "TOAST",
+        "Side B": "The Oversized Attribute Storage Technique",
+        "Aliases": "the oversized-attribute storage technique\noversized attribute storage technique",
+        "Hint": "A breakfast pun.",
+        "Fact": "The docs call it \"the best thing since sliced bread\".",
+        "Source": "PostgreSQL Documentation: TOAST (https://www.postgresql.org/docs/current/storage-toast.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::acronyms",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "d175e648-6575-5f78-a711-8ff697b97a98",
+      "noteType": "Bert Cloze",
+      "section": "engines",
+      "fields": {
+        "Text": "A {{c1::heap-only tuple}} (HOT) update avoids new index entries when no indexed column changes and the new version fits on the same page.",
+        "Extra": "",
+        "Hint": "Lowering fillfactor makes it more likely.",
+        "Fact": "HOT updates reduce index bloat from frequent updates.",
+        "Source": "PostgreSQL Documentation: Heap-Only Tuples (HOT) (https://www.postgresql.org/docs/current/storage-hot.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::pg-internals",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "9076295c-b667-58be-b0a8-73dfcb20857e",
+      "noteType": "Bert Two Way",
+      "section": "engines",
+      "fields": {
+        "Side A": "HOT",
+        "Side B": "Heap-Only Tuple",
+        "Aliases": "heap only tuple\nheap-only tuples",
+        "Hint": "An update optimization.",
+        "Fact": "HOT was introduced in PostgreSQL 8.3.",
+        "Source": "PostgreSQL Documentation: Heap-Only Tuples (HOT) (https://www.postgresql.org/docs/current/storage-hot.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::acronyms",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "6a762a92-4ae8-5a0e-9062-d981dd4b0bbc",
+      "noteType": "Bert Basic",
+      "section": "engines",
+      "fields": {
+        "Question": "Which PostgreSQL type stores JSON in a decomposed binary form that supports GIN indexing?",
+        "Answer": "jsonb",
+        "Aliases": "JSONB",
+        "Hint": "The other one stores the exact input text.",
+        "Fact": "jsonb does not preserve key order or duplicate keys; json does.",
+        "Source": "PostgreSQL Documentation: JSON Types (https://www.postgresql.org/docs/current/datatype-json.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::pg-internals",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "0d515fd3-276b-5bd3-a17b-a7ae4d5d0b1b",
+      "noteType": "Bert Cloze",
+      "section": "engines",
+      "fields": {
+        "Text": "<pre><code class=\"language-sql\">CREATE TABLE t (\n  id bigint GENERATED ALWAYS AS {{c1::IDENTITY}} PRIMARY KEY\n);</code></pre>",
+        "Extra": "The SQL standard alternative to serial.",
+        "Hint": "Standard syntax for auto generated keys.",
+        "Fact": "Identity columns were added in PostgreSQL 10.",
+        "Source": "PostgreSQL Documentation: Sequence Manipulation Functions (https://www.postgresql.org/docs/current/functions-sequence.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::sql-keywords",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "873cb7c4-d5b7-521e-b736-f96c6654e539",
+      "noteType": "Bert Typed",
+      "section": "engines",
+      "fields": {
+        "Question": "PostgreSQL descends from which research project at UC Berkeley led by Michael Stonebraker?",
+        "Answer": "POSTGRES",
+        "Aliases": "Postgres",
+        "Hint": "It came after Ingres.",
+        "Fact": "The name was changed to PostgreSQL in 1996 to reflect its SQL support.",
+        "Source": "PostgreSQL Documentation: A Brief History of PostgreSQL (https://www.postgresql.org/docs/current/history.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::history",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "fcb0e1c3-4553-5670-858f-aa63882000c7",
+      "noteType": "Bert Basic",
+      "section": "engines",
+      "fields": {
+        "Question": "Can CREATE TABLE be rolled back inside a PostgreSQL transaction?",
+        "Answer": "Yes",
+        "Aliases": "",
+        "Hint": "PostgreSQL treats most DDL as transactional.",
+        "Fact": "Exceptions include CREATE DATABASE and CREATE INDEX CONCURRENTLY.",
+        "Source": "PostgreSQL Documentation: CREATE INDEX (https://www.postgresql.org/docs/current/sql-createindex.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::yes-no",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "b7ccfd9f-6ba4-590b-8fd8-cdf6d570bf71",
+      "noteType": "Bert Basic",
+      "section": "engines",
+      "fields": {
+        "Question": "What licensing status does SQLite's source code have?",
+        "Answer": "Public domain",
+        "Aliases": "public domain",
+        "Hint": "No license text needed.",
+        "Fact": "The SQLite authors offer a purchased license for organizations that require one.",
+        "Source": "SQLite Copyright (https://www.sqlite.org/copyright.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::sqlite-facts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "7cc66713-50b3-5542-862c-be8fab66b03f",
+      "noteType": "Bert Basic",
+      "section": "engines",
+      "fields": {
+        "Question": "Which PRAGMA switches an SQLite database to write-ahead logging?",
+        "Answer": "PRAGMA journal_mode=WAL",
+        "Aliases": "journal_mode=WAL\njournal_mode = WAL\njournal_mode",
+        "Hint": "A journal related pragma.",
+        "Fact": "WAL mode persists across connections once set.",
+        "Source": "SQLite: Write-Ahead Logging (https://www.sqlite.org/wal.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::sqlite-facts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "d01e40a2-28d2-5c39-932f-d616cccff77d",
+      "noteType": "Bert Cloze",
+      "section": "engines",
+      "fields": {
+        "Text": "In SQLite WAL mode, readers do not block the writer and the writer does not block readers, but there can still be only {{c1::one writer}} at a time.",
+        "Extra": "",
+        "Hint": "Concurrency is limited on one side.",
+        "Fact": "WAL mode requires all processes to be on the same host, since it uses shared memory.",
+        "Source": "SQLite: Write-Ahead Logging (https://www.sqlite.org/wal.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::sqlite-facts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "873891f0-06c4-541b-a9a6-7f9a6f88981f",
+      "noteType": "Bert Basic",
+      "section": "engines",
+      "fields": {
+        "Question": "Unless changed, what journaling approach does SQLite use for transactions?",
+        "Answer": "Rollback journal",
+        "Aliases": "rollback\nDELETE\njournal_mode=DELETE",
+        "Hint": "It existed before WAL support.",
+        "Fact": "WAL mode was added in SQLite 3.7.0 in 2010.",
+        "Source": "SQLite: Write-Ahead Logging (https://www.sqlite.org/wal.html)\nSQLite: PRAGMA Statements (https://www.sqlite.org/pragma.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::sqlite-facts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "3fe2f196-521d-57f5-aa2d-e42f74e666fd",
+      "noteType": "Bert Cloze",
+      "section": "engines",
+      "fields": {
+        "Text": "SQLite uses dynamic typing: a column has a type {{c1::affinity}}, and the value itself carries its storage class.",
+        "Extra": "",
+        "Hint": "A preference, not a rule.",
+        "Fact": "A column declared INTEGER can still hold a text value that cannot be converted.",
+        "Source": "SQLite: Datatypes In SQLite (https://www.sqlite.org/datatype3.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::sqlite-facts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "156daa1a-c625-54e9-9f57-efeed4169229",
+      "noteType": "Bert Typed",
+      "section": "engines",
+      "fields": {
+        "Question": "SQLite has five storage classes: NULL, INTEGER, REAL, BLOB, and which other one?",
+        "Answer": "TEXT",
+        "Aliases": "",
+        "Hint": "Strings go here.",
+        "Fact": "Booleans are stored as integers 0 and 1.",
+        "Source": "SQLite: Datatypes In SQLite (https://www.sqlite.org/datatype3.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::sqlite-facts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "8f9b6781-5962-564b-bb1c-aae728b2764a",
+      "noteType": "Bert Cloze",
+      "section": "engines",
+      "fields": {
+        "Text": "SQLite {{c1::STRICT}} tables, added in 3.37.0, enforce declared column types.",
+        "Extra": "",
+        "Hint": "A keyword at the end of CREATE TABLE.",
+        "Fact": "STRICT tables only allow types INT, INTEGER, REAL, TEXT, BLOB and ANY.",
+        "Source": "SQLite: STRICT Tables (https://www.sqlite.org/stricttables.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::sqlite-facts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "12371d04-542b-592e-b365-dcbfc5c061b8",
+      "noteType": "Bert Cloze",
+      "section": "engines",
+      "fields": {
+        "Text": "In SQLite, a column declared {{c1::INTEGER PRIMARY KEY}} becomes an alias for the rowid.",
+        "Extra": "",
+        "Hint": "The exact spelling matters.",
+        "Fact": "Declaring INT PRIMARY KEY instead does not create the alias.",
+        "Source": "SQLite: CREATE TABLE, ROWIDs and the INTEGER PRIMARY KEY (https://www.sqlite.org/lang_createtable.html#rowid)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::sqlite-facts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "dcc48be3-8a17-5433-90e5-c88de566370a",
+      "noteType": "Bert Cloze",
+      "section": "engines",
+      "fields": {
+        "Text": "SQLite foreign key enforcement is off by default and must be enabled per connection with <code>PRAGMA {{c1::foreign_keys}} = ON</code>.",
+        "Extra": "",
+        "Hint": "A pragma named after the feature.",
+        "Fact": "This default exists for backward compatibility.",
+        "Source": "SQLite: Foreign Key Support (https://www.sqlite.org/foreignkeys.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::sqlite-facts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "08ba79d9-d1ab-503b-b485-93ec089ef9bb",
+      "noteType": "Bert Cloze",
+      "section": "engines",
+      "fields": {
+        "Text": "A SQLite <code>{{c1::WITHOUT ROWID}}</code> table stores rows in a clustered B-tree keyed by its primary key.",
+        "Extra": "",
+        "Hint": "Removes the hidden integer key.",
+        "Fact": "Such tables must have a PRIMARY KEY.",
+        "Source": "SQLite: WITHOUT ROWID Tables (https://www.sqlite.org/withoutrowid.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::sqlite-facts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "b908202c-4f17-5514-bf37-34a35e194f22",
+      "noteType": "Bert Basic",
+      "section": "engines",
+      "fields": {
+        "Question": "Which SQLite BEGIN variant takes the write lock at the start of the transaction instead of on the first write?",
+        "Answer": "BEGIN IMMEDIATE",
+        "Aliases": "IMMEDIATE",
+        "Hint": "The default is DEFERRED.",
+        "Fact": "Starting write transactions this way avoids some SQLITE_BUSY upgrade failures.",
+        "Source": "SQLite: Transaction (https://www.sqlite.org/lang_transaction.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::sqlite-facts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "fb725635-ec24-522f-ac16-beb4511dd4c6",
+      "noteType": "Bert Typed",
+      "section": "engines",
+      "fields": {
+        "Question": "What is SQLite's default page size in bytes for new databases since version 3.12.0?",
+        "Answer": "4096",
+        "Aliases": "4096 bytes\n4 KB\n4kB",
+        "Hint": "Matches many file system block sizes.",
+        "Fact": "Page size must be a power of two between 512 and 65536.",
+        "Source": "SQLite: PRAGMA Statements (https://www.sqlite.org/pragma.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::numbers",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "1e1b22db-d836-5118-bb79-1f8ce112f63c",
+      "noteType": "Bert Basic",
+      "section": "engines",
+      "fields": {
+        "Question": "Which SQLite command prefix shows the high level query plan for a statement?",
+        "Answer": "EXPLAIN QUERY PLAN",
+        "Aliases": "",
+        "Hint": "Plain EXPLAIN shows bytecode.",
+        "Fact": "Plain EXPLAIN in SQLite lists virtual machine opcodes rather than a readable plan.",
+        "Source": "SQLite: Query Planning (https://www.sqlite.org/queryplanner.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::pg-commands",
+        "bert::status::draft"
+      ]
+    }
+  ]
+}

@@ -7,6 +7,7 @@ import app.bertsatlas.domain.model.AnswerFeedback
 import app.bertsatlas.domain.model.Attempt
 import app.bertsatlas.domain.model.Catalog
 import app.bertsatlas.domain.model.Choice
+import app.bertsatlas.domain.quiz.ChoiceLabels
 import app.bertsatlas.domain.model.FeedbackKind
 import app.bertsatlas.domain.model.FactRecord
 import app.bertsatlas.domain.model.EditorialReviewStatus
@@ -44,11 +45,12 @@ class QuizEngine(
         val usableSeed = if (seed == 0L) DEFAULT_SEED else seed
         val selection = questionSelector.select(
             questions = catalog.questions,
-            topic = configuration.topic,
+            scope = configuration.scope,
             tier = AdaptiveState().tier,
             mastery = mastery,
             currentEpochDay = localDateProvider.currentEpochDay(),
             recentQuestionIds = emptyList(),
+            questionIdsDueForRevisit = emptySet(),
             randomState = usableSeed,
         )
         val prepared = prepareQuestion(selection.question, selection.randomState)
@@ -150,7 +152,7 @@ class QuizEngine(
             hinted = hinted,
             overtime = overtime,
             submittedAnswer = evaluation.submittedText,
-            correctAnswer = correctAnswer(timed.activeQuestion.question),
+            correctAnswer = correctAnswer(timed.activeQuestion),
             responseMillis = timed.activeQuestion.questionElapsedMillis,
             pointsAwarded = points,
             answeredAtEpochMillis = wallClock.nowEpochMillis(),
@@ -160,6 +162,7 @@ class QuizEngine(
             questionWindowMillis = timed.activeQuestion.questionWindowMillis,
             questionRemainingMillis = timed.activeQuestion.questionRemainingMillis,
             hintTypes = timed.activeQuestion.usedHintTypes,
+            packId = timed.activeQuestion.question.packId,
         )
         val correctStreak = if (evaluation.correct) timed.currentCorrectStreak + 1 else 0
         val attempts = timed.attempts + attempt
@@ -180,7 +183,7 @@ class QuizEngine(
                     else -> FeedbackKind.Correct
                 },
                 submittedAnswer = evaluation.submittedText,
-                correctAnswer = correctAnswer(timed.activeQuestion.question),
+                correctAnswer = correctAnswer(timed.activeQuestion),
                 explanation = timed.activeQuestion.question.explanation,
                 pointsAwarded = points,
             ),
@@ -432,14 +435,26 @@ class QuizEngine(
         )
     }
 
+    private fun QuizRunState.questionIdsDueForRevisit(): Set<String> =
+        attempts.withIndex()
+            .groupBy { it.value.questionId }
+            .mapValues { (_, outcomes) -> outcomes.last() }
+            .filterValues { latest ->
+                val missedOrHinted = !latest.value.correct || latest.value.hinted
+                val questionsSince = attempts.lastIndex - latest.index
+                missedOrHinted && questionsSince >= MIN_QUESTIONS_BEFORE_REVISIT
+            }
+            .keys
+
     private fun moveToNextQuestion(state: QuizRunState, mastery: List<Mastery>): QuizRunState {
         val selection = questionSelector.select(
             questions = catalog.questions,
-            topic = state.configuration.topic,
+            scope = state.configuration.scope,
             tier = state.adaptive.tier,
             mastery = mastery,
             currentEpochDay = localDateProvider.currentEpochDay(),
             recentQuestionIds = state.recentQuestionIds,
+            questionIdsDueForRevisit = state.questionIdsDueForRevisit(),
             randomState = state.randomState,
         )
         val prepared = prepareQuestion(selection.question, selection.randomState)
@@ -529,6 +544,7 @@ class QuizEngine(
                         placements = active.placements.filterNot { it.tileId in removed },
                     )
                 }
+                is Question.FlipAndGrade -> error("Flip and grade cards have no options to remove")
             }
             HintType.RevealContinent,
             HintType.FunnyFactualClue,
@@ -593,6 +609,11 @@ class QuizEngine(
                 require(submitted.length == expected.length) { "Every answer slot must be filled before submitting" }
                 AnswerEvaluation(submitted.equals(expected, ignoreCase = true), submitted)
             }
+            is Question.FlipAndGrade -> {
+                val grade = answer as? SubmittedAnswer.SelfGrade
+                    ?: error("A self-graded answer is required")
+                AnswerEvaluation(grade.remembered, if (grade.remembered) question.answerText else "")
+            }
         }
 
     private fun ActiveQuestion.revealedTileIds(): Set<String> =
@@ -601,26 +622,52 @@ class QuizEngine(
     private fun QuizRunState.hasReachedAnsweredQuestionLimit(): Boolean =
         configuration.duration.answeredQuestionLimit?.let { attempts.size >= it } == true
 
-    private fun correctAnswer(question: Question): String = when (question) {
-        is Question.MultipleChoice -> question.choices.first { it.id == question.correctChoiceId }.label
+    private fun correctAnswer(activeQuestion: ActiveQuestion): String = when (val question = activeQuestion.question) {
+        is Question.MultipleChoice -> activeQuestion.orderedChoices.ifEmpty { question.choices }
+            .first { it.id == question.correctChoiceId }.label
         is Question.LetterBank -> question.displayAnswer
+        is Question.FlipAndGrade -> question.answerText
+    }
+
+    private fun List<Choice>.withImageChoicesLabelledByPosition(): List<Choice> = mapIndexed { position, choice ->
+        if (choice.assetId == null) choice else choice.copy(label = "Flag ${'A' + position}")
+    }
+
+    private fun Question.MultipleChoice.choicesFilledFromDistractorPools(randomState: Long): Pair<List<Choice>, Long> {
+        val chosen = choices.toMutableList()
+        var state = randomState
+        for (pool in distractorPoolsNearestFirst) {
+            if (chosen.size >= MULTIPLE_CHOICE_COUNT) break
+            val usable = pool.filter { candidate ->
+                chosen.none { it.id == candidate.id || ChoiceLabels.same(it.label, candidate.label) }
+            }
+            val shuffledPool = usable.shuffled(randomSource, state)
+            state = shuffledPool.second
+            for (candidate in shuffledPool.first) {
+                if (chosen.size >= MULTIPLE_CHOICE_COUNT) break
+                if (chosen.none { ChoiceLabels.same(it.label, candidate.label) }) chosen += candidate
+            }
+        }
+        return chosen to state
     }
 
     private fun prepareQuestion(question: Question, randomState: Long): PreparedQuestion = when (question) {
         is Question.MultipleChoice -> {
-            require(question.choices.size == 4) { "Multiple-choice questions require four choices" }
-            require(question.choices.map { it.id }.distinct().size == question.choices.size) {
+            val filled = question.choicesFilledFromDistractorPools(randomState)
+            val choices = filled.first
+            require(choices.size == MULTIPLE_CHOICE_COUNT) { "Multiple-choice questions require four choices" }
+            require(choices.map { it.id }.distinct().size == choices.size) {
                 "Multiple-choice question IDs must be unique"
             }
-            require(question.choices.map { it.label }.distinct().size == question.choices.size) {
+            require(choices.map { ChoiceLabels.key(it.label) }.distinct().size == choices.size) {
                 "Multiple-choice labels must be unique"
             }
-            require(question.choices.any { it.id == question.correctChoiceId }) { "Correct choice is missing" }
-            val shuffled = question.choices.shuffled(randomSource, randomState)
+            require(choices.any { it.id == question.correctChoiceId }) { "Correct choice is missing" }
+            val shuffled = choices.shuffled(randomSource, filled.second)
             PreparedQuestion(
                 activeQuestion = ActiveQuestion(
                     question = question,
-                    orderedChoices = shuffled.first,
+                    orderedChoices = shuffled.first.withImageChoicesLabelledByPosition(),
                     questionWindowMillis = MULTIPLE_CHOICE_WINDOW_MILLIS,
                     questionRemainingMillis = MULTIPLE_CHOICE_WINDOW_MILLIS,
                 ),
@@ -651,6 +698,14 @@ class QuizEngine(
                 randomState = shuffled.second,
             )
         }
+        is Question.FlipAndGrade -> PreparedQuestion(
+            activeQuestion = ActiveQuestion(
+                question = question,
+                questionWindowMillis = FLIP_AND_GRADE_WINDOW_MILLIS,
+                questionRemainingMillis = FLIP_AND_GRADE_WINDOW_MILLIS,
+            ),
+            randomState = randomState,
+        )
     }
 
     private fun nextFactGap(randomState: Long): FactGap {
@@ -678,9 +733,12 @@ class QuizEngine(
     companion object {
         const val MULTIPLE_CHOICE_WINDOW_MILLIS = 30_000L
         const val LETTER_BANK_WINDOW_MILLIS = 30_000L
+        const val FLIP_AND_GRADE_WINDOW_MILLIS = 30_000L
         const val LETTER_BANK_DECOY_COUNT = 3
+        const val MULTIPLE_CHOICE_COUNT = 4
+        const val MIN_QUESTIONS_BEFORE_REVISIT = 5
         const val MINIMUM_UNLIMITED_ANSWERS = 5
-        const val ACTIVE_RUN_SNAPSHOT_SCHEMA_VERSION = 1
+        const val ACTIVE_RUN_SNAPSHOT_SCHEMA_VERSION = 2
         private const val MIN_FACT_GAP = 5
         private const val MAX_FACT_GAP = 8
         private const val DEFAULT_SEED = -7046029254386353131L

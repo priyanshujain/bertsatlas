@@ -4,7 +4,7 @@ import app.bertsatlas.domain.model.DifficultyTier
 import app.bertsatlas.domain.model.Mastery
 import app.bertsatlas.domain.model.MasteryLevel
 import app.bertsatlas.domain.model.Question
-import app.bertsatlas.domain.model.QuizTopic
+import app.bertsatlas.domain.model.PlayScope
 import app.bertsatlas.domain.model.Skill
 
 data class SelectedQuestion(
@@ -17,37 +17,60 @@ class QuestionSelector(
 ) {
     fun select(
         questions: List<Question>,
-        topic: QuizTopic,
+        scope: PlayScope,
+        tier: DifficultyTier,
+        mastery: List<Mastery>,
+        currentEpochDay: Int,
+        recentQuestionIds: List<String>,
+        questionIdsDueForRevisit: Set<String>,
+        randomState: Long,
+    ): SelectedQuestion {
+        val scopeQuestions = questions.filter { it.packId in scope.packIds }
+        require(scopeQuestions.isNotEmpty()) { "No questions are available for ${scope.progressKey}" }
+
+        val dueForRevisit = scopeQuestions.filter { it.id in questionIdsDueForRevisit }
+        if (dueForRevisit.isNotEmpty()) {
+            val revisitRoll = randomSource.nextInt(randomState, REVISIT_CHANCE_ONE_IN)
+            if (revisitRoll.value == 0) {
+                val pick = randomSource.nextInt(revisitRoll.nextState, dueForRevisit.size)
+                return SelectedQuestion(dueForRevisit[pick.value], pick.nextState)
+            }
+            return selectByWeight(scopeQuestions, questions, scope, tier, mastery, currentEpochDay, recentQuestionIds, revisitRoll.nextState)
+        }
+        return selectByWeight(scopeQuestions, questions, scope, tier, mastery, currentEpochDay, recentQuestionIds, randomState)
+    }
+
+    private fun selectByWeight(
+        scopeQuestions: List<Question>,
+        questions: List<Question>,
+        scope: PlayScope,
         tier: DifficultyTier,
         mastery: List<Mastery>,
         currentEpochDay: Int,
         recentQuestionIds: List<String>,
         randomState: Long,
     ): SelectedQuestion {
-        val topicQuestions = questions.filter { matchesTopic(it, topic) }
-        require(topicQuestions.isNotEmpty()) { "No questions are available for $topic" }
-
         val priorQuestionIds = recentQuestionIds.takeLast(RECENT_QUESTION_WINDOW).toSet()
         val priorQuestions = questions.filter { it.id in priorQuestionIds }
         val immediateQuestion = questions.firstOrNull { it.id == recentQuestionIds.lastOrNull() }
-        val withoutRecentConcepts = topicQuestions.filter { candidate ->
+        val withoutRecentConcepts = scopeQuestions.filter { candidate ->
             candidate.id !in priorQuestionIds && priorQuestions.none { recent -> candidate.repeatsConceptFrom(recent) }
         }
-        val withoutImmediateConcept = topicQuestions.filter { candidate ->
+        val withoutImmediateConcept = scopeQuestions.filter { candidate ->
             candidate.id != immediateQuestion?.id &&
                 (immediateQuestion == null || !candidate.repeatsConceptFrom(immediateQuestion))
         }
-        val withoutPriorQuestions = topicQuestions.filter { it.id !in priorQuestionIds }
-        val withoutImmediateRepeat = topicQuestions.filter { it.id != immediateQuestion?.id }
+        val withoutPriorQuestions = scopeQuestions.filter { it.id !in priorQuestionIds }
+        val withoutImmediateRepeat = scopeQuestions.filter { it.id != immediateQuestion?.id }
         val candidates = when {
             withoutRecentConcepts.isNotEmpty() -> withoutRecentConcepts
             withoutImmediateConcept.isNotEmpty() -> withoutImmediateConcept
             withoutPriorQuestions.isNotEmpty() -> withoutPriorQuestions
             withoutImmediateRepeat.isNotEmpty() -> withoutImmediateRepeat
-            else -> topicQuestions
+            else -> scopeQuestions
         }
         val weighted = candidates.flatMap { question ->
-            List(selectionWeight(question, topic, tier, mastery, currentEpochDay)) { question }
+            List(selectionWeight(question, scope, tier, mastery, currentEpochDay)) { question }
         }
         val random = randomSource.nextInt(randomState, weighted.size)
         return SelectedQuestion(weighted[random.value], random.nextState)
@@ -69,18 +92,12 @@ class QuestionSelector(
         Skill.MixedGeography,
         Skill.FlagSymbolism,
         -> SelectionFamily.Mixed
-    }
-
-    private fun matchesTopic(question: Question, topic: QuizTopic): Boolean = when (topic) {
-        QuizTopic.MostlyFlags -> true
-        QuizTopic.Capitals -> question.skill == Skill.CapitalRecall ||
-            question.skill == Skill.CapitalRecognition
-        QuizTopic.MixedGeography -> true
+        Skill.CardRecall -> SelectionFamily.Card
     }
 
     private fun selectionWeight(
         question: Question,
-        topic: QuizTopic,
+        scope: PlayScope,
         tier: DifficultyTier,
         mastery: List<Mastery>,
         currentEpochDay: Int,
@@ -99,19 +116,13 @@ class QuestionSelector(
             records.all { it.level == MasteryLevel.Mastered } -> 1
             else -> 2
         }
-        val topicWeight = when (topic) {
-            QuizTopic.MostlyFlags -> when (question.skill) {
+        val scopeWeight = when (scope) {
+            is PlayScope.Pack -> when (question.skill) {
                 Skill.FlagRecognition -> 8
                 Skill.CountryToFlag -> 6
-                Skill.CapitalRecall,
-                Skill.CapitalRecognition,
-                -> 1
-                Skill.MixedGeography,
-                Skill.FlagSymbolism,
-                -> 2
+                else -> 1
             }
-            QuizTopic.Capitals -> 1
-            QuizTopic.MixedGeography -> when (question.skill) {
+            is PlayScope.Mix -> when (question.skill) {
                 Skill.FlagRecognition,
                 Skill.CountryToFlag,
                 -> 1
@@ -121,16 +132,19 @@ class QuestionSelector(
                 Skill.MixedGeography,
                 Skill.FlagSymbolism,
                 -> 6
+                Skill.CardRecall -> 4
             }
         }
-        return (difficultyWeight + reviewWeight) * topicWeight
+        return (difficultyWeight + reviewWeight) * scopeWeight
     }
 }
 
 private const val RECENT_QUESTION_WINDOW = 5
+private const val REVISIT_CHANCE_ONE_IN = 3
 
 private enum class SelectionFamily {
     Flag,
     Capital,
     Mixed,
+    Card,
 }

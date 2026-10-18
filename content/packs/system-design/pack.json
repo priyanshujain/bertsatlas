@@ -1,0 +1,565 @@
+{
+  "packId": "system-design",
+  "version": "1.0.0",
+  "official": true,
+  "title": "System Design",
+  "subtitle": "Scaling, caching, consistency and classic designs",
+  "category": "programming",
+  "subcategory": "system-design",
+  "accentColor": "#3E5C8A",
+  "coverMedia": null,
+  "languages": [
+    "en"
+  ],
+  "sources": [
+    {
+      "id": "source-norvig",
+      "title": "Teach Yourself Programming in Ten Years",
+      "url": "https://norvig.com/21-days.html",
+      "publisher": "Peter Norvig",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-raft",
+      "title": "In Search of an Understandable Consensus Algorithm",
+      "url": "https://raft.github.io/raft.pdf",
+      "publisher": "Diego Ongaro and John Ousterhout",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-paxos",
+      "title": "Paxos Made Simple",
+      "url": "https://lamport.azurewebsites.net/pubs/paxos-simple.pdf",
+      "publisher": "Leslie Lamport",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-lamport-clocks",
+      "title": "Time, Clocks, and the Ordering of Events in a Distributed System",
+      "url": "https://lamport.azurewebsites.net/pubs/time-clocks.pdf",
+      "publisher": "Leslie Lamport",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-flp",
+      "title": "Impossibility of Distributed Consensus with One Faulty Process",
+      "url": "https://dl.acm.org/doi/10.1145/3149.214121",
+      "publisher": "Fischer, Lynch and Paterson",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-dynamo",
+      "title": "Dynamo: Amazon's Highly Available Key-value Store",
+      "url": "https://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf",
+      "publisher": "DeCandia et al., Amazon",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-karger",
+      "title": "Consistent Hashing and Random Trees",
+      "url": "https://dl.acm.org/doi/10.1145/258533.258660",
+      "publisher": "Karger et al.",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-jump",
+      "title": "A Fast, Minimal Memory, Consistent Hash Algorithm",
+      "url": "https://arxiv.org/abs/1406.2294",
+      "publisher": "John Lamping and Eric Veach",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-cap",
+      "title": "Brewer's Conjecture and the Feasibility of Consistent, Available, Partition-Tolerant Web Services",
+      "url": "https://dl.acm.org/doi/10.1145/564585.564601",
+      "publisher": "Seth Gilbert and Nancy Lynch",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-pacelc",
+      "title": "Consistency Tradeoffs in Modern Distributed Database System Design",
+      "url": "https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf",
+      "publisher": "Daniel Abadi",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-jepsen",
+      "title": "Jepsen: Consistency Models",
+      "url": "https://jepsen.io/consistency",
+      "publisher": "Jepsen",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-spanner",
+      "title": "Spanner: Google's Globally Distributed Database",
+      "url": "https://research.google/pubs/spanner-googles-globally-distributed-database-2/",
+      "publisher": "Google",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-ddia",
+      "title": "Designing Data-Intensive Applications",
+      "url": "https://dataintensive.net/",
+      "publisher": "Martin Kleppmann",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-sre-monitoring",
+      "title": "Site Reliability Engineering: Monitoring Distributed Systems",
+      "url": "https://sre.google/sre-book/monitoring-distributed-systems/",
+      "publisher": "Google",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-sre-slo",
+      "title": "Site Reliability Engineering: Service Level Objectives",
+      "url": "https://sre.google/sre-book/service-level-objectives/",
+      "publisher": "Google",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-sre-overload",
+      "title": "Site Reliability Engineering: Handling Overload",
+      "url": "https://sre.google/sre-book/handling-overload/",
+      "publisher": "Google",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-use",
+      "title": "The USE Method",
+      "url": "https://www.brendangregg.com/usemethod.html",
+      "publisher": "Brendan Gregg",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-otel",
+      "title": "OpenTelemetry: Signals",
+      "url": "https://opentelemetry.io/docs/concepts/signals/",
+      "publisher": "OpenTelemetry",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-tracecontext",
+      "title": "W3C Trace Context",
+      "url": "https://www.w3.org/TR/trace-context/",
+      "publisher": "W3C",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-rfc9110",
+      "title": "RFC 9110: HTTP Semantics",
+      "url": "https://www.rfc-editor.org/rfc/rfc9110",
+      "publisher": "IETF",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-rfc9111",
+      "title": "RFC 9111: HTTP Caching",
+      "url": "https://www.rfc-editor.org/rfc/rfc9111",
+      "publisher": "IETF",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-rfc5861",
+      "title": "RFC 5861: HTTP Cache-Control Extensions for Stale Content",
+      "url": "https://www.rfc-editor.org/rfc/rfc5861",
+      "publisher": "IETF",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-rfc6585",
+      "title": "RFC 6585: Additional HTTP Status Codes",
+      "url": "https://www.rfc-editor.org/rfc/rfc6585",
+      "publisher": "IETF",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-rfc6455",
+      "title": "RFC 6455: The WebSocket Protocol",
+      "url": "https://www.rfc-editor.org/rfc/rfc6455",
+      "publisher": "IETF",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-mdn-cache",
+      "title": "MDN: HTTP caching",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Caching",
+      "publisher": "Mozilla",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-cache-aside",
+      "title": "Cache-Aside pattern",
+      "url": "https://learn.microsoft.com/en-us/azure/architecture/patterns/cache-aside",
+      "publisher": "Microsoft",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-sharding",
+      "title": "Sharding pattern",
+      "url": "https://learn.microsoft.com/en-us/azure/architecture/patterns/sharding",
+      "publisher": "Microsoft",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-cqrs",
+      "title": "CQRS pattern",
+      "url": "https://learn.microsoft.com/en-us/azure/architecture/patterns/cqrs",
+      "publisher": "Microsoft",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-saga",
+      "title": "Saga distributed transactions pattern",
+      "url": "https://learn.microsoft.com/en-us/azure/architecture/patterns/saga",
+      "publisher": "Microsoft",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-bulkhead",
+      "title": "Bulkhead pattern",
+      "url": "https://learn.microsoft.com/en-us/azure/architecture/patterns/bulkhead",
+      "publisher": "Microsoft",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-outbox",
+      "title": "Pattern: Transactional outbox",
+      "url": "https://microservices.io/patterns/data/transactional-outbox.html",
+      "publisher": "Chris Richardson",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-breaker",
+      "title": "CircuitBreaker",
+      "url": "https://martinfowler.com/bliki/CircuitBreaker.html",
+      "publisher": "Martin Fowler",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-jitter",
+      "title": "Exponential Backoff And Jitter",
+      "url": "https://aws.amazon.com/blogs/architecture/exponential-backoff-and-jitter/",
+      "publisher": "Amazon Web Services",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-kafka",
+      "title": "Apache Kafka Documentation",
+      "url": "https://kafka.apache.org/documentation/",
+      "publisher": "Apache Software Foundation",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-sqs",
+      "title": "Amazon SQS Developer Guide",
+      "url": "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/welcome.html",
+      "publisher": "Amazon Web Services",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-stripe-idem",
+      "title": "Stripe API: Idempotent requests",
+      "url": "https://docs.stripe.com/api/idempotent_requests",
+      "publisher": "Stripe",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-redis-evict",
+      "title": "Redis: Key eviction",
+      "url": "https://redis.io/docs/latest/develop/reference/eviction/",
+      "publisher": "Redis",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-s3-consistency",
+      "title": "Amazon S3 Strong Consistency",
+      "url": "https://aws.amazon.com/s3/consistency/",
+      "publisher": "Amazon Web Services",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-snowflake",
+      "title": "Announcing Snowflake",
+      "url": "https://blog.x.com/engineering/en_us/a/2010/announcing-snowflake",
+      "publisher": "Twitter Engineering",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-bloom",
+      "title": "Space/Time Trade-offs in Hash Coding with Allowable Errors",
+      "url": "https://dl.acm.org/doi/10.1145/362686.362692",
+      "publisher": "Burton H. Bloom",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-lsm",
+      "title": "The Log-Structured Merge-Tree (LSM-Tree)",
+      "url": "https://www.cs.umb.edu/~poneil/lsmtree.pdf",
+      "publisher": "O'Neil et al.",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-bigtable",
+      "title": "Bigtable: A Distributed Storage System for Structured Data",
+      "url": "https://research.google/pubs/bigtable-a-distributed-storage-system-for-structured-data/",
+      "publisher": "Google",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-hll",
+      "title": "HyperLogLog: the analysis of a near-optimal cardinality estimation algorithm",
+      "url": "https://algo.inria.fr/flajolet/Publications/FlFuGaMe07.pdf",
+      "publisher": "Flajolet et al.",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-belady",
+      "title": "A study of replacement algorithms for a virtual-storage computer",
+      "url": "https://doi.org/10.1147/sj.52.0078",
+      "publisher": "L. A. Belady",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-littles-law",
+      "title": "A Proof for the Queuing Formula: L = lambda W",
+      "url": "https://doi.org/10.1287/opre.9.3.383",
+      "publisher": "John D. C. Little",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-amdahl",
+      "title": "Validity of the single processor approach to achieving large scale computing capabilities",
+      "url": "https://doi.org/10.1145/1465482.1465560",
+      "publisher": "Gene Amdahl",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-aws-elb",
+      "title": "Elastic Load Balancing User Guide",
+      "url": "https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/how-elastic-load-balancing-works.html",
+      "publisher": "Amazon Web Services",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-nginx-lb",
+      "title": "NGINX: HTTP Load Balancing",
+      "url": "https://docs.nginx.com/nginx/admin-guide/load-balancer/http-load-balancer/",
+      "publisher": "F5 NGINX",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-cf-cdn",
+      "title": "Cloudflare Learning: What is a CDN?",
+      "url": "https://www.cloudflare.com/learning/cdn/what-is-a-cdn/",
+      "publisher": "Cloudflare",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-cf-anycast",
+      "title": "Cloudflare Learning: What is Anycast?",
+      "url": "https://www.cloudflare.com/learning/cdn/glossary/anycast-network/",
+      "publisher": "Cloudflare",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-cf-ratelimit",
+      "title": "How we built rate limiting capable of scaling to millions of domains",
+      "url": "https://blog.cloudflare.com/counting-things-a-lot-of-different-things/",
+      "publisher": "Cloudflare",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-rfc3986",
+      "title": "RFC 3986: Uniform Resource Identifier (URI): Generic Syntax",
+      "url": "https://www.rfc-editor.org/rfc/rfc3986",
+      "publisher": "IETF",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-pg-iso",
+      "title": "PostgreSQL: Transaction Isolation",
+      "url": "https://www.postgresql.org/docs/current/transaction-iso.html",
+      "publisher": "PostgreSQL Global Development Group",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-red",
+      "title": "The RED Method: key metrics for microservices architecture",
+      "url": "https://grafana.com/blog/2018/08/02/the-red-method-how-to-instrument-your-services/",
+      "publisher": "Grafana Labs",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-wiki-token-bucket",
+      "title": "Token bucket",
+      "url": "https://en.wikipedia.org/wiki/Token_bucket",
+      "publisher": "Wikipedia",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-wiki-leaky-bucket",
+      "title": "Leaky bucket",
+      "url": "https://en.wikipedia.org/wiki/Leaky_bucket",
+      "publisher": "Wikipedia",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-wiki-cache-replacement",
+      "title": "Cache replacement policies",
+      "url": "https://en.wikipedia.org/wiki/Cache_replacement_policies",
+      "publisher": "Wikipedia",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-sre-avail",
+      "title": "Site Reliability Engineering: Availability Table",
+      "url": "https://sre.google/sre-book/availability-table/",
+      "publisher": "Google",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-wiki-fiber",
+      "title": "Optical fiber",
+      "url": "https://en.wikipedia.org/wiki/Optical_fiber",
+      "publisher": "Wikipedia",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-wiki-day",
+      "title": "Day",
+      "url": "https://en.wikipedia.org/wiki/Day",
+      "publisher": "Wikipedia",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-wiki-pow2",
+      "title": "Power of two",
+      "url": "https://en.wikipedia.org/wiki/Power_of_two",
+      "publisher": "Wikipedia",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-wiki-byte",
+      "title": "Byte",
+      "url": "https://en.wikipedia.org/wiki/Byte",
+      "publisher": "Wikipedia",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-wiki-cache",
+      "title": "Cache (computing)",
+      "url": "https://en.wikipedia.org/wiki/Cache_(computing)",
+      "publisher": "Wikipedia",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-discord",
+      "title": "How Discord Stores Trillions of Messages",
+      "url": "https://discord.com/blog/how-discord-stores-trillions-of-messages",
+      "publisher": "Discord",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-apns",
+      "title": "Apple Developer: User Notifications",
+      "url": "https://developer.apple.com/documentation/usernotifications",
+      "publisher": "Apple",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-rfc7871",
+      "title": "RFC 7871: Client Subnet in DNS Queries",
+      "url": "https://www.rfc-editor.org/rfc/rfc7871",
+      "publisher": "IETF",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-fowler-twohard",
+      "title": "TwoHardThings",
+      "url": "https://martinfowler.com/bliki/TwoHardThings.html",
+      "publisher": "Martin Fowler",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    }
+  ],
+  "assetLicenses": [],
+  "stamps": [],
+  "bertSchemaVersion": 1,
+  "sections": {
+    "scalability": "Scalability",
+    "caching-and-cdns": "Caching and CDNs",
+    "consistency-and-consensus": "Consistency and consensus",
+    "messaging-and-reliability": "Messaging and reliability",
+    "storage": "Storage",
+    "back-of-envelope": "Back of the envelope",
+    "observability": "Observability",
+    "classic-designs": "Classic designs"
+  }
+}

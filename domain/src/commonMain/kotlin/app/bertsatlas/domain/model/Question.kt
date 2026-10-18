@@ -9,7 +9,7 @@ sealed interface Question {
     val prompt: String
     val countryIds: List<String>
     val skill: Skill
-    val topic: QuizTopic
+    val packId: String
     val difficulty: DifficultyTier
     val explanation: String?
     val supportedHints: Set<HintType>
@@ -22,7 +22,7 @@ sealed interface Question {
         override val prompt: String,
         override val countryIds: List<String>,
         override val skill: Skill,
-        override val topic: QuizTopic,
+        override val packId: String,
         override val difficulty: DifficultyTier,
         override val explanation: String? = null,
         override val supportedHints: Set<HintType>,
@@ -30,6 +30,8 @@ sealed interface Question {
         val choices: List<Choice>,
         val correctChoiceId: String,
         val promptAssetId: String? = null,
+        val distractorPoolsNearestFirst: List<List<Choice>> = emptyList(),
+        val promptHtml: String? = null,
     ) : Question
 
     @Serializable
@@ -39,15 +41,33 @@ sealed interface Question {
         override val prompt: String,
         override val countryIds: List<String>,
         override val skill: Skill,
-        override val topic: QuizTopic,
+        override val packId: String,
         override val difficulty: DifficultyTier,
         override val explanation: String? = null,
         override val supportedHints: Set<HintType>,
         override val hintText: Map<HintType, String> = emptyMap(),
         val displayAnswer: String,
         val acceptedAliases: List<String> = emptyList(),
-        val promptAssetId: String,
+        val promptAssetId: String? = null,
         val decoyLetters: List<Char>,
+        val promptHtml: String? = null,
+    ) : Question
+
+    @Serializable
+    @SerialName("flip_and_grade")
+    data class FlipAndGrade(
+        override val id: String,
+        override val prompt: String,
+        override val countryIds: List<String>,
+        override val skill: Skill,
+        override val packId: String,
+        override val difficulty: DifficultyTier,
+        override val explanation: String? = null,
+        override val supportedHints: Set<HintType>,
+        override val hintText: Map<HintType, String> = emptyMap(),
+        val promptHtml: String,
+        val answerHtml: String,
+        val answerText: String,
     ) : Question
 }
 
@@ -97,4 +117,8 @@ sealed interface SubmittedAnswer {
     @Serializable
     @SerialName("letters")
     data class LetterAnswer(val tileIds: List<String>) : SubmittedAnswer
+
+    @Serializable
+    @SerialName("self_grade")
+    data class SelfGrade(val remembered: Boolean) : SubmittedAnswer
 }

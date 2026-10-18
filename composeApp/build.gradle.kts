@@ -19,6 +19,10 @@ kotlin {
         androidResources.enable = true
     }
 
+    jvm {
+        compilerOptions.jvmTarget.set(JvmTarget.JVM_21)
+    }
+
     listOf(iosArm64(), iosSimulatorArm64()).forEach { iosTarget ->
         iosTarget.binaries.framework {
             baseName = "ComposeApp"
@@ -30,6 +34,9 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             implementation(project(":domain"))
+            implementation(project(":anki"))
+            implementation(project(":cardRender"))
+            implementation(libs.kotlinx.io.core)
             implementation(libs.compose.runtime)
             implementation(libs.compose.foundation)
             implementation(libs.compose.ui)
@@ -47,6 +54,7 @@ kotlin {
 
 dependencies {
     add("kspAndroid", libs.androidx.room.compiler)
+    add("kspJvm", libs.androidx.room.compiler)
     add("kspIosArm64", libs.androidx.room.compiler)
     add("kspIosSimulatorArm64", libs.androidx.room.compiler)
 }

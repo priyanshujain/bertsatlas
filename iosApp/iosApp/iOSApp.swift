@@ -8,7 +8,10 @@ struct BertAtlasApp: App {
     var body: some Scene {
         WindowGroup {
             ComposeView()
-                .ignoresSafeArea(.keyboard)
+                .ignoresSafeArea()
+                .onOpenURL { url in
+                    IosPackFilesKt.openPackFile(url: url)
+                }
         }
         .onChange(of: scenePhase) { phase in
             if phase == .active {

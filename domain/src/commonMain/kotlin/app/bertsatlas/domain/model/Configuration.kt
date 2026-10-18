@@ -5,7 +5,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class QuizConfiguration(
     val duration: QuizDuration = QuizDuration.FiveMinutes,
-    val topic: QuizTopic = QuizTopic.MostlyFlags,
+    val scope: PlayScope = PlayScope.Pack(BuiltInPacks.FLAGS),
 )
 
 @Serializable
@@ -17,13 +17,6 @@ enum class QuizDuration(
     TenMinutes(10 * 60 * 1_000L, 20),
     TwentyMinutes(20 * 60 * 1_000L, 40),
     Unlimited(null, null),
-}
-
-@Serializable
-enum class QuizTopic {
-    MostlyFlags,
-    Capitals,
-    MixedGeography,
 }
 
 @Serializable
@@ -41,6 +34,7 @@ enum class Skill {
     CapitalRecognition,
     MixedGeography,
     FlagSymbolism,
+    CardRecall,
 }
 
 @Serializable

@@ -133,6 +133,7 @@ fun DebugPanelScreen(
     activeSnapshot: String,
     actions: List<DebugActionUi>,
     onAction: (String) -> Unit,
+    onOpenCardGallery: () -> Unit,
     onClose: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -143,6 +144,12 @@ fun DebugPanelScreen(
                 AtlasText("Catalog $catalogVersion")
                 AtlasText(activeSnapshot, style = AtlasTheme.typography.detail, color = AtlasTheme.colors.mutedPlum)
             }
+            AtlasButton(
+                text = "Open card gallery",
+                onClick = onOpenCardGallery,
+                modifier = Modifier.fillMaxWidth(),
+                style = AtlasButtonStyle.Secondary,
+            )
             actions.forEach { action ->
                 AtlasButton(
                     text = action.title + (action.detail?.let { " · $it" } ?: ""),

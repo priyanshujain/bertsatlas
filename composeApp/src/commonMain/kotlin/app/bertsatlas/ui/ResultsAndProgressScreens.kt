@@ -104,7 +104,6 @@ fun ProgressScreen(
                             else -> "$currentStreak day streak"
                         },
                         style = AtlasTheme.typography.heading,
-                        color = AtlasTheme.colors.coral,
                     )
                     AtlasText(
                         when (bestStreak) {
@@ -122,7 +121,7 @@ fun ProgressScreen(
                 masteryGroups.forEach { AtlasProgress(it.label, it.progress, it.detail) }
             }
             CountryNotes("Strong lately", strongCountries, AtlasTheme.colors.success)
-            CountryNotes("Worth revisiting", revisitCountries, AtlasTheme.colors.mustard)
+            CountryNotes("Worth revisiting", revisitCountries, AtlasTheme.colors.plum)
             AtlasText("Passport stamps", style = AtlasTheme.typography.heading)
             stamps.forEach { StampCard(it) }
         }

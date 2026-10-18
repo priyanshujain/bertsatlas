@@ -1,0 +1,693 @@
+{
+  "packId": "operating-systems",
+  "version": "1.0.0",
+  "official": true,
+  "title": "Operating Systems",
+  "subtitle": "Processes, memory, concurrency, files and I/O",
+  "category": "programming",
+  "subcategory": "operating-systems",
+  "accentColor": "#3E5C8A",
+  "coverMedia": null,
+  "languages": [
+    "en"
+  ],
+  "sources": [
+    {
+      "id": "source-affinity",
+      "title": "sched_setaffinity(2), Linux manual page",
+      "url": "https://man7.org/linux/man-pages/man2/sched_setaffinity.2.html",
+      "publisher": "Michael Kerrisk, Linux man-pages project",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-brk",
+      "title": "brk(2), Linux manual page",
+      "url": "https://man7.org/linux/man-pages/man2/brk.2.html",
+      "publisher": "Michael Kerrisk, Linux man-pages project",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-bugs",
+      "title": "OSTEP: Common Concurrency Problems",
+      "url": "https://pages.cs.wisc.edu/~remzi/OSTEP/threads-bugs.pdf",
+      "publisher": "Remzi H. Arpaci-Dusseau and Andrea C. Arpaci-Dusseau",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-caps",
+      "title": "capabilities(7), Linux manual page",
+      "url": "https://man7.org/linux/man-pages/man7/capabilities.7.html",
+      "publisher": "Michael Kerrisk, Linux man-pages project",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-cfs",
+      "title": "Linux kernel docs: CFS Scheduler",
+      "url": "https://docs.kernel.org/scheduler/sched-design-CFS.html",
+      "publisher": "The Linux Kernel Organization",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-cgroups",
+      "title": "cgroups(7), Linux manual page",
+      "url": "https://man7.org/linux/man-pages/man7/cgroups.7.html",
+      "publisher": "Michael Kerrisk, Linux man-pages project",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-cgv2",
+      "title": "Linux kernel docs: Control Group v2",
+      "url": "https://docs.kernel.org/admin-guide/cgroup-v2.html",
+      "publisher": "The Linux Kernel Organization",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-chroot",
+      "title": "chroot(2), Linux manual page",
+      "url": "https://man7.org/linux/man-pages/man2/chroot.2.html",
+      "publisher": "Michael Kerrisk, Linux man-pages project",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-clone",
+      "title": "clone(2), Linux manual page",
+      "url": "https://man7.org/linux/man-pages/man2/clone.2.html",
+      "publisher": "Michael Kerrisk, Linux man-pages project",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-coffman",
+      "title": "Coffman, Elphick, Shoshani: System Deadlocks (ACM Computing Surveys, 1971)",
+      "url": "https://dl.acm.org/doi/10.1145/356586.356588",
+      "publisher": "ACM",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-condwait",
+      "title": "pthread_cond_wait, The Open Group Base Specifications",
+      "url": "https://pubs.opengroup.org/onlinepubs/9799919799/functions/pthread_cond_wait.html",
+      "publisher": "The Open Group",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-cv",
+      "title": "OSTEP: Condition Variables",
+      "url": "https://pages.cs.wisc.edu/~remzi/OSTEP/threads-cv.pdf",
+      "publisher": "Remzi H. Arpaci-Dusseau and Andrea C. Arpaci-Dusseau",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-devices",
+      "title": "OSTEP: I/O Devices",
+      "url": "https://pages.cs.wisc.edu/~remzi/OSTEP/file-devices.pdf",
+      "publisher": "Remzi H. Arpaci-Dusseau and Andrea C. Arpaci-Dusseau",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-dup",
+      "title": "dup(2), Linux manual page",
+      "url": "https://man7.org/linux/man-pages/man2/dup.2.html",
+      "publisher": "Michael Kerrisk, Linux man-pages project",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-eevdf",
+      "title": "Linux kernel docs: EEVDF Scheduler",
+      "url": "https://docs.kernel.org/scheduler/sched-eevdf.html",
+      "publisher": "The Linux Kernel Organization",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-epoll",
+      "title": "epoll(7), Linux manual page",
+      "url": "https://man7.org/linux/man-pages/man7/epoll.7.html",
+      "publisher": "Michael Kerrisk, Linux man-pages project",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-errno",
+      "title": "errno(3), Linux manual page",
+      "url": "https://man7.org/linux/man-pages/man3/errno.3.html",
+      "publisher": "Michael Kerrisk, Linux man-pages project",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-execve",
+      "title": "execve(2), Linux manual page",
+      "url": "https://man7.org/linux/man-pages/man2/execve.2.html",
+      "publisher": "Michael Kerrisk, Linux man-pages project",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-ext4",
+      "title": "Linux kernel docs: ext4 General Information",
+      "url": "https://docs.kernel.org/admin-guide/ext4.html",
+      "publisher": "The Linux Kernel Organization",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-fimpl",
+      "title": "OSTEP: File System Implementation",
+      "url": "https://pages.cs.wisc.edu/~remzi/OSTEP/file-implementation.pdf",
+      "publisher": "Remzi H. Arpaci-Dusseau and Andrea C. Arpaci-Dusseau",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-fintro",
+      "title": "OSTEP: Interlude: Files and Directories",
+      "url": "https://pages.cs.wisc.edu/~remzi/OSTEP/file-intro.pdf",
+      "publisher": "Remzi H. Arpaci-Dusseau and Andrea C. Arpaci-Dusseau",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-fork",
+      "title": "fork(2), Linux manual page",
+      "url": "https://man7.org/linux/man-pages/man2/fork.2.html",
+      "publisher": "Michael Kerrisk, Linux man-pages project",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-free",
+      "title": "OSTEP: Free-Space Management",
+      "url": "https://pages.cs.wisc.edu/~remzi/OSTEP/vm-freespace.pdf",
+      "publisher": "Remzi H. Arpaci-Dusseau and Andrea C. Arpaci-Dusseau",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-fsync",
+      "title": "fsync(2), Linux manual page",
+      "url": "https://man7.org/linux/man-pages/man2/fsync.2.html",
+      "publisher": "Michael Kerrisk, Linux man-pages project",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-futex",
+      "title": "futex(7), Linux manual page",
+      "url": "https://man7.org/linux/man-pages/man7/futex.7.html",
+      "publisher": "Michael Kerrisk, Linux man-pages project",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-inode",
+      "title": "inode(7), Linux manual page",
+      "url": "https://man7.org/linux/man-pages/man7/inode.7.html",
+      "publisher": "Michael Kerrisk, Linux man-pages project",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-journal",
+      "title": "OSTEP: Crash Consistency: FSCK and Journaling",
+      "url": "https://pages.cs.wisc.edu/~remzi/OSTEP/file-journaling.pdf",
+      "publisher": "Remzi H. Arpaci-Dusseau and Andrea C. Arpaci-Dusseau",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-kill1",
+      "title": "kill(1), Linux manual page",
+      "url": "https://man7.org/linux/man-pages/man1/kill.1.html",
+      "publisher": "Michael Kerrisk, Linux man-pages project",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-kmm",
+      "title": "Linux kernel docs: Memory Management",
+      "url": "https://docs.kernel.org/admin-guide/mm/index.html",
+      "publisher": "The Linux Kernel Organization",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-kqueue",
+      "title": "kqueue(2), FreeBSD manual page",
+      "url": "https://man.freebsd.org/cgi/man.cgi?query=kqueue&sektion=2",
+      "publisher": "The FreeBSD Project",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-lockdep",
+      "title": "Linux kernel docs: Runtime locking correctness validator",
+      "url": "https://docs.kernel.org/locking/lockdep-design.html",
+      "publisher": "The Linux Kernel Organization",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-locks",
+      "title": "OSTEP: Locks",
+      "url": "https://pages.cs.wisc.edu/~remzi/OSTEP/threads-locks.pdf",
+      "publisher": "Remzi H. Arpaci-Dusseau and Andrea C. Arpaci-Dusseau",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-lottery",
+      "title": "OSTEP: Scheduling: Proportional Share",
+      "url": "https://pages.cs.wisc.edu/~remzi/OSTEP/cpu-sched-lottery.pdf",
+      "publisher": "Remzi H. Arpaci-Dusseau and Andrea C. Arpaci-Dusseau",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-ls",
+      "title": "ls(1), Linux manual page",
+      "url": "https://man7.org/linux/man-pages/man1/ls.1.html",
+      "publisher": "Michael Kerrisk, Linux man-pages project",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-mallopt",
+      "title": "mallopt(3), Linux manual page",
+      "url": "https://man7.org/linux/man-pages/man3/mallopt.3.html",
+      "publisher": "Michael Kerrisk, Linux man-pages project",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-mech",
+      "title": "OSTEP: Mechanism: Limited Direct Execution",
+      "url": "https://pages.cs.wisc.edu/~remzi/OSTEP/cpu-mechanisms.pdf",
+      "publisher": "Remzi H. Arpaci-Dusseau and Andrea C. Arpaci-Dusseau",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-mlfq",
+      "title": "OSTEP: Scheduling: The Multi-Level Feedback Queue",
+      "url": "https://pages.cs.wisc.edu/~remzi/OSTEP/cpu-sched-mlfq.pdf",
+      "publisher": "Remzi H. Arpaci-Dusseau and Andrea C. Arpaci-Dusseau",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-mmap",
+      "title": "mmap(2), Linux manual page",
+      "url": "https://man7.org/linux/man-pages/man2/mmap.2.html",
+      "publisher": "Michael Kerrisk, Linux man-pages project",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-ns",
+      "title": "namespaces(7), Linux manual page",
+      "url": "https://man7.org/linux/man-pages/man7/namespaces.7.html",
+      "publisher": "Michael Kerrisk, Linux man-pages project",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-oci",
+      "title": "Open Container Initiative Runtime Specification",
+      "url": "https://github.com/opencontainers/runtime-spec",
+      "publisher": "Open Container Initiative",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-open",
+      "title": "open(2), Linux manual page",
+      "url": "https://man7.org/linux/man-pages/man2/open.2.html",
+      "publisher": "Michael Kerrisk, Linux man-pages project",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-overcommit",
+      "title": "Linux kernel docs: Overcommit Accounting",
+      "url": "https://docs.kernel.org/mm/overcommit-accounting.html",
+      "publisher": "The Linux Kernel Organization",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-paging",
+      "title": "OSTEP: Paging: Introduction",
+      "url": "https://pages.cs.wisc.edu/~remzi/OSTEP/vm-paging.pdf",
+      "publisher": "Remzi H. Arpaci-Dusseau and Andrea C. Arpaci-Dusseau",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-pathres",
+      "title": "path_resolution(7), Linux manual page",
+      "url": "https://man7.org/linux/man-pages/man7/path_resolution.7.html",
+      "publisher": "Michael Kerrisk, Linux man-pages project",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-pidns",
+      "title": "pid_namespaces(7), Linux manual page",
+      "url": "https://man7.org/linux/man-pages/man7/pid_namespaces.7.html",
+      "publisher": "Michael Kerrisk, Linux man-pages project",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-pipe",
+      "title": "pipe(2), Linux manual page",
+      "url": "https://man7.org/linux/man-pages/man2/pipe.2.html",
+      "publisher": "Michael Kerrisk, Linux man-pages project",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-policy",
+      "title": "OSTEP: Beyond Physical Memory: Policies",
+      "url": "https://pages.cs.wisc.edu/~remzi/OSTEP/vm-beyondphys-policy.pdf",
+      "publisher": "Remzi H. Arpaci-Dusseau and Andrea C. Arpaci-Dusseau",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-proc",
+      "title": "OSTEP: The Abstraction: The Process",
+      "url": "https://pages.cs.wisc.edu/~remzi/OSTEP/cpu-intro.pdf",
+      "publisher": "Remzi H. Arpaci-Dusseau and Andrea C. Arpaci-Dusseau",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-proc5",
+      "title": "proc(5), Linux manual page",
+      "url": "https://man7.org/linux/man-pages/man5/proc.5.html",
+      "publisher": "Michael Kerrisk, Linux man-pages project",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-pthreads",
+      "title": "pthreads(7), Linux manual page",
+      "url": "https://man7.org/linux/man-pages/man7/pthreads.7.html",
+      "publisher": "Michael Kerrisk, Linux man-pages project",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-read",
+      "title": "read(2), Linux manual page",
+      "url": "https://man7.org/linux/man-pages/man2/read.2.html",
+      "publisher": "Michael Kerrisk, Linux man-pages project",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-runc",
+      "title": "runc, Open Container Initiative",
+      "url": "https://github.com/opencontainers/runc",
+      "publisher": "Open Container Initiative",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-sched",
+      "title": "OSTEP: Scheduling: Introduction",
+      "url": "https://pages.cs.wisc.edu/~remzi/OSTEP/cpu-sched.pdf",
+      "publisher": "Remzi H. Arpaci-Dusseau and Andrea C. Arpaci-Dusseau",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-sched7",
+      "title": "sched(7), Linux manual page",
+      "url": "https://man7.org/linux/man-pages/man7/sched.7.html",
+      "publisher": "Michael Kerrisk, Linux man-pages project",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-seccomp",
+      "title": "seccomp(2), Linux manual page",
+      "url": "https://man7.org/linux/man-pages/man2/seccomp.2.html",
+      "publisher": "Michael Kerrisk, Linux man-pages project",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-select",
+      "title": "select(2), Linux manual page",
+      "url": "https://man7.org/linux/man-pages/man2/select.2.html",
+      "publisher": "Michael Kerrisk, Linux man-pages project",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-sema",
+      "title": "OSTEP: Semaphores",
+      "url": "https://pages.cs.wisc.edu/~remzi/OSTEP/threads-sema.pdf",
+      "publisher": "Remzi H. Arpaci-Dusseau and Andrea C. Arpaci-Dusseau",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-sendfile",
+      "title": "sendfile(2), Linux manual page",
+      "url": "https://man7.org/linux/man-pages/man2/sendfile.2.html",
+      "publisher": "Michael Kerrisk, Linux man-pages project",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-setns",
+      "title": "setns(2), Linux manual page",
+      "url": "https://man7.org/linux/man-pages/man2/setns.2.html",
+      "publisher": "Michael Kerrisk, Linux man-pages project",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-sigaction",
+      "title": "sigaction(2), Linux manual page",
+      "url": "https://man7.org/linux/man-pages/man2/sigaction.2.html",
+      "publisher": "Michael Kerrisk, Linux man-pages project",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-signal",
+      "title": "signal(7), Linux manual page",
+      "url": "https://man7.org/linux/man-pages/man7/signal.7.html",
+      "publisher": "Michael Kerrisk, Linux man-pages project",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-sigprocmask",
+      "title": "sigprocmask(2), Linux manual page",
+      "url": "https://man7.org/linux/man-pages/man2/sigprocmask.2.html",
+      "publisher": "Michael Kerrisk, Linux man-pages project",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-sigsafe",
+      "title": "signal-safety(7), Linux manual page",
+      "url": "https://man7.org/linux/man-pages/man7/signal-safety.7.html",
+      "publisher": "Michael Kerrisk, Linux man-pages project",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-small",
+      "title": "OSTEP: Paging: Smaller Tables",
+      "url": "https://pages.cs.wisc.edu/~remzi/OSTEP/vm-smalltables.pdf",
+      "publisher": "Remzi H. Arpaci-Dusseau and Andrea C. Arpaci-Dusseau",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-stat",
+      "title": "stat(2), Linux manual page",
+      "url": "https://man7.org/linux/man-pages/man2/stat.2.html",
+      "publisher": "Michael Kerrisk, Linux man-pages project",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-stdin",
+      "title": "stdin(3), Linux manual page",
+      "url": "https://man7.org/linux/man-pages/man3/stdin.3.html",
+      "publisher": "Michael Kerrisk, Linux man-pages project",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-strace",
+      "title": "strace(1), Linux manual page",
+      "url": "https://man7.org/linux/man-pages/man1/strace.1.html",
+      "publisher": "Michael Kerrisk, Linux man-pages project",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-swap",
+      "title": "OSTEP: Beyond Physical Memory: Mechanisms",
+      "url": "https://pages.cs.wisc.edu/~remzi/OSTEP/vm-beyondphys.pdf",
+      "publisher": "Remzi H. Arpaci-Dusseau and Andrea C. Arpaci-Dusseau",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-syscall",
+      "title": "syscall(2), Linux manual page",
+      "url": "https://man7.org/linux/man-pages/man2/syscall.2.html",
+      "publisher": "Michael Kerrisk, Linux man-pages project",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-thp",
+      "title": "Linux kernel docs: Transparent Hugepage Support",
+      "url": "https://docs.kernel.org/admin-guide/mm/transhuge.html",
+      "publisher": "The Linux Kernel Organization",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-tintro",
+      "title": "OSTEP: Concurrency: An Introduction",
+      "url": "https://pages.cs.wisc.edu/~remzi/OSTEP/threads-intro.pdf",
+      "publisher": "Remzi H. Arpaci-Dusseau and Andrea C. Arpaci-Dusseau",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-tlb",
+      "title": "OSTEP: Paging: Faster Translations (TLBs)",
+      "url": "https://pages.cs.wisc.edu/~remzi/OSTEP/vm-tlbs.pdf",
+      "publisher": "Remzi H. Arpaci-Dusseau and Andrea C. Arpaci-Dusseau",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-uenter",
+      "title": "io_uring_enter(2), Linux manual page",
+      "url": "https://man7.org/linux/man-pages/man2/io_uring_enter.2.html",
+      "publisher": "Michael Kerrisk, Linux man-pages project",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-unlink",
+      "title": "unlink(2), Linux manual page",
+      "url": "https://man7.org/linux/man-pages/man2/unlink.2.html",
+      "publisher": "Michael Kerrisk, Linux man-pages project",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-unshare",
+      "title": "unshare(2), Linux manual page",
+      "url": "https://man7.org/linux/man-pages/man2/unshare.2.html",
+      "publisher": "Michael Kerrisk, Linux man-pages project",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-uring",
+      "title": "io_uring(7), Linux manual page",
+      "url": "https://man7.org/linux/man-pages/man7/io_uring.7.html",
+      "publisher": "Michael Kerrisk, Linux man-pages project",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-userns",
+      "title": "user_namespaces(7), Linux manual page",
+      "url": "https://man7.org/linux/man-pages/man7/user_namespaces.7.html",
+      "publisher": "Michael Kerrisk, Linux man-pages project",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-usetup",
+      "title": "io_uring_setup(2), Linux manual page",
+      "url": "https://man7.org/linux/man-pages/man2/io_uring_setup.2.html",
+      "publisher": "Michael Kerrisk, Linux man-pages project",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-vdso",
+      "title": "vdso(7), Linux manual page",
+      "url": "https://man7.org/linux/man-pages/man7/vdso.7.html",
+      "publisher": "Michael Kerrisk, Linux man-pages project",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-vfs",
+      "title": "Linux kernel docs: Overview of the Linux Virtual File System",
+      "url": "https://docs.kernel.org/filesystems/vfs.html",
+      "publisher": "The Linux Kernel Organization",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-vmapi",
+      "title": "OSTEP: Interlude: Memory API",
+      "url": "https://pages.cs.wisc.edu/~remzi/OSTEP/vm-api.pdf",
+      "publisher": "Remzi H. Arpaci-Dusseau and Andrea C. Arpaci-Dusseau",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-vmintro",
+      "title": "OSTEP: The Abstraction: Address Spaces",
+      "url": "https://pages.cs.wisc.edu/~remzi/OSTEP/vm-intro.pdf",
+      "publisher": "Remzi H. Arpaci-Dusseau and Andrea C. Arpaci-Dusseau",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-wait",
+      "title": "wait(2), Linux manual page",
+      "url": "https://man7.org/linux/man-pages/man2/wait.2.html",
+      "publisher": "Michael Kerrisk, Linux man-pages project",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    }
+  ],
+  "assetLicenses": [],
+  "stamps": [],
+  "bertSchemaVersion": 1,
+  "sections": {
+    "processes-threads": "Processes and threads",
+    "scheduling": "Scheduling",
+    "system-calls": "System calls",
+    "memory": "Memory",
+    "synchronization": "Synchronization",
+    "file-systems": "File systems",
+    "io-models": "I/O models",
+    "signals-containers": "Signals and containers"
+  }
+}

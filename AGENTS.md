@@ -2,8 +2,9 @@
 
 - Do not call the task done until it is fully complete and tested.
 - Do not dismiss a bug as a pre-existing issue even if it was present before your change. It does not matter, it's still your responsibility to fix it. When you see a bug, fix it. Don't ignore it.
-- Always build a feature in a new branch. Do not push directly to the main branch. Always check current branch before pushing.
+- Work directly on main. Do not create branches. The developer is the only contributor.
 - Read and follow the engineering principles in `principles.md` before planning or making changes.
+- For manual testing (simulator, device, desktop app), write and reuse scripts in `manual-testing/` (gitignored). Check there first and run an existing script instead of rediscovering the same steps. Only do exploratory testing for new or unknown flows, then save what you learned as a script.
 
 ## Agent Delegation Guidelines
 
@@ -17,11 +18,6 @@
   - Avoid excessive comments. We want code itself to be super readable. Only comment when absolutely necessary.
   - Do not create or modify implementation code unless the user explicitly asks for code changes.
   - Do not create or modify tests unless the user explicitly asks for tests.
-
-## Git Branch Rules
-
-  - Ask the user before creating a new git branch other do it in main itself.
-  - No slashes in branch names (e.g., use `fix-something` not `fix/something`).
 
 ## Git Commit Rules
 

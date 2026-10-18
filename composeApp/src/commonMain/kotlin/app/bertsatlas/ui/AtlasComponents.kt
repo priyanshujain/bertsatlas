@@ -42,6 +42,8 @@ import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.Dp
+import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.geometry.Size
@@ -59,6 +61,7 @@ import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.progressBarRangeInfo
 import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.selected
 import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.state.ToggleableState
 import androidx.compose.ui.text.TextStyle
@@ -66,9 +69,16 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.platform.LocalDensity
 import kotlin.math.min
-import org.jetbrains.compose.resources.DrawableResource
-import org.jetbrains.compose.resources.InternalResourceApi
-import org.jetbrains.compose.resources.ResourceItem
+import org.jetbrains.compose.resources.decodeToImageBitmap
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import kotlinx.io.buffered
+import kotlinx.io.files.Path as FilePath
+import kotlinx.io.files.SystemFileSystem
+import kotlinx.io.readByteArray
+import androidx.compose.runtime.produceState
+import androidx.compose.runtime.staticCompositionLocalOf
+import androidx.compose.ui.graphics.ImageBitmap
 import org.jetbrains.compose.resources.painterResource
 
 private val ScreenShape = RoundedCornerShape(24.dp)
@@ -78,6 +88,7 @@ private val ControlShape = RoundedCornerShape(16.dp)
 fun AtlasScreen(
     modifier: Modifier = Modifier,
     scrollable: Boolean = true,
+    maxContentWidth: Dp = DEFAULT_MAX_CONTENT_WIDTH,
     contentPadding: PaddingValues = PaddingValues(horizontal = 20.dp, vertical = 24.dp),
     headerPadding: PaddingValues = PaddingValues(0.dp),
     header: (@Composable () -> Unit)? = null,
@@ -90,7 +101,7 @@ fun AtlasScreen(
             .windowInsetsPadding(WindowInsets.safeDrawing),
         contentAlignment = Alignment.TopCenter,
     ) {
-        Column(Modifier.fillMaxSize().widthIn(max = 720.dp)) {
+        Column(Modifier.widthIn(max = maxContentWidth).fillMaxSize()) {
             header?.let {
                 Box(Modifier.fillMaxWidth().padding(headerPadding), contentAlignment = Alignment.TopCenter) {
                     it()
@@ -107,17 +118,45 @@ fun AtlasScreen(
 }
 
 @Composable
+fun AdaptivePanes(
+    modifier: Modifier = Modifier,
+    spacing: Dp = 14.dp,
+    leading: @Composable ColumnScope.() -> Unit,
+    trailing: @Composable ColumnScope.() -> Unit,
+) {
+    BoxWithConstraints(modifier) {
+        if (maxWidth >= WIDE_LAYOUT_MIN_WIDTH) {
+            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(32.dp)) {
+                Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(spacing), content = leading)
+                Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(spacing), content = trailing)
+            }
+        } else {
+            Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(spacing)) {
+                leading()
+                trailing()
+            }
+        }
+    }
+}
+
+val WIDE_LAYOUT_MIN_WIDTH = 820.dp
+val WIDE_CONTENT_WIDTH = 1040.dp
+private val DEFAULT_MAX_CONTENT_WIDTH = 720.dp
+
+@Composable
 fun AtlasScreenScaffold(
     title: String,
     onBack: (() -> Unit)?,
     modifier: Modifier = Modifier,
     scrollable: Boolean = true,
+    maxContentWidth: Dp = DEFAULT_MAX_CONTENT_WIDTH,
     trailing: (@Composable () -> Unit)? = null,
     content: @Composable BoxScope.() -> Unit,
 ) {
     AtlasScreen(
         modifier = modifier,
         scrollable = scrollable,
+        maxContentWidth = maxContentWidth,
         contentPadding = PaddingValues(start = 20.dp, top = 12.dp, end = 20.dp, bottom = 24.dp),
         headerPadding = PaddingValues(start = 20.dp, top = 12.dp, end = 20.dp),
         header = { ScreenTopBar(title, onBack, trailing) },
@@ -191,6 +230,7 @@ fun AtlasButton(
                 this.contentDescription = contentDescription
                 if (!enabled) disabled()
             }
+            .clip(ControlShape)
             .clickable(enabled = enabled, onClick = onClick)
             .padding(horizontal = 22.dp, vertical = 14.dp),
         contentAlignment = Alignment.Center,
@@ -222,6 +262,7 @@ fun AtlasChoice(
     choice: ChoiceUi,
     onClick: (String) -> Unit,
     modifier: Modifier = Modifier,
+    shortcut: String? = null,
 ) {
     val colors = AtlasTheme.colors
     val background = when (choice.state) {
@@ -256,13 +297,21 @@ fun AtlasChoice(
                 role = Role.Button
                 contentDescription = choice.label
                 stateDescription = stateText
+                selected = choice.state == AnswerState.Selected
                 if (!choice.enabled) disabled()
             }
+            .clip(ControlShape)
             .clickable(enabled = choice.enabled) { onClick(choice.id) }
             .padding(horizontal = 16.dp, vertical = 13.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(14.dp),
     ) {
+        shortcut?.let {
+            Box(
+                Modifier.size(26.dp).border(1.5.dp, colors.outline, RoundedCornerShape(7.dp)),
+                contentAlignment = Alignment.Center,
+            ) { AtlasText(it, style = AtlasTheme.typography.detail, color = colors.mutedPlum) }
+        }
         choice.flag?.let {
             FlagImage(
                 flag = it,
@@ -282,7 +331,10 @@ fun AtlasChoice(
     }
 }
 
-@OptIn(InternalResourceApi::class)
+val LocalFlagMediaDirectory = staticCompositionLocalOf { "" }
+
+private val flagBitmapCache = mutableMapOf<String, ImageBitmap>()
+
 @Composable
 fun FlagImage(
     flag: FlagUi,
@@ -292,37 +344,57 @@ fun FlagImage(
 ) {
     val alpha2 = flag.alpha2.lowercase()
     val validCode = alpha2.length == 2 && alpha2.all { it in 'a'..'z' }
-    val resource = remember(alpha2) {
-        DrawableResource(
-            id = "flag:$alpha2",
-            items = setOf(
-                ResourceItem(
-                    qualifiers = setOf(),
-                    path = "composeResources/berts_atlas.composeapp.generated.resources/files/flag-renders/$alpha2.png",
-                    offset = -1,
-                    size = -1,
-                ),
-            ),
-        )
+    val imagePath = FilePath(LocalFlagMediaDirectory.current, "$alpha2.png").toString()
+    val bitmap by produceState(flagBitmapCache[imagePath], imagePath) {
+        if (validCode && value == null) {
+            value = withContext(Dispatchers.Default) { readFlagBitmap(imagePath) }?.also { flagBitmapCache[imagePath] = it }
+        }
     }
     val accessibleLabel = if (flag.countryName.startsWith("Flag ", ignoreCase = true)) flag.countryName else "Flag of ${flag.countryName}"
     val imageModifier = modifier
-        .aspectRatio(3f / 2f)
+        .aspectRatio(FLAG_SLOT_RATIO)
         .clip(RoundedCornerShape(8.dp))
         .background(AtlasTheme.colors.paper, RoundedCornerShape(8.dp))
         .border(1.dp, AtlasTheme.colors.outline.copy(alpha = .55f), RoundedCornerShape(8.dp))
         .then(if (accessible) Modifier.semantics { contentDescription = accessibleLabel } else Modifier)
-    if (validCode) {
-        Image(
-            painter = painterResource(resource),
-            contentDescription = null,
-            modifier = imageModifier,
-            contentScale = ContentScale.Fit,
-        )
-    } else {
-        FlagFallback(flag.countryName, imageModifier, showFallbackLabel)
+    val loaded = bitmap
+    when {
+        loaded != null -> Box(
+            modifier
+                .aspectRatio(FLAG_SLOT_RATIO)
+                .then(if (accessible) Modifier.semantics { contentDescription = accessibleLabel } else Modifier),
+            contentAlignment = Alignment.Center,
+        ) {
+            val flagRatio = loaded.width.toFloat() / loaded.height
+            val shape = RoundedCornerShape(8.dp)
+            val framed = if (loaded.hasTransparentCorner()) Modifier else Modifier
+                .clip(shape)
+                .border(1.dp, AtlasTheme.colors.outline.copy(alpha = .55f), shape)
+            Image(
+                bitmap = loaded,
+                contentDescription = null,
+                modifier = Modifier
+                    .aspectRatio(flagRatio, matchHeightConstraintsFirst = flagRatio < FLAG_SLOT_RATIO)
+                    .then(framed),
+                contentScale = ContentScale.Fit,
+            )
+        }
+        validCode && SystemFileSystem.exists(FilePath(imagePath)) -> Box(imageModifier)
+        else -> FlagFallback(flag.countryName, imageModifier, showFallbackLabel)
     }
 }
+
+private const val FLAG_SLOT_RATIO = 3f / 2f
+
+private fun ImageBitmap.hasTransparentCorner(): Boolean {
+    val corner = IntArray(1)
+    readPixels(corner, startX = width - 1, startY = 0, width = 1, height = 1)
+    return (corner[0] ushr 24) == 0
+}
+
+private fun readFlagBitmap(path: String): ImageBitmap? = runCatching {
+    SystemFileSystem.source(FilePath(path)).buffered().use { it.readByteArray() }.decodeToImageBitmap()
+}.getOrNull()
 
 @Composable
 private fun FlagFallback(countryName: String, modifier: Modifier, showLabel: Boolean) {

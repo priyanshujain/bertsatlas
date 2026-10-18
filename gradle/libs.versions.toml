@@ -1,4 +1,5 @@
 [versions]
+androidsvg = "1.4"
 agp = "9.3.1"
 android-compileSdk = "37"
 android-minSdk = "26"
@@ -10,16 +11,20 @@ coroutines = "1.11.0"
 datastore = "1.2.1"
 datetime = "0.8.0"
 kotlin = "2.4.20"
+kotlinxIo = "0.9.1"
 ksp = "2.3.11"
 room = "2.8.4"
 serialization = "1.11.0"
 sqlite = "2.7.0"
+zstdJni = "1.5.7-6"
 
 [libraries]
+androidsvg = { module = "com.caverock:androidsvg-aar", version.ref = "androidsvg" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activityCompose" }
 androidx-datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastore" }
 androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
 androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
+androidx-sqlite = { module = "androidx.sqlite:sqlite", version.ref = "sqlite" }
 androidx-sqlite-bundled = { module = "androidx.sqlite:sqlite-bundled", version.ref = "sqlite" }
 compottie-lite = { module = "io.github.alexzhirkevich:compottie-lite", version.ref = "compottie" }
 compose-foundation = { module = "org.jetbrains.compose.foundation:foundation", version.ref = "composeMultiplatform" }
@@ -27,7 +32,12 @@ compose-resources = { module = "org.jetbrains.compose.components:components-reso
 compose-runtime = { module = "org.jetbrains.compose.runtime:runtime", version.ref = "composeMultiplatform" }
 compose-ui = { module = "org.jetbrains.compose.ui:ui", version.ref = "composeMultiplatform" }
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
+kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
+kotlinx-coroutines-swing = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-swing", version.ref = "coroutines" }
 kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "datetime" }
+kotlinx-io-core = { module = "org.jetbrains.kotlinx:kotlinx-io-core", version.ref = "kotlinxIo" }
+kotlinx-serialization-protobuf = { module = "org.jetbrains.kotlinx:kotlinx-serialization-protobuf", version.ref = "serialization" }
+zstd-jni = { module = "com.github.luben:zstd-jni", version.ref = "zstdJni" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization" }
 
 [plugins]

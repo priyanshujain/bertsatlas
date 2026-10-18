@@ -1,0 +1,430 @@
+{
+  "formatVersion": 1,
+  "categories": [
+    {
+      "id": "geography",
+      "name": "Geography",
+      "icon": "globe",
+      "accentColor": "#27635B",
+      "order": 0,
+      "subcategories": [
+        {
+          "id": "flags",
+          "name": "Flags",
+          "order": 0
+        },
+        {
+          "id": "capitals",
+          "name": "Capitals",
+          "order": 1
+        },
+        {
+          "id": "maps",
+          "name": "Maps and places",
+          "order": 2
+        }
+      ]
+    },
+    {
+      "id": "languages",
+      "name": "Languages",
+      "icon": "speech",
+      "accentColor": "#B5654A",
+      "order": 1,
+      "subcategories": [
+        {
+          "id": "vocabulary",
+          "name": "Vocabulary",
+          "order": 0
+        },
+        {
+          "id": "phrases",
+          "name": "Phrases and sentences",
+          "order": 1
+        },
+        {
+          "id": "grammar",
+          "name": "Grammar",
+          "order": 2
+        },
+        {
+          "id": "writing-systems",
+          "name": "Writing systems",
+          "order": 3
+        }
+      ]
+    },
+    {
+      "id": "programming",
+      "name": "Programming",
+      "icon": "code",
+      "accentColor": "#3E5C8A",
+      "order": 2,
+      "subcategories": [
+        {
+          "id": "dsa",
+          "name": "Data Structures and Algorithms",
+          "order": 0
+        },
+        {
+          "id": "databases",
+          "name": "Databases",
+          "order": 1
+        },
+        {
+          "id": "system-design",
+          "name": "System Design",
+          "order": 2
+        },
+        {
+          "id": "networking",
+          "name": "Networking",
+          "order": 3
+        },
+        {
+          "id": "operating-systems",
+          "name": "Operating Systems",
+          "order": 4
+        },
+        {
+          "id": "languages",
+          "name": "Programming languages",
+          "order": 5
+        }
+      ]
+    },
+    {
+      "id": "science",
+      "name": "Science",
+      "icon": "flask",
+      "accentColor": "#4E8A6B",
+      "order": 3,
+      "subcategories": [
+        {
+          "id": "biology",
+          "name": "Biology",
+          "order": 0
+        },
+        {
+          "id": "chemistry",
+          "name": "Chemistry",
+          "order": 1
+        },
+        {
+          "id": "physics",
+          "name": "Physics",
+          "order": 2
+        },
+        {
+          "id": "medicine",
+          "name": "Medicine",
+          "order": 3
+        }
+      ]
+    },
+    {
+      "id": "mathematics",
+      "name": "Mathematics",
+      "icon": "sigma",
+      "accentColor": "#7A5BA6",
+      "order": 4,
+      "subcategories": [
+        {
+          "id": "arithmetic",
+          "name": "Arithmetic",
+          "order": 0
+        },
+        {
+          "id": "algebra",
+          "name": "Algebra",
+          "order": 1
+        },
+        {
+          "id": "calculus",
+          "name": "Calculus",
+          "order": 2
+        },
+        {
+          "id": "statistics",
+          "name": "Statistics",
+          "order": 3
+        }
+      ]
+    },
+    {
+      "id": "history",
+      "name": "History",
+      "icon": "scroll",
+      "accentColor": "#A07A3C",
+      "order": 5,
+      "subcategories": [
+        {
+          "id": "world-history",
+          "name": "World history",
+          "order": 0
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "order": 1
+        },
+        {
+          "id": "dates",
+          "name": "Dates and events",
+          "order": 2
+        }
+      ]
+    },
+    {
+      "id": "trivia",
+      "name": "Trivia",
+      "icon": "star",
+      "accentColor": "#C2505E",
+      "order": 6,
+      "subcategories": [
+        {
+          "id": "pop-culture",
+          "name": "Pop culture",
+          "order": 0
+        },
+        {
+          "id": "games",
+          "name": "Games",
+          "order": 1
+        },
+        {
+          "id": "general",
+          "name": "General knowledge",
+          "order": 2
+        }
+      ]
+    },
+    {
+      "id": "other",
+      "name": "Other",
+      "icon": "shapes",
+      "accentColor": "#6B7280",
+      "order": 7,
+      "subcategories": [
+        {
+          "id": "general",
+          "name": "General",
+          "order": 0
+        }
+      ]
+    }
+  ],
+  "featured": [
+    {
+      "item": {
+        "kind": "pack",
+        "id": "flags"
+      },
+      "headline": "Every flag of the world",
+      "blurb": "195 flags, lookalikes included. Bert knows which ones trip people up."
+    },
+    {
+      "item": {
+        "kind": "pack",
+        "id": "dsa"
+      },
+      "headline": "Ace the coding interview",
+      "blurb": "Data structures, algorithms and the patterns interviewers love, one card at a time."
+    }
+  ],
+  "shelves": [
+    {
+      "id": "start-here",
+      "title": "Start here",
+      "scope": {
+        "kind": "all"
+      },
+      "items": [
+        {
+          "kind": "pack",
+          "id": "flags"
+        },
+        {
+          "kind": "pack",
+          "id": "capitals"
+        },
+        {
+          "kind": "mix",
+          "id": "geography"
+        }
+      ]
+    },
+    {
+      "id": "top-geography",
+      "title": "Top in Geography",
+      "scope": {
+        "kind": "category",
+        "category": "geography"
+      },
+      "items": [
+        {
+          "kind": "pack",
+          "id": "flags"
+        },
+        {
+          "kind": "pack",
+          "id": "capitals"
+        }
+      ]
+    },
+    {
+      "id": "geography-mixes",
+      "title": "Play them together",
+      "scope": {
+        "kind": "category",
+        "category": "geography"
+      },
+      "items": [
+        {
+          "kind": "mix",
+          "id": "geography"
+        }
+      ]
+    },
+    {
+      "id": "for-programmers",
+      "title": "For programmers",
+      "scope": {
+        "kind": "all"
+      },
+      "items": [
+        {
+          "kind": "pack",
+          "id": "dsa"
+        },
+        {
+          "kind": "pack",
+          "id": "system-design"
+        },
+        {
+          "kind": "pack",
+          "id": "databases"
+        },
+        {
+          "kind": "pack",
+          "id": "networking"
+        },
+        {
+          "kind": "pack",
+          "id": "operating-systems"
+        }
+      ]
+    },
+    {
+      "id": "interview-prep",
+      "title": "Interview prep",
+      "scope": {
+        "kind": "category",
+        "category": "programming"
+      },
+      "items": [
+        {
+          "kind": "pack",
+          "id": "dsa"
+        },
+        {
+          "kind": "pack",
+          "id": "system-design"
+        },
+        {
+          "kind": "pack",
+          "id": "databases"
+        }
+      ]
+    }
+  ],
+  "mixes": [
+    {
+      "mixId": "geography",
+      "title": "Mixed Geography",
+      "subtitle": "Flags and capitals in one run",
+      "accentColor": "#778BA5",
+      "description": "Flags and capitals shuffled together. Every answer still counts toward its own pack.",
+      "members": [
+        {
+          "packId": "flags"
+        },
+        {
+          "packId": "capitals"
+        }
+      ]
+    }
+  ],
+  "packs": {
+    "flags": {
+      "description": "Every flag of the world's 195 countries, with lookalike flags, aliases and a fact for each one.",
+      "whatsNew": "First release.",
+      "minAppVersion": "1.0.0",
+      "sampleGuids": [
+        "69890e9f-f00d-5a69-9fd4-62be1a48d6ed",
+        "8b136211-8908-5782-beeb-85993ceb372d",
+        "5fa4464e-9761-5509-b13c-d7b1b3bf31da"
+      ]
+    },
+    "capitals": {
+      "description": "The capital of every country, including the ones with more than one.",
+      "whatsNew": "First release.",
+      "minAppVersion": "1.0.0",
+      "sampleGuids": [
+        "44d5d0bf-2444-5619-938c-8e824449bb10",
+        "af3e7d99-8264-5c5a-a05a-a9d43c961973",
+        "7aa90f7e-e1a7-5dd9-b28d-9acffcdfdc59"
+      ]
+    },
+    "dsa": {
+      "description": "Complexity, core data structures, graphs, sorting and the patterns that show up in coding interviews.",
+      "whatsNew": "First release.",
+      "minAppVersion": "1.0.0",
+      "sampleGuids": [
+        "f2d02146-b297-5d07-839b-33ea3e301d17",
+        "b7e0f7b3-66a4-5421-ab5e-ed8d5311548c",
+        "eef2a11f-7f1a-5be5-b725-f99dfcd4ac8c"
+      ]
+    },
+    "databases": {
+      "description": "SQL, normalization, indexes, transactions and isolation, replication and how Postgres and SQLite work inside.",
+      "whatsNew": "First release.",
+      "minAppVersion": "1.0.0",
+      "sampleGuids": [
+        "2e2db8fb-e460-5815-8390-4bd3b92d9cde",
+        "2c54e396-a30a-5692-9e98-d980be34d603",
+        "8fa7d1a0-9560-5f22-92df-820313962363"
+      ]
+    },
+    "system-design": {
+      "description": "Scaling, caching, consistency, consensus, messaging and the key decisions behind classic system designs.",
+      "whatsNew": "First release.",
+      "minAppVersion": "1.0.0",
+      "sampleGuids": [
+        "c0bfb452-bb58-5963-90cb-e1a05b6213c4",
+        "e555b4c0-bc09-5956-b74f-dbe8f0949738",
+        "7b284009-d317-5b1e-92dc-89fb31df734d"
+      ]
+    },
+    "networking": {
+      "description": "From layers and addressing to TCP, DNS, HTTP and TLS, plus the tools for troubleshooting a network.",
+      "whatsNew": "First release.",
+      "minAppVersion": "1.0.0",
+      "sampleGuids": [
+        "073be7e6-7b16-50e4-b08d-8a1b90f01979",
+        "d74729ff-e080-5730-a6eb-4bb6f0e12da5",
+        "0f0f5d58-54ba-5a87-ae3f-9c39e5d7ca01"
+      ]
+    },
+    "operating-systems": {
+      "description": "Processes, scheduling, memory, synchronization, file systems and the I/O models modern servers use.",
+      "whatsNew": "First release.",
+      "minAppVersion": "1.0.0",
+      "sampleGuids": [
+        "46177cb6-2fa1-5bd9-bfea-828d3f8aa489",
+        "b650b0d1-bd30-57e8-bb81-8a0606140e62",
+        "6c704ca8-e9b7-5d99-9464-061bbca7276c"
+      ]
+    }
+  }
+}

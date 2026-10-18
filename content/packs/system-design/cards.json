@@ -1,0 +1,3586 @@
+{
+  "cards": [
+    {
+      "guid": "7b284009-d317-5b1e-92dc-89fb31df734d",
+      "noteType": "Bert Basic",
+      "section": "scalability",
+      "fields": {
+        "Question": "Adding more CPU, memory or disk to a single machine is called what?",
+        "Answer": "Vertical scaling",
+        "Aliases": "Scaling up\nScale up\nVertical",
+        "Hint": "Think of growing one box taller rather than adding boxes.",
+        "Fact": "Vertical scaling is eventually capped by the largest machine you can buy.",
+        "Source": "Designing Data-Intensive Applications (https://dataintensive.net/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::scaling-direction",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "37e50d1c-9005-5065-8d95-b2556794e843",
+      "noteType": "Bert Basic",
+      "section": "scalability",
+      "fields": {
+        "Question": "Adding more machines to share the load is called what?",
+        "Answer": "Horizontal scaling",
+        "Aliases": "Scaling out\nScale out\nHorizontal",
+        "Hint": "Think of adding boxes side by side.",
+        "Fact": "Horizontal scaling usually works best when the service tier is stateless.",
+        "Source": "Designing Data-Intensive Applications (https://dataintensive.net/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::scaling-direction",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "e555b4c0-bc09-5956-b74f-dbe8f0949738",
+      "noteType": "Bert Cloze",
+      "section": "scalability",
+      "fields": {
+        "Text": "A {{c1::stateless}} service keeps no client session data between requests, so any instance can handle any request.",
+        "Extra": "Session state is moved to a shared store such as a database or cache.",
+        "Hint": "It is the property that makes instances interchangeable.",
+        "Fact": "Stateless instances can be added or removed behind a load balancer without draining sessions.",
+        "Source": "Designing Data-Intensive Applications (https://dataintensive.net/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::scaling-direction",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "21a7222b-b83c-5166-8ed4-21781ad9cd13",
+      "noteType": "Bert Cloze",
+      "section": "scalability",
+      "fields": {
+        "Text": "{{c1::Amdahl's law}} says the speedup from parallelism is limited by the fraction of the work that must stay serial.",
+        "Extra": "If 5% of a task is serial, the speedup can never exceed 20x, no matter how many processors you add.",
+        "Hint": "Named after an IBM computer architect.",
+        "Fact": "Gene Amdahl presented the argument at the 1967 AFIPS Spring Joint Computer Conference.",
+        "Source": "Validity of the single processor approach to achieving large scale computing capabilities (https://doi.org/10.1145/1465482.1465560)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::scaling-laws",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "89c5dbf3-734c-56d5-bade-45be13329324",
+      "noteType": "Bert Cloze",
+      "section": "scalability",
+      "fields": {
+        "Text": "Little's law: average items in a system L equals arrival rate {{c1::lambda}} times average time in the system {{c2::W}}.",
+        "Extra": "Example: 100 requests per second at 0.2 s each means about 20 requests in flight.",
+        "Hint": "It relates concurrency, throughput and latency.",
+        "Fact": "John Little published a proof of the formula in 1961.",
+        "Source": "A Proof for the Queuing Formula: L = lambda W (https://doi.org/10.1287/opre.9.3.383)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::scaling-laws",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "8a0f3647-1f85-57a4-9fb3-ead44f5e9dfe",
+      "noteType": "Bert Typed",
+      "section": "scalability",
+      "fields": {
+        "Question": "A service gets 500 requests per second and each takes 0.1 s. By Little's law, how many requests are in flight on average?",
+        "Answer": "50",
+        "Aliases": "fifty",
+        "Hint": "Multiply arrival rate by time in system.",
+        "Fact": "Little's law holds for any stable system regardless of the arrival distribution.",
+        "Source": "A Proof for the Queuing Formula: L = lambda W (https://doi.org/10.1287/opre.9.3.383)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::scaling-laws",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "52a4678d-0988-56ff-9ea0-4718cc2eba9d",
+      "noteType": "Bert Two Way",
+      "section": "scalability",
+      "fields": {
+        "Side A": "Layer 4 load balancer",
+        "Side B": "Routes by IP address and TCP or UDP port without reading the request content",
+        "Aliases": "L4 load balancer",
+        "Hint": "Think of the transport layer of the OSI model.",
+        "Fact": "Because it does not parse HTTP, an L4 balancer cannot route by URL path.",
+        "Source": "Elastic Load Balancing User Guide (https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/how-elastic-load-balancing-works.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::lb-layers",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "9c427a9a-f606-5d7d-a123-f9a35624431c",
+      "noteType": "Bert Two Way",
+      "section": "scalability",
+      "fields": {
+        "Side A": "Layer 7 load balancer",
+        "Side B": "Routes using application data such as HTTP host, path or headers",
+        "Aliases": "L7 load balancer\nApplication load balancer",
+        "Hint": "Think of the application layer of the OSI model.",
+        "Fact": "An L7 balancer typically terminates the client connection and opens its own connection to the backend.",
+        "Source": "Elastic Load Balancing User Guide (https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/how-elastic-load-balancing-works.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::lb-layers",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "c63d66b0-b562-5c95-96eb-3917395fd704",
+      "noteType": "Bert Basic",
+      "section": "scalability",
+      "fields": {
+        "Question": "Which load balancing method sends each new request to the next server in a fixed rotation?",
+        "Answer": "Round robin",
+        "Aliases": "Round-robin\nRR",
+        "Hint": "It ignores how busy each server is.",
+        "Fact": "Round robin is the default method in NGINX upstream groups.",
+        "Source": "NGINX: HTTP Load Balancing (https://docs.nginx.com/nginx/admin-guide/load-balancer/http-load-balancer/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::lb-algorithms",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "0e6bfdff-6511-57ab-a4c2-505003a9b2a7",
+      "noteType": "Bert Basic",
+      "section": "scalability",
+      "fields": {
+        "Question": "Which load balancing method sends a request to the server with the fewest active connections?",
+        "Answer": "Least connections",
+        "Aliases": "Least conn\nleast_conn",
+        "Hint": "It adapts to requests of uneven duration.",
+        "Fact": "NGINX enables this method with the least_conn directive.",
+        "Source": "NGINX: HTTP Load Balancing (https://docs.nginx.com/nginx/admin-guide/load-balancer/http-load-balancer/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::lb-algorithms",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "aaf812eb-4a29-575c-bd4b-2d8536513ee7",
+      "noteType": "Bert Basic",
+      "section": "scalability",
+      "fields": {
+        "Question": "Which load balancing method picks a server from a hash of the client address, so a client keeps hitting the same server?",
+        "Answer": "IP hash",
+        "Aliases": "ip_hash\nSource IP hash",
+        "Hint": "It gives stickiness without cookies.",
+        "Fact": "Clients behind one shared NAT address all land on the same backend with this method.",
+        "Source": "NGINX: HTTP Load Balancing (https://docs.nginx.com/nginx/admin-guide/load-balancer/http-load-balancer/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::lb-algorithms",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "b6a9cdb1-3119-58b1-9ec1-d1c16d5378e5",
+      "noteType": "Bert Basic",
+      "section": "scalability",
+      "fields": {
+        "Question": "Which load balancing method rotates through servers but gives bigger servers proportionally more turns?",
+        "Answer": "Weighted round robin",
+        "Aliases": "Weighted round-robin\nWRR",
+        "Hint": "A plain rotation plus a per server number.",
+        "Fact": "Weights let mixed hardware share one pool without overloading the smaller machines.",
+        "Source": "NGINX: HTTP Load Balancing (https://docs.nginx.com/nginx/admin-guide/load-balancer/http-load-balancer/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::lb-algorithms",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "b3fd7408-ba8b-5b2a-b308-84260c5fae57",
+      "noteType": "Bert Cloze",
+      "section": "scalability",
+      "fields": {
+        "Text": "Load balancers use {{c1::health checks}} to stop sending traffic to instances that fail a probe.",
+        "Extra": "Active checks probe an endpoint periodically. Passive checks watch real traffic for failures.",
+        "Hint": "The balancer asks each backend whether it is alive.",
+        "Fact": "A health endpoint that checks every dependency can take the whole fleet out of rotation when one shared dependency fails.",
+        "Source": "Elastic Load Balancing User Guide (https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/how-elastic-load-balancing-works.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::lb-features",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "94e35022-834b-5e4f-842f-fc9a9e646e25",
+      "noteType": "Bert Cloze",
+      "section": "scalability",
+      "fields": {
+        "Text": "{{c1::Sticky sessions}} (session affinity) route all requests from one client to the same backend instance.",
+        "Extra": "Often implemented with a load balancer cookie.",
+        "Hint": "The client keeps returning to one instance.",
+        "Fact": "Affinity can unbalance load and loses the session if that instance dies.",
+        "Source": "Elastic Load Balancing User Guide (https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/how-elastic-load-balancing-works.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::lb-features",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "8c250588-bf66-5c4e-a78c-ecad5b9d7b01",
+      "noteType": "Bert Cloze",
+      "section": "scalability",
+      "fields": {
+        "Text": "With {{c1::anycast}} routing, many servers in different places announce the same IP address and the network delivers packets to a nearby one.",
+        "Extra": "Widely used by CDNs and DNS resolvers.",
+        "Hint": "One address, many locations.",
+        "Fact": "Anycast relies on BGP route selection, so nearest means nearest by routing, not always by distance.",
+        "Source": "Cloudflare Learning: What is Anycast? (https://www.cloudflare.com/learning/cdn/glossary/anycast-network/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::lb-features",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "5e5f56f6-64e9-52e9-ad5f-c672286e24be",
+      "noteType": "Bert Cloze",
+      "section": "scalability",
+      "fields": {
+        "Text": "Adding {{c1::read replicas}} scales read throughput, but reads from them may return stale data because of {{c2::replication lag}}.",
+        "Extra": "Writes still go to the leader.",
+        "Hint": "Copies of the database that serve queries.",
+        "Fact": "With asynchronous replication, a replica can fall seconds or more behind the leader under load.",
+        "Source": "Designing Data-Intensive Applications (https://dataintensive.net/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::replication-topologies",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "b0213c9a-ae80-5ef2-a884-3fde58448d29",
+      "noteType": "Bert Cloze",
+      "section": "scalability",
+      "fields": {
+        "Text": "{{c1::Sharding}} splits a dataset across multiple databases so that each holds a subset of the rows.",
+        "Extra": "Also called horizontal partitioning.",
+        "Hint": "Each piece is a shard.",
+        "Fact": "A good shard key spreads both data and traffic evenly.",
+        "Source": "Sharding pattern (https://learn.microsoft.com/en-us/azure/architecture/patterns/sharding)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::partitioning",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "92fecd20-c323-551b-b241-92b444e19bb1",
+      "noteType": "Bert Basic",
+      "section": "scalability",
+      "fields": {
+        "Question": "A shard that gets far more traffic than the others, for example because one celebrity key lives there, is called what?",
+        "Answer": "Hot spot",
+        "Aliases": "Hotspot\nHot shard\nHot partition",
+        "Hint": "It is about skew, not total volume.",
+        "Fact": "Adding a random suffix to a very hot key spreads its writes across shards, at the cost of fan-in reads.",
+        "Source": "Designing Data-Intensive Applications (https://dataintensive.net/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::partitioning",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "4d802f26-ff92-58e1-9e0d-3d8112c32ddf",
+      "noteType": "Bert Basic",
+      "section": "scalability",
+      "fields": {
+        "Question": "Which partitioning scheme keeps keys sorted so range scans are efficient, but risks hot spots on sequential keys?",
+        "Answer": "Range partitioning",
+        "Aliases": "Key range partitioning\nRange based partitioning",
+        "Hint": "Think of an encyclopedia split by letter.",
+        "Fact": "Bigtable partitions tables into row ranges called tablets.",
+        "Source": "Bigtable: A Distributed Storage System for Structured Data (https://research.google/pubs/bigtable-a-distributed-storage-system-for-structured-data/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::partitioning",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "999a167f-5388-54f1-abac-1fec07a7e130",
+      "noteType": "Bert Cloze",
+      "section": "scalability",
+      "fields": {
+        "Text": "With simple hash(key) mod N placement, changing N moves {{c1::most}} keys to a different node.",
+        "Extra": "This is the problem consistent hashing solves.",
+        "Hint": "Think about what happens to every remainder when the divisor changes.",
+        "Fact": "Going from 4 to 5 nodes with mod hashing keeps only about 1 in 5 keys in place.",
+        "Source": "Consistent Hashing and Random Trees (https://dl.acm.org/doi/10.1145/258533.258660)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::consistent-hashing",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "e26f2091-36c7-55fc-8bd5-f5a0c38843a8",
+      "noteType": "Bert Cloze",
+      "section": "scalability",
+      "fields": {
+        "Text": "In {{c1::consistent hashing}}, nodes and keys are hashed onto a ring and each key belongs to the next node clockwise.",
+        "Extra": "Adding or removing a node only moves the keys in its neighbouring arc.",
+        "Hint": "Imagine a circle of hash values.",
+        "Fact": "Karger and colleagues introduced it in 1997 to manage web caches.",
+        "Source": "Consistent Hashing and Random Trees (https://dl.acm.org/doi/10.1145/258533.258660)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::consistent-hashing",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "73481a5c-d478-578c-b00c-5ba53b092768",
+      "noteType": "Bert Cloze",
+      "section": "scalability",
+      "fields": {
+        "Text": "When a node joins a consistent hash ring of N nodes holding K keys, on average about {{c1::K/N}} keys move.",
+        "Extra": "Compare with mod N hashing, where most keys move.",
+        "Hint": "Only one share of the keyspace changes owner.",
+        "Fact": "This minimal movement is why caches can grow without a mass of cold misses.",
+        "Source": "Consistent Hashing and Random Trees (https://dl.acm.org/doi/10.1145/258533.258660)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::consistent-hashing",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "08b21508-f57b-52bf-87c7-42a6c86471d8",
+      "noteType": "Bert Basic",
+      "section": "scalability",
+      "fields": {
+        "Question": "What technique places each physical server at many points on a consistent hash ring to even out load?",
+        "Answer": "Virtual nodes",
+        "Aliases": "Vnodes\nVirtual node\nTokens",
+        "Hint": "Each server gets many tokens, not one.",
+        "Fact": "Dynamo used virtual nodes so a node's share can match its capacity.",
+        "Source": "Dynamo: Amazon's Highly Available Key-value Store (https://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::consistent-hashing",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "1291604c-e6e2-5e57-b9df-47f3aba207f4",
+      "noteType": "Bert Basic",
+      "section": "scalability",
+      "fields": {
+        "Question": "Which alternative to the hash ring scores every node for a key and picks the highest score?",
+        "Answer": "Rendezvous hashing",
+        "Aliases": "Highest random weight hashing\nHRW hashing\nHRW",
+        "Hint": "Each node's score comes from hashing the key together with the node.",
+        "Fact": "Rendezvous hashing needs no ring structure, at the cost of scoring every node per lookup.",
+        "Source": "Designing Data-Intensive Applications (https://dataintensive.net/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::consistent-hashing",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "c96c9b32-fe0a-5369-a4e4-0aeadb5aebb4",
+      "noteType": "Bert Cloze",
+      "section": "scalability",
+      "fields": {
+        "Text": "Google's {{c1::jump consistent hash}} maps a key to one of N numbered buckets with no ring and almost no memory.",
+        "Extra": "It suits data stores where buckets are numbered sequentially, not arbitrary node sets.",
+        "Hint": "Its name describes how the bucket index moves forward.",
+        "Fact": "Lamping and Veach published it in 2014; the core is only a few lines of code.",
+        "Source": "A Fast, Minimal Memory, Consistent Hash Algorithm (https://arxiv.org/abs/1406.2294)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::consistent-hashing",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "982be414-a06c-5fae-ac2b-b473bae42087",
+      "noteType": "Bert Two Way",
+      "section": "scalability",
+      "fields": {
+        "Side A": "Circuit breaker",
+        "Side B": "Stops calling a failing dependency for a while and fails fast instead",
+        "Aliases": "Circuit breaker pattern",
+        "Hint": "Named after an electrical safety device.",
+        "Fact": "A half open state lets a few trial calls through to test whether the dependency recovered.",
+        "Source": "CircuitBreaker (https://martinfowler.com/bliki/CircuitBreaker.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::resilience-patterns",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "8e196856-c4ed-53ad-9f58-040cdd03793d",
+      "noteType": "Bert Two Way",
+      "section": "scalability",
+      "fields": {
+        "Side A": "Bulkhead",
+        "Side B": "Isolates resources such as thread pools per dependency so one failure cannot exhaust them all",
+        "Aliases": "Bulkhead pattern",
+        "Hint": "Named after watertight compartments in a ship.",
+        "Fact": "Separate connection pools per downstream service are a common bulkhead.",
+        "Source": "Bulkhead pattern (https://learn.microsoft.com/en-us/azure/architecture/patterns/bulkhead)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::resilience-patterns",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "cabd085f-39eb-55ef-9d95-0305cf545fca",
+      "noteType": "Bert Cloze",
+      "section": "scalability",
+      "fields": {
+        "Text": "Retrying with exponential backoff plus random {{c1::jitter}} prevents many clients from retrying in lockstep.",
+        "Extra": "AWS found full jitter greatly reduced total work compared with backoff alone.",
+        "Hint": "A little randomness in the wait time.",
+        "Fact": "Without jitter, clients that failed together retry together and can overload the service again.",
+        "Source": "Exponential Backoff And Jitter (https://aws.amazon.com/blogs/architecture/exponential-backoff-and-jitter/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::resilience-patterns",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "34681453-c0fb-5a24-8971-61c941e0df68",
+      "noteType": "Bert Cloze",
+      "section": "scalability",
+      "fields": {
+        "Text": "{{c1::Load shedding}} deliberately rejects some requests when a server is overloaded so it can keep serving the rest.",
+        "Extra": "Cheap rejections, such as an early 503, protect latency for accepted requests.",
+        "Hint": "Dropping part of the load on purpose.",
+        "Fact": "The Google SRE book recommends that servers protect themselves from overload rather than relying only on clients.",
+        "Source": "Site Reliability Engineering: Handling Overload (https://sre.google/sre-book/handling-overload/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::resilience-patterns",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "d57913a6-9990-54bf-af85-3063f2f53007",
+      "noteType": "Bert Basic",
+      "section": "caching-and-cdns",
+      "fields": {
+        "Question": "In which caching pattern does the application check the cache, and on a miss read the database and populate the cache itself?",
+        "Answer": "Cache-aside",
+        "Aliases": "Cache aside\nLazy loading\nLazy-loading",
+        "Hint": "The cache sits beside the data path, not in it.",
+        "Fact": "Cache-aside only caches data that is actually requested.",
+        "Source": "Cache-Aside pattern (https://learn.microsoft.com/en-us/azure/architecture/patterns/cache-aside)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::cache-write-patterns",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "17cd9d13-7455-5e88-866f-89ed1f1a460a",
+      "noteType": "Bert Basic",
+      "section": "caching-and-cdns",
+      "fields": {
+        "Question": "In which caching pattern is every write sent to the cache and the backing store synchronously?",
+        "Answer": "Write-through",
+        "Aliases": "Write through",
+        "Hint": "The write passes through the cache on its way down.",
+        "Fact": "It keeps the cache fresh but adds write latency.",
+        "Source": "Cache (computing) (https://en.wikipedia.org/wiki/Cache_(computing))",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::cache-write-patterns",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "8aca28d9-5ea1-5197-9340-c16dd2e8a0a6",
+      "noteType": "Bert Basic",
+      "section": "caching-and-cdns",
+      "fields": {
+        "Question": "In which caching pattern are writes acknowledged once in the cache and flushed to the store later?",
+        "Answer": "Write-back",
+        "Aliases": "Write back\nWrite-behind\nWrite behind",
+        "Hint": "The store catches up afterwards.",
+        "Fact": "If the cache node fails before flushing, those writes can be lost.",
+        "Source": "Cache (computing) (https://en.wikipedia.org/wiki/Cache_(computing))",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::cache-write-patterns",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "af4aae94-4a4c-58a6-a73c-50b29516c934",
+      "noteType": "Bert Basic",
+      "section": "caching-and-cdns",
+      "fields": {
+        "Question": "In which caching pattern do writes go straight to the store and skip the cache entirely?",
+        "Answer": "Write-around",
+        "Aliases": "Write around",
+        "Hint": "The write goes past the cache.",
+        "Fact": "It avoids filling the cache with data that may never be read.",
+        "Source": "Cache (computing) (https://en.wikipedia.org/wiki/Cache_(computing))",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::cache-write-patterns",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "a40c1b2b-c189-5fd6-bb83-0310916caf78",
+      "noteType": "Bert Basic",
+      "section": "caching-and-cdns",
+      "fields": {
+        "Question": "In which caching pattern does the cache itself load missing data from the store, so the app only talks to the cache?",
+        "Answer": "Read-through",
+        "Aliases": "Read through",
+        "Hint": "The cache does the lookup on a miss.",
+        "Fact": "Compared with cache-aside, the loading logic moves from the application into the cache layer.",
+        "Source": "Cache-Aside pattern (https://learn.microsoft.com/en-us/azure/architecture/patterns/cache-aside)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::cache-write-patterns",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "4c45f42f-daea-576b-b0ac-52b722c2845e",
+      "noteType": "Bert Two Way",
+      "section": "caching-and-cdns",
+      "fields": {
+        "Side A": "LRU",
+        "Side B": "Evicts the entry that has gone the longest without being accessed",
+        "Aliases": "Least recently used",
+        "Hint": "Think about recency.",
+        "Fact": "A hash map plus a doubly linked list gives O(1) LRU get and put.",
+        "Source": "Cache replacement policies (https://en.wikipedia.org/wiki/Cache_replacement_policies)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::eviction-policies",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "536a4061-be1b-5f79-afe1-f2f3448796b0",
+      "noteType": "Bert Two Way",
+      "section": "caching-and-cdns",
+      "fields": {
+        "Side A": "LFU",
+        "Side B": "Evicts the entry with the fewest accesses",
+        "Aliases": "Least frequently used",
+        "Hint": "Think about counts, not time.",
+        "Fact": "Plain LFU can keep once popular items forever unless counts decay.",
+        "Source": "Redis: Key eviction (https://redis.io/docs/latest/develop/reference/eviction/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::eviction-policies",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "5a06e734-b35d-593f-9b91-bdb780be97f1",
+      "noteType": "Bert Two Way",
+      "section": "caching-and-cdns",
+      "fields": {
+        "Side A": "FIFO eviction",
+        "Side B": "Evicts the entry that was inserted earliest, regardless of use",
+        "Aliases": "First in first out",
+        "Hint": "Think about insertion order only.",
+        "Fact": "FIFO ignores hits entirely, which makes it simple and cheap.",
+        "Source": "Cache replacement policies (https://en.wikipedia.org/wiki/Cache_replacement_policies)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::eviction-policies",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "961cf378-69fc-533e-ad7b-17d1fd014dd8",
+      "noteType": "Bert Basic",
+      "section": "caching-and-cdns",
+      "fields": {
+        "Question": "Which theoretical eviction policy removes the item that will be needed furthest in the future?",
+        "Answer": "Belady's optimal algorithm",
+        "Aliases": "Belady\nBelady's algorithm\nOPT\nMIN",
+        "Hint": "It needs to know the future, so it is only a benchmark.",
+        "Fact": "Laszlo Belady described it in 1966 while studying virtual memory replacement.",
+        "Source": "A study of replacement algorithms for a virtual-storage computer (https://doi.org/10.1147/sj.52.0078)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::eviction-policies",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "e631712f-0040-5709-b43a-611c7567587d",
+      "noteType": "Bert Cloze",
+      "section": "caching-and-cdns",
+      "fields": {
+        "Text": "A {{c1::TTL}} (time to live) makes a cache entry expire automatically after a set duration.",
+        "Extra": "Short TTLs reduce staleness, long TTLs raise hit rate.",
+        "Hint": "A lifetime attached to each entry.",
+        "Fact": "Adding random jitter to TTLs keeps many keys from expiring at the same instant.",
+        "Source": "Redis: Key eviction (https://redis.io/docs/latest/develop/reference/eviction/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::cache-freshness",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "44d2d8cb-fc2e-5ff8-b08e-158ecef28e3f",
+      "noteType": "Bert Cloze",
+      "section": "caching-and-cdns",
+      "fields": {
+        "Text": "Redis does not implement exact LRU: it {{c1::samples}} a few keys and evicts the best candidate among them.",
+        "Extra": "The sample size is set by maxmemory-samples.",
+        "Hint": "Redis trades precision for memory.",
+        "Fact": "Redis eviction policies include allkeys-lru, volatile-lru, allkeys-lfu and noeviction.",
+        "Source": "Redis: Key eviction (https://redis.io/docs/latest/develop/reference/eviction/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::eviction-policies",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "17084413-7612-5196-ad35-e1a12beae02c",
+      "noteType": "Bert Basic",
+      "section": "caching-and-cdns",
+      "fields": {
+        "Question": "Which Redis maxmemory policy returns errors on writes instead of evicting anything?",
+        "Answer": "noeviction",
+        "Aliases": "no eviction",
+        "Hint": "The name says what it does not do.",
+        "Fact": "With this policy, reads keep working when memory is full; commands that would add memory fail.",
+        "Source": "Redis: Key eviction (https://redis.io/docs/latest/develop/reference/eviction/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::eviction-policies",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "afb9f30b-8f23-58d9-8889-2757e8f0671c",
+      "noteType": "Bert Cloze",
+      "section": "caching-and-cdns",
+      "fields": {
+        "Text": "When a hot key expires and many requests miss at once and all hit the database, it is called a {{c1::cache stampede}}.",
+        "Extra": "Also known as the thundering herd or dog pile effect.",
+        "Hint": "Picture a herd charging the database together.",
+        "Fact": "Request coalescing lets one request rebuild the value while the others wait for it.",
+        "Source": "Cache-Aside pattern (https://learn.microsoft.com/en-us/azure/architecture/patterns/cache-aside)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::cache-failures",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "1e83431b-f355-5ad0-bedd-a8ac94c00648",
+      "noteType": "Bert Cloze",
+      "section": "caching-and-cdns",
+      "fields": {
+        "Text": "Caching the fact that a key does not exist is called {{c1::negative caching}}.",
+        "Extra": "It protects the store from repeated lookups for missing keys.",
+        "Hint": "You cache the absence.",
+        "Fact": "Negative entries usually get a short TTL so newly created keys appear quickly.",
+        "Source": "RFC 9111: HTTP Caching (https://www.rfc-editor.org/rfc/rfc9111)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::cache-failures",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "96c0fbdb-5579-52a6-bf60-212cf778674c",
+      "noteType": "Bert Cloze",
+      "section": "caching-and-cdns",
+      "fields": {
+        "Text": "A {{c1::Bloom filter}} can return false positives but never false negatives.",
+        "Extra": "Used to skip lookups for keys that are definitely absent.",
+        "Hint": "A bit array set by several hash functions.",
+        "Fact": "Burton Bloom described the structure in 1970.",
+        "Source": "Space/Time Trade-offs in Hash Coding with Allowable Errors (https://dl.acm.org/doi/10.1145/362686.362692)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::probabilistic",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "7d9060e2-f0bc-5629-89a1-fb7593dad2c5",
+      "noteType": "Bert Cloze",
+      "section": "caching-and-cdns",
+      "fields": {
+        "Text": "A famous quip says the two hard things in computer science are {{c1::cache invalidation}} and naming things.",
+        "Extra": "Commonly attributed to Phil Karlton.",
+        "Hint": "One of them is about keeping copies correct.",
+        "Fact": "Variants of the joke add a third hard thing: off by one errors.",
+        "Source": "TwoHardThings (https://martinfowler.com/bliki/TwoHardThings.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::cache-freshness",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "c2adb692-51af-596d-bb9f-a91f99d6f339",
+      "noteType": "Bert Cloze",
+      "section": "caching-and-cdns",
+      "fields": {
+        "Text": "A {{c1::CDN}} serves content from edge servers close to users and fetches from the {{c2::origin}} on a miss.",
+        "Extra": "Content delivery network.",
+        "Hint": "Edge versus home server.",
+        "Fact": "Serving from the edge cuts round trip time and offloads traffic from the origin.",
+        "Source": "Cloudflare Learning: What is a CDN? (https://www.cloudflare.com/learning/cdn/what-is-a-cdn/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::cdn",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "175e41d4-83b8-5032-82a5-8b4eb747b891",
+      "noteType": "Bert Cloze",
+      "section": "caching-and-cdns",
+      "fields": {
+        "Text": "In a {{c1::pull}} CDN, edges fetch from the origin on the first request; in a {{c2::push}} CDN, you upload content ahead of time.",
+        "Extra": "Pull is simpler, push suits large files that you know will be requested.",
+        "Hint": "Who moves the content first.",
+        "Fact": "Pull CDNs mean the first user in each region may see a slower cache miss.",
+        "Source": "Cloudflare Learning: What is a CDN? (https://www.cloudflare.com/learning/cdn/what-is-a-cdn/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::cdn",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "4b99a768-8b00-51a7-8424-3f9b51a2a1e8",
+      "noteType": "Bert Basic",
+      "section": "caching-and-cdns",
+      "fields": {
+        "Question": "What metric is cache hits divided by total requests?",
+        "Answer": "Cache hit ratio",
+        "Aliases": "Hit ratio\nHit rate\nCache hit rate",
+        "Hint": "A fraction of lookups that the cache answered.",
+        "Fact": "Raising a hit ratio from 90% to 99% cuts origin load by a factor of ten.",
+        "Source": "Cloudflare Learning: What is a CDN? (https://www.cloudflare.com/learning/cdn/what-is-a-cdn/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::cdn",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "6d6bd878-8ade-5e18-9c47-cad96eaf1a89",
+      "noteType": "Bert Typed",
+      "section": "caching-and-cdns",
+      "fields": {
+        "Question": "Which Cache-Control directive gives the number of seconds a response stays fresh?",
+        "Answer": "max-age",
+        "Aliases": "max age",
+        "Hint": "It is measured in seconds.",
+        "Fact": "Cache-Control: max-age=3600 means fresh for one hour.",
+        "Source": "RFC 9111: HTTP Caching (https://www.rfc-editor.org/rfc/rfc9111)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::cache-control",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "84fb934b-96f6-5dfd-a4ed-6ccc6380e771",
+      "noteType": "Bert Typed",
+      "section": "caching-and-cdns",
+      "fields": {
+        "Question": "Which Cache-Control directive sets freshness only for shared caches such as CDNs?",
+        "Answer": "s-maxage",
+        "Aliases": "s maxage",
+        "Hint": "It is a variant of the usual freshness directive with a prefix.",
+        "Fact": "For shared caches it overrides max-age and the Expires header.",
+        "Source": "RFC 9111: HTTP Caching (https://www.rfc-editor.org/rfc/rfc9111)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::cache-control",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "b35ef3cd-46f6-5fc3-8fc5-16db9716a66c",
+      "noteType": "Bert Two Way",
+      "section": "caching-and-cdns",
+      "fields": {
+        "Side A": "Cache-Control: no-store",
+        "Side B": "The response must not be stored by any cache",
+        "Aliases": "no-store",
+        "Hint": "It is the strict one.",
+        "Fact": "no-cache, despite the name, allows storing but requires revalidation before each reuse.",
+        "Source": "RFC 9111: HTTP Caching (https://www.rfc-editor.org/rfc/rfc9111)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::cache-control",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "897280d5-19dc-5735-9bbb-cf96299b9a1b",
+      "noteType": "Bert Two Way",
+      "section": "caching-and-cdns",
+      "fields": {
+        "Side A": "Cache-Control: no-cache",
+        "Side B": "A cache may store the response but must revalidate it with the origin before each reuse",
+        "Aliases": "no-cache",
+        "Hint": "Its name is misleading.",
+        "Fact": "no-cache combined with an ETag lets clients reuse content cheaply via 304 responses.",
+        "Source": "RFC 9111: HTTP Caching (https://www.rfc-editor.org/rfc/rfc9111)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::cache-control",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "5a465799-0e6c-599a-a8d2-bd09afb02639",
+      "noteType": "Bert Typed",
+      "section": "caching-and-cdns",
+      "fields": {
+        "Question": "Which HTTP status code says a cached copy is still valid after a conditional request?",
+        "Answer": "304",
+        "Aliases": "304 Not Modified\nNot Modified",
+        "Hint": "It is in the 3xx class.",
+        "Fact": "A 304 response carries no body, which saves bandwidth.",
+        "Source": "RFC 9110: HTTP Semantics (https://www.rfc-editor.org/rfc/rfc9110)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::http-status",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "e637cbdc-cb61-5046-bb9a-3f4659fa66ba",
+      "noteType": "Bert Cloze",
+      "section": "caching-and-cdns",
+      "fields": {
+        "Text": "A client revalidates using the {{c1::ETag}} it received by sending it back in an {{c2::If-None-Match}} header.",
+        "Extra": "If it still matches, the server replies 304 Not Modified.",
+        "Hint": "An entity tag is a version identifier for a representation.",
+        "Fact": "Weak ETags start with W/ and mean semantically equivalent rather than byte identical.",
+        "Source": "RFC 9110: HTTP Semantics (https://www.rfc-editor.org/rfc/rfc9110)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::cache-control",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "0d686034-ef34-57f1-9629-6b021b5d1cc6",
+      "noteType": "Bert Cloze",
+      "section": "caching-and-cdns",
+      "fields": {
+        "Text": "The {{c1::stale-while-revalidate}} directive lets a cache serve a stale response while it refreshes in the background.",
+        "Extra": "Defined in RFC 5861 along with stale-if-error.",
+        "Hint": "Serve old content now, fix it later.",
+        "Fact": "It hides refresh latency from users at the cost of briefly stale content.",
+        "Source": "RFC 5861: HTTP Cache-Control Extensions for Stale Content (https://www.rfc-editor.org/rfc/rfc5861)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::cache-control",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "1b1d4386-bfb7-58c0-ab58-503e7f037e75",
+      "noteType": "Bert Cloze",
+      "section": "caching-and-cdns",
+      "fields": {
+        "Text": "The {{c1::Vary}} response header tells caches which request headers change the response, so they store separate variants.",
+        "Extra": "Vary: Accept-Encoding is the classic example.",
+        "Hint": "It widens the cache key.",
+        "Fact": "Vary: User-Agent can fragment a CDN cache into many low hit variants.",
+        "Source": "MDN: HTTP caching (https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Caching)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::cache-control",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "ee95511d-f166-54eb-9881-6bd57be0bb98",
+      "noteType": "Bert Cloze",
+      "section": "caching-and-cdns",
+      "fields": {
+        "Text": "Removing content from CDN edges before its TTL ends is called {{c1::purging}}.",
+        "Extra": "Also called invalidation.",
+        "Hint": "An explicit delete at the edge.",
+        "Fact": "Versioned file names, such as app.3f9a.js, avoid the need to purge static assets.",
+        "Source": "Cloudflare Learning: What is a CDN? (https://www.cloudflare.com/learning/cdn/what-is-a-cdn/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::cdn",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "3f69406c-d32c-5e12-b9f2-b57e35657512",
+      "noteType": "Bert Cloze",
+      "section": "consistency-and-consensus",
+      "fields": {
+        "Text": "The CAP theorem says that during a network {{c1::partition}}, a system must choose between {{c2::consistency}} and {{c3::availability}}.",
+        "Extra": "Gilbert and Lynch proved a formal version in 2002.",
+        "Hint": "Three letters, pick which one matters when the network splits.",
+        "Fact": "Eric Brewer first presented the idea as a conjecture at PODC in 2000.",
+        "Source": "Brewer's Conjecture and the Feasibility of Consistent, Available, Partition-Tolerant Web Services (https://dl.acm.org/doi/10.1145/564585.564601)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::cap",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "5328926b-cedd-5b9b-a363-e2b6ebae752e",
+      "noteType": "Bert Cloze",
+      "section": "consistency-and-consensus",
+      "fields": {
+        "Text": "PACELC extends CAP: if Partitioned, trade Availability against Consistency; Else, trade {{c1::latency}} against consistency.",
+        "Extra": "Proposed by Daniel Abadi.",
+        "Hint": "Even without a partition there is a cost to strong consistency.",
+        "Fact": "Abadi pointed out that the latency tradeoff applies all the time, not only during failures.",
+        "Source": "Consistency Tradeoffs in Modern Distributed Database System Design (https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::cap",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "7e0280c0-0e63-5eb0-a1bf-967156dbf2f8",
+      "noteType": "Bert Basic",
+      "section": "consistency-and-consensus",
+      "fields": {
+        "Question": "Which consistency model makes every operation appear to take effect atomically at one instant between its start and end, respecting real time?",
+        "Answer": "Linearizability",
+        "Aliases": "Linearizable\nAtomic consistency",
+        "Hint": "The strongest single object model.",
+        "Fact": "Herlihy and Wing defined linearizability in 1990.",
+        "Source": "Jepsen: Consistency Models (https://jepsen.io/consistency)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::consistency-models",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "e02a95cf-d7d6-5cdd-ba5a-ba81e1012e3a",
+      "noteType": "Bert Basic",
+      "section": "consistency-and-consensus",
+      "fields": {
+        "Question": "Which guarantee says concurrent transactions produce the same result as some serial order, without requiring that order to match real time?",
+        "Answer": "Serializability",
+        "Aliases": "Serializable",
+        "Hint": "It is about transactions, not single objects.",
+        "Fact": "Strict serializability combines it with linearizability's real time ordering.",
+        "Source": "Jepsen: Consistency Models (https://jepsen.io/consistency)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::consistency-models",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "22bfa6b7-2814-52cf-8941-0e6f70cd77d4",
+      "noteType": "Bert Basic",
+      "section": "consistency-and-consensus",
+      "fields": {
+        "Question": "Which model only promises that replicas converge to the same value once updates stop?",
+        "Answer": "Eventual consistency",
+        "Aliases": "Eventually consistent",
+        "Hint": "It promises nothing about when.",
+        "Fact": "It says nothing about what reads return while updates are still flowing.",
+        "Source": "Designing Data-Intensive Applications (https://dataintensive.net/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::consistency-models",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "0854a669-3302-50d7-964d-fcde15a3d8fd",
+      "noteType": "Bert Basic",
+      "section": "consistency-and-consensus",
+      "fields": {
+        "Question": "Which model guarantees that operations that are causally related are seen by everyone in the same order?",
+        "Answer": "Causal consistency",
+        "Aliases": "Causal",
+        "Hint": "Think of a reply never appearing before the message it answers.",
+        "Fact": "Jepsen lists causal consistency among models that can stay available during a partition if each client sticks to one server.",
+        "Source": "Jepsen: Consistency Models (https://jepsen.io/consistency)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::consistency-models",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "6514263d-ed66-522d-a12d-c7ed9b47d52b",
+      "noteType": "Bert Basic",
+      "section": "consistency-and-consensus",
+      "fields": {
+        "Question": "Which session guarantee ensures a user always sees their own earlier updates?",
+        "Answer": "Read your writes",
+        "Aliases": "Read-your-writes\nRead after write consistency",
+        "Hint": "Think of editing your profile and refreshing the page.",
+        "Fact": "A common implementation reads a user's own data from the leader for a short time after they write.",
+        "Source": "Designing Data-Intensive Applications (https://dataintensive.net/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::session-guarantees",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "6f966a9b-f55a-50eb-a20c-7a8b04b168bd",
+      "noteType": "Bert Basic",
+      "section": "consistency-and-consensus",
+      "fields": {
+        "Question": "Which session guarantee ensures a user never sees data go back in time across successive reads?",
+        "Answer": "Monotonic reads",
+        "Aliases": "Monotonic read",
+        "Hint": "Think of a comment that appears, then vanishes on refresh.",
+        "Fact": "Routing each user to the same replica is one way to provide it.",
+        "Source": "Designing Data-Intensive Applications (https://dataintensive.net/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::session-guarantees",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "eee6b3c2-571e-5f07-98d3-5be73bb0ea82",
+      "noteType": "Bert Cloze",
+      "section": "consistency-and-consensus",
+      "fields": {
+        "Text": "With N replicas, a write quorum W and read quorum R, choosing {{c1::R + W > N}} ensures every read set overlaps the latest write set.",
+        "Extra": "Dynamo style systems make N, R and W configurable.",
+        "Hint": "Overlap is the point.",
+        "Fact": "A common configuration is N = 3, W = 2, R = 2.",
+        "Source": "Dynamo: Amazon's Highly Available Key-value Store (https://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::quorums",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "5f475656-70c3-58c9-969e-23184ac3ee36",
+      "noteType": "Bert Cloze",
+      "section": "consistency-and-consensus",
+      "fields": {
+        "Text": "Dynamo used a {{c1::sloppy quorum}} with {{c2::hinted handoff}}: writes go to healthy nodes, which later pass the data to the intended node.",
+        "Extra": "This favours availability over strict quorum overlap.",
+        "Hint": "Stand in replicas hold a note about where the data belongs.",
+        "Fact": "Dynamo's paper describes this as being always writeable.",
+        "Source": "Dynamo: Amazon's Highly Available Key-value Store (https://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::quorums",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "5f4adecb-dedc-5438-a4e1-726fe0497e5a",
+      "noteType": "Bert Basic",
+      "section": "consistency-and-consensus",
+      "fields": {
+        "Question": "What per replica counter vector did Dynamo use to detect concurrent, conflicting versions of an object?",
+        "Answer": "Vector clock",
+        "Aliases": "Vector clocks\nVersion vector",
+        "Hint": "One counter per node.",
+        "Fact": "When two versions are concurrent, Dynamo returned both and let the application reconcile.",
+        "Source": "Dynamo: Amazon's Highly Available Key-value Store (https://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::clocks",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "ace3cc7e-04c4-55a7-8bc5-0d3ae58fd5da",
+      "noteType": "Bert Basic",
+      "section": "consistency-and-consensus",
+      "fields": {
+        "Question": "Which logical clock, from a 1978 paper, gives every event a counter consistent with causality but cannot detect concurrency?",
+        "Answer": "Lamport clock",
+        "Aliases": "Lamport timestamp\nLamport clocks\nLogical clock",
+        "Hint": "Named after its author.",
+        "Fact": "The paper also introduced the happened before relation.",
+        "Source": "Time, Clocks, and the Ordering of Events in a Distributed System (https://lamport.azurewebsites.net/pubs/time-clocks.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::clocks",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "a1880504-6814-5856-ad7c-9f037cc1517e",
+      "noteType": "Bert Cloze",
+      "section": "consistency-and-consensus",
+      "fields": {
+        "Text": "Google Spanner's {{c1::TrueTime}} API exposes clock uncertainty as an interval, and Spanner waits it out to give externally consistent transactions.",
+        "Extra": "It relies on GPS receivers and atomic clocks in datacenters.",
+        "Hint": "An honest clock that admits error bounds.",
+        "Fact": "The wait is called commit wait.",
+        "Source": "Spanner: Google's Globally Distributed Database (https://research.google/pubs/spanner-googles-globally-distributed-database-2/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::clocks",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "ca2c923e-de68-5f2f-9c2f-83e99fdcfdda",
+      "noteType": "Bert Cloze",
+      "section": "consistency-and-consensus",
+      "fields": {
+        "Text": "Dynamo replicas compare {{c1::Merkle trees}} to find which key ranges differ without transferring all the data.",
+        "Extra": "This background repair is called anti-entropy.",
+        "Hint": "A tree of hashes.",
+        "Fact": "Matching root hashes mean the whole range matches, so the comparison stops early.",
+        "Source": "Dynamo: Amazon's Highly Available Key-value Store (https://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::quorums",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "9d71db62-7d43-5e2c-bd09-063e3f168f04",
+      "noteType": "Bert Cloze",
+      "section": "consistency-and-consensus",
+      "fields": {
+        "Text": "{{c1::Consensus}} lets a group of nodes agree on a single value, or a sequence of values, even if some nodes fail.",
+        "Extra": "Raft and Paxos are the classic algorithms.",
+        "Hint": "It is what a replicated log needs.",
+        "Fact": "Consensus is the basis of replicated state machines such as etcd and ZooKeeper.",
+        "Source": "In Search of an Understandable Consensus Algorithm (https://raft.github.io/raft.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::consensus",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "3cb5a509-5669-59bc-b414-522b6054c35d",
+      "noteType": "Bert Cloze",
+      "section": "consistency-and-consensus",
+      "fields": {
+        "Text": "The FLP result shows that no deterministic consensus algorithm can guarantee termination in a fully {{c1::asynchronous}} system if even one process may crash.",
+        "Extra": "Fischer, Lynch and Paterson, 1985.",
+        "Hint": "It is about systems without timing assumptions.",
+        "Fact": "Practical algorithms sidestep FLP with timeouts or randomization.",
+        "Source": "Impossibility of Distributed Consensus with One Faulty Process (https://dl.acm.org/doi/10.1145/3149.214121)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::consensus",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "edefab6e-1c0b-5a7e-b812-18ad54a54c8f",
+      "noteType": "Bert Typed",
+      "section": "consistency-and-consensus",
+      "fields": {
+        "Question": "A Raft or Paxos cluster of 5 servers can tolerate how many server failures and still make progress?",
+        "Answer": "2",
+        "Aliases": "two",
+        "Hint": "A majority must remain.",
+        "Fact": "In general 2f + 1 servers tolerate f failures.",
+        "Source": "In Search of an Understandable Consensus Algorithm (https://raft.github.io/raft.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::quorum-math",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "dee951eb-25ef-5ce9-b3bd-38ef60413b69",
+      "noteType": "Bert Typed",
+      "section": "consistency-and-consensus",
+      "fields": {
+        "Question": "What is the minimum cluster size for majority based consensus to survive one server failure?",
+        "Answer": "3",
+        "Aliases": "three",
+        "Hint": "Use 2f + 1.",
+        "Fact": "A 4 node cluster still tolerates only 1 failure, so even sizes add cost without adding tolerance.",
+        "Source": "In Search of an Understandable Consensus Algorithm (https://raft.github.io/raft.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::quorum-math",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "7bdaac2a-25d5-5980-b8ea-7a8d771535df",
+      "noteType": "Bert Basic",
+      "section": "consistency-and-consensus",
+      "fields": {
+        "Question": "In Raft, which state does every server start in?",
+        "Answer": "Follower",
+        "Aliases": "Followers",
+        "Hint": "It is the passive role.",
+        "Fact": "A follower becomes a candidate if it hears nothing from a leader before its election timeout.",
+        "Source": "In Search of an Understandable Consensus Algorithm (https://raft.github.io/raft.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::raft-roles",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "44908e93-27b2-5082-971c-668501e09545",
+      "noteType": "Bert Basic",
+      "section": "consistency-and-consensus",
+      "fields": {
+        "Question": "In Raft, what is a server called while it is requesting votes to become leader?",
+        "Answer": "Candidate",
+        "Aliases": "Candidates",
+        "Hint": "It is campaigning.",
+        "Fact": "A candidate votes for itself and sends RequestVote RPCs to the others.",
+        "Source": "In Search of an Understandable Consensus Algorithm (https://raft.github.io/raft.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::raft-roles",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "b0ab20cc-b0f9-5d0b-aa89-eb7a27a113e1",
+      "noteType": "Bert Basic",
+      "section": "consistency-and-consensus",
+      "fields": {
+        "Question": "In Raft, which server accepts client requests and replicates log entries to the others?",
+        "Answer": "Leader",
+        "Aliases": "The leader",
+        "Hint": "There is at most one per term.",
+        "Fact": "Raft sends all log entries through the leader, which simplifies reasoning about the log.",
+        "Source": "In Search of an Understandable Consensus Algorithm (https://raft.github.io/raft.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::raft-roles",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "77b077f9-12f3-554e-8559-11c6b331988d",
+      "noteType": "Bert Cloze",
+      "section": "consistency-and-consensus",
+      "fields": {
+        "Text": "Raft divides time into numbered {{c1::terms}}, each beginning with an election.",
+        "Extra": "A server that sees a higher number steps down to follower.",
+        "Hint": "They act as a logical clock.",
+        "Fact": "A term may end with no leader if the vote is split.",
+        "Source": "In Search of an Understandable Consensus Algorithm (https://raft.github.io/raft.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::raft-mechanics",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "36519e1d-6976-5615-8836-ab38bec40441",
+      "noteType": "Bert Cloze",
+      "section": "consistency-and-consensus",
+      "fields": {
+        "Text": "Raft uses {{c1::randomized}} election timeouts so that split votes are rare and resolve quickly.",
+        "Extra": "The paper suggests timeouts such as 150 to 300 ms.",
+        "Hint": "Not every follower should wake up at the same moment.",
+        "Fact": "Randomization was chosen over a ranking scheme because it was simpler and worked well.",
+        "Source": "In Search of an Understandable Consensus Algorithm (https://raft.github.io/raft.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::raft-mechanics",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "55d0210c-3708-584b-8e34-17e7a1e46ecb",
+      "noteType": "Bert Cloze",
+      "section": "consistency-and-consensus",
+      "fields": {
+        "Text": "A Raft leader considers a log entry from its current term committed once it is stored on a {{c1::majority}} of servers.",
+        "Extra": "Committed entries are then applied to the state machine.",
+        "Hint": "Think quorum.",
+        "Fact": "Raft's paper notes leaders do not commit entries from earlier terms just by counting replicas.",
+        "Source": "In Search of an Understandable Consensus Algorithm (https://raft.github.io/raft.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::raft-mechanics",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "a39e57c6-bfda-538b-9aab-06ee1c8285b5",
+      "noteType": "Bert Basic",
+      "section": "consistency-and-consensus",
+      "fields": {
+        "Question": "What does a Raft leader send periodically, as empty AppendEntries calls, to keep followers from starting elections?",
+        "Answer": "Heartbeats",
+        "Aliases": "Heartbeat",
+        "Hint": "A sign of life.",
+        "Fact": "Raft reuses the same RPC for both heartbeats and log replication.",
+        "Source": "In Search of an Understandable Consensus Algorithm (https://raft.github.io/raft.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::raft-mechanics",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "5a9f7df2-9086-5ea2-80ea-a19881e3a7eb",
+      "noteType": "Bert Cloze",
+      "section": "consistency-and-consensus",
+      "fields": {
+        "Text": "Raft was designed with {{c1::understandability}} as its primary goal, compared with Paxos.",
+        "Extra": "Diego Ongaro and John Ousterhout, 2014.",
+        "Hint": "The paper's title says it.",
+        "Fact": "The authors ran a user study where students learned Raft and Paxos and took quizzes on each.",
+        "Source": "In Search of an Understandable Consensus Algorithm (https://raft.github.io/raft.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::raft-mechanics",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "280f9430-d4d9-5848-83be-972d8323777c",
+      "noteType": "Bert Two Way",
+      "section": "consistency-and-consensus",
+      "fields": {
+        "Side A": "Paxos acceptor",
+        "Side B": "Votes on proposals and remembers the highest numbered proposal it has promised",
+        "Aliases": "Acceptor",
+        "Hint": "One of three Paxos roles, alongside proposer and learner.",
+        "Fact": "A value is chosen once a majority of acceptors have accepted it.",
+        "Source": "Paxos Made Simple (https://lamport.azurewebsites.net/pubs/paxos-simple.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::paxos-roles",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "77ff386a-e54d-53fa-8e96-9a8de40ce723",
+      "noteType": "Bert Two Way",
+      "section": "consistency-and-consensus",
+      "fields": {
+        "Side A": "Paxos proposer",
+        "Side B": "Picks a proposal number and asks acceptors to promise and then accept a value",
+        "Aliases": "Proposer",
+        "Hint": "It starts each round.",
+        "Fact": "Competing proposers can block each other indefinitely, which is why a distinguished leader is used in practice.",
+        "Source": "Paxos Made Simple (https://lamport.azurewebsites.net/pubs/paxos-simple.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::paxos-roles",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "d35d09ee-d782-5ba2-9c81-76aa9a2d9125",
+      "noteType": "Bert Basic",
+      "section": "consistency-and-consensus",
+      "fields": {
+        "Question": "What is the first phase of single decree Paxos, where acceptors promise to ignore lower numbered proposals?",
+        "Answer": "Prepare",
+        "Aliases": "Prepare and promise\nPhase 1\nPrepare phase",
+        "Hint": "It reserves a proposal number.",
+        "Fact": "Phase 2 is the accept phase.",
+        "Source": "Paxos Made Simple (https://lamport.azurewebsites.net/pubs/paxos-simple.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::paxos-phases",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "396b55ea-3a1c-5f98-baa7-17586cca5acf",
+      "noteType": "Bert Cloze",
+      "section": "consistency-and-consensus",
+      "fields": {
+        "Text": "Lamport's 2001 paper \"{{c1::Paxos Made Simple}}\" states that the algorithm, presented in plain English, is very simple.",
+        "Extra": "Published in 2001 after the original paper was widely seen as hard to read.",
+        "Hint": "Its title is a promise.",
+        "Fact": "The original Part-Time Parliament paper framed the algorithm as a fictional Greek parliament.",
+        "Source": "Paxos Made Simple (https://lamport.azurewebsites.net/pubs/paxos-simple.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::paxos-phases",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "b11d129b-14d4-5573-9721-5142907fedc0",
+      "noteType": "Bert Cloze",
+      "section": "consistency-and-consensus",
+      "fields": {
+        "Text": "In {{c1::two phase commit}}, a coordinator asks all participants to prepare, then tells them all to commit or abort.",
+        "Extra": "If the coordinator fails after prepare, participants can be blocked.",
+        "Hint": "Two rounds: vote, then decide.",
+        "Fact": "Two phase commit is an atomic commitment protocol and is not the same as consensus.",
+        "Source": "Designing Data-Intensive Applications (https://dataintensive.net/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::consensus",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "10d26874-d710-5295-a79f-2b9f0fd458da",
+      "noteType": "Bert Cloze",
+      "section": "consistency-and-consensus",
+      "fields": {
+        "Text": "{{c1::Split brain}} happens when two nodes both believe they are leader and accept conflicting writes.",
+        "Extra": "Majority quorums and fencing tokens prevent it.",
+        "Hint": "Two heads making decisions.",
+        "Fact": "A fencing token is a number that increases each time a lock or leadership is granted, so storage can reject stale leaders.",
+        "Source": "Designing Data-Intensive Applications (https://dataintensive.net/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::consensus",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "ad985860-c693-5a31-8b98-5f8c3f198d58",
+      "noteType": "Bert Basic",
+      "section": "messaging-and-reliability",
+      "fields": {
+        "Question": "Which delivery guarantee means a message may be lost but is never delivered twice?",
+        "Answer": "At most once",
+        "Aliases": "At-most-once",
+        "Hint": "Fire and forget.",
+        "Fact": "Committing the consumer offset before processing gives this behaviour in Kafka.",
+        "Source": "Apache Kafka Documentation (https://kafka.apache.org/documentation/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::delivery-semantics",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "fc9e1e0d-238a-522b-a6b1-6047f0b06c0b",
+      "noteType": "Bert Basic",
+      "section": "messaging-and-reliability",
+      "fields": {
+        "Question": "Which delivery guarantee means a message is never lost but may be delivered more than once?",
+        "Answer": "At least once",
+        "Aliases": "At-least-once",
+        "Hint": "Retries until acknowledged.",
+        "Fact": "It is safe only if consumers handle duplicates, usually by being idempotent.",
+        "Source": "Apache Kafka Documentation (https://kafka.apache.org/documentation/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::delivery-semantics",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "8e70b0ef-1500-5be9-8679-c54cb8ae5b68",
+      "noteType": "Bert Basic",
+      "section": "messaging-and-reliability",
+      "fields": {
+        "Question": "Which delivery guarantee means each message affects the result one time, with no loss and no duplicates?",
+        "Answer": "Exactly once",
+        "Aliases": "Exactly-once\nEffectively once",
+        "Hint": "The hardest of the three.",
+        "Fact": "In practice it is built from at least once delivery plus deduplication or transactions.",
+        "Source": "Apache Kafka Documentation (https://kafka.apache.org/documentation/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::delivery-semantics",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "de576ecc-f065-5fc0-97d5-af5895473e8a",
+      "noteType": "Bert Cloze",
+      "section": "messaging-and-reliability",
+      "fields": {
+        "Text": "Kafka provides exactly once semantics for stream processing through the {{c1::idempotent producer}} and {{c2::transactions}}.",
+        "Extra": "Added in Kafka 0.11.",
+        "Hint": "Two features: one stops duplicate writes, one makes writes atomic.",
+        "Fact": "The guarantee covers reads and writes within Kafka; external side effects still need their own deduplication.",
+        "Source": "Apache Kafka Documentation (https://kafka.apache.org/documentation/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::delivery-semantics",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "190ec918-de76-5041-8f16-063f6f88f1bf",
+      "noteType": "Bert Cloze",
+      "section": "messaging-and-reliability",
+      "fields": {
+        "Text": "Kafka guarantees message order only within a single {{c1::partition}}.",
+        "Extra": "Messages with the same key go to the same partition by default.",
+        "Hint": "Not across the whole topic.",
+        "Fact": "Choosing an order id or user id as the key keeps related events in sequence.",
+        "Source": "Apache Kafka Documentation (https://kafka.apache.org/documentation/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::kafka",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "12550ab1-b7b6-57d7-a3be-df29987a5253",
+      "noteType": "Bert Cloze",
+      "section": "messaging-and-reliability",
+      "fields": {
+        "Text": "Within a Kafka {{c1::consumer group}}, each partition is consumed by exactly one member.",
+        "Extra": "So a topic's partition count caps the useful parallelism of one group.",
+        "Hint": "A set of consumers sharing the work.",
+        "Fact": "Extra consumers beyond the partition count sit idle.",
+        "Source": "Apache Kafka Documentation (https://kafka.apache.org/documentation/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::kafka",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "174f3164-3899-5788-add2-0bd2881a64b6",
+      "noteType": "Bert Cloze",
+      "section": "messaging-and-reliability",
+      "fields": {
+        "Text": "A Kafka consumer tracks its position in each partition with an {{c1::offset}}.",
+        "Extra": "Committed offsets let a consumer resume after a restart.",
+        "Hint": "A number per message in the log.",
+        "Fact": "Kafka keeps messages for a retention period whether or not they were consumed.",
+        "Source": "Apache Kafka Documentation (https://kafka.apache.org/documentation/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::kafka",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "4a36377f-bb26-5410-8d92-f41331aaf475",
+      "noteType": "Bert Two Way",
+      "section": "messaging-and-reliability",
+      "fields": {
+        "Side A": "Point to point queue",
+        "Side B": "Each message is processed by one consumer",
+        "Aliases": "Work queue\nQueue",
+        "Hint": "Competing consumers.",
+        "Fact": "Adding consumers to a queue raises throughput because they share the messages.",
+        "Source": "Amazon SQS Developer Guide (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/welcome.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::messaging-models",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "8e3688c8-d614-5224-83ca-61a0b7bf60db",
+      "noteType": "Bert Two Way",
+      "section": "messaging-and-reliability",
+      "fields": {
+        "Side A": "Publish subscribe",
+        "Side B": "Each message is delivered to every subscriber",
+        "Aliases": "Pub/sub\nPubsub\nPub sub",
+        "Hint": "Broadcast to all interested parties.",
+        "Fact": "Kafka gives both models: one consumer group acts like a queue, several groups act like pub/sub.",
+        "Source": "Apache Kafka Documentation (https://kafka.apache.org/documentation/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::messaging-models",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "99986c2f-391e-5d23-8d98-cb51a4859b53",
+      "noteType": "Bert Basic",
+      "section": "messaging-and-reliability",
+      "fields": {
+        "Question": "Where do messages go after they fail processing too many times?",
+        "Answer": "Dead letter queue",
+        "Aliases": "DLQ\nDead-letter queue",
+        "Hint": "A parking spot for poison messages.",
+        "Fact": "Amazon SQS moves a message to the DLQ after maxReceiveCount receives.",
+        "Source": "Amazon SQS Developer Guide (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/welcome.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::queue-features",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "cbef539b-f4f2-5ef7-8c04-2cec008ca01d",
+      "noteType": "Bert Basic",
+      "section": "messaging-and-reliability",
+      "fields": {
+        "Question": "In Amazon SQS, what is the period during which a received message is hidden from other consumers?",
+        "Answer": "Visibility timeout",
+        "Aliases": "Visibility time out",
+        "Hint": "If you do not delete it in time, it reappears.",
+        "Fact": "The default visibility timeout in SQS is 30 seconds.",
+        "Source": "Amazon SQS Developer Guide (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/welcome.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::queue-features",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "9afb3a9f-df7b-5597-b3c9-36b95763a40f",
+      "noteType": "Bert Cloze",
+      "section": "messaging-and-reliability",
+      "fields": {
+        "Text": "Amazon SQS standard queues provide {{c1::at least once}} delivery and best effort ordering.",
+        "Extra": "FIFO queues add ordering within a message group and deduplication.",
+        "Hint": "Duplicates are possible.",
+        "Fact": "SQS FIFO deduplicates messages with the same deduplication id within a 5 minute interval.",
+        "Source": "Amazon SQS Developer Guide (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/welcome.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::delivery-semantics",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "58cbf427-e1c0-5f76-b52c-67c6ce5c7105",
+      "noteType": "Bert Cloze",
+      "section": "messaging-and-reliability",
+      "fields": {
+        "Text": "{{c1::Backpressure}} is a signal from a slow consumer that makes producers slow down instead of overflowing buffers.",
+        "Extra": "Bounded queues are a simple form of it.",
+        "Hint": "Push back on the sender.",
+        "Fact": "Unbounded queues hide overload until memory runs out.",
+        "Source": "Designing Data-Intensive Applications (https://dataintensive.net/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::queue-features",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "a5a02518-ad2f-5ca5-9604-84ffd3057e89",
+      "noteType": "Bert Cloze",
+      "section": "messaging-and-reliability",
+      "fields": {
+        "Text": "The {{c1::transactional outbox}} pattern writes an event to a table in the same database transaction as the business change, and a relay publishes it later.",
+        "Extra": "It avoids the dual write problem between a database and a broker.",
+        "Hint": "A box of outgoing mail in the same database.",
+        "Fact": "The relay can publish an event more than once, so consumers must still be idempotent.",
+        "Source": "Pattern: Transactional outbox (https://microservices.io/patterns/data/transactional-outbox.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::messaging-patterns",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "3f36b9b3-4c07-5ffe-8b24-fd28e345f825",
+      "noteType": "Bert Cloze",
+      "section": "messaging-and-reliability",
+      "fields": {
+        "Text": "A {{c1::saga}} is a sequence of local transactions where each failure triggers {{c2::compensating}} transactions to undo earlier steps.",
+        "Extra": "It replaces a distributed transaction across services.",
+        "Hint": "Undo steps, not rollback.",
+        "Fact": "Sagas give up isolation: other transactions can see intermediate states.",
+        "Source": "Saga distributed transactions pattern (https://learn.microsoft.com/en-us/azure/architecture/patterns/saga)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::messaging-patterns",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "20eb1e18-fa8f-50af-811d-150c2039ab4a",
+      "noteType": "Bert Cloze",
+      "section": "messaging-and-reliability",
+      "fields": {
+        "Text": "{{c1::CQRS}} separates the model used to update data from the model used to read it.",
+        "Extra": "Command Query Responsibility Segregation.",
+        "Hint": "Commands versus queries.",
+        "Fact": "Read models in CQRS are often updated asynchronously, so they can lag behind writes.",
+        "Source": "CQRS pattern (https://learn.microsoft.com/en-us/azure/architecture/patterns/cqrs)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::messaging-patterns",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "1c4ec200-7cf1-509f-bfc7-1f68e1871f4b",
+      "noteType": "Bert Cloze",
+      "section": "messaging-and-reliability",
+      "fields": {
+        "Text": "An operation is {{c1::idempotent}} if performing it several times has the same effect as performing it once.",
+        "Extra": "This makes retries safe.",
+        "Hint": "Setting a value versus incrementing it.",
+        "Fact": "Setting x = 5 is idempotent; adding 1 to x is not.",
+        "Source": "RFC 9110: HTTP Semantics (https://www.rfc-editor.org/rfc/rfc9110)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::idempotency",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "8f8ed015-27f4-58d2-9e83-b850772a22af",
+      "noteType": "Bert Basic",
+      "section": "messaging-and-reliability",
+      "fields": {
+        "Question": "Among the methods defined in RFC 9110, which one used to submit data for processing is not idempotent?",
+        "Answer": "POST",
+        "Aliases": "post",
+        "Hint": "It is the one used to create things.",
+        "Fact": "PATCH is also not guaranteed to be idempotent.",
+        "Source": "RFC 9110: HTTP Semantics (https://www.rfc-editor.org/rfc/rfc9110)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::http-methods",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "12aded5b-6c0f-5e40-81ef-7071fb68e4c2",
+      "noteType": "Bert Basic",
+      "section": "messaging-and-reliability",
+      "fields": {
+        "Question": "Which HTTP method replaces a resource with the request payload and is defined as idempotent?",
+        "Answer": "PUT",
+        "Aliases": "put",
+        "Hint": "It is not POST.",
+        "Fact": "DELETE is idempotent too, even though the second call may return 404.",
+        "Source": "RFC 9110: HTTP Semantics (https://www.rfc-editor.org/rfc/rfc9110)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::http-methods",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "92c8017e-5269-5255-b304-6e98f9800f5b",
+      "noteType": "Bert Typed",
+      "section": "messaging-and-reliability",
+      "fields": {
+        "Question": "Which request header does Stripe use to make POST requests safe to retry?",
+        "Answer": "Idempotency-Key",
+        "Aliases": "Idempotency Key\nIdempotency-Key header",
+        "Hint": "It names the property it gives.",
+        "Fact": "Stripe recommends a random V4 UUID or similar for the key value.",
+        "Source": "Stripe API: Idempotent requests (https://docs.stripe.com/api/idempotent_requests)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::idempotency",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "19a48c71-ffa3-5059-81a0-6f6d6c037b4a",
+      "noteType": "Bert Cloze",
+      "section": "messaging-and-reliability",
+      "fields": {
+        "Text": "A server implements idempotency keys by storing the {{c1::response}} for each key and returning it for repeated requests with the same key.",
+        "Extra": "Keys are usually expired after a retention window.",
+        "Hint": "What does a retry get back?",
+        "Fact": "Stripe returns the same result for a repeated key, including errors.",
+        "Source": "Stripe API: Idempotent requests (https://docs.stripe.com/api/idempotent_requests)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::idempotency",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "80565ef3-8345-5056-ac3f-99f46309b9b8",
+      "noteType": "Bert Cloze",
+      "section": "messaging-and-reliability",
+      "fields": {
+        "Text": "With at least once delivery, a consumer can stay correct by recording processed {{c1::message ids}} and skipping duplicates.",
+        "Extra": "Store the id in the same transaction as the effect.",
+        "Hint": "Remember what you already did.",
+        "Fact": "Doing the side effect and recording the id in one transaction closes the crash window between them.",
+        "Source": "Designing Data-Intensive Applications (https://dataintensive.net/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::idempotency",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "881f1c10-12a2-55f8-baad-731355c1119a",
+      "noteType": "Bert Basic",
+      "section": "messaging-and-reliability",
+      "fields": {
+        "Question": "Which rate limiting algorithm refills tokens at a fixed rate and allows bursts up to the bucket capacity?",
+        "Answer": "Token bucket",
+        "Aliases": "Token-bucket",
+        "Hint": "Each request spends something.",
+        "Fact": "Two parameters fully describe it: refill rate and capacity.",
+        "Source": "Token bucket (https://en.wikipedia.org/wiki/Token_bucket)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::rate-limit-algorithms",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "11e4232b-8855-5959-92ea-5a161d35d0d9",
+      "noteType": "Bert Basic",
+      "section": "messaging-and-reliability",
+      "fields": {
+        "Question": "Which rate limiting algorithm drains a queue at a constant rate, smoothing bursts into a steady output?",
+        "Answer": "Leaky bucket",
+        "Aliases": "Leaky-bucket",
+        "Hint": "Water drips out of a hole at a constant rate.",
+        "Fact": "Requests that arrive when the bucket is full are dropped.",
+        "Source": "Leaky bucket (https://en.wikipedia.org/wiki/Leaky_bucket)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::rate-limit-algorithms",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "cc244d3d-d97c-52e8-9e50-e99dfb8315d2",
+      "noteType": "Bert Basic",
+      "section": "messaging-and-reliability",
+      "fields": {
+        "Question": "Which rate limiting algorithm counts requests per calendar interval, and can let up to twice the limit through around the boundary?",
+        "Answer": "Fixed window counter",
+        "Aliases": "Fixed window\nFixed-window",
+        "Hint": "Counters reset on the minute.",
+        "Fact": "A client can send the full limit at the end of one window and again at the start of the next.",
+        "Source": "How we built rate limiting capable of scaling to millions of domains (https://blog.cloudflare.com/counting-things-a-lot-of-different-things/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::rate-limit-algorithms",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "38ee238a-b595-5854-b310-130ec21e7ce5",
+      "noteType": "Bert Basic",
+      "section": "messaging-and-reliability",
+      "fields": {
+        "Question": "Which rate limiting algorithm stores a timestamp for every request and counts those within the last interval?",
+        "Answer": "Sliding window log",
+        "Aliases": "Sliding log\nSliding-window log",
+        "Hint": "Exact, but memory grows with traffic.",
+        "Fact": "Memory use grows with the number of requests allowed per window.",
+        "Source": "How we built rate limiting capable of scaling to millions of domains (https://blog.cloudflare.com/counting-things-a-lot-of-different-things/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::rate-limit-algorithms",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "b6a79e76-572b-5a62-ae73-e17c78d2faf9",
+      "noteType": "Bert Basic",
+      "section": "messaging-and-reliability",
+      "fields": {
+        "Question": "Which rate limiting algorithm estimates the rate by weighting the previous window's count by how much of it overlaps the current interval?",
+        "Answer": "Sliding window counter",
+        "Aliases": "Sliding window\nSliding-window counter",
+        "Hint": "Two counters and a weighted average.",
+        "Fact": "Cloudflare described using this approximation to rate limit at very large scale.",
+        "Source": "How we built rate limiting capable of scaling to millions of domains (https://blog.cloudflare.com/counting-things-a-lot-of-different-things/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::rate-limit-algorithms",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "b0e0634f-36df-5a05-8270-4b8e74afcdfa",
+      "noteType": "Bert Typed",
+      "section": "messaging-and-reliability",
+      "fields": {
+        "Question": "Which HTTP status code means Too Many Requests?",
+        "Answer": "429",
+        "Aliases": "429 Too Many Requests\nToo Many Requests",
+        "Hint": "It was added in RFC 6585.",
+        "Fact": "A 429 response may include Retry-After to tell the client how long to wait.",
+        "Source": "RFC 6585: Additional HTTP Status Codes (https://www.rfc-editor.org/rfc/rfc6585)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::http-status",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "0934b5d0-61a5-5e4e-8e4e-cb5debd7139d",
+      "noteType": "Bert Typed",
+      "section": "messaging-and-reliability",
+      "fields": {
+        "Question": "Which response header tells a client how long to wait before retrying?",
+        "Answer": "Retry-After",
+        "Aliases": "Retry After",
+        "Hint": "It can hold seconds or an HTTP date.",
+        "Fact": "It is used with 503 and 429 responses and with redirects.",
+        "Source": "RFC 9110: HTTP Semantics (https://www.rfc-editor.org/rfc/rfc9110)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::cache-control",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "c0bfb452-bb58-5963-90cb-e1a05b6213c4",
+      "noteType": "Bert Cloze",
+      "section": "messaging-and-reliability",
+      "fields": {
+        "Text": "Fill in the refill step of a token bucket:<pre><code class=\"language-python\">tokens = min(capacity, tokens + {{c1::rate * elapsed}})\nif tokens &gt;= 1:\n    tokens -= 1\n    allow()</code></pre>",
+        "Extra": "Tokens are added in proportion to time passed, capped at capacity.",
+        "Hint": "Refill depends on two things: speed and time.",
+        "Fact": "Lazy refill on each request avoids a background timer per bucket.",
+        "Source": "Token bucket (https://en.wikipedia.org/wiki/Token_bucket)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::rate-limit-algorithms",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "b77561f5-65d3-5de2-b368-fd4761f04ea9",
+      "noteType": "Bert Two Way",
+      "section": "storage",
+      "fields": {
+        "Side A": "OLTP",
+        "Side B": "Many small, low latency reads and writes of individual records",
+        "Aliases": "Online transaction processing",
+        "Hint": "Think of a checkout flow.",
+        "Fact": "OLTP databases usually store data row by row.",
+        "Source": "Designing Data-Intensive Applications (https://dataintensive.net/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::workloads",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "74f6431a-214e-5ca4-b2a2-1a5cab20ffe3",
+      "noteType": "Bert Two Way",
+      "section": "storage",
+      "fields": {
+        "Side A": "OLAP",
+        "Side B": "Large scans and aggregations over many rows for analytics",
+        "Aliases": "Online analytical processing",
+        "Hint": "Think of a quarterly report.",
+        "Fact": "Analytical stores usually lay data out by column to scan less.",
+        "Source": "Designing Data-Intensive Applications (https://dataintensive.net/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::workloads",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "dff2635f-4121-5fc2-b145-b9761a6225cc",
+      "noteType": "Bert Cloze",
+      "section": "storage",
+      "fields": {
+        "Text": "A {{c1::column oriented}} store keeps each column's values together, so queries that read few columns scan less data and compress well.",
+        "Extra": "Typical for data warehouses.",
+        "Hint": "Layout by attribute, not by record.",
+        "Fact": "Repeated values in a column compress well with run length or dictionary encoding.",
+        "Source": "Designing Data-Intensive Applications (https://dataintensive.net/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::workloads",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "e044c875-43e0-5080-b6a3-4e38e3c952dc",
+      "noteType": "Bert Basic",
+      "section": "storage",
+      "fields": {
+        "Question": "Which index structure, used by most relational databases, keeps sorted keys in fixed size pages and updates them in place?",
+        "Answer": "B-tree",
+        "Aliases": "B tree\nBtree\nB+ tree\nB+tree",
+        "Hint": "A balanced tree of pages.",
+        "Fact": "A B-tree with a branching factor of 500 needs only four levels to address a very large table.",
+        "Source": "Designing Data-Intensive Applications (https://dataintensive.net/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::storage-engines",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "a8afcc29-55a8-5348-b400-4d93a0b9124e",
+      "noteType": "Bert Basic",
+      "section": "storage",
+      "fields": {
+        "Question": "Which storage engine design buffers writes in memory, flushes them as sorted immutable files and merges them in the background?",
+        "Answer": "LSM tree",
+        "Aliases": "LSM-tree\nLog-structured merge tree\nLog structured merge tree\nLSM",
+        "Hint": "Write optimised, with compaction.",
+        "Fact": "The LSM tree was described by O'Neil and colleagues in 1996.",
+        "Source": "The Log-Structured Merge-Tree (LSM-Tree) (https://www.cs.umb.edu/~poneil/lsmtree.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::storage-engines",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "e42f4e68-8812-5387-b4b4-3387b5e0f682",
+      "noteType": "Bert Cloze",
+      "section": "storage",
+      "fields": {
+        "Text": "In an LSM engine, an in memory {{c1::memtable}} is flushed to disk as an immutable sorted file called an {{c2::SSTable}}.",
+        "Extra": "Background compaction merges SSTables and discards overwritten values.",
+        "Hint": "Sorted String Table.",
+        "Fact": "Bigtable's paper popularised the SSTable name.",
+        "Source": "Bigtable: A Distributed Storage System for Structured Data (https://research.google/pubs/bigtable-a-distributed-storage-system-for-structured-data/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::storage-engines",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "37034a14-50bc-5b43-888c-a4b40e10fded",
+      "noteType": "Bert Cloze",
+      "section": "storage",
+      "fields": {
+        "Text": "A {{c1::write ahead log}} records changes durably before they are applied, so a crash can be recovered by replaying it.",
+        "Extra": "Also abbreviated WAL.",
+        "Hint": "Log first, then change.",
+        "Fact": "LSM engines use a log to protect the memtable, since memory is lost in a crash.",
+        "Source": "Designing Data-Intensive Applications (https://dataintensive.net/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::storage-engines",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "b1bf4327-f931-5987-89dd-d4e1a948aa6f",
+      "noteType": "Bert Cloze",
+      "section": "storage",
+      "fields": {
+        "Text": "Compared with B-trees, LSM trees usually offer higher {{c1::write}} throughput, while B-trees often give more predictable {{c2::read}} performance.",
+        "Extra": "LSM writes are sequential; reads may check several files.",
+        "Hint": "One engine favours one side of the workload.",
+        "Fact": "Compaction in LSM engines causes write amplification and can compete with live traffic for disk bandwidth.",
+        "Source": "Designing Data-Intensive Applications (https://dataintensive.net/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::storage-engines",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "4d0c27ef-6c46-5094-86ab-a143c4e5b1e8",
+      "noteType": "Bert Basic",
+      "section": "storage",
+      "fields": {
+        "Question": "Which kind of database stores opaque values looked up by a single key, like Redis or DynamoDB?",
+        "Answer": "Key-value store",
+        "Aliases": "Key value store\nKey-value database\nKV store",
+        "Hint": "The simplest data model.",
+        "Fact": "Key-value stores trade query flexibility for simple, predictable lookups.",
+        "Source": "Dynamo: Amazon's Highly Available Key-value Store (https://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::database-kinds",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "b2ae66bc-d5ea-5998-b521-7badc2fb8a64",
+      "noteType": "Bert Basic",
+      "section": "storage",
+      "fields": {
+        "Question": "Which kind of database, like Cassandra or Bigtable, stores rows with many dynamic columns grouped into families?",
+        "Answer": "Wide-column store",
+        "Aliases": "Wide column store\nWide-column database\nColumn family store",
+        "Hint": "Columns are grouped in families.",
+        "Fact": "Bigtable describes itself as a sparse, distributed, persistent multidimensional sorted map.",
+        "Source": "Bigtable: A Distributed Storage System for Structured Data (https://research.google/pubs/bigtable-a-distributed-storage-system-for-structured-data/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::database-kinds",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "576e597a-f8a5-506f-875f-8a613a12195b",
+      "noteType": "Bert Basic",
+      "section": "storage",
+      "fields": {
+        "Question": "Which kind of database stores self contained JSON like records, like MongoDB?",
+        "Answer": "Document store",
+        "Aliases": "Document database\nDocument DB",
+        "Hint": "Records look like JSON.",
+        "Fact": "Document models work well when data is read as a whole tree, such as a profile with nested items.",
+        "Source": "Designing Data-Intensive Applications (https://dataintensive.net/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::database-kinds",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "720ab45f-5f3b-5116-998b-4b7822a569b4",
+      "noteType": "Bert Basic",
+      "section": "storage",
+      "fields": {
+        "Question": "Which kind of database models data as vertices and edges and is suited to many to many relationships?",
+        "Answer": "Graph database",
+        "Aliases": "Graph DB\nGraph store",
+        "Hint": "Think of a social network.",
+        "Fact": "Cypher, SPARQL and Gremlin are examples of graph query languages.",
+        "Source": "Designing Data-Intensive Applications (https://dataintensive.net/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::database-kinds",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "7cd45ba0-bd7a-53a3-bc56-341cdaf4b892",
+      "noteType": "Bert Basic",
+      "section": "storage",
+      "fields": {
+        "Question": "Which kind of storage, like Amazon S3, holds large binary blobs addressed by a key in a flat namespace?",
+        "Answer": "Object storage",
+        "Aliases": "Object store\nBlob storage\nBlob store",
+        "Hint": "Images and videos usually live here.",
+        "Fact": "Systems usually store the blob in object storage and keep only its key in the database.",
+        "Source": "Amazon S3 Strong Consistency (https://aws.amazon.com/s3/consistency/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::database-kinds",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "b440d84e-b724-5ecb-87d1-fafc36b1813f",
+      "noteType": "Bert Cloze",
+      "section": "storage",
+      "fields": {
+        "Text": "Since December 2020, Amazon S3 provides {{c1::strong read after write}} consistency for PUT and DELETE of objects.",
+        "Extra": "Before that, overwrites and deletes were eventually consistent.",
+        "Hint": "S3 changed its guarantee.",
+        "Fact": "AWS made the change automatically at no extra cost.",
+        "Source": "Amazon S3 Strong Consistency (https://aws.amazon.com/s3/consistency/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::database-kinds",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "5877a90b-a120-5b8c-844d-b634f7f52237",
+      "noteType": "Bert Cloze",
+      "section": "storage",
+      "fields": {
+        "Text": "ACID stands for Atomicity, {{c1::Consistency}}, {{c2::Isolation}} and Durability.",
+        "Extra": "The C is about application invariants, not the C in CAP.",
+        "Hint": "Four properties of transactions.",
+        "Fact": "Theo Haerder and Andreas Reuter coined the acronym in 1983.",
+        "Source": "Designing Data-Intensive Applications (https://dataintensive.net/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::isolation-levels",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "082fe3e9-0aca-57ca-ac7e-bc8b1cdccbbc",
+      "noteType": "Bert Basic",
+      "section": "storage",
+      "fields": {
+        "Question": "Which isolation level prevents dirty reads and is the default in PostgreSQL?",
+        "Answer": "Read committed",
+        "Aliases": "Read Committed",
+        "Hint": "You only see data that was committed.",
+        "Fact": "Each statement in PostgreSQL read committed sees a fresh snapshot.",
+        "Source": "PostgreSQL: Transaction Isolation (https://www.postgresql.org/docs/current/transaction-iso.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::isolation-levels",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "1e783f57-7d97-55ff-973c-efd5edcc6002",
+      "noteType": "Bert Basic",
+      "section": "storage",
+      "fields": {
+        "Question": "Which SQL isolation level is the strongest, preventing every concurrency anomaly?",
+        "Answer": "Serializable",
+        "Aliases": "SERIALIZABLE",
+        "Hint": "As if transactions ran one at a time.",
+        "Fact": "PostgreSQL implements it with serializable snapshot isolation since version 9.1.",
+        "Source": "PostgreSQL: Transaction Isolation (https://www.postgresql.org/docs/current/transaction-iso.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::isolation-levels",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "ba9471c7-e4e9-571c-87e9-fdcf348a2b52",
+      "noteType": "Bert Basic",
+      "section": "storage",
+      "fields": {
+        "Question": "In PostgreSQL, which isolation level gives each transaction one snapshot taken at its first statement?",
+        "Answer": "Repeatable read",
+        "Aliases": "Repeatable Read\nSnapshot isolation",
+        "Hint": "Re-reading the same row returns the same value.",
+        "Fact": "PostgreSQL repeatable read does not allow phantom reads, which is stricter than the SQL standard requires.",
+        "Source": "PostgreSQL: Transaction Isolation (https://www.postgresql.org/docs/current/transaction-iso.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::isolation-levels",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "c5635d5e-4a6b-539b-a1db-4b9d4e21cd05",
+      "noteType": "Bert Cloze",
+      "section": "storage",
+      "fields": {
+        "Text": "{{c1::Write skew}} happens when two transactions read the same data, then update different rows based on it, breaking an invariant.",
+        "Extra": "Snapshot isolation allows it; serializable isolation prevents it.",
+        "Hint": "Two doctors both go off call at once.",
+        "Fact": "The on call doctors example is a classic illustration from Designing Data-Intensive Applications.",
+        "Source": "Designing Data-Intensive Applications (https://dataintensive.net/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::isolation-levels",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "b5041041-bb5d-5a6e-a6c2-f36b41e7355d",
+      "noteType": "Bert Two Way",
+      "section": "storage",
+      "fields": {
+        "Side A": "Single leader replication",
+        "Side B": "All writes go to one node, which streams changes to followers",
+        "Aliases": "Leader follower replication\nPrimary replica replication\nMaster slave replication",
+        "Hint": "One writer.",
+        "Fact": "It avoids write conflicts, but the leader caps write throughput.",
+        "Source": "Designing Data-Intensive Applications (https://dataintensive.net/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::replication-topologies",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "bb087e04-712c-5ba4-adae-7f4410d62214",
+      "noteType": "Bert Two Way",
+      "section": "storage",
+      "fields": {
+        "Side A": "Leaderless replication",
+        "Side B": "Clients send writes to several replicas and use quorums for reads and writes",
+        "Aliases": "Dynamo style replication",
+        "Hint": "No single writer.",
+        "Fact": "Cassandra and Riak follow this model, inspired by Dynamo.",
+        "Source": "Dynamo: Amazon's Highly Available Key-value Store (https://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::replication-topologies",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "8869d667-c16a-5d15-9fc8-79f36b4f8059",
+      "noteType": "Bert Two Way",
+      "section": "storage",
+      "fields": {
+        "Side A": "Multi-leader replication",
+        "Side B": "Several nodes accept writes and replicate to each other, so conflicts must be resolved",
+        "Aliases": "Multi leader replication\nMulti-master replication\nActive active",
+        "Hint": "More than one writer.",
+        "Fact": "It is often used across datacenters so each region can accept local writes.",
+        "Source": "Designing Data-Intensive Applications (https://dataintensive.net/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::replication-topologies",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "54f6af87-70bc-5b16-a53d-b4e0b81d0fc7",
+      "noteType": "Bert Cloze",
+      "section": "storage",
+      "fields": {
+        "Text": "{{c1::Last write wins}} resolves conflicts by keeping the value with the highest timestamp and silently discarding the others.",
+        "Extra": "Simple but can lose data, and clock skew makes it worse.",
+        "Hint": "The newest timestamp survives.",
+        "Fact": "Cassandra uses last write wins at the cell level.",
+        "Source": "Designing Data-Intensive Applications (https://dataintensive.net/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::replication-topologies",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "2b2b1e75-e63c-5dfc-bc46-bd394af8b48c",
+      "noteType": "Bert Cloze",
+      "section": "storage",
+      "fields": {
+        "Text": "{{c1::Denormalization}} copies data into several places to avoid joins at read time, at the cost of more complex writes.",
+        "Extra": "Common in read heavy and NoSQL designs.",
+        "Hint": "The opposite of normal form.",
+        "Fact": "Every copy must be updated when the source changes, or it goes stale.",
+        "Source": "Designing Data-Intensive Applications (https://dataintensive.net/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::data-modeling",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "a31819e2-d165-501c-a4d4-ade09efcb537",
+      "noteType": "Bert Cloze",
+      "section": "storage",
+      "fields": {
+        "Text": "In a sharded database, a {{c1::global}} secondary index is partitioned by the indexed value, while a {{c2::local}} one lives on each shard beside its data.",
+        "Extra": "Local indexes make reads scatter to all shards; global indexes make writes touch several shards.",
+        "Hint": "Where the index entries live.",
+        "Fact": "Global indexes are often updated asynchronously, so they can briefly lag the data.",
+        "Source": "Designing Data-Intensive Applications (https://dataintensive.net/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::data-modeling",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "5a9d7bcb-2c7e-5f65-afb7-33614137c613",
+      "noteType": "Bert Cloze",
+      "section": "storage",
+      "fields": {
+        "Text": "{{c1::HyperLogLog}} estimates the number of distinct items using a small, fixed amount of memory.",
+        "Extra": "Redis implements it with PFADD and PFCOUNT.",
+        "Hint": "Counting uniques approximately.",
+        "Fact": "The PF prefix in Redis commands honours Philippe Flajolet.",
+        "Source": "HyperLogLog: the analysis of a near-optimal cardinality estimation algorithm (https://algo.inria.fr/flajolet/Publications/FlFuGaMe07.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::probabilistic",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "ad39aa63-6f50-55a4-9ce8-4ed978f7e7f6",
+      "noteType": "Bert Typed",
+      "section": "back-of-envelope",
+      "fields": {
+        "Question": "In Norvig's latency table, roughly how long is an L1 cache reference?",
+        "Answer": "0.5 ns",
+        "Aliases": "half a nanosecond\n0.5 nanoseconds\n0.5ns",
+        "Hint": "Less than one nanosecond.",
+        "Fact": "These figures are approximate and date from the 2000s, but the ratios are what matter.",
+        "Source": "Teach Yourself Programming in Ten Years (https://norvig.com/21-days.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::latency-numbers",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "adaab70d-03a7-592b-a58a-684591c532bc",
+      "noteType": "Bert Typed",
+      "section": "back-of-envelope",
+      "fields": {
+        "Question": "In Norvig's latency table, roughly how long is a main memory reference?",
+        "Answer": "100 ns",
+        "Aliases": "100 nanoseconds\n100ns\n0.1 microseconds",
+        "Hint": "About two hundred times an L1 hit.",
+        "Fact": "A memory reference is about 200 times slower than an L1 cache hit in the table.",
+        "Source": "Teach Yourself Programming in Ten Years (https://norvig.com/21-days.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::latency-numbers",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "30b4d92b-d0a5-5f3e-bef2-ab9babb5fa09",
+      "noteType": "Bert Typed",
+      "section": "back-of-envelope",
+      "fields": {
+        "Question": "In Norvig's latency table, roughly how long is a round trip within the same datacenter?",
+        "Answer": "0.5 ms",
+        "Aliases": "500 microseconds\n500 us\n0.5 milliseconds\n500,000 ns",
+        "Hint": "Under a millisecond.",
+        "Fact": "Listed as 500,000 nanoseconds.",
+        "Source": "Teach Yourself Programming in Ten Years (https://norvig.com/21-days.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::latency-numbers",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "8d755def-6593-580b-a9cb-f880b9bc5f9e",
+      "noteType": "Bert Typed",
+      "section": "back-of-envelope",
+      "fields": {
+        "Question": "In Norvig's latency table, roughly how long does a disk seek take?",
+        "Answer": "8 ms",
+        "Aliases": "8 milliseconds\n8ms",
+        "Hint": "Spinning disk, single digit milliseconds.",
+        "Fact": "A disk seek costs about as much as 16 datacenter round trips in that table.",
+        "Source": "Teach Yourself Programming in Ten Years (https://norvig.com/21-days.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::latency-numbers",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "585d02e3-3c6e-5d56-a1f5-f8179c947f8c",
+      "noteType": "Bert Typed",
+      "section": "back-of-envelope",
+      "fields": {
+        "Question": "In Norvig's latency table, roughly how long does a packet take to go from the US to Europe and back?",
+        "Answer": "150 ms",
+        "Aliases": "150 milliseconds\n150ms",
+        "Hint": "Bounded by the speed of light in fibre.",
+        "Fact": "No amount of server tuning removes this delay; only moving data closer to users does.",
+        "Source": "Teach Yourself Programming in Ten Years (https://norvig.com/21-days.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::latency-numbers",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "d9ef798c-5786-501e-a99e-35323a5b2dd8",
+      "noteType": "Bert Basic",
+      "section": "back-of-envelope",
+      "fields": {
+        "Question": "Which is faster to read 1 MB sequentially from, according to Norvig's table: memory or spinning disk?",
+        "Answer": "Memory",
+        "Aliases": "Main memory\nRAM",
+        "Hint": "Think of electronics versus moving parts.",
+        "Fact": "In the table, reading 1 MB from memory is about 80 times faster than from disk.",
+        "Source": "Teach Yourself Programming in Ten Years (https://norvig.com/21-days.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::latency-numbers",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "33ccdb16-aa9d-55f0-ab38-2a9e3020d729",
+      "noteType": "Bert Cloze",
+      "section": "back-of-envelope",
+      "fields": {
+        "Text": "In Norvig's table, reading 1 MB sequentially from memory takes about {{c1::250 microseconds}}, and from disk about {{c2::20 milliseconds}}.",
+        "Extra": "Listed as 250,000 ns and 20,000,000 ns.",
+        "Hint": "The disk figure is in milliseconds.",
+        "Fact": "Sequential disk reads are far faster than random reads because they avoid seeks.",
+        "Source": "Teach Yourself Programming in Ten Years (https://norvig.com/21-days.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::latency-numbers",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "f53f0ef0-42ca-5d0a-84a4-8f70be672aa6",
+      "noteType": "Bert Cloze",
+      "section": "back-of-envelope",
+      "fields": {
+        "Text": "Light in optical fibre travels at roughly {{c1::two thirds}} of its speed in a vacuum, about 200,000 km per second.",
+        "Extra": "So 1,000 km of fibre adds about 5 ms each way.",
+        "Hint": "The refractive index of glass is about 1.5.",
+        "Fact": "Real paths add delay because fibre rarely follows the great circle route.",
+        "Source": "Optical fiber (https://en.wikipedia.org/wiki/Optical_fiber)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::latency-numbers",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "8449e085-3775-5368-a00a-97a577a76ae3",
+      "noteType": "Bert Typed",
+      "section": "back-of-envelope",
+      "fields": {
+        "Question": "How many seconds are in a day?",
+        "Answer": "86,400",
+        "Aliases": "86400\n86 400",
+        "Hint": "24 times 3,600.",
+        "Fact": "Rounding a day to 100,000 seconds makes mental math easier and errs on the safe side.",
+        "Source": "Day (https://en.wikipedia.org/wiki/Day)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::envelope-math",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "4e942c0f-d618-5547-b0b6-aab71826cfaa",
+      "noteType": "Bert Typed",
+      "section": "back-of-envelope",
+      "fields": {
+        "Question": "About how many requests per second is 1 million requests per day, on average?",
+        "Answer": "12",
+        "Aliases": "11.6\n11.57\n~12",
+        "Hint": "Divide by the seconds in a day.",
+        "Fact": "Peak traffic is often several times the daily average, so size for the peak.",
+        "Source": "Day (https://en.wikipedia.org/wiki/Day)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::envelope-math",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "48dffb66-1316-5d0a-9795-a4a5cc35ed8b",
+      "noteType": "Bert Typed",
+      "section": "back-of-envelope",
+      "fields": {
+        "Question": "About how many requests per second is 100 million requests per day, on average?",
+        "Answer": "1,157",
+        "Aliases": "1157\n1,160\n1160\n1,200\n1200\n~1,200",
+        "Hint": "About a hundred times the 1 million per day figure.",
+        "Fact": "100,000,000 divided by 86,400 is about 1,157.",
+        "Source": "Day (https://en.wikipedia.org/wiki/Day)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::envelope-math",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "582ce8ce-5649-5529-bcab-d5b77babb42d",
+      "noteType": "Bert Typed",
+      "section": "back-of-envelope",
+      "fields": {
+        "Question": "What is 2 to the power of 10?",
+        "Answer": "1,024",
+        "Aliases": "1024",
+        "Hint": "Roughly one thousand.",
+        "Fact": "This is why a kibibyte is 1,024 bytes.",
+        "Source": "Power of two (https://en.wikipedia.org/wiki/Power_of_two)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::powers-of-two",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "419e645b-d81d-5651-91fc-9a7a8f97cc65",
+      "noteType": "Bert Typed",
+      "section": "back-of-envelope",
+      "fields": {
+        "Question": "2 to the power of 30 is roughly how many?",
+        "Answer": "1 billion",
+        "Aliases": "one billion\n1,073,741,824\n10^9\na billion",
+        "Hint": "Three factors of about a thousand.",
+        "Fact": "Exactly, it is 1,073,741,824, one gibibyte in bytes.",
+        "Source": "Power of two (https://en.wikipedia.org/wiki/Power_of_two)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::powers-of-two",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "e6b7e826-bc6c-563c-a188-76ec291279cb",
+      "noteType": "Bert Typed",
+      "section": "back-of-envelope",
+      "fields": {
+        "Question": "Roughly how many distinct values fit in an unsigned 32 bit integer?",
+        "Answer": "4.3 billion",
+        "Aliases": "4 billion\n4,294,967,296\nabout 4 billion\n4.29 billion",
+        "Hint": "Four times 2 to the 30.",
+        "Fact": "Running out of 32 bit ids is a real failure mode for fast growing tables.",
+        "Source": "Power of two (https://en.wikipedia.org/wiki/Power_of_two)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::powers-of-two",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "a78a6e0c-fed9-5f1f-8262-e95132563ef2",
+      "noteType": "Bert Typed",
+      "section": "back-of-envelope",
+      "fields": {
+        "Question": "About how much downtime per year does 99.9% availability allow?",
+        "Answer": "8.76 hours",
+        "Aliases": "8.8 hours\n8.76 h\n8.77 hours\n9 hours\nabout 9 hours",
+        "Hint": "Three nines.",
+        "Fact": "The Google SRE book lists 8.76 hours per year for 99.9%.",
+        "Source": "Site Reliability Engineering: Availability Table (https://sre.google/sre-book/availability-table/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::availability-nines",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "84a9cff8-0061-5ac2-b254-1a183c843a5f",
+      "noteType": "Bert Typed",
+      "section": "back-of-envelope",
+      "fields": {
+        "Question": "About how much downtime per year does 99.99% availability allow?",
+        "Answer": "52.6 minutes",
+        "Aliases": "52.56 minutes\n53 minutes\n52 minutes\nabout 53 minutes",
+        "Hint": "Four nines.",
+        "Fact": "Each extra nine divides the allowed downtime by ten.",
+        "Source": "Site Reliability Engineering: Availability Table (https://sre.google/sre-book/availability-table/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::availability-nines",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "6b8b18f7-0a97-5573-abd1-aa235cbc38fb",
+      "noteType": "Bert Typed",
+      "section": "back-of-envelope",
+      "fields": {
+        "Question": "About how much downtime per year does 99.999% availability allow?",
+        "Answer": "5.26 minutes",
+        "Aliases": "5.3 minutes\n5 minutes\n5.25 minutes\nabout 5 minutes",
+        "Hint": "Five nines.",
+        "Fact": "At five nines, a single slow manual recovery can use the whole year's budget.",
+        "Source": "Site Reliability Engineering: Availability Table (https://sre.google/sre-book/availability-table/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::availability-nines",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "c99fa071-f91d-5998-b5e3-f5005d37f1e9",
+      "noteType": "Bert Cloze",
+      "section": "back-of-envelope",
+      "fields": {
+        "Text": "If a request depends on two services in series, each 99.9% available, the combined availability is about {{c1::99.8%}}.",
+        "Extra": "Multiply the availabilities: 0.999 times 0.999.",
+        "Hint": "Dependencies multiply, they do not average.",
+        "Fact": "This is why deep call chains need each dependency to be more available than the whole service.",
+        "Source": "Site Reliability Engineering: Availability Table (https://sre.google/sre-book/availability-table/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::availability-nines",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "d8b2828c-ba51-5c33-9e18-1002f45e2b61",
+      "noteType": "Bert Cloze",
+      "section": "back-of-envelope",
+      "fields": {
+        "Text": "Storing 1 KB for each of 1 million new records per day needs about {{c1::1 GB}} per day, or roughly 365 GB per year.",
+        "Extra": "Ignoring replication and indexes.",
+        "Hint": "Thousand times million.",
+        "Fact": "Replication by a factor of three triples the raw estimate.",
+        "Source": "Byte (https://en.wikipedia.org/wiki/Byte)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::envelope-math",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "f86a0ff6-8a6a-5174-acd9-4f2bd3399e40",
+      "noteType": "Bert Cloze",
+      "section": "observability",
+      "fields": {
+        "Text": "The Google SRE book's four golden signals are latency, {{c1::traffic}}, {{c2::errors}} and {{c3::saturation}}.",
+        "Extra": "If you can measure only four metrics of a user facing system, measure these.",
+        "Hint": "One is about how full the service is.",
+        "Fact": "The SRE book advises distinguishing the latency of successful requests from that of failed ones.",
+        "Source": "Site Reliability Engineering: Monitoring Distributed Systems (https://sre.google/sre-book/monitoring-distributed-systems/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::signal-sets",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "0c50d832-f351-5e20-ac55-f5c1f206b39c",
+      "noteType": "Bert Cloze",
+      "section": "observability",
+      "fields": {
+        "Text": "The RED method for request driven services tracks {{c1::Rate}}, {{c2::Errors}} and {{c3::Duration}}.",
+        "Extra": "Proposed by Tom Wilkie.",
+        "Hint": "Three per service request metrics.",
+        "Fact": "RED covers three of the four golden signals, leaving out saturation.",
+        "Source": "The RED Method: key metrics for microservices architecture (https://grafana.com/blog/2018/08/02/the-red-method-how-to-instrument-your-services/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::signal-sets",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "12c120bd-6746-5539-a770-476cac22107d",
+      "noteType": "Bert Cloze",
+      "section": "observability",
+      "fields": {
+        "Text": "Brendan Gregg's USE method checks every resource for {{c1::Utilization}}, {{c2::Saturation}} and {{c3::Errors}}.",
+        "Extra": "Resources include CPUs, disks, memory and network interfaces.",
+        "Hint": "Three questions per resource.",
+        "Fact": "The method is meant to find bottlenecks quickly with a checklist rather than guesswork.",
+        "Source": "The USE Method (https://www.brendangregg.com/usemethod.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::signal-sets",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "983ee10f-bf71-5dba-bfe0-6fe50decf97a",
+      "noteType": "Bert Two Way",
+      "section": "observability",
+      "fields": {
+        "Side A": "SLI",
+        "Side B": "A measured indicator of service level, such as the fraction of requests served under 300 ms",
+        "Aliases": "Service level indicator",
+        "Hint": "The measurement itself.",
+        "Fact": "Good SLIs reflect what users experience, not internal resource metrics.",
+        "Source": "Site Reliability Engineering: Service Level Objectives (https://sre.google/sre-book/service-level-objectives/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::slo-terms",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "c778f717-c9da-5a82-9949-44761874471f",
+      "noteType": "Bert Two Way",
+      "section": "observability",
+      "fields": {
+        "Side A": "SLO",
+        "Side B": "A target value or range for an SLI, such as 99.9% of requests succeeding",
+        "Aliases": "Service level objective",
+        "Hint": "The internal goal.",
+        "Fact": "An SLO that is too strict slows down shipping without users noticing the difference.",
+        "Source": "Site Reliability Engineering: Service Level Objectives (https://sre.google/sre-book/service-level-objectives/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::slo-terms",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "7b62b022-8e4b-597d-afab-ba80948d07a4",
+      "noteType": "Bert Two Way",
+      "section": "observability",
+      "fields": {
+        "Side A": "SLA",
+        "Side B": "A contract with users that specifies consequences, such as refunds, if objectives are missed",
+        "Aliases": "Service level agreement",
+        "Hint": "It has a business consequence.",
+        "Fact": "The SRE book notes that SLAs are closely tied to business and product decisions.",
+        "Source": "Site Reliability Engineering: Service Level Objectives (https://sre.google/sre-book/service-level-objectives/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::slo-terms",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "37688f9c-8a71-5572-a736-5df3df2e7679",
+      "noteType": "Bert Cloze",
+      "section": "observability",
+      "fields": {
+        "Text": "An {{c1::error budget}} is the amount of unreliability an SLO allows, such as 0.1% of requests for a 99.9% target.",
+        "Extra": "Teams can spend it on risky launches; when it runs out, they slow down.",
+        "Hint": "One minus the SLO.",
+        "Fact": "Error budgets turn reliability versus velocity debates into a number both sides can agree on.",
+        "Source": "Site Reliability Engineering: Service Level Objectives (https://sre.google/sre-book/service-level-objectives/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::slo-terms",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "15d1945f-3d5f-5d5e-b0ec-55eac9ac1ae2",
+      "noteType": "Bert Cloze",
+      "section": "observability",
+      "fields": {
+        "Text": "Report latency as percentiles such as p99, because the {{c1::mean}} hides slow outliers.",
+        "Extra": "A p99 of 800 ms means 1% of requests take longer than 800 ms.",
+        "Hint": "Averages flatten the long tail.",
+        "Fact": "When one page load fans out to many backends, the slowest backend often sets the page's latency.",
+        "Source": "Site Reliability Engineering: Monitoring Distributed Systems (https://sre.google/sre-book/monitoring-distributed-systems/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::latency-stats",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "c38d6e41-aa0e-57d1-bf9c-86038fba962c",
+      "noteType": "Bert Cloze",
+      "section": "observability",
+      "fields": {
+        "Text": "You cannot average p99 values from several servers to get the fleet p99; aggregate {{c1::histograms}} instead.",
+        "Extra": "Sum bucket counts, then compute the percentile.",
+        "Hint": "Merge the distributions, not the summaries.",
+        "Fact": "Fixed bucket histograms trade some precision for being cheap to merge.",
+        "Source": "Designing Data-Intensive Applications (https://dataintensive.net/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::latency-stats",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "c0d16488-5b73-5e89-b766-7d5a01d5185a",
+      "noteType": "Bert Two Way",
+      "section": "observability",
+      "fields": {
+        "Side A": "Trace",
+        "Side B": "Records the path of one request across services as a tree of timed spans",
+        "Aliases": "Distributed trace",
+        "Hint": "Follows a single request end to end.",
+        "Fact": "OpenTelemetry treats traces, metrics and logs as its core signals.",
+        "Source": "OpenTelemetry: Signals (https://opentelemetry.io/docs/concepts/signals/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::telemetry-signals",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "ffbb9e71-f68d-562c-b3b2-c061492b7905",
+      "noteType": "Bert Two Way",
+      "section": "observability",
+      "fields": {
+        "Side A": "Metric",
+        "Side B": "A numeric measurement aggregated over time, such as requests per second",
+        "Aliases": "Metrics",
+        "Hint": "Cheap to store, good for dashboards and alerts.",
+        "Fact": "Metrics are cheap because they aggregate, but that also discards per request detail.",
+        "Source": "OpenTelemetry: Signals (https://opentelemetry.io/docs/concepts/signals/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::telemetry-signals",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "bf5f3231-5479-57ee-8cc3-ef3c6eb48171",
+      "noteType": "Bert Two Way",
+      "section": "observability",
+      "fields": {
+        "Side A": "Log",
+        "Side B": "A timestamped record of a discrete event, often structured as key value pairs",
+        "Aliases": "Logs\nLog line",
+        "Hint": "Text or structured events.",
+        "Fact": "Structured logs in JSON are far easier to query than free text.",
+        "Source": "OpenTelemetry: Signals (https://opentelemetry.io/docs/concepts/signals/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::telemetry-signals",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "e2f8b66f-9706-5e42-b791-8a5b94c8bc9a",
+      "noteType": "Bert Basic",
+      "section": "observability",
+      "fields": {
+        "Question": "In distributed tracing, what is a single timed unit of work, such as one RPC, called?",
+        "Answer": "Span",
+        "Aliases": "Spans",
+        "Hint": "Traces are built from many of these.",
+        "Fact": "Each one carries a trace id shared by all of them in the request and its own id.",
+        "Source": "OpenTelemetry: Signals (https://opentelemetry.io/docs/concepts/signals/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::tracing-terms",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "47559f47-9af9-5f04-bd2a-f73f3289dc89",
+      "noteType": "Bert Typed",
+      "section": "observability",
+      "fields": {
+        "Question": "Which HTTP header does W3C Trace Context use to propagate trace and parent span ids?",
+        "Answer": "traceparent",
+        "Aliases": "traceparent header",
+        "Hint": "One word, all lowercase.",
+        "Fact": "A companion header, tracestate, carries vendor specific data.",
+        "Source": "W3C Trace Context (https://www.w3.org/TR/trace-context/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::tracing-terms",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "abf8a8e4-bc0b-51c1-a33b-2c4c15ea156a",
+      "noteType": "Bert Cloze",
+      "section": "observability",
+      "fields": {
+        "Text": "Using user ids as metric labels creates high {{c1::cardinality}}: one time series per unique label combination.",
+        "Extra": "This can overwhelm a metrics backend.",
+        "Hint": "Count the distinct series.",
+        "Fact": "Put per user detail in logs or traces, and keep metric labels bounded.",
+        "Source": "OpenTelemetry: Signals (https://opentelemetry.io/docs/concepts/signals/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::telemetry-signals",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "9e196590-367e-5863-98db-48982c7510c6",
+      "noteType": "Bert Cloze",
+      "section": "observability",
+      "fields": {
+        "Text": "The SRE book recommends paging on {{c1::symptoms}} users feel, such as errors and latency, rather than on every possible cause.",
+        "Extra": "Causes still help with debugging dashboards.",
+        "Hint": "What is broken, not why.",
+        "Fact": "Pages that require no action train people to ignore pages.",
+        "Source": "Site Reliability Engineering: Monitoring Distributed Systems (https://sre.google/sre-book/monitoring-distributed-systems/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::alerting",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "d1a0fe35-6d74-5408-95f3-b5423ffef037",
+      "noteType": "Bert Two Way",
+      "section": "observability",
+      "fields": {
+        "Side A": "Black box monitoring",
+        "Side B": "Tests externally visible behaviour as a user would see it",
+        "Aliases": "Blackbox monitoring\nProbing",
+        "Hint": "From the outside.",
+        "Fact": "The SRE book pairs it with white box monitoring based on internal metrics.",
+        "Source": "Site Reliability Engineering: Monitoring Distributed Systems (https://sre.google/sre-book/monitoring-distributed-systems/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::alerting",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "918e11cd-cf31-50f1-be32-a2a0e250409a",
+      "noteType": "Bert Typed",
+      "section": "classic-designs",
+      "fields": {
+        "Question": "How many characters does base62 encoding use?",
+        "Answer": "62",
+        "Aliases": "sixty two",
+        "Hint": "Lowercase, uppercase and digits.",
+        "Fact": "26 lowercase letters plus 26 uppercase plus 10 digits.",
+        "Source": "RFC 3986: Uniform Resource Identifier (URI): Generic Syntax (https://www.rfc-editor.org/rfc/rfc3986)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::url-shortener-math",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "36117c00-f257-5c06-b14a-c397225f07e7",
+      "noteType": "Bert Cloze",
+      "section": "classic-designs",
+      "fields": {
+        "Text": "Base62 is popular for short links because letters and digits are {{c1::unreserved}} URI characters that never need percent encoding.",
+        "Extra": "RFC 3986 unreserved characters also include hyphen, period, underscore and tilde.",
+        "Hint": "Safe to put in a URL as is.",
+        "Fact": "Base64's plus and slash characters would need escaping in a URL path.",
+        "Source": "RFC 3986: Uniform Resource Identifier (URI): Generic Syntax (https://www.rfc-editor.org/rfc/rfc3986)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::url-shortener",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "ec659900-7624-5af3-b440-7508e789ab5c",
+      "noteType": "Bert Typed",
+      "section": "classic-designs",
+      "fields": {
+        "Question": "Roughly how many distinct codes do 7 base62 characters give?",
+        "Answer": "3.5 trillion",
+        "Aliases": "3.52 trillion\n3,521,614,606,208\n62^7",
+        "Hint": "62 to the power of 7.",
+        "Fact": "At 1,000 new links per second, that space would last over a century.",
+        "Source": "RFC 3986: Uniform Resource Identifier (URI): Generic Syntax (https://www.rfc-editor.org/rfc/rfc3986)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::url-shortener-math",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "62c636c4-4611-57a9-ba1a-01933b19e36f",
+      "noteType": "Bert Basic",
+      "section": "classic-designs",
+      "fields": {
+        "Question": "Which redirect status code is permanent and cacheable by browsers by default, reducing load but hiding repeat clicks from a shortener's analytics?",
+        "Answer": "301",
+        "Aliases": "301 Moved Permanently\nMoved Permanently",
+        "Hint": "The permanent one.",
+        "Fact": "Browsers may cache it and skip the shortener on later visits.",
+        "Source": "RFC 9110: HTTP Semantics (https://www.rfc-editor.org/rfc/rfc9110)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::http-redirects",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "b166bced-d50a-5526-850b-444e3b499e45",
+      "noteType": "Bert Basic",
+      "section": "classic-designs",
+      "fields": {
+        "Question": "Which redirect status code is temporary, so browsers keep asking the shortener and every click can be counted?",
+        "Answer": "302",
+        "Aliases": "302 Found\nFound",
+        "Hint": "The temporary one from HTTP/1.0 days.",
+        "Fact": "307 is similar but guarantees the method is not changed.",
+        "Source": "RFC 9110: HTTP Semantics (https://www.rfc-editor.org/rfc/rfc9110)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::http-redirects",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "14799c50-8245-5d99-86dd-73f07aa69895",
+      "noteType": "Bert Basic",
+      "section": "classic-designs",
+      "fields": {
+        "Question": "Which redirect status code is permanent and also guarantees the request method is kept?",
+        "Answer": "308",
+        "Aliases": "308 Permanent Redirect\nPermanent Redirect",
+        "Hint": "Pairs with 307.",
+        "Fact": "It was added later than 301 to fix method changes on POST.",
+        "Source": "RFC 9110: HTTP Semantics (https://www.rfc-editor.org/rfc/rfc9110)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::http-redirects",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "ba29da36-06f7-5515-a8d3-bf276c262dff",
+      "noteType": "Bert Cloze",
+      "section": "classic-designs",
+      "fields": {
+        "Text": "A URL shortener can avoid collision checks by encoding a unique {{c1::numeric id}} in base62 instead of hashing the long URL.",
+        "Extra": "Hash truncation needs collision handling.",
+        "Hint": "Turn a counter into a code.",
+        "Fact": "Sequential ids make codes guessable, so some services shuffle or encrypt the id first.",
+        "Source": "Announcing Snowflake (https://blog.x.com/engineering/en_us/a/2010/announcing-snowflake)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::url-shortener",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "1e6d20f4-c10b-5dbd-842f-99bf466aac48",
+      "noteType": "Bert Cloze",
+      "section": "classic-designs",
+      "fields": {
+        "Text": "URL shorteners are usually {{c1::read heavy}}, so a cache in front of the code to URL mapping absorbs most traffic.",
+        "Extra": "Popular links follow a long tail distribution.",
+        "Hint": "Many more clicks than creations.",
+        "Fact": "Because mappings rarely change, they cache very well.",
+        "Source": "Cache-Aside pattern (https://learn.microsoft.com/en-us/azure/architecture/patterns/cache-aside)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::url-shortener",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "01f6d728-6099-59f2-b70a-41978fad089d",
+      "noteType": "Bert Cloze",
+      "section": "classic-designs",
+      "fields": {
+        "Text": "Twitter's Snowflake ids are 64 bits: a {{c1::timestamp}}, a worker id and a per worker {{c2::sequence}} number.",
+        "Extra": "41 bits of milliseconds, 10 bits of worker id, 12 bits of sequence.",
+        "Hint": "Time first, so ids sort roughly by creation.",
+        "Fact": "Each worker can generate up to 4,096 ids per millisecond.",
+        "Source": "Announcing Snowflake (https://blog.x.com/engineering/en_us/a/2010/announcing-snowflake)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::id-generation",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "6247e6dc-5335-50c5-bf37-c5cb82b137e5",
+      "noteType": "Bert Basic",
+      "section": "classic-designs",
+      "fields": {
+        "Question": "Which 128 bit id scheme needs no coordination at all but produces ids that are random and not time ordered in its version 4?",
+        "Answer": "UUID",
+        "Aliases": "UUIDv4\nUUID v4\nGUID",
+        "Hint": "A universally unique identifier.",
+        "Fact": "Random keys scatter inserts across a B-tree index, which hurts write locality.",
+        "Source": "Announcing Snowflake (https://blog.x.com/engineering/en_us/a/2010/announcing-snowflake)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::id-generation",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "2e93a8af-5e52-5a7e-8991-177f154d9162",
+      "noteType": "Bert Two Way",
+      "section": "classic-designs",
+      "fields": {
+        "Side A": "Fan-out on write",
+        "Side B": "Push each new post into every follower's feed cache when it is created",
+        "Aliases": "Push model\nFan out on write",
+        "Hint": "Work happens at posting time.",
+        "Fact": "Fast feed reads, but a celebrity post means millions of writes.",
+        "Source": "Designing Data-Intensive Applications (https://dataintensive.net/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::feed-fanout",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "8f2f14b4-3b33-5da0-a6b6-7ee39debdb6d",
+      "noteType": "Bert Two Way",
+      "section": "classic-designs",
+      "fields": {
+        "Side A": "Fan-out on read",
+        "Side B": "Build a feed when it is requested by merging recent posts from everyone the user follows",
+        "Aliases": "Pull model\nFan out on read",
+        "Hint": "Work happens at reading time.",
+        "Fact": "Cheap posting, but every feed load queries many timelines.",
+        "Source": "Designing Data-Intensive Applications (https://dataintensive.net/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::feed-fanout",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "e45e35de-e814-5aa2-9dc9-7c0b67402f8e",
+      "noteType": "Bert Cloze",
+      "section": "classic-designs",
+      "fields": {
+        "Text": "Feeds often use a {{c1::hybrid}} approach: push posts from most accounts, but pull posts from celebrities with huge follower counts at read time.",
+        "Extra": "DDIA describes Twitter moving toward this approach.",
+        "Hint": "Combine both models.",
+        "Fact": "The split avoids millions of writes for each post by a very popular account.",
+        "Source": "Designing Data-Intensive Applications (https://dataintensive.net/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::feed-fanout",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "95b69d8e-ad24-51e9-bda9-c90fdf9f93b6",
+      "noteType": "Bert Cloze",
+      "section": "classic-designs",
+      "fields": {
+        "Text": "Feeds use {{c1::cursor}} based pagination rather than offsets, so new items at the top do not shift or duplicate pages.",
+        "Extra": "The cursor encodes the last seen item, for example its id or timestamp.",
+        "Hint": "Continue after a marker.",
+        "Fact": "Large offsets are also slow, because the database still walks past the skipped rows.",
+        "Source": "Designing Data-Intensive Applications (https://dataintensive.net/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::feed-fanout",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "2d318ad0-3d34-538e-be06-a57415873b17",
+      "noteType": "Bert Cloze",
+      "section": "classic-designs",
+      "fields": {
+        "Text": "Chat servers commonly use {{c1::WebSockets}}, which give a full duplex connection over a single TCP connection.",
+        "Extra": "Standardised in RFC 6455.",
+        "Hint": "It starts as an HTTP Upgrade.",
+        "Fact": "The WebSocket handshake uses the HTTP Upgrade mechanism with a 101 Switching Protocols response.",
+        "Source": "RFC 6455: The WebSocket Protocol (https://www.rfc-editor.org/rfc/rfc6455)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::realtime-transport",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "41eedfbb-21c1-5ef1-8dc1-6fc35e006f90",
+      "noteType": "Bert Two Way",
+      "section": "classic-designs",
+      "fields": {
+        "Side A": "Long polling",
+        "Side B": "The client sends a request that the server holds open until new data arrives or a timeout fires",
+        "Aliases": "Long-polling",
+        "Hint": "A request that waits.",
+        "Fact": "It works over plain HTTP but costs a new request after each message.",
+        "Source": "RFC 6455: The WebSocket Protocol (https://www.rfc-editor.org/rfc/rfc6455)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::realtime-transport",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "529d9ecd-6cb2-5e2f-b793-0e1857698751",
+      "noteType": "Bert Typed",
+      "section": "classic-designs",
+      "fields": {
+        "Question": "Which HTTP status code does a server send to accept a WebSocket upgrade?",
+        "Answer": "101",
+        "Aliases": "101 Switching Protocols\nSwitching Protocols",
+        "Hint": "It is in the 1xx informational class.",
+        "Fact": "The client proves it speaks WebSocket by sending a Sec-WebSocket-Key header.",
+        "Source": "RFC 6455: The WebSocket Protocol (https://www.rfc-editor.org/rfc/rfc6455)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::http-status",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "3224f0d3-a853-5316-a26c-db87c8bbcd1d",
+      "noteType": "Bert Cloze",
+      "section": "classic-designs",
+      "fields": {
+        "Text": "Chat systems order messages within a conversation using a per conversation {{c1::sequence number}} rather than client clocks.",
+        "Extra": "Client clocks can be wrong or skewed.",
+        "Hint": "A counter scoped to each chat.",
+        "Fact": "Ordering is usually only needed within a conversation, which keeps the problem partitionable.",
+        "Source": "Time, Clocks, and the Ordering of Events in a Distributed System (https://lamport.azurewebsites.net/pubs/time-clocks.pdf)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::chat",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "58a88baa-7f80-577a-aa14-eaf0e14ba045",
+      "noteType": "Bert Cloze",
+      "section": "classic-designs",
+      "fields": {
+        "Text": "Online presence is usually tracked with periodic {{c1::heartbeats}}, marking a user offline when they stop arriving.",
+        "Extra": "A short grace period avoids flapping on brief network drops.",
+        "Hint": "Regular signs of life from the client.",
+        "Fact": "Presence updates are often batched or rate limited because they fan out to every contact.",
+        "Source": "Designing Data-Intensive Applications (https://dataintensive.net/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::chat",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "458b6ebb-8685-5d96-9f76-35dc29397d55",
+      "noteType": "Bert Cloze",
+      "section": "classic-designs",
+      "fields": {
+        "Text": "When a chat recipient is offline, the server stores the message and sends a {{c1::push notification}} through the platform service.",
+        "Extra": "Apple Push Notification service and Firebase Cloud Messaging are common.",
+        "Hint": "The phone gets woken up.",
+        "Fact": "The message is delivered over the live connection once the client reconnects.",
+        "Source": "Apple Developer: User Notifications (https://developer.apple.com/documentation/usernotifications)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::chat",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "db20a478-2661-5096-b351-63b633e548fc",
+      "noteType": "Bert Cloze",
+      "section": "classic-designs",
+      "fields": {
+        "Text": "Chat history is often stored in a wide-column store keyed by {{c1::conversation id}} with messages sorted by sequence.",
+        "Extra": "This makes loading recent messages a single partition range read.",
+        "Hint": "Partition by the chat, sort by time.",
+        "Fact": "Discord has written about storing messages in Cassandra and later ScyllaDB partitioned by channel and time bucket.",
+        "Source": "How Discord Stores Trillions of Messages (https://discord.com/blog/how-discord-stores-trillions-of-messages)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::chat",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "eb45c4fc-5ba7-5d2d-943b-aff90802b7f3",
+      "noteType": "Bert Cloze",
+      "section": "classic-designs",
+      "fields": {
+        "Text": "Clients attach a unique {{c1::client message id}} to each sent message so retries over flaky networks do not create duplicates.",
+        "Extra": "The server deduplicates on that id.",
+        "Hint": "Same idea as an idempotency key.",
+        "Fact": "This lets the client safely resend after a timeout without knowing whether the first send succeeded.",
+        "Source": "Stripe API: Idempotent requests (https://docs.stripe.com/api/idempotent_requests)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::chat",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "a8065828-9186-516a-a3dc-78c5469ce878",
+      "noteType": "Bert Cloze",
+      "section": "classic-designs",
+      "fields": {
+        "Text": "{{c1::GeoDNS}} answers DNS queries with different addresses depending on the resolver's location, sending users to a nearby region.",
+        "Extra": "DNS answers are cached for their TTL, so failover is not instant.",
+        "Hint": "Location aware name resolution.",
+        "Fact": "EDNS Client Subnet lets resolvers pass part of the client address so the answer can be more precise.",
+        "Source": "RFC 7871: Client Subnet in DNS Queries (https://www.rfc-editor.org/rfc/rfc7871)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::lb-features",
+        "bert::status::draft"
+      ]
+    }
+  ]
+}

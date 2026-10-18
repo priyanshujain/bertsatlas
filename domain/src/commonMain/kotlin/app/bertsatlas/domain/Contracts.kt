@@ -2,29 +2,24 @@ package app.bertsatlas.domain
 
 import app.bertsatlas.domain.model.ActiveRunSnapshot
 import app.bertsatlas.domain.model.Attempt
-import app.bertsatlas.domain.model.Catalog
 import app.bertsatlas.domain.model.Mastery
 import app.bertsatlas.domain.model.PassportStamp
 import app.bertsatlas.domain.model.ProgressSummary
 import app.bertsatlas.domain.model.QuizConfiguration
 import app.bertsatlas.domain.model.QuizDuration
-import app.bertsatlas.domain.model.QuizTopic
 import app.bertsatlas.domain.model.RunResult
 import app.bertsatlas.domain.model.Streak
 import kotlinx.coroutines.flow.Flow
 import kotlinx.serialization.Serializable
 
-interface CatalogProvider {
-    suspend fun loadCatalog(): Catalog
-}
-
 interface ProgressReader {
-    suspend fun mastery(): List<Mastery>
-    fun observeProgress(): Flow<ProgressSummary>
+    suspend fun mastery(packId: String): List<Mastery>
+    fun observeProgress(packId: String): Flow<ProgressSummary>
 }
 
 interface ProgressWriter {
     suspend fun recordAcceptedAnswer(
+        packId: String,
         attempt: Attempt,
         updatedMastery: List<Mastery>,
         activeRunSnapshot: ActiveRunSnapshot,
@@ -32,18 +27,19 @@ interface ProgressWriter {
     )
 
     suspend fun recordCompletedRun(
+        packId: String,
         result: RunResult,
         streak: Streak,
         newlyEarnedStamps: List<PassportStamp>,
     )
 
-    suspend fun recordAbandonedRun(runId: String, streak: Streak? = null)
+    suspend fun recordAbandonedRun(packId: String, result: RunResult, streak: Streak? = null)
     suspend fun resetProgress()
 }
 
 interface ActiveRunRepository {
     suspend fun loadActiveRun(): ActiveRunSnapshot?
-    suspend fun saveActiveRun(snapshot: ActiveRunSnapshot)
+    suspend fun saveActiveRun(packId: String, snapshot: ActiveRunSnapshot)
     suspend fun clearActiveRun(runId: String)
 }
 
@@ -62,7 +58,7 @@ interface LaunchPreferences {
 
 interface QuizConfigurationPreferences {
     suspend fun loadConfiguration(): QuizConfiguration
-    suspend fun saveConfiguration(duration: QuizDuration, topic: QuizTopic)
+    suspend fun saveDuration(duration: QuizDuration)
 }
 
 interface PlayerSettingsRepository {

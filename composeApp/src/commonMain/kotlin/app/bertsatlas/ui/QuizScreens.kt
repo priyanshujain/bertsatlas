@@ -18,15 +18,34 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.setValue
+import androidx.compose.runtime.remember
+import androidx.compose.foundation.ScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.disabled
 import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.foundation.combinedClickable
+import androidx.compose.foundation.focusable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.input.key.Key
+import androidx.compose.ui.input.key.KeyEventType
+import androidx.compose.ui.input.key.key
+import androidx.compose.ui.input.key.onPreviewKeyEvent
+import androidx.compose.ui.input.key.type
 
 @Composable
 fun QuizScreen(
@@ -51,13 +70,40 @@ fun QuizScreen(
     onFinish: () -> Unit = {},
     onLeave: () -> Unit,
     modifier: Modifier = Modifier,
+    onOpenDebug: (() -> Unit)? = null,
     promptFlag: FlagUi? = null,
     runProgress: Float? = null,
     runProgressDescription: String = "Trivia progress",
     overtimeMessage: String = "Time's up. Keep going for half points",
+    promptContent: (@Composable () -> Unit)? = null,
+    flipAnswerContent: (@Composable () -> Unit)? = null,
+    flipKey: String = prompt,
+    onSelfGrade: (Boolean) -> Unit = {},
 ) {
+    val flipping = flipAnswerContent != null
+    var flipRevealed by rememberSaveable(flipKey) { mutableStateOf(false) }
+    val keyboardPresent = hardwareKeyboardPresent()
+    val focusRequester = remember { FocusRequester() }
+    LaunchedEffect(flipKey, flipRevealed) { runCatching { focusRequester.requestFocus() } }
     AtlasScreen(
-        modifier = modifier,
+        modifier = modifier
+            .focusRequester(focusRequester)
+            .focusable()
+            .onPreviewKeyEvent { event ->
+                if (event.type != KeyEventType.KeyDown) return@onPreviewKeyEvent false
+                when {
+                    flipping && !flipRevealed && (event.key == Key.Spacebar || event.key == Key.Enter) -> { flipRevealed = true; true }
+                    flipping && flipRevealed && event.key == FORGOT_KEY -> { onSelfGrade(false); true }
+                    flipping && flipRevealed && event.key == REMEMBERED_KEY -> { onSelfGrade(true); true }
+                    choices.isNotEmpty() -> {
+                        val choice = choices.getOrNull(CHOICE_KEYS.indexOf(event.key))?.takeIf { it.enabled }
+                        choice?.let { onChoice(it.id) }
+                        choice != null
+                    }
+                    else -> false
+                }
+            },
+        scrollable = !flipping,
         contentPadding = PaddingValues(horizontal = 20.dp, vertical = 16.dp),
         header = {
             Column(Modifier.fillMaxWidth().padding(vertical = 8.dp)) {
@@ -66,7 +112,13 @@ fun QuizScreen(
                     Modifier.fillMaxWidth().heightIn(min = 56.dp).padding(horizontal = 20.dp, vertical = 4.dp),
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
-                    QuizMetric("Score", score.toString(), Modifier.weight(1f))
+                    QuizMetric(
+                        "Score",
+                        score.toString(),
+                        Modifier.weight(1f).then(
+                            if (onOpenDebug == null) Modifier else Modifier.combinedClickable(onClick = {}, onLongClick = onOpenDebug),
+                        ),
+                    )
                     QuizMetric("Question", questionTime, Modifier.weight(1f), warning = timerExpired)
                     AtlasExitButton(onLeave)
                 }
@@ -82,7 +134,11 @@ fun QuizScreen(
             }
         },
     ) {
-        Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(16.dp)) {
+        Column(if (flipping) Modifier.fillMaxSize() else Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(16.dp)) {
+          Column(
+              if (flipping) Modifier.fillMaxWidth().weight(1f).verticalScroll(remember(flipKey) { ScrollState(0) }) else Modifier.fillMaxWidth(),
+              verticalArrangement = Arrangement.spacedBy(16.dp),
+          ) {
             if (promptFlag != null || imageDescription != null) {
                 Box(
                     Modifier.fillMaxWidth().heightIn(min = 148.dp)
@@ -98,13 +154,16 @@ fun QuizScreen(
                     }
                 }
             }
-            AtlasHeading(prompt, Modifier.fillMaxWidth(), centered = true)
+            if (promptContent != null) AtlasCard { promptContent() } else AtlasHeading(prompt, Modifier.fillMaxWidth(), centered = true)
             appliedHintMessages.forEach { message ->
                 AtlasCard(contentDescription = "Applied hint: $message") {
                     AtlasText("Hint: $message", color = AtlasTheme.colors.atlasBlue)
                 }
             }
-            if (choices.isNotEmpty()) ResponsiveChoices(choices, onChoice)
+            if (choices.isNotEmpty()) ResponsiveChoices(choices, onChoice, keyboardPresent)
+            if (flipAnswerContent != null && flipRevealed) AtlasCard { flipAnswerContent() }
+          }
+            if (flipping) FlipAndGradeActions(flipRevealed, { flipRevealed = true }, onSelfGrade, keyboardPresent)
             if (letterSlots.isNotEmpty() || letterTiles.isNotEmpty()) {
                 LetterBank(letterSlots, letterTiles, onLetter, onRemoveLetter)
                 Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
@@ -119,6 +178,30 @@ fun QuizScreen(
         }
     }
 }
+
+@Composable
+private fun FlipAndGradeActions(revealed: Boolean, onReveal: () -> Unit, onSelfGrade: (Boolean) -> Unit, keyboardPresent: Boolean) {
+    if (!revealed) {
+        AtlasButton("Show answer", onReveal, Modifier.fillMaxWidth())
+        if (keyboardPresent) KeyboardHint("Press space to show the answer")
+        return
+    }
+    AtlasText("Did you know it?", Modifier.fillMaxWidth(), style = AtlasTheme.typography.heading, textAlign = TextAlign.Center)
+    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+        AtlasButton("Not this time", { onSelfGrade(false) }, Modifier.weight(1f), AtlasButtonStyle.Secondary)
+        AtlasButton("I knew it", { onSelfGrade(true) }, Modifier.weight(1f))
+    }
+    if (keyboardPresent) KeyboardHint("Press 1 for not this time or 2 for I knew it")
+}
+
+@Composable
+private fun KeyboardHint(text: String) {
+    AtlasText(text, Modifier.fillMaxWidth(), style = AtlasTheme.typography.detail, color = AtlasTheme.colors.mutedPlum, textAlign = TextAlign.Center)
+}
+
+private val CHOICE_KEYS = listOf(Key.One, Key.Two, Key.Three, Key.Four)
+private val FORGOT_KEY = Key.One
+private val REMEMBERED_KEY = Key.Two
 
 @Composable
 private fun QuizMetric(label: String, value: String, modifier: Modifier, warning: Boolean = false) {
@@ -149,19 +232,20 @@ private fun SubtleRunProgress(progress: Float, description: String) {
 }
 
 @Composable
-private fun ResponsiveChoices(choices: List<ChoiceUi>, onChoice: (String) -> Unit) {
+private fun ResponsiveChoices(choices: List<ChoiceUi>, onChoice: (String) -> Unit, keyboardPresent: Boolean) {
+    fun shortcut(choice: ChoiceUi) = choices.indexOf(choice).takeIf { keyboardPresent && it < CHOICE_KEYS.size }?.let { (it + 1).toString() }
     BoxWithConstraints(Modifier.fillMaxWidth()) {
         if (maxWidth >= 560.dp) {
             Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
                 choices.chunked(2).forEach { rowChoices ->
                     Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                        rowChoices.forEach { AtlasChoice(it, onChoice, Modifier.weight(1f)) }
+                        rowChoices.forEach { AtlasChoice(it, onChoice, Modifier.weight(1f), shortcut(it)) }
                         if (rowChoices.size == 1) Box(Modifier.weight(1f))
                     }
                 }
             }
         } else {
-            Column(verticalArrangement = Arrangement.spacedBy(10.dp)) { choices.forEach { AtlasChoice(it, onChoice) } }
+            Column(verticalArrangement = Arrangement.spacedBy(10.dp)) { choices.forEach { AtlasChoice(it, onChoice, shortcut = shortcut(it)) } }
         }
     }
 }
@@ -174,8 +258,12 @@ private fun LetterBank(
     onRemoveLetter: (String) -> Unit,
 ) {
     Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(14.dp)) {
-        WrappingCells(slots.size) { index ->
+        AnswerSlotRows(slots) { index ->
             val slot = slots[index]
+            if (slot.fixed) {
+                FixedLetterSlot(slot)
+                return@AnswerSlotRows
+            }
             val label = slot.character ?: "blank"
             Box(
                 Modifier.size(48.dp)
@@ -200,12 +288,14 @@ private fun LetterBank(
                 Modifier.size(48.dp)
                     .semantics {
                         role = Role.Button
-                        contentDescription = "Letter ${tile.letter}"
-                        stateDescription = when {
+                        val tileState = when {
                             available -> "Available"
                             !tile.enabled -> "Removed"
                             else -> "Placed"
                         }
+                        contentDescription = if (available) "Letter ${tile.letter}" else "Letter ${tile.letter}, ${tileState.lowercase()}"
+                        stateDescription = tileState
+                        if (!available) disabled()
                     }
                     .clickable(enabled = available) { onLetter(tile.id) },
                 contentAlignment = Alignment.Center,
@@ -228,12 +318,59 @@ private fun LetterBank(
 }
 
 @Composable
+private fun FixedLetterSlot(slot: LetterSlotUi) {
+    val character = slot.character.orEmpty()
+    val spoken = if (character.isBlank()) "space" else character
+    Box(
+        Modifier.size(48.dp).semantics { contentDescription = "Answer position ${slot.position + 1}: $spoken" },
+        contentAlignment = Alignment.Center,
+    ) {
+        if (character.isNotBlank()) AtlasText(character, style = AtlasTheme.typography.heading)
+    }
+}
+
+@Composable
+private fun AnswerSlotRows(slots: List<LetterSlotUi>, content: @Composable (Int) -> Unit) {
+    BoxWithConstraints(Modifier.fillMaxWidth()) {
+        val columns = (maxWidth / 56.dp).toInt().coerceAtLeast(1)
+        Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+            answerRowsKeepingWordsTogether(slots, columns).forEach { indices ->
+                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally)) {
+                    for (index in indices) content(index)
+                }
+            }
+        }
+    }
+}
+
+private fun answerRowsKeepingWordsTogether(slots: List<LetterSlotUi>, columns: Int): List<List<Int>> {
+    val words = mutableListOf(mutableListOf<Int>())
+    slots.forEachIndexed { index, slot ->
+        if (slot.fixed && slot.character.isNullOrBlank()) words.add(mutableListOf()) else words.last().add(index)
+    }
+    val rows = mutableListOf<MutableList<Int>>()
+    words.filter { it.isNotEmpty() }.forEach { word ->
+        word.chunked(columns).forEach { piece ->
+            val current = rows.lastOrNull()
+            val spaceIndex = piece.first() - 1
+            if (current != null && current.size + 1 + piece.size <= columns && slots.getOrNull(spaceIndex)?.fixed == true) {
+                current.add(spaceIndex)
+                current.addAll(piece)
+            } else {
+                rows.add(piece.toMutableList())
+            }
+        }
+    }
+    return rows
+}
+
+@Composable
 private fun WrappingCells(count: Int, content: @Composable (Int) -> Unit) {
     BoxWithConstraints(Modifier.fillMaxWidth()) {
         val columns = (maxWidth / 56.dp).toInt().coerceAtLeast(1)
         Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
             (0 until count).chunked(columns).forEach { indices ->
-                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally)) {
                     for (index in indices) content(index)
                 }
             }
@@ -330,7 +467,7 @@ fun LeaveQuizConfirmationScreen(
     onLeave: () -> Unit,
     modifier: Modifier = Modifier,
     title: String = "Leave this trivia run?",
-    body: String = "Your answered questions will stay in your practice progress. Ending now won't count toward your personal best or daily streak.",
+    body: String = "Your answered questions will stay in your practice progress. They still count toward today's streak. Ending now won't count toward your personal best.",
 ) {
     AtlasScreen(modifier, scrollable = false) {
         Column(

@@ -17,6 +17,10 @@ dependencyResolutionManagement {
 rootProject.name = "berts-atlas"
 
 include(":domain")
+include(":anki")
+include(":cardRender")
 include(":composeApp")
 include(":androidApp")
+include(":desktopApp")
 include(":catalogTool")
+include(":cli")

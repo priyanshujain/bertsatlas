@@ -1,0 +1,3291 @@
+{
+  "cards": [
+    {
+      "guid": "eef2a11f-7f1a-5be5-b725-f99dfcd4ac8c",
+      "noteType": "Bert Typed",
+      "section": "basics",
+      "fields": {
+        "Question": "What is the time complexity of reading the element at index i of an array?",
+        "Answer": "O(1)",
+        "Aliases": "constant\nconstant time",
+        "Hint": "The address can be computed directly from the index.",
+        "Fact": "Array elements sit in contiguous memory, so element i lives at base address plus i times the element size.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::complexity",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "06f90716-18cd-5bca-b7f4-6e9520dfc40c",
+      "noteType": "Bert Typed",
+      "section": "basics",
+      "fields": {
+        "Question": "What is the worst case time to search for a value in an unsorted array of n elements?",
+        "Answer": "O(n)",
+        "Aliases": "linear\nlinear time",
+        "Hint": "Without order, nothing lets you skip elements.",
+        "Fact": "Linear search is optimal for unsorted data, since any unexamined element could be the target.",
+        "Source": "Algorithms, 4th edition, Sedgewick and Wayne (https://algs4.cs.princeton.edu/home/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::complexity",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "8a483f92-c46a-5ec0-b059-548567e49c90",
+      "noteType": "Bert Typed",
+      "section": "basics",
+      "fields": {
+        "Question": "What is the time complexity of inserting at the front of a dynamic array of n elements?",
+        "Answer": "O(n)",
+        "Aliases": "linear\nlinear time",
+        "Hint": "Think about what happens to the existing elements.",
+        "Fact": "Every existing element has to shift one position to make room.",
+        "Source": "Python Wiki: TimeComplexity (https://wiki.python.org/moin/TimeComplexity)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::complexity",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "b7e0f7b3-66a4-5421-ab5e-ed8d5311548c",
+      "noteType": "Bert Cloze",
+      "section": "basics",
+      "fields": {
+        "Text": "Appending to a dynamic array costs {{c1::O(1)}} amortized time when the capacity grows {{c2::geometrically}}, for example by doubling.",
+        "Extra": "Growing by a fixed constant amount instead would make n appends cost O(n^2) in total.",
+        "Hint": "Total copying stays proportional to n if each resize multiplies the capacity.",
+        "Fact": "CPython lists over-allocate when they grow so that repeated appends stay amortized constant time.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::complexity",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "4d06b08f-34ef-55e4-9a8e-f99f32349ef4",
+      "noteType": "Bert Cloze",
+      "section": "basics",
+      "fields": {
+        "Text": "Big O gives an asymptotic {{c1::upper}} bound, Big Omega gives a {{c2::lower}} bound, and Big Theta gives a {{c3::tight}} bound.",
+        "Extra": "f(n) = Theta(g(n)) means f is both O(g(n)) and Omega(g(n)).",
+        "Hint": "Theta is the one that pins the growth rate from both sides.",
+        "Fact": "Big O notation was popularized in computer science by Donald Knuth, who also advocated Omega and Theta in a 1976 letter.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::complexity",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "b350ce24-120f-558f-ad63-84d5ac4266fd",
+      "noteType": "Bert Typed",
+      "section": "basics",
+      "fields": {
+        "Question": "What is the time complexity of two nested loops that each run n times with O(1) work inside?",
+        "Answer": "O(n^2)",
+        "Aliases": "O(n²)\nquadratic\nO(n*n)",
+        "Hint": "Multiply the iteration counts.",
+        "Fact": "Doubling n makes a quadratic algorithm roughly four times slower.",
+        "Source": "MIT 6.006 Introduction to Algorithms, Spring 2020 (https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::complexity",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "e9c0d5a5-6f7f-5d7f-9993-22e2423c1866",
+      "noteType": "Bert Cloze",
+      "section": "basics",
+      "fields": {
+        "Text": "The recurrence T(n) = 2T(n/2) + Theta(n) solves to {{c1::Theta(n log n)}}.",
+        "Extra": "This is the recurrence of merge sort.",
+        "Hint": "Each of the log n levels of the recursion tree does linear work in total.",
+        "Fact": "The master theorem handles this as the case where the work is spread evenly across levels.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::complexity",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "dea9f2c0-39fb-5af5-825b-854ef75f1893",
+      "noteType": "Bert Typed",
+      "section": "basics",
+      "fields": {
+        "Question": "What does the recurrence T(n) = T(n/2) + O(1) solve to?",
+        "Answer": "O(log n)",
+        "Aliases": "O(logn)\nlog n\nO(lg n)",
+        "Hint": "Count how many times n can be halved before reaching 1.",
+        "Fact": "This is the recurrence of binary search.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::complexity",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "cf02553b-5c9a-53ed-b637-11dd4d7d9d4a",
+      "noteType": "Bert Cloze",
+      "section": "basics",
+      "fields": {
+        "Text": "Amortized analysis bounds the {{c1::average cost per operation over a worst case sequence}} of operations, without relying on probability.",
+        "Extra": "Common methods are aggregate analysis, the accounting method and the potential method.",
+        "Hint": "It differs from average case analysis, which assumes a distribution of inputs.",
+        "Fact": "CLRS presents three amortized techniques: aggregate, accounting and potential.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::complexity",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "05650ab2-fb26-5945-a815-42df59d12244",
+      "noteType": "Bert Two Way",
+      "section": "basics",
+      "fields": {
+        "Side A": "O(log n)",
+        "Side B": "Logarithmic time",
+        "Aliases": "",
+        "Hint": "Think of an algorithm that halves the problem each step.",
+        "Fact": "With n around one billion, log base 2 of n is only about 30.",
+        "Source": "MIT 6.006 Introduction to Algorithms, Spring 2020 (https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::complexity-name",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "4967d4b7-0ba0-5b75-8873-78fd7c26a417",
+      "noteType": "Bert Two Way",
+      "section": "basics",
+      "fields": {
+        "Side A": "O(n log n)",
+        "Side B": "Linearithmic time",
+        "Aliases": "quasilinear\nn log n",
+        "Hint": "Efficient comparison sorts land here.",
+        "Fact": "Comparison sorting cannot beat this bound in the worst case.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::complexity-name",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "92d3c32b-9b6c-5ca1-9a0c-466dd457af08",
+      "noteType": "Bert Two Way",
+      "section": "basics",
+      "fields": {
+        "Side A": "O(1)",
+        "Side B": "Constant time",
+        "Aliases": "constant",
+        "Hint": "The cost does not depend on the input size.",
+        "Fact": "Constant time does not mean fast, only that the cost is bounded independent of n.",
+        "Source": "MIT 6.006 Introduction to Algorithms, Spring 2020 (https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::complexity-name",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "97f4ff61-322b-5c69-a339-c942bcf51b2e",
+      "noteType": "Bert Typed",
+      "section": "basics",
+      "fields": {
+        "Question": "What is the time complexity of inserting a node at the head of a singly linked list?",
+        "Answer": "O(1)",
+        "Aliases": "constant\nconstant time",
+        "Hint": "Only a couple of pointers change.",
+        "Fact": "No elements move, which is the main advantage of linked lists over arrays for insertion.",
+        "Source": "Open Data Structures, Pat Morin (https://opendatastructures.org/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::complexity",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "bb27a60c-3112-543c-a463-056351aaf83b",
+      "noteType": "Bert Typed",
+      "section": "basics",
+      "fields": {
+        "Question": "What is the time complexity of accessing the k-th element of a singly linked list of n nodes, in the worst case?",
+        "Answer": "O(n)",
+        "Aliases": "linear\nlinear time",
+        "Hint": "There is no index arithmetic, only next pointers.",
+        "Fact": "Linked lists trade random access for cheap insertion and deletion at known positions.",
+        "Source": "Open Data Structures, Pat Morin (https://opendatastructures.org/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::complexity",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "f0f6cedc-a8bd-57a8-9fae-2e6022289a96",
+      "noteType": "Bert Typed",
+      "section": "basics",
+      "fields": {
+        "Question": "Given a pointer to a node in a doubly linked list, what is the time to delete that node?",
+        "Answer": "O(1)",
+        "Aliases": "constant\nconstant time",
+        "Hint": "The node already knows both of its neighbours.",
+        "Fact": "In a singly linked list you would need the previous node, which may require a scan.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::complexity",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "ca165573-ae6f-5aad-97dc-421aa7964496",
+      "noteType": "Bert Typed",
+      "section": "basics",
+      "fields": {
+        "Question": "How much extra space does reversing a singly linked list iteratively need?",
+        "Answer": "O(1)",
+        "Aliases": "constant\nconstant space",
+        "Hint": "You only need a few pointer variables.",
+        "Fact": "The recursive version uses O(n) stack space instead.",
+        "Source": "Open Data Structures, Pat Morin (https://opendatastructures.org/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::complexity",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "40c9501d-da6e-530e-9eb7-845a7814015b",
+      "noteType": "Bert Basic",
+      "section": "basics",
+      "fields": {
+        "Question": "Which kind of linked list lets you traverse forward and backward from any node?",
+        "Answer": "Doubly linked list",
+        "Aliases": "doubly-linked list\ndoubly linked",
+        "Hint": "Each node stores two links.",
+        "Fact": "Java's LinkedList is a doubly linked list.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::linear-structure",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "ff92cd89-7682-51ad-a30c-354529c019f2",
+      "noteType": "Bert Cloze",
+      "section": "basics",
+      "fields": {
+        "Text": "Floyd's cycle detection moves a {{c1::slow}} pointer one step and a {{c2::fast}} pointer two steps; they meet if and only if the list has a cycle.",
+        "Extra": "Runs in O(n) time with O(1) extra space.",
+        "Hint": "Picture two runners on a circular track.",
+        "Fact": "It is also known as the tortoise and hare algorithm.",
+        "Source": "Algorithms, Jeff Erickson (https://jeffe.cs.illinois.edu/teaching/algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::pattern",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "5a8ca537-db61-59cf-9a3a-4cff31e71238",
+      "noteType": "Bert Basic",
+      "section": "basics",
+      "fields": {
+        "Question": "In what order does a stack remove elements?",
+        "Answer": "Last in, first out",
+        "Aliases": "LIFO\nlast in first out",
+        "Hint": "Think of a pile of plates.",
+        "Fact": "The call stack that tracks function calls follows this order.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::order",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "fe969f01-3036-500d-b809-3df346618871",
+      "noteType": "Bert Basic",
+      "section": "basics",
+      "fields": {
+        "Question": "In what order does a queue remove elements?",
+        "Answer": "First in, first out",
+        "Aliases": "FIFO\nfirst in first out",
+        "Hint": "Think of a line at a ticket counter.",
+        "Fact": "Breadth first search relies on this order to visit vertices level by level.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::order",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "bfe9bcba-c7f8-5fa7-9e5a-3e4d55f95b1f",
+      "noteType": "Bert Basic",
+      "section": "basics",
+      "fields": {
+        "Question": "Which data structure is the standard choice for checking that brackets are balanced?",
+        "Answer": "Stack",
+        "Aliases": "a stack",
+        "Hint": "The most recently opened bracket must close first.",
+        "Fact": "The same idea underlies parsing expressions in compilers.",
+        "Source": "Algorithms, 4th edition, Sedgewick and Wayne (https://algs4.cs.princeton.edu/home/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::linear-structure",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "ff26bca2-3317-5f79-bc7c-4301b7932b05",
+      "noteType": "Bert Basic",
+      "section": "basics",
+      "fields": {
+        "Question": "Which Python standard library type supports O(1) appends and pops at both ends?",
+        "Answer": "collections.deque",
+        "Aliases": "deque",
+        "Hint": "It lives in the collections module.",
+        "Fact": "Indexing into the middle of this type is O(n), unlike a list.",
+        "Source": "Python collections documentation (https://docs.python.org/3/library/collections.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::linear-structure",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "cc1a3f57-3fc2-5bed-a6d0-62a60435b22f",
+      "noteType": "Bert Typed",
+      "section": "basics",
+      "fields": {
+        "Question": "In CPython, what is the time complexity of list.pop(0) on a list of n elements?",
+        "Answer": "O(n)",
+        "Aliases": "linear\nlinear time",
+        "Hint": "Remember how lists are stored.",
+        "Fact": "Popping from the end with list.pop() is O(1), so lists make poor queues.",
+        "Source": "Python Wiki: TimeComplexity (https://wiki.python.org/moin/TimeComplexity)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::complexity",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "47ed8364-0994-5fb1-9947-95f6184eb016",
+      "noteType": "Bert Basic",
+      "section": "basics",
+      "fields": {
+        "Question": "What does deque stand for?",
+        "Answer": "Double-ended queue",
+        "Aliases": "double ended queue",
+        "Hint": "It describes where you can add and remove.",
+        "Fact": "It is usually pronounced like deck.",
+        "Source": "Python collections documentation (https://docs.python.org/3/library/collections.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::linear-structure",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "919d6d0d-c2ee-5147-8416-96a23ab8809a",
+      "noteType": "Bert Cloze",
+      "section": "basics",
+      "fields": {
+        "Text": "A {{c1::circular buffer}} implements a fixed capacity queue in an array by wrapping the head and tail indices modulo the capacity.",
+        "Extra": "Also called a ring buffer.",
+        "Hint": "The end of the array connects back to its start.",
+        "Fact": "Ring buffers are common in audio and network drivers because they never reallocate.",
+        "Source": "Open Data Structures, Pat Morin (https://opendatastructures.org/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::linear-structure",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "f39a02ef-d991-5a81-97a2-846eeef6e5ae",
+      "noteType": "Bert Cloze",
+      "section": "basics",
+      "fields": {
+        "Text": "A queue can be built from {{c1::two}} stacks with amortized O(1) time per operation.",
+        "Extra": "One stack receives pushes; the other is refilled only when empty.",
+        "Hint": "Each element is moved between stacks at most once.",
+        "Fact": "This is a classic exercise in amortized analysis.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::linear-structure",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "e385275a-fdd6-5ece-b4dc-250161887b25",
+      "noteType": "Bert Typed",
+      "section": "basics",
+      "fields": {
+        "Question": "What is the time complexity of push and pop on an array-backed stack, amortized?",
+        "Answer": "O(1)",
+        "Aliases": "constant\nconstant time",
+        "Hint": "Both happen at the same end.",
+        "Fact": "An occasional resize is paid for by the many cheap operations around it.",
+        "Source": "Algorithms, 4th edition, Sedgewick and Wayne (https://algs4.cs.princeton.edu/home/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::complexity",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "b613a6cf-eed4-5877-a0f4-e054f318c86d",
+      "noteType": "Bert Typed",
+      "section": "hash",
+      "fields": {
+        "Question": "What is the expected time of a lookup in a hash table with a good hash function and bounded load factor?",
+        "Answer": "O(1)",
+        "Aliases": "constant\nconstant time",
+        "Hint": "Hashing jumps straight to a bucket.",
+        "Fact": "This expectation assumes keys hash roughly uniformly across buckets.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::complexity",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "dc338eee-8b53-5ae1-b5ef-35b2180978c4",
+      "noteType": "Bert Typed",
+      "section": "hash",
+      "fields": {
+        "Question": "What is the worst case time of a lookup in a hash table with separate chaining and n keys?",
+        "Answer": "O(n)",
+        "Aliases": "linear\nlinear time",
+        "Hint": "Imagine every key landing in the same bucket.",
+        "Fact": "Adversarial inputs that force collisions are the basis of hash flooding attacks.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::complexity",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "ccd8933d-eb81-5ea9-8d5d-2897f091d49a",
+      "noteType": "Bert Cloze",
+      "section": "hash",
+      "fields": {
+        "Text": "The load factor of a hash table is {{c1::the number of stored entries divided by the number of buckets}}.",
+        "Extra": "Tables usually resize when it passes a threshold.",
+        "Hint": "It measures how full the table is.",
+        "Fact": "In separate chaining, the load factor equals the average chain length.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::hashing",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "d5246a1b-0387-5552-84ee-326aa7360712",
+      "noteType": "Bert Basic",
+      "section": "hash",
+      "fields": {
+        "Question": "What is the collision resolution strategy that keeps a list of entries in each bucket?",
+        "Answer": "Separate chaining",
+        "Aliases": "chaining",
+        "Hint": "Colliding entries are linked together.",
+        "Fact": "With chaining the load factor can exceed 1.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::hashing",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "a3015680-0ec0-509e-be28-415f804fd3bd",
+      "noteType": "Bert Basic",
+      "section": "hash",
+      "fields": {
+        "Question": "What is the collision resolution strategy that stores every entry in the table array itself and probes other slots on collision?",
+        "Answer": "Open addressing",
+        "Aliases": "closed hashing",
+        "Hint": "No external lists are used.",
+        "Fact": "The load factor of an open addressed table can never exceed 1.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::hashing",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "d0220185-1d92-51cf-bf1b-f36e1382cfa2",
+      "noteType": "Bert Basic",
+      "section": "hash",
+      "fields": {
+        "Question": "Which open addressing scheme probes slots h, h+1, h+2 and so on?",
+        "Answer": "Linear probing",
+        "Aliases": "",
+        "Hint": "The step between probes is constant.",
+        "Fact": "Its sequential access pattern is cache friendly despite clustering.",
+        "Source": "Algorithms, 4th edition, Sedgewick and Wayne (https://algs4.cs.princeton.edu/home/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::hashing",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "bc5b1d51-b96b-5630-9ffb-0c62714bee94",
+      "noteType": "Bert Cloze",
+      "section": "hash",
+      "fields": {
+        "Text": "Linear probing suffers from {{c1::primary clustering}}, where long runs of occupied slots grow and slow down inserts and searches.",
+        "Extra": "Quadratic probing and double hashing reduce it.",
+        "Hint": "Occupied slots tend to clump together.",
+        "Fact": "Knuth analyzed linear probing in 1963, one of the first analyses of an algorithm's average performance.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::hashing",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "a9b8eb8b-caaf-501b-9283-187c8bfdd4ad",
+      "noteType": "Bert Basic",
+      "section": "hash",
+      "fields": {
+        "Question": "Which open addressing scheme uses a second hash function to choose the probe step?",
+        "Answer": "Double hashing",
+        "Aliases": "",
+        "Hint": "The step size depends on the key.",
+        "Fact": "Different keys that collide at first usually follow different probe sequences.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::hashing",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "a2ff17f8-f68d-5013-890b-6b078330d48f",
+      "noteType": "Bert Typed",
+      "section": "hash",
+      "fields": {
+        "Question": "What is the default load factor of java.util.HashMap?",
+        "Answer": "0.75",
+        "Aliases": ".75\n3/4",
+        "Hint": "It is a fraction between one half and one.",
+        "Fact": "The Javadoc describes this value as a good tradeoff between time and space costs.",
+        "Source": "Java SE 21 API: HashMap (https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/HashMap.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::number",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "1dfe8d73-aac1-5496-b990-e3053344a854",
+      "noteType": "Bert Cloze",
+      "section": "hash",
+      "fields": {
+        "Text": "In OpenJDK 8 and later, a HashMap bucket with many collisions can be converted from a linked list to a {{c1::balanced tree}}, improving worst case lookups in that bucket.",
+        "Extra": "The conversion threshold in the OpenJDK source is 8 entries per bin.",
+        "Hint": "Think about what structure keeps search logarithmic.",
+        "Fact": "This was added to limit the damage of many keys colliding in one bucket.",
+        "Source": "OpenJDK source: java.util.HashMap (https://github.com/openjdk/jdk/blob/master/src/java.base/share/classes/java/util/HashMap.java)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::hashing",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "ae999746-3684-5863-90e4-959681f344fc",
+      "noteType": "Bert Basic",
+      "section": "hash",
+      "fields": {
+        "Question": "Since Python 3.7, in what order does iterating a dict yield its keys?",
+        "Answer": "Insertion order",
+        "Aliases": "order of insertion",
+        "Hint": "It is not sorted order.",
+        "Fact": "The ordering was an implementation detail in CPython 3.6 and became a language guarantee in 3.7.",
+        "Source": "Python built-in types: mapping types (https://docs.python.org/3/library/stdtypes.html#mapping-types-dict)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::order",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "16273f4d-8910-52bc-9aea-7d340b5e4c64",
+      "noteType": "Bert Cloze",
+      "section": "hash",
+      "fields": {
+        "Text": "A hash table does not keep keys in order, so finding the {{c1::smallest key}} or iterating in sorted order needs a different structure such as a balanced BST.",
+        "Extra": "Ordered operations are the main reason to pick a tree map over a hash map.",
+        "Hint": "Hashing scatters keys deliberately.",
+        "Fact": "Java offers both: HashMap for speed and TreeMap for ordered keys.",
+        "Source": "Java SE 21 API: TreeMap (https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/TreeMap.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::hashing",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "94ed7378-5cc9-5e45-8528-a8aacc029f49",
+      "noteType": "Bert Typed",
+      "section": "hash",
+      "fields": {
+        "Question": "What is the time complexity of reading the minimum of a binary min-heap?",
+        "Answer": "O(1)",
+        "Aliases": "constant\nconstant time",
+        "Hint": "Where does the smallest element live?",
+        "Fact": "The minimum is always at the root, index 0 in the array form.",
+        "Source": "Python heapq documentation (https://docs.python.org/3/library/heapq.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::complexity",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "d218c76e-f490-5f81-87c5-23adf7f7669a",
+      "noteType": "Bert Typed",
+      "section": "hash",
+      "fields": {
+        "Question": "What is the worst case time of inserting into a binary heap of n elements?",
+        "Answer": "O(log n)",
+        "Aliases": "O(logn)\nlog n\nO(lg n)",
+        "Hint": "The new element bubbles up along one path.",
+        "Fact": "A binary heap is a complete tree, so its height is about log2 n.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::complexity",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "c34b6a28-d9d0-55d3-8590-c2d071de6fb6",
+      "noteType": "Bert Typed",
+      "section": "hash",
+      "fields": {
+        "Question": "What is the worst case time of removing the minimum from a binary min-heap of n elements?",
+        "Answer": "O(log n)",
+        "Aliases": "O(logn)\nlog n\nO(lg n)",
+        "Hint": "The last element moves to the root and sifts down.",
+        "Fact": "Python's heapq.heappop does exactly this.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::complexity",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "c8ba3461-682b-52b7-af45-7b3a6f20a0bc",
+      "noteType": "Bert Typed",
+      "section": "hash",
+      "fields": {
+        "Question": "What is the time complexity of building a binary heap from n unordered elements with bottom up heapify?",
+        "Answer": "O(n)",
+        "Aliases": "linear\nlinear time",
+        "Hint": "Most nodes are near the bottom and sift down only a little.",
+        "Fact": "It is better than the O(n log n) of inserting the elements one by one.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::complexity",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "a9673d77-b15c-53bb-b4f1-d00d81adcf7b",
+      "noteType": "Bert Cloze",
+      "section": "hash",
+      "fields": {
+        "Text": "In a 0-indexed array binary heap, the children of index i are at {{c1::2i + 1}} and {{c2::2i + 2}}, and its parent is at {{c3::(i - 1) // 2}}.",
+        "Extra": "With 1-based indexing the children are 2i and 2i + 1, and the parent is i // 2.",
+        "Hint": "Each level doubles the number of nodes.",
+        "Fact": "Python's heapq uses 0-based indexing, while CLRS uses 1-based.",
+        "Source": "Python heapq documentation (https://docs.python.org/3/library/heapq.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::heap",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "6965596f-375d-533c-a2cb-41b51c64e8e6",
+      "noteType": "Bert Basic",
+      "section": "hash",
+      "fields": {
+        "Question": "Is Python's heapq a min-heap or a max-heap?",
+        "Answer": "Min-heap",
+        "Aliases": "min heap",
+        "Hint": "heap[0] is the answer to a common question.",
+        "Fact": "A common workaround for max-heap behaviour is pushing negated keys.",
+        "Source": "Python heapq documentation (https://docs.python.org/3/library/heapq.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::heap",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "25a83cf4-ee79-5cff-935e-3fa75158ed34",
+      "noteType": "Bert Basic",
+      "section": "hash",
+      "fields": {
+        "Question": "To track the k-th largest element of a stream, which heap do you maintain?",
+        "Answer": "A min-heap of size k",
+        "Aliases": "min heap of size k\nmin-heap",
+        "Hint": "The root should be the weakest of the current top k.",
+        "Fact": "Each new element costs O(log k).",
+        "Source": "Python heapq documentation (https://docs.python.org/3/library/heapq.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::pattern",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "81fe6c6b-11ea-5919-8333-7f854cc2e587",
+      "noteType": "Bert Cloze",
+      "section": "hash",
+      "fields": {
+        "Text": "In a max-heap, every node's key is {{c1::greater than or equal to}} the keys of its children.",
+        "Extra": "So the maximum is at the root.",
+        "Hint": "Compare a parent with its children.",
+        "Fact": "Siblings in a heap have no required order between them.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::heap",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "89c83817-b5be-5c1d-86db-b4e0e7318adb",
+      "noteType": "Bert Cloze",
+      "section": "hash",
+      "fields": {
+        "Text": "A binary heap is a {{c1::complete}} binary tree, which lets it be stored in an array with no pointers.",
+        "Extra": "Every level is full except possibly the last, which fills from the left.",
+        "Hint": "Think about why there are no gaps in the array.",
+        "Fact": "This shape guarantees the height is floor(log2 n).",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::heap",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "a764faee-8fb9-54b0-b05f-59d8d7e21c54",
+      "noteType": "Bert Typed",
+      "section": "hash",
+      "fields": {
+        "Question": "What is the amortized time of decrease-key in a Fibonacci heap?",
+        "Answer": "O(1)",
+        "Aliases": "constant\nconstant time",
+        "Hint": "It is cheaper than in a binary heap.",
+        "Fact": "This bound gives Dijkstra's algorithm O(E + V log V) time.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::complexity",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "9d7bdd76-9f3b-5e0a-80d4-f51da1872b8d",
+      "noteType": "Bert Typed",
+      "section": "patterns",
+      "fields": {
+        "Question": "Merging k sorted lists with N total elements using a min-heap takes what time?",
+        "Answer": "O(N log k)",
+        "Aliases": "N log k",
+        "Hint": "The heap holds one candidate per list.",
+        "Fact": "Each of the N elements is pushed and popped once in a heap of size at most k.",
+        "Source": "Python heapq documentation (https://docs.python.org/3/library/heapq.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::complexity",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "0eab610c-0d44-5115-912c-dde4a7d87bb8",
+      "noteType": "Bert Typed",
+      "section": "trees",
+      "fields": {
+        "Question": "What is the worst case search time in a balanced binary search tree with n keys?",
+        "Answer": "O(log n)",
+        "Aliases": "O(logn)\nlog n\nO(lg n)",
+        "Hint": "Height controls the cost.",
+        "Fact": "Balanced trees such as AVL and red-black trees keep the height O(log n).",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::complexity",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "096f40bc-867f-5614-ac4f-afdaf487fbf9",
+      "noteType": "Bert Typed",
+      "section": "trees",
+      "fields": {
+        "Question": "What is the worst case search time in an unbalanced binary search tree with n keys?",
+        "Answer": "O(n)",
+        "Aliases": "linear\nlinear time",
+        "Hint": "Insert sorted keys and look at the shape.",
+        "Fact": "Inserting keys in sorted order makes a plain BST degenerate into a linked list.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::complexity",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "40de10d8-4d11-533a-9834-7036421e647a",
+      "noteType": "Bert Basic",
+      "section": "trees",
+      "fields": {
+        "Question": "What does an inorder traversal of a binary search tree produce?",
+        "Answer": "Keys in sorted order",
+        "Aliases": "sorted order\nascending order\nsorted keys",
+        "Hint": "Left subtree, node, right subtree.",
+        "Fact": "This makes inorder traversal a quick way to validate a BST.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::traversal",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "cd0753b4-290b-553c-8370-0c07ca902ae2",
+      "noteType": "Bert Two Way",
+      "section": "trees",
+      "fields": {
+        "Side A": "Inorder traversal",
+        "Side B": "Left subtree, node, right subtree",
+        "Aliases": "left, root, right",
+        "Hint": "The node sits in the middle.",
+        "Fact": "On a BST this order is ascending.",
+        "Source": "Algorithms, 4th edition, Sedgewick and Wayne (https://algs4.cs.princeton.edu/home/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::traversal",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "eff860d8-ed78-595c-8721-3f10d820bd7a",
+      "noteType": "Bert Two Way",
+      "section": "trees",
+      "fields": {
+        "Side A": "Preorder traversal",
+        "Side B": "Node, left subtree, right subtree",
+        "Aliases": "root, left, right",
+        "Hint": "The node comes first.",
+        "Fact": "Preorder is a natural way to copy or serialize a tree.",
+        "Source": "Algorithms, 4th edition, Sedgewick and Wayne (https://algs4.cs.princeton.edu/home/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::traversal",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "5a9e09d0-ea68-540e-a7e0-06436d345885",
+      "noteType": "Bert Two Way",
+      "section": "trees",
+      "fields": {
+        "Side A": "Postorder traversal",
+        "Side B": "Left subtree, right subtree, node",
+        "Aliases": "left, right, root",
+        "Hint": "The node comes last.",
+        "Fact": "Postorder suits deleting a tree, since children are handled before their parent.",
+        "Source": "Algorithms, 4th edition, Sedgewick and Wayne (https://algs4.cs.princeton.edu/home/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::traversal",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "b2de0685-bce0-5b19-9efc-95341a4b225d",
+      "noteType": "Bert Basic",
+      "section": "trees",
+      "fields": {
+        "Question": "Which data structure does a level order traversal of a tree use?",
+        "Answer": "Queue",
+        "Aliases": "a queue\nFIFO queue",
+        "Hint": "Nodes are visited in the order they are discovered.",
+        "Fact": "Level order traversal is breadth first search on a tree.",
+        "Source": "Algorithms, 4th edition, Sedgewick and Wayne (https://algs4.cs.princeton.edu/home/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::linear-structure",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "5485e327-7a13-5cfd-b649-66e5f647410e",
+      "noteType": "Bert Cloze",
+      "section": "trees",
+      "fields": {
+        "Text": "In an AVL tree, the heights of the two child subtrees of every node differ by {{c1::at most one}}.",
+        "Extra": "Rotations restore this after inserts and deletes.",
+        "Hint": "The balance factor is small.",
+        "Fact": "This keeps the height at most roughly 1.44 log2 n.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::tree",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "c1b45356-f454-56cc-9ef6-9d1592ca9684",
+      "noteType": "Bert Basic",
+      "section": "trees",
+      "fields": {
+        "Question": "The AVL tree is named after which inventors?",
+        "Answer": "Adelson-Velsky and Landis",
+        "Aliases": "Adelson-Velsky, Landis\nAdelson Velsky and Landis",
+        "Hint": "Two Soviet mathematicians, 1962.",
+        "Fact": "The AVL tree is generally considered the first self-balancing binary search tree.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::tree-name",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "065c0611-8381-5f2d-9bca-e05a0f9b9774",
+      "noteType": "Bert Cloze",
+      "section": "trees",
+      "fields": {
+        "Text": "After inserting into an AVL tree, at most {{c1::one single or double rotation}} is needed to restore balance.",
+        "Extra": "Deletion can need rotations at many levels.",
+        "Hint": "Fixing the lowest unbalanced ancestor restores its old height.",
+        "Fact": "A double rotation is two single rotations performed in sequence.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::tree",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "359c8a3b-ae7c-593c-ad71-bc9701ba9e76",
+      "noteType": "Bert Cloze",
+      "section": "trees",
+      "fields": {
+        "Text": "In a red-black tree, a red node never has a {{c1::red}} child, and every path from a node down to its descendant leaves contains the same number of {{c2::black}} nodes.",
+        "Extra": "The root is black, and leaves (NIL) are black.",
+        "Hint": "Two colors, two rules to remember.",
+        "Fact": "Red-black trees were described by Guibas and Sedgewick in 1978, building on Bayer's symmetric binary B-trees.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::tree",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "622e79fb-7faf-51f2-a7fb-c7b30b4b4a01",
+      "noteType": "Bert Cloze",
+      "section": "trees",
+      "fields": {
+        "Text": "A red-black tree with n internal nodes has height at most {{c1::2 log2(n + 1)}}.",
+        "Extra": "So search, insert and delete are O(log n).",
+        "Hint": "It is within a constant factor of the optimal height.",
+        "Fact": "No root to leaf path is more than twice as long as any other.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::tree",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "b02c2e24-58f0-5f91-872b-950849bf0764",
+      "noteType": "Bert Basic",
+      "section": "trees",
+      "fields": {
+        "Question": "Which is more strictly balanced, an AVL tree or a red-black tree?",
+        "Answer": "AVL tree",
+        "Aliases": "AVL",
+        "Hint": "Compare their height bounds.",
+        "Fact": "Stricter balance tends to make AVL lookups slightly faster, while red-black trees usually do less rebalancing work on updates.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::tree-name",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "7c20f293-6fee-5162-8f50-201fa22d7c95",
+      "noteType": "Bert Basic",
+      "section": "trees",
+      "fields": {
+        "Question": "java.util.TreeMap is based on which data structure?",
+        "Answer": "Red-black tree",
+        "Aliases": "red black tree\nred-black",
+        "Hint": "The Javadoc names it directly.",
+        "Fact": "TreeMap guarantees log n time for containsKey, get, put and remove.",
+        "Source": "Java SE 21 API: TreeMap (https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/TreeMap.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::tree-name",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "668fb8f4-8c1f-5e06-ae4c-f83da1944393",
+      "noteType": "Bert Cloze",
+      "section": "trees",
+      "fields": {
+        "Text": "B-trees are designed for storage that reads and writes in large {{c1::blocks}}, such as disks, which is why they are widely used in databases and file systems.",
+        "Extra": "Each node holds many keys, so the tree is very shallow.",
+        "Hint": "A high branching factor means few node reads per lookup.",
+        "Fact": "Rudolf Bayer and Edward McCreight introduced B-trees in 1970 at Boeing.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::tree",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "8296446a-a183-56c1-9c4e-43b99479ed80",
+      "noteType": "Bert Cloze",
+      "section": "trees",
+      "fields": {
+        "Text": "In a B-tree, all leaves are at the {{c1::same depth}}.",
+        "Extra": "The tree grows in height only by splitting the root.",
+        "Hint": "Balance is perfect in one specific sense.",
+        "Fact": "Growth at the root rather than the leaves is what keeps every leaf level.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::tree",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "37062927-ce47-5477-8261-09310aa04cc5",
+      "noteType": "Bert Basic",
+      "section": "trees",
+      "fields": {
+        "Question": "In a B+ tree, where are the data records or record pointers stored?",
+        "Answer": "In the leaves",
+        "Aliases": "leaves\nleaf nodes\nonly in the leaves",
+        "Hint": "Internal nodes only guide the search.",
+        "Fact": "Leaves are typically linked, which makes range scans efficient.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::tree",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "82dd5364-9112-5362-88f2-32d7ded9361e",
+      "noteType": "Bert Two Way",
+      "section": "trees",
+      "fields": {
+        "Side A": "Trie",
+        "Side B": "Prefix tree",
+        "Aliases": "digital tree",
+        "Hint": "It is great for autocomplete.",
+        "Fact": "The name comes from retrieval; Edward Fredkin coined it in 1960.",
+        "Source": "Algorithms, 4th edition, Sedgewick and Wayne (https://algs4.cs.princeton.edu/home/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::tree-name",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "740af7be-4237-5ea7-b00c-6af46d0153c1",
+      "noteType": "Bert Typed",
+      "section": "trees",
+      "fields": {
+        "Question": "What is the time to look up a key of length m in a trie, independent of the number of keys stored?",
+        "Answer": "O(m)",
+        "Aliases": "linear in key length\nO(L)",
+        "Hint": "Follow one edge per character.",
+        "Fact": "Unlike a hash table, a trie also supports prefix queries naturally.",
+        "Source": "Algorithms, 4th edition, Sedgewick and Wayne (https://algs4.cs.princeton.edu/home/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::complexity",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "603db0f0-afa0-505b-a8ff-6e259c271719",
+      "noteType": "Bert Typed",
+      "section": "trees",
+      "fields": {
+        "Question": "What is the maximum number of nodes in a binary tree of height h, where a single root has height 0?",
+        "Answer": "2^(h+1) - 1",
+        "Aliases": "2^(h+1)-1\n2**(h+1) - 1",
+        "Hint": "Sum the nodes per level: 1, 2, 4, and so on.",
+        "Fact": "A tree that reaches this bound is called a perfect binary tree.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::formula",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "3c596b80-2814-5f9d-a83e-c142fa7e31dd",
+      "noteType": "Bert Cloze",
+      "section": "trees",
+      "fields": {
+        "Text": "In a BST, the lowest common ancestor of keys p and q is the first node on the path from the root whose key lies {{c1::between p and q}} (inclusive).",
+        "Extra": "If both keys are smaller, go left; if both are larger, go right.",
+        "Hint": "Where do the search paths for p and q split?",
+        "Fact": "This runs in O(h) time, where h is the tree height.",
+        "Source": "Algorithms, Jeff Erickson (https://jeffe.cs.illinois.edu/teaching/algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::tree",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "544afd9c-f0b4-5e8c-bb47-6cc2f1fe3bb2",
+      "noteType": "Bert Cloze",
+      "section": "trees",
+      "fields": {
+        "Text": "To validate a BST it is not enough to compare each node with its children; each node must lie within {{c1::bounds inherited from its ancestors}}.",
+        "Extra": "Equivalently, an inorder traversal must be strictly increasing (when keys are distinct).",
+        "Hint": "A node deep in a left subtree can still violate the root.",
+        "Fact": "This is one of the most common mistakes in BST interview questions.",
+        "Source": "Algorithms, 4th edition, Sedgewick and Wayne (https://algs4.cs.princeton.edu/home/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::tree",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "ff764e5a-e2de-5c94-b6e5-cd9925690324",
+      "noteType": "Bert Typed",
+      "section": "trees",
+      "fields": {
+        "Question": "What is the time of a range query on a segment tree over n elements?",
+        "Answer": "O(log n)",
+        "Aliases": "O(logn)\nlog n\nO(lg n)",
+        "Hint": "A query touches only a few nodes per level.",
+        "Fact": "Segment trees also support point updates in O(log n).",
+        "Source": "Algorithms, Jeff Erickson (https://jeffe.cs.illinois.edu/teaching/algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::complexity",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "91ea4e5e-0d5d-5333-9511-e6c29b3583d2",
+      "noteType": "Bert Two Way",
+      "section": "trees",
+      "fields": {
+        "Side A": "Fenwick tree",
+        "Side B": "Binary indexed tree",
+        "Aliases": "BIT",
+        "Hint": "It is the compact alternative to a segment tree for prefix sums.",
+        "Fact": "Peter Fenwick described it in 1994 for cumulative frequency tables.",
+        "Source": "Algorithms, Jeff Erickson (https://jeffe.cs.illinois.edu/teaching/algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::tree-name",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "1420ad81-2912-57fc-a2c7-9262442e35de",
+      "noteType": "Bert Cloze",
+      "section": "trees",
+      "fields": {
+        "Text": "To delete a BST node with two children, replace it with its inorder {{c1::successor}} (or predecessor) and delete that node instead.",
+        "Extra": "The successor is the minimum of the right subtree.",
+        "Hint": "Which key could take its place without breaking order?",
+        "Fact": "The successor has at most one child, so its removal is simple.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::tree",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "0e8d3a6e-ab7c-5b34-835f-45c7efcb519a",
+      "noteType": "Bert Basic",
+      "section": "trees",
+      "fields": {
+        "Question": "Which self-adjusting BST moves each accessed node to the root?",
+        "Answer": "Splay tree",
+        "Aliases": "splay",
+        "Hint": "The operation is named after spreading out.",
+        "Fact": "Sleator and Tarjan introduced it in 1985 with O(log n) amortized bounds.",
+        "Source": "Algorithms, Jeff Erickson (https://jeffe.cs.illinois.edu/teaching/algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::tree-name",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "97a5da92-543f-53e4-acf1-de92161dc06e",
+      "noteType": "Bert Basic",
+      "section": "graphs",
+      "fields": {
+        "Question": "Which data structure does breadth first search use to hold the frontier?",
+        "Answer": "Queue",
+        "Aliases": "a queue\nFIFO queue",
+        "Hint": "Discovered vertices wait their turn.",
+        "Fact": "BFS explores vertices in order of their distance in edges from the source.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::linear-structure",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "2a6ffed1-4fb7-5e8e-9dac-b3eec519b9a0",
+      "noteType": "Bert Basic",
+      "section": "graphs",
+      "fields": {
+        "Question": "Which data structure does an iterative depth first search use?",
+        "Answer": "Stack",
+        "Aliases": "a stack",
+        "Hint": "The recursive version uses the call stack.",
+        "Fact": "Swapping one data structure for another turns DFS into BFS.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::linear-structure",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "a36e8f1e-a1d8-5576-b77f-3bd45a9f2d71",
+      "noteType": "Bert Typed",
+      "section": "graphs",
+      "fields": {
+        "Question": "What is the time complexity of BFS or DFS on a graph stored as adjacency lists?",
+        "Answer": "O(V + E)",
+        "Aliases": "O(V+E)\nO(n + m)\nO(E + V)",
+        "Hint": "Each vertex and each edge is handled a constant number of times.",
+        "Fact": "On an adjacency matrix the same traversal costs O(V^2).",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::complexity",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "0bec2c5a-7162-59ac-9e33-6c725fa44e5b",
+      "noteType": "Bert Typed",
+      "section": "graphs",
+      "fields": {
+        "Question": "How much space does an adjacency matrix use for a graph with V vertices?",
+        "Answer": "O(V^2)",
+        "Aliases": "O(V²)\nO(V*V)",
+        "Hint": "One cell per ordered pair of vertices.",
+        "Fact": "Matrices allow O(1) edge checks, which helps for dense graphs.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::complexity",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "c996e2ca-64be-5754-8e4d-dab666201169",
+      "noteType": "Bert Typed",
+      "section": "graphs",
+      "fields": {
+        "Question": "How much space do adjacency lists use for a graph with V vertices and E edges?",
+        "Answer": "O(V + E)",
+        "Aliases": "O(V+E)\nO(E + V)",
+        "Hint": "Count the list heads and the list entries.",
+        "Fact": "Adjacency lists are the usual choice for sparse graphs.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::complexity",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "7258cd36-7546-5403-a74c-45f78ca171f4",
+      "noteType": "Bert Basic",
+      "section": "graphs",
+      "fields": {
+        "Question": "Which algorithm finds shortest paths by edge count in an unweighted graph in O(V + E)?",
+        "Answer": "Breadth first search",
+        "Aliases": "BFS\nbreadth-first search",
+        "Hint": "Explore level by level.",
+        "Fact": "BFS is effectively Dijkstra's algorithm when every edge weight is 1.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::graph-algo",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "8a760278-e846-5ffd-a889-2226837a2df8",
+      "noteType": "Bert Basic",
+      "section": "graphs",
+      "fields": {
+        "Question": "Dijkstra's algorithm can give wrong answers when the graph has what?",
+        "Answer": "Negative edge weights",
+        "Aliases": "negative weights\nnegative edges",
+        "Hint": "It assumes a finalized vertex never gets cheaper.",
+        "Fact": "Bellman-Ford handles this case and can also detect negative cycles.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::graph-limit",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "e9fa0670-ce0e-5904-b510-9080ba1e96ce",
+      "noteType": "Bert Typed",
+      "section": "graphs",
+      "fields": {
+        "Question": "What is the running time of Dijkstra's algorithm with a binary heap?",
+        "Answer": "O((V + E) log V)",
+        "Aliases": "O((V+E) log V)\nO(E log V)",
+        "Hint": "Every edge may trigger a heap operation.",
+        "Fact": "With a Fibonacci heap the bound improves to O(E + V log V).",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::complexity",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "c49026c8-7a7a-5b77-a400-a389a61c7283",
+      "noteType": "Bert Basic",
+      "section": "graphs",
+      "fields": {
+        "Question": "Which single source shortest path algorithm allows negative edge weights and detects negative cycles?",
+        "Answer": "Bellman-Ford",
+        "Aliases": "Bellman Ford\nBellman-Ford algorithm",
+        "Hint": "It relaxes every edge V - 1 times.",
+        "Fact": "If any edge can still be relaxed after V - 1 rounds, a negative cycle is reachable.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::graph-algo",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "4a7a407b-5ea1-5815-bc5a-84d0b71eff48",
+      "noteType": "Bert Typed",
+      "section": "graphs",
+      "fields": {
+        "Question": "What is the running time of the Bellman-Ford algorithm?",
+        "Answer": "O(VE)",
+        "Aliases": "O(V*E)\nO(EV)\nO(nm)",
+        "Hint": "Count rounds times edges per round.",
+        "Fact": "It is slower than Dijkstra but handles negative weights.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::complexity",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "f77c1559-b854-52eb-abd3-2020229a64a8",
+      "noteType": "Bert Basic",
+      "section": "graphs",
+      "fields": {
+        "Question": "Which dynamic programming algorithm computes all pairs shortest paths in O(V^3)?",
+        "Answer": "Floyd-Warshall",
+        "Aliases": "Floyd Warshall\nFloyd-Warshall algorithm",
+        "Hint": "Three nested loops over vertices.",
+        "Fact": "The outermost loop must range over the intermediate vertex.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::graph-algo",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "c678173c-e4db-5cae-85ff-6919984448da",
+      "noteType": "Bert Cloze",
+      "section": "graphs",
+      "fields": {
+        "Text": "A* search returns an optimal path when its heuristic is {{c1::admissible}}, meaning it never overestimates the true remaining cost.",
+        "Extra": "On graph search without reopening nodes, the stronger consistent property is used.",
+        "Hint": "The guess must be optimistic.",
+        "Fact": "With a heuristic of zero everywhere, A* behaves like Dijkstra's algorithm.",
+        "Source": "Algorithms, Jeff Erickson (https://jeffe.cs.illinois.edu/teaching/algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::graph-algo",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "13392a27-3dee-54c0-b3e7-e7120056a391",
+      "noteType": "Bert Cloze",
+      "section": "graphs",
+      "fields": {
+        "Text": "Shortest paths in a weighted DAG, even with negative weights, can be found in O(V + E) by relaxing edges in {{c1::topological order}}.",
+        "Extra": "No priority queue is needed.",
+        "Hint": "Process each vertex after all its predecessors.",
+        "Fact": "The same technique finds longest paths in a DAG by negating weights.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::graph-algo",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "e4e70083-5ad9-5a9c-bb30-6d332a8016b9",
+      "noteType": "Bert Basic",
+      "section": "graphs",
+      "fields": {
+        "Question": "In 0-1 BFS, for graphs with edge weights of only 0 or 1, which data structure replaces the priority queue?",
+        "Answer": "Deque",
+        "Aliases": "double-ended queue\na deque",
+        "Hint": "Zero-weight edges go to one end, one-weight edges to the other.",
+        "Fact": "It runs in O(V + E), faster than Dijkstra with a heap.",
+        "Source": "Algorithms, Jeff Erickson (https://jeffe.cs.illinois.edu/teaching/algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::linear-structure",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "d7bf30d7-a36a-5ec8-8ee5-e529d00a74e4",
+      "noteType": "Bert Basic",
+      "section": "graphs",
+      "fields": {
+        "Question": "Which data structure does Kruskal's algorithm use to check whether an edge would form a cycle?",
+        "Answer": "Union-find",
+        "Aliases": "disjoint set union\nDSU\ndisjoint-set\ndisjoint set",
+        "Hint": "It tracks which vertices are already connected.",
+        "Fact": "Kruskal considers edges in increasing order of weight.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::linear-structure",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "efefecde-38da-5f4c-a87c-8d8f41c59c21",
+      "noteType": "Bert Cloze",
+      "section": "graphs",
+      "fields": {
+        "Text": "Prim's algorithm grows a single tree from a start vertex, repeatedly adding the {{c1::lightest edge}} connecting the tree to a vertex outside it.",
+        "Extra": "A priority queue keyed by edge weight makes it efficient.",
+        "Hint": "Compare with Kruskal, which grows a forest.",
+        "Fact": "Prim's algorithm was discovered earlier by Vojtech Jarnik in 1930.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::graph-algo",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "c88dc965-b302-5f6a-8b3e-8e3273406b88",
+      "noteType": "Bert Typed",
+      "section": "graphs",
+      "fields": {
+        "Question": "What is the running time of Kruskal's algorithm, dominated by sorting the edges?",
+        "Answer": "O(E log E)",
+        "Aliases": "O(E log V)\nE log E",
+        "Hint": "Sorting is the expensive step.",
+        "Fact": "O(E log E) and O(E log V) are equal asymptotically, since E is at most V^2.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::complexity",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "8e568663-75a3-5e07-beab-2bb21256a21e",
+      "noteType": "Bert Cloze",
+      "section": "graphs",
+      "fields": {
+        "Text": "Cut property: for any cut of a connected weighted graph, a {{c1::minimum weight}} edge crossing the cut belongs to some minimum spanning tree.",
+        "Extra": "Both Kruskal and Prim are justified by it.",
+        "Hint": "Any spanning tree must cross the cut somewhere.",
+        "Fact": "If edge weights are distinct, the MST is unique.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::graph-algo",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "8788c8f6-5519-507d-a059-74cee997b0a3",
+      "noteType": "Bert Typed",
+      "section": "graphs",
+      "fields": {
+        "Question": "How many edges does a spanning tree of a connected graph with V vertices have?",
+        "Answer": "V - 1",
+        "Aliases": "V-1\nn - 1\nn-1",
+        "Hint": "A tree on k nodes is connected and has no cycles.",
+        "Fact": "Adding any further edge to a spanning tree creates exactly one cycle.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::formula",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "99827e37-7cd9-5aee-9c9c-01e704d5e4cd",
+      "noteType": "Bert Basic",
+      "section": "graphs",
+      "fields": {
+        "Question": "A topological ordering of a directed graph exists exactly when the graph is what?",
+        "Answer": "Directed acyclic graph",
+        "Aliases": "DAG\nacyclic\na DAG",
+        "Hint": "Think of course prerequisites.",
+        "Fact": "A cycle would require some vertex to come before itself.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::graph-kind",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "b6c1e781-7995-5838-a770-2990c1b9dcfd",
+      "noteType": "Bert Basic",
+      "section": "graphs",
+      "fields": {
+        "Question": "Kahn's algorithm for topological sorting repeatedly removes vertices with what property?",
+        "Answer": "In-degree zero",
+        "Aliases": "in-degree 0\nindegree 0\nno incoming edges\nzero in-degree",
+        "Hint": "These vertices have no remaining prerequisites.",
+        "Fact": "If vertices remain when no candidate exists, the graph has a cycle.",
+        "Source": "Algorithms, Jeff Erickson (https://jeffe.cs.illinois.edu/teaching/algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::graph-algo",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "d58d84f1-34fd-51e2-a857-19145bd46897",
+      "noteType": "Bert Cloze",
+      "section": "graphs",
+      "fields": {
+        "Text": "Reversing the DFS {{c1::postorder}} (order of finishing times) of a DAG yields a topological order.",
+        "Extra": "A vertex finishes only after everything reachable from it.",
+        "Hint": "Think about when DFS is done with a vertex.",
+        "Fact": "CLRS sorts vertices by decreasing finishing time, which is the same thing.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::traversal",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "2676471e-ef66-5c1b-8363-a96697f8ee59",
+      "noteType": "Bert Cloze",
+      "section": "graphs",
+      "fields": {
+        "Text": "A directed graph has a cycle if and only if DFS finds a {{c1::back}} edge.",
+        "Extra": "Such an edge points to a vertex still on the recursion stack.",
+        "Hint": "Track vertices that are in progress, not just visited.",
+        "Fact": "The three color scheme of white, gray and black makes this check easy.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::graph-algo",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "118c31bf-e51b-516b-93c2-68fd9d213d2e",
+      "noteType": "Bert Basic",
+      "section": "graphs",
+      "fields": {
+        "Question": "Name a linear time algorithm for finding strongly connected components.",
+        "Answer": "Tarjan's algorithm",
+        "Aliases": "Tarjan\nKosaraju's algorithm\nKosaraju\nKosaraju-Sharir",
+        "Hint": "One uses low-link values, another uses two DFS passes.",
+        "Fact": "Contracting each strongly connected component gives a DAG.",
+        "Source": "Algorithms, 4th edition, Sedgewick and Wayne (https://algs4.cs.princeton.edu/home/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::graph-algo",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "b805628a-1952-5364-9dcf-7de6539e4f19",
+      "noteType": "Bert Cloze",
+      "section": "graphs",
+      "fields": {
+        "Text": "A graph is bipartite if and only if it contains no cycle of {{c1::odd}} length.",
+        "Extra": "Check by 2-coloring with BFS or DFS.",
+        "Hint": "Try coloring a triangle with two colors.",
+        "Fact": "Every tree is bipartite.",
+        "Source": "Algorithms, Jeff Erickson (https://jeffe.cs.illinois.edu/teaching/algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::graph-kind",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "de71fff2-6809-5b25-a93d-ccaef1d40817",
+      "noteType": "Bert Two Way",
+      "section": "graphs",
+      "fields": {
+        "Side A": "Dijkstra's algorithm",
+        "Side B": "Shortest paths, nonnegative weights",
+        "Aliases": "Dijkstra",
+        "Hint": "Greedy, with a priority queue.",
+        "Fact": "Dijkstra said he designed it in about twenty minutes without pencil and paper.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::graph-algo",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "0786bf0b-2377-5ac0-979f-912bc4859940",
+      "noteType": "Bert Two Way",
+      "section": "graphs",
+      "fields": {
+        "Side A": "Floyd-Warshall algorithm",
+        "Side B": "All pairs shortest paths",
+        "Aliases": "Floyd-Warshall",
+        "Hint": "Three nested loops over vertices.",
+        "Fact": "It works with negative edges as long as there are no negative cycles.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::graph-algo",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "c4822018-096d-5e93-835f-67d075cda769",
+      "noteType": "Bert Typed",
+      "section": "graphs",
+      "fields": {
+        "Question": "With path compression and union by rank, what is the amortized time per union-find operation?",
+        "Answer": "O(alpha(n))",
+        "Aliases": "inverse Ackermann\nO(α(n))\nalpha(n)",
+        "Hint": "It grows so slowly it is effectively constant.",
+        "Fact": "Robert Tarjan proved this inverse Ackermann bound in 1975.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::complexity",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "f2d02146-b297-5d07-839b-33ea3e301d17",
+      "noteType": "Bert Cloze",
+      "section": "graphs",
+      "fields": {
+        "Text": "The two standard union-find optimizations are {{c1::path compression}} and {{c2::union by rank}} (or by size).",
+        "Extra": "<pre><code class=\"language-python\">def find(x):\n    if parent[x] != x:\n        parent[x] = find(parent[x])\n    return parent[x]</code></pre>",
+        "Hint": "One flattens trees during find, the other keeps them shallow during union.",
+        "Fact": "Union by rank alone already keeps every tree at height O(log n).",
+        "Source": "Algorithms, 4th edition, Sedgewick and Wayne (https://algs4.cs.princeton.edu/home/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::union-find",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "29eff24b-62b2-522e-a403-16a4491d430f",
+      "noteType": "Bert Cloze",
+      "section": "graphs",
+      "fields": {
+        "Text": "In an undirected graph, adding edge (u, v) creates a cycle if find(u) and find(v) return the {{c1::same root}}.",
+        "Extra": "This is the check Kruskal's algorithm uses.",
+        "Hint": "Are the endpoints already connected?",
+        "Fact": "Union-find only supports adding connections, not removing them.",
+        "Source": "Algorithms, 4th edition, Sedgewick and Wayne (https://algs4.cs.princeton.edu/home/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::union-find",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "94c56241-dfd9-5427-b0a1-cf4b0c4b6a47",
+      "noteType": "Bert Cloze",
+      "section": "graphs",
+      "fields": {
+        "Text": "After processing all edges with union-find, the number of connected components equals the number of {{c1::roots}}, that is elements whose parent is themselves.",
+        "Extra": "Start with n components and subtract one per successful union.",
+        "Hint": "Each set has one representative.",
+        "Fact": "Union-find is also called a disjoint set forest.",
+        "Source": "Algorithms, 4th edition, Sedgewick and Wayne (https://algs4.cs.princeton.edu/home/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::union-find",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "9bed2f1a-abbd-544d-b320-2f90eedc401e",
+      "noteType": "Bert Cloze",
+      "section": "graphs",
+      "fields": {
+        "Text": "Adjacency lists suit {{c1::sparse}} graphs, while an adjacency matrix suits {{c2::dense}} graphs or frequent edge lookups.",
+        "Extra": "Sparse means E is much smaller than V^2.",
+        "Hint": "Compare memory use with the number of edges.",
+        "Fact": "Many real world graphs such as road networks are sparse.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::graph-kind",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "77351b15-20e2-54b9-b7e5-e93442857315",
+      "noteType": "Bert Typed",
+      "section": "sort",
+      "fields": {
+        "Question": "What is the worst case time of merge sort?",
+        "Answer": "O(n log n)",
+        "Aliases": "n log n\nO(nlogn)",
+        "Hint": "Halve, recurse, merge in linear time.",
+        "Fact": "John von Neumann described merge sort in 1945.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::complexity",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "cfd50a49-1f63-5624-8bb1-04231d1e5aed",
+      "noteType": "Bert Typed",
+      "section": "sort",
+      "fields": {
+        "Question": "What is the worst case time of quicksort?",
+        "Answer": "O(n^2)",
+        "Aliases": "O(n²)\nquadratic",
+        "Hint": "Imagine always picking the smallest element as pivot.",
+        "Fact": "A naive first-element pivot hits the worst case on already sorted input.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::complexity",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "35bcc6cf-38a2-55ec-b95f-9fe69903b4b1",
+      "noteType": "Bert Typed",
+      "section": "sort",
+      "fields": {
+        "Question": "What is the expected time of randomized quicksort?",
+        "Answer": "O(n log n)",
+        "Aliases": "n log n\nO(nlogn)",
+        "Hint": "Random pivots split well on average.",
+        "Fact": "Tony Hoare developed quicksort around 1959 to 1960.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::complexity",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "dbe46ca1-4be4-5dfb-9374-388449166083",
+      "noteType": "Bert Typed",
+      "section": "sort",
+      "fields": {
+        "Question": "What is the worst case time of heapsort?",
+        "Answer": "O(n log n)",
+        "Aliases": "n log n\nO(nlogn)",
+        "Hint": "Build a heap, then extract n times.",
+        "Fact": "Heapsort sorts in place with O(1) extra space.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::complexity",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "fd86066b-af6c-5f7d-8ba2-9f1f70a0d617",
+      "noteType": "Bert Typed",
+      "section": "sort",
+      "fields": {
+        "Question": "What is the time of insertion sort on input that is already sorted?",
+        "Answer": "O(n)",
+        "Aliases": "linear\nlinear time",
+        "Hint": "Each element is compared once and stays put.",
+        "Fact": "Its running time is O(n + d), where d is the number of inversions.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::complexity",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "90de7b93-07b9-5915-b2e0-a9d2d6782551",
+      "noteType": "Bert Typed",
+      "section": "sort",
+      "fields": {
+        "Question": "How much auxiliary space does a standard array merge sort use?",
+        "Answer": "O(n)",
+        "Aliases": "linear\nlinear space",
+        "Hint": "The merge step needs somewhere to put the output.",
+        "Fact": "Merge sort on linked lists can avoid the extra array.",
+        "Source": "Algorithms, 4th edition, Sedgewick and Wayne (https://algs4.cs.princeton.edu/home/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::complexity",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "51b012f3-299d-5fd1-a565-d3e920740bee",
+      "noteType": "Bert Cloze",
+      "section": "sort",
+      "fields": {
+        "Text": "A sorting algorithm is stable if {{c1::elements with equal keys keep their original relative order}}.",
+        "Extra": "Stability lets you sort by one key, then another, and keep the first ordering among ties.",
+        "Hint": "Think about records that compare equal.",
+        "Fact": "Python guarantees that its built-in sort is stable.",
+        "Source": "Python Sorting Techniques (https://docs.python.org/3/howto/sorting.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::sorting",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "a68d2b40-6d5c-55f8-87f4-c2e41b10c446",
+      "noteType": "Bert Basic",
+      "section": "sort",
+      "fields": {
+        "Question": "Which classic O(n log n) worst case comparison sort is stable?",
+        "Answer": "Merge sort",
+        "Aliases": "mergesort",
+        "Hint": "It merges by taking from the left run on ties.",
+        "Fact": "Heapsort and typical in-place quicksort are not stable.",
+        "Source": "Algorithms, 4th edition, Sedgewick and Wayne (https://algs4.cs.princeton.edu/home/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::sort-algo",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "9ca240cc-3eae-5ef2-81e2-add0d26ee8bf",
+      "noteType": "Bert Basic",
+      "section": "sort",
+      "fields": {
+        "Question": "Which in-place O(n log n) worst case sort is not stable?",
+        "Answer": "Heapsort",
+        "Aliases": "heap sort",
+        "Hint": "It moves the root to the end repeatedly.",
+        "Fact": "Long distance swaps during sifting reorder equal keys.",
+        "Source": "Algorithms, 4th edition, Sedgewick and Wayne (https://algs4.cs.princeton.edu/home/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::sort-algo",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "4642280c-5568-58bf-b4e0-7f7ad4cc5ad4",
+      "noteType": "Bert Basic",
+      "section": "sort",
+      "fields": {
+        "Question": "Which algorithm does Java's Arrays.sort use for arrays of primitives such as int[]?",
+        "Answer": "Dual-pivot quicksort",
+        "Aliases": "dual pivot quicksort\nDual-Pivot Quicksort",
+        "Hint": "It uses two pivots, not one.",
+        "Fact": "Arrays.sort for object arrays uses a stable merge sort instead.",
+        "Source": "Java SE 21 API: Arrays (https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Arrays.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::sort-algo",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "84a0daf7-e762-5061-9cd5-6a6baf9ccf84",
+      "noteType": "Bert Basic",
+      "section": "sort",
+      "fields": {
+        "Question": "Which C++ standard library function guarantees a stable sort?",
+        "Answer": "std::stable_sort",
+        "Aliases": "stable_sort",
+        "Hint": "std::sort does not make this promise.",
+        "Fact": "std::sort is required to run in O(n log n) comparisons since C++11.",
+        "Source": "cppreference: std::stable_sort (https://en.cppreference.com/w/cpp/algorithm/stable_sort)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::sort-algo",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "51f40e2d-f352-5cb1-b267-69c2b38138dd",
+      "noteType": "Bert Typed",
+      "section": "sort",
+      "fields": {
+        "Question": "What is the worst case lower bound on comparisons for any comparison based sort of n elements?",
+        "Answer": "Omega(n log n)",
+        "Aliases": "Ω(n log n)\nn log n",
+        "Hint": "A decision tree needs a leaf for every permutation.",
+        "Fact": "log2(n!) is about n log2 n, which gives the bound.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::complexity",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "25f0daf0-de0d-5411-bf6a-80348bfb83b2",
+      "noteType": "Bert Typed",
+      "section": "sort",
+      "fields": {
+        "Question": "What is the running time of counting sort on n integers in the range 0 to k?",
+        "Answer": "O(n + k)",
+        "Aliases": "O(n+k)",
+        "Hint": "It never compares elements.",
+        "Fact": "It beats the comparison lower bound because it uses keys as array indices.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::complexity",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "b7cd2b5e-8999-5269-9643-13048b56237b",
+      "noteType": "Bert Cloze",
+      "section": "sort",
+      "fields": {
+        "Text": "LSD radix sort processes digits from least to most significant and requires the per-digit sort to be {{c1::stable}}.",
+        "Extra": "Counting sort is the usual per-digit sort.",
+        "Hint": "Earlier passes must not be undone by later ones.",
+        "Fact": "Herman Hollerith's tabulating machines of the 1890s used a form of radix sorting on punched cards.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::sorting",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "cc00a0d8-0bda-5b02-aec8-653931ef89da",
+      "noteType": "Bert Basic",
+      "section": "sort",
+      "fields": {
+        "Question": "Which quicksort partition scheme moves two indices toward each other from both ends?",
+        "Answer": "Hoare partition",
+        "Aliases": "Hoare's partition\nHoare",
+        "Hint": "Named after the inventor of quicksort.",
+        "Fact": "Lomuto's scheme is simpler but usually does more swaps.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::sort-algo",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "a777bb9c-bdfd-5fc5-b0b3-01f0454a898c",
+      "noteType": "Bert Typed",
+      "section": "sort",
+      "fields": {
+        "Question": "What is the expected time of quickselect for finding the k-th smallest element?",
+        "Answer": "O(n)",
+        "Aliases": "linear\nlinear time",
+        "Hint": "It recurses into only one side.",
+        "Fact": "The geometric series n + n/2 + n/4 and so on sums to about 2n.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::complexity",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "d36696fa-aa11-597e-81d0-b9b573b1e264",
+      "noteType": "Bert Basic",
+      "section": "sort",
+      "fields": {
+        "Question": "Which selection algorithm finds the k-th smallest element in O(n) worst case time?",
+        "Answer": "Median of medians",
+        "Aliases": "BFPRT\nmedian-of-medians",
+        "Hint": "Groups of five play a role.",
+        "Fact": "Blum, Floyd, Pratt, Rivest and Tarjan published it in 1973.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::sort-algo",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "3e02af6f-9af3-569b-8cc3-4df8d6a2306b",
+      "noteType": "Bert Typed",
+      "section": "sort",
+      "fields": {
+        "Question": "What is the worst case time of binary search on a sorted array of n elements?",
+        "Answer": "O(log n)",
+        "Aliases": "O(logn)\nlog n\nO(lg n)",
+        "Hint": "Each step discards half the range.",
+        "Fact": "About 30 comparisons suffice for a billion elements.",
+        "Source": "Algorithms, 4th edition, Sedgewick and Wayne (https://algs4.cs.princeton.edu/home/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::complexity",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "44fd32f1-627c-5ab4-88a0-d812d049f53f",
+      "noteType": "Bert Cloze",
+      "section": "sort",
+      "fields": {
+        "Text": "Binary search requires the array to be {{c1::sorted}}, or more generally a predicate that is {{c2::monotonic}} over the search range.",
+        "Extra": "Without that, discarding half the range is unsafe.",
+        "Hint": "What lets you rule out half the elements?",
+        "Fact": "Binary search on the answer applies the same idea to an abstract range of candidate values.",
+        "Source": "Algorithms, Jeff Erickson (https://jeffe.cs.illinois.edu/teaching/algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::searching",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "42b8290a-ee8e-586e-b73b-e03d31c3c57b",
+      "noteType": "Bert Cloze",
+      "section": "sort",
+      "fields": {
+        "Text": "To avoid integer overflow, compute the binary search midpoint as {{c1::lo + (hi - lo) / 2}} instead of (lo + hi) / 2.",
+        "Extra": "<pre><code class=\"language-java\">int mid = lo + (hi - lo) / 2;</code></pre>",
+        "Hint": "The sum of two large indices can exceed the integer range.",
+        "Fact": "Joshua Bloch reported in 2006 that the JDK binary search had this overflow bug for years.",
+        "Source": "Algorithms, 4th edition, Sedgewick and Wayne (https://algs4.cs.princeton.edu/home/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::searching",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "f7bb4012-caaa-5d72-b87a-2c3574a2c7f5",
+      "noteType": "Bert Cloze",
+      "section": "sort",
+      "fields": {
+        "Text": "Python's bisect.bisect_left returns the {{c1::leftmost}} index at which x could be inserted while keeping the list sorted.",
+        "Extra": "bisect_right returns the position after any existing entries equal to x.",
+        "Hint": "With duplicates, it lands before them.",
+        "Fact": "The bisect module only works correctly on lists that are already sorted.",
+        "Source": "Python bisect documentation (https://docs.python.org/3/library/bisect.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::searching",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "04de5ef8-b3a9-5c9c-a07f-367e115f4758",
+      "noteType": "Bert Basic",
+      "section": "sort",
+      "fields": {
+        "Question": "Which simple sort runs fastest on nearly sorted input?",
+        "Answer": "Insertion sort",
+        "Aliases": "insertion",
+        "Hint": "Few inversions mean few shifts.",
+        "Fact": "Timsort uses insertion sort for short runs.",
+        "Source": "Algorithms, 4th edition, Sedgewick and Wayne (https://algs4.cs.princeton.edu/home/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::sort-algo",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "ffc4c314-c47e-5796-8a57-e5852d2fac44",
+      "noteType": "Bert Typed",
+      "section": "sort",
+      "fields": {
+        "Question": "At most how many swaps does selection sort make on n elements?",
+        "Answer": "n - 1",
+        "Aliases": "n-1",
+        "Hint": "One swap per pass.",
+        "Fact": "Few writes make it attractive when writing is expensive.",
+        "Source": "Algorithms, 4th edition, Sedgewick and Wayne (https://algs4.cs.princeton.edu/home/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::formula",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "53847942-af1d-58cd-a1db-165969ee3cf4",
+      "noteType": "Bert Cloze",
+      "section": "sort",
+      "fields": {
+        "Text": "Introsort starts with quicksort and switches to {{c1::heapsort}} when the recursion depth exceeds a limit, guaranteeing O(n log n) worst case.",
+        "Extra": "Many C++ standard libraries implement std::sort this way.",
+        "Hint": "Which sort has a guaranteed bound and sorts in place?",
+        "Fact": "David Musser introduced introsort in 1997.",
+        "Source": "cppreference: std::stable_sort (https://en.cppreference.com/w/cpp/algorithm/stable_sort)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::sorting",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "5fc73a28-1791-5d09-a7a1-5bdb66bfe84d",
+      "noteType": "Bert Basic",
+      "section": "sort",
+      "fields": {
+        "Question": "Which simple sort repeatedly swaps adjacent elements that are out of order?",
+        "Answer": "Bubble sort",
+        "Aliases": "bubble",
+        "Hint": "Large elements drift to the end.",
+        "Fact": "With an early exit when no swap occurs, it finishes in O(n) on sorted input.",
+        "Source": "Algorithms, 4th edition, Sedgewick and Wayne (https://algs4.cs.princeton.edu/home/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::sort-algo",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "4fa7312d-cb00-5431-a620-18c3fd77bc4e",
+      "noteType": "Bert Cloze",
+      "section": "sort",
+      "fields": {
+        "Text": "Java's Arrays.sort for object arrays is a {{c1::stable}} adaptive merge sort, derived from Python's Timsort.",
+        "Extra": "For primitives it uses dual-pivot quicksort, where stability is not observable.",
+        "Hint": "Equal objects can be distinguished, so this matters.",
+        "Fact": "The Javadoc credits Tim Peters' list sort for Python.",
+        "Source": "Java SE 21 API: Arrays (https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Arrays.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::sorting",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "fb7198f3-a91f-5175-866e-adc3632ac0d7",
+      "noteType": "Bert Cloze",
+      "section": "sort",
+      "fields": {
+        "Text": "To count occurrences of x in a sorted array, subtract the {{c1::leftmost}} insertion point from the {{c2::rightmost}} insertion point.",
+        "Extra": "In Python: bisect_right(a, x) - bisect_left(a, x).",
+        "Hint": "Two binary searches bound the run of equal values.",
+        "Fact": "This counts in O(log n) regardless of how many copies exist.",
+        "Source": "Python bisect documentation (https://docs.python.org/3/library/bisect.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::searching",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "ad593751-a0f4-5cee-b0c9-9b20a7a5ccdc",
+      "noteType": "Bert Cloze",
+      "section": "design",
+      "fields": {
+        "Text": "Dynamic programming applies when a problem has {{c1::optimal substructure}} and {{c2::overlapping subproblems}}.",
+        "Extra": "Without overlap, plain divide and conquer is enough.",
+        "Hint": "Solutions build from smaller solutions that repeat.",
+        "Fact": "Richard Bellman coined the term dynamic programming in the 1950s.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::paradigm",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "064403a2-1c2b-59f1-a14b-067e131f57b9",
+      "noteType": "Bert Two Way",
+      "section": "design",
+      "fields": {
+        "Side A": "Memoization",
+        "Side B": "Top-down dynamic programming",
+        "Aliases": "top down DP\ntop-down",
+        "Hint": "Recursion plus a cache.",
+        "Fact": "Python's functools.cache provides memoization in one decorator.",
+        "Source": "Algorithms, Jeff Erickson (https://jeffe.cs.illinois.edu/teaching/algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::dp-style",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "7fa72180-2ed8-564f-9066-d32b27f6f2f3",
+      "noteType": "Bert Two Way",
+      "section": "design",
+      "fields": {
+        "Side A": "Tabulation",
+        "Side B": "Bottom-up dynamic programming",
+        "Aliases": "bottom up DP\nbottom-up",
+        "Hint": "Fill a table from small subproblems upward.",
+        "Fact": "Bottom-up order often allows keeping only the last row or two of the table.",
+        "Source": "Algorithms, Jeff Erickson (https://jeffe.cs.illinois.edu/teaching/algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::dp-style",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "2d3ef483-3a39-566a-bd1b-18fb0eda4b9f",
+      "noteType": "Bert Typed",
+      "section": "design",
+      "fields": {
+        "Question": "Naive recursive Fibonacci runs in exponential time. Which simple bound is a valid upper bound on its running time?",
+        "Answer": "O(2^n)",
+        "Aliases": "exponential\nO(2**n)",
+        "Hint": "Each call makes two more calls.",
+        "Fact": "The tight bound is Theta(phi^n), where phi is the golden ratio, about 1.618.",
+        "Source": "Algorithms, Jeff Erickson (https://jeffe.cs.illinois.edu/teaching/algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::complexity",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "0bb7690e-d9e5-5db7-b362-d79b2dd6dc64",
+      "noteType": "Bert Typed",
+      "section": "design",
+      "fields": {
+        "Question": "What is the time of the standard DP for the longest common subsequence of strings of lengths m and n?",
+        "Answer": "O(mn)",
+        "Aliases": "O(m*n)\nO(nm)",
+        "Hint": "One table cell per pair of prefixes.",
+        "Fact": "The diff tool is built on LCS style algorithms.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::complexity",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "7eed1c94-42d4-5b91-8ee3-8fcac8e71d35",
+      "noteType": "Bert Typed",
+      "section": "design",
+      "fields": {
+        "Question": "What is the time of the standard DP for 0/1 knapsack with n items and capacity W?",
+        "Answer": "O(nW)",
+        "Aliases": "O(n*W)\nO(Wn)",
+        "Hint": "One cell per item and capacity.",
+        "Fact": "0/1 knapsack is NP-hard, so this bound is not polynomial in the input size.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::complexity",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "d32fd716-0824-5137-b101-d81cbbe20c67",
+      "noteType": "Bert Cloze",
+      "section": "design",
+      "fields": {
+        "Text": "The O(nW) knapsack algorithm is {{c1::pseudo-polynomial}}: polynomial in the numeric value W, but exponential in the number of bits needed to write W.",
+        "Extra": "Doubling the bits of W squares its value.",
+        "Hint": "Look at how W is encoded in the input.",
+        "Fact": "Subset sum has a similar pseudo-polynomial DP.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::paradigm",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "3b2a1fd6-4beb-5c59-afb8-5bdc0f1b6f45",
+      "noteType": "Bert Typed",
+      "section": "design",
+      "fields": {
+        "Question": "What is the time of the standard DP for edit distance between strings of lengths m and n?",
+        "Answer": "O(mn)",
+        "Aliases": "O(m*n)\nO(nm)",
+        "Hint": "Compare every prefix of one with every prefix of the other.",
+        "Fact": "The classic operations are insert, delete and substitute, as in Levenshtein distance.",
+        "Source": "Algorithms, Jeff Erickson (https://jeffe.cs.illinois.edu/teaching/algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::complexity",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "0c93f47e-abe1-5258-aa8d-5e3c3cbe0274",
+      "noteType": "Bert Typed",
+      "section": "design",
+      "fields": {
+        "Question": "What is the best known time for longest increasing subsequence using binary search over tails?",
+        "Answer": "O(n log n)",
+        "Aliases": "n log n\nO(nlogn)",
+        "Hint": "Each element does one binary search.",
+        "Fact": "The simple DP takes O(n^2).",
+        "Source": "Algorithms, Jeff Erickson (https://jeffe.cs.illinois.edu/teaching/algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::complexity",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "69e5b0e2-4a66-50ce-8be6-1746eb7f48c3",
+      "noteType": "Bert Cloze",
+      "section": "design",
+      "fields": {
+        "Text": "Greedy coin change can fail: with coins {1, 3, 4} and amount 6, greedy uses {{c1::3}} coins while the optimum is {{c2::2}} (3 + 3).",
+        "Extra": "Use DP for arbitrary coin systems.",
+        "Hint": "Greedy picks 4 first.",
+        "Fact": "Coin systems where greedy is always optimal are called canonical.",
+        "Source": "Algorithms, Jeff Erickson (https://jeffe.cs.illinois.edu/teaching/algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::paradigm",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "ad5a36e1-4e8c-56bf-a379-fd5846a9bbcd",
+      "noteType": "Bert Basic",
+      "section": "design",
+      "fields": {
+        "Question": "What problem does Kadane's algorithm solve in O(n)?",
+        "Answer": "Maximum subarray sum",
+        "Aliases": "maximum subarray\nmax subarray sum\nlargest sum contiguous subarray",
+        "Hint": "It tracks the best sum ending at each index.",
+        "Fact": "Jon Bentley popularized it in Programming Pearls, crediting Jay Kadane.",
+        "Source": "Algorithms, Jeff Erickson (https://jeffe.cs.illinois.edu/teaching/algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::problem",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "fb148e1e-538d-5c27-9ed9-5fcfa500d6a2",
+      "noteType": "Bert Basic",
+      "section": "design",
+      "fields": {
+        "Question": "For maximizing the number of non-overlapping intervals, which interval does the greedy algorithm pick next?",
+        "Answer": "Earliest finish time",
+        "Aliases": "earliest end time\nearliest finishing\nsmallest end",
+        "Hint": "Leave as much room as possible for the rest.",
+        "Fact": "Picking the shortest interval or earliest start can both fail.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::greedy-rule",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "12989ab2-4ce9-55ea-af7a-da4ca47b0395",
+      "noteType": "Bert Basic",
+      "section": "design",
+      "fields": {
+        "Question": "Which algorithm design paradigm does Huffman coding use?",
+        "Answer": "Greedy",
+        "Aliases": "greedy algorithm",
+        "Hint": "It repeatedly merges the two least frequent symbols.",
+        "Fact": "David Huffman devised it in 1952 as a student at MIT.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::paradigm-name",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "a05617a8-6f43-50b5-9063-7d3be67a40ea",
+      "noteType": "Bert Cloze",
+      "section": "design",
+      "fields": {
+        "Text": "A greedy algorithm is correct when the problem has the {{c1::greedy choice property}} and optimal substructure.",
+        "Extra": "Proofs often use an exchange argument.",
+        "Hint": "A locally best choice must be extendable to a global optimum.",
+        "Fact": "Matroids give a general setting in which greedy algorithms are optimal.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::paradigm",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "673ceba9-1a48-5d05-97bb-1007355346c5",
+      "noteType": "Bert Basic",
+      "section": "design",
+      "fields": {
+        "Question": "Fractional knapsack is solved greedily by taking items in decreasing order of what?",
+        "Answer": "Value per unit weight",
+        "Aliases": "value to weight ratio\nvalue/weight\nvalue density",
+        "Hint": "Which items give the most per kilogram?",
+        "Fact": "The 0/1 version cannot be solved by this greedy rule.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::greedy-rule",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "0f6fdd47-c02b-5948-9d1f-cf02bd87d986",
+      "noteType": "Bert Cloze",
+      "section": "design",
+      "fields": {
+        "Text": "Backtracking builds candidates incrementally and {{c1::abandons}} a partial candidate as soon as it cannot lead to a valid solution.",
+        "Extra": "This pruning is what separates it from brute force enumeration.",
+        "Hint": "Undo the last choice and try another.",
+        "Fact": "The term was coined by D. H. Lehmer in the 1950s.",
+        "Source": "Algorithms, Jeff Erickson (https://jeffe.cs.illinois.edu/teaching/algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::paradigm",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "09f11ef0-f04c-5120-9406-bfe709b8ca69",
+      "noteType": "Bert Basic",
+      "section": "design",
+      "fields": {
+        "Question": "Which paradigm is the classic approach to the N-Queens problem?",
+        "Answer": "Backtracking",
+        "Aliases": "backtrack",
+        "Hint": "Place a queen, and retreat when stuck.",
+        "Fact": "The 8 queens puzzle has 92 solutions.",
+        "Source": "Algorithms, Jeff Erickson (https://jeffe.cs.illinois.edu/teaching/algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::paradigm-name",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "f9e9be54-99c6-5188-9432-46bae39503e6",
+      "noteType": "Bert Typed",
+      "section": "design",
+      "fields": {
+        "Question": "How many subsets does a set of n elements have?",
+        "Answer": "2^n",
+        "Aliases": "2**n",
+        "Hint": "Each element is either in or out.",
+        "Fact": "Subset generation by backtracking therefore takes at least exponential time.",
+        "Source": "Algorithms, Jeff Erickson (https://jeffe.cs.illinois.edu/teaching/algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::formula",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "afcef0e9-7722-5f77-bf89-e083a359faae",
+      "noteType": "Bert Typed",
+      "section": "design",
+      "fields": {
+        "Question": "How many permutations do n distinct elements have?",
+        "Answer": "n!",
+        "Aliases": "n factorial\nfactorial",
+        "Hint": "Choices shrink by one at each position.",
+        "Fact": "10! is already 3,628,800.",
+        "Source": "Algorithms, Jeff Erickson (https://jeffe.cs.illinois.edu/teaching/algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::formula",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "ef454f52-e4ed-5d29-8f25-ad984cb45549",
+      "noteType": "Bert Basic",
+      "section": "design",
+      "fields": {
+        "Question": "Merge sort and quicksort are examples of which paradigm?",
+        "Answer": "Divide and conquer",
+        "Aliases": "divide-and-conquer",
+        "Hint": "Split, solve the parts, combine.",
+        "Fact": "Karatsuba's multiplication algorithm, found in 1960, was an early divide and conquer surprise.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::paradigm-name",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "c2ac7050-c6df-55c7-940d-890caf18b2cd",
+      "noteType": "Bert Typed",
+      "section": "design",
+      "fields": {
+        "Question": "What is the time of the Held-Karp bitmask DP for the traveling salesman problem on n cities?",
+        "Answer": "O(n^2 2^n)",
+        "Aliases": "O(n^2 * 2^n)\nO(2^n n^2)",
+        "Hint": "States are a subset plus a last city.",
+        "Fact": "It is far faster than checking all (n - 1)! tours, yet still exponential.",
+        "Source": "Algorithms, Jeff Erickson (https://jeffe.cs.illinois.edu/teaching/algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::complexity",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "5032fbfd-5e89-5109-b869-6f9c87ad352e",
+      "noteType": "Bert Cloze",
+      "section": "design",
+      "fields": {
+        "Text": "In the one dimensional 0/1 knapsack DP, iterate capacity {{c1::downward}} so each item is used at most once.",
+        "Extra": "<pre><code class=\"language-python\">for w in range(W, wt - 1, -1):\n    dp[w] = max(dp[w], dp[w - wt] + val)</code></pre>",
+        "Hint": "Do not read a value you already updated for this item.",
+        "Fact": "Iterating upward instead gives the unbounded knapsack, where items can repeat.",
+        "Source": "Algorithms, Jeff Erickson (https://jeffe.cs.illinois.edu/teaching/algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::dp-style",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "4ceb9795-2a24-598e-808d-c667317901d2",
+      "noteType": "Bert Basic",
+      "section": "design",
+      "fields": {
+        "Question": "Counting ways to climb n stairs taking 1 or 2 steps at a time follows which famous recurrence?",
+        "Answer": "Fibonacci",
+        "Aliases": "Fibonacci sequence\nFibonacci numbers",
+        "Hint": "The last move is either a 1 step or a 2 step.",
+        "Fact": "It runs in O(n) time with O(1) space keeping only two values.",
+        "Source": "Algorithms, Jeff Erickson (https://jeffe.cs.illinois.edu/teaching/algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::problem",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "8ffb22a5-12b4-506c-b2a4-af9a9cd26e3c",
+      "noteType": "Bert Basic",
+      "section": "design",
+      "fields": {
+        "Question": "Which paradigm solves matrix chain multiplication ordering in O(n^3)?",
+        "Answer": "Dynamic programming",
+        "Aliases": "DP",
+        "Hint": "Try every split point of every interval.",
+        "Fact": "The parenthesization changes the cost, not the product.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::paradigm-name",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "66726bf0-ae2f-51eb-9451-faa87edb08f6",
+      "noteType": "Bert Cloze",
+      "section": "patterns",
+      "fields": {
+        "Text": "On a sorted array, finding a pair with a given sum using {{c1::two pointers}} from both ends takes O(n) time and O(1) space.",
+        "Extra": "Move the left pointer up if the sum is too small, the right pointer down if too large.",
+        "Hint": "Start at the extremes and close in.",
+        "Fact": "On an unsorted array, a hash set gives O(n) time with O(n) space instead.",
+        "Source": "Algorithms, Jeff Erickson (https://jeffe.cs.illinois.edu/teaching/algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::pattern",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "3569ac7a-7ae4-5d8b-a94c-434862d8c704",
+      "noteType": "Bert Cloze",
+      "section": "patterns",
+      "fields": {
+        "Text": "Longest substring without repeating characters is solved in O(n) with a {{c1::sliding window}} that shrinks from the left whenever a duplicate enters.",
+        "Extra": "A set or last-seen index map tracks the window.",
+        "Hint": "The window only moves forward.",
+        "Fact": "Each character enters and leaves the window at most once.",
+        "Source": "Algorithms, Jeff Erickson (https://jeffe.cs.illinois.edu/teaching/algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::pattern",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "ca05b925-e540-5ffc-8cee-91c93a0b9ebc",
+      "noteType": "Bert Cloze",
+      "section": "patterns",
+      "fields": {
+        "Text": "With prefix sums P where P[0] = 0 and P[i+1] = P[i] + a[i], the sum of a[i..j] inclusive is {{c1::P[j+1] - P[i]}}.",
+        "Extra": "Building P takes O(n); each range query is then O(1).",
+        "Hint": "Subtract everything before i.",
+        "Fact": "Two dimensional prefix sums answer rectangle queries the same way.",
+        "Source": "Algorithms, Jeff Erickson (https://jeffe.cs.illinois.edu/teaching/algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::pattern",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "cc09a0cc-9059-5760-ac0b-937d7b832472",
+      "noteType": "Bert Basic",
+      "section": "patterns",
+      "fields": {
+        "Question": "Which technique counts subarrays summing to k in O(n) even with negative numbers?",
+        "Answer": "Prefix sums with a hash map",
+        "Aliases": "prefix sum and hash map\nprefix sums\nhash map of prefix sums",
+        "Hint": "Store how often each running total has appeared.",
+        "Fact": "A sliding window fails here because negatives break monotonicity.",
+        "Source": "Algorithms, Jeff Erickson (https://jeffe.cs.illinois.edu/teaching/algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::pattern-name",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "1d295040-3ba5-50f4-a41b-06ce122ec65a",
+      "noteType": "Bert Cloze",
+      "section": "patterns",
+      "fields": {
+        "Text": "To find the middle of a linked list in one pass, advance a {{c1::fast}} pointer two steps for each one step of a slow pointer.",
+        "Extra": "When the fast pointer reaches the end, the slow one is at the middle.",
+        "Hint": "Two speeds on one list.",
+        "Fact": "The same pointers detect cycles.",
+        "Source": "Algorithms, Jeff Erickson (https://jeffe.cs.illinois.edu/teaching/algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::pattern",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "6a4aa020-479a-5665-9798-987ea6a0f619",
+      "noteType": "Bert Basic",
+      "section": "patterns",
+      "fields": {
+        "Question": "Which structure solves next greater element for every array index in O(n)?",
+        "Answer": "Monotonic stack",
+        "Aliases": "monotonic decreasing stack\nmonotone stack",
+        "Hint": "Pop smaller items when a bigger one arrives.",
+        "Fact": "Each index is pushed and popped at most once.",
+        "Source": "Algorithms, Jeff Erickson (https://jeffe.cs.illinois.edu/teaching/algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::pattern-name",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "34f834fa-3402-5e85-ba7e-18402a1d98e2",
+      "noteType": "Bert Basic",
+      "section": "patterns",
+      "fields": {
+        "Question": "Which structure finds the maximum of every window of size k in O(n) total?",
+        "Answer": "Monotonic deque",
+        "Aliases": "monotonic queue\ndeque",
+        "Hint": "Keep candidates in decreasing order and drop expired ones.",
+        "Fact": "Each index enters and leaves at most once, so the total work is linear.",
+        "Source": "Python collections documentation (https://docs.python.org/3/library/collections.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::pattern-name",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "847d25b5-52a3-5f96-8309-71ca6b0d6b66",
+      "noteType": "Bert Basic",
+      "section": "patterns",
+      "fields": {
+        "Question": "Who posed the Dutch national flag problem of three-way partitioning?",
+        "Answer": "Edsger Dijkstra",
+        "Aliases": "Dijkstra\nEdsger W. Dijkstra",
+        "Hint": "He also wrote Go To Statement Considered Harmful.",
+        "Fact": "Three-way partitioning makes quicksort efficient on inputs with many duplicate keys.",
+        "Source": "Algorithms, 4th edition, Sedgewick and Wayne (https://algs4.cs.princeton.edu/home/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::person",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "b1996bf0-a2e5-59da-8082-dcf17f305596",
+      "noteType": "Bert Basic",
+      "section": "patterns",
+      "fields": {
+        "Question": "Which algorithm finds a majority element (more than n/2 occurrences) in O(n) time and O(1) space?",
+        "Answer": "Boyer-Moore majority vote",
+        "Aliases": "Boyer-Moore voting algorithm\nmajority vote\nBoyer Moore",
+        "Hint": "Keep one candidate and a counter.",
+        "Fact": "If no majority is guaranteed, a second pass must verify the candidate.",
+        "Source": "Algorithms, Jeff Erickson (https://jeffe.cs.illinois.edu/teaching/algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::pattern-name",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "f36de632-55b4-531e-9e69-0bb807b9f7ea",
+      "noteType": "Bert Cloze",
+      "section": "patterns",
+      "fields": {
+        "Text": "If every number appears twice except one, XOR of all elements gives the single one, because x ^ x = {{c1::0}} and x ^ 0 = x.",
+        "Extra": "XOR is commutative and associative, so order does not matter.",
+        "Hint": "Pairs cancel out.",
+        "Fact": "This uses O(n) time and O(1) space.",
+        "Source": "Algorithms, Jeff Erickson (https://jeffe.cs.illinois.edu/teaching/algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::pattern",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "85e527b7-8810-5ddf-9501-71e34d235e2d",
+      "noteType": "Bert Cloze",
+      "section": "patterns",
+      "fields": {
+        "Text": "A positive integer n is a power of two exactly when {{c1::n & (n - 1)}} equals 0.",
+        "Extra": "<pre><code class=\"language-python\">def is_power_of_two(n):\n    return n > 0 and n & (n - 1) == 0</code></pre>",
+        "Hint": "Subtracting 1 flips the lowest set bit and the zeros below it.",
+        "Fact": "Kernighan's bit counting trick uses the same expression to clear the lowest set bit.",
+        "Source": "Algorithms, Jeff Erickson (https://jeffe.cs.illinois.edu/teaching/algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::pattern",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "11e4cf4b-8f6a-5bfc-9152-d9be0da0af1e",
+      "noteType": "Bert Basic",
+      "section": "patterns",
+      "fields": {
+        "Question": "What is the first step for merging overlapping intervals?",
+        "Answer": "Sort by start",
+        "Aliases": "sort by start time\nsort intervals by start",
+        "Hint": "Overlaps become neighbours.",
+        "Fact": "After sorting, one linear scan merges everything, for O(n log n) total.",
+        "Source": "Algorithms, Jeff Erickson (https://jeffe.cs.illinois.edu/teaching/algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::greedy-rule",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "2314d58a-b3ac-592e-b932-59d1ca971d37",
+      "noteType": "Bert Basic",
+      "section": "patterns",
+      "fields": {
+        "Question": "What is the technique of marking every land cell connected to a start cell, used to count islands in a grid?",
+        "Answer": "Flood fill",
+        "Aliases": "flood-fill\nseed fill",
+        "Hint": "Like a paint bucket tool.",
+        "Fact": "Every cell is visited once, so it runs in O(rows x cols).",
+        "Source": "Algorithms, 4th edition, Sedgewick and Wayne (https://algs4.cs.princeton.edu/home/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::pattern-name",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "8af93655-8106-5ab0-937f-89a41e7396c3",
+      "noteType": "Bert Basic",
+      "section": "patterns",
+      "fields": {
+        "Question": "Rabin-Karp string matching relies on what technique?",
+        "Answer": "Rolling hash",
+        "Aliases": "rolling hashing",
+        "Hint": "Update the window's fingerprint in O(1) as it slides.",
+        "Fact": "Hash matches are verified to rule out false positives.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::pattern-name",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "094b706e-99e0-54ef-98e4-e98a141edd39",
+      "noteType": "Bert Typed",
+      "section": "patterns",
+      "fields": {
+        "Question": "What is the time of Knuth-Morris-Pratt string matching for a text of length n and pattern of length m?",
+        "Answer": "O(n + m)",
+        "Aliases": "O(n+m)\nO(m + n)",
+        "Hint": "The text pointer never moves backwards.",
+        "Fact": "KMP precomputes a prefix function telling how far to fall back on a mismatch.",
+        "Source": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein (https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::complexity",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "44f67201-ac1f-512b-b595-4f64f0f566e1",
+      "noteType": "Bert Basic",
+      "section": "patterns",
+      "fields": {
+        "Question": "Deciding whether all courses with prerequisites can be finished is a cycle check usually solved with what?",
+        "Answer": "Topological sort",
+        "Aliases": "Kahn's algorithm\ntopological sorting\ntoposort",
+        "Hint": "Courses are vertices, prerequisites are edges.",
+        "Fact": "If the topological order includes every course, the schedule is possible.",
+        "Source": "Algorithms, 4th edition, Sedgewick and Wayne (https://algs4.cs.princeton.edu/home/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::graph-algo",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "18f0dd2f-f29b-592b-92ab-73fd3e4d2afd",
+      "noteType": "Bert Basic",
+      "section": "patterns",
+      "fields": {
+        "Question": "Besides a heap, which linear time technique solves top k frequent elements by grouping on counts?",
+        "Answer": "Bucket sort",
+        "Aliases": "bucket\nbuckets by frequency",
+        "Hint": "Frequencies are between 1 and n.",
+        "Fact": "Index buckets by count, then read from the highest bucket down.",
+        "Source": "Algorithms, Jeff Erickson (https://jeffe.cs.illinois.edu/teaching/algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::pattern-name",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "3f9ae108-0e26-5471-b3e7-f8cd395e6c94",
+      "noteType": "Bert Cloze",
+      "section": "patterns",
+      "fields": {
+        "Text": "Binary search on the answer, as in minimizing the largest load, works when feasibility is {{c1::monotonic}}: once a value works, every larger value also works.",
+        "Extra": "Search over candidate answers rather than array indices.",
+        "Hint": "Think of a yes or no test that flips once.",
+        "Fact": "Each step costs one feasibility check, giving O(check x log range).",
+        "Source": "Algorithms, Jeff Erickson (https://jeffe.cs.illinois.edu/teaching/algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::searching",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "ecc0f1f7-9806-53d6-ad51-eafec69f0c04",
+      "noteType": "Bert Cloze",
+      "section": "patterns",
+      "fields": {
+        "Text": "An LRU cache with O(1) get and put combines a {{c1::hash map}} with a {{c2::doubly linked list}}.",
+        "Extra": "The map finds nodes; the list keeps recency order.",
+        "Hint": "One structure for lookup, one for order.",
+        "Fact": "Python's collections.OrderedDict has move_to_end, which makes a compact LRU.",
+        "Source": "Python collections documentation (https://docs.python.org/3/library/collections.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::pattern",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "00e28f97-f310-5235-8a45-1afd2313e782",
+      "noteType": "Bert Cloze",
+      "section": "patterns",
+      "fields": {
+        "Text": "Grouping anagrams uses a hash map keyed by each word's {{c1::sorted letters}} or its letter counts.",
+        "Extra": "Letter counts avoid the sort for short alphabets.",
+        "Hint": "All anagrams share a canonical form.",
+        "Fact": "Two strings are anagrams exactly when their character multisets match.",
+        "Source": "Algorithms, Jeff Erickson (https://jeffe.cs.illinois.edu/teaching/algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::pattern",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "fe21786c-e3f6-53ef-b936-25226485eddb",
+      "noteType": "Bert Cloze",
+      "section": "patterns",
+      "fields": {
+        "Text": "Removing duplicates in place from a sorted array uses a {{c1::slow}} write pointer and a fast read pointer.",
+        "Extra": "Runs in O(n) time with O(1) extra space.",
+        "Hint": "One pointer reads, the other writes.",
+        "Fact": "The same pattern moves all zeros to the end of an array.",
+        "Source": "Algorithms, Jeff Erickson (https://jeffe.cs.illinois.edu/teaching/algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::pattern",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "318342b8-bcbe-5be3-b7e7-ccedb6ead639",
+      "noteType": "Bert Cloze",
+      "section": "patterns",
+      "fields": {
+        "Text": "Longest palindromic substring can be found in O(n^2) by {{c1::expanding around each center}}, counting both single characters and gaps between characters.",
+        "Extra": "Manacher's algorithm achieves O(n).",
+        "Hint": "A palindrome is symmetric about its middle.",
+        "Fact": "A string of length n has 2n - 1 possible centers.",
+        "Source": "Algorithms, Jeff Erickson (https://jeffe.cs.illinois.edu/teaching/algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::pattern",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "2d2e457c-bbcb-53f9-b35b-68cbc7c40456",
+      "noteType": "Bert Basic",
+      "section": "patterns",
+      "fields": {
+        "Question": "Which tree structure is the classic choice for autocomplete by prefix?",
+        "Answer": "Trie",
+        "Aliases": "prefix tree",
+        "Hint": "Words sharing a prefix share a path.",
+        "Fact": "Each node represents a prefix rather than a whole key.",
+        "Source": "Algorithms, 4th edition, Sedgewick and Wayne (https://algs4.cs.princeton.edu/home/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::tree-name",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "92e72c84-1bee-5a69-b24b-78dc51c1ce42",
+      "noteType": "Bert Cloze",
+      "section": "patterns",
+      "fields": {
+        "Text": "Cloning a graph with cycles needs a {{c1::hash map from original to copy}} so each vertex is copied once.",
+        "Extra": "BFS or DFS both work.",
+        "Hint": "Otherwise a cycle sends you round forever.",
+        "Fact": "The same map doubles as the visited set.",
+        "Source": "Algorithms, Jeff Erickson (https://jeffe.cs.illinois.edu/teaching/algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::pattern",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "3a6152a5-16bc-59f3-b0e6-b7e4271f830a",
+      "noteType": "Bert Basic",
+      "section": "patterns",
+      "fields": {
+        "Question": "Word ladder (fewest single letter changes between words) is solved with which traversal?",
+        "Answer": "Breadth first search",
+        "Aliases": "BFS\nbreadth-first search",
+        "Hint": "Every change costs the same.",
+        "Fact": "Bidirectional BFS from both ends often explores far fewer words.",
+        "Source": "Algorithms, 4th edition, Sedgewick and Wayne (https://algs4.cs.princeton.edu/home/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::graph-algo",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "fb3631f9-1417-54c7-b3a4-965a7c7336bf",
+      "noteType": "Bert Basic",
+      "section": "patterns",
+      "fields": {
+        "Question": "Which technique picks k uniformly random items from a stream of unknown length in one pass?",
+        "Answer": "Reservoir sampling",
+        "Aliases": "reservoir",
+        "Hint": "Replace a kept item with decreasing probability.",
+        "Fact": "With k = 1, the i-th item replaces the kept item with probability 1/i.",
+        "Source": "Algorithms, Jeff Erickson (https://jeffe.cs.illinois.edu/teaching/algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::pattern-name",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "c0502529-9ecb-5a5d-8438-f2140a9bd6ed",
+      "noteType": "Bert Cloze",
+      "section": "patterns",
+      "fields": {
+        "Text": "After Floyd's slow and fast pointers meet in a cyclic list, resetting one pointer to the {{c1::head}} and moving both one step at a time makes them meet at the cycle start.",
+        "Extra": "Distance from head to start equals distance from meeting point to start, modulo the cycle length.",
+        "Hint": "Restart one runner from the beginning.",
+        "Fact": "This finds the duplicate in an array of n + 1 values in 1..n without modifying it.",
+        "Source": "Algorithms, Jeff Erickson (https://jeffe.cs.illinois.edu/teaching/algorithms/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::pattern",
+        "bert::status::draft"
+      ]
+    }
+  ]
+}

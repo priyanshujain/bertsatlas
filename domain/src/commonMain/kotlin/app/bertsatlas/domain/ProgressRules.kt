@@ -10,6 +10,9 @@ import app.bertsatlas.domain.model.PassportStampKind
 import app.bertsatlas.domain.model.Streak
 
 object MasteryRules {
+    fun needsRevisit(mastery: Mastery): Boolean =
+        mastery.recentOutcomes.lastOrNull()?.let { !it.correct || it.hinted } == true
+
     fun applyAttempt(current: Mastery?, attempt: Attempt): Mastery {
         require(attempt.countryIds.isNotEmpty()) { "A mastery attempt requires a country" }
         val existing = current ?: Mastery(
@@ -92,6 +95,11 @@ object StreakRules {
         )
     }
 
+    fun currentDaysOn(current: Streak, todayEpochDay: Int): Int {
+        val lastDay = current.lastActivityEpochDay ?: return 0
+        return if (todayEpochDay > lastDay + 1) 0 else current.currentDays
+    }
+
     fun recordCompletedRun(current: Streak, completedEpochDay: Int): Streak =
         recordActivity(current, completedEpochDay)
 }
@@ -103,6 +111,8 @@ data class PassportEvidence(
     val totalCorrect: Int,
     val confusedFlagMastery: List<Mastery>,
     val streak: Streak,
+    val packCardCount: Int = 0,
+    val packMasteredCardCount: Int = 0,
 )
 
 object PassportRules {
@@ -126,6 +136,9 @@ object PassportRules {
                 add(PassportStampKind.ConfusedFlagsMastered)
             }
             if (evidence.streak.bestDays >= 7) add(PassportStampKind.SevenActiveDays)
+            if (evidence.packCardCount > 0 && evidence.packMasteredCardCount >= evidence.packCardCount) {
+                add(PassportStampKind.PackMastered)
+            }
         }
         return earned
             .filterNot { it in alreadyEarned }

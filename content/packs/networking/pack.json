@@ -1,0 +1,645 @@
+{
+  "packId": "networking",
+  "version": "1.0.0",
+  "official": true,
+  "title": "Networking",
+  "subtitle": "How data gets from here to there",
+  "category": "programming",
+  "subcategory": "networking",
+  "accentColor": "#3E5C8A",
+  "coverMedia": null,
+  "languages": [
+    "en"
+  ],
+  "sources": [
+    {
+      "id": "source-rfc-768",
+      "title": "RFC 768",
+      "url": "https://www.rfc-editor.org/rfc/rfc768",
+      "publisher": "IETF",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-rfc-791",
+      "title": "RFC 791",
+      "url": "https://www.rfc-editor.org/rfc/rfc791",
+      "publisher": "IETF",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-rfc-792",
+      "title": "RFC 792",
+      "url": "https://www.rfc-editor.org/rfc/rfc792",
+      "publisher": "IETF",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-rfc-826",
+      "title": "RFC 826",
+      "url": "https://www.rfc-editor.org/rfc/rfc826",
+      "publisher": "IETF",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-rfc-1034",
+      "title": "RFC 1034",
+      "url": "https://www.rfc-editor.org/rfc/rfc1034",
+      "publisher": "IETF",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-rfc-1035",
+      "title": "RFC 1035",
+      "url": "https://www.rfc-editor.org/rfc/rfc1035",
+      "publisher": "IETF",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-rfc-1122",
+      "title": "RFC 1122",
+      "url": "https://www.rfc-editor.org/rfc/rfc1122",
+      "publisher": "IETF",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-rfc-1191",
+      "title": "RFC 1191",
+      "url": "https://www.rfc-editor.org/rfc/rfc1191",
+      "publisher": "IETF",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-rfc-1918",
+      "title": "RFC 1918",
+      "url": "https://www.rfc-editor.org/rfc/rfc1918",
+      "publisher": "IETF",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-rfc-2131",
+      "title": "RFC 2131",
+      "url": "https://www.rfc-editor.org/rfc/rfc2131",
+      "publisher": "IETF",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-rfc-2181",
+      "title": "RFC 2181",
+      "url": "https://www.rfc-editor.org/rfc/rfc2181",
+      "publisher": "IETF",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-rfc-2308",
+      "title": "RFC 2308",
+      "url": "https://www.rfc-editor.org/rfc/rfc2308",
+      "publisher": "IETF",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-rfc-2328",
+      "title": "RFC 2328",
+      "url": "https://www.rfc-editor.org/rfc/rfc2328",
+      "publisher": "IETF",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-rfc-2453",
+      "title": "RFC 2453",
+      "url": "https://www.rfc-editor.org/rfc/rfc2453",
+      "publisher": "IETF",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-rfc-2782",
+      "title": "RFC 2782",
+      "url": "https://www.rfc-editor.org/rfc/rfc2782",
+      "publisher": "IETF",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-rfc-3021",
+      "title": "RFC 3021",
+      "url": "https://www.rfc-editor.org/rfc/rfc3021",
+      "publisher": "IETF",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-rfc-3022",
+      "title": "RFC 3022",
+      "url": "https://www.rfc-editor.org/rfc/rfc3022",
+      "publisher": "IETF",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-rfc-3596",
+      "title": "RFC 3596",
+      "url": "https://www.rfc-editor.org/rfc/rfc3596",
+      "publisher": "IETF",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-rfc-3927",
+      "title": "RFC 3927",
+      "url": "https://www.rfc-editor.org/rfc/rfc3927",
+      "publisher": "IETF",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-rfc-4034",
+      "title": "RFC 4034",
+      "url": "https://www.rfc-editor.org/rfc/rfc4034",
+      "publisher": "IETF",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-rfc-4271",
+      "title": "RFC 4271",
+      "url": "https://www.rfc-editor.org/rfc/rfc4271",
+      "publisher": "IETF",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-rfc-4291",
+      "title": "RFC 4291",
+      "url": "https://www.rfc-editor.org/rfc/rfc4291",
+      "publisher": "IETF",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-rfc-4632",
+      "title": "RFC 4632",
+      "url": "https://www.rfc-editor.org/rfc/rfc4632",
+      "publisher": "IETF",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-rfc-4861",
+      "title": "RFC 4861",
+      "url": "https://www.rfc-editor.org/rfc/rfc4861",
+      "publisher": "IETF",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-rfc-5280",
+      "title": "RFC 5280",
+      "url": "https://www.rfc-editor.org/rfc/rfc5280",
+      "publisher": "IETF",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-rfc-5321",
+      "title": "RFC 5321",
+      "url": "https://www.rfc-editor.org/rfc/rfc5321",
+      "publisher": "IETF",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-rfc-5681",
+      "title": "RFC 5681",
+      "url": "https://www.rfc-editor.org/rfc/rfc5681",
+      "publisher": "IETF",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-rfc-5737",
+      "title": "RFC 5737",
+      "url": "https://www.rfc-editor.org/rfc/rfc5737",
+      "publisher": "IETF",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-rfc-5952",
+      "title": "RFC 5952",
+      "url": "https://www.rfc-editor.org/rfc/rfc5952",
+      "publisher": "IETF",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-rfc-6066",
+      "title": "RFC 6066",
+      "url": "https://www.rfc-editor.org/rfc/rfc6066",
+      "publisher": "IETF",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-rfc-6335",
+      "title": "RFC 6335",
+      "url": "https://www.rfc-editor.org/rfc/rfc6335",
+      "publisher": "IETF",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-rfc-6455",
+      "title": "RFC 6455",
+      "url": "https://www.rfc-editor.org/rfc/rfc6455",
+      "publisher": "IETF",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-rfc-6585",
+      "title": "RFC 6585",
+      "url": "https://www.rfc-editor.org/rfc/rfc6585",
+      "publisher": "IETF",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-rfc-6598",
+      "title": "RFC 6598",
+      "url": "https://www.rfc-editor.org/rfc/rfc6598",
+      "publisher": "IETF",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-rfc-6797",
+      "title": "RFC 6797",
+      "url": "https://www.rfc-editor.org/rfc/rfc6797",
+      "publisher": "IETF",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-rfc-6890",
+      "title": "RFC 6890",
+      "url": "https://www.rfc-editor.org/rfc/rfc6890",
+      "publisher": "IETF",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-rfc-6891",
+      "title": "RFC 6891",
+      "url": "https://www.rfc-editor.org/rfc/rfc6891",
+      "publisher": "IETF",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-rfc-6928",
+      "title": "RFC 6928",
+      "url": "https://www.rfc-editor.org/rfc/rfc6928",
+      "publisher": "IETF",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-rfc-7301",
+      "title": "RFC 7301",
+      "url": "https://www.rfc-editor.org/rfc/rfc7301",
+      "publisher": "IETF",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-rfc-7541",
+      "title": "RFC 7541",
+      "url": "https://www.rfc-editor.org/rfc/rfc7541",
+      "publisher": "IETF",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-rfc-7858",
+      "title": "RFC 7858",
+      "url": "https://www.rfc-editor.org/rfc/rfc7858",
+      "publisher": "IETF",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-rfc-8200",
+      "title": "RFC 8200",
+      "url": "https://www.rfc-editor.org/rfc/rfc8200",
+      "publisher": "IETF",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-rfc-8441",
+      "title": "RFC 8441",
+      "url": "https://www.rfc-editor.org/rfc/rfc8441",
+      "publisher": "IETF",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-rfc-8446",
+      "title": "RFC 8446",
+      "url": "https://www.rfc-editor.org/rfc/rfc8446",
+      "publisher": "IETF",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-rfc-8470",
+      "title": "RFC 8470",
+      "url": "https://www.rfc-editor.org/rfc/rfc8470",
+      "publisher": "IETF",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-rfc-8489",
+      "title": "RFC 8489",
+      "url": "https://www.rfc-editor.org/rfc/rfc8489",
+      "publisher": "IETF",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-rfc-8656",
+      "title": "RFC 8656",
+      "url": "https://www.rfc-editor.org/rfc/rfc8656",
+      "publisher": "IETF",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-rfc-8659",
+      "title": "RFC 8659",
+      "url": "https://www.rfc-editor.org/rfc/rfc8659",
+      "publisher": "IETF",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-rfc-9000",
+      "title": "RFC 9000",
+      "url": "https://www.rfc-editor.org/rfc/rfc9000",
+      "publisher": "IETF",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-rfc-9001",
+      "title": "RFC 9001",
+      "url": "https://www.rfc-editor.org/rfc/rfc9001",
+      "publisher": "IETF",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-rfc-9110",
+      "title": "RFC 9110",
+      "url": "https://www.rfc-editor.org/rfc/rfc9110",
+      "publisher": "IETF",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-rfc-9112",
+      "title": "RFC 9112",
+      "url": "https://www.rfc-editor.org/rfc/rfc9112",
+      "publisher": "IETF",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-rfc-9113",
+      "title": "RFC 9113",
+      "url": "https://www.rfc-editor.org/rfc/rfc9113",
+      "publisher": "IETF",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-rfc-9114",
+      "title": "RFC 9114",
+      "url": "https://www.rfc-editor.org/rfc/rfc9114",
+      "publisher": "IETF",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-rfc-9204",
+      "title": "RFC 9204",
+      "url": "https://www.rfc-editor.org/rfc/rfc9204",
+      "publisher": "IETF",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-rfc-9293",
+      "title": "RFC 9293",
+      "url": "https://www.rfc-editor.org/rfc/rfc9293",
+      "publisher": "IETF",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-rfc-9438",
+      "title": "RFC 9438",
+      "url": "https://www.rfc-editor.org/rfc/rfc9438",
+      "publisher": "IETF",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-iana-ieee-802-numbers",
+      "title": "IANA IEEE 802 Numbers",
+      "url": "https://www.iana.org/assignments/ieee-802-numbers/ieee-802-numbers.xhtml",
+      "publisher": "IANA",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-iana-protocol-numbers",
+      "title": "IANA Protocol Numbers",
+      "url": "https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml",
+      "publisher": "IANA",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-iana-root-servers",
+      "title": "IANA Root Servers",
+      "url": "https://www.iana.org/domains/root/servers",
+      "publisher": "IANA",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-iana-service-name-and-transport-protocol",
+      "title": "IANA Service Name and Transport Protocol Port Number Registry",
+      "url": "https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml",
+      "publisher": "IANA",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-ieee-802-1q-bridges-and-bridged-networks",
+      "title": "IEEE 802.1Q Bridges and Bridged Networks",
+      "url": "https://standards.ieee.org/ieee/802.1Q/10323/",
+      "publisher": "IEEE",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-ieee-802-3-ethernet-standard",
+      "title": "IEEE 802.3 Ethernet Standard",
+      "url": "https://standards.ieee.org/ieee/802.3/10422/",
+      "publisher": "IEEE",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-iso-iec-7498-1-osi-basic-reference-model",
+      "title": "ISO/IEC 7498-1 OSI Basic Reference Model",
+      "url": "https://www.iso.org/standard/20269.html",
+      "publisher": "ISO",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-mdn-preflight-request",
+      "title": "MDN Preflight request",
+      "url": "https://developer.mozilla.org/en-US/docs/Glossary/Preflight_request",
+      "publisher": "Mozilla",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-mdn-websocket-api",
+      "title": "MDN WebSocket API",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/WebSocket",
+      "publisher": "Mozilla",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-openbsd-nc-manual",
+      "title": "OpenBSD nc manual",
+      "url": "https://man.openbsd.org/nc.1",
+      "publisher": "OpenBSD",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-python-socket-documentation",
+      "title": "Python socket documentation",
+      "url": "https://docs.python.org/3/library/socket.html",
+      "publisher": "Python Software Foundation",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-curl-manual",
+      "title": "curl manual",
+      "url": "https://curl.se/docs/manpage.html",
+      "publisher": "curl project",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-dig-manual-bind-9",
+      "title": "dig manual, BIND 9",
+      "url": "https://bind9.readthedocs.io/en/latest/manpages.html",
+      "publisher": "Internet Systems Consortium",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-ip-manual",
+      "title": "ip manual",
+      "url": "https://man7.org/linux/man-pages/man8/ip.8.html",
+      "publisher": "Linux man-pages project",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-iputils-ping-manual",
+      "title": "iputils ping manual",
+      "url": "https://man7.org/linux/man-pages/man8/ping.8.html",
+      "publisher": "Linux man-pages project",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-openssl-s-client-manual",
+      "title": "openssl s_client manual",
+      "url": "https://docs.openssl.org/master/man1/openssl-s_client/",
+      "publisher": "OpenSSL Project",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-socket-manual",
+      "title": "socket manual",
+      "url": "https://man7.org/linux/man-pages/man7/socket.7.html",
+      "publisher": "Linux man-pages project",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-ss-manual",
+      "title": "ss manual",
+      "url": "https://man7.org/linux/man-pages/man8/ss.8.html",
+      "publisher": "Linux man-pages project",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-tcpdump-manual",
+      "title": "tcpdump manual",
+      "url": "https://www.tcpdump.org/manpages/tcpdump.1.html",
+      "publisher": "Tcpdump Group",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-traceroute-manual",
+      "title": "traceroute manual",
+      "url": "https://man7.org/linux/man-pages/man8/traceroute.8.html",
+      "publisher": "Linux man-pages project",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    }
+  ],
+  "assetLicenses": [],
+  "stamps": [],
+  "bertSchemaVersion": 1,
+  "sections": {
+    "layers": "Layers and links",
+    "addressing": "Addressing",
+    "routing": "Routing",
+    "transport": "Transport",
+    "dns": "DNS",
+    "http": "HTTP",
+    "tls": "TLS",
+    "tools": "Tools and troubleshooting"
+  }
+}

@@ -1,0 +1,2833 @@
+{
+  "bundled": true,
+  "packId": "flags",
+  "version": "1.0.0-draft.2",
+  "official": true,
+  "title": "Flags",
+  "subtitle": "Every flag of the world",
+  "category": "geography",
+  "subcategory": "flags",
+  "accentColor": "#27635B",
+  "coverMedia": null,
+  "languages": [
+    "en"
+  ],
+  "sources": [
+    {
+      "id": "source-un-members",
+      "title": "United Nations Member States",
+      "url": "https://www.un.org/en/about-us/member-states",
+      "publisher": "United Nations",
+      "retrievedAt": "2026-09-09",
+      "revision": "web snapshot 2026-09-09"
+    },
+    {
+      "id": "source-un-m49",
+      "title": "Standard country or area codes for statistical use (M49)",
+      "url": "https://unstats.un.org/unsd/methodology/m49/",
+      "publisher": "United Nations Statistics Division",
+      "retrievedAt": "2026-09-09",
+      "revision": "web snapshot 2026-09-09"
+    },
+    {
+      "id": "source-cldr",
+      "title": "Unicode CLDR territory display names",
+      "url": "https://github.com/unicode-org/cldr",
+      "publisher": "Unicode Consortium",
+      "retrievedAt": "2026-09-09",
+      "revision": "country-codes aggregate pin 6a595f1a6f10b3d00175fe67375da88f64f7f76b"
+    },
+    {
+      "id": "source-wikidata",
+      "title": "Wikidata country and capital records",
+      "url": "https://www.wikidata.org/",
+      "publisher": "Wikimedia Foundation",
+      "retrievedAt": "2026-09-09",
+      "revision": "country-codes aggregate pin 6a595f1a6f10b3d00175fe67375da88f64f7f76b"
+    },
+    {
+      "id": "source-country-codes-snapshot",
+      "title": "Data Package country codes",
+      "url": "https://github.com/datasets/country-codes",
+      "publisher": "Data Package contributors",
+      "retrievedAt": "2026-09-09",
+      "revision": "6a595f1a6f10b3d00175fe67375da88f64f7f76b"
+    },
+    {
+      "id": "source-country-flags",
+      "title": "Country Flags",
+      "url": "https://github.com/hampusborgos/country-flags",
+      "publisher": "Hampus Borgos and contributors",
+      "retrievedAt": "2026-09-09",
+      "revision": "c09927e63705529bbf59ca6684cd9b23225dddad"
+    },
+    {
+      "id": "source-rest-countries",
+      "title": "REST Countries V4 country data",
+      "url": "https://gitlab.com/restcountries/restcountries/-/tree/43f6260db10c54df9972e6e554ee14c2e7c85ef5",
+      "publisher": "REST Countries contributors",
+      "retrievedAt": "2026-09-10",
+      "revision": "43f6260db10c54df9972e6e554ee14c2e7c85ef5"
+    },
+    {
+      "id": "source-experience-oman-musandam",
+      "title": "Experience Oman: Musandam",
+      "url": "https://booking.experienceoman.om/en/destination/msd-93",
+      "publisher": "Ministry of Heritage and Tourism, Sultanate of Oman",
+      "retrievedAt": "2026-09-10",
+      "revision": "web snapshot 2026-09-10"
+    },
+    {
+      "id": "source-philippines-tourism-islands",
+      "title": "Island Hopping",
+      "url": "https://www.tourism.gov.ph/article/island-hopping-0-21/",
+      "publisher": "Department of Tourism, Republic of the Philippines",
+      "retrievedAt": "2026-09-10",
+      "revision": "web snapshot 2026-09-10"
+    },
+    {
+      "id": "source-geoscience-australia",
+      "title": "Australia's size compared",
+      "url": "https://www.ga.gov.au/scientific-topics/national-location-information/dimensions/australias-size-compared",
+      "publisher": "Geoscience Australia",
+      "retrievedAt": "2026-09-10",
+      "revision": "web snapshot 2026-09-10"
+    },
+    {
+      "id": "source-ibge-brazil",
+      "title": "Brazil: territory introduction",
+      "url": "https://educa.ibge.gov.br/jovens/conheca-o-brasil/territorio/20591-introducao.html",
+      "publisher": "Brazilian Institute of Geography and Statistics",
+      "retrievedAt": "2026-09-10",
+      "revision": "web snapshot 2026-09-10"
+    },
+    {
+      "id": "source-canada-coastlines",
+      "title": "Canada's coastlines",
+      "url": "https://www.canada.ca/en/services/environment/our-environment/nature-based-climate-solutions/coastlines.html",
+      "publisher": "Government of Canada",
+      "retrievedAt": "2026-09-10",
+      "revision": "web snapshot 2026-09-10"
+    },
+    {
+      "id": "source-incredible-india-dal-lake",
+      "title": "Dal Lake",
+      "url": "https://www.incredibleindia.gov.in/en/jammu-and-kashmir/srinagar/dal-lake",
+      "publisher": "Ministry of Tourism, Government of India",
+      "retrievedAt": "2026-09-10",
+      "revision": "web snapshot 2026-09-10"
+    },
+    {
+      "id": "source-gsi-japan-islands",
+      "title": "Re-counting the number of islands in Japan",
+      "url": "https://www.gsi.go.jp/kihonjohochousa/islands_index.html",
+      "publisher": "Geospatial Information Authority of Japan",
+      "retrievedAt": "2026-09-10",
+      "revision": "2022 digital-map recount published 2023-02-28"
+    },
+    {
+      "id": "source-mexico-flag-history",
+      "title": "Learn about the history of the Mexican flag",
+      "url": "https://www.gob.mx/sre/articulos/learn-about-the-history-of-the-mexican-flag-esmibandera",
+      "publisher": "Government of Mexico, Secretariat of Foreign Affairs",
+      "retrievedAt": "2026-09-10",
+      "revision": "web snapshot 2026-09-10"
+    },
+    {
+      "id": "source-south-africa-provinces",
+      "title": "South Africa's provinces",
+      "url": "https://www.gov.za/about-sa/south-africas-provinces",
+      "publisher": "Government of South Africa",
+      "retrievedAt": "2026-09-10",
+      "revision": "web snapshot 2026-09-10"
+    },
+    {
+      "id": "source-rmg-greenwich",
+      "title": "Discover the home of Greenwich Mean Time",
+      "url": "https://www.rmg.co.uk/plan-your-visit/visit-greenwich/discover-home-of-time",
+      "publisher": "Royal Museums Greenwich",
+      "retrievedAt": "2026-09-10",
+      "revision": "web snapshot 2026-09-10"
+    },
+    {
+      "id": "source-nz-womens-suffrage",
+      "title": "Women and the vote",
+      "url": "https://nzhistory.govt.nz/politics/womens-suffrage",
+      "publisher": "New Zealand Ministry for Culture and Heritage",
+      "retrievedAt": "2026-09-10",
+      "revision": "web snapshot 2026-09-10"
+    },
+    {
+      "id": "source-nepal-film-guide",
+      "title": "Filming in Nepal: a guide",
+      "url": "https://film.gov.np/media/filmgov/uploads/Filming_in_Nepal_2010_a_Guide_bOok_Chiranjibi_Guragain1.pdf",
+      "publisher": "Government of Nepal Film Development Board",
+      "retrievedAt": "2026-09-10",
+      "revision": "2010 guide"
+    },
+    {
+      "id": "source-netherlands-govtech",
+      "title": "GovTech in the Netherlands",
+      "url": "https://www.government.nl/binaries/government/documenten/reports/2021/06/30/govtech-in-the-netherlands/PUBLIC-GovTech-NL.pdf",
+      "publisher": "Government of the Netherlands",
+      "retrievedAt": "2026-09-10",
+      "revision": "2021-06 report"
+    },
+    {
+      "id": "source-cia-monaco-flag-archive",
+      "title": "Monaco flag",
+      "url": "https://www.cia.gov/the-world-factbook/about/archives/2023/countries/monaco/flag/",
+      "publisher": "CIA World Factbook archive",
+      "retrievedAt": "2026-09-10",
+      "revision": "2023 archive"
+    }
+  ],
+  "assetLicenses": [
+    {
+      "assetId": "flag-af",
+      "media": "af.png",
+      "svg": "flags/af.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "df9e4177d2cab1874a2e3323ca5aea20274ca5ed698a3452a3c797d97f9eeb71",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-al",
+      "media": "al.png",
+      "svg": "flags/al.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "9e00bfa393c4bd5f04b118b981692d998f3c5c4b817f309e03a35b9b4bb4b9ad",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-dz",
+      "media": "dz.png",
+      "svg": "flags/dz.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "de1442010432e1da1a1d3b08ca33a2057052aedcb66a88541d05bc44467a5c06",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-ad",
+      "media": "ad.png",
+      "svg": "flags/ad.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "4bd80209ab5bf4e474c789e9fc21635f51a18275151d9f948bea92c05c7e8964",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-ao",
+      "media": "ao.png",
+      "svg": "flags/ao.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "4c303bdcb88aaafcbe5fa5f5cee4e72d6f6f5ba338763f528d74efb8c8e8318c",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-ag",
+      "media": "ag.png",
+      "svg": "flags/ag.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "e795bcd1c80149246e1db35d2d00e2afc2731dadceadf91efe1d91faa12ac4ea",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-ar",
+      "media": "ar.png",
+      "svg": "flags/ar.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "ecdd45e5a779592f59b4f833b20bc2c5979d480edf70ff3ed4d941b36866a7f9",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-am",
+      "media": "am.png",
+      "svg": "flags/am.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "b52bf90a8165cecd27e6cacfab8a52934566e090aa33d17b0c418bf385d3d1b8",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-au",
+      "media": "au.png",
+      "svg": "flags/au.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "bd6f1a9373e02ac0f0ae46622e60e752b408a2183d7ea40dd575f901e869aed5",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-at",
+      "media": "at.png",
+      "svg": "flags/at.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "28306a3d65e26dd0720063b4825ffdf3d86c306360a77351b78caacc09401d96",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-az",
+      "media": "az.png",
+      "svg": "flags/az.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "1a04b7f55b879b568a82b419dad78b7943d60788370f85731a82bbe772e5f3f2",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-bs",
+      "media": "bs.png",
+      "svg": "flags/bs.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "5c01acd2e7c40e2d6c986027b3e8f160b84c5c5506d85574192a6785fe2a9587",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-bh",
+      "media": "bh.png",
+      "svg": "flags/bh.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "747e9450a3bee045ce7666a17832c425c5c68b21797070214cedac2f62ee2d12",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-bd",
+      "media": "bd.png",
+      "svg": "flags/bd.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "490517f9cb3673d4d47cbc6fd296f89b906a4fa27e1f0fc37ca6d7d1dfc108e0",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-bb",
+      "media": "bb.png",
+      "svg": "flags/bb.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "d1ff17c3a155f96bbeddf162a2c4410a9d6b637e0297435d62981329365c7e84",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-by",
+      "media": "by.png",
+      "svg": "flags/by.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "e23393e407d5ab20cece67b85595707da0644f4f63cb57efc9ce54734cc60de3",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-be",
+      "media": "be.png",
+      "svg": "flags/be.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "cedd0a665a0ab17ba183e8e41694e097db4c9c1c06040ed62924ca9292f24e4e",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-bz",
+      "media": "bz.png",
+      "svg": "flags/bz.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "f2d8f9960059723cb9380f0c417d7263d1e28c2742f20a936b4dae812d93b038",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-bj",
+      "media": "bj.png",
+      "svg": "flags/bj.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "2ba39307b70cc91c2be6b378a6b558293d2efae14a367533bf46308a912a9092",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-bt",
+      "media": "bt.png",
+      "svg": "flags/bt.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "a5be43aa874d0540d4e58d21ff7eb8f3f8d0d9e12bc69f8df1dfa156e8e2d79f",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-bo",
+      "media": "bo.png",
+      "svg": "flags/bo.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "a6ccf5cc2195fcd401f4cc72221b9a73775e03c4c28306900bc41dec2597e818",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-ba",
+      "media": "ba.png",
+      "svg": "flags/ba.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "1c097dff94ee5da3f2ec073c2a6700bfe7d85699fd6eef6f2a690f5268e7d605",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-bw",
+      "media": "bw.png",
+      "svg": "flags/bw.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "e24dca30a7fce22312aff8f5f7728fbda101e2658d8f7758f9f767b0fe629cca",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-br",
+      "media": "br.png",
+      "svg": "flags/br.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "f3ec9e5b04044212720816960b6d269be2bc1cd127ccadf4cefb131036c78e6e",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-bn",
+      "media": "bn.png",
+      "svg": "flags/bn.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "dee8a70779d349117403546dc51ef29de21b15639810848d80a2c83dda9e5018",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-bg",
+      "media": "bg.png",
+      "svg": "flags/bg.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "345bc76ab317872c76a1192949d8ca9e4f562e9fe22c808785b770fe4d4fa105",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-bf",
+      "media": "bf.png",
+      "svg": "flags/bf.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "c5b9f9c72c41222cb70bb850e6a23c9a477c8f5aad07715fe97cdc0e6adab06d",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-bi",
+      "media": "bi.png",
+      "svg": "flags/bi.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "0424fb4c0ea6c39519836a39d6f70d411121c37a149be76bd0ebb8a368613832",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-kh",
+      "media": "kh.png",
+      "svg": "flags/kh.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "245858b7345eb8a9e9e3ff3ed1354ee53e7c46a71350e962ee9a3918df95bac5",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-cm",
+      "media": "cm.png",
+      "svg": "flags/cm.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "7dededfb0347d1ca4f5b2e45673313d33066a7cdd806cf4671967b4b900481e2",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-ca",
+      "media": "ca.png",
+      "svg": "flags/ca.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "5e20d135da10da02888954ba621c0ae58135776ab17b67c8c69d83c9dcc5b2e1",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-cv",
+      "media": "cv.png",
+      "svg": "flags/cv.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "3297bdc9b5d5a39408a95ec47320647100c85486feeebbff70c12431dafd7e33",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-cf",
+      "media": "cf.png",
+      "svg": "flags/cf.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "6a681c59df0e164bddf22bda52e1fd1243f9f2f5ce9e19034ba0f05673b3e196",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-td",
+      "media": "td.png",
+      "svg": "flags/td.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "37a4a7eb7882674751f3f48f203285b8c56a74293a12a0240cd340ead7cb5050",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-cl",
+      "media": "cl.png",
+      "svg": "flags/cl.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "bac827bc619f621335f34ebdd4ecb5c9d6fddae8a980eb108aa9e22a446c9be3",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-cn",
+      "media": "cn.png",
+      "svg": "flags/cn.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "6bc6696ff46f1a326f162c12d4064d679076b81b206afc5e8e64a1126032e33b",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-co",
+      "media": "co.png",
+      "svg": "flags/co.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "6de08e626dc2dfe251b8e2a149b6c4dea90e283f9a08edc9509fc33a4347fc73",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-km",
+      "media": "km.png",
+      "svg": "flags/km.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "7242420248f1b5c7ee266883182cc8d967691a8b39be5fb70744a3d33f80c080",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-cr",
+      "media": "cr.png",
+      "svg": "flags/cr.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "271e538f8cee5b2a605ef121e5a7067136d96c96e78266466b8bf9e66ddbdfd9",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-hr",
+      "media": "hr.png",
+      "svg": "flags/hr.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "ecd619e1013f1de98ab10d4693d8d17ff1924494c099aaef02b0700636b51339",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-cu",
+      "media": "cu.png",
+      "svg": "flags/cu.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "515d1d55fb5dce0633ca76a6a9ff33b973a76c5c45fcc65727bbb8f6ab43f14a",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-cy",
+      "media": "cy.png",
+      "svg": "flags/cy.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "2dde527a4b52eaa8fa61d9cee6207e15aa6f105e2798b3441735a49eb7fb7dd5",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-cz",
+      "media": "cz.png",
+      "svg": "flags/cz.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "a71bcb7e97223bdca2ff6105c4e261e96eaed1009d6326c404abe20011ed7dad",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-ci",
+      "media": "ci.png",
+      "svg": "flags/ci.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "d7f52c57bf9da6a6e63268a410bd597062374d1582280e37b4c46a4c523a3bfa",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-cd",
+      "media": "cd.png",
+      "svg": "flags/cd.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "bb659cd27a4bb065b2262ce406e9a0e5f1bf8c4e4c2e6e62b11a001d66efdf55",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-dk",
+      "media": "dk.png",
+      "svg": "flags/dk.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "dc4827058fb343b6fa6383fb5e3471f4ab744a82d0f6ec9d895e8ce5d2a969ff",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-dj",
+      "media": "dj.png",
+      "svg": "flags/dj.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "3833f14a3e4461126b4d17d50b2442673da8826b43b3b23487e3f888a35a7931",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-dm",
+      "media": "dm.png",
+      "svg": "flags/dm.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "cdcbb6cff78165c7810f5e2f38e62ee8f345e53cd9d11559fc8e9287f0a63358",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-do",
+      "media": "do.png",
+      "svg": "flags/do.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "a23babc0d52bfbe677da8c910d1b72ce0425d0015e9f36c171bc9ca8dabd5f28",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-ec",
+      "media": "ec.png",
+      "svg": "flags/ec.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "f6f0389ea432698999e82ad40917c06369c569d8abec100292d5c2142271fc53",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-eg",
+      "media": "eg.png",
+      "svg": "flags/eg.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "f157fdd22af1847ce1751c94bcb952ceb48e85ff459c922300ca28a6e633ce79",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-sv",
+      "media": "sv.png",
+      "svg": "flags/sv.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "fb6edde7d035a40153580c37675afcd261376a14e11f11b0ea0b85731cd4d3bd",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-gq",
+      "media": "gq.png",
+      "svg": "flags/gq.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "f7daaac491b0831ecb8bf23aa24b6773d6b668da9c6541d96986506b6054b19a",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-er",
+      "media": "er.png",
+      "svg": "flags/er.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "b66fe99843453f997f3613ffb5338bd7284d3b6b91375354bde5aeb4f361ae34",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-ee",
+      "media": "ee.png",
+      "svg": "flags/ee.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "e084ea92ab4ce39bb662d479ac651be00678baaab3259863e3b82bfbab695af5",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-sz",
+      "media": "sz.png",
+      "svg": "flags/sz.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "2f1564cd218afd1053333baca445392bb260e14cb8a8027208ae6b6c17b12fbd",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-et",
+      "media": "et.png",
+      "svg": "flags/et.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "a542ea1e176de218fcd002f0f6492c5d5a80319f07991a1a63b09592d2a1aa65",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-fj",
+      "media": "fj.png",
+      "svg": "flags/fj.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "e56beb72207ff4f729ad3c48cbaa667b029a40b8a4ee93fdeced94080ba6972a",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-fi",
+      "media": "fi.png",
+      "svg": "flags/fi.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "2f57f5b4ec3968d3127d25c1ba8973b593df0bfa8171a12d7c9f399a038ca071",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-fr",
+      "media": "fr.png",
+      "svg": "flags/fr.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "7504bdf1bc9b381f89b44828e048e3d2aaa3c89e68aafbac13fe30998ad121f2",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-ga",
+      "media": "ga.png",
+      "svg": "flags/ga.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "3d8b5561eb66aadeaa712fa14c804375250b646406f99903ed406087cf73d34a",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-gm",
+      "media": "gm.png",
+      "svg": "flags/gm.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "786b8fa58a016ccc36b648e15388c666ab0dbcb1bbf479cc6b6c2b14095a392d",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-ge",
+      "media": "ge.png",
+      "svg": "flags/ge.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "f8d487ea68fb839dff8d7836d4ecbdcaa4ed7dd7ca4c6eb2bbfe6e8bb95eebf7",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-de",
+      "media": "de.png",
+      "svg": "flags/de.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "2a4fa7f09552fdb73936549ee0e77c22f16594dd1a370245ce34132e6bb483d5",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-gh",
+      "media": "gh.png",
+      "svg": "flags/gh.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "a5bd06898354acf1bce84ba5ae602181520d07bcac8e0e107f1688af7f185ab5",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-gr",
+      "media": "gr.png",
+      "svg": "flags/gr.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "86cce2a11b19e83087b4ea15be2c293563f8dc90df958488174c2194e2adac07",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-gd",
+      "media": "gd.png",
+      "svg": "flags/gd.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "562a5d03434482410215beb4a517b84446d81fa512a9bd12dac8a006a1179c48",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-gt",
+      "media": "gt.png",
+      "svg": "flags/gt.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "7a143a29f70827fe5e19910902893c5edfeda2f586ab04378d1cb1cf021bddef",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-gn",
+      "media": "gn.png",
+      "svg": "flags/gn.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "4a83ca2aed02bb35e22eeb594c47c0215f170162e0c7754becf308a9fdbd9172",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-gw",
+      "media": "gw.png",
+      "svg": "flags/gw.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "6cba42f1249197e706555685f55b52daa722b7cd36d1e814a93b2a0fa0d9e3ac",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-gy",
+      "media": "gy.png",
+      "svg": "flags/gy.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "900f15b29ee630f298e71472768c65a752ad5deedb46b41434795216c67f12cb",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-ht",
+      "media": "ht.png",
+      "svg": "flags/ht.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "3a120d1b8ae1b5b1684aa0afefca27377ce5d8f4ab4b9c35bc26c78e40371ee9",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-hn",
+      "media": "hn.png",
+      "svg": "flags/hn.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "f5d9c7b02452b1c37188ea0f5b4cbb04ace77caf7d21d08fc37479e071b21bee",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-hu",
+      "media": "hu.png",
+      "svg": "flags/hu.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "1c231bfcc2251da4ef6cd785ee4f67f602ce64a2a46c0b54539f0b8a16f3e5ab",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-is",
+      "media": "is.png",
+      "svg": "flags/is.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "2f4de4153dd44e63cc532733fe16c36410302f00faf2a5edda2dca6c19d42107",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-in",
+      "media": "in.png",
+      "svg": "flags/in.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "ef3efcee216612ae7520cf5eb09013901d21de4a20a63aa3c9c62c1ba0f6bd90",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-id",
+      "media": "id.png",
+      "svg": "flags/id.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "83bd1b9215c403d205eb3548fc8498e3175e56c81494ebe5b2eab442291a7420",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-ir",
+      "media": "ir.png",
+      "svg": "flags/ir.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "0f20ddf15daaccc9aa70d4d636dfcab7d0215175b7eb009e18474ac3fe6765bb",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-iq",
+      "media": "iq.png",
+      "svg": "flags/iq.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "4d41f43f997d2ee824a5583fc2fe54dfc4c3304accb16b4dc70f3468cb6d0185",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-ie",
+      "media": "ie.png",
+      "svg": "flags/ie.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "82847f565fd12516c8f53fb6a46e9e0e85b477f8a9a307d49fc72e441995327f",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-il",
+      "media": "il.png",
+      "svg": "flags/il.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "14a4df274e784e760d44219b813e1b2849b16d373b5d945fb169d27cccc47dc7",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-it",
+      "media": "it.png",
+      "svg": "flags/it.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "15777a0dc5a5dd8af5d75deacec27d2d6dab190aa7295d61db601a28a71b5c6f",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-jm",
+      "media": "jm.png",
+      "svg": "flags/jm.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "cc81c5e39f3acbb40c3c4ff4c9e26bfb09813d313b9ded160e6fafcda039feb0",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-jp",
+      "media": "jp.png",
+      "svg": "flags/jp.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "3ecfe5fb326152e5a1270206b34825cb6ecb71f02f5ffdbb0a905474a1c2ed0d",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-jo",
+      "media": "jo.png",
+      "svg": "flags/jo.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "5fa2461d053598fecbeed1de5e793eac44922179b12e427470aad66e741d925e",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-kz",
+      "media": "kz.png",
+      "svg": "flags/kz.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "2091001401171cb135b0683e1295a9748c9fb6658b54b716b4a7c7072258e0dd",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-ke",
+      "media": "ke.png",
+      "svg": "flags/ke.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "fa900bbceccac751433239fdc3ab3cd2d177b02b7a4dc10e601764cd8519eacf",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-ki",
+      "media": "ki.png",
+      "svg": "flags/ki.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "264b8dcc3bc462c0ba497e95f60238a61d4c81f0c87f7d1017c37849917b985d",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-kw",
+      "media": "kw.png",
+      "svg": "flags/kw.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "0e2c8ac36988d400a9ab816ed6bf9ea9d73308f7da2cbe43f980d1813c0c7efc",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-kg",
+      "media": "kg.png",
+      "svg": "flags/kg.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "ea1f1e13a990e4cc97ba47a49d75fdc7c8ee952f9ead6aa16fb285e161f3e914",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-la",
+      "media": "la.png",
+      "svg": "flags/la.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "6c5ae3648ab1ab7750b913f5705cdff9f72423fbfc31fdd4d709228f55d097e4",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-lv",
+      "media": "lv.png",
+      "svg": "flags/lv.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "442240b6d0d4290a8a5bf289beae6d52665dc71f7cb529034682c8fdcf313bb1",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-lb",
+      "media": "lb.png",
+      "svg": "flags/lb.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "2068513eca86222ad8ad63231cdaf8831f6b6b04d57f7095bd0919d21a58aa9e",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-ls",
+      "media": "ls.png",
+      "svg": "flags/ls.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "cc5763382f8418db0af12dbfc41b61ee5b65d5a2eaef734a5b6e2ed9cdbfa385",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-lr",
+      "media": "lr.png",
+      "svg": "flags/lr.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "69db91bd9390b9fa690c6ac9e2fb3a8fbf60e82ae00ebd3d2be2c43e8ffe7ab4",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-ly",
+      "media": "ly.png",
+      "svg": "flags/ly.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "0096c87d6d96929e2e7a6e2624643b0cc577774f32e0ac40824e9fc8f3f328fb",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-li",
+      "media": "li.png",
+      "svg": "flags/li.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "88f34e0aa148bb98d2ff7e47eec4d1a65557f699be53215a6ce69d7cf48508d4",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-lt",
+      "media": "lt.png",
+      "svg": "flags/lt.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "429d40e370103a47cb2fa03e143136308ce0ad387fc05acfff349d40406440a2",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-lu",
+      "media": "lu.png",
+      "svg": "flags/lu.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "3ad3137b8b0d6218d0a9b3a4d7b572b5b9f594f5a60b52b5139b313db085640a",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-mg",
+      "media": "mg.png",
+      "svg": "flags/mg.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "4d1570ba389319522de30e333e94bd04609f10b7768fb132a98fe0ef1a39e96e",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-mw",
+      "media": "mw.png",
+      "svg": "flags/mw.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "95b9a2a516de5d93e7c8be9f9e0bb1c407d55c0222fb17cd30bc2606a486ebe7",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-my",
+      "media": "my.png",
+      "svg": "flags/my.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "9fa2004394439d9537440b5962f19116523f787bbb9814e242cb5f2b6d176535",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-mv",
+      "media": "mv.png",
+      "svg": "flags/mv.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "8b2f4dfc800df036e3eef1de56ad74107cf187cd4a751c61120686a50206cb4c",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-ml",
+      "media": "ml.png",
+      "svg": "flags/ml.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "8aae6052300f6e46423bb5a256801e51151d48d81068dde61f0129da5f45fb59",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-mt",
+      "media": "mt.png",
+      "svg": "flags/mt.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "7c7f9a96502c24023aa88c09de71cf639acc760a02b188ea69a06a637e6efdf0",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-mh",
+      "media": "mh.png",
+      "svg": "flags/mh.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "12ca33cef77cc51ab300d9dcbf6dfea50a51834fde9733ee1111e22298f83836",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-mr",
+      "media": "mr.png",
+      "svg": "flags/mr.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "7a0f5ab104f86a946ae84645f0247943bd5697abfdc114ecff5078b8ddc2d505",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-mu",
+      "media": "mu.png",
+      "svg": "flags/mu.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "90a665aec32d7890ce363fd4b833d921957329e44d14f0883b146b092b879b36",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-mx",
+      "media": "mx.png",
+      "svg": "flags/mx.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "0c57c70b48c496060fdf81230870a860011901720c0788f1e838b320c8f13f47",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-fm",
+      "media": "fm.png",
+      "svg": "flags/fm.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "d084ae191a766ce465a628fafe325ed1661aa56dc4fc1ebda2fa637783644091",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-md",
+      "media": "md.png",
+      "svg": "flags/md.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "cbcc70ada50e7406f1a3ee36c424b57f3ce090489e85101af7293f8b44876657",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-mc",
+      "media": "mc.png",
+      "svg": "flags/mc.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "8ffb26766aa814ec4b2fecca03b8d60756fd4f737c9d2fc0054986c921a3bdd9",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-mn",
+      "media": "mn.png",
+      "svg": "flags/mn.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "c9a6196e563c60601b2a60c4e090565abc9ae7f549ca440681f160083c7d3609",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-me",
+      "media": "me.png",
+      "svg": "flags/me.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "699a6eeb24d29d413543c6f9d5b86d5858a43ba0202e9840ce73e2b5c810f864",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-ma",
+      "media": "ma.png",
+      "svg": "flags/ma.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "bde8b96d19af8ffbe3d5e861f019385b728233cb0e43a7880cf55d72416e29b6",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-mz",
+      "media": "mz.png",
+      "svg": "flags/mz.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "f0e896e4c587b4ce6b76b4d75d5fe2df2b32d865e84f0cc6d52a719ed1a41262",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-mm",
+      "media": "mm.png",
+      "svg": "flags/mm.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "8315285390cf8e8d85b44da64a274dc8a04feaa73ffbf607b8e817e4ac911251",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-na",
+      "media": "na.png",
+      "svg": "flags/na.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "6a26bce548822e92ceca2cafe3cb3c617f464f2d2939f67f0067b433636d58a4",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-nr",
+      "media": "nr.png",
+      "svg": "flags/nr.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "7575fd4dfb8b7ea4c2700f62139abf9e01e490de0fbd33ba05badd3424329149",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-np",
+      "media": "np.png",
+      "svg": "flags/np.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "b3b01a6806439e01f19cffdb31b1ebff916c674c7fbbce9e4be1b5559fb33bb3",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-nl",
+      "media": "nl.png",
+      "svg": "flags/nl.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "0d04d9eadc49c5514881c1c3f7c465a10a37ead378bc5e61cf96fdfcb3599e54",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-nz",
+      "media": "nz.png",
+      "svg": "flags/nz.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "521f4614597aa9e5a292cf62aa1174645bc09ed383879169c53008ab9deb73cc",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-ni",
+      "media": "ni.png",
+      "svg": "flags/ni.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "45740c163a6f2a2d71caf103adb25813eb4ee5558c7a048c6e197d613a50ebc5",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-ne",
+      "media": "ne.png",
+      "svg": "flags/ne.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "b01f27fd487bb6036b1fe361cd3efb88cc6428d615adeb7f7014c2dcdb69e679",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-ng",
+      "media": "ng.png",
+      "svg": "flags/ng.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "e57d72a09cc42bfe39a62df27be30e1455701fc84955e36be5166ff1e8ced0f1",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-kp",
+      "media": "kp.png",
+      "svg": "flags/kp.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "e691f1bd5630092174084b727d30497da300c699085d10b21134f1acb1cf5d3a",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-mk",
+      "media": "mk.png",
+      "svg": "flags/mk.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "7d69a93b4da13040879b5b387fc8b4ede87d20f0dd8647353849b7e6e5747629",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-no",
+      "media": "no.png",
+      "svg": "flags/no.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "24aea913a6dee250a7d34a85ecc449169ebb51b7bca3e93e8c7d0484ee5dedb8",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-om",
+      "media": "om.png",
+      "svg": "flags/om.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "a80f8ec8b7d01c9a1728f371fd6ec97905f46809571657a076eba48c7ac16e74",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-pk",
+      "media": "pk.png",
+      "svg": "flags/pk.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "c7cd484b294cc4ef265cfc50fcfb75d73c8d9b10818c2cfdec84959f105c62bd",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-pw",
+      "media": "pw.png",
+      "svg": "flags/pw.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "193a9b4f69f07c88ee58275ec00a39354c9991a5fb09059aa925aff12874ecca",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-ps",
+      "media": "ps.png",
+      "svg": "flags/ps.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "5be22b2bf94b293c9757c97d727992c5da2ced98cf44cda7a789d1609c7fc381",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-pa",
+      "media": "pa.png",
+      "svg": "flags/pa.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "04a35515722e7b53cff4840eedfa1b1ad564b82c0b5bc225a9ebb79dca49c2f4",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-pg",
+      "media": "pg.png",
+      "svg": "flags/pg.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "fc734101dfdac482e356a1824ec094f78790d4fa5cf923c2907a707a92e19dc4",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-py",
+      "media": "py.png",
+      "svg": "flags/py.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "e632a93f6e3e0288f8c2fd695b258d2afcea581c84f57cd8a3830ba32fe78ed5",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-pe",
+      "media": "pe.png",
+      "svg": "flags/pe.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "03ea831319ec33cf48d9ef1bcd2d659a983cb7a54e4d407fa8fa027a92261dc1",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-ph",
+      "media": "ph.png",
+      "svg": "flags/ph.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "2c3e7818142561a4fd8a1e80fb2bf741aae9540b2c5494922ac838dcf90ef55b",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-pl",
+      "media": "pl.png",
+      "svg": "flags/pl.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "608e5ed6a0820b02ac00e5ee7457a9822b5e5c1be9cba69d17c5a3e9ca4a4377",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-pt",
+      "media": "pt.png",
+      "svg": "flags/pt.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "0cee5f059ba5f2c6fbdbfdd682d955f7695239a40fa9300ba99ccbe3f144565a",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-qa",
+      "media": "qa.png",
+      "svg": "flags/qa.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "64aa892eda2ab88830fb5feb195be1a6c8d57218cb0dca91b4c84a923673483a",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-cg",
+      "media": "cg.png",
+      "svg": "flags/cg.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "ace407160e763c92355d82605f006d4eda3fa07427fa55f6f8a3e3319a7a6686",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-ro",
+      "media": "ro.png",
+      "svg": "flags/ro.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "ea3e3c17cfd414a403313ddc73a62a264cbc205d962214e272321566e0d78ce8",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-ru",
+      "media": "ru.png",
+      "svg": "flags/ru.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "d3186a06e97966a28552e0134f08ffd6e30fb7325bd2d8b27c235193ed24fdf1",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-rw",
+      "media": "rw.png",
+      "svg": "flags/rw.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "35bee586963c2b7e0295400a90294b579679ae1404ffd6246af219a071e47b4a",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-kn",
+      "media": "kn.png",
+      "svg": "flags/kn.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "03af4c3390aaa5f2af044ab88d96a102aba4ae9bc76aed6f2654ab87deb07472",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-lc",
+      "media": "lc.png",
+      "svg": "flags/lc.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "a5a4cc02cd45921586e04dd3fbd236f4c32fd244cb27519e9d0ca733bb987644",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-vc",
+      "media": "vc.png",
+      "svg": "flags/vc.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "920f884361e7aac720606f117665aa205598ff07a1be11ca957e60c53ef0da8c",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-ws",
+      "media": "ws.png",
+      "svg": "flags/ws.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "bae8976231b0238a6d60a38b667611c7c9cee6f09690b90853f20c2ce10a0fb7",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-sm",
+      "media": "sm.png",
+      "svg": "flags/sm.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "3da871598b42b8c20867896215608615b47694cc98fe6e9b4e7ba5e7fc9f4744",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-sa",
+      "media": "sa.png",
+      "svg": "flags/sa.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "e07786f2d467b66cae6e9bc096ebd887fa35daa4bc5a8dced89f0f6d7a2efaf3",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-sn",
+      "media": "sn.png",
+      "svg": "flags/sn.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "703cc723bb89d12763271eaf19d3b927d12ebded09ee9408bf4b5704ab946117",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-rs",
+      "media": "rs.png",
+      "svg": "flags/rs.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "a985cc8f262e923dc1d83eeff6c495281bdb4f8ce6df38ccaa1e0f94e2cdb3c1",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-sc",
+      "media": "sc.png",
+      "svg": "flags/sc.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "3ddf34d076f859e888061197415baba9f386be68a74de2cea553ee41e0442875",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-sl",
+      "media": "sl.png",
+      "svg": "flags/sl.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "022f91e79e13a30ae6dec0dc9257488b9193373f6c41748f787a05e050dab8b6",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-sg",
+      "media": "sg.png",
+      "svg": "flags/sg.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "3b8ae566d38d00d13b19aaaa5c739eb2023d4e65822d79425124b80513c717e0",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-sk",
+      "media": "sk.png",
+      "svg": "flags/sk.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "7061dea3193d89e0d9b10f7fe07076af43c4a901249c7c2d8f71b1eebfc52996",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-si",
+      "media": "si.png",
+      "svg": "flags/si.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "cb5fec5ac8527646e5e4afe2896b2bf6b978555ade411edc50d512ad296d6936",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-sb",
+      "media": "sb.png",
+      "svg": "flags/sb.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "13a37abe4d7f8fba3e44f3717da19d4d21bf78701a59f8570004b7492c9be955",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-so",
+      "media": "so.png",
+      "svg": "flags/so.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "c3984120680ef8a88d7ba9bfbcf488c7e0e0c5a419f256995127c5faed1d3aeb",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-za",
+      "media": "za.png",
+      "svg": "flags/za.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "4d0b6e3bec69cd3387c0c7518c06074768797650581614c59f084104d96a204e",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-kr",
+      "media": "kr.png",
+      "svg": "flags/kr.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "cc39b7490a894db19113b999831ebf252e1043516c31b4af0fcf4d95e11b15cd",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-ss",
+      "media": "ss.png",
+      "svg": "flags/ss.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "b38f305e68187c6b436ec835820044fd9a2b45f00c85fb7b08c5c77eb3e26074",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-es",
+      "media": "es.png",
+      "svg": "flags/es.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "e6ce1922eba61c4ac26f70845b8c54ff8f29e33ef64aa35a150c719c07f76ef3",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-lk",
+      "media": "lk.png",
+      "svg": "flags/lk.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "099fd7a4517b9ea45a9fc847d903672ae9c0bfd7f74a085679661f04a76cb473",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-sd",
+      "media": "sd.png",
+      "svg": "flags/sd.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "8b93452003c143c46f6c40756f2a1f4f2dd314d16a413dbf246e0e4b62662679",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-sr",
+      "media": "sr.png",
+      "svg": "flags/sr.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "dc01781121dcb300dc8e2ad10877a96363f0fda9a155032d4710c38bb0f3af88",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-se",
+      "media": "se.png",
+      "svg": "flags/se.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "1d7c3fc0594c8fb856d9fd0a13a752dfaf8643c8b073582909c88be24e7e416f",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-ch",
+      "media": "ch.png",
+      "svg": "flags/ch.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "4c6adad3941f5a3188b3bcf3a64f9ab6b351c504f5b7c4d01548c74e72fa5149",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-sy",
+      "media": "sy.png",
+      "svg": "flags/sy.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "ca2804577f06100f17e9df10cdc38dbaf37c91e78557a7c64a35f0f953b31d47",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-st",
+      "media": "st.png",
+      "svg": "flags/st.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "016bd6c122b0728fec6c9ef608a8938690d3ee11d25dbab2350ff95b206ca2d8",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-tj",
+      "media": "tj.png",
+      "svg": "flags/tj.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "1483e84402e5a809335b018f87c3d8c22a008f95a2aa3f79d088cf8435c7a080",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-tz",
+      "media": "tz.png",
+      "svg": "flags/tz.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "6535e0dc71b3ff75649a489c9d04256934a2476e5dbc8e0111d5c698d3987fdc",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-th",
+      "media": "th.png",
+      "svg": "flags/th.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "a8df94da01c0b439521a1615c413abd8adf7b6b666cb5571f6bf71d5dedcd6f9",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-tl",
+      "media": "tl.png",
+      "svg": "flags/tl.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "7da64a9ca06f04e89204fadf3ab7b546784a0da26790017ff8f8a771bb2e66b2",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-tg",
+      "media": "tg.png",
+      "svg": "flags/tg.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "3c1fe68986d0e0965d8112b8a4072a6c67d0111fe9af98f8dd76d502196305da",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-to",
+      "media": "to.png",
+      "svg": "flags/to.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "0d2711fbf225046ca0d597bfc6b6e36ffb62c808f8132e2d354cf7f486df6b99",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-tt",
+      "media": "tt.png",
+      "svg": "flags/tt.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "3899dfac3d4383b59a7e2817fcc99ad6fde428b6990a339aea6be4d1ceb7ac23",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-tn",
+      "media": "tn.png",
+      "svg": "flags/tn.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "4dba7cc5500d3333d9ac08c1b4e01a9af241f50b53004f3931f4b30cd2ec521e",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-tm",
+      "media": "tm.png",
+      "svg": "flags/tm.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "a2a90a7f637161539b281ed75ebf80d68a999d75d7b494d8ceb0cff917199143",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-tv",
+      "media": "tv.png",
+      "svg": "flags/tv.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "7eb4dc3f01876c4610c6de2306d4f2b2d2edc75612a11ed261c3c29ea4561377",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-tr",
+      "media": "tr.png",
+      "svg": "flags/tr.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "03054d924491c213d26b12f6663d33481b1b4018caaa0c86e07d72846ce980d2",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-ug",
+      "media": "ug.png",
+      "svg": "flags/ug.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "f4512cc9fe389b8349a4e4ca04cd656f61c65aee562850384af17177f40a7856",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-ua",
+      "media": "ua.png",
+      "svg": "flags/ua.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "8b72b27e5bb712f269e28182fd85175175b65ebf8fd31fbff8e255a0058c54b9",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-ae",
+      "media": "ae.png",
+      "svg": "flags/ae.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "4cbd843ba82e44f98b9497dfd1492f92855eb53d7dd0d5c92b77c7fe7df04ca5",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-gb",
+      "media": "gb.png",
+      "svg": "flags/gb.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "910e4fa63fb7a23d30d59dee2feb08da51a405eb06b38a7e12d18d9b504d13b5",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-us",
+      "media": "us.png",
+      "svg": "flags/us.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "6b234bd17b00d498ac8d1c645a00025817e624641289fe4faec164c52eb43f20",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-uy",
+      "media": "uy.png",
+      "svg": "flags/uy.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "70a7ec0a17d0d950de791f23e550175d1265fb120dcc66ec691ad40410508717",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-uz",
+      "media": "uz.png",
+      "svg": "flags/uz.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "3a28b64713f7df950e570c5f9bffe257345d8c5ddffb7a4bedd8a900fef0ada4",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-vu",
+      "media": "vu.png",
+      "svg": "flags/vu.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "dfb2fbe51ad8efe6b643fef6d8d2c0c8ceb32bfdf82f86942cb43827cc2f92e6",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-va",
+      "media": "va.png",
+      "svg": "flags/va.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "c9752de8d48075be6253e2e0a933e40819ae7f2b623c3d3a06dd7f29630104c9",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-ve",
+      "media": "ve.png",
+      "svg": "flags/ve.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "ec24f2dce147ca51112c7825ffa1ca6c00845ad95d0447f5c0a945cedf8cc358",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-vn",
+      "media": "vn.png",
+      "svg": "flags/vn.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "893b24ea38e9187b0caf4bbb787b525487931bb7401020f70ab36018f1e64bae",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-ye",
+      "media": "ye.png",
+      "svg": "flags/ye.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "fe132d9cc0f86823c08730800a18ee90f136e599b23808cd4cb2e0eb97ecf362",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-zm",
+      "media": "zm.png",
+      "svg": "flags/zm.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "cb23a0181c34027067d233803384555a950ed282a9fdc6c49a807a8b82134926",
+      "manualAudit": "unreviewed"
+    },
+    {
+      "assetId": "flag-zw",
+      "media": "zw.png",
+      "svg": "flags/zw.svg",
+      "sourceId": "source-country-flags",
+      "license": "public-domain",
+      "modified": false,
+      "sha256": "2fe17954bd5503637d36c65aaac312969004af08116589f830916a0c1ff1874a",
+      "manualAudit": "unreviewed"
+    }
+  ],
+  "stamps": [
+    {
+      "id": "flags-from-every-continent",
+      "title": "Around the world",
+      "description": "Recognize flags from all six regions",
+      "rule": {
+        "kind": "correctAcrossFieldValues",
+        "field": "Continent",
+        "values": [
+          "Africa",
+          "Asia",
+          "Europe",
+          "North America",
+          "South America",
+          "Oceania"
+        ]
+      }
+    },
+    {
+      "id": "confused-flags-mastered",
+      "title": "Lookalike detective",
+      "description": "Master the confusing flag groups",
+      "rule": {
+        "kind": "masterTaggedCards",
+        "tagPrefix": "bert::similar::"
+      }
+    }
+  ],
+  "bertSchemaVersion": 1,
+  "mediaDir": "media",
+  "similarGroups": [
+    {
+      "id": "austria-australia",
+      "kind": "name",
+      "countryIds": [
+        "at",
+        "au"
+      ],
+      "explanation": {
+        "id": "confusion-austria-australia",
+        "text": "These similarly named countries are separate catalog entries. Capital memory hook. Austria: Vienna; Australia: Canberra.",
+        "sourceIds": [
+          "source-country-codes-snapshot"
+        ],
+        "review": {
+          "state": "draft",
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      }
+    },
+    {
+      "id": "niger-nigeria",
+      "kind": "name",
+      "countryIds": [
+        "ne",
+        "ng"
+      ],
+      "explanation": {
+        "id": "confusion-niger-nigeria",
+        "text": "These similarly named countries are separate catalog entries. Capital memory hook. Niger: Niamey; Nigeria: Abuja.",
+        "sourceIds": [
+          "source-country-codes-snapshot"
+        ],
+        "review": {
+          "state": "draft",
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      }
+    },
+    {
+      "id": "dominica-dominican-republic",
+      "kind": "name",
+      "countryIds": [
+        "dm",
+        "do"
+      ],
+      "explanation": {
+        "id": "confusion-dominica-dominican-republic",
+        "text": "These similarly named countries are separate catalog entries. Capital memory hook. Dominica: Roseau; Dominican Republic: Santo Domingo.",
+        "sourceIds": [
+          "source-country-codes-snapshot"
+        ],
+        "review": {
+          "state": "draft",
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      }
+    },
+    {
+      "id": "slovakia-slovenia",
+      "kind": "name",
+      "countryIds": [
+        "sk",
+        "si"
+      ],
+      "explanation": {
+        "id": "confusion-slovakia-slovenia",
+        "text": "These similarly named countries are separate catalog entries. Capital memory hook. Slovakia: Bratislava; Slovenia: Ljubljana.",
+        "sourceIds": [
+          "source-country-codes-snapshot"
+        ],
+        "review": {
+          "state": "draft",
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      }
+    },
+    {
+      "id": "ireland-iceland",
+      "kind": "name",
+      "countryIds": [
+        "ie",
+        "is"
+      ],
+      "explanation": {
+        "id": "confusion-ireland-iceland",
+        "text": "These similarly named countries are separate catalog entries. Capital memory hook. Ireland: Dublin; Iceland: Reykjavik.",
+        "sourceIds": [
+          "source-country-codes-snapshot"
+        ],
+        "review": {
+          "state": "draft",
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      }
+    },
+    {
+      "id": "sweden-switzerland",
+      "kind": "name",
+      "countryIds": [
+        "se",
+        "ch"
+      ],
+      "explanation": {
+        "id": "confusion-sweden-switzerland",
+        "text": "These similarly named countries are separate catalog entries. Capital memory hook. Sweden: Stockholm; Switzerland: Bern.",
+        "sourceIds": [
+          "source-country-codes-snapshot"
+        ],
+        "review": {
+          "state": "draft",
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      }
+    },
+    {
+      "id": "gambia-zambia",
+      "kind": "name",
+      "countryIds": [
+        "gm",
+        "zm"
+      ],
+      "explanation": {
+        "id": "confusion-gambia-zambia",
+        "text": "These similarly named countries are separate catalog entries. Capital memory hook. Gambia: Banjul; Zambia: Lusaka.",
+        "sourceIds": [
+          "source-country-codes-snapshot"
+        ],
+        "review": {
+          "state": "draft",
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      }
+    },
+    {
+      "id": "mauritania-mauritius",
+      "kind": "name",
+      "countryIds": [
+        "mr",
+        "mu"
+      ],
+      "explanation": {
+        "id": "confusion-mauritania-mauritius",
+        "text": "These similarly named countries are separate catalog entries. Capital memory hook. Mauritania: Nouakchott; Mauritius: Port Louis.",
+        "sourceIds": [
+          "source-country-codes-snapshot"
+        ],
+        "review": {
+          "state": "draft",
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      }
+    },
+    {
+      "id": "guinea-family",
+      "kind": "name",
+      "countryIds": [
+        "gn",
+        "gw",
+        "gq",
+        "pg"
+      ],
+      "explanation": {
+        "id": "confusion-guinea-family",
+        "text": "These similarly named countries are separate catalog entries. Capital memory hook. Guinea: Conakry; Guinea-Bissau: Bissau; Equatorial Guinea: Ciudad de la Paz; Papua New Guinea: Port Moresby.",
+        "sourceIds": [
+          "source-country-codes-snapshot"
+        ],
+        "review": {
+          "state": "draft",
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      }
+    },
+    {
+      "id": "congo-pair",
+      "kind": "name",
+      "countryIds": [
+        "cg",
+        "cd"
+      ],
+      "explanation": {
+        "id": "confusion-congo-pair",
+        "text": "These similarly named countries are separate catalog entries. Capital memory hook. Republic of the Congo: Brazzaville; Democratic Republic of the Congo: Kinshasa.",
+        "sourceIds": [
+          "source-country-codes-snapshot"
+        ],
+        "review": {
+          "state": "draft",
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      }
+    },
+    {
+      "id": "korea-pair",
+      "kind": "name",
+      "countryIds": [
+        "kp",
+        "kr"
+      ],
+      "explanation": {
+        "id": "confusion-korea-pair",
+        "text": "These similarly named countries are separate catalog entries. Capital memory hook. North Korea: Pyongyang; South Korea: Seoul.",
+        "sourceIds": [
+          "source-country-codes-snapshot"
+        ],
+        "review": {
+          "state": "draft",
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      }
+    },
+    {
+      "id": "sudan-pair",
+      "kind": "name",
+      "countryIds": [
+        "sd",
+        "ss"
+      ],
+      "explanation": {
+        "id": "confusion-sudan-pair",
+        "text": "These similarly named countries are separate catalog entries. Capital memory hook. Sudan: Khartoum; South Sudan: Juba.",
+        "sourceIds": [
+          "source-country-codes-snapshot"
+        ],
+        "review": {
+          "state": "draft",
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      }
+    },
+    {
+      "id": "chad-romania",
+      "kind": "flag",
+      "countryIds": [
+        "td",
+        "ro"
+      ],
+      "explanation": {
+        "id": "confusion-chad-romania",
+        "text": "The layouts are nearly identical; Chad normally uses a darker blue stripe than Romania.",
+        "sourceIds": [
+          "source-country-flags"
+        ],
+        "review": {
+          "state": "draft",
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      }
+    },
+    {
+      "id": "indonesia-monaco",
+      "kind": "flag",
+      "countryIds": [
+        "id",
+        "mc"
+      ],
+      "explanation": {
+        "id": "confusion-indonesia-monaco",
+        "text": "Both are red over white; their official proportions differ, so trivia choices keep the original ratios.",
+        "sourceIds": [
+          "source-country-flags"
+        ],
+        "review": {
+          "state": "draft",
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      }
+    },
+    {
+      "id": "ireland-cote-divoire",
+      "kind": "flag",
+      "countryIds": [
+        "ie",
+        "ci"
+      ],
+      "explanation": {
+        "id": "confusion-ireland-cote-divoire",
+        "text": "Both use green, white, and orange vertical bands, but the order is reversed.",
+        "sourceIds": [
+          "source-country-flags"
+        ],
+        "review": {
+          "state": "draft",
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      }
+    },
+    {
+      "id": "netherlands-luxembourg",
+      "kind": "flag",
+      "countryIds": [
+        "nl",
+        "lu"
+      ],
+      "explanation": {
+        "id": "confusion-netherlands-luxembourg",
+        "text": "Both use horizontal red, white, and blue; Luxembourg normally uses a lighter blue and a longer proportion.",
+        "sourceIds": [
+          "source-country-flags"
+        ],
+        "review": {
+          "state": "draft",
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      }
+    },
+    {
+      "id": "australia-new-zealand",
+      "kind": "flag",
+      "countryIds": [
+        "au",
+        "nz"
+      ],
+      "explanation": {
+        "id": "confusion-australia-new-zealand",
+        "text": "Australia includes the Commonwealth Star and more stars; New Zealand's four Southern Cross stars are red-edged in white.",
+        "sourceIds": [
+          "source-country-flags"
+        ],
+        "review": {
+          "state": "draft",
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      }
+    },
+    {
+      "id": "qatar-bahrain",
+      "kind": "flag",
+      "countryIds": [
+        "qa",
+        "bh"
+      ],
+      "explanation": {
+        "id": "confusion-qatar-bahrain",
+        "text": "Qatar is maroon with nine white serration points; Bahrain is red with five.",
+        "sourceIds": [
+          "source-country-flags"
+        ],
+        "review": {
+          "state": "draft",
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      }
+    },
+    {
+      "id": "colombia-ecuador-venezuela",
+      "kind": "flag",
+      "countryIds": [
+        "co",
+        "ec",
+        "ve"
+      ],
+      "explanation": {
+        "id": "confusion-colombia-ecuador-venezuela",
+        "text": "All use yellow, blue, and red; Ecuador adds its coat of arms and Venezuela adds an arc of stars.",
+        "sourceIds": [
+          "source-country-flags"
+        ],
+        "review": {
+          "state": "draft",
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      }
+    },
+    {
+      "id": "mali-guinea",
+      "kind": "flag",
+      "countryIds": [
+        "ml",
+        "gn"
+      ],
+      "explanation": {
+        "id": "confusion-mali-guinea",
+        "text": "Both use the same three colours in vertical bands, but in opposite order.",
+        "sourceIds": [
+          "source-country-flags"
+        ],
+        "review": {
+          "state": "draft",
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      }
+    },
+    {
+      "id": "italy-mexico",
+      "kind": "flag",
+      "countryIds": [
+        "it",
+        "mx"
+      ],
+      "explanation": {
+        "id": "confusion-italy-mexico",
+        "text": "Both use green, white, and red vertical bands; Mexico places its national coat of arms in the centre.",
+        "sourceIds": [
+          "source-country-flags"
+        ],
+        "review": {
+          "state": "draft",
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      }
+    },
+    {
+      "id": "belgium-germany",
+      "kind": "flag",
+      "countryIds": [
+        "be",
+        "de"
+      ],
+      "explanation": {
+        "id": "confusion-belgium-germany",
+        "text": "Both use black, red, and yellow; Belgium's bands are vertical and Germany's are horizontal.",
+        "sourceIds": [
+          "source-country-flags"
+        ],
+        "review": {
+          "state": "draft",
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      }
+    },
+    {
+      "id": "norway-iceland",
+      "kind": "flag",
+      "countryIds": [
+        "no",
+        "is"
+      ],
+      "explanation": {
+        "id": "confusion-norway-iceland",
+        "text": "Both use an offset Nordic cross; Norway is red with a blue inner cross, while Iceland reverses those dominant colours.",
+        "sourceIds": [
+          "source-country-flags"
+        ],
+        "review": {
+          "state": "draft",
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      }
+    },
+    {
+      "id": "denmark-norway",
+      "kind": "flag",
+      "countryIds": [
+        "dk",
+        "no"
+      ],
+      "explanation": {
+        "id": "confusion-denmark-norway",
+        "text": "Both use a white Nordic cross on red, but Norway adds a blue cross inside the white one.",
+        "sourceIds": [
+          "source-country-flags"
+        ],
+        "review": {
+          "state": "draft",
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      }
+    },
+    {
+      "id": "russia-slovenia-slovakia",
+      "kind": "flag",
+      "countryIds": [
+        "ru",
+        "si",
+        "sk"
+      ],
+      "explanation": {
+        "id": "confusion-russia-slovenia-slovakia",
+        "text": "All use white, blue, and red horizontal bands; Slovenia and Slovakia add different national arms, while Russia does not.",
+        "sourceIds": [
+          "source-country-flags"
+        ],
+        "review": {
+          "state": "draft",
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      }
+    },
+    {
+      "id": "croatia-paraguay-netherlands",
+      "kind": "flag",
+      "countryIds": [
+        "hr",
+        "py",
+        "nl"
+      ],
+      "explanation": {
+        "id": "confusion-croatia-paraguay-netherlands",
+        "text": "All use red, white, and blue horizontal bands; Croatia and Paraguay add national emblems, while the Netherlands does not.",
+        "sourceIds": [
+          "source-country-flags"
+        ],
+        "review": {
+          "state": "draft",
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      }
+    },
+    {
+      "id": "honduras-nicaragua-el-salvador",
+      "kind": "flag",
+      "countryIds": [
+        "hn",
+        "ni",
+        "sv"
+      ],
+      "explanation": {
+        "id": "confusion-honduras-nicaragua-el-salvador",
+        "text": "All are blue-white-blue; Honduras has five stars, while Nicaragua and El Salvador use different central arms.",
+        "sourceIds": [
+          "source-country-flags"
+        ],
+        "review": {
+          "state": "draft",
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      }
+    },
+    {
+      "id": "egypt-iraq-syria-yemen",
+      "kind": "flag",
+      "countryIds": [
+        "eg",
+        "iq",
+        "sy",
+        "ye"
+      ],
+      "explanation": {
+        "id": "confusion-egypt-iraq-syria-yemen",
+        "text": "These flags share red, white, and black bands; their central stars, text, emblems, or lack of them distinguish the designs.",
+        "sourceIds": [
+          "source-country-flags"
+        ],
+        "review": {
+          "state": "draft",
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      }
+    },
+    {
+      "id": "senegal-cameroon-mali-guinea",
+      "kind": "flag",
+      "countryIds": [
+        "sn",
+        "cm",
+        "ml",
+        "gn"
+      ],
+      "explanation": {
+        "id": "confusion-senegal-cameroon-mali-guinea",
+        "text": "These flags reuse green, yellow, and red vertical bands; order and central stars are the quickest clues.",
+        "sourceIds": [
+          "source-country-flags"
+        ],
+        "review": {
+          "state": "draft",
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      }
+    },
+    {
+      "id": "uae-kuwait-jordan-palestine",
+      "kind": "flag",
+      "countryIds": [
+        "ae",
+        "kw",
+        "jo",
+        "ps"
+      ],
+      "explanation": {
+        "id": "confusion-uae-kuwait-jordan-palestine",
+        "text": "These flags share Pan-Arab colours; compare the hoist shape and the order of the horizontal bands.",
+        "sourceIds": [
+          "source-country-flags"
+        ],
+        "review": {
+          "state": "draft",
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      }
+    },
+    {
+      "id": "costa-rica-thailand",
+      "kind": "flag",
+      "countryIds": [
+        "cr",
+        "th"
+      ],
+      "explanation": {
+        "id": "confusion-costa-rica-thailand",
+        "text": "Both have five horizontal red, white, and blue bands; the broad centre band is red for Costa Rica and blue for Thailand.",
+        "sourceIds": [
+          "source-country-flags"
+        ],
+        "review": {
+          "state": "draft",
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      }
+    },
+    {
+      "id": "poland-indonesia",
+      "kind": "flag",
+      "countryIds": [
+        "pl",
+        "id"
+      ],
+      "explanation": {
+        "id": "confusion-poland-indonesia",
+        "text": "Both are simple white-and-red bicolours; Poland is white over red and Indonesia is red over white.",
+        "sourceIds": [
+          "source-country-flags"
+        ],
+        "review": {
+          "state": "draft",
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      }
+    }
+  ],
+  "upstream": {
+    "catalogSchemaVersion": 1,
+    "countryCanon": "un193-plus-palestine-and-vatican-city",
+    "editorialPolicyVersion": "1.0.0",
+    "generatedFromPinnedDataAt": "2026-09-09",
+    "review": {
+      "state": "draft",
+      "reviewer": null,
+      "reviewedAt": null,
+      "note": "Machine assembled from pinned sources. Land-border facts require human fact, copy, ambiguity, and sensitivity review; every flag requires visual audit."
+    }
+  }
+}

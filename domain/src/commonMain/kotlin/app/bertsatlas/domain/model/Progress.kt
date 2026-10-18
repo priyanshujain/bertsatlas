@@ -23,6 +23,7 @@ data class Attempt(
     val questionWindowMillis: Long = 0,
     val questionRemainingMillis: Long = 0,
     val hintTypes: Set<HintType> = emptySet(),
+    val packId: String = "",
 )
 
 @Serializable
@@ -72,6 +73,7 @@ enum class PassportStampKind {
     SustainedAccuracy,
     ConfusedFlagsMastered,
     SevenActiveDays,
+    PackMastered,
 }
 
 @Serializable

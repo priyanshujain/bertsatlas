@@ -1,0 +1,289 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 4,
+    "identityHash": "815881e2b1c35249aff7dd8cd7edb8fb",
+    "entities": [
+      {
+        "tableName": "pack_answer_totals",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`packId` TEXT NOT NULL, `answeredQuestions` INTEGER NOT NULL, `correctAnswers` INTEGER NOT NULL, `netPoints` INTEGER NOT NULL, PRIMARY KEY(`packId`))",
+        "fields": [
+          {
+            "fieldPath": "packId",
+            "columnName": "packId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "answeredQuestions",
+            "columnName": "answeredQuestions",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "correctAnswers",
+            "columnName": "correctAnswers",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "netPoints",
+            "columnName": "netPoints",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "packId"
+          ]
+        }
+      },
+      {
+        "tableName": "runs",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `packId` TEXT NOT NULL, `duration` TEXT NOT NULL, `topic` TEXT NOT NULL, `status` TEXT NOT NULL, `score` INTEGER NOT NULL, `correctAnswers` INTEGER NOT NULL, `answeredQuestions` INTEGER NOT NULL, `averageResponseMillis` INTEGER NOT NULL, `bestCorrectStreak` INTEGER NOT NULL, `improvedMasteryItems` INTEGER NOT NULL, `revisitCardIdsJson` TEXT NOT NULL, `completedAtEpochMillis` INTEGER, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "packId",
+            "columnName": "packId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "duration",
+            "columnName": "duration",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "topic",
+            "columnName": "topic",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "status",
+            "columnName": "status",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "score",
+            "columnName": "score",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "correctAnswers",
+            "columnName": "correctAnswers",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "answeredQuestions",
+            "columnName": "answeredQuestions",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "averageResponseMillis",
+            "columnName": "averageResponseMillis",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "bestCorrectStreak",
+            "columnName": "bestCorrectStreak",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "improvedMasteryItems",
+            "columnName": "improvedMasteryItems",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "revisitCardIdsJson",
+            "columnName": "revisitCardIdsJson",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "completedAtEpochMillis",
+            "columnName": "completedAtEpochMillis",
+            "affinity": "INTEGER"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        }
+      },
+      {
+        "tableName": "personal_bests",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`packId` TEXT NOT NULL, `duration` TEXT NOT NULL, `score` INTEGER NOT NULL, `runId` TEXT NOT NULL, PRIMARY KEY(`packId`, `duration`))",
+        "fields": [
+          {
+            "fieldPath": "packId",
+            "columnName": "packId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "duration",
+            "columnName": "duration",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "score",
+            "columnName": "score",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "runId",
+            "columnName": "runId",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "packId",
+            "duration"
+          ]
+        }
+      },
+      {
+        "tableName": "streak",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`singletonId` INTEGER NOT NULL, `currentDays` INTEGER NOT NULL, `bestDays` INTEGER NOT NULL, `lastCompletedEpochDay` INTEGER, PRIMARY KEY(`singletonId`))",
+        "fields": [
+          {
+            "fieldPath": "singletonId",
+            "columnName": "singletonId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "currentDays",
+            "columnName": "currentDays",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "bestDays",
+            "columnName": "bestDays",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "lastCompletedEpochDay",
+            "columnName": "lastCompletedEpochDay",
+            "affinity": "INTEGER"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "singletonId"
+          ]
+        }
+      },
+      {
+        "tableName": "stamps",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`packId` TEXT NOT NULL, `stampId` TEXT NOT NULL, `earnedAtEpochMillis` INTEGER NOT NULL, PRIMARY KEY(`packId`, `stampId`))",
+        "fields": [
+          {
+            "fieldPath": "packId",
+            "columnName": "packId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "stampId",
+            "columnName": "stampId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "earnedAtEpochMillis",
+            "columnName": "earnedAtEpochMillis",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "packId",
+            "stampId"
+          ]
+        }
+      },
+      {
+        "tableName": "active_run",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`singletonId` INTEGER NOT NULL, `runId` TEXT NOT NULL, `packId` TEXT NOT NULL, `schemaVersion` INTEGER NOT NULL, `catalogVersion` TEXT NOT NULL, `snapshotJson` TEXT NOT NULL, PRIMARY KEY(`singletonId`))",
+        "fields": [
+          {
+            "fieldPath": "singletonId",
+            "columnName": "singletonId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "runId",
+            "columnName": "runId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "packId",
+            "columnName": "packId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "schemaVersion",
+            "columnName": "schemaVersion",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "catalogVersion",
+            "columnName": "catalogVersion",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "snapshotJson",
+            "columnName": "snapshotJson",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "singletonId"
+          ]
+        }
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '815881e2b1c35249aff7dd8cd7edb8fb')"
+    ]
+  }
+}

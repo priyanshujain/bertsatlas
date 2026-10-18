@@ -1,6 +1,9 @@
 package app.bertsatlas.ui
 
+import app.bertsatlas.domain.pack.BundledMixes
+
 import androidx.compose.runtime.Immutable
+import androidx.compose.ui.graphics.Color
 
 enum class BertPose { Idle, Correct, Incorrect, Overtime, Hint, Fact, Results, Streak, Stamp }
 
@@ -73,4 +76,52 @@ data class DebugActionUi(
     val title: String,
     val detail: String? = null,
     val destructive: Boolean = false,
+)
+
+enum class PackCover { Flags, Capitals, Mix, Generic }
+
+@Immutable
+data class PackCardUi(
+    val packId: String,
+    val title: String,
+    val subtitle: String,
+    val accent: Color,
+    val cover: PackCover,
+    val cardCount: Int,
+    val masteredCount: Int,
+    val learningCount: Int,
+    val dueCount: Int = 0,
+    val shelf: String = "",
+    val subshelf: String = "",
+    val official: Boolean = true,
+    val coverImage: CoverImage? = null,
+)
+
+@Immutable
+data class CoverImage(val mediaDirectory: String, val name: String)
+
+@Immutable
+data class MixCardUi(
+    val mixId: String,
+    val title: String,
+    val subtitle: String,
+    val accent: Color,
+    val memberPacks: List<PackCardUi>,
+    val missingPackNames: List<String>,
+) {
+    val cardCount: Int get() = memberPacks.sumOf { it.cardCount }
+    val cover: PackCover get() = if (mixId == BundledMixes.Geography.mixId) PackCover.Mix else PackCover.Generic
+}
+
+
+enum class StudyPush(val title: String, val description: String) {
+    Relaxed("Easy going", "Fewer reviews, a little more forgetting"),
+    Balanced("Steady", "Bert's recommended balance"),
+    Intense("Push me", "More reviews so you rarely forget"),
+}
+
+@Immutable
+data class StudySettingsUi(
+    val dailyNewCards: Int,
+    val push: StudyPush,
 )

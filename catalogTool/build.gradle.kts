@@ -10,6 +10,8 @@ kotlin {
 
 dependencies {
     implementation(libs.kotlinx.serialization.json)
+    implementation(project(":domain"))
+    implementation(project(":anki"))
 }
 
 application {
@@ -31,4 +33,21 @@ tasks.register<JavaExec>("validateCatalogForRelease") {
     mainClass.set(application.mainClass)
     args("--release")
     workingDir = rootProject.projectDir
+}
+
+tasks.register<JavaExec>("buildPacks") {
+    group = "build"
+    description = "Compiles content/packs sources into bundled .apkg packs."
+    classpath = sourceSets.main.get().runtimeClasspath
+    mainClass.set("app.bertsatlas.catalogtool.PackBuilderKt")
+    workingDir = rootProject.projectDir
+}
+
+tasks.register<JavaExec>("buildStore") {
+    group = "build"
+    description = "Builds the store index.json and versioned official packs into build/store."
+    classpath = sourceSets.main.get().runtimeClasspath
+    mainClass.set("app.bertsatlas.catalogtool.StoreBuilderKt")
+    workingDir = rootProject.projectDir
+    providers.gradleProperty("storeBaseUrl").orNull?.let { args("--base-url", it) }
 }

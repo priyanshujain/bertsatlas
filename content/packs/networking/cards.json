@@ -1,0 +1,3088 @@
+{
+  "cards": [
+    {
+      "guid": "0f0f5d58-54ba-5a87-ae3f-9c39e5d7ca01",
+      "noteType": "Bert Typed",
+      "section": "layers",
+      "fields": {
+        "Question": "How many layers does the OSI reference model define?",
+        "Answer": "7",
+        "Aliases": "Seven",
+        "Hint": "Count from Physical up to Application.",
+        "Fact": "The OSI model was published by ISO in 1984 as ISO 7498.",
+        "Source": "ISO/IEC 7498-1 OSI Basic Reference Model (https://www.iso.org/standard/20269.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::counts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "ac130829-470a-5b97-b7d5-0ddcba20c852",
+      "noteType": "Bert Two Way",
+      "section": "layers",
+      "fields": {
+        "Side A": "OSI layer 1",
+        "Side B": "Physical layer",
+        "Aliases": "Physical",
+        "Hint": "Bits on a wire, fibre or radio.",
+        "Fact": "Cables, connectors and signal encoding all live here.",
+        "Source": "ISO/IEC 7498-1 OSI Basic Reference Model (https://www.iso.org/standard/20269.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::osi-layers",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "1a4fac70-b55a-5baa-a7bb-b0045db83e82",
+      "noteType": "Bert Two Way",
+      "section": "layers",
+      "fields": {
+        "Side A": "OSI layer 2",
+        "Side B": "Data link layer",
+        "Aliases": "Data link\nLink layer",
+        "Hint": "Frames and MAC addresses.",
+        "Fact": "Ethernet switching happens at this layer.",
+        "Source": "ISO/IEC 7498-1 OSI Basic Reference Model (https://www.iso.org/standard/20269.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::osi-layers",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "7fcd1617-f94e-5ec2-a0cc-52a1998e3cad",
+      "noteType": "Bert Two Way",
+      "section": "layers",
+      "fields": {
+        "Side A": "OSI layer 3",
+        "Side B": "Network layer",
+        "Aliases": "Network",
+        "Hint": "Where IP lives.",
+        "Fact": "Routers forward packets based on this layer's addresses.",
+        "Source": "ISO/IEC 7498-1 OSI Basic Reference Model (https://www.iso.org/standard/20269.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::osi-layers",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "c69e26b5-d0b1-56da-9473-b370dfcccf5a",
+      "noteType": "Bert Two Way",
+      "section": "layers",
+      "fields": {
+        "Side A": "OSI layer 4",
+        "Side B": "Transport layer",
+        "Aliases": "Transport",
+        "Hint": "Home of TCP and UDP.",
+        "Fact": "Port numbers are a feature of this layer.",
+        "Source": "ISO/IEC 7498-1 OSI Basic Reference Model (https://www.iso.org/standard/20269.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::osi-layers",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "0660f4e1-edea-5f1b-827a-83a6a2b96cd3",
+      "noteType": "Bert Two Way",
+      "section": "layers",
+      "fields": {
+        "Side A": "OSI layer 5",
+        "Side B": "Session layer",
+        "Aliases": "Session",
+        "Hint": "Dialogue control between applications.",
+        "Fact": "The Internet protocol suite has no separate layer for this.",
+        "Source": "ISO/IEC 7498-1 OSI Basic Reference Model (https://www.iso.org/standard/20269.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::osi-layers",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "b98071d3-8f32-54d5-885b-80d7916bf679",
+      "noteType": "Bert Two Way",
+      "section": "layers",
+      "fields": {
+        "Side A": "OSI layer 6",
+        "Side B": "Presentation layer",
+        "Aliases": "Presentation",
+        "Hint": "Data formats and translation.",
+        "Fact": "Character encoding and data representation are its classic examples.",
+        "Source": "ISO/IEC 7498-1 OSI Basic Reference Model (https://www.iso.org/standard/20269.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::osi-layers",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "370ae841-739f-5f9d-828e-f5780ff6b67e",
+      "noteType": "Bert Two Way",
+      "section": "layers",
+      "fields": {
+        "Side A": "OSI layer 7",
+        "Side B": "Application layer",
+        "Aliases": "Application",
+        "Hint": "Closest to the user.",
+        "Fact": "HTTP, DNS and SMTP are usually placed here.",
+        "Source": "ISO/IEC 7498-1 OSI Basic Reference Model (https://www.iso.org/standard/20269.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::osi-layers",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "6739b5b1-97ac-55bf-bc6f-f0cdac539571",
+      "noteType": "Bert Typed",
+      "section": "layers",
+      "fields": {
+        "Question": "How many layers does RFC 1122 describe for the Internet protocol suite?",
+        "Answer": "4",
+        "Aliases": "Four",
+        "Hint": "Fewer than OSI: link, internet, and two more.",
+        "Fact": "RFC 1122 names the link, internet, transport and application layers.",
+        "Source": "RFC 1122 (https://www.rfc-editor.org/rfc/rfc1122)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::counts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "d74729ff-e080-5730-a6eb-4bb6f0e12da5",
+      "noteType": "Bert Cloze",
+      "section": "layers",
+      "fields": {
+        "Text": "In the Internet protocol suite, IP belongs to the {{c1::internet}} layer.",
+        "Extra": "RFC 1122 layers: link, internet, transport, application.",
+        "Hint": "It sits between link and transport.",
+        "Fact": "RFC 1122 is titled Requirements for Internet Hosts, Communication Layers.",
+        "Source": "RFC 1122 (https://www.rfc-editor.org/rfc/rfc1122)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::layers-concepts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "e0bb3d3b-22fe-5f99-941e-7df0c5ce2958",
+      "noteType": "Bert Typed",
+      "section": "layers",
+      "fields": {
+        "Question": "What is the unit of data at the data link layer called?",
+        "Answer": "Frame",
+        "Aliases": "Frames",
+        "Hint": "Ethernet sends these.",
+        "Fact": "An Ethernet frame ends with a frame check sequence.",
+        "Source": "IEEE 802.3 Ethernet Standard (https://standards.ieee.org/ieee/802.3/10422/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::layers-concepts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "b2e7a263-d4cd-531d-ad34-666cf1c4a55a",
+      "noteType": "Bert Typed",
+      "section": "layers",
+      "fields": {
+        "Question": "What is a TCP unit of data called?",
+        "Answer": "Segment",
+        "Aliases": "Segments\nTCP segment",
+        "Hint": "Not a frame and not a packet.",
+        "Fact": "RFC 9293 uses this term throughout the TCP specification.",
+        "Source": "RFC 9293 (https://www.rfc-editor.org/rfc/rfc9293)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::layers-concepts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "f934c945-78fb-5872-b989-184f3ec162f3",
+      "noteType": "Bert Cloze",
+      "section": "layers",
+      "fields": {
+        "Text": "Wrapping data in a header for each lower layer as it moves down the stack is called {{c1::encapsulation}}.",
+        "Extra": "The receiver reverses it, stripping headers on the way up.",
+        "Hint": "Think of envelopes inside envelopes.",
+        "Fact": "An HTTP request over Ethernet carries TCP, IP and Ethernet headers in front of it.",
+        "Source": "RFC 1122 (https://www.rfc-editor.org/rfc/rfc1122)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::layers-concepts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "c9f329a0-19d5-5fa3-b99a-84069994b74b",
+      "noteType": "Bert Basic",
+      "section": "layers",
+      "fields": {
+        "Question": "At which OSI layer do Ethernet switches primarily operate?",
+        "Answer": "Data link layer",
+        "Aliases": "Layer 2\nL2\nData link",
+        "Hint": "They forward by MAC address.",
+        "Fact": "Switches learn MAC addresses by watching the source address of frames.",
+        "Source": "IEEE 802.3 Ethernet Standard (https://standards.ieee.org/ieee/802.3/10422/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::osi-layers",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "d770ffde-d27f-5489-a767-e68d9ad14a7e",
+      "noteType": "Bert Basic",
+      "section": "layers",
+      "fields": {
+        "Question": "At which OSI layer do routers primarily operate?",
+        "Answer": "Network layer",
+        "Aliases": "Layer 3\nL3\nNetwork",
+        "Hint": "They forward by IP address.",
+        "Fact": "Routers decrement the IP TTL or hop limit on every packet they forward.",
+        "Source": "RFC 791 (https://www.rfc-editor.org/rfc/rfc791)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::osi-layers",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "c78c6f7e-fff1-5e11-bc2d-47df0efa9d5f",
+      "noteType": "Bert Cloze",
+      "section": "layers",
+      "fields": {
+        "Text": "The largest packet a link can carry in one frame is its {{c1::MTU}}.",
+        "Extra": "MTU stands for maximum transmission unit.",
+        "Hint": "A three letter acronym about size limits.",
+        "Fact": "Standard Ethernet has an MTU of 1500 bytes.",
+        "Source": "RFC 1191 (https://www.rfc-editor.org/rfc/rfc1191)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::layers-concepts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "08593e34-9d3d-593e-9bf1-73a7379641ad",
+      "noteType": "Bert Typed",
+      "section": "layers",
+      "fields": {
+        "Question": "How many bits long is an Ethernet MAC address?",
+        "Answer": "48",
+        "Aliases": "48 bits",
+        "Hint": "Written as six pairs of hex digits.",
+        "Fact": "EUI-48 is the IEEE name for this address format.",
+        "Source": "IEEE 802.3 Ethernet Standard (https://standards.ieee.org/ieee/802.3/10422/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::bits",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "856b5d61-c543-5e79-aabf-97505c66aeb0",
+      "noteType": "Bert Typed",
+      "section": "layers",
+      "fields": {
+        "Question": "What is the Ethernet broadcast MAC address?",
+        "Answer": "ff:ff:ff:ff:ff:ff",
+        "Aliases": "FF:FF:FF:FF:FF:FF\nff-ff-ff-ff-ff-ff\nFF-FF-FF-FF-FF-FF\nffff.ffff.ffff",
+        "Hint": "Every bit is set.",
+        "Fact": "Every station on the segment accepts frames sent to it.",
+        "Source": "IEEE 802.3 Ethernet Standard (https://standards.ieee.org/ieee/802.3/10422/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::layers-concepts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "3ae50ac9-ac46-50de-9100-7ad515550fdd",
+      "noteType": "Bert Typed",
+      "section": "layers",
+      "fields": {
+        "Question": "What is the standard Ethernet MTU in bytes?",
+        "Answer": "1500",
+        "Aliases": "1500 bytes",
+        "Hint": "Jumbo frames go well beyond it.",
+        "Fact": "Jumbo frames of around 9000 bytes are common but not part of the base standard.",
+        "Source": "IEEE 802.3 Ethernet Standard (https://standards.ieee.org/ieee/802.3/10422/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::sizes",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "b93c6f62-f291-590d-8aa8-7e3dcb6a2767",
+      "noteType": "Bert Typed",
+      "section": "layers",
+      "fields": {
+        "Question": "Which EtherType value identifies IPv4?",
+        "Answer": "0x0800",
+        "Aliases": "0800\n800",
+        "Hint": "Hex, four digits.",
+        "Fact": "EtherType values are assigned by the IEEE Registration Authority.",
+        "Source": "IANA IEEE 802 Numbers (https://www.iana.org/assignments/ieee-802-numbers/ieee-802-numbers.xhtml)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::protocol-ids",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "ddd29cd8-eef7-50e1-a88e-feaeddd1e6b3",
+      "noteType": "Bert Typed",
+      "section": "layers",
+      "fields": {
+        "Question": "Which EtherType value identifies IPv6?",
+        "Answer": "0x86DD",
+        "Aliases": "86DD\n0x86dd\n86dd",
+        "Hint": "Hex, starts with 8.",
+        "Fact": "Hosts use it to hand the payload to the IPv6 stack.",
+        "Source": "IANA IEEE 802 Numbers (https://www.iana.org/assignments/ieee-802-numbers/ieee-802-numbers.xhtml)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::protocol-ids",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "b3a55cb6-4285-5dbf-84c7-d5aa4babfe41",
+      "noteType": "Bert Two Way",
+      "section": "layers",
+      "fields": {
+        "Side A": "IEEE 802.3",
+        "Side B": "Ethernet",
+        "Aliases": "Wired Ethernet",
+        "Hint": "Wired LANs.",
+        "Fact": "Ethernet was developed at Xerox PARC in the 1970s.",
+        "Source": "IEEE 802.3 Ethernet Standard (https://standards.ieee.org/ieee/802.3/10422/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::layers-concepts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "bed22ead-b177-5008-8114-32a365573bc7",
+      "noteType": "Bert Two Way",
+      "section": "layers",
+      "fields": {
+        "Side A": "IEEE 802.1Q",
+        "Side B": "VLAN tagging",
+        "Aliases": "VLANs\nVirtual LANs",
+        "Hint": "Splits one switch into many broadcast domains.",
+        "Fact": "The 802.1Q tag adds 4 bytes to an Ethernet frame.",
+        "Source": "IEEE 802.1Q Bridges and Bridged Networks (https://standards.ieee.org/ieee/802.1Q/10323/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::layers-concepts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "8343b9c9-171d-5254-842f-560d7f898ad5",
+      "noteType": "Bert Cloze",
+      "section": "layers",
+      "fields": {
+        "Text": "An 802.1Q VLAN ID field is {{c1::12}} bits long.",
+        "Extra": "IDs 0 and 4095 are reserved, leaving 4094 usable VLANs.",
+        "Hint": "Fewer than 16 bits.",
+        "Fact": "The tag also carries a 3 bit priority field.",
+        "Source": "IEEE 802.1Q Bridges and Bridged Networks (https://standards.ieee.org/ieee/802.1Q/10323/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::layers-concepts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "31b66b19-e88e-56a7-94b3-a70cf754cfd1",
+      "noteType": "Bert Cloze",
+      "section": "layers",
+      "fields": {
+        "Text": "ARP maps an {{c1::IPv4}} address to a {{c2::MAC}} address on the local network.",
+        "Extra": "Defined in RFC 826.",
+        "Hint": "Network layer address to link layer address.",
+        "Fact": "RFC 826 was published in November 1982.",
+        "Source": "RFC 826 (https://www.rfc-editor.org/rfc/rfc826)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::layers-concepts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "f4bf0547-6ee3-5386-9983-f33e4e1ec367",
+      "noteType": "Bert Cloze",
+      "section": "layers",
+      "fields": {
+        "Text": "An ARP request is sent as a link layer {{c1::broadcast}}, while the reply is normally {{c2::unicast}}.",
+        "Extra": "The requester does not yet know the target's MAC address.",
+        "Hint": "Who is asked, and who answers.",
+        "Fact": "Hosts usually cache ARP replies for a short time.",
+        "Source": "RFC 826 (https://www.rfc-editor.org/rfc/rfc826)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::layers-concepts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "6d965002-9a1f-56be-a1bf-1b2393d50dcf",
+      "noteType": "Bert Basic",
+      "section": "layers",
+      "fields": {
+        "Question": "Which protocol replaces ARP in IPv6?",
+        "Answer": "Neighbor Discovery",
+        "Aliases": "NDP\nNeighbor Discovery Protocol\nNeighbour Discovery\nND",
+        "Hint": "It rides on ICMPv6.",
+        "Fact": "It also handles router discovery and duplicate address detection.",
+        "Source": "RFC 4861 (https://www.rfc-editor.org/rfc/rfc4861)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::layers-concepts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "4261523e-b1e3-5137-bcbd-13035ef892a8",
+      "noteType": "Bert Typed",
+      "section": "addressing",
+      "fields": {
+        "Question": "How many bits long is an IPv4 address?",
+        "Answer": "32",
+        "Aliases": "32 bits",
+        "Hint": "Four octets.",
+        "Fact": "That allows about 4.3 billion addresses in total.",
+        "Source": "RFC 791 (https://www.rfc-editor.org/rfc/rfc791)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::bits",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "14ffd859-725e-5f63-9e6c-051ae461e1c3",
+      "noteType": "Bert Typed",
+      "section": "addressing",
+      "fields": {
+        "Question": "How many bits long is an IPv6 address?",
+        "Answer": "128",
+        "Aliases": "128 bits",
+        "Hint": "Four times the size of IPv4.",
+        "Fact": "IPv6 addresses are written as eight groups of four hex digits.",
+        "Source": "RFC 4291 (https://www.rfc-editor.org/rfc/rfc4291)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::bits",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "6c428e1b-177d-5454-b532-4ee9f655adff",
+      "noteType": "Bert Cloze",
+      "section": "addressing",
+      "fields": {
+        "Text": "CIDR stands for {{c1::Classless Inter-Domain Routing}}.",
+        "Extra": "It replaced class A, B and C addressing.",
+        "Hint": "It removed address classes.",
+        "Fact": "CIDR was introduced in 1993 to slow routing table growth.",
+        "Source": "RFC 4632 (https://www.rfc-editor.org/rfc/rfc4632)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::addressing-concepts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "8fac19c7-5778-50d5-93f7-fd54d62d355f",
+      "noteType": "Bert Typed",
+      "section": "addressing",
+      "fields": {
+        "Question": "Which subnet mask matches a /24 prefix?",
+        "Answer": "255.255.255.0",
+        "Aliases": "",
+        "Hint": "Three full octets of network bits.",
+        "Fact": "Home networks very often use a /24.",
+        "Source": "RFC 4632 (https://www.rfc-editor.org/rfc/rfc4632)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::cidr-math",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "cb6d357c-cd87-5a4f-a618-426e902ba6a4",
+      "noteType": "Bert Typed",
+      "section": "addressing",
+      "fields": {
+        "Question": "Which subnet mask matches a /26 prefix?",
+        "Answer": "255.255.255.192",
+        "Aliases": "",
+        "Hint": "Two bits into the last octet.",
+        "Fact": "A /26 holds 64 addresses.",
+        "Source": "RFC 4632 (https://www.rfc-editor.org/rfc/rfc4632)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::cidr-math",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "7fc5dc35-76ed-5d33-8919-ad3fc006ba52",
+      "noteType": "Bert Typed",
+      "section": "addressing",
+      "fields": {
+        "Question": "Which subnet mask matches a /30 prefix?",
+        "Answer": "255.255.255.252",
+        "Aliases": "",
+        "Hint": "Only two host bits remain.",
+        "Fact": "A /30 was the classic choice for point-to-point links.",
+        "Source": "RFC 4632 (https://www.rfc-editor.org/rfc/rfc4632)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::cidr-math",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "a32f8376-7373-5492-a077-4092dae7b6cf",
+      "noteType": "Bert Typed",
+      "section": "addressing",
+      "fields": {
+        "Question": "How many IPv4 addresses are in a /24?",
+        "Answer": "256",
+        "Aliases": "",
+        "Hint": "2 to the power of the host bits.",
+        "Fact": "Traditionally 254 of them are usable by hosts.",
+        "Source": "RFC 4632 (https://www.rfc-editor.org/rfc/rfc4632)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::cidr-math",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "f43de3d9-f9e3-5a26-96b6-6d95e59da57e",
+      "noteType": "Bert Cloze",
+      "section": "addressing",
+      "fields": {
+        "Text": "RFC 3021 allows a {{c1::/31}} prefix on point-to-point links, using both addresses for hosts.",
+        "Extra": "No network or broadcast address is needed on such links.",
+        "Hint": "One bit shorter than a host route.",
+        "Fact": "It saves half the addresses compared with a /30.",
+        "Source": "RFC 3021 (https://www.rfc-editor.org/rfc/rfc3021)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::addressing-concepts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "6dc82c80-ec00-5a12-9014-1e7d168dd810",
+      "noteType": "Bert Basic",
+      "section": "addressing",
+      "fields": {
+        "Question": "Which /8 block does RFC 1918 reserve for private use?",
+        "Answer": "10.0.0.0/8",
+        "Aliases": "10/8",
+        "Hint": "The largest private block.",
+        "Fact": "It holds over 16 million addresses.",
+        "Source": "RFC 1918 (https://www.rfc-editor.org/rfc/rfc1918)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::private-ranges",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "e82b7ac9-c704-5fda-9911-7d021713c84c",
+      "noteType": "Bert Basic",
+      "section": "addressing",
+      "fields": {
+        "Question": "Which /12 block does RFC 1918 reserve for private use?",
+        "Answer": "172.16.0.0/12",
+        "Aliases": "172.16/12",
+        "Hint": "It spans sixteen /16 blocks.",
+        "Fact": "It runs from 172.16.0.0 to 172.31.255.255.",
+        "Source": "RFC 1918 (https://www.rfc-editor.org/rfc/rfc1918)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::private-ranges",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "374cd0d4-06b8-56b2-bbc6-7ced0c2a1464",
+      "noteType": "Bert Basic",
+      "section": "addressing",
+      "fields": {
+        "Question": "Which /16 block does RFC 1918 reserve for private use?",
+        "Answer": "192.168.0.0/16",
+        "Aliases": "192.168/16",
+        "Hint": "Common on home routers.",
+        "Fact": "Consumer routers often default to 192.168.0.1 or 192.168.1.1.",
+        "Source": "RFC 1918 (https://www.rfc-editor.org/rfc/rfc1918)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::private-ranges",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "35218fc4-6a68-59d2-901b-5a56ca9339f2",
+      "noteType": "Bert Basic",
+      "section": "addressing",
+      "fields": {
+        "Question": "Which block is reserved as shared address space for carrier-grade NAT?",
+        "Answer": "100.64.0.0/10",
+        "Aliases": "100.64/10",
+        "Hint": "Defined in RFC 6598.",
+        "Fact": "It exists so ISPs do not collide with customers' RFC 1918 networks.",
+        "Source": "RFC 6598 (https://www.rfc-editor.org/rfc/rfc6598)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::private-ranges",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "cbad1793-a3e8-558c-96ea-6d2c7a8369a4",
+      "noteType": "Bert Basic",
+      "section": "addressing",
+      "fields": {
+        "Question": "Which IPv4 block is reserved for loopback?",
+        "Answer": "127.0.0.0/8",
+        "Aliases": "127/8",
+        "Hint": "localhost lives here.",
+        "Fact": "The whole block is loopback, not just 127.0.0.1.",
+        "Source": "RFC 6890 (https://www.rfc-editor.org/rfc/rfc6890)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::special-addr",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "02ff0ed9-9217-5bac-8684-239e8fdaa648",
+      "noteType": "Bert Typed",
+      "section": "addressing",
+      "fields": {
+        "Question": "What is the IPv6 loopback address?",
+        "Answer": "::1",
+        "Aliases": "0:0:0:0:0:0:0:1",
+        "Hint": "Almost all zeros.",
+        "Fact": "IPv6 reserves a single loopback address, not a block.",
+        "Source": "RFC 4291 (https://www.rfc-editor.org/rfc/rfc4291)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::special-addr",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "111406ae-7cec-50cb-8f71-e75cc466d9be",
+      "noteType": "Bert Basic",
+      "section": "addressing",
+      "fields": {
+        "Question": "Which IPv4 block is used for link-local addresses?",
+        "Answer": "169.254.0.0/16",
+        "Aliases": "169.254/16",
+        "Hint": "Seen when DHCP fails.",
+        "Fact": "Hosts can pick these themselves under RFC 3927.",
+        "Source": "RFC 3927 (https://www.rfc-editor.org/rfc/rfc3927)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::special-addr",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "dae6d35a-f30d-5f16-a1de-0e9a8de0a980",
+      "noteType": "Bert Basic",
+      "section": "addressing",
+      "fields": {
+        "Question": "What is TEST-NET-1, the IPv4 range reserved for documentation?",
+        "Answer": "192.0.2.0/24",
+        "Aliases": "192.0.2/24",
+        "Hint": "RFC 5737 defines three of these.",
+        "Fact": "The other two are 198.51.100.0/24 and 203.0.113.0/24.",
+        "Source": "RFC 5737 (https://www.rfc-editor.org/rfc/rfc5737)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::special-addr",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "c2a383df-9d90-51af-be55-485e10d6945f",
+      "noteType": "Bert Typed",
+      "section": "addressing",
+      "fields": {
+        "Question": "Write 2001:0db8:0000:0000:0000:0000:0000:0001 in RFC 5952 canonical form.",
+        "Answer": "2001:db8::1",
+        "Aliases": "2001:DB8::1",
+        "Hint": "Drop leading zeros and collapse the zero run.",
+        "Fact": "RFC 5952 also requires lowercase hex digits.",
+        "Source": "RFC 5952 (https://www.rfc-editor.org/rfc/rfc5952)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::addressing-concepts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "4931f50e-2e9e-599d-b8c0-3f5688f89dbc",
+      "noteType": "Bert Cloze",
+      "section": "addressing",
+      "fields": {
+        "Text": "IPv6 has no {{c1::broadcast}} addresses and uses multicast instead.",
+        "Extra": "For example ff02::1 reaches all nodes on a link.",
+        "Hint": "A feature IPv4 has and IPv6 dropped.",
+        "Fact": "Neighbor Discovery uses solicited-node multicast addresses.",
+        "Source": "RFC 4291 (https://www.rfc-editor.org/rfc/rfc4291)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::addressing-concepts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "ebefa665-357f-52df-9132-5aff69f67967",
+      "noteType": "Bert Cloze",
+      "section": "addressing",
+      "fields": {
+        "Text": "In IPv6, routers do not {{c1::fragment}} packets; only the source host can.",
+        "Extra": "Paths rely on Path MTU Discovery.",
+        "Hint": "Splitting large packets en route.",
+        "Fact": "IPv6 moved fragmentation into an extension header.",
+        "Source": "RFC 8200 (https://www.rfc-editor.org/rfc/rfc8200)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::addressing-concepts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "591f816d-78af-501a-9fb0-3fc08ecd4750",
+      "noteType": "Bert Typed",
+      "section": "addressing",
+      "fields": {
+        "Question": "What is the minimum link MTU, in bytes, required by IPv6?",
+        "Answer": "1280",
+        "Aliases": "1280 bytes",
+        "Hint": "Somewhat below Ethernet's 1500.",
+        "Fact": "Every IPv6 link must carry packets of this size.",
+        "Source": "RFC 8200 (https://www.rfc-editor.org/rfc/rfc8200)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::sizes",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "cc5f4ba1-0c1e-5e18-af69-e38253bf250b",
+      "noteType": "Bert Basic",
+      "section": "addressing",
+      "fields": {
+        "Question": "Which IPv4 header field is decremented by each router to stop endless loops?",
+        "Answer": "Time to Live",
+        "Aliases": "TTL",
+        "Hint": "Its IPv6 counterpart is called hop limit.",
+        "Fact": "When it reaches zero the router drops the packet and may send ICMP Time Exceeded.",
+        "Source": "RFC 791 (https://www.rfc-editor.org/rfc/rfc791)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::addressing-concepts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "2a3171f7-f90a-5a64-8902-b2ee9c50c383",
+      "noteType": "Bert Typed",
+      "section": "addressing",
+      "fields": {
+        "Question": "What is the size of the fixed IPv6 header in bytes?",
+        "Answer": "40",
+        "Aliases": "40 bytes",
+        "Hint": "Twice the minimum IPv4 header.",
+        "Fact": "Extra features go into chained extension headers.",
+        "Source": "RFC 8200 (https://www.rfc-editor.org/rfc/rfc8200)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::sizes",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "9446609f-e1c8-5dc2-ab2c-5e2943c1ad4d",
+      "noteType": "Bert Typed",
+      "section": "addressing",
+      "fields": {
+        "Question": "Which IP protocol number is TCP?",
+        "Answer": "6",
+        "Aliases": "Six",
+        "Hint": "A single digit.",
+        "Fact": "These numbers are assigned by IANA.",
+        "Source": "IANA Protocol Numbers (https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::protocol-ids",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "16bf0e00-94fd-5dea-a800-52628545d306",
+      "noteType": "Bert Typed",
+      "section": "addressing",
+      "fields": {
+        "Question": "Which IP protocol number is UDP?",
+        "Answer": "17",
+        "Aliases": "Seventeen",
+        "Hint": "Two digits.",
+        "Fact": "Firewalls often match on this field to filter UDP.",
+        "Source": "IANA Protocol Numbers (https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::protocol-ids",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "adf52b56-c2ce-5327-827c-e8468baab0b5",
+      "noteType": "Bert Cloze",
+      "section": "addressing",
+      "fields": {
+        "Text": "The DHCPv4 exchange is Discover, {{c1::Offer}}, Request, {{c2::Acknowledge}}.",
+        "Extra": "Often remembered as DORA.",
+        "Hint": "The server answers each client step.",
+        "Fact": "DHCP grew out of the older BOOTP protocol.",
+        "Source": "RFC 2131 (https://www.rfc-editor.org/rfc/rfc2131)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::addressing-concepts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "19cc449b-fea0-5019-96df-9b9b3468c6d1",
+      "noteType": "Bert Cloze",
+      "section": "routing",
+      "fields": {
+        "Text": "When several routes match, a router picks the one with the {{c1::longest}} prefix.",
+        "Extra": "Called longest prefix match.",
+        "Hint": "The most specific route wins.",
+        "Fact": "A /32 host route beats a /24 that contains it.",
+        "Source": "RFC 4632 (https://www.rfc-editor.org/rfc/rfc4632)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::routing-concepts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "1e75884e-0ead-5fb2-97b0-90bb6c93daf8",
+      "noteType": "Bert Basic",
+      "section": "routing",
+      "fields": {
+        "Question": "How is the IPv4 default route written in CIDR notation?",
+        "Answer": "0.0.0.0/0",
+        "Aliases": "0/0",
+        "Hint": "It matches every address.",
+        "Fact": "It is used only when no more specific route matches.",
+        "Source": "RFC 4632 (https://www.rfc-editor.org/rfc/rfc4632)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::special-addr",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "62033337-8c81-56bf-8be3-28d9c122c115",
+      "noteType": "Bert Basic",
+      "section": "routing",
+      "fields": {
+        "Question": "How is the IPv6 default route written?",
+        "Answer": "::/0",
+        "Aliases": "",
+        "Hint": "A zero length prefix.",
+        "Fact": "Hosts often learn it from router advertisements.",
+        "Source": "RFC 4291 (https://www.rfc-editor.org/rfc/rfc4291)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::special-addr",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "5e7783e1-e0f2-5c32-b322-90ad55f619ff",
+      "noteType": "Bert Cloze",
+      "section": "routing",
+      "fields": {
+        "Text": "A host sends packets for destinations outside its subnet to its {{c1::default gateway}}.",
+        "Extra": "The host still uses ARP or ND to find the gateway's MAC address.",
+        "Hint": "Usually your router.",
+        "Fact": "The destination IP in the packet stays the remote host, not the gateway.",
+        "Source": "RFC 1122 (https://www.rfc-editor.org/rfc/rfc1122)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::routing-concepts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "08576541-de26-5ed9-abfc-52aea2ad67be",
+      "noteType": "Bert Basic",
+      "section": "routing",
+      "fields": {
+        "Question": "Which protocol exchanges routes between autonomous systems on the internet?",
+        "Answer": "BGP",
+        "Aliases": "Border Gateway Protocol\nBGP-4",
+        "Hint": "An exterior gateway protocol.",
+        "Fact": "BGP sessions run over TCP.",
+        "Source": "RFC 4271 (https://www.rfc-editor.org/rfc/rfc4271)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::routing-names",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "62984c12-1af8-5419-ae96-ac48d39643b6",
+      "noteType": "Bert Typed",
+      "section": "routing",
+      "fields": {
+        "Question": "Which TCP port does BGP use?",
+        "Answer": "179",
+        "Aliases": "",
+        "Hint": "Between 100 and 200.",
+        "Fact": "BGP relies on TCP for reliable delivery of route updates.",
+        "Source": "RFC 4271 (https://www.rfc-editor.org/rfc/rfc4271)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::port-numbers",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "4df95e14-489d-50a7-b4bc-53b3e238f260",
+      "noteType": "Bert Cloze",
+      "section": "routing",
+      "fields": {
+        "Text": "OSPF is a {{c1::link-state}} routing protocol.",
+        "Extra": "Each router builds a full map of the area and runs shortest path first.",
+        "Hint": "Not distance vector.",
+        "Fact": "OSPF uses Dijkstra's algorithm to compute routes.",
+        "Source": "RFC 2328 (https://www.rfc-editor.org/rfc/rfc2328)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::routing-concepts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "9f3346b0-d193-53be-8df2-41a8bbee94eb",
+      "noteType": "Bert Cloze",
+      "section": "routing",
+      "fields": {
+        "Text": "RIP is a {{c1::distance-vector}} routing protocol.",
+        "Extra": "Routers share their routing tables with neighbours.",
+        "Hint": "Not link state.",
+        "Fact": "RIP measures distance in hops.",
+        "Source": "RFC 2453 (https://www.rfc-editor.org/rfc/rfc2453)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::routing-concepts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "f4d5fc8c-7a6f-54ed-9990-d2da54a27b8d",
+      "noteType": "Bert Basic",
+      "section": "routing",
+      "fields": {
+        "Question": "What is NAT that maps many private hosts to one public IP by rewriting ports called?",
+        "Answer": "NAPT",
+        "Aliases": "PAT\nPort Address Translation\nNetwork Address Port Translation\nNAT overload",
+        "Hint": "It tracks ports as well as addresses.",
+        "Fact": "Most home routers do this.",
+        "Source": "RFC 3022 (https://www.rfc-editor.org/rfc/rfc3022)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::routing-names",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "1c8f10af-4f20-5078-8c9d-918d08268608",
+      "noteType": "Bert Cloze",
+      "section": "routing",
+      "fields": {
+        "Text": "Unsolicited inbound connections to a host behind NAT usually need {{c1::port forwarding}}.",
+        "Extra": "Without a mapping the NAT has no idea which inside host should receive the packet.",
+        "Hint": "A static rule on the router.",
+        "Fact": "This is one reason peer to peer apps need traversal tricks.",
+        "Source": "RFC 3022 (https://www.rfc-editor.org/rfc/rfc3022)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::routing-concepts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "4478036d-e681-5dd0-801c-adc14fd90104",
+      "noteType": "Bert Basic",
+      "section": "routing",
+      "fields": {
+        "Question": "Which protocol lets a host behind NAT learn its public IP and port?",
+        "Answer": "STUN",
+        "Aliases": "Session Traversal Utilities for NAT",
+        "Hint": "A server reflects back what it sees.",
+        "Fact": "WebRTC uses it to find candidate addresses.",
+        "Source": "RFC 8489 (https://www.rfc-editor.org/rfc/rfc8489)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::routing-names",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "577883a1-c6ff-5e36-a296-d4b9c551b74d",
+      "noteType": "Bert Basic",
+      "section": "routing",
+      "fields": {
+        "Question": "Which protocol relays traffic when direct NAT traversal fails?",
+        "Answer": "TURN",
+        "Aliases": "Traversal Using Relays around NAT",
+        "Hint": "An extension of STUN.",
+        "Fact": "Relaying costs server bandwidth, so it is the last resort.",
+        "Source": "RFC 8656 (https://www.rfc-editor.org/rfc/rfc8656)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::routing-names",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "3920b76e-d1d3-56b5-9198-830d4974eadf",
+      "noteType": "Bert Cloze",
+      "section": "transport",
+      "fields": {
+        "Text": "TCP opens a connection with {{c1::SYN}}, then {{c2::SYN-ACK}}, then ACK.",
+        "Extra": "This is the three-way handshake.",
+        "Hint": "TCP flag names.",
+        "Fact": "Each side picks its own initial sequence number.",
+        "Source": "RFC 9293 (https://www.rfc-editor.org/rfc/rfc9293)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::transport-concepts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "7a23fb4d-f4ba-56e8-acc7-f7dd9b59a28d",
+      "noteType": "Bert Basic",
+      "section": "transport",
+      "fields": {
+        "Question": "Which TCP flag abruptly aborts a connection?",
+        "Answer": "RST",
+        "Aliases": "Reset",
+        "Hint": "Not the polite close.",
+        "Fact": "Connecting to a closed port typically gets this in reply.",
+        "Source": "RFC 9293 (https://www.rfc-editor.org/rfc/rfc9293)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::tcp-terms",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "191f2868-9332-5df9-9675-3e0c45a6160a",
+      "noteType": "Bert Basic",
+      "section": "transport",
+      "fields": {
+        "Question": "Which TCP state does the side that closes first enter for twice the maximum segment lifetime?",
+        "Answer": "TIME-WAIT",
+        "Aliases": "TIME_WAIT\nTIMEWAIT\nTime wait",
+        "Hint": "Busy servers can pile up thousands of these.",
+        "Fact": "It stops delayed segments from leaking into a new connection.",
+        "Source": "RFC 9293 (https://www.rfc-editor.org/rfc/rfc9293)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::tcp-terms",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "b538fb59-7c06-5e19-a2d5-8bc3530dddd0",
+      "noteType": "Bert Cloze",
+      "section": "transport",
+      "fields": {
+        "Text": "TCP flow control uses the receiver's advertised {{c1::window}} to avoid overwhelming a slow receiver.",
+        "Extra": "It protects the receiver, not the network.",
+        "Hint": "A field in every TCP header.",
+        "Fact": "The window scale option lets it grow beyond 65,535 bytes.",
+        "Source": "RFC 9293 (https://www.rfc-editor.org/rfc/rfc9293)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::transport-concepts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "047475a2-a31d-5047-87fb-d68266f41224",
+      "noteType": "Bert Cloze",
+      "section": "transport",
+      "fields": {
+        "Text": "TCP {{c1::congestion}} control protects the network, while flow control protects the receiver.",
+        "Extra": "Defined for standard TCP in RFC 5681.",
+        "Hint": "Traffic jams.",
+        "Fact": "Senders treat packet loss as a signal to slow down.",
+        "Source": "RFC 5681 (https://www.rfc-editor.org/rfc/rfc5681)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::transport-concepts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "c3338692-40f1-550b-afc6-03525955adfb",
+      "noteType": "Bert Basic",
+      "section": "transport",
+      "fields": {
+        "Question": "What is the sender side limit used by TCP congestion control called?",
+        "Answer": "Congestion window",
+        "Aliases": "cwnd",
+        "Hint": "Usually abbreviated to four letters.",
+        "Fact": "The sender may have at most the smaller of this and the receiver window in flight.",
+        "Source": "RFC 5681 (https://www.rfc-editor.org/rfc/rfc5681)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::tcp-terms",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "4ca61570-11b1-57ee-842d-0054fb5d99f6",
+      "noteType": "Bert Cloze",
+      "section": "transport",
+      "fields": {
+        "Text": "During {{c1::slow start}}, the TCP congestion window roughly doubles every round trip.",
+        "Extra": "It ends at the slow start threshold or on loss.",
+        "Hint": "Despite its name, growth is exponential.",
+        "Fact": "Many stacks now start with an initial window of 10 segments, as described in RFC 6928.",
+        "Source": "RFC 5681 (https://www.rfc-editor.org/rfc/rfc5681)\nRFC 6928 (https://www.rfc-editor.org/rfc/rfc6928)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::transport-concepts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "dabf4131-7bfe-5f14-af71-bec59dcb8bac",
+      "noteType": "Bert Cloze",
+      "section": "transport",
+      "fields": {
+        "Text": "TCP fast retransmit resends a segment after {{c1::three}} duplicate ACKs.",
+        "Extra": "It avoids waiting for a retransmission timeout.",
+        "Hint": "A small number of repeated acknowledgements.",
+        "Fact": "Duplicate ACKs suggest later segments arrived but one went missing.",
+        "Source": "RFC 5681 (https://www.rfc-editor.org/rfc/rfc5681)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::transport-concepts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "7d68708a-ea86-520f-913d-082627876ed2",
+      "noteType": "Bert Basic",
+      "section": "transport",
+      "fields": {
+        "Question": "Which congestion control algorithm is the default for TCP in Linux?",
+        "Answer": "CUBIC",
+        "Aliases": "Cubic",
+        "Hint": "Named after a polynomial.",
+        "Fact": "It is standardised in RFC 9438.",
+        "Source": "RFC 9438 (https://www.rfc-editor.org/rfc/rfc9438)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::tcp-terms",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "ae5e127c-82c1-52f4-bce4-08f230df0c07",
+      "noteType": "Bert Cloze",
+      "section": "transport",
+      "fields": {
+        "Text": "The TCP {{c1::MSS}} option advertises the largest segment payload a host will accept.",
+        "Extra": "MSS stands for maximum segment size.",
+        "Hint": "Three letter acronym.",
+        "Fact": "It is only sent in SYN segments.",
+        "Source": "RFC 9293 (https://www.rfc-editor.org/rfc/rfc9293)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::transport-concepts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "76f68f41-2347-5fac-b33d-ef369559aa08",
+      "noteType": "Bert Typed",
+      "section": "transport",
+      "fields": {
+        "Question": "What is the usual TCP MSS over Ethernet with IPv4 and no options?",
+        "Answer": "1460",
+        "Aliases": "1460 bytes",
+        "Hint": "1500 minus two 20 byte headers.",
+        "Fact": "With IPv6 the usual value is 1440.",
+        "Source": "RFC 9293 (https://www.rfc-editor.org/rfc/rfc9293)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::sizes",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "3d4651f6-46dd-5d7c-84ce-dbddbb906a3a",
+      "noteType": "Bert Typed",
+      "section": "transport",
+      "fields": {
+        "Question": "What is the UDP header size in bytes?",
+        "Answer": "8",
+        "Aliases": "8 bytes\nEight",
+        "Hint": "Just four 16 bit fields.",
+        "Fact": "Source port, destination port, length and checksum.",
+        "Source": "RFC 768 (https://www.rfc-editor.org/rfc/rfc768)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::sizes",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "ba0dcefb-bba4-5e70-a1db-aac902f476db",
+      "noteType": "Bert Cloze",
+      "section": "transport",
+      "fields": {
+        "Text": "UDP provides no {{c1::reliability}}, ordering or congestion control of its own.",
+        "Extra": "Applications add what they need on top.",
+        "Hint": "What TCP gives you that UDP does not.",
+        "Fact": "DNS, QUIC and many games run over UDP.",
+        "Source": "RFC 768 (https://www.rfc-editor.org/rfc/rfc768)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::transport-concepts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "e8c7e8cf-88da-5fc3-9b37-e43144f2492c",
+      "noteType": "Bert Cloze",
+      "section": "transport",
+      "fields": {
+        "Text": "The UDP checksum is optional over IPv4 but {{c1::required}} by default over IPv6.",
+        "Extra": "IPv6 has no header checksum of its own.",
+        "Hint": "IPv6 dropped its own header checksum.",
+        "Fact": "RFC 6935 allows narrow exceptions for tunnels.",
+        "Source": "RFC 8200 (https://www.rfc-editor.org/rfc/rfc8200)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::transport-concepts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "22cfd48f-b62a-52b9-a224-42cb7af9b05f",
+      "noteType": "Bert Basic",
+      "section": "transport",
+      "fields": {
+        "Question": "Which transport protocol does QUIC run over?",
+        "Answer": "UDP",
+        "Aliases": "User Datagram Protocol",
+        "Hint": "Not TCP.",
+        "Fact": "Running in user space made QUIC easier to deploy and update.",
+        "Source": "RFC 9000 (https://www.rfc-editor.org/rfc/rfc9000)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::transports",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "352bc86d-e4d9-5576-8bac-a272d61259b5",
+      "noteType": "Bert Cloze",
+      "section": "transport",
+      "fields": {
+        "Text": "QUIC uses {{c1::TLS 1.3}} for its handshake and key setup.",
+        "Extra": "Defined in RFC 9001.",
+        "Hint": "The newest TLS version.",
+        "Fact": "QUIC encrypts most of its packet headers as well as payloads.",
+        "Source": "RFC 9001 (https://www.rfc-editor.org/rfc/rfc9001)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::transport-concepts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "b0a0eeaf-7215-5591-b876-4afe3f93e588",
+      "noteType": "Bert Cloze",
+      "section": "transport",
+      "fields": {
+        "Text": "QUIC avoids head of line blocking between {{c1::streams}}, because a lost packet only stalls the streams it carried.",
+        "Extra": "TCP delivers one ordered byte stream, so one loss blocks everything.",
+        "Hint": "Independent ordered flows within a connection.",
+        "Fact": "HTTP/3 maps each request to its own stream.",
+        "Source": "RFC 9000 (https://www.rfc-editor.org/rfc/rfc9000)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::transport-concepts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "03134eed-c70c-5745-bc70-c014f6c0d6c6",
+      "noteType": "Bert Basic",
+      "section": "transport",
+      "fields": {
+        "Question": "Which QUIC field lets a connection survive a change of client IP address?",
+        "Answer": "Connection ID",
+        "Aliases": "Connection IDs\nCID",
+        "Hint": "Not the 4-tuple.",
+        "Fact": "This makes switching from Wi-Fi to mobile data less disruptive.",
+        "Source": "RFC 9000 (https://www.rfc-editor.org/rfc/rfc9000)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::transport-concepts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "9aaeacb4-7c72-5778-9013-b8f487afe137",
+      "noteType": "Bert Typed",
+      "section": "transport",
+      "fields": {
+        "Question": "What is the range of well-known ports?",
+        "Answer": "0 to 1023",
+        "Aliases": "0-1023\n0 - 1023",
+        "Hint": "Also called system ports.",
+        "Fact": "Binding them often needs elevated privileges on Unix.",
+        "Source": "RFC 6335 (https://www.rfc-editor.org/rfc/rfc6335)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::port-numbers",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "0687a1d5-a039-5370-bca8-5572a2d7ce35",
+      "noteType": "Bert Typed",
+      "section": "transport",
+      "fields": {
+        "Question": "What is the IANA dynamic or private port range?",
+        "Answer": "49152 to 65535",
+        "Aliases": "49152-65535\n49152 - 65535",
+        "Hint": "The top quarter of the space.",
+        "Fact": "Many systems pick ephemeral ports from here.",
+        "Source": "RFC 6335 (https://www.rfc-editor.org/rfc/rfc6335)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::port-numbers",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "624783d5-d3e7-5df5-954e-fd86d157b835",
+      "noteType": "Bert Cloze",
+      "section": "transport",
+      "fields": {
+        "Text": "Clients usually connect from a short-lived {{c1::ephemeral}} port chosen by the operating system.",
+        "Extra": "The range depends on the OS.",
+        "Hint": "Temporary.",
+        "Fact": "Linux exposes its range in ip_local_port_range.",
+        "Source": "RFC 6335 (https://www.rfc-editor.org/rfc/rfc6335)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::transport-concepts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "7569624c-a23e-5dee-996a-dbff873c27e5",
+      "noteType": "Bert Two Way",
+      "section": "transport",
+      "fields": {
+        "Side A": "Port 22",
+        "Side B": "SSH",
+        "Aliases": "Secure Shell",
+        "Hint": "Remote shell, encrypted.",
+        "Fact": "SSH replaced Telnet for remote logins.",
+        "Source": "IANA Service Name and Transport Protocol Port Number Registry (https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::ports-common",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "2a9d5f1a-6a14-5ffc-b603-1c38614b80ba",
+      "noteType": "Bert Two Way",
+      "section": "transport",
+      "fields": {
+        "Side A": "Port 25",
+        "Side B": "SMTP",
+        "Aliases": "Simple Mail Transfer Protocol",
+        "Hint": "Mail between servers.",
+        "Fact": "Many ISPs block outbound traffic on it from home connections.",
+        "Source": "IANA Service Name and Transport Protocol Port Number Registry (https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::ports-common",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "9b103584-7068-5080-9c37-c1dcf2fc0b57",
+      "noteType": "Bert Two Way",
+      "section": "transport",
+      "fields": {
+        "Side A": "Port 53",
+        "Side B": "DNS",
+        "Aliases": "Domain Name System",
+        "Hint": "Names to addresses.",
+        "Fact": "Used over both UDP and TCP.",
+        "Source": "IANA Service Name and Transport Protocol Port Number Registry (https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::ports-common",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "74e7af74-21d5-5d5f-b37d-3daf481ad7b0",
+      "noteType": "Bert Two Way",
+      "section": "transport",
+      "fields": {
+        "Side A": "Port 80",
+        "Side B": "HTTP",
+        "Aliases": "Hypertext Transfer Protocol",
+        "Hint": "Plain web traffic.",
+        "Fact": "Browsers assume it when a URL has no port.",
+        "Source": "IANA Service Name and Transport Protocol Port Number Registry (https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::ports-common",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "def604a3-781b-5325-bdb0-4fb90dc505bb",
+      "noteType": "Bert Two Way",
+      "section": "transport",
+      "fields": {
+        "Side A": "Port 443",
+        "Side B": "HTTPS",
+        "Aliases": "HTTP over TLS",
+        "Hint": "Encrypted web traffic.",
+        "Fact": "HTTP/3 uses UDP on the same port number.",
+        "Source": "IANA Service Name and Transport Protocol Port Number Registry (https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::ports-common",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "59444a08-3701-5c68-b35a-02f84b93bac9",
+      "noteType": "Bert Cloze",
+      "section": "transport",
+      "fields": {
+        "Text": "A TCP connection is identified by source IP, source port, destination IP and {{c1::destination port}}.",
+        "Extra": "Together they are the 4-tuple.",
+        "Hint": "The last piece of the tuple.",
+        "Fact": "That is why one server port can serve many clients at once.",
+        "Source": "RFC 9293 (https://www.rfc-editor.org/rfc/rfc9293)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::transport-concepts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "073be7e6-7b16-50e4-b08d-8a1b90f01979",
+      "noteType": "Bert Basic",
+      "section": "transport",
+      "fields": {
+        "Question": "Fill the blank in this Python TCP server.<pre><code class=\"language-python\">s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)\ns.bind((\"0.0.0.0\", 8080))\ns.____(5)\nconn, addr = s.accept()</code></pre>",
+        "Answer": "listen",
+        "Aliases": "listen()\ns.listen",
+        "Hint": "It marks the socket as passive.",
+        "Fact": "The argument is the backlog of pending connections.",
+        "Source": "Python socket documentation (https://docs.python.org/3/library/socket.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::transport-concepts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "f0ed0245-0b83-575c-b362-f4aa54f1783a",
+      "noteType": "Bert Basic",
+      "section": "transport",
+      "fields": {
+        "Question": "Which socket call does a TCP client use to start the handshake?",
+        "Answer": "connect",
+        "Aliases": "connect()",
+        "Hint": "The server side counterpart is accept.",
+        "Fact": "A non-blocking connect returns before the handshake finishes.",
+        "Source": "socket manual (https://man7.org/linux/man-pages/man7/socket.7.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::transport-concepts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "1a8ec12d-31c5-5c69-9543-55fbe48eb5fe",
+      "noteType": "Bert Basic",
+      "section": "transport",
+      "fields": {
+        "Question": "Which transport does a SOCK_DGRAM socket in the AF_INET family use?",
+        "Answer": "UDP",
+        "Aliases": "User Datagram Protocol",
+        "Hint": "Datagram, not stream.",
+        "Fact": "SOCK_STREAM gives TCP instead.",
+        "Source": "Python socket documentation (https://docs.python.org/3/library/socket.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::transports",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "262de201-b186-5d87-8f41-32a525229b60",
+      "noteType": "Bert Two Way",
+      "section": "dns",
+      "fields": {
+        "Side A": "A record",
+        "Side B": "IPv4 address for a name",
+        "Aliases": "",
+        "Hint": "The original address record.",
+        "Fact": "One name can have many of them.",
+        "Source": "RFC 1035 (https://www.rfc-editor.org/rfc/rfc1035)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::dns-records",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "0e3bcca6-4198-58e3-929f-b4f9aa44a592",
+      "noteType": "Bert Two Way",
+      "section": "dns",
+      "fields": {
+        "Side A": "AAAA record",
+        "Side B": "IPv6 address for a name",
+        "Aliases": "",
+        "Hint": "Four times the letters.",
+        "Fact": "RFC 3596 is the current definition of this record type.",
+        "Source": "RFC 3596 (https://www.rfc-editor.org/rfc/rfc3596)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::dns-records",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "9ada5720-9657-5406-969a-45232292caec",
+      "noteType": "Bert Two Way",
+      "section": "dns",
+      "fields": {
+        "Side A": "CNAME record",
+        "Side B": "Alias to another name",
+        "Aliases": "",
+        "Hint": "Canonical name.",
+        "Fact": "A resolver restarts the lookup at the target name.",
+        "Source": "RFC 1034 (https://www.rfc-editor.org/rfc/rfc1034)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::dns-records",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "95000e4d-c705-57b3-93a5-02bba918e250",
+      "noteType": "Bert Two Way",
+      "section": "dns",
+      "fields": {
+        "Side A": "MX record",
+        "Side B": "Mail server for a domain",
+        "Aliases": "",
+        "Hint": "Mail exchange.",
+        "Fact": "Each one carries a preference number.",
+        "Source": "RFC 1035 (https://www.rfc-editor.org/rfc/rfc1035)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::dns-records",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "8df17e82-26ca-5671-9a1d-d3611fa25ad2",
+      "noteType": "Bert Two Way",
+      "section": "dns",
+      "fields": {
+        "Side A": "NS record",
+        "Side B": "Authoritative name server for a zone",
+        "Aliases": "",
+        "Hint": "Delegation.",
+        "Fact": "Parent zones use these to delegate child zones.",
+        "Source": "RFC 1035 (https://www.rfc-editor.org/rfc/rfc1035)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::dns-records",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "0a3c3b4d-ddc9-54a0-aeca-77447ac55ccd",
+      "noteType": "Bert Two Way",
+      "section": "dns",
+      "fields": {
+        "Side A": "PTR record",
+        "Side B": "Name for an address in reverse lookups",
+        "Aliases": "",
+        "Hint": "Pointer.",
+        "Fact": "Reverse zones live under in-addr.arpa and ip6.arpa.",
+        "Source": "RFC 1035 (https://www.rfc-editor.org/rfc/rfc1035)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::dns-records",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "93f646d2-af94-55c5-9b8f-5f8f510107eb",
+      "noteType": "Bert Two Way",
+      "section": "dns",
+      "fields": {
+        "Side A": "TXT record",
+        "Side B": "Free form text",
+        "Aliases": "",
+        "Hint": "SPF and verification tokens use it.",
+        "Fact": "Domain ownership checks often ask you to add one.",
+        "Source": "RFC 1035 (https://www.rfc-editor.org/rfc/rfc1035)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::dns-records",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "0b6f1ed9-c1d2-558e-9ba4-3b3f09462463",
+      "noteType": "Bert Two Way",
+      "section": "dns",
+      "fields": {
+        "Side A": "SOA record",
+        "Side B": "Zone serial number and timers",
+        "Aliases": "",
+        "Hint": "Start of authority.",
+        "Fact": "Every zone has exactly one at its apex.",
+        "Source": "RFC 1035 (https://www.rfc-editor.org/rfc/rfc1035)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::dns-records",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "ae159154-13bc-5b85-91f6-63d2b19b3cd0",
+      "noteType": "Bert Two Way",
+      "section": "dns",
+      "fields": {
+        "Side A": "SRV record",
+        "Side B": "Host and port for a service",
+        "Aliases": "",
+        "Hint": "Service location.",
+        "Fact": "It includes priority, weight and port fields.",
+        "Source": "RFC 2782 (https://www.rfc-editor.org/rfc/rfc2782)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::dns-records",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "a6f64171-9025-5abd-a2cb-1ac65bb48063",
+      "noteType": "Bert Two Way",
+      "section": "dns",
+      "fields": {
+        "Side A": "CAA record",
+        "Side B": "Which CAs may issue certificates",
+        "Aliases": "",
+        "Hint": "Certificate authority authorisation.",
+        "Fact": "Public CAs must check it before issuing.",
+        "Source": "RFC 8659 (https://www.rfc-editor.org/rfc/rfc8659)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::dns-records",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "0839a9be-b32c-5df2-a61c-cf401f511656",
+      "noteType": "Bert Cloze",
+      "section": "dns",
+      "fields": {
+        "Text": "A name that has a CNAME record should not have {{c1::other}} record types, apart from DNSSEC records.",
+        "Extra": "This is why a zone apex usually cannot be a CNAME.",
+        "Hint": "Exclusivity.",
+        "Fact": "Some DNS providers offer ALIAS or flattening to work around it.",
+        "Source": "RFC 1034 (https://www.rfc-editor.org/rfc/rfc1034)\nRFC 2181 (https://www.rfc-editor.org/rfc/rfc2181)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::dns-concepts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "deadf442-d473-5718-9283-52f33239f12e",
+      "noteType": "Bert Cloze",
+      "section": "dns",
+      "fields": {
+        "Text": "A {{c1::recursive}} resolver performs the full lookup on a client's behalf, asking root, TLD and authoritative servers.",
+        "Extra": "Your ISP or a public resolver usually plays this role.",
+        "Hint": "Not authoritative, not stub.",
+        "Fact": "Its cache is why repeated lookups are fast.",
+        "Source": "RFC 1034 (https://www.rfc-editor.org/rfc/rfc1034)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::dns-concepts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "d8529eca-f876-5a5e-88bb-55752cecc392",
+      "noteType": "Bert Typed",
+      "section": "dns",
+      "fields": {
+        "Question": "How many root server identities, a through m, exist?",
+        "Answer": "13",
+        "Aliases": "Thirteen",
+        "Hint": "Count the letters a to m.",
+        "Fact": "Each identity is served by many anycast instances worldwide.",
+        "Source": "IANA Root Servers (https://www.iana.org/domains/root/servers)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::counts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "3a9f53d0-b787-557b-8f2a-f88b01b627c1",
+      "noteType": "Bert Basic",
+      "section": "dns",
+      "fields": {
+        "Question": "Under which domain do IPv4 reverse lookups happen?",
+        "Answer": "in-addr.arpa",
+        "Aliases": "in-addr.arpa.",
+        "Hint": "The address octets are reversed in front of it.",
+        "Fact": "1.2.0.192.in-addr.arpa is the reverse name for 192.0.2.1.",
+        "Source": "RFC 1035 (https://www.rfc-editor.org/rfc/rfc1035)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::dns-names",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "39b0be8c-7607-5e9d-883d-77976fd5949b",
+      "noteType": "Bert Cloze",
+      "section": "dns",
+      "fields": {
+        "Text": "A DNS record's {{c1::TTL}} tells resolvers how many seconds they may cache it.",
+        "Extra": "Lower it before a migration so changes spread faster.",
+        "Hint": "Same acronym as an IP header field.",
+        "Fact": "Some resolvers enforce their own minimum or maximum.",
+        "Source": "RFC 1035 (https://www.rfc-editor.org/rfc/rfc1035)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::dns-concepts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "edf90d4c-86a9-55c7-bea1-7605033f8649",
+      "noteType": "Bert Basic",
+      "section": "dns",
+      "fields": {
+        "Question": "Which DNS response code means the name does not exist?",
+        "Answer": "NXDOMAIN",
+        "Aliases": "RCODE 3\nName Error",
+        "Hint": "Non-existent domain.",
+        "Fact": "RFC 1035 calls it Name Error.",
+        "Source": "RFC 1035 (https://www.rfc-editor.org/rfc/rfc1035)\nRFC 2308 (https://www.rfc-editor.org/rfc/rfc2308)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::dns-names",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "8c442e1a-bfee-5df7-9fe5-88ad6dea492e",
+      "noteType": "Bert Cloze",
+      "section": "dns",
+      "fields": {
+        "Text": "Without EDNS(0), DNS messages over UDP are limited to {{c1::512}} bytes.",
+        "Extra": "Bigger answers set the TC bit and the client retries over TCP.",
+        "Hint": "A power of two.",
+        "Fact": "EDNS(0) lets clients advertise a larger buffer size.",
+        "Source": "RFC 1035 (https://www.rfc-editor.org/rfc/rfc1035)\nRFC 6891 (https://www.rfc-editor.org/rfc/rfc6891)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::dns-concepts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "9c5fe69a-8b2e-5ba9-a1c6-859a0eb8dd2e",
+      "noteType": "Bert Cloze",
+      "section": "dns",
+      "fields": {
+        "Text": "Among MX records, a lower preference value means {{c1::higher}} priority.",
+        "Extra": "Senders try the lowest value first.",
+        "Hint": "Counterintuitive ordering.",
+        "Fact": "Equal values let senders spread load.",
+        "Source": "RFC 5321 (https://www.rfc-editor.org/rfc/rfc5321)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::dns-concepts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "2130f675-527f-5dcb-8763-8f197647bc7f",
+      "noteType": "Bert Typed",
+      "section": "dns",
+      "fields": {
+        "Question": "Which TCP port does DNS over TLS use?",
+        "Answer": "853",
+        "Aliases": "",
+        "Hint": "Just above 800.",
+        "Fact": "DNS over HTTPS uses ordinary HTTPS on 443 instead.",
+        "Source": "RFC 7858 (https://www.rfc-editor.org/rfc/rfc7858)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::port-numbers",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "67cfef17-3238-5a71-abfc-ad5f1c63c996",
+      "noteType": "Bert Basic",
+      "section": "dns",
+      "fields": {
+        "Question": "Which DNSSEC record holds a zone's public key?",
+        "Answer": "DNSKEY",
+        "Aliases": "",
+        "Hint": "Its name says key.",
+        "Fact": "Resolvers check signatures against it.",
+        "Source": "RFC 4034 (https://www.rfc-editor.org/rfc/rfc4034)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::dns-names",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "b974fe9c-b91a-56e0-a4fe-bedb919c1325",
+      "noteType": "Bert Basic",
+      "section": "dns",
+      "fields": {
+        "Question": "Which DNSSEC record in the parent zone links to the child's key?",
+        "Answer": "DS",
+        "Aliases": "Delegation Signer",
+        "Hint": "It sits beside the NS records in the parent.",
+        "Fact": "It is a hash of the child's key, not the key itself.",
+        "Source": "RFC 4034 (https://www.rfc-editor.org/rfc/rfc4034)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::dns-names",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "78d4c1ca-337a-55ae-8ffd-20ee65c222e9",
+      "noteType": "Bert Typed",
+      "section": "http",
+      "fields": {
+        "Question": "Which RFC defines HTTP/3?",
+        "Answer": "9114",
+        "Aliases": "RFC 9114",
+        "Hint": "Two after the HTTP/1.1 syntax RFC.",
+        "Fact": "It was published in June 2022.",
+        "Source": "RFC 9114 (https://www.rfc-editor.org/rfc/rfc9114)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::http-concepts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "029a2fcb-1338-5761-b872-01c69f25a16b",
+      "noteType": "Bert Cloze",
+      "section": "http",
+      "fields": {
+        "Text": "HTTP/1.1 clients must send a {{c1::Host}} header in every request.",
+        "Extra": "It lets many sites share one IP address.",
+        "Hint": "Names the site you want.",
+        "Fact": "HTTP/1.0 did not require it, which made virtual hosting hard.",
+        "Source": "RFC 9112 (https://www.rfc-editor.org/rfc/rfc9112)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::http-concepts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "383aee93-62f3-5c69-af05-89b1aba27e8b",
+      "noteType": "Bert Cloze",
+      "section": "http",
+      "fields": {
+        "Text": "HTTP/1.1 connections are {{c1::persistent}} by default.",
+        "Extra": "Send Connection: close to end one after a response.",
+        "Hint": "Not one request per connection.",
+        "Fact": "Reusing connections saves TCP and TLS handshakes.",
+        "Source": "RFC 9112 (https://www.rfc-editor.org/rfc/rfc9112)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::http-concepts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "92e5988d-fc21-5085-b277-cc328ecc1d19",
+      "noteType": "Bert Cloze",
+      "section": "http",
+      "fields": {
+        "Text": "HTTP/1.1 pipelining suffers head of line blocking because responses must return in {{c1::order}}.",
+        "Extra": "Browsers largely never enabled it.",
+        "Hint": "The sequence of replies.",
+        "Fact": "HTTP/2 multiplexing was designed to fix this.",
+        "Source": "RFC 9112 (https://www.rfc-editor.org/rfc/rfc9112)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::http-concepts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "fda4d1db-f3e5-59b0-a32d-2fe423c626de",
+      "noteType": "Bert Cloze",
+      "section": "http",
+      "fields": {
+        "Text": "HTTP/2 is a {{c1::binary}} framed protocol that multiplexes many streams over one connection.",
+        "Extra": "Each frame names the stream it belongs to.",
+        "Hint": "Not text.",
+        "Fact": "The request semantics are the same as HTTP/1.1.",
+        "Source": "RFC 9113 (https://www.rfc-editor.org/rfc/rfc9113)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::http-concepts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "0c9beaf3-ba3a-5271-972d-9af967c03b01",
+      "noteType": "Bert Cloze",
+      "section": "http",
+      "fields": {
+        "Text": "HTTP/2 compresses headers with {{c1::HPACK}}, and HTTP/3 uses {{c2::QPACK}}.",
+        "Extra": "QPACK copes with streams arriving out of order.",
+        "Hint": "Two related names.",
+        "Fact": "HPACK was designed to resist the CRIME attack.",
+        "Source": "RFC 7541 (https://www.rfc-editor.org/rfc/rfc7541)\nRFC 9204 (https://www.rfc-editor.org/rfc/rfc9204)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::http-concepts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "f1e221c4-9269-5c97-8da0-094a2ca6c30c",
+      "noteType": "Bert Basic",
+      "section": "http",
+      "fields": {
+        "Question": "Which TLS extension negotiates HTTP/2 during the handshake?",
+        "Answer": "ALPN",
+        "Aliases": "Application-Layer Protocol Negotiation",
+        "Hint": "Negotiates the application protocol.",
+        "Fact": "It avoids an extra round trip to agree on a protocol.",
+        "Source": "RFC 7301 (https://www.rfc-editor.org/rfc/rfc7301)\nRFC 9113 (https://www.rfc-editor.org/rfc/rfc9113)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::tls-ext",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "dd78b555-9f48-514a-aa6f-97eb931f2123",
+      "noteType": "Bert Typed",
+      "section": "http",
+      "fields": {
+        "Question": "Which ALPN token identifies HTTP/2 over TLS?",
+        "Answer": "h2",
+        "Aliases": "",
+        "Hint": "Very short.",
+        "Fact": "HTTP/3 uses h3.",
+        "Source": "RFC 9113 (https://www.rfc-editor.org/rfc/rfc9113)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::http-concepts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "b3cc169f-c5c1-50e6-b7f0-9d2432a8dc48",
+      "noteType": "Bert Basic",
+      "section": "http",
+      "fields": {
+        "Question": "Which transport does HTTP/3 run on?",
+        "Answer": "QUIC",
+        "Aliases": "",
+        "Hint": "Built on UDP.",
+        "Fact": "HTTP/3 has no cleartext form.",
+        "Source": "RFC 9114 (https://www.rfc-editor.org/rfc/rfc9114)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::transports",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "82ab744c-efb1-5028-b45d-c15933c7962c",
+      "noteType": "Bert Basic",
+      "section": "http",
+      "fields": {
+        "Question": "Which response header tells browsers to use only HTTPS for a site?",
+        "Answer": "Strict-Transport-Security",
+        "Aliases": "HSTS",
+        "Hint": "Known by a four letter acronym.",
+        "Fact": "Its max-age directive sets how long browsers remember it.",
+        "Source": "RFC 6797 (https://www.rfc-editor.org/rfc/rfc6797)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::http-tokens",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "ed578d1b-aa02-53cc-98ae-e677c296b4c0",
+      "noteType": "Bert Cloze",
+      "section": "http",
+      "fields": {
+        "Text": "GET, PUT and DELETE are idempotent, while {{c1::POST}} is not.",
+        "Extra": "Repeating an idempotent request has the same intended effect.",
+        "Hint": "The usual method for creating things.",
+        "Fact": "Clients may safely retry idempotent requests after a failure.",
+        "Source": "RFC 9110 (https://www.rfc-editor.org/rfc/rfc9110)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::http-concepts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "d54b6c63-5c20-500b-bf91-2198e62a7f66",
+      "noteType": "Bert Basic",
+      "section": "http",
+      "fields": {
+        "Question": "Which HTTP method does a CORS preflight request use?",
+        "Answer": "OPTIONS",
+        "Aliases": "",
+        "Hint": "Asks what is allowed.",
+        "Fact": "Browsers send it before some cross-origin requests.",
+        "Source": "MDN Preflight request (https://developer.mozilla.org/en-US/docs/Glossary/Preflight_request)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::http-tokens",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "d9ad9e69-0910-5550-a28f-70613a40ad7e",
+      "noteType": "Bert Cloze",
+      "section": "http",
+      "fields": {
+        "Text": "Unlike 302, a {{c1::307}} redirect forbids the client from changing the request method.",
+        "Extra": "308 is the permanent version of the same rule.",
+        "Hint": "A temporary redirect.",
+        "Fact": "Historically clients turned POST into GET on 302.",
+        "Source": "RFC 9110 (https://www.rfc-editor.org/rfc/rfc9110)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::http-concepts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "0ac48340-84ef-52cb-8363-4973daf2f819",
+      "noteType": "Bert Two Way",
+      "section": "http",
+      "fields": {
+        "Side A": "HTTP 200",
+        "Side B": "OK",
+        "Aliases": "",
+        "Hint": "Plain success.",
+        "Fact": "It is the most common response on the web.",
+        "Source": "RFC 9110 (https://www.rfc-editor.org/rfc/rfc9110)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::http-status",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "5b2e573c-6cc8-59c5-b0b0-1b7b7d826c72",
+      "noteType": "Bert Two Way",
+      "section": "http",
+      "fields": {
+        "Side A": "HTTP 204",
+        "Side B": "No Content",
+        "Aliases": "",
+        "Hint": "Success with an empty body.",
+        "Fact": "Common for DELETE responses.",
+        "Source": "RFC 9110 (https://www.rfc-editor.org/rfc/rfc9110)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::http-status",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "11eb7730-3154-531b-bce0-8d9c153c4c4c",
+      "noteType": "Bert Two Way",
+      "section": "http",
+      "fields": {
+        "Side A": "HTTP 301",
+        "Side B": "Moved Permanently",
+        "Aliases": "",
+        "Hint": "Permanent redirect.",
+        "Fact": "Search engines transfer ranking to the new URL.",
+        "Source": "RFC 9110 (https://www.rfc-editor.org/rfc/rfc9110)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::http-status",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "9c54eed7-f55b-55f7-b283-b37f2db29f70",
+      "noteType": "Bert Two Way",
+      "section": "http",
+      "fields": {
+        "Side A": "HTTP 400",
+        "Side B": "Bad Request",
+        "Aliases": "",
+        "Hint": "Malformed request.",
+        "Fact": "Often caused by invalid syntax.",
+        "Source": "RFC 9110 (https://www.rfc-editor.org/rfc/rfc9110)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::http-status",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "d2f1cffb-2ceb-5e9e-86da-9c3e69b5dfb1",
+      "noteType": "Bert Two Way",
+      "section": "http",
+      "fields": {
+        "Side A": "HTTP 404",
+        "Side B": "Not Found",
+        "Aliases": "",
+        "Hint": "Nothing at that URL.",
+        "Fact": "Servers may use it to hide a forbidden resource.",
+        "Source": "RFC 9110 (https://www.rfc-editor.org/rfc/rfc9110)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::http-status",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "a22b9cd5-7c66-581e-80c1-4cf514afbf81",
+      "noteType": "Bert Two Way",
+      "section": "http",
+      "fields": {
+        "Side A": "HTTP 429",
+        "Side B": "Too Many Requests",
+        "Aliases": "",
+        "Hint": "Rate limited.",
+        "Fact": "A Retry-After header may say when to come back.",
+        "Source": "RFC 6585 (https://www.rfc-editor.org/rfc/rfc6585)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::http-status",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "f2e3148d-12cd-50b4-8ae7-8cd69fb1a384",
+      "noteType": "Bert Two Way",
+      "section": "http",
+      "fields": {
+        "Side A": "HTTP 500",
+        "Side B": "Internal Server Error",
+        "Aliases": "",
+        "Hint": "Generic server failure.",
+        "Fact": "It says nothing about the cause.",
+        "Source": "RFC 9110 (https://www.rfc-editor.org/rfc/rfc9110)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::http-status",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "f3cea1bf-5c05-586e-a1e0-c010a3210367",
+      "noteType": "Bert Two Way",
+      "section": "http",
+      "fields": {
+        "Side A": "HTTP 502",
+        "Side B": "Bad Gateway",
+        "Aliases": "",
+        "Hint": "Upstream gave a bad response.",
+        "Fact": "Reverse proxies return it when the backend fails.",
+        "Source": "RFC 9110 (https://www.rfc-editor.org/rfc/rfc9110)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::http-status",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "74706f60-32fc-5b7c-8182-4eee083e0ea8",
+      "noteType": "Bert Two Way",
+      "section": "http",
+      "fields": {
+        "Side A": "HTTP 503",
+        "Side B": "Service Unavailable",
+        "Aliases": "",
+        "Hint": "Overloaded or down for maintenance.",
+        "Fact": "It may carry a Retry-After header.",
+        "Source": "RFC 9110 (https://www.rfc-editor.org/rfc/rfc9110)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::http-status",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "613ba50d-1f33-5213-9594-72cd795aaec6",
+      "noteType": "Bert Typed",
+      "section": "http",
+      "fields": {
+        "Question": "Which HTTP status code confirms a WebSocket upgrade?",
+        "Answer": "101",
+        "Aliases": "101 Switching Protocols",
+        "Hint": "A 1xx code.",
+        "Fact": "After it, the connection stops speaking HTTP.",
+        "Source": "RFC 6455 (https://www.rfc-editor.org/rfc/rfc6455)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::http-concepts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "92ef44b5-2f2a-55c1-9d1b-5c32931b8f32",
+      "noteType": "Bert Cloze",
+      "section": "http",
+      "fields": {
+        "Text": "A WebSocket opening handshake asks to switch protocols with the HTTP {{c1::Upgrade}} header.",
+        "Extra": "Its value is websocket.",
+        "Hint": "Change protocols.",
+        "Fact": "WebSockets over HTTP/2 use extended CONNECT instead.",
+        "Source": "RFC 6455 (https://www.rfc-editor.org/rfc/rfc6455)\nRFC 8441 (https://www.rfc-editor.org/rfc/rfc8441)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::http-concepts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "a55566ce-7591-52c8-a147-dd27e16f4995",
+      "noteType": "Bert Basic",
+      "section": "http",
+      "fields": {
+        "Question": "Which header does a server compute from the client's key with SHA-1 and a fixed GUID?",
+        "Answer": "Sec-WebSocket-Accept",
+        "Aliases": "",
+        "Hint": "Its name pairs with Sec-WebSocket-Key.",
+        "Fact": "It proves the server understood the WebSocket handshake.",
+        "Source": "RFC 6455 (https://www.rfc-editor.org/rfc/rfc6455)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::http-tokens",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "144a6548-4ac4-522c-9c9f-6eb9f86051a5",
+      "noteType": "Bert Typed",
+      "section": "http",
+      "fields": {
+        "Question": "Which URI scheme means WebSocket over TLS?",
+        "Answer": "wss",
+        "Aliases": "wss://",
+        "Hint": "Three letters.",
+        "Fact": "Plain ws defaults to port 80, the TLS version to 443.",
+        "Source": "RFC 6455 (https://www.rfc-editor.org/rfc/rfc6455)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::http-concepts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "069d557f-b5be-5c7f-8ae3-4156fba3ffec",
+      "noteType": "Bert Cloze",
+      "section": "http",
+      "fields": {
+        "Text": "WebSocket clients must {{c1::mask}} every frame they send to the server.",
+        "Extra": "Servers must not mask theirs.",
+        "Hint": "An XOR with a random key.",
+        "Fact": "Masking protects against cache poisoning of intermediaries.",
+        "Source": "RFC 6455 (https://www.rfc-editor.org/rfc/rfc6455)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::http-concepts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "9925e886-3b35-5c2c-83a5-4102273dd9d3",
+      "noteType": "Bert Basic",
+      "section": "http",
+      "fields": {
+        "Question": "Which event fires in this browser code when data arrives?<pre><code class=\"language-javascript\">const ws = new WebSocket(\"wss://example.com/chat\");\nws.addEventListener(\"____\", (event) =&gt; {\n  console.log(event.data);\n});</code></pre>",
+        "Answer": "message",
+        "Aliases": "",
+        "Hint": "What the server sends you.",
+        "Fact": "event.data may be a string, Blob or ArrayBuffer.",
+        "Source": "MDN WebSocket API (https://developer.mozilla.org/en-US/docs/Web/API/WebSocket)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::http-tokens",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "63b8c332-cc98-5125-9488-68c2d483c43a",
+      "noteType": "Bert Cloze",
+      "section": "tls",
+      "fields": {
+        "Text": "A full TLS 1.3 handshake takes {{c1::one}} round trip before the client can send application data.",
+        "Extra": "TLS 1.2 needed two.",
+        "Hint": "Fewer than TLS 1.2.",
+        "Fact": "The client guesses a key share group in its first message to save time.",
+        "Source": "RFC 8446 (https://www.rfc-editor.org/rfc/rfc8446)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::tls-concepts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "4c715979-b59c-5bcb-88ce-b68e0b2a171f",
+      "noteType": "Bert Typed",
+      "section": "tls",
+      "fields": {
+        "Question": "Which RFC defines TLS 1.3?",
+        "Answer": "8446",
+        "Aliases": "RFC 8446",
+        "Hint": "Published in 2018.",
+        "Fact": "It was 28 drafts in the making.",
+        "Source": "RFC 8446 (https://www.rfc-editor.org/rfc/rfc8446)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::tls-concepts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "b0365665-30fe-5095-8793-b8eb09ef864a",
+      "noteType": "Bert Basic",
+      "section": "tls",
+      "fields": {
+        "Question": "What is the first message of a TLS handshake?",
+        "Answer": "ClientHello",
+        "Aliases": "Client Hello",
+        "Hint": "The client speaks first.",
+        "Fact": "It lists supported versions, cipher suites and key shares.",
+        "Source": "RFC 8446 (https://www.rfc-editor.org/rfc/rfc8446)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::tls-msgs",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "4c97efd0-0c2d-5637-85e4-f2f800815f0a",
+      "noteType": "Bert Basic",
+      "section": "tls",
+      "fields": {
+        "Question": "Which TLS message does the server send first?",
+        "Answer": "ServerHello",
+        "Aliases": "Server Hello",
+        "Hint": "The server's reply to the opening.",
+        "Fact": "It picks the cipher suite and its own key share.",
+        "Source": "RFC 8446 (https://www.rfc-editor.org/rfc/rfc8446)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::tls-msgs",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "8537d5f8-992c-5f97-bc8f-2073fdbcec2e",
+      "noteType": "Bert Basic",
+      "section": "tls",
+      "fields": {
+        "Question": "Which TLS 1.3 message proves the server holds its certificate's private key?",
+        "Answer": "CertificateVerify",
+        "Aliases": "Certificate Verify",
+        "Hint": "A signature over the transcript.",
+        "Fact": "It follows the Certificate message.",
+        "Source": "RFC 8446 (https://www.rfc-editor.org/rfc/rfc8446)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::tls-msgs",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "c68146eb-ab76-5abc-8b3c-dc7531b2a175",
+      "noteType": "Bert Basic",
+      "section": "tls",
+      "fields": {
+        "Question": "Which TLS message ends each side's handshake with a MAC over the transcript?",
+        "Answer": "Finished",
+        "Aliases": "",
+        "Hint": "The last handshake message.",
+        "Fact": "It detects tampering with earlier handshake messages.",
+        "Source": "RFC 8446 (https://www.rfc-editor.org/rfc/rfc8446)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::tls-msgs",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "3b7da0b2-89a6-5060-8e1f-b5f7abf1e435",
+      "noteType": "Bert Cloze",
+      "section": "tls",
+      "fields": {
+        "Text": "In TLS 1.3, every handshake message after the {{c1::ServerHello}} is encrypted, including the certificate.",
+        "Extra": "TLS 1.2 sent certificates in the clear.",
+        "Hint": "The server's first message.",
+        "Fact": "This hides which certificate a server presents from passive observers.",
+        "Source": "RFC 8446 (https://www.rfc-editor.org/rfc/rfc8446)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::tls-concepts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "58defb0b-07f8-5a9e-aef6-f7c94139c7f6",
+      "noteType": "Bert Cloze",
+      "section": "tls",
+      "fields": {
+        "Text": "TLS 1.3 removed static RSA key exchange; certificate based handshakes use {{c1::ephemeral Diffie-Hellman}}.",
+        "Extra": "Written as (EC)DHE in the RFC.",
+        "Hint": "Fresh key pairs each time.",
+        "Fact": "This gives forward secrecy for those handshakes.",
+        "Source": "RFC 8446 (https://www.rfc-editor.org/rfc/rfc8446)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::tls-concepts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "8b298662-5509-5e71-a4f3-d3ad3b29cfda",
+      "noteType": "Bert Basic",
+      "section": "tls",
+      "fields": {
+        "Question": "Which TLS extension carries the hostname so a server can choose a certificate?",
+        "Answer": "SNI",
+        "Aliases": "Server Name Indication\nserver_name",
+        "Hint": "Lets many HTTPS sites share an IP.",
+        "Fact": "It is sent in the clear unless Encrypted Client Hello is used.",
+        "Source": "RFC 6066 (https://www.rfc-editor.org/rfc/rfc6066)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::tls-ext",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "7633e7cd-0c4e-5dda-b6ff-95caac899908",
+      "noteType": "Bert Basic",
+      "section": "tls",
+      "fields": {
+        "Question": "Which TLS 1.3 extension carries the client's Diffie-Hellman public values?",
+        "Answer": "key_share",
+        "Aliases": "key share\nKeyShare",
+        "Hint": "Shared key material.",
+        "Fact": "A wrong guess triggers a HelloRetryRequest.",
+        "Source": "RFC 8446 (https://www.rfc-editor.org/rfc/rfc8446)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::tls-ext",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "33a63f68-04b2-5523-8259-ddb40fc6206c",
+      "noteType": "Bert Basic",
+      "section": "tls",
+      "fields": {
+        "Question": "Which extension does TLS 1.3 use to signal its real version?",
+        "Answer": "supported_versions",
+        "Aliases": "supported versions",
+        "Hint": "The legacy version field still says 1.2.",
+        "Fact": "This trick kept old middleboxes from breaking connections.",
+        "Source": "RFC 8446 (https://www.rfc-editor.org/rfc/rfc8446)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::tls-ext",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "a99df522-d093-5aa8-aa10-adc147e13b04",
+      "noteType": "Bert Basic",
+      "section": "tls",
+      "fields": {
+        "Question": "Which cipher suite must every TLS 1.3 implementation support?",
+        "Answer": "TLS_AES_128_GCM_SHA256",
+        "Aliases": "AES-128-GCM",
+        "Hint": "AES with 128 bit keys.",
+        "Fact": "RFC 8446 also says implementations should support AES-256-GCM and ChaCha20-Poly1305.",
+        "Source": "RFC 8446 (https://www.rfc-editor.org/rfc/rfc8446)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::tls-concepts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "0b7a5ece-2e18-547c-83d2-beee441b2a8b",
+      "noteType": "Bert Cloze",
+      "section": "tls",
+      "fields": {
+        "Text": "TLS 1.3 0-RTT early data can be {{c1::replayed}} by an attacker.",
+        "Extra": "Only send idempotent requests as early data.",
+        "Hint": "Copied and sent again.",
+        "Fact": "HTTP has a 425 Too Early status for this case.",
+        "Source": "RFC 8446 (https://www.rfc-editor.org/rfc/rfc8446)\nRFC 8470 (https://www.rfc-editor.org/rfc/rfc8470)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::tls-concepts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "fc138d4c-2a16-57f1-bacb-edc1c4599fc3",
+      "noteType": "Bert Cloze",
+      "section": "tls",
+      "fields": {
+        "Text": "A server certificate is trusted when its chain leads to a trusted {{c1::root}} certificate authority.",
+        "Extra": "Servers send intermediates; roots live in the trust store.",
+        "Hint": "The top of the chain.",
+        "Fact": "Root certificates are usually self-signed.",
+        "Source": "RFC 5280 (https://www.rfc-editor.org/rfc/rfc5280)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::tls-concepts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "2a126338-1e2b-54b7-8ae0-c2c6d2e39606",
+      "noteType": "Bert Basic",
+      "section": "tools",
+      "fields": {
+        "Question": "Which tool sends ICMP echo requests to test reachability?",
+        "Answer": "ping",
+        "Aliases": "",
+        "Hint": "Named after sonar.",
+        "Fact": "A host that drops ICMP may still be up.",
+        "Source": "iputils ping manual (https://man7.org/linux/man-pages/man8/ping.8.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::tools-cmds",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "64e6c5d2-2956-56c7-b333-89ca5532bac9",
+      "noteType": "Bert Typed",
+      "section": "tools",
+      "fields": {
+        "Question": "Which ICMP type number is Echo Request?",
+        "Answer": "8",
+        "Aliases": "Type 8",
+        "Hint": "Echo Reply is 0.",
+        "Fact": "ICMPv6 uses 128 for the same job.",
+        "Source": "RFC 792 (https://www.rfc-editor.org/rfc/rfc792)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::protocol-ids",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "f1e57eb5-e6e6-56b9-9b3d-5c598bb47c27",
+      "noteType": "Bert Typed",
+      "section": "tools",
+      "fields": {
+        "Question": "Which ICMP type number is Time Exceeded?",
+        "Answer": "11",
+        "Aliases": "Type 11",
+        "Hint": "Sent when TTL hits zero.",
+        "Fact": "traceroute depends on these messages.",
+        "Source": "RFC 792 (https://www.rfc-editor.org/rfc/rfc792)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::protocol-ids",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "6b639626-ddbc-5c8d-b2c8-b8fd60682e20",
+      "noteType": "Bert Cloze",
+      "section": "tools",
+      "fields": {
+        "Text": "traceroute finds hops by sending probes with increasing {{c1::TTL}} values and reading ICMP Time Exceeded replies.",
+        "Extra": "Each router that drops a probe reveals its address.",
+        "Hint": "An IP header field.",
+        "Fact": "Hops that do not reply show as asterisks.",
+        "Source": "traceroute manual (https://man7.org/linux/man-pages/man8/traceroute.8.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::tools-concepts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "1952c282-adcc-5d1f-95a2-592dd61c6d79",
+      "noteType": "Bert Basic",
+      "section": "tools",
+      "fields": {
+        "Question": "Which protocol does classic Unix traceroute use for probes by default?",
+        "Answer": "UDP",
+        "Aliases": "User Datagram Protocol",
+        "Hint": "Not ICMP, unlike Windows.",
+        "Fact": "It targets high, likely unused ports, starting at 33434.",
+        "Source": "traceroute manual (https://man7.org/linux/man-pages/man8/traceroute.8.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::transports",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "49847bb0-3835-5634-a179-4b20a29795ab",
+      "noteType": "Bert Basic",
+      "section": "tools",
+      "fields": {
+        "Question": "Which tool prints DNS answers in QUESTION, ANSWER and AUTHORITY sections?",
+        "Answer": "dig",
+        "Aliases": "",
+        "Hint": "Ships with BIND.",
+        "Fact": "It talks to the resolver from /etc/resolv.conf unless you pick one with @.",
+        "Source": "dig manual, BIND 9 (https://bind9.readthedocs.io/en/latest/manpages.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::tools-cmds",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "0982aaff-f3aa-5837-a36b-10b0b4701651",
+      "noteType": "Bert Typed",
+      "section": "tools",
+      "fields": {
+        "Question": "Which dig option follows delegation from the root servers?",
+        "Answer": "+trace",
+        "Aliases": "trace",
+        "Hint": "Starts with a plus.",
+        "Fact": "It does iterative queries itself instead of using a recursive resolver.",
+        "Source": "dig manual, BIND 9 (https://bind9.readthedocs.io/en/latest/manpages.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::cli-flags",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "328b6026-7549-5486-9512-843a886f1abe",
+      "noteType": "Bert Basic",
+      "section": "tools",
+      "fields": {
+        "Question": "What does this command print?<pre><code class=\"language-bash\">dig +short example.com AAAA</code></pre>",
+        "Answer": "The IPv6 addresses",
+        "Aliases": "IPv6 addresses\nIPv6 address\nAAAA records",
+        "Hint": "Look at the record type.",
+        "Fact": "+short drops everything except the answer data.",
+        "Source": "dig manual, BIND 9 (https://bind9.readthedocs.io/en/latest/manpages.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::tools-concepts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "cf07c44c-e628-5e19-ad31-5d3071b12191",
+      "noteType": "Bert Basic",
+      "section": "tools",
+      "fields": {
+        "Question": "Which command line tool captures packets using BPF filter expressions?",
+        "Answer": "tcpdump",
+        "Aliases": "",
+        "Hint": "Sniffs and dumps.",
+        "Fact": "Wireshark can open its pcap files.",
+        "Source": "tcpdump manual (https://www.tcpdump.org/manpages/tcpdump.1.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::tools-cmds",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "8bfd1575-a7a8-58fe-a0c0-0d192fc5fa72",
+      "noteType": "Bert Basic",
+      "section": "tools",
+      "fields": {
+        "Question": "What does this command capture?<pre><code class=\"language-bash\">tcpdump -i eth0 'tcp port 443'</code></pre>",
+        "Answer": "TCP traffic on port 443",
+        "Aliases": "HTTPS traffic\nPort 443 TCP traffic\nTCP port 443",
+        "Hint": "Read the filter.",
+        "Fact": "Either source or destination port can match.",
+        "Source": "tcpdump manual (https://www.tcpdump.org/manpages/tcpdump.1.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::tools-concepts",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "9f4e172c-5629-54c0-8a6b-4ceab3df7f4e",
+      "noteType": "Bert Basic",
+      "section": "tools",
+      "fields": {
+        "Question": "Which iproute2 tool replaces netstat for listing sockets?",
+        "Answer": "ss",
+        "Aliases": "ss command",
+        "Hint": "Socket statistics.",
+        "Fact": "It reads socket data from the kernel faster than netstat.",
+        "Source": "ss manual (https://man7.org/linux/man-pages/man8/ss.8.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::tools-cmds",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "3c4a8ac0-d48c-5347-b2df-5014fa2f72a5",
+      "noteType": "Bert Typed",
+      "section": "tools",
+      "fields": {
+        "Question": "Which ss flag limits output to listening sockets?",
+        "Answer": "-l",
+        "Aliases": "--listening",
+        "Hint": "The l in ss -tlnp.",
+        "Fact": "-t limits to TCP and -n skips name resolution.",
+        "Source": "ss manual (https://man7.org/linux/man-pages/man8/ss.8.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::cli-flags",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "e49d07af-fcb0-5786-9a3d-d67a7cfb6bfd",
+      "noteType": "Bert Basic",
+      "section": "tools",
+      "fields": {
+        "Question": "Which iproute2 command shows the routing table?",
+        "Answer": "ip route",
+        "Aliases": "ip r\nip route show",
+        "Hint": "Two words.",
+        "Fact": "ip route get shows the route for a single address.",
+        "Source": "ip manual (https://man7.org/linux/man-pages/man8/ip.8.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::tools-cmds",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "5c456692-42ca-58b3-92dc-6eb9fd138540",
+      "noteType": "Bert Typed",
+      "section": "tools",
+      "fields": {
+        "Question": "Which curl flag shows request and response headers while transferring?",
+        "Answer": "-v",
+        "Aliases": "--verbose",
+        "Hint": "Verbose.",
+        "Fact": "Lines starting with > are sent, < are received.",
+        "Source": "curl manual (https://curl.se/docs/manpage.html)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::cli-flags",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "6483e382-eb28-53db-86d6-e2ac60f1fd69",
+      "noteType": "Bert Basic",
+      "section": "tools",
+      "fields": {
+        "Question": "Which openssl subcommand opens a TLS connection and shows the certificate chain?",
+        "Answer": "s_client",
+        "Aliases": "openssl s_client",
+        "Hint": "s for SSL.",
+        "Fact": "Add -servername to send SNI.",
+        "Source": "openssl s_client manual (https://docs.openssl.org/master/man1/openssl-s_client/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::tools-cmds",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "67748eb3-6095-5ca2-8602-105b5ff6ceb8",
+      "noteType": "Bert Basic",
+      "section": "tools",
+      "fields": {
+        "Question": "In this command, what does -servername set?<pre><code class=\"language-bash\">openssl s_client -connect example.com:443 -servername example.com</code></pre>",
+        "Answer": "SNI",
+        "Aliases": "Server Name Indication\nThe SNI hostname",
+        "Hint": "A TLS extension.",
+        "Fact": "Without it, a server hosting many sites may return the wrong certificate.",
+        "Source": "openssl s_client manual (https://docs.openssl.org/master/man1/openssl-s_client/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::tls-ext",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "97a5d157-acaa-5de8-a678-db4e52b1973f",
+      "noteType": "Bert Basic",
+      "section": "tools",
+      "fields": {
+        "Question": "Which tool, usually run as nc, opens raw TCP or UDP connections?",
+        "Answer": "netcat",
+        "Aliases": "nc",
+        "Hint": "A cat for networks.",
+        "Fact": "nc -zv host port is a quick port check.",
+        "Source": "OpenBSD nc manual (https://man.openbsd.org/nc.1)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::similar::tools-cmds",
+        "bert::status::draft"
+      ]
+    }
+  ]
+}

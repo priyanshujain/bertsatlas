@@ -17,7 +17,8 @@ import kotlinx.serialization.json.intOrNull
 import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.jsonPrimitive
 
-private const val DEFAULT_CATALOG = "composeApp/src/commonMain/composeResources/files/catalog/catalog-v1.json"
+private const val DEFAULT_PACK_SOURCES = "content/packs"
+private const val ASSET_ROOT = "composeApp/src/commonMain/composeResources/files"
 private const val DEFAULT_REPORT = "catalogTool/build/reports/catalog-review.txt"
 private val reviewStates = setOf("draft", "fact_checked", "copy_checked", "approved")
 private val requiredFormats = setOf("flag_to_country", "country_to_flag", "letter_bank")
@@ -29,9 +30,9 @@ ad ae af ag al am ao ar at au az ba bb bd be bf bg bh bi bj bn bo br bs bt bw by
 fun main(args: Array<String>) {
     val options = Options.parse(args)
     val projectRoot = findProjectRoot(Path.of("").toAbsolutePath())
-    val catalog = options.catalog.resolveFrom(projectRoot)
+    val catalog = options.packSources.resolveFrom(projectRoot)
     val report = options.report.resolveFrom(projectRoot)
-    val result = Validator(catalog).validate()
+    val result = Validator(catalog, projectRoot.resolve(ASSET_ROOT)).validate()
     report.parent?.let(Files::createDirectories)
     report.writeText(result.report(catalog, options.release))
     println(result.summary(catalog, report, options.release))
@@ -51,45 +52,43 @@ private fun findProjectRoot(start: Path): Path {
 private fun Path.resolveFrom(root: Path): Path =
     (if (isAbsolute) this else root.resolve(this)).toAbsolutePath().normalize()
 
-private data class Options(val catalog: Path, val report: Path, val release: Boolean) {
+private data class Options(val packSources: Path, val report: Path, val release: Boolean) {
     companion object {
         fun parse(args: Array<String>): Options {
-            var catalog = Path.of(DEFAULT_CATALOG)
+            var packSources = Path.of(DEFAULT_PACK_SOURCES)
             var report = Path.of(DEFAULT_REPORT)
             var release = false
             var i = 0
             while (i < args.size) {
                 when (args[i]) {
-                    "--catalog" -> catalog = Path.of(args.getOrNull(++i) ?: error("--catalog requires a path"))
+                    "--packs" -> packSources = Path.of(args.getOrNull(++i) ?: error("--packs requires a path"))
                     "--report" -> report = Path.of(args.getOrNull(++i) ?: error("--report requires a path"))
                     "--release" -> release = true
                     "--help" -> {
-                        println("usage: catalogTool [--catalog path] [--report path] [--release]")
+                        println("usage: catalogTool [--packs path] [--report path] [--release]")
                         kotlin.system.exitProcess(0)
                     }
                     else -> error("unknown argument: ${args[i]}")
                 }
                 i++
             }
-            return Options(catalog, report, release)
+            return Options(packSources, report, release)
         }
     }
 }
 
-private class Validator(private val path: Path) {
+private class Validator(private val path: Path, private val resourceRoot: Path) {
     private val errors = mutableListOf<String>()
     private val gaps = mutableListOf<String>()
     private val counts = linkedMapOf<String, Int>()
-    private lateinit var resourceRoot: Path
 
     fun validate(): Result {
-        if (!path.exists()) return Result(listOf("catalog file does not exist: $path"), emptyList(), emptyMap())
+        if (!path.exists()) return Result(listOf("pack sources do not exist: $path"), emptyList(), emptyMap())
         val root = try {
-            Json.parseToJsonElement(Files.readString(path)).jsonObject
+            PackSourceCatalog.assemble(path)
         } catch (exception: Exception) {
-            return Result(listOf("catalog is not valid JSON: ${exception.message}"), emptyList(), emptyMap())
+            return Result(listOf("pack sources are not readable: ${exception.message}"), emptyList(), emptyMap())
         }
-        resourceRoot = path.parent.parent
         expectInt(root, "schemaVersion", 1, "catalog")
         text(root, "catalogVersion", "catalog")
         text(root, "countryCanon", "catalog")

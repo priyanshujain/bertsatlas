@@ -3,13 +3,18 @@ set shell := ["zsh", "-cu"]
 java_home := env_var_or_default("JAVA_HOME", "/opt/homebrew/opt/openjdk@21/libexec/openjdk.jdk/Contents/Home")
 android_home := env_var_or_default("ANDROID_HOME", "/opt/homebrew/share/android-commandlinetools")
 device := env_var_or_default("BERTS_ATLAS_DEVICE", "663c91b1")
-simulator_device := env_var_or_default("BERTS_ATLAS_SIMULATOR_DEVICE", "iPhone 17 Pro")
+simulator_device := env_var_or_default("BERTS_ATLAS_SIMULATOR_DEVICE", "iPhone 17")
 simulator_destination := "platform=iOS Simulator,name=" + simulator_device
 adb := android_home + "/platform-tools/adb"
+developer_dir := env_var_or_default("DEVELOPER_DIR", "/Applications/Xcode.app/Contents/Developer")
+signing_identity := "Developer ID Application: Priyanshu Jain (TQV87WLXK3)"
+notary_profile := "bertsatlas-notary"
+dmg_path := "desktopApp/build/compose/binaries/main/dmg/Bert's Atlas-1.0.0.dmg"
 
 export JAVA_HOME := java_home
 export ANDROID_HOME := android_home
 export ANDROID_SDK_ROOT := android_home
+export DEVELOPER_DIR := developer_dir
 
 default: build
 
@@ -38,6 +43,35 @@ install-android: android
     '{{adb}}' -s '{{device}}' install -r androidApp/build/outputs/apk/debug/androidApp-debug.apk
     '{{adb}}' -s '{{device}}' shell am force-stop app.bertsatlas
     '{{adb}}' -s '{{device}}' shell monkey -p app.bertsatlas -c android.intent.category.LAUNCHER 1
+
+# Run the macOS desktop app from source.
+desktop:
+    ./gradlew :cli:linkReleaseExecutableMacosArm64 :desktopApp:run
+
+# Package, sign, notarize and staple the macOS DMG with the bert CLI inside.
+dmg:
+    rm -rf desktopApp/build/compose/binaries
+    ./gradlew :cli:linkReleaseExecutableMacosArm64 :desktopApp:packageDmg -Pbertsatlas.sign=true
+    codesign --force --timestamp --sign '{{signing_identity}}' "{{dmg_path}}"
+    xcrun notarytool submit "{{dmg_path}}" --keychain-profile '{{notary_profile}}' --wait
+    xcrun stapler staple "{{dmg_path}}"
+    spctl -a -t open --context context:primary-signature -vv "{{dmg_path}}"
+
+# Compile content/packs sources into the bundled .apkg packs.
+packs:
+    ./gradlew :catalogTool:buildPacks
+
+# Build the store index.json and versioned official packs into build/store.
+store:
+    ./gradlew :catalogTool:buildStore
+
+# Print every upload publish would make, without touching R2.
+publish-dry-run: store
+    while IFS=$'\t' read -r key file type cache; do print -r -- "wrangler r2 object put 'berts-atlas/$key' --file '$file' --content-type '$type' --cache-control '$cache' --remote"; done < build/store/publish-plan.tsv
+
+# Upload the store to the berts-atlas R2 bucket; index.json goes last.
+publish: store
+    while IFS=$'\t' read -r key file type cache; do wrangler r2 object put "berts-atlas/$key" --file "$file" --content-type "$type" --cache-control "$cache" --remote; done < build/store/publish-plan.tsv
 
 # Run the structural content gate; editorial release signoff remains separate.
 catalog:

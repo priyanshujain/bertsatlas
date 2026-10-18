@@ -8,3 +8,5 @@ DerivedData/
 xcuserdata/
 .DS_Store
 .signing/
+.kotlin/
+manual-testing/
