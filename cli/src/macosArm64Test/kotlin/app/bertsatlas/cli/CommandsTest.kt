@@ -146,6 +146,19 @@ class CommandsTest {
     }
 
     @Test
+    fun describesTheChoiceStyleSchema() {
+        val (exit, schema) = run("styles", "schema", "choice")
+        assertEquals(ExitCode.Ok, exit)
+        assertEquals("Bert Choice card", schema.getValue("title").jsonPrimitive.content)
+        val fields = schema.getValue("properties").jsonObject.getValue("fields").jsonObject
+        assertEquals(listOf("Question", "Choices", "Correct"), fields.getValue("required").jsonArray.map { it.jsonPrimitive.content })
+        val properties = fields.getValue("properties").jsonObject
+        assertEquals(listOf("Question", "Choices", "Correct", "Explanation", "Hint", "Source", "BertMeta"), properties.keys.toList())
+        assertTrue("2 to 5" in properties.getValue("Choices").jsonObject.getValue("description").jsonPrimitive.content)
+        assertTrue("flipOnly" in properties.getValue("BertMeta").jsonObject.getValue("description").jsonPrimitive.content)
+    }
+
+    @Test
     fun reportsMissingPacksAndBadUsage() {
         assertEquals(ExitCode.NotFound, run("packs", "show", "nope").first)
         assertEquals(ExitCode.Usage, run("frobnicate").first)
