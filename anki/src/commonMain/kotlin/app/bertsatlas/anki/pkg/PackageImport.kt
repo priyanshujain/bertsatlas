@@ -243,9 +243,13 @@ private class DeckCopy(
         val existing = target.cardsOfNote(targetNoteId).firstOrNull { it.ordinal == card.ordinal }
         val revlog = source.revlogOfCard(card.id)
         if (existing != null) {
-            if (!keepExistingScheduling && card.modifiedSecs > existing.modifiedSecs) {
-                target.saveCard(existing.copy(scheduling = card.scheduling, modifiedSecs = card.modifiedSecs, flags = card.flags))
+            val rescheduled = if (!keepExistingScheduling && card.modifiedSecs > existing.modifiedSecs) {
+                existing.copy(scheduling = card.scheduling, modifiedSecs = card.modifiedSecs, flags = card.flags)
+            } else {
+                existing
             }
+            val placed = if (updateExistingContent) rescheduled.movedTo(targetDeckId) else rescheduled
+            if (placed != existing) target.saveCard(placed)
             val known = target.revlogOfCard(existing.id).map { it.id }.toSet()
             revlog.filter { it.id !in known }.forEach { target.addRevlogEntry(it.copy(cardId = existing.id)) }
             return false
@@ -254,6 +258,9 @@ private class DeckCopy(
         revlog.forEach { entry -> target.addRevlogEntry(entry.copy(cardId = saved.id)) }
         return true
     }
+
+    private fun Card.movedTo(deckId: Long): Card =
+        if (scheduling.originalDeckId == 0L) copy(deckId = deckId) else copy(scheduling = scheduling.copy(originalDeckId = deckId))
 
     private fun Card.withoutFilteredDeck(): Card =
         if (scheduling.originalDeckId == 0L) this
