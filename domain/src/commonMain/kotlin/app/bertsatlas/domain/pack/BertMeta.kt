@@ -77,6 +77,12 @@ data class CapitalBertMeta(
     val curatedQuestion: CuratedQuestionMeta? = null,
 )
 
+@Serializable
+data class CardBertMeta(
+    val flipOnly: Boolean = false,
+    val review: ReviewRecord? = null,
+)
+
 sealed interface BertMetaReading<out T> {
     data object Empty : BertMetaReading<Nothing>
     data class Valid<T>(val meta: T) : BertMetaReading<T>
@@ -88,13 +94,18 @@ object BertMetaCodec {
 
     fun readCapital(field: String): BertMetaReading<CapitalBertMeta> = read(field, CapitalBertMeta.serializer())
 
+    fun readCard(field: String): BertMetaReading<CardBertMeta> = read(field, CardBertMeta.serializer())
+
     fun readObject(field: String): BertMetaReading<JsonObject> = read(field, JsonObject.serializer())
 
     fun readFor(noteType: BertNoteType, field: String): BertMetaReading<Any> = when (noteType) {
         BertNoteTypes.Flag -> readFlag(field)
         BertNoteTypes.Capital -> readCapital(field)
+        BertNoteTypes.Basic, BertNoteTypes.Typed, BertNoteTypes.Cloze, BertNoteTypes.TwoWay, BertNoteTypes.Image, BertNoteTypes.Choice -> readCard(field)
         else -> readObject(field)
     }
+
+    fun flipOnly(field: String): Boolean = (readCard(field) as? BertMetaReading.Valid)?.meta?.flipOnly ?: false
 
     fun writeFlag(meta: FlagBertMeta): String = PackJson.lenient.encodeToString(FlagBertMeta.serializer(), meta)
 
