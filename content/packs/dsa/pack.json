@@ -1,13 +1,13 @@
 {
   "packId": "dsa",
-  "version": "2.0.0-draft.1",
+  "version": "3.0.0-draft.1",
   "official": true,
   "title": "Coding Interview Practice",
   "subtitle": "Data structures and algorithms interview problems, worked through like a strong candidate",
   "category": "programming",
   "subcategory": "dsa",
   "accentColor": "#3E5C8A",
-  "coverMedia": null,
+  "coverMedia": "cover.png",
   "languages": [
     "en"
   ],
@@ -17,7 +17,7 @@
       "title": "LeetCode problem set",
       "url": "https://leetcode.com/problemset/",
       "publisher": "LeetCode",
-      "retrievedAt": null,
+      "retrievedAt": "2026-10-18",
       "revision": null
     },
     {
@@ -25,7 +25,7 @@
       "title": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein",
       "url": "https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/",
       "publisher": "MIT Press",
-      "retrievedAt": null,
+      "retrievedAt": "2026-10-18",
       "revision": null
     },
     {
@@ -33,7 +33,7 @@
       "title": "Algorithms, 4th edition, Sedgewick and Wayne",
       "url": "https://algs4.cs.princeton.edu/home/",
       "publisher": "Princeton University",
-      "retrievedAt": null,
+      "retrievedAt": "2026-10-18",
       "revision": null
     },
     {
@@ -41,7 +41,7 @@
       "title": "Python Wiki: TimeComplexity",
       "url": "https://wiki.python.org/moin/TimeComplexity",
       "publisher": "Python Software Foundation",
-      "retrievedAt": null,
+      "retrievedAt": "2026-10-18",
       "revision": null
     },
     {
@@ -49,7 +49,7 @@
       "title": "Python heapq documentation",
       "url": "https://docs.python.org/3/library/heapq.html",
       "publisher": "Python Software Foundation",
-      "retrievedAt": null,
+      "retrievedAt": "2026-10-18",
       "revision": null
     },
     {
@@ -57,7 +57,7 @@
       "title": "Python bisect documentation",
       "url": "https://docs.python.org/3/library/bisect.html",
       "publisher": "Python Software Foundation",
-      "retrievedAt": null,
+      "retrievedAt": "2026-10-18",
       "revision": null
     },
     {
@@ -65,7 +65,7 @@
       "title": "Python collections documentation",
       "url": "https://docs.python.org/3/library/collections.html",
       "publisher": "Python Software Foundation",
-      "retrievedAt": null,
+      "retrievedAt": "2026-10-18",
       "revision": null
     },
     {
@@ -73,7 +73,55 @@
       "title": "Algorithms, Jeff Erickson",
       "url": "https://jeffe.cs.illinois.edu/teaching/algorithms/",
       "publisher": "University of Illinois",
-      "retrievedAt": null,
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-company-wise",
+      "title": "Interview company wise problems",
+      "url": "https://github.com/liquidslr/interview-company-wise-problems",
+      "publisher": "liquidslr on GitHub",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-blind75",
+      "title": "Curated List of Top 75 LeetCode Questions",
+      "url": "https://www.teamblind.com/post/New-Year-Gift---Curated-List-of-Top-75-LeetCode-Questions-to-Save-Your-Time-OaM1orEU",
+      "publisher": "Blind",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-neetcode",
+      "title": "NeetCode roadmap",
+      "url": "https://github.com/neetcode-gh/leetcode",
+      "publisher": "NeetCode",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-igo-anthropic",
+      "title": "Anthropic software engineer interview",
+      "url": "https://igotanoffer.com/en/advice/anthropic-software-engineer-interview",
+      "publisher": "IGotAnOffer",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-igo-openai",
+      "title": "OpenAI coding interview",
+      "url": "https://igotanoffer.com/en/advice/openai-coding-interview",
+      "publisher": "IGotAnOffer",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-bsbug",
+      "title": "Extra, Extra: Nearly All Binary Searches and Mergesorts are Broken",
+      "url": "https://research.google/blog/extra-extra-read-all-about-it-nearly-all-binary-searches-and-mergesorts-are-broken/",
+      "publisher": "Google Research",
+      "retrievedAt": "2026-10-18",
       "revision": null
     }
   ],
@@ -81,18 +129,23 @@
   "stamps": [],
   "bertSchemaVersion": 1,
   "sections": {
-    "arrays": "Arrays, strings and hashing",
-    "pointers": "Two pointers and sliding window",
-    "stacks": "Stacks, queues and monotonic structures",
+    "arrays": "Hash maps and arrays",
+    "pointers": "Two pointers",
+    "window": "Sliding window",
+    "prefix": "Prefix sums",
     "lists": "Linked lists",
+    "matrix": "Matrix traversal",
+    "stacks": "Stacks and monotonic stacks",
+    "heaps": "Heaps and top k",
     "trees": "Trees",
-    "graphs": "Graphs",
-    "heaps": "Heaps",
+    "graphs": "Graphs, BFS and DFS",
     "search": "Binary search",
-    "intervals": "Intervals",
     "backtracking": "Backtracking",
+    "intervals": "Intervals",
     "dp": "Dynamic programming",
     "greedy": "Greedy",
-    "tries": "Tries"
+    "tries": "Tries",
+    "unionfind": "Union find",
+    "design": "Design a data structure"
   }
 }
