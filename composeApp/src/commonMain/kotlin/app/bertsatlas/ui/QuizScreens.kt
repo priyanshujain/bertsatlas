@@ -18,14 +18,10 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.setValue
 import androidx.compose.runtime.remember
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.Role
@@ -78,10 +74,11 @@ fun QuizScreen(
     promptContent: (@Composable () -> Unit)? = null,
     flipAnswerContent: (@Composable () -> Unit)? = null,
     flipKey: String = prompt,
+    flipRevealed: Boolean = false,
+    onRevealFlip: () -> Unit = {},
     onSelfGrade: (Boolean) -> Unit = {},
 ) {
     val flipping = flipAnswerContent != null
-    var flipRevealed by rememberSaveable(flipKey) { mutableStateOf(false) }
     val keyboardPresent = hardwareKeyboardPresent()
     val focusRequester = remember { FocusRequester() }
     LaunchedEffect(flipKey, flipRevealed) { runCatching { focusRequester.requestFocus() } }
@@ -92,7 +89,7 @@ fun QuizScreen(
             .onPreviewKeyEvent { event ->
                 if (event.type != KeyEventType.KeyDown) return@onPreviewKeyEvent false
                 when {
-                    flipping && !flipRevealed && (event.key == Key.Spacebar || event.key == Key.Enter) -> { flipRevealed = true; true }
+                    flipping && !flipRevealed && (event.key == Key.Spacebar || event.key == Key.Enter) -> { onRevealFlip(); true }
                     flipping && flipRevealed && event.key == FORGOT_KEY -> { onSelfGrade(false); true }
                     flipping && flipRevealed && event.key == REMEMBERED_KEY -> { onSelfGrade(true); true }
                     choices.isNotEmpty() -> {
@@ -163,7 +160,7 @@ fun QuizScreen(
             if (choices.isNotEmpty()) ResponsiveChoices(choices, onChoice, keyboardPresent)
             if (flipAnswerContent != null && flipRevealed) AtlasCard { flipAnswerContent() }
           }
-            if (flipping) FlipAndGradeActions(flipRevealed, { flipRevealed = true }, onSelfGrade, keyboardPresent)
+            if (flipping) FlipAndGradeActions(flipRevealed, onRevealFlip, onSelfGrade, keyboardPresent)
             if (letterSlots.isNotEmpty() || letterTiles.isNotEmpty()) {
                 LetterBank(letterSlots, letterTiles, onLetter, onRemoveLetter)
                 Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {

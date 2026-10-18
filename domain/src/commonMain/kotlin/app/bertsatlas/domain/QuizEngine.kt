@@ -76,10 +76,11 @@ class QuizEngine(
         val elapsed = (now - state.tickingSinceMillis).coerceAtLeast(0)
         val sessionRemaining = state.sessionRemainingMillis?.let { (it - elapsed).coerceAtLeast(0) }
         val sessionExpired = state.sessionExpired || sessionRemaining == 0L
+        val questionElapsed = if (state.activeQuestion.answerRevealed) 0 else elapsed
         return state.copy(
             activeQuestion = state.activeQuestion.copy(
-                questionRemainingMillis = (state.activeQuestion.questionRemainingMillis - elapsed).coerceAtLeast(0),
-                questionElapsedMillis = state.activeQuestion.questionElapsedMillis + elapsed,
+                questionRemainingMillis = (state.activeQuestion.questionRemainingMillis - questionElapsed).coerceAtLeast(0),
+                questionElapsedMillis = state.activeQuestion.questionElapsedMillis + questionElapsed,
             ),
             sessionRemainingMillis = sessionRemaining,
             sessionExpired = sessionExpired,
@@ -193,6 +194,13 @@ class QuizEngine(
             runCompletionPending = timed.runCompletionPending || answeredQuestionLimitReached,
             tickingSinceMillis = null,
         )
+    }
+
+    fun revealFlipAnswer(state: QuizRunState): QuizRunState {
+        requireAnswering(state)
+        require(state.activeQuestion.question is Question.FlipAndGrade) { "Only flip and grade cards reveal an answer" }
+        val advanced = advanceClocks(state)
+        return advanced.copy(activeQuestion = advanced.activeQuestion.copy(answerRevealed = true))
     }
 
     fun openHintChooser(state: QuizRunState): QuizRunState {

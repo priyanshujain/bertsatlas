@@ -56,6 +56,7 @@ data class ActiveQuestion(
     val hintPointsDeducted: Int = 0,
     val removedChoiceIds: Set<String> = emptySet(),
     val removedTileIds: Set<String> = emptySet(),
+    val answerRevealed: Boolean = false,
 ) {
     val appliedHints: List<HintPresentation>
         get() = if (usedHints.isEmpty()) listOfNotNull(hint) else usedHints

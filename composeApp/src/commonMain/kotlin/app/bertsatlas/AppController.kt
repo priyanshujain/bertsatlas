@@ -492,6 +492,10 @@ class AppController(
         }
     }
 
+    fun revealFlipAnswer() {
+        if (mutateRun(engine::revealFlipAnswer)) persistSnapshot(_state.value.run)
+    }
+
     fun selfGrade(remembered: Boolean) {
         if (mutateRun { engine.answerQuestion(it, SubmittedAnswer.SelfGrade(remembered)) }) {
             playAnswerFeedback()

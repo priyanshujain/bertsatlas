@@ -373,6 +373,8 @@ private fun RunDestination(controller: AppController, state: AtlasAppState) {
                 promptContent = question.promptHtml()?.let { html -> { PackCardContent(html, controller.mediaDirectory(question.packId)) } },
                 flipAnswerContent = (question as? Question.FlipAndGrade)?.let { flip -> { PackCardContent(flip.answerHtml.afterAnswerDivider(), controller.mediaDirectory(question.packId)) } },
                 flipKey = question.id + run.attempts.size,
+                flipRevealed = run.activeQuestion.answerRevealed,
+                onRevealFlip = controller::revealFlipAnswer,
                 onSelfGrade = controller::selfGrade,
             )
         }
