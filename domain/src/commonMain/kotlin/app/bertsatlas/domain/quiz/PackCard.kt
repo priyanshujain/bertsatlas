@@ -8,6 +8,8 @@ import app.bertsatlas.anki.template.CardRenderContext
 import app.bertsatlas.anki.template.CardTemplateRenderer
 import app.bertsatlas.anki.template.Cloze
 import app.bertsatlas.anki.template.clozeFieldNames
+import app.bertsatlas.domain.pack.BertChoices
+import app.bertsatlas.domain.pack.BertMetaCodec
 import app.bertsatlas.domain.pack.BertNoteTypes
 import app.bertsatlas.domain.pack.BertTags
 import app.bertsatlas.domain.pack.EditorialStatus
@@ -29,6 +31,10 @@ data class PackCard(
     val sources: List<String>,
     val similarGroupIds: List<String>,
     val editorialStatus: EditorialStatus?,
+    val authoredChoices: List<String> = emptyList(),
+    val authoredQuestionHtml: String? = null,
+    val flipOnly: Boolean = false,
+    val explanation: String? = null,
 )
 
 object PackCardReader {
@@ -58,6 +64,7 @@ object PackCardReader {
             ),
         )
         val isBert = BertNoteTypes.byName(notetype.name) != null
+        val isChoice = notetype.name == BertNoteTypes.Choice.name
         val shortAnswer = if (isBert) {
             bertShortAnswer(notetype.name, fields, ordinal, clozeOrdinal)
         } else {
@@ -80,6 +87,10 @@ object PackCardReader {
             sources = listLines(fields["Source"]),
             similarGroupIds = BertTags.similarGroupIds(note.tags),
             editorialStatus = BertTags.editorialStatus(note.tags),
+            authoredChoices = if (isChoice) BertChoices.choices(fields["Choices"].orEmpty()) else emptyList(),
+            authoredQuestionHtml = if (isChoice) fields["Question"] else null,
+            flipOnly = isBert && BertMetaCodec.flipOnly(fields[BertNoteTypes.BERT_META_FIELD].orEmpty()),
+            explanation = if (isChoice) fieldText(fields, "Explanation") else null,
         )
     }
 
@@ -102,6 +113,7 @@ object PackCardReader {
             BertNoteTypes.TwoWay.name -> if (ordinal == 0) "Side B" else "Side A"
             BertNoteTypes.Flag.name -> "Country"
             BertNoteTypes.Capital.name -> "Capitals"
+            BertNoteTypes.Choice.name -> return BertChoices.text(fields["Correct"].orEmpty()).ifEmpty { null }
             BertNoteTypes.Cloze.name -> return clozeAnswer(fields["Text"].orEmpty(), clozeOrdinal, MAX_BERT_ANSWER_LENGTH)
             else -> return null
         }

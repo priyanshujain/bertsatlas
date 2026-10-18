@@ -655,7 +655,11 @@ class QuizEngine(
         is Question.MultipleChoice -> {
             val filled = question.choicesFilledFromDistractorPools(randomState)
             val choices = filled.first
-            require(choices.size == MULTIPLE_CHOICE_COUNT) { "Multiple-choice questions require four choices" }
+            if (question.distractorPoolsNearestFirst.all { it.isEmpty() }) {
+                require(choices.size in AUTHORED_CHOICE_RANGE) { "Authored multiple-choice questions require two to five choices" }
+            } else {
+                require(choices.size == MULTIPLE_CHOICE_COUNT) { "Multiple-choice questions require four choices" }
+            }
             require(choices.map { it.id }.distinct().size == choices.size) {
                 "Multiple-choice question IDs must be unique"
             }
@@ -736,6 +740,7 @@ class QuizEngine(
         const val FLIP_AND_GRADE_WINDOW_MILLIS = 30_000L
         const val LETTER_BANK_DECOY_COUNT = 3
         const val MULTIPLE_CHOICE_COUNT = 4
+        val AUTHORED_CHOICE_RANGE = 2..5
         const val MIN_QUESTIONS_BEFORE_REVISIT = 5
         const val MINIMUM_UNLIMITED_ANSWERS = 5
         const val ACTIVE_RUN_SNAPSHOT_SCHEMA_VERSION = 2

@@ -10,6 +10,8 @@ import app.bertsatlas.domain.model.HintType
 import app.bertsatlas.domain.model.Question
 import app.bertsatlas.domain.model.Skill
 import app.bertsatlas.domain.model.SourceRecord
+import app.bertsatlas.domain.QuizEngine.Companion.MULTIPLE_CHOICE_COUNT
+import app.bertsatlas.domain.pack.BertChoices
 import app.bertsatlas.domain.pack.EditorialStatus
 import app.bertsatlas.domain.shuffled
 
@@ -32,7 +34,7 @@ object PackQuizCatalog {
     )
 
     fun build(contentVersion: String, cards: List<PackCard>, distractorOnlyCards: List<PackCard> = emptyList()): Catalog {
-        val distractors = DistractorIndex(cards + distractorOnlyCards)
+        val distractors = DistractorIndex((cards + distractorOnlyCards).filter { it.authoredChoices.isEmpty() })
         val questions = cards.flatMap { card -> questionsFor(card, distractors) }
         val sourcesByItem = cards.associate { card -> card.itemId to sourceRecords(card) }
         return Catalog(
@@ -47,7 +49,7 @@ object PackQuizCatalog {
     }
 
     fun formatsFor(card: PackCard, cards: List<PackCard>): Set<QuizFormat> =
-        questionsFor(card, DistractorIndex(cards)).mapTo(linkedSetOf()) { question ->
+        questionsFor(card, DistractorIndex(cards.filter { it.authoredChoices.isEmpty() })).mapTo(linkedSetOf()) { question ->
             when (question) {
                 is Question.MultipleChoice -> QuizFormat.MultipleChoice
                 is Question.LetterBank -> QuizFormat.LetterBank
@@ -65,6 +67,8 @@ object PackQuizCatalog {
     }
 
     private fun questionsFor(card: PackCard, distractors: DistractorIndex): List<Question> {
+        if (card.flipOnly) return listOf(flipQuestion(card))
+        if (card.authoredChoices.isNotEmpty()) return listOfNotNull(authoredChoiceQuestion(card) ?: flipQuestion(card))
         val fieldHints = fieldHintTypes(card)
         val fieldHintText = fieldHintText(card)
         val answer = card.shortAnswer
@@ -108,20 +112,45 @@ object PackQuizCatalog {
         }
         val playable = listOfNotNull(multipleChoice, letterBank)
         if (playable.isNotEmpty()) return playable
-        return listOf(
-            Question.FlipAndGrade(
-                id = "card-flip-${card.itemId}",
-                prompt = card.frontText,
-                countryIds = listOf(card.itemId),
-                skill = Skill.CardRecall,
-                packId = card.packId,
-                difficulty = DifficultyTier.Tricky,
-                supportedHints = fieldHints,
-                hintText = fieldHintText,
-                promptHtml = card.frontHtml,
-                answerHtml = card.backHtml,
-                answerText = answer ?: card.backText,
-            ),
+        return listOf(flipQuestion(card))
+    }
+
+    private fun flipQuestion(card: PackCard): Question.FlipAndGrade = Question.FlipAndGrade(
+        id = "card-flip-${card.itemId}",
+        prompt = card.frontText,
+        countryIds = listOf(card.itemId),
+        skill = Skill.CardRecall,
+        packId = card.packId,
+        difficulty = DifficultyTier.Tricky,
+        explanation = card.explanation,
+        supportedHints = fieldHintTypes(card),
+        hintText = fieldHintText(card),
+        promptHtml = card.frontHtml,
+        answerHtml = card.backHtml,
+        answerText = card.shortAnswer ?: card.backText,
+    )
+
+    private fun authoredChoiceQuestion(card: PackCard): Question.MultipleChoice? {
+        val answer = card.shortAnswer ?: return null
+        val choices = card.authoredChoices.mapIndexed { index, label -> Choice(id = "choice-${card.itemId}-$index", label = label) }
+        if (choices.size !in BertChoices.MIN_CHOICES..BertChoices.MAX_CHOICES) return null
+        if (choices.distinctBy { ChoiceLabels.key(it.label) }.size != choices.size) return null
+        val correct = choices.singleOrNull { it.label == answer } ?: return null
+        val removeHint = if (choices.size >= MULTIPLE_CHOICE_COUNT) setOf(HintType.RemoveIncorrectOptions) else emptySet()
+        val promptHtml = card.authoredQuestionHtml ?: card.frontHtml
+        return Question.MultipleChoice(
+            id = "card-choice-${card.itemId}",
+            prompt = PackCardReader.plainText(promptHtml),
+            countryIds = listOf(card.itemId),
+            skill = Skill.CardRecall,
+            packId = card.packId,
+            difficulty = DifficultyTier.Tricky,
+            explanation = card.explanation,
+            supportedHints = fieldHintTypes(card) + removeHint,
+            hintText = fieldHintText(card),
+            choices = choices,
+            correctChoiceId = correct.id,
+            promptHtml = promptHtml,
         )
     }
 
