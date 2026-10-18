@@ -1,0 +1,149 @@
+package app.bertopia.domain
+
+import app.bertopia.domain.model.Attempt
+import app.bertopia.domain.model.Continent
+import app.bertopia.domain.model.Mastery
+import app.bertopia.domain.model.MasteryLevel
+import app.bertopia.domain.model.MasteryOutcome
+import app.bertopia.domain.model.PassportStamp
+import app.bertopia.domain.model.PassportStampKind
+import app.bertopia.domain.model.Streak
+
+object MasteryRules {
+    fun needsRevisit(mastery: Mastery): Boolean =
+        mastery.recentOutcomes.lastOrNull()?.let { !it.correct || it.hinted } == true
+
+    fun applyAttempt(current: Mastery?, attempt: Attempt): Mastery {
+        require(attempt.countryIds.isNotEmpty()) { "A mastery attempt requires a country" }
+        val existing = current ?: Mastery(
+            countryId = attempt.countryIds.first(),
+            skill = attempt.skill,
+        )
+        val outcome = MasteryOutcome(
+            correct = attempt.correct,
+            hinted = attempt.hinted,
+            runId = attempt.runId,
+            localEpochDay = attempt.localEpochDay,
+        )
+        val qualifyingRunIds = if (attempt.correct && !attempt.hinted) {
+            existing.unhintedCorrectRunIds + attempt.runId
+        } else {
+            existing.unhintedCorrectRunIds
+        }
+        val qualifyingDays = if (attempt.correct && !attempt.hinted) {
+            existing.unhintedCorrectEpochDays + attempt.localEpochDay
+        } else {
+            existing.unhintedCorrectEpochDays
+        }
+        val recent = (existing.recentOutcomes + outcome).takeLast(3)
+        val unhintedCorrectAnswers = existing.unhintedCorrectAnswers +
+            if (attempt.correct && !attempt.hinted) 1 else 0
+        val level = when {
+            attempt.hinted -> MasteryLevel.Learning
+            unhintedCorrectAnswers >= 4 &&
+                qualifyingDays.size >= 3 &&
+                recent.none { !it.correct && !it.hinted } -> MasteryLevel.Mastered
+            qualifyingRunIds.size >= 2 -> MasteryLevel.Familiar
+            else -> MasteryLevel.Learning
+        }
+        val reviewDelayDays = when {
+            !attempt.correct || attempt.hinted -> 1
+            level == MasteryLevel.Mastered -> 30
+            level == MasteryLevel.Familiar -> 7
+            else -> 1
+        }
+        return existing.copy(
+            level = level,
+            attempts = existing.attempts + 1,
+            correctAnswers = existing.correctAnswers + if (attempt.correct) 1 else 0,
+            unhintedCorrectAnswers = unhintedCorrectAnswers,
+            unhintedCorrectRunIds = qualifyingRunIds,
+            unhintedCorrectEpochDays = qualifyingDays,
+            recentOutcomes = recent,
+            nextReviewEpochDay = attempt.localEpochDay + reviewDelayDays,
+        )
+    }
+
+    fun applyAttemptToCountries(
+        mastery: List<Mastery>,
+        attempt: Attempt,
+    ): List<Mastery> {
+        val byKey = mastery.associateBy { it.countryId to it.skill }.toMutableMap()
+        attempt.countryIds.forEach { countryId ->
+            val countryAttempt = attempt.copy(countryIds = listOf(countryId))
+            val key = countryId to attempt.skill
+            byKey[key] = applyAttempt(byKey[key], countryAttempt)
+        }
+        return byKey.values.sortedWith(compareBy(Mastery::countryId, { it.skill.ordinal }))
+    }
+}
+
+object StreakRules {
+    fun recordActivity(current: Streak, activityEpochDay: Int): Streak {
+        val lastDay = current.lastActivityEpochDay
+        if (lastDay != null && activityEpochDay <= lastDay) return current
+
+        val currentDays = if (lastDay != null && activityEpochDay == lastDay + 1) {
+            current.currentDays + 1
+        } else {
+            1
+        }
+        return Streak(
+            currentDays = currentDays,
+            bestDays = maxOf(current.bestDays, currentDays),
+            lastCompletedEpochDay = activityEpochDay,
+        )
+    }
+
+    fun currentDaysOn(current: Streak, todayEpochDay: Int): Int {
+        val lastDay = current.lastActivityEpochDay ?: return 0
+        return if (todayEpochDay > lastDay + 1) 0 else current.currentDays
+    }
+
+    fun recordCompletedRun(current: Streak, completedEpochDay: Int): Streak =
+        recordActivity(current, completedEpochDay)
+}
+
+data class PassportEvidence(
+    val completedRunCount: Int,
+    val recognizedFlagContinents: Set<Continent>,
+    val totalAnswered: Int,
+    val totalCorrect: Int,
+    val confusedFlagMastery: List<Mastery>,
+    val streak: Streak,
+    val packCardCount: Int = 0,
+    val packMasteredCardCount: Int = 0,
+)
+
+object PassportRules {
+    fun newlyEarned(
+        evidence: PassportEvidence,
+        existing: List<PassportStamp>,
+        earnedAtEpochMillis: Long,
+    ): List<PassportStamp> {
+        val alreadyEarned = existing.mapTo(mutableSetOf()) { it.kind }
+        val earned = buildList {
+            if (evidence.completedRunCount >= 1) add(PassportStampKind.FirstCompletedRun)
+            if (evidence.recognizedFlagContinents.containsAll(PLAYED_CONTINENTS)) {
+                add(PassportStampKind.FlagsFromEveryContinent)
+            }
+            if (evidence.totalAnswered >= 50 && evidence.totalCorrect * 100 >= evidence.totalAnswered * 80) {
+                add(PassportStampKind.SustainedAccuracy)
+            }
+            if (evidence.confusedFlagMastery.isNotEmpty() &&
+                evidence.confusedFlagMastery.all { it.level == MasteryLevel.Mastered }
+            ) {
+                add(PassportStampKind.ConfusedFlagsMastered)
+            }
+            if (evidence.streak.bestDays >= 7) add(PassportStampKind.SevenActiveDays)
+            if (evidence.packCardCount > 0 && evidence.packMasteredCardCount >= evidence.packCardCount) {
+                add(PassportStampKind.PackMastered)
+            }
+        }
+        return earned
+            .filterNot { it in alreadyEarned }
+            .map { PassportStamp(it, earnedAtEpochMillis) }
+    }
+
+    private val PLAYED_CONTINENTS = Continent.entries.filterNot { it == Continent.Antarctica }.toSet()
+}

@@ -317,8 +317,8 @@
 					"-framework",
 					ComposeApp,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = app.bertsatlas;
-				PRODUCT_NAME = "Bert's Atlas";
+				PRODUCT_BUNDLE_IDENTIFIER = app.bertopia;
+				PRODUCT_NAME = "Bertopia";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -346,8 +346,8 @@
 					"-framework",
 					ComposeApp,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = app.bertsatlas;
-				PRODUCT_NAME = "Bert's Atlas";
+				PRODUCT_BUNDLE_IDENTIFIER = app.bertopia;
+				PRODUCT_NAME = "Bertopia";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

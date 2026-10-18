@@ -7,7 +7,7 @@ kotlin {
     macosArm64 {
         binaries.executable {
             baseName = "bert"
-            entryPoint = "app.bertsatlas.cli.main"
+            entryPoint = "app.bertopia.cli.main"
         }
     }
 

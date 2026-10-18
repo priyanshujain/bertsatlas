@@ -2,7 +2,7 @@ import ComposeApp
 import SwiftUI
 
 @main
-struct BertAtlasApp: App {
+struct BertopiaApp: App {
     @Environment(\.scenePhase) private var scenePhase
 
     var body: some Scene {

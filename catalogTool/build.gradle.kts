@@ -17,7 +17,7 @@ dependencies {
 }
 
 application {
-    mainClass.set("app.bertsatlas.catalogtool.MainKt")
+    mainClass.set("app.bertopia.catalogtool.MainKt")
 }
 
 tasks.register<JavaExec>("validateCatalog") {
@@ -41,7 +41,7 @@ val renderCovers = tasks.register<JavaExec>("renderCovers") {
     group = "build"
     description = "Renders content/packs/<id>/cover/cover.svg to cover.png."
     classpath = sourceSets.main.get().runtimeClasspath
-    mainClass.set("app.bertsatlas.catalogtool.CoverRendererKt")
+    mainClass.set("app.bertopia.catalogtool.CoverRendererKt")
     jvmArgs("-Djava.awt.headless=true")
     workingDir = rootProject.projectDir
 }
@@ -50,7 +50,7 @@ tasks.register<JavaExec>("buildPacks") {
     group = "build"
     description = "Compiles content/packs sources into bundled .apkg packs."
     classpath = sourceSets.main.get().runtimeClasspath
-    mainClass.set("app.bertsatlas.catalogtool.PackBuilderKt")
+    mainClass.set("app.bertopia.catalogtool.PackBuilderKt")
     dependsOn(renderCovers)
     workingDir = rootProject.projectDir
 }
@@ -59,7 +59,7 @@ tasks.register<JavaExec>("buildStore") {
     group = "build"
     description = "Builds the store index.json and versioned official packs into build/store."
     classpath = sourceSets.main.get().runtimeClasspath
-    mainClass.set("app.bertsatlas.catalogtool.StoreBuilderKt")
+    mainClass.set("app.bertopia.catalogtool.StoreBuilderKt")
     dependsOn(renderCovers)
     workingDir = rootProject.projectDir
     providers.gradleProperty("storeBaseUrl").orNull?.let { args("--base-url", it) }

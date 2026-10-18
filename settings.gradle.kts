@@ -14,7 +14,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "berts-atlas"
+rootProject.name = "bertopia"
 
 include(":domain")
 include(":anki")

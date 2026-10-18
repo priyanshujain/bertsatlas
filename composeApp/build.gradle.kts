@@ -12,7 +12,7 @@ plugins {
 
 kotlin {
     android {
-        namespace = "app.bertsatlas.shared"
+        namespace = "app.bertopia.shared"
         compileSdk = libs.versions.android.compileSdk.get().toInt()
         minSdk = libs.versions.android.minSdk.get().toInt()
         compilerOptions.jvmTarget.set(JvmTarget.JVM_21)
@@ -27,7 +27,7 @@ kotlin {
         iosTarget.binaries.framework {
             baseName = "ComposeApp"
             isStatic = true
-            binaryOption("bundleId", "app.bertsatlas")
+            binaryOption("bundleId", "app.bertopia")
         }
     }
 

@@ -12,15 +12,15 @@ val generateTestResourcePaths = tasks.register("generateTestResourcePaths") {
     inputs.property("resourcesDir", resourcesDir)
     outputs.dir(outputDir)
     doLast {
-        val file = outputDir.get().file("app/bertsatlas/domain/TestResourcePaths.kt").asFile
+        val file = outputDir.get().file("app/bertopia/domain/TestResourcePaths.kt").asFile
         file.parentFile.mkdirs()
-        file.writeText("package app.bertsatlas.domain\n\nconst val TEST_RESOURCES_DIRECTORY = \"$resourcesDir\"\n")
+        file.writeText("package app.bertopia.domain\n\nconst val TEST_RESOURCES_DIRECTORY = \"$resourcesDir\"\n")
     }
 }
 
 kotlin {
     android {
-        namespace = "app.bertsatlas.domain"
+        namespace = "app.bertopia.domain"
         compileSdk = libs.versions.android.compileSdk.get().toInt()
         minSdk = libs.versions.android.minSdk.get().toInt()
         compilerOptions.jvmTarget.set(JvmTarget.JVM_21)

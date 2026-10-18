@@ -22,15 +22,15 @@ val generateFixturePaths = tasks.register("generateFixturePaths") {
     inputs.property("fixturesDir", fixturesDir)
     outputs.dir(outputDir)
     doLast {
-        val file = outputDir.get().file("app/bertsatlas/anki/FixturePaths.kt").asFile
+        val file = outputDir.get().file("app/bertopia/anki/FixturePaths.kt").asFile
         file.parentFile.mkdirs()
-        file.writeText("package app.bertsatlas.anki\n\nconst val FIXTURES_DIRECTORY = \"$fixturesDir\"\n")
+        file.writeText("package app.bertopia.anki\n\nconst val FIXTURES_DIRECTORY = \"$fixturesDir\"\n")
     }
 }
 
 kotlin {
     android {
-        namespace = "app.bertsatlas.anki"
+        namespace = "app.bertopia.anki"
         compileSdk = libs.versions.android.compileSdk.get().toInt()
         minSdk = libs.versions.android.minSdk.get().toInt()
         compilerOptions.jvmTarget.set(JvmTarget.JVM_21)

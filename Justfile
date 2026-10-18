@@ -2,14 +2,14 @@ set shell := ["zsh", "-cu"]
 
 java_home := env_var_or_default("JAVA_HOME", "/opt/homebrew/opt/openjdk@21/libexec/openjdk.jdk/Contents/Home")
 android_home := env_var_or_default("ANDROID_HOME", "/opt/homebrew/share/android-commandlinetools")
-device := env_var_or_default("BERTS_ATLAS_DEVICE", "663c91b1")
-simulator_device := env_var_or_default("BERTS_ATLAS_SIMULATOR_DEVICE", "iPhone 17")
-simulator_destination := "platform=iOS Simulator,name=" + simulator_device
+device := env_var_or_default("BERTOPIA_DEVICE", "663c91b1")
+simulator_device := env_var_or_default("BERTOPIA_SIMULATOR_DEVICE", "iPhone 17")
+simulator_destination :="platform=iOS Simulator,name=" + simulator_device
 adb := android_home + "/platform-tools/adb"
 developer_dir := env_var_or_default("DEVELOPER_DIR", "/Applications/Xcode.app/Contents/Developer")
 signing_identity := "Developer ID Application: Priyanshu Jain (TQV87WLXK3)"
 notary_profile := "bertsatlas-notary"
-dmg_path := "desktopApp/build/compose/binaries/main/dmg/Bert's Atlas-1.0.0.dmg"
+dmg_path := "desktopApp/build/compose/binaries/main/dmg/Bertopia-1.0.0.dmg"
 
 export JAVA_HOME := java_home
 export ANDROID_HOME := android_home
@@ -34,15 +34,28 @@ ios:
 run-ios: ios
     xcrun simctl boot '{{simulator_device}}' 2>/dev/null || true
     xcrun simctl bootstatus '{{simulator_device}}' -b
-    xcrun simctl install '{{simulator_device}}' "build/ios-derived-data/Build/Products/Debug-iphonesimulator/Bert's Atlas.app"
-    xcrun simctl launch '{{simulator_device}}' app.bertsatlas
+    xcrun simctl install '{{simulator_device}}' "build/ios-derived-data/Build/Products/Debug-iphonesimulator/Bertopia.app"
+    xcrun simctl launch '{{simulator_device}}' app.bertopia
 
 # Install and launch the debug app on the requested OnePlus device.
 install-android: android
     '{{adb}}' -s '{{device}}' get-state
     '{{adb}}' -s '{{device}}' install -r androidApp/build/outputs/apk/debug/androidApp-debug.apk
-    '{{adb}}' -s '{{device}}' shell am force-stop app.bertsatlas
-    '{{adb}}' -s '{{device}}' shell monkey -p app.bertsatlas -c android.intent.category.LAUNCHER 1
+    '{{adb}}' -s '{{device}}' shell am force-stop app.bertopia
+    '{{adb}}' -s '{{device}}' shell monkey -p app.bertopia -c android.intent.category.LAUNCHER 1
+
+# Build, install, and launch the debug app on the connected iPhone.
+install-ios:
+    #!/bin/zsh
+    set -euo pipefail
+    devices=$(mktemp)
+    xcrun devicectl list devices -q -j "$devices" >/dev/null
+    iphone=$(jq -r '[.result.devices[] | select(.hardwareProperties.platform == "iOS" and .hardwareProperties.reality == "physical" and .connectionProperties.pairingState == "paired")][0].hardwareProperties.udid // empty' "$devices")
+    rm -f "$devices"
+    [[ -n "$iphone" ]] || { print -u2 "error: no paired iPhone or iPad found"; exit 1; }
+    xcodebuild -project iosApp/iosApp.xcodeproj -scheme iosApp -configuration Debug -destination "platform=iOS,id=$iphone" -derivedDataPath build/ios-device -allowProvisioningUpdates DEVELOPMENT_TEAM=TQV87WLXK3 CODE_SIGN_STYLE=Automatic build
+    xcrun devicectl device install app --device "$iphone" "build/ios-device/Build/Products/Debug-iphoneos/Bertopia.app"
+    xcrun devicectl device process launch --device "$iphone" app.bertopia
 
 # Run the macOS desktop app from source.
 desktop:
@@ -51,7 +64,7 @@ desktop:
 # Package, sign, notarize and staple the macOS DMG with the bert CLI inside.
 dmg:
     rm -rf desktopApp/build/compose/binaries
-    ./gradlew :cli:linkReleaseExecutableMacosArm64 :desktopApp:packageDmg -Pbertsatlas.sign=true
+    ./gradlew :cli:linkReleaseExecutableMacosArm64 :desktopApp:packageDmg -Pbertopia.sign=true
     codesign --force --timestamp --sign '{{signing_identity}}' "{{dmg_path}}"
     xcrun notarytool submit "{{dmg_path}}" --keychain-profile '{{notary_profile}}' --wait
     xcrun stapler staple "{{dmg_path}}"

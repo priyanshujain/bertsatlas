@@ -1,6 +1,6 @@
 name: iosApp
 options:
-  bundleIdPrefix: app.bertsatlas
+  bundleIdPrefix: app.bertopia
   deploymentTarget:
     iOS: "15.0"
 targets:
@@ -22,8 +22,8 @@ targets:
         basedOnDependencyAnalysis: false
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: app.bertsatlas
-        PRODUCT_NAME: "Bert's Atlas"
+        PRODUCT_BUNDLE_IDENTIFIER: app.bertopia
+        PRODUCT_NAME: "Bertopia"
         GENERATE_INFOPLIST_FILE: NO
         INFOPLIST_FILE: iosApp/Info.plist
         TARGETED_DEVICE_FAMILY: "1,2"

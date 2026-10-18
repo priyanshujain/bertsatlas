@@ -23,7 +23,7 @@ dependencies {
 }
 
 val SIGNING_IDENTITY = "Priyanshu Jain (TQV87WLXK3)"
-val signRelease = providers.gradleProperty("bertsatlas.sign").map { it.toBoolean() }.orElse(false).get()
+val signRelease = providers.gradleProperty("bertopia.sign").map { it.toBoolean() }.orElse(false).get()
 val bundledCommandLineTool = rootProject.layout.projectDirectory.file("cli/build/bin/macosArm64/releaseExecutable/bert.kexe")
 val desktopResources = layout.buildDirectory.dir("desktopResources")
 
@@ -44,7 +44,7 @@ val signBundledCommandLineTool = tasks.register<Exec>("signBundledCommandLineToo
     onlyIf { shouldSign && toolFile.exists() }
     commandLine(
         "codesign", "--force", "--options", "runtime", "--timestamp",
-        "--identifier", "app.bertsatlas.bert",
+        "--identifier", "app.bertopia.bert",
         "--sign", "Developer ID Application: $SIGNING_IDENTITY",
         toolFile.absolutePath,
     )
@@ -52,7 +52,7 @@ val signBundledCommandLineTool = tasks.register<Exec>("signBundledCommandLineToo
 
 compose.desktop {
     application {
-        mainClass = "app.bertsatlas.desktop.MainKt"
+        mainClass = "app.bertopia.desktop.MainKt"
         javaHome = javaToolchains.launcherFor {
             languageVersion.set(JavaLanguageVersion.of(21))
             vendor.set(JvmVendorSpec.JETBRAINS)
@@ -61,18 +61,18 @@ compose.desktop {
 
         nativeDistributions {
             targetFormats(TargetFormat.Dmg)
-            packageName = "Bert's Atlas"
+            packageName = "Bertopia"
             packageVersion = "1.0.0"
             description = "Learn anything with Bert"
-            vendor = "Bert's Atlas"
+            vendor = "Bertopia"
             modules("java.naming", "jdk.unsupported")
             appResourcesRootDir.set(desktopResources)
 
             macOS {
-                bundleID = "app.bertsatlas"
-                iconFile.set(project.file("icons/BertsAtlas.icns"))
+                bundleID = "app.bertopia"
+                iconFile.set(project.file("icons/Bertopia.icns"))
                 minimumSystemVersion = "13.0"
-                dockName = "Bert\u2019s\u00A0Atlas"
+                dockName = "Bertopia"
                 appCategory = "public.app-category.education"
                 entitlementsFile.set(project.file("macos/entitlements.plist"))
                 runtimeEntitlementsFile.set(project.file("macos/entitlements.plist"))
@@ -108,8 +108,8 @@ tasks.matching { it.name == "createDistributable" }.configureEach {
 }
 
 tasks.withType<JavaExec>().configureEach {
-    providers.gradleProperty("bertsatlas.home").orNull?.let { systemProperty("bertsatlas.home", it) }
-    providers.gradleProperty("bertsatlas.openEditor").orNull?.let { systemProperty("bertsatlas.openEditor", it) }
-    providers.gradleProperty("bertsatlas.cliInstallDirectory").orNull?.let { systemProperty("bertsatlas.cliInstallDirectory", it) }
-    systemProperty("bertsatlas.debug", providers.gradleProperty("bertsatlas.debug").orElse("true").get())
+    providers.gradleProperty("bertopia.home").orNull?.let { systemProperty("bertopia.home", it) }
+    providers.gradleProperty("bertopia.openEditor").orNull?.let { systemProperty("bertopia.openEditor", it) }
+    providers.gradleProperty("bertopia.cliInstallDirectory").orNull?.let { systemProperty("bertopia.cliInstallDirectory", it) }
+    systemProperty("bertopia.debug", providers.gradleProperty("bertopia.debug").orElse("true").get())
 }

@@ -226,7 +226,7 @@ def many_media():
 
 def heavy_media():
     col = fresh_collection("heavymedia")
-    deck = col.decks.id("Photo Atlas")
+    deck = col.decks.id("Photo Gallery")
     basic = col.models.by_name("Basic")
     media_dir = col.media.dir()
     for index in range(300):

@@ -1,2 +1,2 @@
 headers = zstd.h
-package = app.bertsatlas.anki.zstd.native
+package = app.bertopia.anki.zstd.native

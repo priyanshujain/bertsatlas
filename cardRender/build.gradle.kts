@@ -9,7 +9,7 @@ plugins {
 
 kotlin {
     android {
-        namespace = "app.bertsatlas.cardrender"
+        namespace = "app.bertopia.cardrender"
         compileSdk = libs.versions.android.compileSdk.get().toInt()
         minSdk = libs.versions.android.minSdk.get().toInt()
         compilerOptions.jvmTarget.set(JvmTarget.JVM_21)
@@ -42,5 +42,5 @@ kotlin {
 }
 
 compose.resources {
-    packageOfResClass = "app.bertsatlas.cardrender.resources"
+    packageOfResClass = "app.bertopia.cardrender.resources"
 }
