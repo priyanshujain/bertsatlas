@@ -90,6 +90,16 @@
           "id": "languages",
           "name": "Programming languages",
           "order": 5
+        },
+        {
+          "id": "behavioral",
+          "name": "Behavioral",
+          "order": 6
+        },
+        {
+          "id": "ml-systems",
+          "name": "ML systems",
+          "order": 7
         }
       ]
     },
@@ -229,7 +239,7 @@
         "id": "dsa"
       },
       "headline": "Ace the coding interview",
-      "blurb": "Data structures, algorithms and the patterns interviewers love, one card at a time."
+      "blurb": "Coding patterns, complexity and the mistakes interviewers catch, one tap at a time."
     }
   ],
   "shelves": [
@@ -312,6 +322,18 @@
         {
           "kind": "pack",
           "id": "operating-systems"
+        },
+        {
+          "kind": "pack",
+          "id": "behavioral"
+        },
+        {
+          "kind": "pack",
+          "id": "concurrency-languages"
+        },
+        {
+          "kind": "pack",
+          "id": "ml-systems"
         }
       ]
     },
@@ -377,53 +399,83 @@
       ]
     },
     "dsa": {
-      "description": "Real coding interview problems with the approach, Python code, complexity, pitfalls and follow-ups a strong candidate would give.",
-      "whatsNew": "Rewritten as interview practice: worked problems instead of trivia.",
+      "description": "Multiple choice coding interview review: pick the pattern, the complexity, the bug and the edge case, with distractors drawn from real candidate mistakes. Mid and senior levels.",
+      "whatsNew": "Rebuilt from interview research as tap to answer review with mid and senior levels.",
       "minAppVersion": "1.0.0",
       "sampleGuids": [
-        "f653308c-e3a1-529e-ab5e-135cc3b7a29c",
-        "ecc0f1f7-9806-53d6-ad51-eafec69f0c04",
-        "44f67201-ac1f-512b-b595-4f64f0f566e1"
+        "29a2200b-e4ac-5008-aa69-47ea3ed5e7f4",
+        "a4fc9a57-a583-5184-91c1-865d15e0bd0c",
+        "e606a849-9958-5b52-8bb5-e20b50c347bf"
       ]
     },
     "databases": {
-      "description": "Backend interview questions on databases: schema design, writing SQL, fixing slow queries, transactions and locking, replication and sharding, and zero-downtime migrations, with the answer a strong candidate would give.",
-      "whatsNew": "Rewritten as interview practice: worked problems instead of trivia.",
+      "description": "Database scenarios as they come up in interviews: contention, idempotency, indexes, isolation anomalies, replication lag and sharding. Mid and senior levels.",
+      "whatsNew": "Rebuilt from interview research as tap to answer review with mid and senior levels.",
       "minAppVersion": "1.0.0",
       "sampleGuids": [
-        "5881a8cc-5917-5738-9ca1-2a1fc6283167",
-        "13892a57-e530-5056-b1bd-4fe8cc0fbeb6",
-        "ced82ece-b0fe-5ef1-993e-e93b25b32415"
+        "732a9b98-5d18-5b79-8819-60f4c9d0be33",
+        "ebfa534b-88ba-5a40-adf4-f6c6954c65db",
+        "7721d87a-164f-511b-9e35-5faf5b88db1a"
       ]
     },
     "system-design": {
-      "description": "System design interview questions answered the way a strong candidate would: URL shortener, rate limiter, news feed, chat, notifications, crawler, key value store, cache, payments, file storage, autocomplete, video streaming, ride sharing, plus the tradeoffs and estimates asked inside them, with code where it is a coding question.",
-      "whatsNew": "Rewritten as interview practice: design and coding questions with full model answers.",
+      "description": "System design interview review: estimation, component choice, tradeoffs and failure modes under stated constraints, plus open design prompts. Mid and senior levels.",
+      "whatsNew": "Rebuilt from interview research as tap to answer review with mid and senior levels.",
       "minAppVersion": "1.0.0",
       "sampleGuids": [
-        "5833000b-a798-56a2-b5c8-ac9c96016306",
-        "e2162cfb-9548-50ca-a330-57c6fb75dc70",
-        "f3771864-9d3d-5872-b85a-2068efbe1954"
+        "dfee55af-28e9-598f-be35-23820b72383f",
+        "29c5f48d-30d2-5337-b3e4-5b1595e6c4d7",
+        "97925df0-fe96-590c-927a-aa8a06f735e8"
       ]
     },
     "networking": {
-      "description": "Networking questions from software engineering interviews, answered the way a strong candidate would: what happens when you type a URL, TCP vs UDP, TLS, DNS, load balancing, CORS, real time transports, timeouts and retries, debugging scenarios and coding problems.",
-      "whatsNew": "Rewritten as interview practice: scenario and coding questions with full model answers.",
+      "description": "Networking as it comes up inside design rounds: real time transports, load balancers, retries and status codes, latency budgets. Mid and senior levels.",
+      "whatsNew": "Rebuilt from interview research as tap to answer review with mid and senior levels.",
       "minAppVersion": "1.0.0",
       "sampleGuids": [
-        "913cc4e1-eecb-56b7-a696-164afe2bc724",
-        "f52b081b-b99f-59d8-bdb3-a35bce20e458",
-        "3ede3e57-277c-5ad0-a54b-da6d351c9649"
+        "77500a48-c62f-5bf5-b1eb-ab945a72798d",
+        "769e99c7-d3c7-536c-b30a-f6fbdefeb0dc",
+        "614dc837-afc3-5653-8dd5-4896266e8386"
       ]
     },
     "operating-systems": {
-      "description": "Interview questions on concurrency, deadlocks, memory, scheduling, file durability and processes, with the answer a strong candidate gives: approach, code, tradeoffs and follow-ups.",
-      "whatsNew": "Rewritten for interview practice: every card is now a real interview question with a worked answer.",
+      "description": "Concurrency and OS scenarios from interviews: races, deadlocks, bounded queues, thread safe caches and the OS limits behind backend incidents. Mid and senior levels.",
+      "whatsNew": "Rebuilt from interview research as tap to answer review with mid and senior levels.",
       "minAppVersion": "1.0.0",
       "sampleGuids": [
-        "78e69b73-a006-4b87-a5fb-411c0405ec2e",
-        "9f4b5aac-f798-4885-b0ca-09b00d30d686",
-        "ff789604-8cbd-4ae7-845d-e877921097a1"
+        "307c0dde-2bb8-5d08-9b28-d30a82e31190",
+        "d149121f-bff4-562a-a7a1-a9d6574f12ee",
+        "a679c6cd-f153-54f7-9bb2-17871bbced83"
+      ]
+    },
+    "behavioral": {
+      "minAppVersion": "1.0.0",
+      "description": "Behavioral interview review: map questions to the signals they probe, pick the strongest STAR answer and pitch stories at the right scope.",
+      "whatsNew": "First release.",
+      "sampleGuids": [
+        "b4a7d469-13b9-5390-a0e7-ba23c43f1efb",
+        "0e0fdbdb-00f2-5efe-bad3-7b8eb0d60487",
+        "0caadaac-e7a8-5691-a9ed-4df745b8ac5d"
+      ]
+    },
+    "concurrency-languages": {
+      "minAppVersion": "1.0.0",
+      "description": "Concurrency semantics in Python, Java and Go: spot the race, pick the right primitive, know what the runtime guarantees.",
+      "whatsNew": "First release.",
+      "sampleGuids": [
+        "bbd4b9fb-03f7-515d-af71-9a0b5cd62425",
+        "76c63bb1-a488-5885-aaab-806079414f72",
+        "af792685-3477-53dc-bdc9-4f23006d01cb"
+      ]
+    },
+    "ml-systems": {
+      "minAppVersion": "1.0.0",
+      "description": "ML systems for AI lab and infra roles: LLM inference, batching, KV cache, serving and distributed training estimates.",
+      "whatsNew": "First release.",
+      "sampleGuids": [
+        "f2d5daa9-b64f-5c04-b554-16febb6074af",
+        "6dd80598-2ff6-5add-8618-29be6ba36a60",
+        "003c2102-6753-5c7e-9bf6-e889bdd76689"
       ]
     }
   }
