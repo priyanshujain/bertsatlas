@@ -377,53 +377,53 @@
       ]
     },
     "dsa": {
-      "description": "Complexity, core data structures, graphs, sorting and the patterns that show up in coding interviews.",
-      "whatsNew": "First release.",
+      "description": "Real coding interview problems with the approach, Python code, complexity, pitfalls and follow-ups a strong candidate would give.",
+      "whatsNew": "Rewritten as interview practice: worked problems instead of trivia.",
       "minAppVersion": "1.0.0",
       "sampleGuids": [
-        "f2d02146-b297-5d07-839b-33ea3e301d17",
-        "b7e0f7b3-66a4-5421-ab5e-ed8d5311548c",
-        "eef2a11f-7f1a-5be5-b725-f99dfcd4ac8c"
+        "f653308c-e3a1-529e-ab5e-135cc3b7a29c",
+        "ecc0f1f7-9806-53d6-ad51-eafec69f0c04",
+        "44f67201-ac1f-512b-b595-4f64f0f566e1"
       ]
     },
     "databases": {
-      "description": "SQL, normalization, indexes, transactions and isolation, replication and how Postgres and SQLite work inside.",
-      "whatsNew": "First release.",
+      "description": "Backend interview questions on databases: schema design, writing SQL, fixing slow queries, transactions and locking, replication and sharding, and zero-downtime migrations, with the answer a strong candidate would give.",
+      "whatsNew": "Rewritten as interview practice: worked problems instead of trivia.",
       "minAppVersion": "1.0.0",
       "sampleGuids": [
-        "2e2db8fb-e460-5815-8390-4bd3b92d9cde",
-        "2c54e396-a30a-5692-9e98-d980be34d603",
-        "8fa7d1a0-9560-5f22-92df-820313962363"
+        "5881a8cc-5917-5738-9ca1-2a1fc6283167",
+        "13892a57-e530-5056-b1bd-4fe8cc0fbeb6",
+        "ced82ece-b0fe-5ef1-993e-e93b25b32415"
       ]
     },
     "system-design": {
-      "description": "Scaling, caching, consistency, consensus, messaging and the key decisions behind classic system designs.",
-      "whatsNew": "First release.",
+      "description": "System design interview questions answered the way a strong candidate would: URL shortener, rate limiter, news feed, chat, notifications, crawler, key value store, cache, payments, file storage, autocomplete, video streaming, ride sharing, plus the tradeoffs and estimates asked inside them, with code where it is a coding question.",
+      "whatsNew": "Rewritten as interview practice: design and coding questions with full model answers.",
       "minAppVersion": "1.0.0",
       "sampleGuids": [
-        "c0bfb452-bb58-5963-90cb-e1a05b6213c4",
-        "e555b4c0-bc09-5956-b74f-dbe8f0949738",
-        "7b284009-d317-5b1e-92dc-89fb31df734d"
+        "5833000b-a798-56a2-b5c8-ac9c96016306",
+        "e2162cfb-9548-50ca-a330-57c6fb75dc70",
+        "f3771864-9d3d-5872-b85a-2068efbe1954"
       ]
     },
     "networking": {
-      "description": "From layers and addressing to TCP, DNS, HTTP and TLS, plus the tools for troubleshooting a network.",
-      "whatsNew": "First release.",
+      "description": "Networking questions from software engineering interviews, answered the way a strong candidate would: what happens when you type a URL, TCP vs UDP, TLS, DNS, load balancing, CORS, real time transports, timeouts and retries, debugging scenarios and coding problems.",
+      "whatsNew": "Rewritten as interview practice: scenario and coding questions with full model answers.",
       "minAppVersion": "1.0.0",
       "sampleGuids": [
-        "073be7e6-7b16-50e4-b08d-8a1b90f01979",
-        "d74729ff-e080-5730-a6eb-4bb6f0e12da5",
-        "0f0f5d58-54ba-5a87-ae3f-9c39e5d7ca01"
+        "913cc4e1-eecb-56b7-a696-164afe2bc724",
+        "f52b081b-b99f-59d8-bdb3-a35bce20e458",
+        "3ede3e57-277c-5ad0-a54b-da6d351c9649"
       ]
     },
     "operating-systems": {
-      "description": "Processes, scheduling, memory, synchronization, file systems and the I/O models modern servers use.",
-      "whatsNew": "First release.",
+      "description": "Interview questions on concurrency, deadlocks, memory, scheduling, file durability and processes, with the answer a strong candidate gives: approach, code, tradeoffs and follow-ups.",
+      "whatsNew": "Rewritten for interview practice: every card is now a real interview question with a worked answer.",
       "minAppVersion": "1.0.0",
       "sampleGuids": [
-        "46177cb6-2fa1-5bd9-bfea-828d3f8aa489",
-        "b650b0d1-bd30-57e8-bb81-8a0606140e62",
-        "6c704ca8-e9b7-5d99-9464-061bbca7276c"
+        "78e69b73-a006-4b87-a5fb-411c0405ec2e",
+        "9f4b5aac-f798-4885-b0ca-09b00d30d686",
+        "ff789604-8cbd-4ae7-845d-e877921097a1"
       ]
     }
   }

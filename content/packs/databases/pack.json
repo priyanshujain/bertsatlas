@@ -1,9 +1,9 @@
 {
   "packId": "databases",
-  "version": "1.0.0",
+  "version": "2.0.0-draft.1",
   "official": true,
-  "title": "Databases",
-  "subtitle": "SQL, indexes, transactions, replication and storage engines",
+  "title": "Database Interview Practice",
+  "subtitle": "Backend interview questions on schema design, SQL, indexing, transactions, scaling and migrations",
   "category": "programming",
   "subcategory": "databases",
   "accentColor": "#3E5C8A",
@@ -13,31 +13,7 @@
   ],
   "sources": [
     {
-      "id": "source-abadi",
-      "title": "Consistency Tradeoffs in Modern Distributed Database System Design, D. Abadi, 2012",
-      "url": "https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf",
-      "publisher": "IEEE Computer",
-      "retrievedAt": "2026-10-18",
-      "revision": "web snapshot 2026-10-18"
-    },
-    {
-      "id": "source-aries",
-      "title": "ARIES: A Transaction Recovery Method, C. Mohan et al., 1992",
-      "url": "https://dl.acm.org/doi/10.1145/128765.128770",
-      "publisher": "ACM",
-      "retrievedAt": "2026-10-18",
-      "revision": "web snapshot 2026-10-18"
-    },
-    {
-      "id": "source-bayer",
-      "title": "Organization and Maintenance of Large Ordered Indexes, R. Bayer and E. McCreight, 1972",
-      "url": "https://link.springer.com/article/10.1007/BF00288683",
-      "publisher": "Springer",
-      "retrievedAt": "2026-10-18",
-      "revision": "web snapshot 2026-10-18"
-    },
-    {
-      "id": "source-berenson",
+      "id": "berenson",
       "title": "A Critique of ANSI SQL Isolation Levels, Berenson et al., 1995",
       "url": "https://arxiv.org/abs/cs/0701157",
       "publisher": "arXiv",
@@ -45,31 +21,31 @@
       "revision": "web snapshot 2026-10-18"
     },
     {
-      "id": "source-bigtable",
-      "title": "Bigtable: A Distributed Storage System for Structured Data, Chang et al., 2006",
-      "url": "https://research.google/pubs/bigtable-a-distributed-storage-system-for-structured-data/",
-      "publisher": "Google Research",
-      "retrievedAt": "2026-10-18",
-      "revision": "web snapshot 2026-10-18"
-    },
-    {
-      "id": "source-cassandra",
-      "title": "Apache Cassandra Documentation: Dynamo",
-      "url": "https://cassandra.apache.org/doc/latest/cassandra/architecture/dynamo.html",
+      "id": "cassandra",
+      "title": "Apache Cassandra Documentation: Data Modeling",
+      "url": "https://cassandra.apache.org/doc/latest/cassandra/developing/data-modeling/index.html",
       "publisher": "Apache Software Foundation",
       "retrievedAt": "2026-10-18",
       "revision": "web snapshot 2026-10-18"
     },
     {
-      "id": "source-codd",
-      "title": "A Relational Model of Data for Large Shared Data Banks, E. F. Codd, 1970",
-      "url": "https://dl.acm.org/doi/10.1145/362384.362685",
-      "publisher": "ACM",
+      "id": "ddbdesign",
+      "title": "Amazon DynamoDB Developer Guide: Best practices for designing and architecting with DynamoDB",
+      "url": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/best-practices.html",
+      "publisher": "Amazon Web Services",
       "retrievedAt": "2026-10-18",
       "revision": "web snapshot 2026-10-18"
     },
     {
-      "id": "source-dynamo",
+      "id": "ddia",
+      "title": "Designing Data-Intensive Applications, Martin Kleppmann, O'Reilly, 2017",
+      "url": "https://dataintensive.net/",
+      "publisher": "O'Reilly Media",
+      "retrievedAt": "2026-10-18",
+      "revision": "web snapshot 2026-10-18"
+    },
+    {
+      "id": "dynamo",
       "title": "Dynamo: Amazon's Highly Available Key-value Store, DeCandia et al., 2007",
       "url": "https://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf",
       "publisher": "ACM SOSP 2007",
@@ -77,23 +53,15 @@
       "revision": "web snapshot 2026-10-18"
     },
     {
-      "id": "source-gilbert",
-      "title": "Brewer's Conjecture and the Feasibility of Consistent, Available, Partition-Tolerant Web Services, S. Gilbert and N. Lynch, 2002",
-      "url": "https://dl.acm.org/doi/10.1145/564585.564601",
-      "publisher": "ACM",
+      "id": "ghost",
+      "title": "gh-ost: GitHub's online schema migration tool for MySQL",
+      "url": "https://github.com/github/gh-ost",
+      "publisher": "GitHub",
       "retrievedAt": "2026-10-18",
       "revision": "web snapshot 2026-10-18"
     },
     {
-      "id": "source-haerder",
-      "title": "Principles of Transaction-Oriented Database Recovery, T. Haerder and A. Reuter, 1983",
-      "url": "https://dl.acm.org/doi/10.1145/289.291",
-      "publisher": "ACM",
-      "retrievedAt": "2026-10-18",
-      "revision": "web snapshot 2026-10-18"
-    },
-    {
-      "id": "source-innodbidx",
+      "id": "innodbidx",
       "title": "MySQL Reference Manual: Clustered and Secondary Indexes",
       "url": "https://dev.mysql.com/doc/refman/8.0/en/innodb-index-types.html",
       "publisher": "Oracle",
@@ -101,7 +69,7 @@
       "revision": "web snapshot 2026-10-18"
     },
     {
-      "id": "source-karger",
+      "id": "karger",
       "title": "Consistent Hashing and Random Trees, Karger et al., 1997",
       "url": "https://dl.acm.org/doi/10.1145/258533.258660",
       "publisher": "ACM",
@@ -109,31 +77,31 @@
       "revision": "web snapshot 2026-10-18"
     },
     {
-      "id": "source-kent",
-      "title": "A Simple Guide to Five Normal Forms in Relational Database Theory, William Kent, 1983",
-      "url": "https://dl.acm.org/doi/10.1145/358024.358054",
-      "publisher": "ACM",
+      "id": "luke",
+      "title": "Use The Index, Luke: SQL Indexing and Tuning, Markus Winand",
+      "url": "https://use-the-index-luke.com/",
+      "publisher": "Markus Winand",
       "retrievedAt": "2026-10-18",
       "revision": "web snapshot 2026-10-18"
     },
     {
-      "id": "source-lsm",
-      "title": "The Log-Structured Merge-Tree (LSM-Tree), O'Neil et al., 1996",
-      "url": "https://www.cs.umb.edu/~poneil/lsmtree.pdf",
-      "publisher": "Acta Informatica",
+      "id": "luke-paging",
+      "title": "Use The Index, Luke: Paging Through Results",
+      "url": "https://use-the-index-luke.com/no-offset",
+      "publisher": "Markus Winand",
       "retrievedAt": "2026-10-18",
       "revision": "web snapshot 2026-10-18"
     },
     {
-      "id": "source-mongo",
-      "title": "MongoDB Manual: Documents",
-      "url": "https://www.mongodb.com/docs/manual/core/document/",
-      "publisher": "MongoDB",
+      "id": "mysqldeadlock",
+      "title": "MySQL Reference Manual: Deadlocks in InnoDB",
+      "url": "https://dev.mysql.com/doc/refman/8.0/en/innodb-deadlocks.html",
+      "publisher": "Oracle",
       "retrievedAt": "2026-10-18",
       "revision": "web snapshot 2026-10-18"
     },
     {
-      "id": "source-mysqliso",
+      "id": "mysqliso",
       "title": "MySQL Reference Manual: Transaction Isolation Levels",
       "url": "https://dev.mysql.com/doc/refman/8.0/en/innodb-transaction-isolation-levels.html",
       "publisher": "Oracle",
@@ -141,15 +109,23 @@
       "revision": "web snapshot 2026-10-18"
     },
     {
-      "id": "source-neo4j",
-      "title": "Neo4j Cypher Manual: Introduction",
-      "url": "https://neo4j.com/docs/cypher-manual/current/introduction/",
-      "publisher": "Neo4j",
+      "id": "mysqllocking",
+      "title": "MySQL Reference Manual: InnoDB Locking (gap and next-key locks)",
+      "url": "https://dev.mysql.com/doc/refman/8.0/en/innodb-locking.html",
+      "publisher": "Oracle",
       "retrievedAt": "2026-10-18",
       "revision": "web snapshot 2026-10-18"
     },
     {
-      "id": "source-pgagg",
+      "id": "outbox",
+      "title": "Pattern: Transactional outbox, Chris Richardson, microservices.io",
+      "url": "https://microservices.io/patterns/data/transactional-outbox.html",
+      "publisher": "microservices.io",
+      "retrievedAt": "2026-10-18",
+      "revision": "web snapshot 2026-10-18"
+    },
+    {
+      "id": "pgagg",
       "title": "PostgreSQL Documentation: Aggregate Functions",
       "url": "https://www.postgresql.org/docs/current/functions-aggregate.html",
       "publisher": "PostgreSQL Global Development Group",
@@ -157,23 +133,47 @@
       "revision": "web snapshot 2026-10-18"
     },
     {
-      "id": "source-pgcmp",
-      "title": "PostgreSQL Documentation: Comparison Functions and Operators",
-      "url": "https://www.postgresql.org/docs/current/functions-comparison.html",
+      "id": "pgaltertable",
+      "title": "PostgreSQL Documentation: ALTER TABLE",
+      "url": "https://www.postgresql.org/docs/current/sql-altertable.html",
       "publisher": "PostgreSQL Global Development Group",
       "retrievedAt": "2026-10-18",
       "revision": "web snapshot 2026-10-18"
     },
     {
-      "id": "source-pgcreateidx",
-      "title": "PostgreSQL Documentation: CREATE INDEX",
+      "id": "pgclient",
+      "title": "PostgreSQL Documentation: Client Connection Defaults (statement and lock timeouts)",
+      "url": "https://www.postgresql.org/docs/current/runtime-config-client.html",
+      "publisher": "PostgreSQL Global Development Group",
+      "retrievedAt": "2026-10-18",
+      "revision": "web snapshot 2026-10-18"
+    },
+    {
+      "id": "pgcons",
+      "title": "PostgreSQL Documentation: Constraints (including exclusion constraints)",
+      "url": "https://www.postgresql.org/docs/current/ddl-constraints.html",
+      "publisher": "PostgreSQL Global Development Group",
+      "retrievedAt": "2026-10-18",
+      "revision": "web snapshot 2026-10-18"
+    },
+    {
+      "id": "pgcreateidx",
+      "title": "PostgreSQL Documentation: CREATE INDEX (CONCURRENTLY)",
       "url": "https://www.postgresql.org/docs/current/sql-createindex.html",
       "publisher": "PostgreSQL Global Development Group",
       "retrievedAt": "2026-10-18",
       "revision": "web snapshot 2026-10-18"
     },
     {
-      "id": "source-pgexplain",
+      "id": "pgdistinct",
+      "title": "PostgreSQL Documentation: SELECT DISTINCT ON",
+      "url": "https://www.postgresql.org/docs/current/sql-select.html#SQL-DISTINCT",
+      "publisher": "PostgreSQL Global Development Group",
+      "retrievedAt": "2026-10-18",
+      "revision": "web snapshot 2026-10-18"
+    },
+    {
+      "id": "pgexplain",
       "title": "PostgreSQL Documentation: Using EXPLAIN",
       "url": "https://www.postgresql.org/docs/current/using-explain.html",
       "publisher": "PostgreSQL Global Development Group",
@@ -181,7 +181,7 @@
       "revision": "web snapshot 2026-10-18"
     },
     {
-      "id": "source-pgexpr",
+      "id": "pgexpr",
       "title": "PostgreSQL Documentation: Indexes on Expressions",
       "url": "https://www.postgresql.org/docs/current/indexes-expressional.html",
       "publisher": "PostgreSQL Global Development Group",
@@ -189,7 +189,7 @@
       "revision": "web snapshot 2026-10-18"
     },
     {
-      "id": "source-pgha",
+      "id": "pgha",
       "title": "PostgreSQL Documentation: High Availability, Load Balancing, and Replication",
       "url": "https://www.postgresql.org/docs/current/high-availability.html",
       "publisher": "PostgreSQL Global Development Group",
@@ -197,39 +197,15 @@
       "revision": "web snapshot 2026-10-18"
     },
     {
-      "id": "source-pghist",
-      "title": "PostgreSQL Documentation: A Brief History of PostgreSQL",
-      "url": "https://www.postgresql.org/docs/current/history.html",
-      "publisher": "PostgreSQL Global Development Group",
-      "retrievedAt": "2026-10-18",
-      "revision": "web snapshot 2026-10-18"
-    },
-    {
-      "id": "source-pghot",
-      "title": "PostgreSQL Documentation: Heap-Only Tuples (HOT)",
-      "url": "https://www.postgresql.org/docs/current/storage-hot.html",
-      "publisher": "PostgreSQL Global Development Group",
-      "retrievedAt": "2026-10-18",
-      "revision": "web snapshot 2026-10-18"
-    },
-    {
-      "id": "source-pgidx",
-      "title": "PostgreSQL Documentation: Index Types",
-      "url": "https://www.postgresql.org/docs/current/indexes-types.html",
-      "publisher": "PostgreSQL Global Development Group",
-      "retrievedAt": "2026-10-18",
-      "revision": "web snapshot 2026-10-18"
-    },
-    {
-      "id": "source-pginsert",
-      "title": "PostgreSQL Documentation: INSERT",
+      "id": "pginsert",
+      "title": "PostgreSQL Documentation: INSERT (ON CONFLICT)",
       "url": "https://www.postgresql.org/docs/current/sql-insert.html",
       "publisher": "PostgreSQL Global Development Group",
       "retrievedAt": "2026-10-18",
       "revision": "web snapshot 2026-10-18"
     },
     {
-      "id": "source-pgios",
+      "id": "pgios",
       "title": "PostgreSQL Documentation: Index-Only Scans and Covering Indexes",
       "url": "https://www.postgresql.org/docs/current/indexes-index-only-scans.html",
       "publisher": "PostgreSQL Global Development Group",
@@ -237,7 +213,7 @@
       "revision": "web snapshot 2026-10-18"
     },
     {
-      "id": "source-pgiso",
+      "id": "pgiso",
       "title": "PostgreSQL Documentation: Transaction Isolation",
       "url": "https://www.postgresql.org/docs/current/transaction-iso.html",
       "publisher": "PostgreSQL Global Development Group",
@@ -245,7 +221,7 @@
       "revision": "web snapshot 2026-10-18"
     },
     {
-      "id": "source-pgjson",
+      "id": "pgjson",
       "title": "PostgreSQL Documentation: JSON Types",
       "url": "https://www.postgresql.org/docs/current/datatype-json.html",
       "publisher": "PostgreSQL Global Development Group",
@@ -253,15 +229,7 @@
       "revision": "web snapshot 2026-10-18"
     },
     {
-      "id": "source-pglockcfg",
-      "title": "PostgreSQL Documentation: Lock Management settings",
-      "url": "https://www.postgresql.org/docs/current/runtime-config-locks.html",
-      "publisher": "PostgreSQL Global Development Group",
-      "retrievedAt": "2026-10-18",
-      "revision": "web snapshot 2026-10-18"
-    },
-    {
-      "id": "source-pglocks",
+      "id": "pglocks",
       "title": "PostgreSQL Documentation: Explicit Locking",
       "url": "https://www.postgresql.org/docs/current/explicit-locking.html",
       "publisher": "PostgreSQL Global Development Group",
@@ -269,7 +237,7 @@
       "revision": "web snapshot 2026-10-18"
     },
     {
-      "id": "source-pglogical",
+      "id": "pglogical",
       "title": "PostgreSQL Documentation: Logical Replication",
       "url": "https://www.postgresql.org/docs/current/logical-replication.html",
       "publisher": "PostgreSQL Global Development Group",
@@ -277,7 +245,7 @@
       "revision": "web snapshot 2026-10-18"
     },
     {
-      "id": "source-pgmulti",
+      "id": "pgmulti",
       "title": "PostgreSQL Documentation: Multicolumn Indexes",
       "url": "https://www.postgresql.org/docs/current/indexes-multicolumn.html",
       "publisher": "PostgreSQL Global Development Group",
@@ -285,7 +253,7 @@
       "revision": "web snapshot 2026-10-18"
     },
     {
-      "id": "source-pgmvcc",
+      "id": "pgmvcc",
       "title": "PostgreSQL Documentation: Concurrency Control",
       "url": "https://www.postgresql.org/docs/current/mvcc-intro.html",
       "publisher": "PostgreSQL Global Development Group",
@@ -293,15 +261,7 @@
       "revision": "web snapshot 2026-10-18"
     },
     {
-      "id": "source-pgpage",
-      "title": "PostgreSQL Documentation: Database Page Layout",
-      "url": "https://www.postgresql.org/docs/current/storage-page-layout.html",
-      "publisher": "PostgreSQL Global Development Group",
-      "retrievedAt": "2026-10-18",
-      "revision": "web snapshot 2026-10-18"
-    },
-    {
-      "id": "source-pgpart",
+      "id": "pgpart",
       "title": "PostgreSQL Documentation: Table Partitioning",
       "url": "https://www.postgresql.org/docs/current/ddl-partitioning.html",
       "publisher": "PostgreSQL Global Development Group",
@@ -309,7 +269,7 @@
       "revision": "web snapshot 2026-10-18"
     },
     {
-      "id": "source-pgpartial",
+      "id": "pgpartial",
       "title": "PostgreSQL Documentation: Partial Indexes",
       "url": "https://www.postgresql.org/docs/current/indexes-partial.html",
       "publisher": "PostgreSQL Global Development Group",
@@ -317,39 +277,39 @@
       "revision": "web snapshot 2026-10-18"
     },
     {
-      "id": "source-pgplanner",
-      "title": "PostgreSQL Documentation: Planner/Optimizer",
-      "url": "https://www.postgresql.org/docs/current/planner-optimizer.html",
+      "id": "pgrls",
+      "title": "PostgreSQL Documentation: Row Security Policies",
+      "url": "https://www.postgresql.org/docs/current/ddl-rowsecurity.html",
       "publisher": "PostgreSQL Global Development Group",
       "retrievedAt": "2026-10-18",
       "revision": "web snapshot 2026-10-18"
     },
     {
-      "id": "source-pgprep",
-      "title": "PostgreSQL Documentation: PREPARE TRANSACTION",
-      "url": "https://www.postgresql.org/docs/current/sql-prepare-transaction.html",
+      "id": "pgruntimelocks",
+      "title": "PostgreSQL Documentation: Lock Management settings",
+      "url": "https://www.postgresql.org/docs/current/runtime-config-locks.html",
       "publisher": "PostgreSQL Global Development Group",
       "retrievedAt": "2026-10-18",
       "revision": "web snapshot 2026-10-18"
     },
     {
-      "id": "source-pgselect",
-      "title": "PostgreSQL Documentation: SELECT",
+      "id": "pgselect",
+      "title": "PostgreSQL Documentation: SELECT (including FOR UPDATE and SKIP LOCKED)",
       "url": "https://www.postgresql.org/docs/current/sql-select.html",
       "publisher": "PostgreSQL Global Development Group",
       "retrievedAt": "2026-10-18",
       "revision": "web snapshot 2026-10-18"
     },
     {
-      "id": "source-pgseq",
-      "title": "PostgreSQL Documentation: Sequence Manipulation Functions",
-      "url": "https://www.postgresql.org/docs/current/functions-sequence.html",
+      "id": "pgseries",
+      "title": "PostgreSQL Documentation: Set Returning Functions (generate_series)",
+      "url": "https://www.postgresql.org/docs/current/functions-srf.html",
       "publisher": "PostgreSQL Global Development Group",
       "retrievedAt": "2026-10-18",
       "revision": "web snapshot 2026-10-18"
     },
     {
-      "id": "source-pgssi",
+      "id": "pgssi",
       "title": "Serializable Snapshot Isolation in PostgreSQL, D. Ports and K. Grittner, 2012",
       "url": "https://arxiv.org/abs/1208.4179",
       "publisher": "arXiv",
@@ -357,7 +317,7 @@
       "revision": "web snapshot 2026-10-18"
     },
     {
-      "id": "source-pgstats",
+      "id": "pgstats",
       "title": "PostgreSQL Documentation: Statistics Used by the Planner",
       "url": "https://www.postgresql.org/docs/current/planner-stats.html",
       "publisher": "PostgreSQL Global Development Group",
@@ -365,7 +325,7 @@
       "revision": "web snapshot 2026-10-18"
     },
     {
-      "id": "source-pgsub",
+      "id": "pgsub",
       "title": "PostgreSQL Documentation: Subquery Expressions",
       "url": "https://www.postgresql.org/docs/current/functions-subquery.html",
       "publisher": "PostgreSQL Global Development Group",
@@ -373,7 +333,7 @@
       "revision": "web snapshot 2026-10-18"
     },
     {
-      "id": "source-pgsync",
+      "id": "pgsync",
       "title": "PostgreSQL Documentation: Synchronous Replication",
       "url": "https://www.postgresql.org/docs/current/warm-standby.html#SYNCHRONOUS-REPLICATION",
       "publisher": "PostgreSQL Global Development Group",
@@ -381,31 +341,23 @@
       "revision": "web snapshot 2026-10-18"
     },
     {
-      "id": "source-pgtable",
-      "title": "PostgreSQL Documentation: Table Expressions",
+      "id": "pgtable",
+      "title": "PostgreSQL Documentation: Table Expressions (joins, GROUP BY, LATERAL)",
       "url": "https://www.postgresql.org/docs/current/queries-table-expressions.html",
       "publisher": "PostgreSQL Global Development Group",
       "retrievedAt": "2026-10-18",
       "revision": "web snapshot 2026-10-18"
     },
     {
-      "id": "source-pgtoast",
-      "title": "PostgreSQL Documentation: TOAST",
-      "url": "https://www.postgresql.org/docs/current/storage-toast.html",
+      "id": "pgtextsearch",
+      "title": "PostgreSQL Documentation: Full Text Search",
+      "url": "https://www.postgresql.org/docs/current/textsearch.html",
       "publisher": "PostgreSQL Global Development Group",
       "retrievedAt": "2026-10-18",
       "revision": "web snapshot 2026-10-18"
     },
     {
-      "id": "source-pgunion",
-      "title": "PostgreSQL Documentation: Combining Queries",
-      "url": "https://www.postgresql.org/docs/current/queries-union.html",
-      "publisher": "PostgreSQL Global Development Group",
-      "retrievedAt": "2026-10-18",
-      "revision": "web snapshot 2026-10-18"
-    },
-    {
-      "id": "source-pgvacuum",
+      "id": "pgvacuum",
       "title": "PostgreSQL Documentation: Routine Vacuuming",
       "url": "https://www.postgresql.org/docs/current/routine-vacuuming.html",
       "publisher": "PostgreSQL Global Development Group",
@@ -413,23 +365,7 @@
       "revision": "web snapshot 2026-10-18"
     },
     {
-      "id": "source-pgwal",
-      "title": "PostgreSQL Documentation: Write-Ahead Logging (WAL)",
-      "url": "https://www.postgresql.org/docs/current/wal-intro.html",
-      "publisher": "PostgreSQL Global Development Group",
-      "retrievedAt": "2026-10-18",
-      "revision": "web snapshot 2026-10-18"
-    },
-    {
-      "id": "source-pgwalcfg",
-      "title": "PostgreSQL Documentation: WAL Configuration",
-      "url": "https://www.postgresql.org/docs/current/wal-configuration.html",
-      "publisher": "PostgreSQL Global Development Group",
-      "retrievedAt": "2026-10-18",
-      "revision": "web snapshot 2026-10-18"
-    },
-    {
-      "id": "source-pgwin",
+      "id": "pgwin",
       "title": "PostgreSQL Documentation: Window Functions",
       "url": "https://www.postgresql.org/docs/current/functions-window.html",
       "publisher": "PostgreSQL Global Development Group",
@@ -437,15 +373,7 @@
       "revision": "web snapshot 2026-10-18"
     },
     {
-      "id": "source-pgwinsyn",
-      "title": "PostgreSQL Documentation: Window Function Calls",
-      "url": "https://www.postgresql.org/docs/current/sql-expressions.html#SYNTAX-WINDOW-FUNCTIONS",
-      "publisher": "PostgreSQL Global Development Group",
-      "retrievedAt": "2026-10-18",
-      "revision": "web snapshot 2026-10-18"
-    },
-    {
-      "id": "source-pgwintut",
+      "id": "pgwintut",
       "title": "PostgreSQL Documentation: Window Functions tutorial",
       "url": "https://www.postgresql.org/docs/current/tutorial-window.html",
       "publisher": "PostgreSQL Global Development Group",
@@ -453,114 +381,42 @@
       "revision": "web snapshot 2026-10-18"
     },
     {
-      "id": "source-pgwith",
-      "title": "PostgreSQL Documentation: WITH Queries",
+      "id": "pgwith",
+      "title": "PostgreSQL Documentation: WITH Queries (Common Table Expressions)",
       "url": "https://www.postgresql.org/docs/current/queries-with.html",
       "publisher": "PostgreSQL Global Development Group",
       "retrievedAt": "2026-10-18",
       "revision": "web snapshot 2026-10-18"
     },
     {
-      "id": "source-raft",
-      "title": "In Search of an Understandable Consensus Algorithm, D. Ongaro and J. Ousterhout, 2014",
-      "url": "https://raft.github.io/raft.pdf",
-      "publisher": "USENIX ATC 2014",
-      "retrievedAt": "2026-10-18",
-      "revision": "web snapshot 2026-10-18"
-    },
-    {
-      "id": "source-redis",
-      "title": "Redis Documentation: Data types",
-      "url": "https://redis.io/docs/latest/develop/data-types/",
+      "id": "redis",
+      "title": "Redis Documentation: Sorted sets",
+      "url": "https://redis.io/docs/latest/develop/data-types/sorted-sets/",
       "publisher": "Redis",
       "retrievedAt": "2026-10-18",
       "revision": "web snapshot 2026-10-18"
     },
     {
-      "id": "source-selinger",
-      "title": "Access Path Selection in a Relational Database Management System, Selinger et al., 1979",
-      "url": "https://dl.acm.org/doi/10.1145/582095.582099",
-      "publisher": "ACM",
+      "id": "saga",
+      "title": "Pattern: Saga, Chris Richardson, microservices.io",
+      "url": "https://microservices.io/patterns/data/saga.html",
+      "publisher": "microservices.io",
       "retrievedAt": "2026-10-18",
       "revision": "web snapshot 2026-10-18"
     },
     {
-      "id": "source-sqlitecopy",
-      "title": "SQLite Copyright",
-      "url": "https://www.sqlite.org/copyright.html",
-      "publisher": "SQLite",
+      "id": "stripeidem",
+      "title": "Designing robust and predictable APIs with idempotency, Stripe Engineering",
+      "url": "https://stripe.com/blog/idempotency",
+      "publisher": "Stripe",
       "retrievedAt": "2026-10-18",
       "revision": "web snapshot 2026-10-18"
     },
     {
-      "id": "source-sqlitefk",
-      "title": "SQLite: Foreign Key Support",
-      "url": "https://www.sqlite.org/foreignkeys.html",
-      "publisher": "SQLite",
-      "retrievedAt": "2026-10-18",
-      "revision": "web snapshot 2026-10-18"
-    },
-    {
-      "id": "source-sqlitenorowid",
-      "title": "SQLite: WITHOUT ROWID Tables",
-      "url": "https://www.sqlite.org/withoutrowid.html",
-      "publisher": "SQLite",
-      "retrievedAt": "2026-10-18",
-      "revision": "web snapshot 2026-10-18"
-    },
-    {
-      "id": "source-sqlitepragma",
-      "title": "SQLite: PRAGMA Statements",
-      "url": "https://www.sqlite.org/pragma.html",
-      "publisher": "SQLite",
-      "retrievedAt": "2026-10-18",
-      "revision": "web snapshot 2026-10-18"
-    },
-    {
-      "id": "source-sqliteqp",
-      "title": "SQLite: Query Planning",
-      "url": "https://www.sqlite.org/queryplanner.html",
-      "publisher": "SQLite",
-      "retrievedAt": "2026-10-18",
-      "revision": "web snapshot 2026-10-18"
-    },
-    {
-      "id": "source-sqliterowid",
-      "title": "SQLite: CREATE TABLE, ROWIDs and the INTEGER PRIMARY KEY",
-      "url": "https://www.sqlite.org/lang_createtable.html#rowid",
-      "publisher": "SQLite",
-      "retrievedAt": "2026-10-18",
-      "revision": "web snapshot 2026-10-18"
-    },
-    {
-      "id": "source-sqlitestrict",
-      "title": "SQLite: STRICT Tables",
-      "url": "https://www.sqlite.org/stricttables.html",
-      "publisher": "SQLite",
-      "retrievedAt": "2026-10-18",
-      "revision": "web snapshot 2026-10-18"
-    },
-    {
-      "id": "source-sqlitetx",
-      "title": "SQLite: Transaction",
-      "url": "https://www.sqlite.org/lang_transaction.html",
-      "publisher": "SQLite",
-      "retrievedAt": "2026-10-18",
-      "revision": "web snapshot 2026-10-18"
-    },
-    {
-      "id": "source-sqlitetype",
-      "title": "SQLite: Datatypes In SQLite",
-      "url": "https://www.sqlite.org/datatype3.html",
-      "publisher": "SQLite",
-      "retrievedAt": "2026-10-18",
-      "revision": "web snapshot 2026-10-18"
-    },
-    {
-      "id": "source-sqlitewal",
-      "title": "SQLite: Write-Ahead Logging",
-      "url": "https://www.sqlite.org/wal.html",
-      "publisher": "SQLite",
+      "id": "vitess",
+      "title": "Vitess Documentation: Sharding",
+      "url": "https://vitess.io/docs/reference/features/sharding/",
+      "publisher": "Vitess Authors",
       "retrievedAt": "2026-10-18",
       "revision": "web snapshot 2026-10-18"
     }
@@ -569,13 +425,11 @@
   "stamps": [],
   "bertSchemaVersion": 1,
   "sections": {
-    "model": "Relational model and SQL",
-    "norm": "Normalization",
-    "index": "Indexes and query planning",
-    "tx": "Transactions and concurrency",
-    "wal": "Durability and replication",
-    "dist": "Distributed data",
-    "nosql": "NoSQL",
-    "engines": "Postgres and SQLite"
+    "design": "Schema design",
+    "sql": "Write the SQL",
+    "index": "Indexing and slow queries",
+    "tx": "Transactions, locking and concurrency",
+    "scale": "Replication, sharding and choosing a datastore",
+    "ops": "Migrations and production operations"
   }
 }

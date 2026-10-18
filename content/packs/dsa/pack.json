@@ -1,9 +1,9 @@
 {
   "packId": "dsa",
-  "version": "1.0.0",
+  "version": "2.0.0-draft.1",
   "official": true,
-  "title": "Data Structures and Algorithms",
-  "subtitle": "Complexity, structures and interview patterns",
+  "title": "Coding Interview Practice",
+  "subtitle": "Data structures and algorithms interview problems, worked through like a strong candidate",
   "category": "programming",
   "subcategory": "dsa",
   "accentColor": "#3E5C8A",
@@ -12,6 +12,14 @@
     "en"
   ],
   "sources": [
+    {
+      "id": "source-leetcode",
+      "title": "LeetCode problem set",
+      "url": "https://leetcode.com/problemset/",
+      "publisher": "LeetCode",
+      "retrievedAt": null,
+      "revision": null
+    },
     {
       "id": "source-clrs",
       "title": "Introduction to Algorithms, 4th edition, Cormen, Leiserson, Rivest, Stein",
@@ -61,82 +69,10 @@
       "revision": null
     },
     {
-      "id": "source-pysort",
-      "title": "Python Sorting Techniques",
-      "url": "https://docs.python.org/3/howto/sorting.html",
-      "publisher": "Python Software Foundation",
-      "retrievedAt": null,
-      "revision": null
-    },
-    {
-      "id": "source-pydict",
-      "title": "Python built-in types: mapping types",
-      "url": "https://docs.python.org/3/library/stdtypes.html#mapping-types-dict",
-      "publisher": "Python Software Foundation",
-      "retrievedAt": null,
-      "revision": null
-    },
-    {
-      "id": "source-jhash",
-      "title": "Java SE 21 API: HashMap",
-      "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/HashMap.html",
-      "publisher": "Oracle",
-      "retrievedAt": null,
-      "revision": null
-    },
-    {
-      "id": "source-jtree",
-      "title": "Java SE 21 API: TreeMap",
-      "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/TreeMap.html",
-      "publisher": "Oracle",
-      "retrievedAt": null,
-      "revision": null
-    },
-    {
-      "id": "source-jarrays",
-      "title": "Java SE 21 API: Arrays",
-      "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Arrays.html",
-      "publisher": "Oracle",
-      "retrievedAt": null,
-      "revision": null
-    },
-    {
-      "id": "source-cppsort",
-      "title": "cppreference: std::stable_sort",
-      "url": "https://en.cppreference.com/w/cpp/algorithm/stable_sort",
-      "publisher": "cppreference.com",
-      "retrievedAt": null,
-      "revision": null
-    },
-    {
-      "id": "source-jdkhash",
-      "title": "OpenJDK source: java.util.HashMap",
-      "url": "https://github.com/openjdk/jdk/blob/master/src/java.base/share/classes/java/util/HashMap.java",
-      "publisher": "OpenJDK",
-      "retrievedAt": null,
-      "revision": null
-    },
-    {
       "id": "source-erickson",
       "title": "Algorithms, Jeff Erickson",
       "url": "https://jeffe.cs.illinois.edu/teaching/algorithms/",
       "publisher": "University of Illinois",
-      "retrievedAt": null,
-      "revision": null
-    },
-    {
-      "id": "source-ods",
-      "title": "Open Data Structures, Pat Morin",
-      "url": "https://opendatastructures.org/",
-      "publisher": "Pat Morin",
-      "retrievedAt": null,
-      "revision": null
-    },
-    {
-      "id": "source-mit6006",
-      "title": "MIT 6.006 Introduction to Algorithms, Spring 2020",
-      "url": "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/",
-      "publisher": "MIT OpenCourseWare",
       "retrievedAt": null,
       "revision": null
     }
@@ -145,12 +81,18 @@
   "stamps": [],
   "bertSchemaVersion": 1,
   "sections": {
-    "basics": "Basics and linear structures",
-    "hash": "Hashing and heaps",
+    "arrays": "Arrays, strings and hashing",
+    "pointers": "Two pointers and sliding window",
+    "stacks": "Stacks, queues and monotonic structures",
+    "lists": "Linked lists",
     "trees": "Trees",
     "graphs": "Graphs",
-    "sort": "Sorting and searching",
-    "design": "Algorithm design",
-    "patterns": "Interview patterns"
+    "heaps": "Heaps",
+    "search": "Binary search",
+    "intervals": "Intervals",
+    "backtracking": "Backtracking",
+    "dp": "Dynamic programming",
+    "greedy": "Greedy",
+    "tries": "Tries"
   }
 }

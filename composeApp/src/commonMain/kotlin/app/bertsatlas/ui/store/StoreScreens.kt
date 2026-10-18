@@ -25,6 +25,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -213,6 +214,7 @@ private fun PackHeader(pack: StorePack, index: StoreIndex, state: StoreState, st
         AtlasText(index.placementName(pack), style = AtlasTheme.typography.detail, color = AtlasTheme.colors.mutedPlum)
     }
     PackAction(pack, state, store, navigation, large = true)
+    DisposableEffect(pack.packId) { onDispose { store.clearPackMessage(pack.packId) } }
     state.packMessages[pack.packId]?.let { message ->
         AtlasCard(contentDescription = message) { AtlasText(message, style = AtlasTheme.typography.detail) }
     }
@@ -444,7 +446,7 @@ private fun CategoryHero(category: StoreCategory, packCount: Int) {
         AtlasText(category.icon.iconGlyph(), style = AtlasTheme.typography.display, color = AtlasTheme.colors.white)
         AtlasText(category.name, Modifier.semantics { heading() }, AtlasTheme.typography.title, AtlasTheme.colors.white)
         AtlasText(
-            when (packCount) { 0 -> "Coming soon"; 1 -> "1 pack"; else -> "$packCount packs" } + " · ${category.subcategories.size} topics",
+            when (packCount) { 0 -> "Coming soon"; 1 -> "1 pack"; else -> "$packCount packs" } + " · ${category.subcategories.size} ${if (category.subcategories.size == 1) "topic" else "topics"}",
             style = AtlasTheme.typography.detail,
             color = AtlasTheme.colors.white.copy(alpha = .9f),
         )
