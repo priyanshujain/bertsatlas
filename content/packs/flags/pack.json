@@ -8,7 +8,7 @@
   "category": "geography",
   "subcategory": "flags",
   "accentColor": "#27635B",
-  "coverMedia": null,
+  "coverMedia": "cover.png",
   "languages": [
     "en"
   ],

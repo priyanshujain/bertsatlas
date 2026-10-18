@@ -8,7 +8,7 @@
   "category": "geography",
   "subcategory": "capitals",
   "accentColor": "#E1814E",
-  "coverMedia": null,
+  "coverMedia": "cover.png",
   "languages": [
     "en"
   ],
