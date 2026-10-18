@@ -298,7 +298,8 @@ class PackStore(val libraryDirectory: String) {
         }
 
         fun summary(): PackSummary {
-            val cards = collection.cardsInDecks(deckIds(null))
+            val retiredNoteIds = collection.notes().filter { BertTags.RETIRED in it.tags }.map { it.id }.toSet()
+            val cards = collection.cardsInDecks(deckIds(null)).filter { it.noteId !in retiredNoteIds }
             val revlogByCard = collection.revlog().groupBy { it.cardId }
             val levels = cards.map { CardMastery.level(it, revlogByCard[it.id].orEmpty()) }
             val config = collection.deckConfig(deck.configId)

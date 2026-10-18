@@ -28,6 +28,7 @@ val bundledCommandLineTool = rootProject.layout.projectDirectory.file("cli/build
 val desktopResources = layout.buildDirectory.dir("desktopResources")
 
 val stageDesktopResources = tasks.register<Sync>("stageDesktopResources") {
+    mustRunAfter(":cli:linkReleaseExecutableMacosArm64")
     from(bundledCommandLineTool) {
         into("macos-arm64/bin")
         rename { "bert" }
@@ -95,6 +96,16 @@ compose.desktop {
 }
 
 tasks.matching { it.name == "prepareAppResources" }.configureEach { dependsOn(stageDesktopResources, signBundledCommandLineTool) }
+
+val distributableAppDirectory = layout.buildDirectory.dir("compose/binaries/main/app")
+tasks.matching { it.name == "createDistributable" }.configureEach {
+    val appDirectory = distributableAppDirectory
+    doLast {
+        appDirectory.get().asFile.walk()
+            .filter { it.name == "bert" && it.parentFile.name == "bin" }
+            .forEach { it.setExecutable(true, false) }
+    }
+}
 
 tasks.withType<JavaExec>().configureEach {
     providers.gradleProperty("bertsatlas.home").orNull?.let { systemProperty("bertsatlas.home", it) }
