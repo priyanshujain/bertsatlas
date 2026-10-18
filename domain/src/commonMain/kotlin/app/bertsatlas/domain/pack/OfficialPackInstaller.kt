@@ -60,7 +60,10 @@ class OfficialPackInstaller(private val libraryDirectory: String, private val wo
         LibraryFiles.createDirectories(staging)
         try {
             val result = AnkiCollection.create(Path(staging, PackLibraryLayout.COLLECTION_FILE).toString()).use { target ->
-                val result = PackageImport.importDeck(opened, deck.id, target, Path(staging, PackLibraryLayout.MEDIA_DIRECTORY).toString(), monitor)
+                val result = PackageImport.importDeck(
+                    opened, deck.id, target, Path(staging, PackLibraryLayout.MEDIA_DIRECTORY).toString(), monitor,
+                    packMedia = setOfNotNull(manifest.coverMedia),
+                )
                 writeManifest(target, result.targetDeckId, manifest)
                 result
             }
@@ -94,6 +97,7 @@ class OfficialPackInstaller(private val libraryDirectory: String, private val wo
                     intoTopLevelDeckId = installedDeck.id,
                     updateExistingContent = true,
                     keepExistingScheduling = true,
+                    packMedia = setOfNotNull(manifest.coverMedia),
                 )
                 val incomingGuids = opened.noteGuidsOf(deck.id)
                 val (retired, restored) = target.transaction {

@@ -101,12 +101,13 @@ object PackageImport {
         intoTopLevelDeckId: Long? = null,
         updateExistingContent: Boolean = true,
         keepExistingScheduling: Boolean = false,
+        packMedia: Set<String> = emptySet(),
     ): DeckImportResult {
         val createdMedia = mutableListOf<String>()
         return try {
             target.transaction {
                 val copied = DeckCopy(source.collection, target, monitor, updateExistingContent, keepExistingScheduling).copy(topLevelDeckId, intoTopLevelDeckId)
-                val mediaCount = copyReferencedMedia(source, copied.referencedMedia, targetMediaDirectory, monitor, createdMedia)
+                val mediaCount = copyReferencedMedia(source, copied.referencedMedia + packMedia, targetMediaDirectory, monitor, createdMedia)
                 DeckImportResult(copied.targetDeckId, copied.addedNotes, copied.updatedNotes, copied.addedCards, mediaCount)
             }
         } catch (failure: Throwable) {
