@@ -10,6 +10,10 @@ import app.bertopia.cardrender.MediaPainterState
 import app.bertopia.cardrender.rememberMediaPainter
 
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.Image
+import bertopia.composeapp.generated.resources.Res
+import bertopia.composeapp.generated.resources.logo_bert
+import org.jetbrains.compose.resources.painterResource
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
@@ -96,16 +100,6 @@ fun LibraryScreen(
             Modifier.widthIn(max = if (wide) WIDE_CONTENT_WIDTH else 520.dp).fillMaxWidth().align(Alignment.TopCenter),
             verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {
-            Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(4.dp)) {
-                    BertopiaText("Bertopia", Modifier.semantics { heading() }, BertopiaTheme.typography.title)
-                    BertopiaText(
-                        if (isFirstLaunch) "Pick a pack and Bert will quiz you." else "Getting smarter every day.",
-                        color = BertopiaTheme.colors.mutedPlum,
-                    )
-                }
-                HomeBertIllustration(Modifier.size(120.dp))
-            }
             val shelves = packs.map { it.shelf }.distinct()
             LibrarySectionLabel("Your packs")
             if (shelves.size > 1) {
@@ -159,7 +153,7 @@ fun LibraryScreen(
                 }
                 BertopiaCard(contentDescription = "$streakSummary. $progressSummary") {
                     Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-                        BertopiaText("✦", style = BertopiaTheme.typography.title, color = BertopiaTheme.colors.coral)
+                        BertopiaText("✦", style = BertopiaTheme.typography.title, color = BertopiaTheme.colors.orangeAccent)
                         Column(Modifier.weight(1f).padding(horizontal = 12.dp)) {
                             BertopiaText(streakSummary, style = BertopiaTheme.typography.label)
                             BertopiaText(progressSummary, style = BertopiaTheme.typography.detail, color = BertopiaTheme.colors.mutedPlum)
@@ -583,35 +577,6 @@ private fun PackCardUi.libraryMetaLabel(): String = listOfNotNull(
 ).joinToString(" · ")
 
 @Composable
-private fun HomeBertIllustration(modifier: Modifier) {
-    val colors = BertopiaTheme.colors
-    androidx.compose.foundation.layout.Box(modifier, contentAlignment = Alignment.Center) {
-        BertIllustration(BertPose.Idle, Modifier.matchParentSize(), contentDescription = "Bert smiles with a bright idea and a folded map")
-        Canvas(Modifier.matchParentSize()) {
-            val w = this.size.width
-            val h = this.size.height
-            val outline = 4.dp.toPx()
-            val map = Path().apply {
-                moveTo(w * .01f, h * .68f)
-                lineTo(w * .11f, h * .63f)
-                lineTo(w * .22f, h * .68f)
-                lineTo(w * .33f, h * .63f)
-                lineTo(w * .33f, h * .88f)
-                lineTo(w * .22f, h * .93f)
-                lineTo(w * .11f, h * .88f)
-                lineTo(w * .01f, h * .93f)
-                close()
-            }
-            drawPath(map, colors.paper)
-            drawPath(map, colors.plum, style = Stroke(outline, join = androidx.compose.ui.graphics.StrokeJoin.Round))
-            drawLine(colors.plum, Offset(w * .11f, h * .63f), Offset(w * .11f, h * .88f), outline)
-            drawLine(colors.plum, Offset(w * .22f, h * .68f), Offset(w * .22f, h * .93f), outline)
-            drawLine(colors.orangeAccent, Offset(w * .03f, h * .83f), Offset(w * .31f, h * .76f), outline * .7f, StrokeCap.Round)
-        }
-    }
-}
-
-@Composable
 private fun PointsBadge(points: Int, onClick: () -> Unit, modifier: Modifier = Modifier) {
     val colors = BertopiaTheme.colors
     Row(
@@ -656,11 +621,12 @@ private fun SettingsIconButton(onClick: () -> Unit) {
 }
 
 @Composable
-fun BootstrapScreen(message: String = "Opening Bertopia…", modifier: Modifier = Modifier) {
+fun BootstrapScreen(message: String? = null, modifier: Modifier = Modifier) {
     BertopiaScreen(modifier, scrollable = false) {
-        Column(Modifier.fillMaxWidth().align(Alignment.Center), horizontalAlignment = Alignment.CenterHorizontally) {
-            BertIllustration(BertPose.Idle)
-            BertopiaText(message, style = BertopiaTheme.typography.heading, textAlign = TextAlign.Center)
+        Column(Modifier.fillMaxWidth().align(Alignment.Center), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(4.dp)) {
+            Image(painterResource(Res.drawable.logo_bert), "Bertopia logo", Modifier.size(140.dp))
+            BertopiaText("Bertopia", Modifier.padding(top = 12.dp).semantics { heading() }, BertopiaTheme.typography.title, textAlign = TextAlign.Center)
+            BertopiaText(message ?: "Getting smarter every day", color = BertopiaTheme.colors.mutedPlum, textAlign = TextAlign.Center)
         }
     }
 }

@@ -23,6 +23,7 @@ import okio.Path.Companion.toPath
 
 data class SavedPreferences(
     val hasStartedTrivia: Boolean = false,
+    val hasSeenOnboarding: Boolean = false,
     val duration: String = "FiveMinutes",
     val soundEnabled: Boolean = true,
     val hapticsEnabled: Boolean = true,
@@ -42,6 +43,7 @@ class PreferencesStore(
         .map { preferences ->
             SavedPreferences(
                 hasStartedTrivia = preferences[Keys.hasStartedTrivia] ?: false,
+                hasSeenOnboarding = preferences[Keys.hasSeenOnboarding] ?: false,
                 duration = preferences[Keys.duration] ?: "FiveMinutes",
                 soundEnabled = preferences[Keys.soundEnabled] ?: true,
                 hapticsEnabled = preferences[Keys.hapticsEnabled] ?: true,
@@ -59,6 +61,10 @@ class PreferencesStore(
 
     override suspend fun markTriviaStarted() {
         dataStore.edit { it[Keys.hasStartedTrivia] = true }
+    }
+
+    suspend fun markOnboardingSeen() {
+        dataStore.edit { it[Keys.hasSeenOnboarding] = true }
     }
 
     override suspend fun loadConfiguration(): QuizConfiguration {
@@ -133,6 +139,7 @@ class PreferencesStore(
     suspend fun resetFirstLaunchAndConfiguration() {
         dataStore.edit {
             it.remove(Keys.hasStartedTrivia)
+            it.remove(Keys.hasSeenOnboarding)
             it.remove(Keys.duration)
         }
     }
@@ -143,6 +150,7 @@ class PreferencesStore(
 
     private object Keys {
         val hasStartedTrivia = booleanPreferencesKey("has_started_trivia")
+        val hasSeenOnboarding = booleanPreferencesKey("has_seen_onboarding")
         val duration = stringPreferencesKey("quiz_duration")
         val soundEnabled = booleanPreferencesKey("sound_enabled")
         val hapticsEnabled = booleanPreferencesKey("haptics_enabled")

@@ -6,7 +6,7 @@
         <item name="android:statusBarColor">@color/parchment</item>
         <item name="android:navigationBarColor">@color/parchment</item>
         <item name="android:windowSplashScreenBackground">@color/parchment</item>
-        <item name="android:windowSplashScreenAnimatedIcon">@drawable/app_icon_foreground</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/splash_bert</item>
         <item name="android:windowSplashScreenIconBackgroundColor">@color/parchment</item>
     </style>
 </resources>

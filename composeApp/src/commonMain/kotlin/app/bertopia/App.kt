@@ -55,6 +55,7 @@ import app.bertopia.domain.model.RunStatus
 import app.bertopia.ui.AnswerState
 import app.bertopia.ui.BertopiaTheme
 import app.bertopia.ui.BootstrapScreen
+import app.bertopia.ui.OnboardingScreen
 import app.bertopia.ui.ChoiceUi
 import app.bertopia.ui.CreditsScreen
 import app.bertopia.ui.DebugPanelScreen
@@ -118,7 +119,7 @@ fun App(
     val activeController = controller
     val appState = activeController?.state?.collectAsState()?.value
     BertopiaTheme(reducedMotion = appState?.preferences?.motionMode == "Reduced") {
-        if (activeController == null || appState == null) BootstrapScreen(loadFailure ?: "Opening Bertopia…")
+        if (activeController == null || appState == null) BootstrapScreen(loadFailure)
         else CompositionLocalProvider(LocalFlagMediaDirectory provides activeController.flagMediaDirectory) {
             BertopiaDestination(activeController, appState)
         }
@@ -136,7 +137,8 @@ private fun BertopiaDestination(controller: AppController, state: BertopiaAppSta
         return
     }
     when (val destination = state.destination) {
-        Destination.Bootstrap -> BootstrapScreen(state.loadingMessage ?: "Opening Bertopia…")
+        Destination.Bootstrap -> BootstrapScreen(state.loadingMessage)
+        Destination.Onboarding -> OnboardingScreen(onFinish = controller::finishOnboarding)
         Destination.Home -> {
             val storeIndex = controller.store.state.collectAsState().value.index
             val packs by controller.installedPacks.collectAsState()

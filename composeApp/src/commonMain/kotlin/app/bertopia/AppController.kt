@@ -90,6 +90,7 @@ import kotlinx.serialization.json.Json
 sealed interface Destination {
     data object Bootstrap : Destination
     data object Recovery : Destination
+    data object Onboarding : Destination
     data object Home : Destination
     data class PackHome(val packId: String) : Destination
     data class MixHome(val mixId: String) : Destination
@@ -296,7 +297,11 @@ class AppController(
         val hasStartedTrivia = preferences.hasStartedTrivia || restored != null || answerTotals.answeredQuestions > 0 || runs.isNotEmpty()
         if (hasStartedTrivia && !preferences.hasStartedTrivia) preferencesStore.markTriviaStarted()
         _state.value = BertopiaAppState(
-            destination = if (restored == null) Destination.Home else Destination.Recovery,
+            destination = when {
+                restored != null -> Destination.Recovery
+                !preferences.hasSeenOnboarding -> Destination.Onboarding
+                else -> Destination.Home
+            },
             firstLaunch = !hasStartedTrivia,
             preferences = preferences,
             selectedDuration = enumValueOrDefault(preferences.duration, QuizDuration.FiveMinutes),
@@ -424,7 +429,7 @@ class AppController(
             return true
         }
         return when (val destination = current.destination) {
-            Destination.Bootstrap, Destination.Home -> false
+            Destination.Bootstrap, Destination.Onboarding, Destination.Home -> false
             is Destination.PackHome, is Destination.MixHome -> {
                 _state.value = current.copy(destination = Destination.Home)
                 true
@@ -806,6 +811,11 @@ class AppController(
         _installedMixes.value = knownMixes.map { it.toSummary(installedPackIds) }
     }
 
+    fun finishOnboarding() {
+        _state.value = _state.value.copy(destination = Destination.Home)
+        scope.launch { preferencesStore.markOnboardingSeen() }
+    }
+
     fun navigate(destination: Destination) { _state.value = _state.value.copy(destination = destination) }
 
     fun toggleSetting(id: String, enabled: Boolean) {
@@ -1043,7 +1053,7 @@ class AppController(
     fun debugAction(id: String) {
         if (!debugBuild) return
         when (id) {
-            "reset-first" -> scope.launch { preferencesStore.resetFirstLaunchAndConfiguration(); _state.value = _state.value.copy(firstLaunch = true, destination = Destination.Home) }
+            "reset-first" -> scope.launch { preferencesStore.resetFirstLaunchAndConfiguration(); _state.value = _state.value.copy(firstLaunch = true, destination = Destination.Onboarding) }
             "reset-progress" -> enqueueRunPersistence { database.runWriter().resetProgress(); packStore.resetAllProgress(); refreshProgress(); _state.value = _state.value.copy(destination = Destination.Home, run = null) }
             "reset-all" -> resetAll()
             "question-full" -> setDebugQuestionRemaining(QuizEngine.MULTIPLE_CHOICE_WINDOW_MILLIS)
