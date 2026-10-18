@@ -348,6 +348,108 @@ class PackQuizCatalogTest {
         assertTrue(empty.none { it.kind == PassportStampKind.PackMastered })
     }
 
+    @Test
+    fun choiceCardsOfferOnlyTheirAuthoredChoices() {
+        val choice = choiceCard("q", "Queue\nStack\nHeap\nTrie", "Queue", explanation = "FIFO means queue.")
+        val basics = elements.mapIndexed { index, (symbol, name) -> card(basic, "el$index", listOf(symbol, name)) }
+        val questions = PackQuizCatalog.build("1", basics + choice).questions.filter { it.countryIds == listOf(choice.itemId) }
+        val question = questions.single() as Question.MultipleChoice
+        assertEquals(listOf("Queue", "Stack", "Heap", "Trie"), question.choices.map { it.label })
+        assertEquals("Queue", question.choices.single { it.id == question.correctChoiceId }.label)
+        assertTrue(question.distractorPoolsNearestFirst.all { it.isEmpty() })
+        assertEquals("Which structure is FIFO?", question.prompt)
+        assertEquals("FIFO means queue.", question.explanation)
+        assertEquals(setOf(QuizFormat.MultipleChoice), PackQuizCatalog.formatsFor(choice, basics + choice))
+    }
+
+    @Test
+    fun choiceCardsNeverFeedOtherCardsDistractors() {
+        val choices = listOf(
+            choiceCard("c1", "Zebra\nYak", "Zebra"),
+            choiceCard("c2", "Walrus\nVole", "Walrus"),
+        )
+        val basics = elements.mapIndexed { index, (symbol, name) -> card(basic, "el$index", listOf(symbol, name)) }
+        val catalog = PackQuizCatalog.build("1", basics, distractorOnlyCards = choices)
+        val offered = catalog.questions.filterIsInstance<Question.MultipleChoice>().flatMap { it.distractorPoolsNearestFirst.flatten() }.map { it.label }
+        assertTrue(offered.isNotEmpty())
+        assertTrue(offered.none { it in setOf("Zebra", "Yak", "Walrus", "Vole") })
+        val mixed = PackQuizCatalog.build("1", basics + choices).questions.filterIsInstance<Question.MultipleChoice>()
+            .filter { it.distractorPoolsNearestFirst.any { pool -> pool.isNotEmpty() } }
+            .flatMap { it.distractorPoolsNearestFirst.flatten() }.map { it.label }
+        assertTrue(mixed.none { it in setOf("Zebra", "Yak", "Walrus", "Vole") })
+    }
+
+    @Test
+    fun brokenChoiceCardsFallBackToFlip() {
+        val noMatch = choiceCard("nomatch", "Queue\nStack", "Heap")
+        val duplicate = choiceCard("dup", "Queue\nqueue\nStack", "Stack")
+        val tooMany = choiceCard("many", "A1\nB2\nC3\nD4\nE5\nF6", "A1")
+        listOf(noMatch, duplicate, tooMany).forEach { card ->
+            assertEquals(setOf(QuizFormat.FlipAndGrade), PackQuizCatalog.formatsFor(card, listOf(card)), card.itemId)
+        }
+    }
+
+    @Test
+    fun flipOnlyCardsOnlyFlip() {
+        val bertBasic = BertNoteTypes.Basic.toAnkiNotetype()
+        val flipOnly = PackCardReader.read(
+            "science",
+            bertBasic,
+            Note(1, "fo", bertBasic.id, listOf("Symbol for gold", "Au", "", "", "", "", """{"flipOnly":true}"""), emptyList()),
+            0,
+            "Science",
+        )
+        assertTrue(flipOnly.flipOnly)
+        val basics = elements.mapIndexed { index, (symbol, name) -> card(basic, "el$index", listOf(symbol, name)) }
+        val questions = PackQuizCatalog.build("1", basics + flipOnly).questions.filter { it.countryIds == listOf(flipOnly.itemId) }
+        assertEquals(listOf(Question.FlipAndGrade::class), questions.map { it::class })
+        assertEquals(setOf(QuizFormat.FlipAndGrade), PackQuizCatalog.formatsFor(flipOnly, basics + flipOnly))
+        val choiceFlipOnly = choiceCard("cfo", "Queue\nStack", "Queue", meta = """{"flipOnly":true}""")
+        assertEquals(setOf(QuizFormat.FlipAndGrade), PackQuizCatalog.formatsFor(choiceFlipOnly, listOf(choiceFlipOnly)))
+        val invalidMeta = choiceCard("bad", "Queue\nStack", "Queue", meta = "{not json")
+        assertFalse(invalidMeta.flipOnly)
+        assertEquals(setOf(QuizFormat.MultipleChoice), PackQuizCatalog.formatsFor(invalidMeta, listOf(invalidMeta)))
+    }
+
+    @Test
+    fun engineAcceptsTwoToFiveAuthoredChoicesAndRemovesIncorrectOnlyFromFourUp() {
+        val labels = listOf("Queue", "Stack", "Heap", "Trie", "Deque")
+        (2..5).forEach { count ->
+            val card = choiceCard("c$count", labels.take(count).joinToString("\n"), "Queue")
+            val engine = QuizEngine(PackQuizCatalog.build("1", listOf(card)), { 0L }, { 0L }, { 0 }, allowUnapprovedContent = true)
+            val state = engine.startRun("run$count", QuizConfiguration(QuizDuration.Unlimited, PlayScope.Pack("science")), 3L, emptyList())
+            val question = state.activeQuestion.question as Question.MultipleChoice
+            assertEquals(labels.take(count).toSet(), state.activeQuestion.orderedChoices.map { it.label }.toSet())
+            assertEquals(count >= 4, HintType.RemoveIncorrectOptions in question.supportedHints, "$count choices")
+            if (count >= 4) {
+                val hinted = engine.chooseHint(engine.openHintChooser(state), HintType.RemoveIncorrectOptions)
+                assertTrue(hinted.activeQuestion.removedChoiceIds.isNotEmpty())
+                assertTrue(question.correctChoiceId !in hinted.activeQuestion.removedChoiceIds)
+            }
+            val answered = engine.answerQuestion(state, SubmittedAnswer.ChoiceAnswer(question.correctChoiceId))
+            assertTrue(answered.attempts.single().correct)
+        }
+    }
+
+    @Test
+    fun flipTimerStopsOnceTheAnswerIsRevealed() {
+        val cards = listOf(card(basic, "only", listOf("What is love?", "Baby don't hurt me, don't hurt me, no more, a long answer")))
+        var now = 0L
+        val engine = QuizEngine(PackQuizCatalog.build("1", cards), { now }, { 0L }, { 0 }, allowUnapprovedContent = true)
+        val started = engine.startRun("run", QuizConfiguration(QuizDuration.Unlimited, PlayScope.Pack("science")), 7L, emptyList())
+        now = 5_000
+        val revealed = engine.revealFlipAnswer(started)
+        assertTrue(revealed.activeQuestion.answerRevealed)
+        val remainingAtReveal = revealed.activeQuestion.questionRemainingMillis
+        assertEquals(QuizEngine.FLIP_AND_GRADE_WINDOW_MILLIS - 5_000, remainingAtReveal)
+        now = 60_000
+        val later = engine.advanceClocks(revealed)
+        assertEquals(remainingAtReveal, later.activeQuestion.questionRemainingMillis)
+        assertEquals(5_000, later.activeQuestion.questionElapsedMillis)
+        val answered = engine.answerQuestion(later, SubmittedAnswer.SelfGrade(remembered = true))
+        assertTrue(answered.attempts.single().correct)
+    }
+
     private fun standardNotetype(name: String, fields: List<String>, templates: List<CardTemplate>) = Notetype(
         id = name.hashCode().toLong(),
         name = name,
@@ -356,6 +458,12 @@ class PackQuizCatalogTest {
         templates = templates,
         css = "",
     )
+
+    private fun choiceCard(guid: String, choices: String, correct: String, explanation: String = "", meta: String = ""): PackCard {
+        val notetype = BertNoteTypes.Choice.toAnkiNotetype()
+        val fields = listOf("Which structure is FIFO?", choices, correct, explanation, "", "", meta)
+        return PackCardReader.read("science", notetype, Note(1, guid, notetype.id, fields, emptyList()), 0, "Science")
+    }
 
     private fun card(notetype: Notetype, guid: String, fields: List<String>, ordinal: Int = 0): PackCard =
         PackCardReader.read("science", notetype, Note(1, guid, notetype.id, fields, emptyList()), ordinal, "Science")
