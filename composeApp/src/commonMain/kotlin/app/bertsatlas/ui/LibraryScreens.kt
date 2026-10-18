@@ -8,7 +8,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.layout.ContentScale
 import app.bertsatlas.cardrender.MediaPainterState
 import app.bertsatlas.cardrender.rememberMediaPainter
-import app.bertsatlas.ui.editor.mobile.ChipRow
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
@@ -23,6 +22,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeJoin
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.ui.semantics.selected
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
@@ -102,14 +104,14 @@ fun LibraryScreen(
             val shelves = packs.map { it.shelf }.distinct()
             LibrarySectionLabel("Your packs")
             if (shelves.size > 1) {
-                ChipRow(listOf("" to "All") + shelves.map { it to it.ifBlank { "Other" } }, shelfFilter ?: "") { id ->
-                    shelfFilter = id.ifEmpty { null }
+                LibraryFilterRow(listOf(null to "All") + shelves.map { it to it.ifBlank { "Other" } }, shelfFilter) { shelf ->
+                    shelfFilter = shelf
                     subshelfFilter = null
                 }
                 val subshelves = shelfFilter?.let { shelf -> packs.filter { it.shelf == shelf }.map { it.subshelf }.distinct() }.orEmpty()
                 if (subshelves.size > 1) {
-                    ChipRow(listOf("" to "Everything") + subshelves.map { it to it.ifBlank { "Other" } }, subshelfFilter ?: "") { id ->
-                        subshelfFilter = id.ifEmpty { null }
+                    LibraryFilterRow(listOf(null to "Everything") + subshelves.map { it to it.ifBlank { "Other" } }, subshelfFilter, secondary = true) { subshelf ->
+                        subshelfFilter = subshelf
                     }
                 }
             }
@@ -202,6 +204,9 @@ private fun PackCard(pack: PackCardUi, onOpen: (String) -> Unit) {
         subtitle = pack.subtitle,
         meta = pack.libraryMetaLabel(),
         onClick = { onOpen(pack.packId) },
+        banner = pack.coverImage?.let {
+            { PackCoverArt(pack.accent, pack.cover, Modifier.fillMaxWidth().aspectRatio(COVER_BANNER_RATIO), RoundedCornerShape(16.dp), pack.title, pack.coverImage) }
+        },
     ) { PackCoverArt(pack.accent, pack.cover, Modifier.size(92.dp), RoundedCornerShape(18.dp), pack.title, pack.coverImage) }
 }
 
@@ -221,11 +226,12 @@ private fun LibraryCard(
     subtitle: String,
     meta: String,
     onClick: () -> Unit,
+    banner: (@Composable () -> Unit)? = null,
     cover: @Composable () -> Unit,
 ) {
     val colors = AtlasTheme.colors
     val shape = RoundedCornerShape(24.dp)
-    Row(
+    Column(
         Modifier
             .fillMaxWidth()
             .fillMaxHeight()
@@ -238,18 +244,22 @@ private fun LibraryCard(
             .clip(shape)
             .clickable(role = Role.Button, onClick = onClick)
             .padding(12.dp),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(16.dp),
+        verticalArrangement = Arrangement.spacedBy(12.dp),
     ) {
-        cover()
-        Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(3.dp)) {
-            AtlasText(title, style = AtlasTheme.typography.heading)
-            if (subtitle.isNotBlank()) AtlasText(subtitle, style = AtlasTheme.typography.detail, color = colors.mutedPlum)
-            AtlasText(meta, style = AtlasTheme.typography.detail, color = colors.mutedPlum.copy(alpha = .75f))
+        banner?.invoke()
+        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(16.dp)) {
+            if (banner == null) cover()
+            Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(3.dp)) {
+                AtlasText(title, style = AtlasTheme.typography.heading)
+                if (subtitle.isNotBlank()) AtlasText(subtitle, style = AtlasTheme.typography.detail, color = colors.mutedPlum)
+                AtlasText(meta, style = AtlasTheme.typography.detail, color = colors.mutedPlum.copy(alpha = .75f))
+            }
+            AtlasText("›", style = AtlasTheme.typography.title, color = colors.mutedPlum)
         }
-        AtlasText("›", style = AtlasTheme.typography.title, color = colors.mutedPlum)
     }
 }
+
+private const val COVER_BANNER_RATIO = 1200f / 630f
 
 @Composable
 fun PackHomeScreen(
@@ -696,6 +706,34 @@ fun RecoveryScreen(
             AtlasButton("Resume run", onResume, Modifier.fillMaxWidth())
             AtlasButton("Leave this trivia run", onAbandon, Modifier.fillMaxWidth(), AtlasButtonStyle.Quiet)
             AtlasText("Answered questions still count toward what Bert revisits next.", style = AtlasTheme.typography.detail, color = AtlasTheme.colors.mutedPlum, textAlign = TextAlign.Center)
+        }
+    }
+}
+
+@Composable
+private fun LibraryFilterRow(options: List<Pair<String?, String>>, selected: String?, secondary: Boolean = false, onSelect: (String?) -> Unit) {
+    val colors = AtlasTheme.colors
+    Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+        options.forEach { (id, label) ->
+            val isSelected = id == selected
+            val shape = RoundedCornerShape(50)
+            Box(
+                Modifier
+                    .heightIn(min = if (secondary) 36.dp else 44.dp)
+                    .clip(shape)
+                    .background(if (isSelected) colors.seaGlass else colors.paper, shape)
+                    .border(if (secondary) 1.dp else 1.5.dp, if (isSelected) colors.success else colors.outline.copy(alpha = .7f), shape)
+                    .semantics {
+                        role = Role.Button
+                        contentDescription = label
+                        this.selected = isSelected
+                    }
+                    .clickable { onSelect(id) }
+                    .padding(horizontal = if (secondary) 12.dp else 16.dp, vertical = if (secondary) 6.dp else 10.dp),
+                contentAlignment = Alignment.Center,
+            ) {
+                AtlasText(label, style = if (secondary) AtlasTheme.typography.detail else AtlasTheme.typography.label)
+            }
         }
     }
 }
