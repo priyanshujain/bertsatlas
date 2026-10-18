@@ -247,6 +247,7 @@ private val STYLE_SUMMARIES = mapOf(
     "occlusion" to "A picture with parts hidden",
     "flag" to "A flag and its country",
     "capital" to "A country and its capital",
+    "choice" to "A question with your own options",
 )
 
 @Composable

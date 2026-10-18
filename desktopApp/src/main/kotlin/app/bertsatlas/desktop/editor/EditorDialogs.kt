@@ -217,6 +217,7 @@ fun styleSummary(style: BertNoteType): String = when (style) {
     BertNoteTypes.Image -> "Show a picture, name what it is"
     BertNoteTypes.Flag -> "Show a flag, name the country"
     BertNoteTypes.Capital -> "Name the capital of a country"
+    BertNoteTypes.Choice -> "Ask a question, pick from your own options"
     else -> CardForms.forStyle(style).description
 }
 

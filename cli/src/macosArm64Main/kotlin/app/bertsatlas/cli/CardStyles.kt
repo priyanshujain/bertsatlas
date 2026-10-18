@@ -91,7 +91,10 @@ object StyleSchemas {
         "Fact" -> "Shown after answering"
         "Source" -> "Where the fact comes from, one per line"
         "Capitals" -> "Newline separated list"
-        BertNoteTypes.BERT_META_FIELD -> "Versioned JSON for data with no natural field"
+        "Choices" -> "Newline separated options, 2 to 5, no duplicates"
+        "Correct" -> "Exact text of the one right line in Choices"
+        "Explanation" -> "Shown after answering"
+        BertNoteTypes.BERT_META_FIELD -> "Versioned JSON for data with no natural field. For general styles {\"flipOnly\": true} keeps the card a flip and grade prompt instead of a generated multiple choice"
         else -> null
     }
 }

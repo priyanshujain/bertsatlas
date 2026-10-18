@@ -499,7 +499,7 @@ class EditorController(libraryDirectory: File, workDirectory: File, private val 
     }
 
     fun availableStyles(): List<BertNoteType> {
-        val general = listOf(BertNoteTypes.Basic, BertNoteTypes.Typed, BertNoteTypes.Cloze, BertNoteTypes.TwoWay, BertNoteTypes.Image)
+        val general = listOf(BertNoteTypes.Basic, BertNoteTypes.Typed, BertNoteTypes.Cloze, BertNoteTypes.TwoWay, BertNoteTypes.Image, BertNoteTypes.Choice)
         val geography = if (rows.any { it.styleName == BertNoteTypes.Flag.name || it.styleName == BertNoteTypes.Capital.name }) listOf(BertNoteTypes.Flag, BertNoteTypes.Capital) else emptyList()
         return general + geography
     }

@@ -42,6 +42,7 @@ object CardStyles {
         BertNoteTypes.Occlusion to "occlusion",
         BertNoteTypes.Flag to "flag",
         BertNoteTypes.Capital to "capital",
+        BertNoteTypes.Choice to "choice",
     )
 
     private val titles = mapOf(
@@ -53,6 +54,7 @@ object CardStyles {
         "occlusion" to "Image occlusion",
         "flag" to "Flag",
         "capital" to "Capital",
+        "choice" to "Multiple choice",
     )
 
     private val descriptions = mapOf(
@@ -64,6 +66,7 @@ object CardStyles {
         "occlusion" to "Image occlusion: Image plus Masks shapes",
         "flag" to "Flag: Flag holds <img src=\"xx.png\">, Country is the answer",
         "capital" to "Capital: Capitals is a newline separated list",
+        "choice" to "Multiple choice: Choices holds 2 to 5 lines, Correct is the exact text of the right one",
     )
 
     val all: List<BertNoteType> = keys.keys.toList()
@@ -142,6 +145,13 @@ object CardForms {
             required("Capitals", "Capitals", FormFieldKind.List, "One per line"),
             FormField("CapitalArrangement", "How the capitals work", FormFieldKind.Choice, required = false, choices = capitalArrangements),
             aliases, continent, hint, fact, source,
+        ),
+        BertNoteTypes.Choice to listOf(
+            required("Question", "Question", FormFieldKind.RichText),
+            required("Choices", "Choices", FormFieldKind.List, "2 to 5 options, one per line"),
+            required("Correct", "Correct choice", FormFieldKind.Text, "Exactly the text of the right option"),
+            optional("Explanation", "Explanation", FormFieldKind.RichText, "Shown after answering"),
+            hint, source,
         ),
     )
 
