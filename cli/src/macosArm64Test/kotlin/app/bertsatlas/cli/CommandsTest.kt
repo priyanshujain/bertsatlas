@@ -138,7 +138,7 @@ class CommandsTest {
     @Test
     fun describesEveryCardStyle() {
         val (_, styles) = run("styles", "list")
-        assertEquals(8, (styles.getValue("styles") as JsonArray).size)
+        assertEquals(9, (styles.getValue("styles") as JsonArray).size)
         val (exit, schema) = run("styles", "schema", "two-way")
         assertEquals(ExitCode.Ok, exit)
         assertEquals("object", schema.getValue("type").jsonPrimitive.content)

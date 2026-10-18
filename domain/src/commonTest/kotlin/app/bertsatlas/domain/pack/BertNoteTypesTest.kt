@@ -10,8 +10,8 @@ import kotlin.test.assertTrue
 class BertNoteTypesTest {
     @Test
     fun idsAndNamesAreUnique() {
-        assertEquals(8, BertNoteTypes.all.map { it.id }.toSet().size)
-        assertEquals(8, BertNoteTypes.all.map { it.name }.toSet().size)
+        assertEquals(9, BertNoteTypes.all.map { it.id }.toSet().size)
+        assertEquals(9, BertNoteTypes.all.map { it.name }.toSet().size)
     }
 
     @Test
