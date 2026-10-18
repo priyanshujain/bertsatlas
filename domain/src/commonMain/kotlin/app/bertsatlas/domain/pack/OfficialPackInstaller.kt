@@ -104,6 +104,7 @@ class OfficialPackInstaller(private val libraryDirectory: String, private val wo
                     val packGuids = target.noteGuidsInDecks(treeIds)
                     val retired = (packGuids - incomingGuids).count { guid -> retire(target, guid) }
                     val restored = (retiredBefore intersect incomingGuids).count { guid -> restore(target, guid) }
+                    removeDroppedSections(target, installedDeck, incomingSectionNames(opened, deck, installedDeck))
                     writeManifest(target, installedDeck.id, manifest)
                     retired to restored
                 }
@@ -117,6 +118,20 @@ class OfficialPackInstaller(private val libraryDirectory: String, private val wo
         } catch (failure: Throwable) {
             restoreBackup(backupPath, collectionPath)
             throw failure
+        }
+    }
+
+    private fun incomingSectionNames(opened: OpenedPackage, incomingDeck: Deck, installedDeck: Deck): Set<String> =
+        opened.collection.subdecksOf(incomingDeck).filter { !it.isFiltered }
+            .map { installedDeck.name + it.name.removePrefix(incomingDeck.name) }.toSet()
+
+    private fun removeDroppedSections(collection: AnkiCollection, installedDeck: Deck, incomingSectionNames: Set<String>) {
+        collection.subdecksOf(installedDeck).filter { !it.isFiltered && it.name !in incomingSectionNames }.forEach { dropped ->
+            collection.cardsInDecks(listOf(dropped.id)).forEach { card ->
+                val moved = if (card.deckId == dropped.id) card.copy(deckId = installedDeck.id) else card.copy(scheduling = card.scheduling.copy(originalDeckId = installedDeck.id))
+                collection.saveCard(moved)
+            }
+            collection.deleteDeck(dropped.id)
         }
     }
 
