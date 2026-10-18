@@ -49,6 +49,9 @@ kotlin {
             implementation(libs.kotlinx.datetime)
             implementation(libs.kotlinx.serialization.json)
         }
+        jvmTest.dependencies {
+            implementation(kotlin("test"))
+        }
     }
 }
 
