@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -457,27 +458,37 @@ private fun CategoryHero(category: StoreCategory, packCount: Int) {
 
 @Composable
 private fun CategoryRow(categories: List<StoreCategory>, onOpen: (StoreCategory) -> Unit) {
-    Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-        categories.forEach { category ->
-            val accent = category.accentColor.toColorOr(AtlasTheme.colors.atlasBlue)
-            Column(
-                Modifier.width(160.dp)
-                    .clip(RoundedCornerShape(20.dp))
-                    .background(AtlasTheme.colors.paper)
-                    .border(1.dp, accent.copy(alpha = .4f), RoundedCornerShape(20.dp))
-                    .semantics(mergeDescendants = true) { role = Role.Button; contentDescription = category.name }
-                    .clickable { onOpen(category) }
-                    .padding(14.dp),
-                verticalArrangement = Arrangement.spacedBy(8.dp),
-            ) {
-                Box(Modifier.size(40.dp).background(accent, CircleShape), contentAlignment = Alignment.Center) {
-                    AtlasText(category.icon.iconGlyph(), style = AtlasTheme.typography.label, color = AtlasTheme.colors.white)
-                }
-                ClampedText(category.name, style = AtlasTheme.typography.label, maxLines = 2)
+    Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(10.dp)) {
+        categories.chunked(CATEGORY_COLUMNS).forEach { rowCategories ->
+            Row(Modifier.fillMaxWidth().height(IntrinsicSize.Min), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+                rowCategories.forEach { category -> CategoryTile(category, Modifier.weight(1f).fillMaxHeight()) { onOpen(category) } }
+                repeat(CATEGORY_COLUMNS - rowCategories.size) { Spacer(Modifier.weight(1f)) }
             }
         }
     }
 }
+
+@Composable
+private fun CategoryTile(category: StoreCategory, modifier: Modifier, onOpen: () -> Unit) {
+    val accent = category.accentColor.toColorOr(AtlasTheme.colors.atlasBlue)
+    Column(
+        modifier
+            .clip(RoundedCornerShape(20.dp))
+            .background(AtlasTheme.colors.paper)
+            .border(1.dp, accent.copy(alpha = .4f), RoundedCornerShape(20.dp))
+            .semantics(mergeDescendants = true) { role = Role.Button; contentDescription = category.name }
+            .clickable(onClick = onOpen)
+            .padding(14.dp),
+        verticalArrangement = Arrangement.spacedBy(8.dp),
+    ) {
+        Box(Modifier.size(40.dp).background(accent, CircleShape), contentAlignment = Alignment.Center) {
+            AtlasText(category.icon.iconGlyph(), style = AtlasTheme.typography.label, color = AtlasTheme.colors.white)
+        }
+        ClampedText(category.name, style = AtlasTheme.typography.label, maxLines = 2)
+    }
+}
+
+private const val CATEGORY_COLUMNS = 2
 
 @Composable
 private fun ShelfRow(shelf: StoreShelf, index: StoreIndex, state: StoreState, store: StoreController, navigation: StoreNavigation) {
