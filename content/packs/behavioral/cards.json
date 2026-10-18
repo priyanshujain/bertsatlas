@@ -1,0 +1,1487 @@
+{
+  "cards": [
+    {
+      "guid": "b4a7d469-13b9-5390-a0e7-ba23c43f1efb",
+      "noteType": "Bert Choice",
+      "section": "principles",
+      "fields": {
+        "Question": "Which Amazon Leadership Principle is this question mainly probing? \"Tell me about a time you had to make a decision quickly without all the data you wanted.\"",
+        "Choices": "Bias for Action\nDive Deep\nInsist on the Highest Standards\nFrugality",
+        "Correct": "Bias for Action",
+        "Explanation": "Bias for Action says speed matters and many decisions are reversible, so calculated risk taking is valued. Dive Deep is about digging into details and auditing metrics, the opposite emphasis. Highest Standards is about raising the quality bar. Frugality is about doing more with fewer resources, not time pressure.",
+        "Hint": "Speed and reversible decisions.",
+        "Source": "Amazon Leadership Principles (https://www.amazon.jobs/content/en/our-workplace/leadership-principles)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::level::mid",
+        "bert::level::senior",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "0e0fdbdb-00f2-5efe-bad3-7b8eb0d60487",
+      "noteType": "Bert Choice",
+      "section": "principles",
+      "fields": {
+        "Question": "Which Amazon Leadership Principle is this question mainly probing? \"Tell me about a time a metric looked fine but you suspected something was wrong underneath.\"",
+        "Choices": "Bias for Action\nDive Deep\nAre Right, A Lot\nEarn Trust\nDeliver Results",
+        "Correct": "Dive Deep",
+        "Explanation": "Dive Deep: leaders operate at all levels, stay connected to the details, audit frequently and are skeptical when metrics and anecdote differ. Bias for Action rewards speed, not skepticism. Are Right, A Lot is about judgment across perspectives. Earn Trust is about candor and respect. Deliver Results is about hitting outcomes despite setbacks.",
+        "Hint": "Metrics and anecdote differ.",
+        "Source": "Amazon Leadership Principles (https://www.amazon.jobs/content/en/our-workplace/leadership-principles)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::level::mid",
+        "bert::level::senior",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "0caadaac-e7a8-5691-a9ed-4df745b8ac5d",
+      "noteType": "Bert Choice",
+      "section": "principles",
+      "fields": {
+        "Question": "Which Amazon Leadership Principle is this question mainly probing? \"Tell me about a time you strongly disagreed with your manager's decision. What did you do after it was made?\"",
+        "Choices": "Earn Trust\nOwnership\nHave Backbone; Disagree and Commit\nCustomer Obsession",
+        "Correct": "Have Backbone; Disagree and Commit",
+        "Explanation": "The principle explicitly covers challenging decisions respectfully and then committing wholly once a decision is made. Earn Trust covers listening and candor but not the commit step. Ownership is about acting for the long term beyond your team. Customer Obsession is about starting from the customer.",
+        "Hint": "The second half of the question is the tell.",
+        "Source": "Amazon Leadership Principles (https://www.amazon.jobs/content/en/our-workplace/leadership-principles)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::level::senior",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "40956c50-2a12-5061-a70d-2058b1f9bc1d",
+      "noteType": "Bert Choice",
+      "section": "principles",
+      "fields": {
+        "Question": "Which Amazon Leadership Principle is this question mainly probing? \"Tell me about a time you fixed a problem that was not your team's responsibility.\"",
+        "Choices": "Bias for Action\nEarn Trust\nLearn and Be Curious\nOwnership",
+        "Correct": "Ownership",
+        "Explanation": "Ownership: leaders act on behalf of the entire company, beyond their own team, and never say \"that's not my job\". Bias for Action is about speed of decision, which may appear but is not the core. Earn Trust is about relationships. Learn and Be Curious is about seeking new knowledge.",
+        "Hint": "\"That's not my job.\"",
+        "Source": "Amazon Leadership Principles (https://www.amazon.jobs/content/en/our-workplace/leadership-principles)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::level::senior",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "36f514a1-b1d8-50f1-8300-ec8e88462fd4",
+      "noteType": "Bert Choice",
+      "section": "principles",
+      "fields": {
+        "Question": "Which Amazon Leadership Principle is this question mainly probing? \"Tell me about a time you made a complex process much simpler.\"",
+        "Choices": "Invent and Simplify\nFrugality\nThink Big\nInsist on the Highest Standards",
+        "Correct": "Invent and Simplify",
+        "Explanation": "Invent and Simplify asks leaders to expect innovation from their teams and always find ways to simplify. Frugality is about constraints breeding resourcefulness, a different driver. Think Big is about bold direction. Highest Standards is about quality bars, not simplicity.",
+        "Hint": "The verb in the question.",
+        "Source": "Amazon Leadership Principles (https://www.amazon.jobs/content/en/our-workplace/leadership-principles)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::level::mid",
+        "bert::level::senior",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "02132093-ead3-5846-a250-1d50b70e6150",
+      "noteType": "Bert Choice",
+      "section": "principles",
+      "fields": {
+        "Question": "Which Amazon Leadership Principle is this question mainly probing? \"Tell me about a time you refused to ship something because it was not good enough.\"",
+        "Choices": "Deliver Results\nInsist on the Highest Standards\nBias for Action\nDive Deep",
+        "Correct": "Insist on the Highest Standards",
+        "Explanation": "Highest Standards: leaders have relentlessly high standards and ensure defects do not get sent down the line. Deliver Results would push toward shipping. Bias for Action values speed, the opposite tension. Dive Deep is about investigation, not the quality gate.",
+        "Hint": "Defects not sent down the line.",
+        "Source": "Amazon Leadership Principles (https://www.amazon.jobs/content/en/our-workplace/leadership-principles)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::level::mid",
+        "bert::level::senior",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "1114e89c-751e-5070-9e04-d392afab6f19",
+      "noteType": "Bert Choice",
+      "section": "principles",
+      "fields": {
+        "Question": "Which Amazon Leadership Principle is this question mainly probing? \"Tell me about a time you accomplished something with far fewer resources than you wanted.\"",
+        "Choices": "Invent and Simplify\nDeliver Results\nFrugality\nOwnership",
+        "Correct": "Frugality",
+        "Explanation": "Frugality: accomplish more with less; constraints breed resourcefulness, self sufficiency and invention. Invent and Simplify can appear but the prompt is anchored on resources. Deliver Results is about outcomes regardless of constraint type. Ownership is about long term thinking and scope.",
+        "Hint": "Constraints breed resourcefulness.",
+        "Source": "Amazon Leadership Principles (https://www.amazon.jobs/content/en/our-workplace/leadership-principles)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::level::mid",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "96a4e780-f49b-57ba-b490-74f8ca81d91a",
+      "noteType": "Bert Choice",
+      "section": "principles",
+      "fields": {
+        "Question": "Which Amazon Leadership Principle is this question mainly probing? \"Tell me about someone you mentored and how their career changed.\"",
+        "Choices": "Strive to be Earth's Best Employer\nEarn Trust\nLearn and Be Curious\nHire and Develop the Best",
+        "Correct": "Hire and Develop the Best",
+        "Explanation": "Hire and Develop the Best: leaders recognize exceptional talent and willingly move them throughout the organization, and take coaching seriously. Earth's Best Employer is about the work environment and team wellbeing broadly. Earn Trust is about candor and relationships. Learn and Be Curious is about your own learning.",
+        "Hint": "Developing a person, not the environment.",
+        "Source": "Amazon Leadership Principles (https://www.amazon.jobs/content/en/our-workplace/leadership-principles)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::level::senior",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "d12eb5aa-195a-5b10-9c26-1f931b977275",
+      "noteType": "Bert Choice",
+      "section": "principles",
+      "fields": {
+        "Question": "Which Amazon Leadership Principle is this question mainly probing? \"Tell me about something you taught yourself recently outside your job requirements.\"",
+        "Choices": "Learn and Be Curious\nInvent and Simplify\nHire and Develop the Best\nThink Big",
+        "Correct": "Learn and Be Curious",
+        "Explanation": "Learn and Be Curious: leaders are never done learning and are curious about new possibilities. Invent and Simplify is about building simpler solutions. Hire and Develop is about growing others. Think Big is about ambitious direction.",
+        "Hint": "Your own growth.",
+        "Source": "Amazon Leadership Principles (https://www.amazon.jobs/content/en/our-workplace/leadership-principles)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::level::mid",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "4035eed8-bbbf-5577-94cb-ca1b22dc6775",
+      "noteType": "Bert Choice",
+      "section": "principles",
+      "fields": {
+        "Question": "Which Amazon Leadership Principle is this question mainly probing? \"Tell me about a time you had to tell your team you had made a serious mistake.\"",
+        "Choices": "Ownership\nEarn Trust\nHave Backbone; Disagree and Commit\nDive Deep",
+        "Correct": "Earn Trust",
+        "Explanation": "Earn Trust: leaders listen attentively, speak candidly and are vocally self critical, even when it is awkward or embarrassing. Ownership is a close second but its text is about long term and company wide action, not candor about yourself. Backbone is about challenging others. Dive Deep is about investigation.",
+        "Hint": "Vocally self critical.",
+        "Source": "Amazon Leadership Principles (https://www.amazon.jobs/content/en/our-workplace/leadership-principles)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::level::mid",
+        "bert::level::senior",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "97c704db-da39-5bd4-adb5-3142ea399ca4",
+      "noteType": "Bert Choice",
+      "section": "principles",
+      "fields": {
+        "Question": "Which Amazon Leadership Principle is this question mainly probing? \"Tell me about a time you proposed a direction much larger than what was asked for.\"",
+        "Choices": "Invent and Simplify\nBias for Action\nThink Big\nCustomer Obsession",
+        "Correct": "Think Big",
+        "Explanation": "Think Big: thinking small is a self fulfilling prophecy; leaders create and communicate a bold direction. Invent and Simplify is about simpler solutions. Bias for Action is about speed. Customer Obsession is about starting from customer needs.",
+        "Hint": "Bold direction.",
+        "Source": "Amazon Leadership Principles (https://www.amazon.jobs/content/en/our-workplace/leadership-principles)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::level::senior",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "68dc21bc-7907-5440-99cf-f389b626ba6b",
+      "noteType": "Bert Choice",
+      "section": "principles",
+      "fields": {
+        "Question": "Which Amazon Leadership Principle is this question mainly probing? \"Tell me about a time you pushed back on a feature because it would hurt users even though it helped a metric.\"",
+        "Choices": "Deliver Results\nInsist on the Highest Standards\nAre Right, A Lot\nCustomer Obsession",
+        "Correct": "Customer Obsession",
+        "Explanation": "Customer Obsession: leaders start with the customer and work backwards and work vigorously to earn and keep customer trust. Deliver Results would favor the metric. Highest Standards is about quality bars generally. Are Right, A Lot is about judgment, too general for a customer framed prompt.",
+        "Hint": "Work backwards from whom?",
+        "Source": "Amazon Leadership Principles (https://www.amazon.jobs/content/en/our-workplace/leadership-principles)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::level::mid",
+        "bert::level::senior",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "6817f503-c790-5e75-a406-831ed6be4d91",
+      "noteType": "Bert Choice",
+      "section": "principles",
+      "fields": {
+        "Question": "Which Amazon Leadership Principle is this question mainly probing? \"Tell me about a time you were about to miss a critical deadline. What did you do?\"",
+        "Choices": "Deliver Results\nBias for Action\nFrugality\nOwnership",
+        "Correct": "Deliver Results",
+        "Explanation": "Deliver Results: focus on the key inputs, deliver with the right quality in a timely fashion, and despite setbacks rise to the occasion and never settle. Bias for Action is about making decisions quickly. Frugality is about resources. Ownership is about scope and long term thinking.",
+        "Hint": "Despite setbacks.",
+        "Source": "Amazon Leadership Principles (https://www.amazon.jobs/content/en/our-workplace/leadership-principles)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::level::mid",
+        "bert::level::senior",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "8939dac1-e517-5f34-8d42-f50316af5a92",
+      "noteType": "Bert Choice",
+      "section": "principles",
+      "fields": {
+        "Question": "Which Amazon Leadership Principle is this question mainly probing? \"Tell me about a time your gut instinct was wrong and how you found out.\"",
+        "Choices": "Learn and Be Curious\nAre Right, A Lot\nDive Deep\nEarn Trust",
+        "Correct": "Are Right, A Lot",
+        "Explanation": "Are Right, A Lot: leaders have strong judgment and good instincts, seek diverse perspectives and work to disconfirm their beliefs. Learn and Be Curious is about acquiring knowledge in general. Dive Deep is about details and metrics. Earn Trust is about candor with others.",
+        "Hint": "Disconfirming your own beliefs.",
+        "Source": "Amazon Leadership Principles (https://www.amazon.jobs/content/en/our-workplace/leadership-principles)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::level::senior",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "e5942349-99c6-5ee7-881a-49bd80219e41",
+      "noteType": "Bert Choice",
+      "section": "principles",
+      "fields": {
+        "Question": "Which Amazon Leadership Principle is this question mainly probing? \"Tell me about a time you noticed your team was burning out and what you changed.\"",
+        "Choices": "Hire and Develop the Best\nDeliver Results\nStrive to be Earth's Best Employer\nOwnership",
+        "Correct": "Strive to be Earth's Best Employer",
+        "Explanation": "Strive to be Earth's Best Employer: leaders work every day to create a safer, more productive, more diverse and more just work environment, and lead with empathy. Hire and Develop is about talent and coaching careers. Deliver Results would tempt you to push through. Ownership is about company wide action.",
+        "Hint": "Work environment and empathy.",
+        "Source": "Amazon Leadership Principles (https://www.amazon.jobs/content/en/our-workplace/leadership-principles)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::level::senior",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "89058f4e-b352-561b-8874-dd78da10dcc4",
+      "noteType": "Bert Choice",
+      "section": "principles",
+      "fields": {
+        "Question": "Which Amazon Leadership Principle is this question mainly probing? \"Tell me about a time you considered the effect of your system on people outside your users, such as a community or the environment.\"",
+        "Choices": "Customer Obsession\nThink Big\nStrive to be Earth's Best Employer\nSuccess and Scale Bring Broad Responsibility",
+        "Correct": "Success and Scale Bring Broad Responsibility",
+        "Explanation": "Success and Scale Bring Broad Responsibility: leaders are humble and thoughtful about secondary effects of their actions on communities and the world. Customer Obsession is limited to customers. Think Big is about ambition. Earth's Best Employer is about employees.",
+        "Hint": "Secondary effects beyond customers.",
+        "Source": "Amazon Leadership Principles (https://www.amazon.jobs/content/en/our-workplace/leadership-principles)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::level::senior",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "696165c5-c56e-5731-b29e-659ba8c27176",
+      "noteType": "Bert Choice",
+      "section": "principles",
+      "fields": {
+        "Question": "How many Leadership Principles does Amazon currently list?",
+        "Choices": "16\n14\n12\n15",
+        "Correct": "16",
+        "Explanation": "Amazon lists 16. The original 14 were extended in 2021 with Strive to be Earth's Best Employer and Success and Scale Bring Broad Responsibility. 14 is the older count candidates still quote, 12 and 15 are not counts Amazon has published as current.",
+        "Hint": "Two were added in 2021.",
+        "Source": "Amazon Leadership Principles (https://www.amazon.jobs/content/en/our-workplace/leadership-principles)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::level::mid",
+        "bert::level::senior",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "b408ab9e-5646-530e-83d1-1f49c9356be9",
+      "noteType": "Bert Choice",
+      "section": "principles",
+      "fields": {
+        "Question": "An Amazon interviewer asks: \"Tell me about a time you challenged a senior leader's technical plan using data you gathered yourself.\" Which pair of principles is the best fit for the story you pick?",
+        "Choices": "Earn Trust plus Frugality\nHave Backbone; Disagree and Commit plus Dive Deep\nThink Big plus Bias for Action\nHire and Develop the Best plus Ownership",
+        "Correct": "Have Backbone; Disagree and Commit plus Dive Deep",
+        "Explanation": "Challenging a decision is Backbone, and gathering the data yourself is Dive Deep. Earn Trust plus Frugality misses the challenge and has nothing to do with resources. Think Big plus Bias for Action fits bold, fast moves, not evidence based dissent. Hire and Develop plus Ownership is about people and scope.",
+        "Hint": "Challenge plus evidence.",
+        "Source": "Amazon Leadership Principles (https://www.amazon.jobs/content/en/our-workplace/leadership-principles)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::level::senior",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "cabc5de7-8fe9-5a27-a457-df44c75ace66",
+      "noteType": "Bert Choice",
+      "section": "principles",
+      "fields": {
+        "Question": "You have 8 strong stories and an Amazon loop with 5 interviewers, each assigned 2 or 3 principles. What is the best preparation strategy?",
+        "Choices": "Prepare one great story and adapt it to every question\nMemorize the principle text and answer hypothetically\nMap each story to the 2 or 3 principles it shows best and prepare a backup story per principle\nPrepare a story for only Customer Obsession since every interviewer asks it",
+        "Correct": "Map each story to the 2 or 3 principles it shows best and prepare a backup story per principle",
+        "Explanation": "Interviewers cover different principles and compare notes, so a matrix of story to principle with backups avoids repeating the same story to several interviewers. One story reused everywhere reads thin and gets flagged in the debrief. Hypothetical answers are scored low because Amazon asks for past behavior. Customer Obsession is common but each interviewer has assigned principles.",
+        "Hint": "Interviewers compare notes in the debrief.",
+        "Source": "Amazon Leadership Principles (https://www.amazon.jobs/content/en/our-workplace/leadership-principles)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::level::senior",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "9862f0e7-0264-5a24-b7b0-fb9d1a58e78a",
+      "noteType": "Bert Choice",
+      "section": "principles",
+      "fields": {
+        "Question": "An Amazon interviewer asks \"Tell me about a time you had to dive deep.\" Which opening is strongest?",
+        "Choices": "\"I would normally start by looking at dashboards, then logs.\"\n\"I always dive deep, it's one of my strengths.\"\n\"Our team is known for diving deep on incidents.\"\n\"Last spring our checkout p99 doubled after a deploy. I owned the investigation.\"",
+        "Correct": "\"Last spring our checkout p99 doubled after a deploy. I owned the investigation.\"",
+        "Explanation": "Behavioral questions ask for a specific past situation with your role stated. \"I would\" is hypothetical and scored as weak evidence. Claiming a trait is not evidence. \"Our team\" hides your individual contribution.",
+        "Hint": "Specific, past, and you.",
+        "Source": "Meta behavioral interview guide, Copilot Interview (https://copilotinterview.com/blog/meta-behavioral-interview)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::level::mid",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "b4dbe3f3-7ae8-59a6-aac1-44489f2e3622",
+      "noteType": "Bert Choice",
+      "section": "star",
+      "fields": {
+        "Question": "A candidate says: \"Our service was slow. I profiled it, found an N+1 query and batched it. Then I moved on to the next project.\" What is the main weakness?",
+        "Choices": "No measurable result\nToo much personal action\nNo situation given\nToo technical for a behavioral round",
+        "Correct": "No measurable result",
+        "Explanation": "STAR ends with a result, ideally quantified: latency before and after, cost, users affected. The situation is present (slow service) and the action is clearly theirs. Technical detail is fine if it serves the story; the missing outcome is the gap.",
+        "Hint": "Which STAR letter is absent?",
+        "Source": "Meta behavioral interview guide, Copilot Interview (https://copilotinterview.com/blog/meta-behavioral-interview)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::level::mid",
+        "bert::level::senior",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "cf27e63f-a417-5b76-9c0c-285bc38a29dc",
+      "noteType": "Bert Choice",
+      "section": "star",
+      "fields": {
+        "Question": "A candidate tells a migration story using \"we decided\", \"we built\", \"we rolled out\" throughout. What will the interviewer most likely probe?",
+        "Choices": "Whether the migration was on time\nWhat the candidate personally did\nThe team size\nWhich database was used",
+        "Correct": "What the candidate personally did",
+        "Explanation": "Interviewers score individual contribution. Constant \"we\" hides it, so they will ask \"what did you do?\" and score down if the answer stays vague. Timing, team size and technology are context, not the missing signal.",
+        "Hint": "Who is being hired?",
+        "Source": "Meta behavioral interview guide, Copilot Interview (https://copilotinterview.com/blog/meta-behavioral-interview)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::level::mid",
+        "bert::level::senior",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "5905bb27-6bc5-505f-87e8-4e8ec3a63588",
+      "noteType": "Bert Choice",
+      "section": "star",
+      "fields": {
+        "Question": "A candidate spends 4 of their 5 minutes explaining the company, the org chart and the system history before saying what they did. What is the fix?",
+        "Choices": "Add more detail so the interviewer understands\nSkip the situation entirely\nCompress the situation to a few sentences and spend most of the time on actions and results\nSpeak faster to fit everything in",
+        "Correct": "Compress the situation to a few sentences and spend most of the time on actions and results",
+        "Explanation": "Common guidance is to keep situation and task short and spend most time on action and result, where the signal is. More detail makes it worse. Skipping context entirely leaves the interviewer unable to judge scope. Speaking faster does not fix proportions.",
+        "Hint": "Where does the signal live?",
+        "Source": "Meta behavioral interview guide, Copilot Interview (https://copilotinterview.com/blog/meta-behavioral-interview)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::level::mid",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "fd936468-433e-5895-885d-8bba399b4c2d",
+      "noteType": "Bert Choice",
+      "section": "star",
+      "fields": {
+        "Question": "In a failure story, a candidate covers what broke, what they did and the recovery, then stops. What is missing that interviewers specifically look for?",
+        "Choices": "A longer description of the outage\nWho else was responsible\nA promise it will never happen again\nWhat they learned and changed afterward",
+        "Correct": "What they learned and changed afterward",
+        "Explanation": "Failure questions probe growth: the lesson and the concrete change in behavior or process. More outage detail adds nothing. Naming others reads as blame. A promise is not evidence of change; a changed process or habit is.",
+        "Hint": "Growth is a Meta focus area.",
+        "Source": "Meta behavioral interview guide, Copilot Interview (https://copilotinterview.com/blog/meta-behavioral-interview)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::level::mid",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "4cd35cb6-10e1-5504-bdb1-365132f6cf24",
+      "noteType": "Bert Choice",
+      "section": "star",
+      "fields": {
+        "Question": "Prompt: \"Tell me about a time you improved reliability.\" Which result statement is strongest?",
+        "Choices": "\"Paging dropped from 30 to 4 a month and the runbook I wrote is now used by three teams.\"\n\"Things got a lot better and the team was happy.\"\n\"We improved reliability significantly.\"\n\"I learned a lot about reliability.\"",
+        "Correct": "\"Paging dropped from 30 to 4 a month and the runbook I wrote is now used by three teams.\"",
+        "Explanation": "Strong results are specific, measured and show reach beyond the immediate task. \"A lot better\" and \"significantly\" are unmeasured. Learning is good to add but is not a result on its own.",
+        "Hint": "Numbers and reach.",
+        "Source": "Meta behavioral interview guide, Copilot Interview (https://copilotinterview.com/blog/meta-behavioral-interview)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::level::mid",
+        "bert::level::senior",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "d5f9a7a8-a5e1-5f18-be36-815ab6b998bc",
+      "noteType": "Bert Choice",
+      "section": "star",
+      "fields": {
+        "Question": "In a conflict story a candidate says: \"The other team was incompetent, so I escalated to my director and they got overruled.\" What is the biggest red flag?",
+        "Choices": "Not naming the director\nBlaming the other party and escalating instead of resolving\nMentioning another team\nNot giving the exact date",
+        "Correct": "Blaming the other party and escalating instead of resolving",
+        "Explanation": "Conflict questions test collaboration and empathy. Calling peers incompetent and jumping to escalation signals poor collaboration. Names, other teams and dates are irrelevant details.",
+        "Hint": "Tone toward the other side.",
+        "Source": "Meta behavioral interview guide, Copilot Interview (https://copilotinterview.com/blog/meta-behavioral-interview)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::level::mid",
+        "bert::level::senior",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "a4777e92-0cbd-5c45-b819-646a04cbc5d1",
+      "noteType": "Bert Choice",
+      "section": "star",
+      "fields": {
+        "Question": "Asked for a time they handled a tight deadline, a candidate answers with what they would do in general. How is this typically scored?",
+        "Choices": "Strongly, because it shows a clear process\nNeutral, since both formats are equivalent\nWeakly, because it shows no evidence of past behavior\nStrongly, if the process is well structured",
+        "Correct": "Weakly, because it shows no evidence of past behavior",
+        "Explanation": "Behavioral interviews assume past behavior predicts future behavior and ask for a real example. A general process is not evidence. Interviewers usually redirect once, then score low. Structure does not substitute for an actual instance.",
+        "Hint": "Past behavior predicts future behavior.",
+        "Source": "Meta behavioral interview guide, Copilot Interview (https://copilotinterview.com/blog/meta-behavioral-interview)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::level::mid",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "ab816111-0e81-5bb5-bd0b-4d05bbac402d",
+      "noteType": "Bert Choice",
+      "section": "star",
+      "fields": {
+        "Question": "A senior candidate, asked about their biggest technical challenge, describes fixing a flaky unit test over an afternoon. What is the main weakness?",
+        "Choices": "The story lacks a result\nThe story uses too much \"I\"\nUnit tests are off topic\nThe scope is too small for the level",
+        "Correct": "The scope is too small for the level",
+        "Explanation": "The story choice itself signals level. A senior candidate's biggest challenge should carry ambiguity, multiple stakeholders or cross team impact. The flaky test may have a result and \"I\" is correct here. Tests are not off topic, the scale is wrong.",
+        "Hint": "Story choice is a level signal.",
+        "Source": "How Meta evaluates behavioral interviews, interviewing.io (https://interviewing.io/blog/how-software-engineering-behavioral-interviews-are-evaluated-meta)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::level::senior",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "24bf2db3-e222-518b-ae69-cce31325b85e",
+      "noteType": "Bert Choice",
+      "section": "star",
+      "fields": {
+        "Question": "A candidate says: \"I raised the risk in the design review, but nobody listened and it failed in production.\" What would make this story strong?",
+        "Choices": "Showing what they did after being ignored to reduce the risk or influence the decision\nNaming who ignored them\nSaying they were right in the end\nLeaving out that it failed",
+        "Correct": "Showing what they did after being ignored to reduce the risk or influence the decision",
+        "Explanation": "Interviewers want to see persistence and influence: data, a prototype, a smaller safer rollout, a written risk note. Naming people is blame. Being right without acting shows no ownership. Hiding the failure removes the honesty that makes the story useful.",
+        "Hint": "Raising a risk is not the end.",
+        "Source": "Amazon Leadership Principles (https://www.amazon.jobs/content/en/our-workplace/leadership-principles)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::level::mid",
+        "bert::level::senior",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "7e69c925-5cb5-5ac4-bf5c-b4080b98472d",
+      "noteType": "Bert Choice",
+      "section": "star",
+      "fields": {
+        "Question": "After your story the interviewer asks: \"What would you do differently?\" Which answer is strongest?",
+        "Choices": "\"Honestly, nothing. It went well.\"\nA specific change you would make, with why, tied to a lesson from the story\n\"I'd have the team work harder.\"\n\"I'd get more budget.\"",
+        "Correct": "A specific change you would make, with why, tied to a lesson from the story",
+        "Explanation": "The question probes self reflection. A specific change with reasoning shows growth. \"Nothing\" reads as low self awareness. \"Work harder\" puts it on others. More budget dodges your own decisions.",
+        "Hint": "Self reflection probe.",
+        "Source": "Google behavioral interview and Googleyness, AceRound (https://www.aceround.app/blog/google-behavioral-interview-googleyness/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::level::senior",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "7f2e2aa0-d9e0-5db6-828f-80fcf8119573",
+      "noteType": "Bert Choice",
+      "section": "star",
+      "fields": {
+        "Question": "Your project had no clean metric. Which result statement is still strong?",
+        "Choices": "\"It went really well.\"\n\"It was a success in my opinion.\"\n\"The on call team adopted it as the default, and two other teams copied the pattern within a quarter.\"\n\"We finished it.\"",
+        "Correct": "\"The on call team adopted it as the default, and two other teams copied the pattern within a quarter.\"",
+        "Explanation": "When numbers are missing, concrete adoption, decisions changed or follow on use serve as evidence. \"Really well\" and \"in my opinion\" are unsupported. Finishing is the bare minimum, not impact.",
+        "Hint": "Observable evidence.",
+        "Source": "Meta behavioral interview guide, Copilot Interview (https://copilotinterview.com/blog/meta-behavioral-interview)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::level::mid",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "788ad40a-de89-5ed1-b42a-e88446bc1184",
+      "noteType": "Bert Choice",
+      "section": "star",
+      "fields": {
+        "Question": "A candidate says: \"Our deploys were failing, so I rewrote the pipeline and failed deploys dropped from 20 percent to 2 percent.\" Which STAR element is missing?",
+        "Choices": "Situation\nAction\nResult\nTask: what they were responsible for and what success meant",
+        "Correct": "Task: what they were responsible for and what success meant",
+        "Explanation": "The situation (deploys failing), the action (rewrote the pipeline) and the result (20 to 2 percent) are all there. Task, their role and the goal, is missing, which leaves the interviewer unsure whether this was assigned, self started, or overreach.",
+        "Hint": "What sits between S and A?",
+        "Source": "Meta behavioral interview guide, Copilot Interview (https://copilotinterview.com/blog/meta-behavioral-interview)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::level::mid",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "62c70154-ef57-5f8a-841f-baa8fc63192e",
+      "noteType": "Bert Choice",
+      "section": "star",
+      "fields": {
+        "Question": "What is a typical target length for one behavioral story before follow up questions?",
+        "Choices": "About 2 to 3 minutes\nAbout 30 seconds\nAbout 10 minutes\nAs long as needed to cover everything",
+        "Correct": "About 2 to 3 minutes",
+        "Explanation": "Common guidance is a 2 to 3 minute story, leaving room for follow ups where much of the signal comes from. 30 seconds cannot carry actions and results. 10 minutes blocks follow ups and limits how many stories the interviewer can hear.",
+        "Hint": "Leave room for follow ups.",
+        "Source": "Google behavioral interview prep, Preper (https://preper.app/guides/google-behavioral-interview-prep)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::level::mid",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "830e853c-53a4-5bf4-9922-92e165036051",
+      "noteType": "Bert Choice",
+      "section": "star",
+      "fields": {
+        "Question": "A senior candidate's story credits the team for the outcome but clearly states their own decisions. How does this usually read?",
+        "Choices": "Poorly, they should take all credit\nWell, it shows individual contribution and collaboration\nPoorly, mentioning the team dilutes the signal\nNeutral, credit is not evaluated",
+        "Correct": "Well, it shows individual contribution and collaboration",
+        "Explanation": "The goal is clarity on your actions, not erasing others. Naming your decisions while crediting the team is a senior signal. Taking all credit reads as poor collaboration. Mentioning the team is fine when your part is explicit.",
+        "Hint": "Both signals at once.",
+        "Source": "Meta behavioral interview guide, Copilot Interview (https://copilotinterview.com/blog/meta-behavioral-interview)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::level::senior",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "8bf04c87-3996-5081-a729-bc78015a1c7f",
+      "noteType": "Bert Choice",
+      "section": "star",
+      "fields": {
+        "Question": "Asked \"Tell me about a time you disagreed with a peer\", a candidate tells a story about disagreeing with a vendor's pricing. Main issue?",
+        "Choices": "It has no result\nIt is too short\nIt does not answer the question asked, which targets working relationships with peers\nVendors are confidential",
+        "Correct": "It does not answer the question asked, which targets working relationships with peers",
+        "Explanation": "The prompt probes how you handle disagreement with a colleague. A vendor pricing dispute dodges the interpersonal signal. Result and length are not the stated problem. Confidentiality is not the issue.",
+        "Hint": "What does the question target?",
+        "Source": "Meta behavioral interview guide, Copilot Interview (https://copilotinterview.com/blog/meta-behavioral-interview)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::level::mid",
+        "bert::level::senior",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "78fecf04-a462-5d0b-aab2-6c7b7961489f",
+      "noteType": "Bert Choice",
+      "section": "conflict",
+      "fields": {
+        "Question": "You argued against a design. Leadership chose it anyway. Which behavior matches \"disagree and commit\"?",
+        "Choices": "Build your preferred design in parallel as a backup\nImplement it minimally so the risks prove you right\nKeep reopening the decision in every review\nExecute the chosen design fully and help it succeed, while tracking the risks you raised",
+        "Correct": "Execute the chosen design fully and help it succeed, while tracking the risks you raised",
+        "Explanation": "Disagree and commit means committing wholly once decided. Tracking the risk you raised is fine and responsible. A parallel build undermines the decision. Minimal effort sabotages it. Reopening every review is not commitment.",
+        "Hint": "Commit wholly.",
+        "Source": "Amazon Leadership Principles (https://www.amazon.jobs/content/en/our-workplace/leadership-principles)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::level::senior",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "c53043dc-298a-5992-8e67-9986892d5e1d",
+      "noteType": "Bert Choice",
+      "section": "conflict",
+      "fields": {
+        "Question": "You need another team to change their API, but you have no authority over them. What is the strongest first move?",
+        "Choices": "Understand their goals and constraints, then frame the change around what it gives them\nEscalate to both managers immediately\nFork their service and change it yourself\nSend a detailed spec and a deadline",
+        "Correct": "Understand their goals and constraints, then frame the change around what it gives them",
+        "Explanation": "Influence without authority starts with their incentives. Early escalation burns trust and should be a last resort. Forking creates a maintenance problem and ignores ownership. A spec with a deadline is a demand, not influence.",
+        "Hint": "What's in it for them?",
+        "Source": "Meta behavioral interview guide, Copilot Interview (https://copilotinterview.com/blog/meta-behavioral-interview)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::level::senior",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "542ef861-1229-568b-b8ff-f94ef23755fb",
+      "noteType": "Bert Choice",
+      "section": "conflict",
+      "fields": {
+        "Question": "When is escalating a disagreement with a peer team the right call?",
+        "Choices": "As soon as you disagree, so leaders decide early\nAfter a direct attempt to resolve it fails and the decision blocks a shared goal, escalated jointly with the facts\nNever, escalation is always a failure\nOnly when you are sure you are right",
+        "Correct": "After a direct attempt to resolve it fails and the decision blocks a shared goal, escalated jointly with the facts",
+        "Explanation": "Good escalation is a joint, factual \"we disagree, here are the options\", after direct effort. Escalating at first disagreement skips collaboration. Never escalating leaves blockers unresolved. Being sure you are right is not the criterion, the business impact is.",
+        "Hint": "Joint and factual.",
+        "Source": "Meta behavioral interview guide, Copilot Interview (https://copilotinterview.com/blog/meta-behavioral-interview)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::level::senior",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "dc4afaf7-7049-5461-be4f-a03a67af9c2e",
+      "noteType": "Bert Choice",
+      "section": "conflict",
+      "fields": {
+        "Question": "You and a peer disagree on whether to cache at the edge or in the service. Which resolution approach reads strongest in an interview?",
+        "Choices": "Defer to whoever has more seniority\nGo with the option you prefer because you own the service\nAgree on the decision criteria first, then run a quick test against them\nAsk the team to vote",
+        "Correct": "Agree on the decision criteria first, then run a quick test against them",
+        "Explanation": "Agreeing on criteria and testing turns opinion into evidence and keeps the relationship intact. Seniority and ownership arguments skip the reasoning. A vote can work but shows no judgment or data.",
+        "Hint": "Criteria before options.",
+        "Source": "Meta behavioral interview guide, Copilot Interview (https://copilotinterview.com/blog/meta-behavioral-interview)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::level::mid",
+        "bert::level::senior",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "ab3a2ea7-b213-5422-b40a-308c71e1bd64",
+      "noteType": "Bert Choice",
+      "section": "conflict",
+      "fields": {
+        "Question": "Story: a coworker kept missing code review SLAs. Which action shows the most maturity?",
+        "Choices": "Raise it in the team standup so everyone knows\nReport it to the manager first\nStop requesting their reviews\nAsk privately what was getting in the way and agree a fix together",
+        "Correct": "Ask privately what was getting in the way and agree a fix together",
+        "Explanation": "Private, curious conversation first respects the person and often surfaces a real cause (overload, unclear priorities). Calling them out publicly is shaming. Going to the manager first skips direct feedback. Routing around them hides the problem.",
+        "Hint": "Private and curious.",
+        "Source": "Meta behavioral interview guide, Copilot Interview (https://copilotinterview.com/blog/meta-behavioral-interview)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::level::mid",
+        "bert::level::senior",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "41f92bb7-2c04-54af-a767-097a4e275587",
+      "noteType": "Bert Choice",
+      "section": "conflict",
+      "fields": {
+        "Question": "You committed to a decision you disagreed with. Two months later data shows it is failing. What is the right move?",
+        "Choices": "Bring the new data to the decision makers and propose a change\nSay \"I told you so\" in the retro\nStay silent because you already committed\nQuietly switch to your original design",
+        "Correct": "Bring the new data to the decision makers and propose a change",
+        "Explanation": "Committing does not mean ignoring new evidence; reopening with new data is healthy. \"I told you so\" damages trust. Silence wastes time. Switching quietly bypasses the decision.",
+        "Hint": "New data changes the situation.",
+        "Source": "Amazon Leadership Principles (https://www.amazon.jobs/content/en/our-workplace/leadership-principles)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::level::senior",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "742860ef-958c-5caa-a85b-b0a4e2b5a1d4",
+      "noteType": "Bert Choice",
+      "section": "conflict",
+      "fields": {
+        "Question": "Your PM wants a feature in two weeks that you estimate at six. Which response is strongest?",
+        "Choices": "Agree and work weekends\nExplain the estimate, offer a smaller version that fits two weeks, and agree on what to cut\nRefuse until the deadline moves\nAgree and quietly ship with no tests",
+        "Correct": "Explain the estimate, offer a smaller version that fits two weeks, and agree on what to cut",
+        "Explanation": "Trading scope against time with the PM shows partnership and judgment. Silent overtime is unsustainable and hides the gap. Flat refusal is not collaboration. Skipping tests trades a deadline for future incidents.",
+        "Hint": "Negotiate scope.",
+        "Source": "Meta behavioral interview guide, Copilot Interview (https://copilotinterview.com/blog/meta-behavioral-interview)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::level::mid",
+        "bert::level::senior",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "669c93ed-cb4b-5cc5-a169-1419ad321d25",
+      "noteType": "Bert Choice",
+      "section": "conflict",
+      "fields": {
+        "Question": "Which conflict story best fits a senior engineer at Meta?",
+        "Choices": "Disagreeing with a teammate about variable names\nArguing with an intern about test coverage\nResolving a disagreement between two leads on a multi team project about API ownership\nDisputing a code review comment on one function",
+        "Correct": "Resolving a disagreement between two leads on a multi team project about API ownership",
+        "Explanation": "Meta expects senior conflict stories to involve several leads on a larger project. The other options are single person, code level disagreements that read as junior scope.",
+        "Hint": "Scope of people involved.",
+        "Source": "How Meta evaluates behavioral interviews, interviewing.io (https://interviewing.io/blog/how-software-engineering-behavioral-interviews-are-evaluated-meta)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::level::senior",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "945c7694-7e52-5cba-ae0d-7ed1d565f100",
+      "noteType": "Bert Choice",
+      "section": "conflict",
+      "fields": {
+        "Question": "Interviewer: \"How did you know you understood the other side's view?\" Which answer is strongest?",
+        "Choices": "\"It was obvious what they wanted.\"\n\"I'd worked with them before.\"\n\"I read their design doc.\"\n\"I restated their position and they agreed it was accurate before we compared options.\"",
+        "Correct": "\"I restated their position and they agreed it was accurate before we compared options.\"",
+        "Explanation": "Restating and getting confirmation is concrete evidence of understanding. \"Obvious\" is an assumption. Prior history and reading the doc help but do not confirm you understood their concerns.",
+        "Hint": "Confirm, don't assume.",
+        "Source": "Meta behavioral interview guide, Copilot Interview (https://copilotinterview.com/blog/meta-behavioral-interview)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::level::mid",
+        "bert::level::senior",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "e7a690f7-027f-504f-881a-f44b2103a0de",
+      "noteType": "Bert Choice",
+      "section": "conflict",
+      "fields": {
+        "Question": "In your conflict story your proposal was not chosen. Is it still a good story?",
+        "Choices": "Yes, if you show how you argued, committed and what came of it\nNo, conflict stories must end with you winning\nNo, it signals weak influence\nYes, but only if the chosen option failed",
+        "Correct": "Yes, if you show how you argued, committed and what came of it",
+        "Explanation": "Interviewers look at how you handled it, not whether you won. Losing gracefully and committing is a strong signal. Requiring a win or the other option to fail misreads the rubric.",
+        "Hint": "Process over winning.",
+        "Source": "Amazon Leadership Principles (https://www.amazon.jobs/content/en/our-workplace/leadership-principles)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::level::senior",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "c769745a-4cd4-5c37-96c0-dc906b2a179c",
+      "noteType": "Bert Choice",
+      "section": "conflict",
+      "fields": {
+        "Question": "A long running design disagreement keeps resurfacing in meetings. What tends to settle it?",
+        "Choices": "More meetings until one side gives up\nA short written doc with options, tradeoffs and a recommendation, reviewed by both sides\nLetting the most vocal person decide\nSplitting the difference on every point",
+        "Correct": "A short written doc with options, tradeoffs and a recommendation, reviewed by both sides",
+        "Explanation": "Writing forces clarity on tradeoffs and gives a durable record of the decision. More meetings rewards stamina. Volume is not judgment. Splitting the difference often produces a design worse than either option.",
+        "Hint": "Make tradeoffs explicit.",
+        "Source": "Meta behavioral interview guide, Copilot Interview (https://copilotinterview.com/blog/meta-behavioral-interview)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::level::senior",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "dbb9978c-a1c3-5cf8-9d54-a97e4a26dfc7",
+      "noteType": "Bert Choice",
+      "section": "conflict",
+      "fields": {
+        "Question": "You need to give critical feedback to a more senior engineer about their design. Which approach is best?",
+        "Choices": "Avoid it, seniority means they know better\nComment publicly on the doc so others see it\nRaise it directly and privately with specifics and a question about their reasoning\nAsk your manager to deliver it",
+        "Correct": "Raise it directly and privately with specifics and a question about their reasoning",
+        "Explanation": "Have Backbone applies regardless of seniority, and private, specific feedback with curiosity respects the person. Avoiding it fails the principle. Public critique first can embarrass. Delegating to a manager avoids the conversation.",
+        "Hint": "Backbone with respect.",
+        "Source": "Amazon Leadership Principles (https://www.amazon.jobs/content/en/our-workplace/leadership-principles)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::level::senior",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "76ac560b-fe13-5329-b65f-e451fe5962e1",
+      "noteType": "Bert Choice",
+      "section": "scope",
+      "fields": {
+        "Question": "Per Meta's behavioral rubric, a conflict story with one coworker over a code review most naturally reads as which level?",
+        "Choices": "Senior\nStaff\nPrincipal\nJunior",
+        "Correct": "Junior",
+        "Explanation": "Meta scales expected scope with level: one coworker reads as junior, several leads on a larger project as senior, multiple teams as staff. Senior, staff and principal expect wider scope.",
+        "Hint": "Count the people.",
+        "Source": "How Meta evaluates behavioral interviews, interviewing.io (https://interviewing.io/blog/how-software-engineering-behavioral-interviews-are-evaluated-meta)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::level::senior",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "4eeb8be2-3eaf-577e-a520-c0dd6d248610",
+      "noteType": "Bert Choice",
+      "section": "scope",
+      "fields": {
+        "Question": "Which story reads as staff level scope?",
+        "Choices": "Aligning four teams with conflicting roadmaps on a shared platform migration\nLeading your team's migration to a new framework\nFixing a production bug no one else could find\nMentoring a new hire through onboarding",
+        "Correct": "Aligning four teams with conflicting roadmaps on a shared platform migration",
+        "Explanation": "Staff level stories span multiple teams and org level alignment. Leading your own team's migration is senior. A hard bug fix is individual. Mentoring one person is mid to senior.",
+        "Hint": "Multiple teams.",
+        "Source": "How Meta evaluates behavioral interviews, interviewing.io (https://interviewing.io/blog/how-software-engineering-behavioral-interviews-are-evaluated-meta)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::level::senior",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "a9c18ac5-09c6-5b60-8d0c-918f0f0a463b",
+      "noteType": "Bert Choice",
+      "section": "scope",
+      "fields": {
+        "Question": "Which task description signals senior level more strongly?",
+        "Choices": "\"My lead gave me a well specified ticket and I delivered it early.\"\n\"Nobody had defined the problem. I talked to three teams, wrote the problem statement and got it prioritized.\"\n\"I picked up the hardest ticket on the board.\"\n\"I fixed every bug assigned to me that quarter.\"",
+        "Correct": "\"Nobody had defined the problem. I talked to three teams, wrote the problem statement and got it prioritized.\"",
+        "Explanation": "Senior signal includes defining the problem under ambiguity, not just executing a spec. Delivering a specified ticket early, taking hard tickets and fixing assigned bugs are execution signals typical of mid level.",
+        "Hint": "Who defined the work?",
+        "Source": "How Meta evaluates behavioral interviews, interviewing.io (https://interviewing.io/blog/how-software-engineering-behavioral-interviews-are-evaluated-meta)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::level::senior",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "33a07e79-6b41-5a69-9134-6753e014ed9a",
+      "noteType": "Bert Choice",
+      "section": "scope",
+      "fields": {
+        "Question": "Two candidates improved latency 40 percent. Which detail moves the story to senior?",
+        "Choices": "They used a newer profiler\nThey worked late to finish\nThey identified the issue from user complaints, set the target with product and rolled the fix across three services\nThey wrote a lot of code",
+        "Correct": "They identified the issue from user complaints, set the target with product and rolled the fix across three services",
+        "Explanation": "Senior scope shows problem discovery, stakeholder alignment and reach beyond one component. Tool choice, hours and code volume are not scope signals.",
+        "Hint": "Discovery, alignment, reach.",
+        "Source": "How Meta evaluates behavioral interviews, interviewing.io (https://interviewing.io/blog/how-software-engineering-behavioral-interviews-are-evaluated-meta)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::level::senior",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "e9445f54-83b4-5dec-b850-24b81c306919",
+      "noteType": "Bert Choice",
+      "section": "scope",
+      "fields": {
+        "Question": "A senior candidate's every story is about their own coding work. What is the risk?",
+        "Choices": "Being rejected for being too technical\nNo risk, coding is the job\nBeing up leveled for depth\nBeing down leveled for lack of leadership and cross team signal",
+        "Correct": "Being down leveled for lack of leadership and cross team signal",
+        "Explanation": "Senior loops look for influence, mentoring and cross team work. Coding only stories often lead to a down level offer rather than a rejection. Calling it no risk misreads the level bar.",
+        "Hint": "Down level, not reject.",
+        "Source": "Google behavioral interview and Googleyness, AceRound (https://www.aceround.app/blog/google-behavioral-interview-googleyness/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::level::senior",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "d669d8f9-9581-52b9-892e-eb37d366efe2",
+      "noteType": "Bert Choice",
+      "section": "scope",
+      "fields": {
+        "Question": "Which story is an appropriate strongest story for a mid level engineer?",
+        "Choices": "Owning a feature end to end, coordinating with one PM and a designer, and shipping with metrics\nSetting the multi year architecture for the org\nFixing a typo in documentation\nFollowing detailed instructions on a ticket",
+        "Correct": "Owning a feature end to end, coordinating with one PM and a designer, and shipping with metrics",
+        "Explanation": "Mid level is owning well scoped work end to end with a few collaborators. Org architecture is staff and above. A typo fix or following instructions is too small to show ownership.",
+        "Hint": "End to end ownership.",
+        "Source": "How Meta evaluates behavioral interviews, interviewing.io (https://interviewing.io/blog/how-software-engineering-behavioral-interviews-are-evaluated-meta)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::level::mid",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "336431a1-53cb-5874-96ba-b716f7bd8e61",
+      "noteType": "Bert Choice",
+      "section": "scope",
+      "fields": {
+        "Question": "Which mentoring detail reads most senior?",
+        "Choices": "\"I answer questions when people ask.\"\n\"Two engineers I mentored now lead projects, and I changed our onboarding so new hires ship in week one.\"\n\"I reviewed a lot of PRs.\"\n\"I am friendly with the new hires.\"",
+        "Correct": "\"Two engineers I mentored now lead projects, and I changed our onboarding so new hires ship in week one.\"",
+        "Explanation": "Senior mentoring shows outcomes in others and multiplier effects through process. Answering questions and reviewing PRs are baseline. Friendliness is not impact.",
+        "Hint": "Multiplier effect.",
+        "Source": "Amazon Leadership Principles (https://www.amazon.jobs/content/en/our-workplace/leadership-principles)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::level::senior",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "75cb5cfd-d6c7-5391-a088-7c2d3d82d5b8",
+      "noteType": "Bert Choice",
+      "section": "scope",
+      "fields": {
+        "Question": "Which phrase most strongly shows senior judgment in a project story?",
+        "Choices": "\"We used the latest technology.\"\n\"We built it the best way possible.\"\n\"We chose the simpler design and accepted higher cost because the deadline was fixed and the cost was reversible.\"\n\"I followed the architect's design.\"",
+        "Correct": "\"We chose the simpler design and accepted higher cost because the deadline was fixed and the cost was reversible.\"",
+        "Explanation": "Explicit tradeoffs with constraints and reversibility show judgment. Latest technology is not a reason. \"Best way possible\" ignores tradeoffs. Following a design shows execution, not judgment.",
+        "Hint": "Name the tradeoff.",
+        "Source": "How Meta evaluates behavioral interviews, interviewing.io (https://interviewing.io/blog/how-software-engineering-behavioral-interviews-are-evaluated-meta)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::level::senior",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "5dcbca76-1cf3-59fa-8381-b42455e778c0",
+      "noteType": "Bert Choice",
+      "section": "scope",
+      "fields": {
+        "Question": "In Google loops for L5 and above, the Googleyness and Leadership round is described as:",
+        "Choices": "A formality scored pass or fail only\nOnly relevant for managers\nSkipped for senior candidates\nOften decisive, sometimes outweighing strong technical rounds",
+        "Correct": "Often decisive, sometimes outweighing strong technical rounds",
+        "Explanation": "Reports describe it as often deciding outcomes at L5 and above. It is scored, not a formality, applies to individual contributors, and is not skipped at senior levels.",
+        "Hint": "It matters more at senior levels.",
+        "Source": "Google behavioral interview and Googleyness, AceRound (https://www.aceround.app/blog/google-behavioral-interview-googleyness/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::level::senior",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "ef349bcd-f541-5620-a474-04831cdaeac4",
+      "noteType": "Bert Choice",
+      "section": "scope",
+      "fields": {
+        "Question": "You have three stories for \"biggest impact\". Interviewing for senior, which do you pick?",
+        "Choices": "A cross team reliability program you initiated that cut incidents by half\nA feature you built alone that got good reviews\nA hackathon project that was never shipped\nA bug fix that saved one customer",
+        "Correct": "A cross team reliability program you initiated that cut incidents by half",
+        "Explanation": "Pick the story with the widest scope you personally drove, since story choice signals level. The solo feature is mid scope. An unshipped hackathon has no impact. One customer is narrow.",
+        "Hint": "Widest scope you drove.",
+        "Source": "How Meta evaluates behavioral interviews, interviewing.io (https://interviewing.io/blog/how-software-engineering-behavioral-interviews-are-evaluated-meta)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::level::senior",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "b067cad8-f3d6-5ce5-8a2e-d7813c5809ed",
+      "noteType": "Bert Choice",
+      "section": "ambiguity",
+      "fields": {
+        "Question": "Which statement best shows intellectual humility in a Google style interview?",
+        "Choices": "\"I am usually right about architecture.\"\n\"I was confident in my approach until a junior engineer's test showed it failed at scale, so I changed course.\"\n\"I listen to everyone, then do what I planned.\"\n\"I avoid strong opinions.\"",
+        "Correct": "\"I was confident in my approach until a junior engineer's test showed it failed at scale, so I changed course.\"",
+        "Explanation": "Intellectual humility means updating views on evidence regardless of who brings it. Claiming you are usually right is the opposite. Listening then ignoring is fake humility. Having no opinions is not humility, it avoids ownership.",
+        "Hint": "Updating on evidence.",
+        "Source": "Google behavioral interview and Googleyness, AceRound (https://www.aceround.app/blog/google-behavioral-interview-googleyness/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::level::mid",
+        "bert::level::senior",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "2c605c8a-bce7-5db4-9b99-2fecedc7fa55",
+      "noteType": "Bert Choice",
+      "section": "ambiguity",
+      "fields": {
+        "Question": "You are handed a vague goal: \"make onboarding better\". What is the strongest first step?",
+        "Choices": "Start building the features you think are missing\nWait for a clearer spec\nDefine what better means with stakeholders and pick a measurable target\nSurvey every employee before doing anything",
+        "Correct": "Define what better means with stakeholders and pick a measurable target",
+        "Explanation": "Comfort with ambiguity means structuring the problem: defining success and a metric. Building first risks the wrong thing. Waiting shows no initiative. Exhaustive surveying delays without narrowing the problem.",
+        "Hint": "Define success first.",
+        "Source": "Google behavioral interview and Googleyness, AceRound (https://www.aceround.app/blog/google-behavioral-interview-googleyness/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::level::mid",
+        "bert::level::senior",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "15926c13-34df-5443-ad36-d3cd50d88428",
+      "noteType": "Bert Choice",
+      "section": "ambiguity",
+      "fields": {
+        "Question": "Midway through a project, requirements change sharply. Which response shows the strongest signal?",
+        "Choices": "Push on with the original plan to avoid churn\nComplain to the PM about changing requirements\nStart over from scratch without telling stakeholders\nReassess scope and timeline quickly, communicate the tradeoffs, and re plan",
+        "Correct": "Reassess scope and timeline quickly, communicate the tradeoffs, and re plan",
+        "Explanation": "Adapting with clear communication is the signal. Ignoring the change ships the wrong thing. Complaining is not adaptation. Restarting silently surprises stakeholders.",
+        "Hint": "Adapt and communicate.",
+        "Source": "Google behavioral interview and Googleyness, AceRound (https://www.aceround.app/blog/google-behavioral-interview-googleyness/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::level::mid",
+        "bert::level::senior",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "1541ddf8-37d4-577e-8f62-fb7483924cb1",
+      "noteType": "Bert Choice",
+      "section": "ambiguity",
+      "fields": {
+        "Question": "Interviewer: \"What if you don't know the answer to something during a project?\" Best response?",
+        "Choices": "Say what you know, what you don't, and how you will find out\nMake a confident guess so you look competent\nAvoid the topic\nAsk your manager to decide",
+        "Correct": "Say what you know, what you don't, and how you will find out",
+        "Explanation": "Being explicit about unknowns and having a plan shows humility and ownership. Confident guessing is risky and misleading. Avoiding it leaves risk hidden. Handing it to the manager avoids ownership.",
+        "Hint": "Known, unknown, plan.",
+        "Source": "Google behavioral interview and Googleyness, AceRound (https://www.aceround.app/blog/google-behavioral-interview-googleyness/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::level::mid",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "07995ea4-8c88-5f85-a498-726800812fc7",
+      "noteType": "Bert Choice",
+      "section": "ambiguity",
+      "fields": {
+        "Question": "You must pick between two designs with incomplete data. The choice is easy to reverse. What is the best approach?",
+        "Choices": "Delay until all data is in\nDecide quickly, ship, and set a checkpoint to revisit with real data\nBuild both fully\nAsk for a committee review",
+        "Correct": "Decide quickly, ship, and set a checkpoint to revisit with real data",
+        "Explanation": "Reversible decisions should be made fast with a planned revisit, which matches Bias for Action and Google's comfort with ambiguity. Delaying wastes time. Building both doubles cost. A committee adds process to a cheap decision.",
+        "Hint": "Reversible decisions.",
+        "Source": "Amazon Leadership Principles (https://www.amazon.jobs/content/en/our-workplace/leadership-principles)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::level::senior",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "c528fbd9-0e55-5bb4-acc3-ad66a2b5c247",
+      "noteType": "Bert Choice",
+      "section": "ambiguity",
+      "fields": {
+        "Question": "Which story best shows the collaborative side of Googleyness?",
+        "Choices": "Shipping your own project early while others struggled\nWinning a design debate\nPausing your own work to help another team unblock a launch, then sharing what you learned\nWorking alone to avoid meetings",
+        "Correct": "Pausing your own work to help another team unblock a launch, then sharing what you learned",
+        "Explanation": "Googleyness includes helping others and putting the team first. Shipping early alone, winning debates and avoiding collaboration show individual success, not collaboration.",
+        "Hint": "Helping beyond your lane.",
+        "Source": "Google behavioral interview and Googleyness, AceRound (https://www.aceround.app/blog/google-behavioral-interview-googleyness/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::level::mid",
+        "bert::level::senior",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "b0eabc45-3915-5464-a38b-65ab5f73451f",
+      "noteType": "Bert Choice",
+      "section": "ambiguity",
+      "fields": {
+        "Question": "Anthropic is reported to run a dedicated values round. Which preparation fits best?",
+        "Choices": "Memorize the company mission and repeat it\nFocus only on technical depth, values rounds are informal\nPrepare answers that agree with every interviewer opinion\nPrepare honest stories about tradeoffs between speed and safety or doing the right thing at a cost",
+        "Correct": "Prepare honest stories about tradeoffs between speed and safety or doing the right thing at a cost",
+        "Explanation": "Reports describe the values round as a common filter, so genuine stories showing judgment under tension are needed. Reciting the mission is not evidence. Treating it as informal ignores the filter. Agreeing with everything reads as insincere.",
+        "Hint": "It is a real filter.",
+        "Source": "Anthropic software engineer interview, IGotAnOffer (https://igotanoffer.com/en/advice/anthropic-software-engineer-interview)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::level::senior",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "de812347-55db-5ee7-b821-10639ce9264d",
+      "noteType": "Bert Choice",
+      "section": "ambiguity",
+      "fields": {
+        "Question": "You have three urgent requests and capacity for one. Strongest approach?",
+        "Choices": "Compare impact and urgency, make a call, and tell the other requesters when they can expect help\nDo all three partially\nDo the one from the most senior person\nDo the easiest first",
+        "Correct": "Compare impact and urgency, make a call, and tell the other requesters when they can expect help",
+        "Explanation": "Prioritizing on impact and communicating shows judgment. Partial work on all three finishes nothing. Seniority is not impact. Easiest first ignores value.",
+        "Hint": "Impact and communication.",
+        "Source": "Google behavioral interview and Googleyness, AceRound (https://www.aceround.app/blog/google-behavioral-interview-googleyness/)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::level::mid",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "fdb7a778-362a-5fa2-9544-d405eb7737f0",
+      "noteType": "Bert Choice",
+      "section": "failure",
+      "fields": {
+        "Question": "\"Tell me about a failure.\" Which choice of story is best?",
+        "Choices": "\"I work too hard\" framed as a failure\nA real mistake you made with real consequences, and what you changed\nA failure caused entirely by another team\nA project that was cancelled for budget reasons",
+        "Correct": "A real mistake you made with real consequences, and what you changed",
+        "Explanation": "Interviewers want genuine ownership and learning. A humblebrag is easily spotted. A failure caused by others shows no ownership. A budget cancellation is not your failure.",
+        "Hint": "Your mistake, your change.",
+        "Source": "Amazon Leadership Principles (https://www.amazon.jobs/content/en/our-workplace/leadership-principles)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::level::mid",
+        "bert::level::senior",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "89138ecc-df19-5fb7-b429-51db89477776",
+      "noteType": "Bert Choice",
+      "section": "failure",
+      "fields": {
+        "Question": "Which phrase best shows ownership of an outage you caused?",
+        "Choices": "\"The config system let a bad change through.\"\n\"Mistakes happen in complex systems.\"\n\"I pushed the config without a canary. That was my call and it was wrong.\"\n\"The reviewer should have caught it.\"",
+        "Correct": "\"I pushed the config without a canary. That was my call and it was wrong.\"",
+        "Explanation": "Naming your decision plainly shows ownership and Earn Trust's self criticism. Blaming the tooling, the complexity or the reviewer shifts responsibility.",
+        "Hint": "Name your decision.",
+        "Source": "Amazon Leadership Principles (https://www.amazon.jobs/content/en/our-workplace/leadership-principles)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::level::mid",
+        "bert::level::senior",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "d3d2ec41-4897-5563-9cb5-d95f4cf7d1af",
+      "noteType": "Bert Choice",
+      "section": "failure",
+      "fields": {
+        "Question": "After causing an incident, which follow up shows senior ownership?",
+        "Choices": "Promising to be more careful\nWriting an apology email\nAdding a checklist item for yourself\nAdding a canary stage to the deploy pipeline so nobody can repeat the mistake",
+        "Correct": "Adding a canary stage to the deploy pipeline so nobody can repeat the mistake",
+        "Explanation": "Senior ownership fixes the system, not just yourself. Being careful, apologizing and a personal checklist do not prevent others from repeating it.",
+        "Hint": "Fix the mechanism.",
+        "Source": "Amazon Leadership Principles (https://www.amazon.jobs/content/en/our-workplace/leadership-principles)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::level::senior",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "9dc88468-eda6-5fdc-81ee-e9d4a27bfe3e",
+      "noteType": "Bert Choice",
+      "section": "failure",
+      "fields": {
+        "Question": "In a failure story, how should you describe the impact?",
+        "Choices": "State it honestly and concretely, such as duration and users affected\nMinimize it so you look better\nSkip it and go to the lesson\nExaggerate it to make the recovery impressive",
+        "Correct": "State it honestly and concretely, such as duration and users affected",
+        "Explanation": "Honest, concrete impact builds trust and shows you understand consequences. Minimizing or skipping it reads as evasive. Exaggerating it is dishonest and gets exposed in follow ups.",
+        "Hint": "Honest numbers.",
+        "Source": "Amazon Leadership Principles (https://www.amazon.jobs/content/en/our-workplace/leadership-principles)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::level::mid",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "8908a536-0346-53b6-ac6d-e611e77f7ecc",
+      "noteType": "Bert Choice",
+      "section": "failure",
+      "fields": {
+        "Question": "How should time be split in a failure story?",
+        "Choices": "Mostly on the failure details\nBrief on the failure, more on what you did and what changed after\nMostly on why it was not your fault\nEqual time on everyone involved",
+        "Correct": "Brief on the failure, more on what you did and what changed after",
+        "Explanation": "The signal is in recovery and learning. Dwelling on the failure, defending yourself, or covering everyone dilutes the signal.",
+        "Hint": "Signal is in recovery.",
+        "Source": "How Meta evaluates behavioral interviews, interviewing.io (https://interviewing.io/blog/how-software-engineering-behavioral-interviews-are-evaluated-meta)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::level::mid",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "9fad2552-1290-5bdf-b251-14e1af055d71",
+      "noteType": "Bert Choice",
+      "section": "failure",
+      "fields": {
+        "Question": "A senior candidate's failure story is from their first internship ten years ago. What is the issue?",
+        "Choices": "Nothing, any failure is fine\nInternships are confidential\nIt suggests they have not taken risks or reflected recently at their current level\nIt is too recent",
+        "Correct": "It suggests they have not taken risks or reflected recently at their current level",
+        "Explanation": "A recent failure at your current scope shows ongoing reflection. A decade old internship story implies no recent risk or reflection. Saying any failure is fine misses the level signal.",
+        "Hint": "Recency and scope.",
+        "Source": "How Meta evaluates behavioral interviews, interviewing.io (https://interviewing.io/blog/how-software-engineering-behavioral-interviews-are-evaluated-meta)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::level::senior",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "687cd558-520c-5b68-8568-00e3a6853cab",
+      "noteType": "Bert Choice",
+      "section": "failure",
+      "fields": {
+        "Question": "You promised a delivery date and saw two weeks ahead that you would miss it. Strongest action?",
+        "Choices": "Work overtime and hope\nTell them on the due date\nShip on time without testing\nTell stakeholders immediately with a new date and options to cut scope",
+        "Correct": "Tell stakeholders immediately with a new date and options to cut scope",
+        "Explanation": "Early, honest notice with options builds trust. Hoping hides risk. Late notice damages trust. Skipping testing trades a date for an incident.",
+        "Hint": "Early warning.",
+        "Source": "Amazon Leadership Principles (https://www.amazon.jobs/content/en/our-workplace/leadership-principles)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::level::mid",
+        "bert::level::senior",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "5c00a1cc-b380-5897-a3a4-ff7d0640cd22",
+      "noteType": "Bert Choice",
+      "section": "failure",
+      "fields": {
+        "Question": "Which ending to a failure story is strongest?",
+        "Choices": "\"Six months later the same pattern came up on another project and I caught it in design review.\"\n\"I learned a valuable lesson.\"\n\"It never happened again.\"\n\"I moved to another team.\"",
+        "Correct": "\"Six months later the same pattern came up on another project and I caught it in design review.\"",
+        "Explanation": "Showing the lesson applied later is evidence of growth. \"Valuable lesson\" is vague. \"Never happened again\" is unverified. Moving teams is not learning.",
+        "Hint": "Lesson applied.",
+        "Source": "Amazon Leadership Principles (https://www.amazon.jobs/content/en/our-workplace/leadership-principles)",
+        "BertMeta": ""
+      },
+      "tags": [
+        "bert::level::senior",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "43efe7ac-2afd-5235-9b08-7e436a6afd7f",
+      "noteType": "Bert Basic",
+      "section": "rehearse",
+      "fields": {
+        "Question": "Rehearse: tell me about a time you disagreed with a teammate or another team.",
+        "Answer": "<p>Outline aloud in under 3 minutes. Situation in two sentences. Your position and theirs, stated fairly. What you did to understand them and test the options. The decision and how you committed. Result with a number. What you would do differently.</p>",
+        "Aliases": "",
+        "Hint": "Situation, task, action, result, learning.",
+        "Fact": "",
+        "Source": "Meta behavioral interview guide, Copilot Interview (https://copilotinterview.com/blog/meta-behavioral-interview)",
+        "BertMeta": {
+          "flipOnly": true
+        }
+      },
+      "tags": [
+        "bert::level::mid",
+        "bert::level::senior",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "763b8c45-4c34-5278-b6d8-3f4d144f1770",
+      "noteType": "Bert Basic",
+      "section": "rehearse",
+      "fields": {
+        "Question": "Rehearse: tell me about a time you failed.",
+        "Answer": "<p>Pick a real, recent mistake at your current scope. Own the decision in one sentence. Concrete impact. Recovery steps you drove. The mechanism you changed so it cannot repeat. Where the lesson showed up later.</p>",
+        "Aliases": "",
+        "Hint": "Situation, task, action, result, learning.",
+        "Fact": "",
+        "Source": "Amazon Leadership Principles (https://www.amazon.jobs/content/en/our-workplace/leadership-principles)",
+        "BertMeta": {
+          "flipOnly": true
+        }
+      },
+      "tags": [
+        "bert::level::mid",
+        "bert::level::senior",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "3ee040e4-cb68-54b4-b49a-482c6be86885",
+      "noteType": "Bert Basic",
+      "section": "rehearse",
+      "fields": {
+        "Question": "Rehearse: tell me about a time you worked on something with unclear requirements.",
+        "Answer": "<p>Show how you defined the problem: who you talked to, the success metric you set, the first reversible step. Then the result and what you would structure differently.</p>",
+        "Aliases": "",
+        "Hint": "Situation, task, action, result, learning.",
+        "Fact": "",
+        "Source": "Google behavioral interview and Googleyness, AceRound (https://www.aceround.app/blog/google-behavioral-interview-googleyness/)",
+        "BertMeta": {
+          "flipOnly": true
+        }
+      },
+      "tags": [
+        "bert::level::mid",
+        "bert::level::senior",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "254396f2-18eb-5ac2-936d-7bf860084ec9",
+      "noteType": "Bert Basic",
+      "section": "rehearse",
+      "fields": {
+        "Question": "Rehearse: what is the project you are most proud of?",
+        "Answer": "<p>Choose the widest scope you personally drove. State the problem and why it mattered. Your decisions and the tradeoffs. Who you aligned. Measured result and lasting effect on other teams.</p>",
+        "Aliases": "",
+        "Hint": "Situation, task, action, result, learning.",
+        "Fact": "",
+        "Source": "How Meta evaluates behavioral interviews, interviewing.io (https://interviewing.io/blog/how-software-engineering-behavioral-interviews-are-evaluated-meta)",
+        "BertMeta": {
+          "flipOnly": true
+        }
+      },
+      "tags": [
+        "bert::level::senior",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "f5e6f36a-03f7-51c9-9011-9b981c5e21e2",
+      "noteType": "Bert Basic",
+      "section": "rehearse",
+      "fields": {
+        "Question": "Rehearse: tell me about a time you influenced a decision without authority.",
+        "Answer": "<p>Name the stakeholder and their goals. How you framed the change around their interest. Evidence you brought (data, prototype, doc). The outcome, including if you lost and committed.</p>",
+        "Aliases": "",
+        "Hint": "Situation, task, action, result, learning.",
+        "Fact": "",
+        "Source": "Meta behavioral interview guide, Copilot Interview (https://copilotinterview.com/blog/meta-behavioral-interview)",
+        "BertMeta": {
+          "flipOnly": true
+        }
+      },
+      "tags": [
+        "bert::level::senior",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "5daa1e04-021a-53b5-9521-566c7d28abe9",
+      "noteType": "Bert Basic",
+      "section": "rehearse",
+      "fields": {
+        "Question": "Rehearse: tell me about a time you went above and beyond for a customer.",
+        "Answer": "<p>Start from the customer and the pain. What you did that was not required. Tradeoffs against other work. Measured outcome for the customer and anything you changed so all customers benefit.</p>",
+        "Aliases": "",
+        "Hint": "Situation, task, action, result, learning.",
+        "Fact": "",
+        "Source": "Amazon Leadership Principles (https://www.amazon.jobs/content/en/our-workplace/leadership-principles)",
+        "BertMeta": {
+          "flipOnly": true
+        }
+      },
+      "tags": [
+        "bert::level::mid",
+        "bert::level::senior",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "6d93219c-5cef-586b-85fd-e997c76f09ea",
+      "noteType": "Bert Basic",
+      "section": "rehearse",
+      "fields": {
+        "Question": "Rehearse: tell me about someone you helped grow.",
+        "Answer": "<p>Who they were and their gap. What you did specifically (pairing, stretch project, feedback). Their outcome. Any process you changed that helped others too.</p>",
+        "Aliases": "",
+        "Hint": "Situation, task, action, result, learning.",
+        "Fact": "",
+        "Source": "Amazon Leadership Principles (https://www.amazon.jobs/content/en/our-workplace/leadership-principles)",
+        "BertMeta": {
+          "flipOnly": true
+        }
+      },
+      "tags": [
+        "bert::level::senior",
+        "bert::status::draft"
+      ]
+    }
+  ]
+}

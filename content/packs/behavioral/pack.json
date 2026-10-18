@@ -1,0 +1,76 @@
+{
+  "packId": "behavioral",
+  "version": "1.0.0-draft.1",
+  "official": true,
+  "title": "Behavioral Interview Practice",
+  "subtitle": "Judge STAR answers, map questions to the signals they probe, and pitch stories at senior scope",
+  "category": "programming",
+  "subcategory": "behavioral",
+  "accentColor": "#8A4E6B",
+  "coverMedia": "cover.png",
+  "languages": [
+    "en"
+  ],
+  "sources": [
+    {
+      "id": "source-amazon-lp",
+      "title": "Amazon Leadership Principles",
+      "url": "https://www.amazon.jobs/content/en/our-workplace/leadership-principles",
+      "publisher": "Amazon",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-interviewing-io-meta",
+      "title": "How software engineering behavioral interviews are evaluated at Meta",
+      "url": "https://interviewing.io/blog/how-software-engineering-behavioral-interviews-are-evaluated-meta",
+      "publisher": "interviewing.io",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-copilot-meta",
+      "title": "Meta behavioral interview",
+      "url": "https://copilotinterview.com/blog/meta-behavioral-interview",
+      "publisher": "Copilot Interview",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-aceround-google",
+      "title": "Google behavioral interview and Googleyness",
+      "url": "https://www.aceround.app/blog/google-behavioral-interview-googleyness/",
+      "publisher": "AceRound",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-preper-google",
+      "title": "Google behavioral interview prep",
+      "url": "https://preper.app/guides/google-behavioral-interview-prep",
+      "publisher": "Preper",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-igotanoffer-anthropic",
+      "title": "Anthropic software engineer interview",
+      "url": "https://igotanoffer.com/en/advice/anthropic-software-engineer-interview",
+      "publisher": "IGotAnOffer",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    }
+  ],
+  "assetLicenses": [],
+  "stamps": [],
+  "bertSchemaVersion": 1,
+  "sections": {
+    "principles": "Amazon Leadership Principles",
+    "star": "Strong and weak STAR answers",
+    "conflict": "Conflict and influence",
+    "scope": "Scope by level",
+    "ambiguity": "Ambiguity and Googleyness",
+    "failure": "Failure and ownership",
+    "rehearse": "Rehearse your stories"
+  }
+}
