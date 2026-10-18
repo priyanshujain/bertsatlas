@@ -319,7 +319,8 @@ class PackStore(val libraryDirectory: String) {
             val notes = collection.notes()
             val retiredNoteIds = notes.filter { BertTags.RETIRED in it.tags }.map { it.id }.toSet()
             val tagLevels = notes.filter { it.id !in retiredNoteIds }.flatMapTo(linkedSetOf()) { BertTags.levels(it.tags) }
-            val cards = collection.cardsInDecks(deckIds(null)).filter { it.noteId !in retiredNoteIds }
+            val outsideLevel = noteIdsOutsideLevel()
+            val cards = collection.cardsInDecks(deckIds(null)).filter { it.noteId !in retiredNoteIds && it.noteId !in outsideLevel }
             val revlogByCard = collection.revlog().groupBy { it.cardId }
             val levels = cards.map { CardMastery.level(it, revlogByCard[it.id].orEmpty()) }
             val config = collection.deckConfig(deck.configId)
