@@ -1,0 +1,109 @@
+{
+  "packId": "concurrency-languages",
+  "version": "1.0.0-draft.1",
+  "official": true,
+  "title": "Concurrency in Python, Java and Go",
+  "subtitle": "Language level concurrency semantics and idioms that interviewers probe, with spot the race snippets",
+  "category": "programming",
+  "subcategory": "languages",
+  "accentColor": "#27635B",
+  "coverMedia": "cover.png",
+  "languages": [
+    "en"
+  ],
+  "sources": [
+    {
+      "id": "source-py-threading",
+      "title": "Python threading documentation",
+      "url": "https://docs.python.org/3/library/threading.html",
+      "publisher": "Python Software Foundation",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-py-asyncio",
+      "title": "Python asyncio documentation",
+      "url": "https://docs.python.org/3/library/asyncio.html",
+      "publisher": "Python Software Foundation",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-py-freethreading",
+      "title": "Python HOWTO: free-threaded CPython",
+      "url": "https://docs.python.org/3/howto/free-threading-python.html",
+      "publisher": "Python Software Foundation",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-jls17",
+      "title": "Java Language Specification, Chapter 17 Threads and Locks",
+      "url": "https://docs.oracle.com/javase/specs/jls/se21/html/jls-17.html",
+      "publisher": "Oracle",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-juc",
+      "title": "java.util.concurrent package documentation",
+      "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/package-summary.html",
+      "publisher": "Oracle",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-jep444",
+      "title": "JEP 444: Virtual Threads",
+      "url": "https://openjdk.org/jeps/444",
+      "publisher": "OpenJDK",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-gospec",
+      "title": "The Go Programming Language Specification",
+      "url": "https://go.dev/ref/spec",
+      "publisher": "The Go Authors",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-gomem",
+      "title": "The Go Memory Model",
+      "url": "https://go.dev/ref/mem",
+      "publisher": "The Go Authors",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-gosync",
+      "title": "Go sync and context packages",
+      "url": "https://pkg.go.dev/sync",
+      "publisher": "The Go Authors",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-research-igotanoffer",
+      "title": "OpenAI coding interview guide",
+      "url": "https://igotanoffer.com/en/advice/openai-coding-interview",
+      "publisher": "IGotAnOffer",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    }
+  ],
+  "assetLicenses": [],
+  "stamps": [],
+  "bertSchemaVersion": 1,
+  "sections": {
+    "python-runtime": "Python: GIL, threads and processes",
+    "python-asyncio": "Python: asyncio",
+    "java-memory": "Java: memory model",
+    "java-collections": "Java: concurrent collections, atomics and locks",
+    "java-executors": "Java: executors, CompletableFuture and virtual threads",
+    "go-channels": "Go: channels and select",
+    "go-sync": "Go: leaks, context and sync",
+    "races": "Spot the race"
+  }
+}
