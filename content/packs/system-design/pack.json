@@ -1,13 +1,13 @@
 {
   "packId": "system-design",
-  "version": "2.0.0-draft.1",
+  "version": "3.0.0-draft.1",
   "official": true,
   "title": "System Design Interview Practice",
   "subtitle": "Real interview questions with strong answers, tradeoffs and code",
   "category": "programming",
   "subcategory": "system-design",
   "accentColor": "#3E5C8A",
-  "coverMedia": null,
+  "coverMedia": "cover.png",
   "languages": [
     "en"
   ],
@@ -15,8 +15,16 @@
     {
       "id": "source-xu1",
       "title": "System Design Interview: An Insider's Guide, Volume 1",
-      "url": "https://bytebytego.com/",
+      "url": "https://blog.bytebytego.com/p/system-design-interview-books-volume",
       "publisher": "Alex Xu",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-xu2",
+      "title": "System Design Interview: An Insider's Guide, Volume 2",
+      "url": "https://blog.bytebytego.com/p/system-design-interview-books-volume",
+      "publisher": "Alex Xu and Sahn Lam",
       "retrievedAt": "2026-10-18",
       "revision": null
     },
@@ -29,10 +37,74 @@
       "revision": null
     },
     {
-      "id": "source-sre-slo",
-      "title": "Site Reliability Engineering: Service Level Objectives",
-      "url": "https://sre.google/sre-book/service-level-objectives/",
-      "publisher": "Google",
+      "id": "source-hi-intro",
+      "title": "Hello Interview: System Design in a Hurry",
+      "url": "https://www.hellointerview.com/learn/system-design/in-a-hurry/introduction",
+      "publisher": "Hello Interview",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-hi-ticketmaster",
+      "title": "Hello Interview: Design Ticketmaster",
+      "url": "https://www.hellointerview.com/learn/system-design/problem-breakdowns/ticketmaster",
+      "publisher": "Hello Interview",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-hi-meta-e5",
+      "title": "Hello Interview: Meta E5 interview guide",
+      "url": "https://www.hellointerview.com/guides/meta/e5",
+      "publisher": "Hello Interview",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-hi-google-l5",
+      "title": "Hello Interview: Google L5 interview guide",
+      "url": "https://www.hellointerview.com/guides/google/l5",
+      "publisher": "Hello Interview",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-hi-amazon-l6",
+      "title": "Hello Interview: Amazon L6 interview guide",
+      "url": "https://www.hellointerview.com/guides/amazon/l6",
+      "publisher": "Hello Interview",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-hi-openai-l5",
+      "title": "Hello Interview: OpenAI L5 interview guide",
+      "url": "https://www.hellointerview.com/guides/openai/l5",
+      "publisher": "Hello Interview",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-prachub-uber",
+      "title": "PracHub: Uber system design questions",
+      "url": "https://prachub.com/companies/uber/categories/system-design",
+      "publisher": "PracHub",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-aced-anthropic",
+      "title": "Anthropic system design interview",
+      "url": "https://www.aced.io/blog/anthropic-system-design-interview",
+      "publisher": "Aced",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-exponent-openai",
+      "title": "OpenAI system design interview",
+      "url": "https://www.tryexponent.com/blog/openai-system-design-interview",
+      "publisher": "Exponent",
       "retrievedAt": "2026-10-18",
       "revision": null
     },
@@ -45,14 +117,6 @@
       "revision": null
     },
     {
-      "id": "source-ddia",
-      "title": "Designing Data-Intensive Applications",
-      "url": "https://dataintensive.net/",
-      "publisher": "Martin Kleppmann",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
       "id": "source-littles-law",
       "title": "A Proof for the Queuing Formula: L = lambda W",
       "url": "https://doi.org/10.1287/opre.9.3.383",
@@ -61,58 +125,10 @@
       "revision": null
     },
     {
-      "id": "source-sre-overload",
-      "title": "Site Reliability Engineering: Handling Overload",
-      "url": "https://sre.google/sre-book/handling-overload/",
-      "publisher": "Google",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-cap",
-      "title": "Brewer's Conjecture and the Feasibility of Consistent, Available, Partition-Tolerant Web Services",
-      "url": "https://dl.acm.org/doi/10.1145/564585.564601",
-      "publisher": "Seth Gilbert and Nancy Lynch",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-pacelc",
-      "title": "Consistency Tradeoffs in Modern Distributed Database System Design",
-      "url": "https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf",
-      "publisher": "Daniel Abadi",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-sharding",
-      "title": "Sharding pattern",
-      "url": "https://learn.microsoft.com/en-us/azure/architecture/patterns/sharding",
-      "publisher": "Microsoft",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-karger",
-      "title": "Consistent Hashing and Random Trees",
-      "url": "https://dl.acm.org/doi/10.1145/258533.258660",
-      "publisher": "Karger et al.",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-dynamo",
-      "title": "Dynamo: Amazon's Highly Available Key-value Store",
-      "url": "https://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf",
-      "publisher": "DeCandia et al., Amazon",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-raft",
-      "title": "In Search of an Understandable Consensus Algorithm",
-      "url": "https://raft.github.io/raft.pdf",
-      "publisher": "Diego Ongaro and John Ousterhout",
+      "id": "source-ddia",
+      "title": "Designing Data-Intensive Applications",
+      "url": "https://dataintensive.net/",
+      "publisher": "Martin Kleppmann",
       "retrievedAt": "2026-10-18",
       "revision": null
     },
@@ -133,10 +149,42 @@
       "revision": null
     },
     {
-      "id": "source-redis-evict",
-      "title": "Redis: Key eviction",
-      "url": "https://redis.io/docs/latest/develop/reference/eviction/",
-      "publisher": "Redis",
+      "id": "source-karger",
+      "title": "Consistent Hashing and Random Trees",
+      "url": "https://dl.acm.org/doi/10.1145/258533.258660",
+      "publisher": "Karger et al.",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-dynamo",
+      "title": "Dynamo: Amazon's Highly Available Key-value Store",
+      "url": "https://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf",
+      "publisher": "DeCandia et al., Amazon",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-sharding",
+      "title": "Sharding pattern",
+      "url": "https://learn.microsoft.com/en-us/azure/architecture/patterns/sharding",
+      "publisher": "Microsoft",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-ddb-write-sharding",
+      "title": "Amazon DynamoDB: Using write sharding to distribute workloads evenly",
+      "url": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/bp-partition-key-sharding.html",
+      "publisher": "Amazon Web Services",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-ddb-gsi",
+      "title": "Amazon DynamoDB: Using Global Secondary Indexes",
+      "url": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GSI.html",
+      "publisher": "Amazon Web Services",
       "retrievedAt": "2026-10-18",
       "revision": null
     },
@@ -149,9 +197,17 @@
       "revision": null
     },
     {
-      "id": "source-sqs",
-      "title": "Amazon SQS Developer Guide",
-      "url": "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/welcome.html",
+      "id": "source-sqs-visibility",
+      "title": "Amazon SQS visibility timeout",
+      "url": "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-visibility-timeout.html",
+      "publisher": "Amazon Web Services",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-sqs-dlq",
+      "title": "Amazon SQS dead-letter queues",
+      "url": "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-dead-letter-queues.html",
       "publisher": "Amazon Web Services",
       "retrievedAt": "2026-10-18",
       "revision": null
@@ -189,66 +245,10 @@
       "revision": null
     },
     {
-      "id": "source-jitter",
-      "title": "Exponential Backoff And Jitter",
-      "url": "https://aws.amazon.com/blogs/architecture/exponential-backoff-and-jitter/",
-      "publisher": "Amazon Web Services",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-breaker",
-      "title": "CircuitBreaker",
-      "url": "https://martinfowler.com/bliki/CircuitBreaker.html",
-      "publisher": "Martin Fowler",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-sre-cascading",
-      "title": "Site Reliability Engineering: Addressing Cascading Failures",
-      "url": "https://sre.google/sre-book/addressing-cascading-failures/",
-      "publisher": "Google",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-snowflake",
-      "title": "Announcing Snowflake",
-      "url": "https://blog.x.com/engineering/en_us/a/2010/announcing-snowflake",
-      "publisher": "Twitter Engineering",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-discord",
-      "title": "How Discord Stores Trillions of Messages",
-      "url": "https://discord.com/blog/how-discord-stores-trillions-of-messages",
-      "publisher": "Discord",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-bigtable",
-      "title": "Bigtable: A Distributed Storage System for Structured Data",
-      "url": "https://research.google/pubs/bigtable-a-distributed-storage-system-for-structured-data/",
-      "publisher": "Google",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-kleppmann-locks",
-      "title": "How to do distributed locking",
-      "url": "https://martin.kleppmann.com/2016/02/08/how-to-do-distributed-locking.html",
-      "publisher": "Martin Kleppmann",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-pg-iso",
-      "title": "PostgreSQL: Transaction Isolation",
-      "url": "https://www.postgresql.org/docs/current/transaction-iso.html",
-      "publisher": "PostgreSQL Global Development Group",
+      "id": "source-cap",
+      "title": "Brewer's Conjecture and the Feasibility of Consistent, Available, Partition-Tolerant Web Services",
+      "url": "https://dl.acm.org/doi/10.1145/564585.564601",
+      "publisher": "Seth Gilbert and Nancy Lynch",
       "retrievedAt": "2026-10-18",
       "revision": null
     },
@@ -261,10 +261,130 @@
       "revision": null
     },
     {
+      "id": "source-pg-iso",
+      "title": "PostgreSQL: Transaction Isolation",
+      "url": "https://www.postgresql.org/docs/current/transaction-iso.html",
+      "publisher": "PostgreSQL Global Development Group",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-pg-select",
+      "title": "PostgreSQL: SELECT, The Locking Clause",
+      "url": "https://www.postgresql.org/docs/current/sql-select.html",
+      "publisher": "PostgreSQL Global Development Group",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-pg-multicol",
+      "title": "PostgreSQL: Multicolumn Indexes",
+      "url": "https://www.postgresql.org/docs/current/indexes-multicolumn.html",
+      "publisher": "PostgreSQL Global Development Group",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-kleppmann-locks",
+      "title": "How to do distributed locking",
+      "url": "https://martin.kleppmann.com/2016/02/08/how-to-do-distributed-locking.html",
+      "publisher": "Martin Kleppmann",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-jitter",
+      "title": "Exponential Backoff And Jitter",
+      "url": "https://aws.amazon.com/blogs/architecture/exponential-backoff-and-jitter/",
+      "publisher": "Amazon Web Services",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-aws-timeouts",
+      "title": "Timeouts, retries, and backoff with jitter",
+      "url": "https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/",
+      "publisher": "Amazon Builders' Library",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-aws-fairness",
+      "title": "Fairness in multi-tenant systems",
+      "url": "https://aws.amazon.com/builders-library/fairness-in-multi-tenant-systems/",
+      "publisher": "Amazon Builders' Library",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-breaker",
+      "title": "CircuitBreaker",
+      "url": "https://martinfowler.com/bliki/CircuitBreaker.html",
+      "publisher": "Martin Fowler",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-sre-overload",
+      "title": "Site Reliability Engineering: Handling Overload",
+      "url": "https://sre.google/sre-book/handling-overload/",
+      "publisher": "Google",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-sre-cascading",
+      "title": "Site Reliability Engineering: Addressing Cascading Failures",
+      "url": "https://sre.google/sre-book/addressing-cascading-failures/",
+      "publisher": "Google",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-grpc-deadlines",
+      "title": "gRPC: Deadlines",
+      "url": "https://grpc.io/docs/guides/deadlines/",
+      "publisher": "gRPC Authors",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
       "id": "source-rfc9110",
       "title": "RFC 9110: HTTP Semantics",
       "url": "https://www.rfc-editor.org/rfc/rfc9110",
       "publisher": "IETF",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-mdn-sse",
+      "title": "MDN: Using server-sent events",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events",
+      "publisher": "Mozilla",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-mdn-caching",
+      "title": "MDN: HTTP caching",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Caching",
+      "publisher": "Mozilla",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-discord",
+      "title": "How Discord Stores Trillions of Messages",
+      "url": "https://discord.com/blog/how-discord-stores-trillions-of-messages",
+      "publisher": "Discord",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-flink-time",
+      "title": "Apache Flink: Timely Stream Processing",
+      "url": "https://nightlies.apache.org/flink/flink-docs-stable/docs/concepts/time/",
+      "publisher": "Apache Software Foundation",
       "retrievedAt": "2026-10-18",
       "revision": null
     },
@@ -277,18 +397,18 @@
       "revision": null
     },
     {
-      "id": "source-cf-ratelimit",
-      "title": "How we built rate limiting capable of scaling to millions of domains",
-      "url": "https://blog.cloudflare.com/counting-things-a-lot-of-different-things/",
-      "publisher": "Cloudflare",
+      "id": "source-redis-incr",
+      "title": "Redis: INCR, pattern: rate limiter",
+      "url": "https://redis.io/docs/latest/commands/incr/",
+      "publisher": "Redis",
       "retrievedAt": "2026-10-18",
       "revision": null
     },
     {
-      "id": "source-rfc6585",
-      "title": "RFC 6585: Additional HTTP Status Codes",
-      "url": "https://www.rfc-editor.org/rfc/rfc6585",
-      "publisher": "IETF",
+      "id": "source-snowflake",
+      "title": "Announcing Snowflake",
+      "url": "https://blog.x.com/engineering/en_us/a/2010/announcing-snowflake",
+      "publisher": "Twitter Engineering",
       "retrievedAt": "2026-10-18",
       "revision": null
     },
@@ -301,17 +421,25 @@
       "revision": null
     },
     {
-      "id": "source-python-ordereddict",
-      "title": "Python documentation: collections.OrderedDict",
-      "url": "https://docs.python.org/3/library/collections.html#collections.OrderedDict",
-      "publisher": "Python Software Foundation",
+      "id": "source-bigtable",
+      "title": "Bigtable: A Distributed Storage System for Structured Data",
+      "url": "https://research.google/pubs/bigtable-a-distributed-storage-system-for-structured-data/",
+      "publisher": "Google",
       "retrievedAt": "2026-10-18",
       "revision": null
     },
     {
-      "id": "source-python-heapq",
-      "title": "Python documentation: heapq",
-      "url": "https://docs.python.org/3/library/heapq.html",
+      "id": "source-bloom",
+      "title": "Space/Time Trade-offs in Hash Coding with Allowable Errors",
+      "url": "https://dl.acm.org/doi/10.1145/362686.362692",
+      "publisher": "Burton H. Bloom",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-python-ordereddict",
+      "title": "Python documentation: collections.OrderedDict",
+      "url": "https://docs.python.org/3/library/collections.html#collections.OrderedDict",
       "publisher": "Python Software Foundation",
       "retrievedAt": "2026-10-18",
       "revision": null
@@ -325,18 +453,10 @@
       "revision": null
     },
     {
-      "id": "source-fb-feed-tao",
+      "id": "source-tao",
       "title": "TAO: Facebook's Distributed Data Store for the Social Graph",
       "url": "https://www.usenix.org/conference/atc13/technical-sessions/presentation/bronson",
       "publisher": "Bronson et al., USENIX ATC 2013",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-rfc6455",
-      "title": "RFC 6455: The WebSocket Protocol",
-      "url": "https://www.rfc-editor.org/rfc/rfc6455",
-      "publisher": "IETF",
       "retrievedAt": "2026-10-18",
       "revision": null
     },
@@ -349,10 +469,82 @@
       "revision": null
     },
     {
-      "id": "source-fcm",
-      "title": "Firebase Cloud Messaging",
-      "url": "https://firebase.google.com/docs/cloud-messaging",
-      "publisher": "Google",
+      "id": "source-owasp-ssrf",
+      "title": "OWASP: Server-Side Request Forgery Prevention Cheat Sheet",
+      "url": "https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html",
+      "publisher": "OWASP",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-cf-waiting-room",
+      "title": "Cloudflare Waiting Room",
+      "url": "https://blog.cloudflare.com/cloudflare-waiting-room/",
+      "publisher": "Cloudflare",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-mt-ledger",
+      "title": "Accounting for Developers, Part I",
+      "url": "https://www.moderntreasury.com/journal/accounting-for-developers-part-i",
+      "publisher": "Modern Treasury",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-stripe-currencies",
+      "title": "Stripe: Supported currencies, zero-decimal and minor units",
+      "url": "https://docs.stripe.com/currencies",
+      "publisher": "Stripe",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-h3",
+      "title": "H3: Uber's Hexagonal Hierarchical Spatial Index",
+      "url": "https://www.uber.com/blog/h3/",
+      "publisher": "Uber Engineering",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-redis-geo",
+      "title": "Redis: Geospatial indexes",
+      "url": "https://redis.io/docs/latest/develop/data-types/geospatial/",
+      "publisher": "Redis",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-redis-zset",
+      "title": "Redis: Sorted sets",
+      "url": "https://redis.io/docs/latest/develop/data-types/sorted-sets/",
+      "publisher": "Redis",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-count-min",
+      "title": "An Improved Data Stream Summary: The Count-Min Sketch and its Applications",
+      "url": "https://doi.org/10.1016/j.jalgor.2003.12.001",
+      "publisher": "Cormode and Muthukrishnan",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-prom-naming",
+      "title": "Prometheus: Metric and label naming",
+      "url": "https://prometheus.io/docs/practices/naming/",
+      "publisher": "Prometheus Authors",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-gorilla",
+      "title": "Gorilla: A Fast, Scalable, In-Memory Time Series Database",
+      "url": "https://www.vldb.org/pvldb/vol8/p1816-teller.pdf",
+      "publisher": "Pelkonen et al., VLDB 2015",
       "retrievedAt": "2026-10-18",
       "revision": null
     },
@@ -369,22 +561,6 @@
       "title": "RFC 9309: Robots Exclusion Protocol",
       "url": "https://www.rfc-editor.org/rfc/rfc9309",
       "publisher": "IETF",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-es-completion",
-      "title": "Elasticsearch: Completion suggester",
-      "url": "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-suggesters.html",
-      "publisher": "Elastic",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-xu2",
-      "title": "System Design Interview: An Insider's Guide, Volume 2",
-      "url": "https://bytebytego.com/",
-      "publisher": "Alex Xu and Sahn Lam",
       "retrievedAt": "2026-10-18",
       "revision": null
     },
@@ -421,34 +597,18 @@
       "revision": null
     },
     {
-      "id": "source-h3",
-      "title": "H3: Uber's Hexagonal Hierarchical Spatial Index",
-      "url": "https://www.uber.com/blog/h3/",
-      "publisher": "Uber Engineering",
+      "id": "source-crdt",
+      "title": "Conflict-free Replicated Data Types",
+      "url": "https://inria.hal.science/inria-00609399",
+      "publisher": "Shapiro et al.",
       "retrievedAt": "2026-10-18",
       "revision": null
     },
     {
-      "id": "source-geohash",
-      "title": "Redis: Geospatial indexes",
-      "url": "https://redis.io/docs/latest/develop/data-types/geospatial/",
-      "publisher": "Redis",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-bloom",
-      "title": "Space/Time Trade-offs in Hash Coding with Allowable Errors",
-      "url": "https://dl.acm.org/doi/10.1145/362686.362692",
-      "publisher": "Burton H. Bloom",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-spanner",
-      "title": "Spanner: Google's Globally Distributed Database",
-      "url": "https://research.google/pubs/spanner-googles-globally-distributed-database-2/",
-      "publisher": "Google",
+      "id": "source-orca",
+      "title": "Orca: A Distributed Serving System for Transformer-Based Generative Models",
+      "url": "https://www.usenix.org/conference/osdi22/presentation/yu",
+      "publisher": "Yu et al., USENIX OSDI 2022",
       "retrievedAt": "2026-10-18",
       "revision": null
     }
@@ -457,13 +617,17 @@
   "stamps": [],
   "bertSchemaVersion": 1,
   "sections": {
-    "interview-approach": "Interview approach and estimation",
-    "building-blocks": "Building blocks and tradeoffs",
-    "core-services": "URL shortener, rate limiter, KV store, cache",
-    "social-and-messaging": "News feed, chat, notifications",
-    "search-and-crawl": "Crawler, autocomplete, top k",
-    "media-and-storage": "File storage and video streaming",
-    "marketplaces-and-payments": "Ride sharing, payments, booking",
-    "more-designs": "More designs"
+    "approach": "Interview approach and estimation",
+    "caching": "Caching",
+    "partitioning": "Sharding and replication",
+    "messaging": "Queues and idempotency",
+    "consistency": "Consistency and contention",
+    "reliability": "Failure modes and multi tenancy",
+    "data-and-delivery": "Storage choice, real time and streams",
+    "core-designs": "Rate limiter, URL shortener, cache, KV store",
+    "social-designs": "Chat, feed, notifications",
+    "transaction-designs": "Ticketing, payments, ride sharing",
+    "data-designs": "Top K, metrics, crawler, typeahead",
+    "infra-designs": "Job scheduler, file storage, video, docs, LLM serving"
   }
 }
