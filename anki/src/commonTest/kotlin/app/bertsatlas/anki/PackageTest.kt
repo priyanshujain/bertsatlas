@@ -10,6 +10,7 @@ import app.bertsatlas.anki.pkg.PackageImport
 import kotlin.test.Test
 import kotlin.test.assertContentEquals
 import kotlin.test.assertEquals
+import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
 class PackageTest {
@@ -111,6 +112,62 @@ class PackageTest {
             }
         }
         AnkiCollection.open(sourcePath).use { assertEquals(1, it.noteCount()) }
+    }
+
+    @Test
+    fun importCopiesUnreferencedPackMediaOnlyWhenAsked() {
+        val directory = freshDirectory("pack-media")
+        val sourcePath = createCollection("$directory/source").use { source ->
+            val notetype = source.saveNotetype(basicNotetype())
+            val deck = source.saveDeck(Deck(0, "Capitals", ""))
+            source.addNote(Note(0, "g1", notetype.id, listOf("France <img src=\"fr.png\">", "Paris", ""), emptyList()), deck.id)
+            source.path
+        }
+        Files.write("$directory/media/fr.png", byteArrayOf(1))
+        Files.write("$directory/media/cover.png", byteArrayOf(2))
+        PackageExport.export(sourcePath, "$directory/media", "$directory/out.apkg", "$directory/work", PackageFormat.Modern)
+        listOf(emptySet<String>() to false, setOf("cover.png") to true).forEachIndexed { index, (packMedia, copied) ->
+            createCollection("$directory/target$index").use { target ->
+                PackageImport.open("$directory/out.apkg", "$directory/work$index").use { opened ->
+                    val result = PackageImport.importDeck(opened, opened.topLevelDecks().single().deckId, target, "$directory/target$index/media", packMedia = packMedia)
+                    assertEquals(if (copied) 2 else 1, result.mediaFiles)
+                }
+            }
+            assertTrue(Files.exists("$directory/target$index/media/fr.png"))
+            assertEquals(copied, Files.exists("$directory/target$index/media/cover.png"))
+        }
+    }
+
+    @Test
+    fun reimportMovesExistingCardsToTheirNewSection() {
+        val directory = freshDirectory("move")
+        fun export(label: String, section: String): String {
+            val path = createCollection("$directory/$label").use { source ->
+                val notetype = source.saveNotetype(basicNotetype())
+                source.saveDeck(Deck(0, "Capitals", ""))
+                val deck = source.saveDeck(Deck(0, "Capitals::$section", ""))
+                source.addNote(Note(0, "g1", notetype.id, listOf("France", "Paris", ""), emptyList()), deck.id)
+                source.path
+            }
+            Files.createDirectories("$directory/$label-media")
+            PackageExport.export(path, "$directory/$label-media", "$directory/$label.apkg", "$directory/work", PackageFormat.Modern)
+            return "$directory/$label.apkg"
+        }
+        val first = export("first", "Europe")
+        val second = export("second", "Western Europe")
+        createCollection("$directory/target").use { target ->
+            listOf(first, second).forEach { packagePath ->
+                PackageImport.open(packagePath, "$directory/work").use { opened ->
+                    PackageImport.importDeck(opened, opened.topLevelDecks().single().deckId, target, "$directory/target-media")
+                }
+            }
+            val card = target.cards().single()
+            assertEquals("Capitals::Western Europe", target.decks().single { it.id == card.deckId }.name)
+            PackageImport.open(first, "$directory/work").use { opened ->
+                PackageImport.importDeck(opened, opened.topLevelDecks().single().deckId, target, "$directory/target-media", updateExistingContent = false)
+            }
+            assertEquals("Capitals::Western Europe", target.decks().single { it.id == target.cards().single().deckId }.name)
+        }
     }
 
     @Test
