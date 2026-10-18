@@ -199,7 +199,7 @@ private fun KeyboardHint(text: String) {
     AtlasText(text, Modifier.fillMaxWidth(), style = AtlasTheme.typography.detail, color = AtlasTheme.colors.mutedPlum, textAlign = TextAlign.Center)
 }
 
-private val CHOICE_KEYS = listOf(Key.One, Key.Two, Key.Three, Key.Four)
+private val CHOICE_KEYS = listOf(Key.One, Key.Two, Key.Three, Key.Four, Key.Five)
 private val FORGOT_KEY = Key.One
 private val REMEMBERED_KEY = Key.Two
 
