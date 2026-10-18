@@ -90,6 +90,8 @@ private class CardRenderEnvironment(
     val onPlayingSoundChange: (String?) -> Unit,
 )
 
+private const val CODE_WITHOUT_LIGATURES = "\"liga\" 0, \"calt\" 0"
+
 private val LocalCardEnvironment = staticCompositionLocalOf<CardRenderEnvironment> { error("CardView environment missing") }
 
 @Composable
@@ -198,6 +200,7 @@ private fun spanStyle(inline: InlineStyle, style: CardRenderStyle, codeFamily: F
         fontWeight = if (inline.bold || inline.cloze == ClozeRole.Hidden || inline.cloze == ClozeRole.Revealed) FontWeight.Bold else null,
         fontStyle = if (inline.italic) FontStyle.Italic else null,
         fontFamily = if (inline.code) codeFamily else null,
+        fontFeatureSettings = if (inline.code) CODE_WITHOUT_LIGATURES else null,
         textDecoration = if (decorations.isEmpty()) null else TextDecoration.combine(decorations),
         baselineShift = when (inline.baseline) {
             Baseline.Subscript -> BaselineShift.Subscript
@@ -497,9 +500,13 @@ private fun CodeBlockView(block: CardBlock.CodeBlock) {
         }
         BasicText(
             highlighted,
-            modifier = Modifier.horizontalScroll(rememberScrollState()),
-            style = TextStyle(color = style.text, fontFamily = environment.codeFamily, fontSize = style.body.fontSize * 0.78f, lineHeight = style.body.fontSize * 1.15f),
-            softWrap = false,
+            style = TextStyle(
+                color = style.text,
+                fontFamily = environment.codeFamily,
+                fontFeatureSettings = CODE_WITHOUT_LIGATURES,
+                fontSize = style.body.fontSize * 0.78f,
+                lineHeight = style.body.fontSize * 1.15f,
+            ),
         )
     }
 }
@@ -568,7 +575,7 @@ private fun TypeAnswerView() {
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(6.dp),
     ) {
-        val codeStyle = style.body.copy(fontFamily = environment.codeFamily, textAlign = TextAlign.Center)
+        val codeStyle = style.body.copy(fontFamily = environment.codeFamily, fontFeatureSettings = CODE_WITHOUT_LIGATURES, textAlign = TextAlign.Center)
         if (state.typed.isBlank()) {
             BasicText("You left this blank", style = style.body.copy(color = style.mutedText, textAlign = TextAlign.Center))
         } else if (result.isExactMatch) {
