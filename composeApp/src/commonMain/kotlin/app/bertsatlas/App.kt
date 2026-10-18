@@ -607,7 +607,11 @@ private fun ImportDestination(controller: AppController, state: AtlasAppState) {
                     detail = if (result.mergedIntoExisting) {
                         "Updated ${result.updatedNotes} cards and added ${result.addedNotes} new ones. Your progress is kept."
                     } else {
-                        "Added ${result.addedCards} cards" + if (result.mediaFiles > 0) " and ${result.mediaFiles} pictures and sounds." else "."
+                        "Added ${result.addedCards} ${if (result.addedCards == 1) "card" else "cards"}" + when {
+                            result.mediaFiles == 1 -> " and 1 picture or sound."
+                            result.mediaFiles > 1 -> " and ${result.mediaFiles} pictures and sounds."
+                            else -> "."
+                        }
                     },
                 )
             },
