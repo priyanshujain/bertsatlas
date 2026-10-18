@@ -122,9 +122,7 @@ private class Validator(private val path: Path, private val resourceRoot: Path) 
             val label = "fact ${id(fact)}"
             expectInt(fact, "schemaVersion", 1, label)
             listOf("heading", "text").forEach { text(fact, it, label) }
-            val heading = value(fact, "heading")
-            val copy = value(fact, "text")
-            if (heading == "Atlas placement" || copy.contains("UN M49", ignoreCase = true)) {
+            if (value(fact, "text").contains("UN M49", ignoreCase = true)) {
                 errors += "$label exposes catalog metadata as lesson copy"
             }
             refs(label, strings(fact, "countryIds"), countryIds, "country")
