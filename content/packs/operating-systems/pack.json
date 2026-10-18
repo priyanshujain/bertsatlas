@@ -1,22 +1,22 @@
 {
   "packId": "operating-systems",
-  "version": "2.0.0-draft.1",
+  "version": "3.0.0-draft.1",
   "official": true,
   "title": "Operating Systems Interview Practice",
   "subtitle": "Concurrency, memory, scheduling and I/O questions for software engineering interviews",
   "category": "programming",
   "subcategory": "operating-systems",
   "accentColor": "#3E5C8A",
-  "coverMedia": null,
+  "coverMedia": "cover.png",
   "languages": [
     "en"
   ],
   "sources": [
     {
-      "id": "source-affinity",
-      "title": "sched_setaffinity(2), Linux manual page",
-      "url": "https://man7.org/linux/man-pages/man2/sched_setaffinity.2.html",
-      "publisher": "Michael Kerrisk, Linux man-pages project",
+      "id": "source-blind-databricks",
+      "title": "Blind: Confusing experience of Databricks interview",
+      "url": "https://www.teamblind.com/post/confusing-experience-of-databricks-interview-um6p8k8f",
+      "publisher": "Blind",
       "retrievedAt": "2026-10-18",
       "revision": null
     },
@@ -29,26 +29,10 @@
       "revision": null
     },
     {
-      "id": "source-bwc",
-      "title": "Linux kernel docs: CFS Bandwidth Control",
-      "url": "https://docs.kernel.org/scheduler/sched-bwc.html",
-      "publisher": "The Linux Kernel Organization",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
       "id": "source-c10k",
       "title": "The C10K problem",
       "url": "http://www.kegel.com/c10k.html",
       "publisher": "Dan Kegel",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-cgv2",
-      "title": "Linux kernel docs: Control Group v2",
-      "url": "https://docs.kernel.org/admin-guide/cgroup-v2.html",
-      "publisher": "The Linux Kernel Organization",
       "retrievedAt": "2026-10-18",
       "revision": null
     },
@@ -77,58 +61,10 @@
       "revision": null
     },
     {
-      "id": "source-dup",
-      "title": "dup(2), Linux manual page",
-      "url": "https://man7.org/linux/man-pages/man2/dup.2.html",
-      "publisher": "Michael Kerrisk, Linux man-pages project",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-eevdf",
-      "title": "Linux kernel docs: EEVDF Scheduler",
-      "url": "https://docs.kernel.org/scheduler/sched-eevdf.html",
-      "publisher": "The Linux Kernel Organization",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-epoll",
-      "title": "epoll(7), Linux manual page",
-      "url": "https://man7.org/linux/man-pages/man7/epoll.7.html",
-      "publisher": "Michael Kerrisk, Linux man-pages project",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
       "id": "source-events",
       "title": "OSTEP: Event-based Concurrency",
       "url": "https://pages.cs.wisc.edu/~remzi/OSTEP/threads-events.pdf",
       "publisher": "Remzi H. Arpaci-Dusseau and Andrea C. Arpaci-Dusseau",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-execve",
-      "title": "execve(2), Linux manual page",
-      "url": "https://man7.org/linux/man-pages/man2/execve.2.html",
-      "publisher": "Michael Kerrisk, Linux man-pages project",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-fintro",
-      "title": "OSTEP: Interlude: Files and Directories",
-      "url": "https://pages.cs.wisc.edu/~remzi/OSTEP/file-intro.pdf",
-      "publisher": "Remzi H. Arpaci-Dusseau and Andrea C. Arpaci-Dusseau",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-flame",
-      "title": "Flame Graphs",
-      "url": "https://www.brendangregg.com/flamegraphs.html",
-      "publisher": "Brendan Gregg",
       "retrievedAt": "2026-10-18",
       "revision": null
     },
@@ -141,25 +77,9 @@
       "revision": null
     },
     {
-      "id": "source-free",
-      "title": "OSTEP: Free-Space Management",
-      "url": "https://pages.cs.wisc.edu/~remzi/OSTEP/vm-freespace.pdf",
-      "publisher": "Remzi H. Arpaci-Dusseau and Andrea C. Arpaci-Dusseau",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
       "id": "source-fsync",
       "title": "fsync(2), Linux manual page",
       "url": "https://man7.org/linux/man-pages/man2/fsync.2.html",
-      "publisher": "Michael Kerrisk, Linux man-pages project",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-futex",
-      "title": "futex(7), Linux manual page",
-      "url": "https://man7.org/linux/man-pages/man7/futex.7.html",
       "publisher": "Michael Kerrisk, Linux man-pages project",
       "retrievedAt": "2026-10-18",
       "revision": null
@@ -169,6 +89,46 @@
       "title": "getrlimit(2), Linux manual page",
       "url": "https://man7.org/linux/man-pages/man2/getrlimit.2.html",
       "publisher": "Michael Kerrisk, Linux man-pages project",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-golinux",
+      "title": "Operating system interview questions",
+      "url": "https://www.golinuxcloud.com/operating-system-interview-questions/",
+      "publisher": "GoLinuxCloud",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-hi-crawler",
+      "title": "Hello Interview: Multithreaded web crawler",
+      "url": "https://www.hellointerview.com/community/questions/web-crawler-multithreaded/cm5eguhad02yw838ot9p159t6",
+      "publisher": "Hello Interview",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-iga-anthropic",
+      "title": "IGotAnOffer: Anthropic software engineer interview",
+      "url": "https://igotanoffer.com/en/advice/anthropic-software-engineer-interview",
+      "publisher": "IGotAnOffer",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-iga-openai",
+      "title": "IGotAnOffer: OpenAI coding interview",
+      "url": "https://igotanoffer.com/en/advice/openai-coding-interview",
+      "publisher": "IGotAnOffer",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-iio-anthropic",
+      "title": "interviewing.io: Anthropic interview questions",
+      "url": "https://interviewing.io/anthropic-interview-questions",
+      "publisher": "interviewing.io",
       "retrievedAt": "2026-10-18",
       "revision": null
     },
@@ -189,18 +149,26 @@
       "revision": null
     },
     {
-      "id": "source-k8s-term",
-      "title": "Pod Lifecycle: Termination of Pods",
-      "url": "https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#pod-termination",
-      "publisher": "The Kubernetes Authors",
+      "id": "source-lc1188",
+      "title": "LeetCode 1188: Design Bounded Blocking Queue",
+      "url": "https://leetcode.com/problems/design-bounded-blocking-queue/",
+      "publisher": "LeetCode",
       "retrievedAt": "2026-10-18",
       "revision": null
     },
     {
-      "id": "source-lc-conc",
-      "title": "LeetCode Concurrency problem set",
-      "url": "https://leetcode.com/problemset/concurrency/",
+      "id": "source-lc1242",
+      "title": "LeetCode 1242: Web Crawler Multithreaded",
+      "url": "https://leetcode.com/problems/web-crawler-multithreaded/",
       "publisher": "LeetCode",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-linkjob",
+      "title": "Anthropic concurrency interview questions",
+      "url": "https://www.linkjob.ai/interview-questions/anthropic-concurrency-interview/",
+      "publisher": "linkjob.ai",
       "retrievedAt": "2026-10-18",
       "revision": null
     },
@@ -209,14 +177,6 @@
       "title": "Linux Load Averages: Solving the Mystery",
       "url": "https://www.brendangregg.com/blog/2017-08-08/linux-load-averages.html",
       "publisher": "Brendan Gregg",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-lockdep",
-      "title": "Linux kernel docs: Runtime locking correctness validator",
-      "url": "https://docs.kernel.org/locking/lockdep-design.html",
-      "publisher": "The Linux Kernel Organization",
       "retrievedAt": "2026-10-18",
       "revision": null
     },
@@ -237,74 +197,10 @@
       "revision": null
     },
     {
-      "id": "source-malloctrim",
-      "title": "malloc_trim(3), Linux manual page",
-      "url": "https://man7.org/linux/man-pages/man3/malloc_trim.3.html",
-      "publisher": "Michael Kerrisk, Linux man-pages project",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-mallopt",
-      "title": "mallopt(3), Linux manual page",
-      "url": "https://man7.org/linux/man-pages/man3/mallopt.3.html",
-      "publisher": "Michael Kerrisk, Linux man-pages project",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-mech",
-      "title": "OSTEP: Mechanism: Limited Direct Execution",
-      "url": "https://pages.cs.wisc.edu/~remzi/OSTEP/cpu-mechanisms.pdf",
-      "publisher": "Remzi H. Arpaci-Dusseau and Andrea C. Arpaci-Dusseau",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-mlfq",
-      "title": "OSTEP: Scheduling: The Multi-Level Feedback Queue",
-      "url": "https://pages.cs.wisc.edu/~remzi/OSTEP/cpu-sched-mlfq.pdf",
-      "publisher": "Remzi H. Arpaci-Dusseau and Andrea C. Arpaci-Dusseau",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-mmap",
-      "title": "mmap(2), Linux manual page",
-      "url": "https://man7.org/linux/man-pages/man2/mmap.2.html",
-      "publisher": "Michael Kerrisk, Linux man-pages project",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-open",
-      "title": "open(2), Linux manual page",
-      "url": "https://man7.org/linux/man-pages/man2/open.2.html",
-      "publisher": "Michael Kerrisk, Linux man-pages project",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-osdi14",
-      "title": "All File Systems Are Not Created Equal (OSDI 2014)",
-      "url": "https://www.usenix.org/conference/osdi14/technical-sessions/presentation/pillai",
-      "publisher": "USENIX",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
       "id": "source-overcommit",
       "title": "Linux kernel docs: Overcommit Accounting",
       "url": "https://docs.kernel.org/mm/overcommit-accounting.html",
       "publisher": "The Linux Kernel Organization",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-paging",
-      "title": "OSTEP: Paging: Introduction",
-      "url": "https://pages.cs.wisc.edu/~remzi/OSTEP/vm-paging.pdf",
-      "publisher": "Remzi H. Arpaci-Dusseau and Andrea C. Arpaci-Dusseau",
       "retrievedAt": "2026-10-18",
       "revision": null
     },
@@ -325,10 +221,10 @@
       "revision": null
     },
     {
-      "id": "source-pipe",
-      "title": "pipe(2), Linux manual page",
-      "url": "https://man7.org/linux/man-pages/man2/pipe.2.html",
-      "publisher": "Michael Kerrisk, Linux man-pages project",
+      "id": "source-prachub-lru",
+      "title": "PracHub: Design a crash resilient LRU cache",
+      "url": "https://prachub.com/interview-questions/design-a-crash-resilient-lru-cache",
+      "publisher": "PracHub",
       "retrievedAt": "2026-10-18",
       "revision": null
     },
@@ -341,150 +237,6 @@
       "revision": null
     },
     {
-      "id": "source-procapi",
-      "title": "OSTEP: Interlude: Process API",
-      "url": "https://pages.cs.wisc.edu/~remzi/OSTEP/cpu-api.pdf",
-      "publisher": "Remzi H. Arpaci-Dusseau and Andrea C. Arpaci-Dusseau",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-py-asyncio",
-      "title": "Coroutines and Tasks (asyncio), Python documentation",
-      "url": "https://docs.python.org/3/library/asyncio-task.html",
-      "publisher": "Python Software Foundation",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-py-asynciodev",
-      "title": "Developing with asyncio, Python documentation",
-      "url": "https://docs.python.org/3/library/asyncio-dev.html",
-      "publisher": "Python Software Foundation",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-py-futures",
-      "title": "concurrent.futures, Python documentation",
-      "url": "https://docs.python.org/3/library/concurrent.futures.html",
-      "publisher": "Python Software Foundation",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-py-gc",
-      "title": "gc, Python documentation",
-      "url": "https://docs.python.org/3/library/gc.html",
-      "publisher": "Python Software Foundation",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-py-gil",
-      "title": "Glossary: global interpreter lock, Python documentation",
-      "url": "https://docs.python.org/3/glossary.html#term-global-interpreter-lock",
-      "publisher": "Python Software Foundation",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-py-heapq",
-      "title": "heapq, Python documentation",
-      "url": "https://docs.python.org/3/library/heapq.html",
-      "publisher": "Python Software Foundation",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-py-mp",
-      "title": "multiprocessing, Python documentation",
-      "url": "https://docs.python.org/3/library/multiprocessing.html",
-      "publisher": "Python Software Foundation",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-py-os",
-      "title": "os, Python documentation",
-      "url": "https://docs.python.org/3/library/os.html",
-      "publisher": "Python Software Foundation",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-py-queue",
-      "title": "queue, Python documentation",
-      "url": "https://docs.python.org/3/library/queue.html",
-      "publisher": "Python Software Foundation",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-py-signal",
-      "title": "signal, Python documentation",
-      "url": "https://docs.python.org/3/library/signal.html",
-      "publisher": "Python Software Foundation",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-py-subprocess",
-      "title": "subprocess, Python documentation",
-      "url": "https://docs.python.org/3/library/subprocess.html",
-      "publisher": "Python Software Foundation",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-py-sys",
-      "title": "sys, Python documentation",
-      "url": "https://docs.python.org/3/library/sys.html",
-      "publisher": "Python Software Foundation",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-py-threading",
-      "title": "threading, Python documentation",
-      "url": "https://docs.python.org/3/library/threading.html",
-      "publisher": "Python Software Foundation",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-py-tracemalloc",
-      "title": "tracemalloc, Python documentation",
-      "url": "https://docs.python.org/3/library/tracemalloc.html",
-      "publisher": "Python Software Foundation",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-pyspy",
-      "title": "py-spy: Sampling profiler for Python programs",
-      "url": "https://github.com/benfred/py-spy",
-      "publisher": "Ben Frederickson",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-redis-latency",
-      "title": "Diagnosing latency issues",
-      "url": "https://redis.io/docs/latest/operate/oss_and_stack/management/optimization/latency/",
-      "publisher": "Redis",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-redis-persist",
-      "title": "Redis persistence",
-      "url": "https://redis.io/docs/latest/operate/oss_and_stack/management/persistence/",
-      "publisher": "Redis",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
       "id": "source-rename",
       "title": "rename(2), Linux manual page",
       "url": "https://man7.org/linux/man-pages/man2/rename.2.html",
@@ -493,26 +245,10 @@
       "revision": null
     },
     {
-      "id": "source-rtmutex",
-      "title": "Linux kernel docs: RT-mutex subsystem with PI support",
-      "url": "https://docs.kernel.org/locking/rt-mutex.html",
-      "publisher": "The Linux Kernel Organization",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-sched",
-      "title": "OSTEP: Scheduling: Introduction",
-      "url": "https://pages.cs.wisc.edu/~remzi/OSTEP/cpu-sched.pdf",
-      "publisher": "Remzi H. Arpaci-Dusseau and Andrea C. Arpaci-Dusseau",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-sched7",
-      "title": "sched(7), Linux manual page",
-      "url": "https://man7.org/linux/man-pages/man7/sched.7.html",
-      "publisher": "Michael Kerrisk, Linux man-pages project",
+      "id": "source-sc-databricks",
+      "title": "SpaceComplexity: Databricks onsite interview",
+      "url": "https://spacecomplexity.ai/blog/databricks-onsite-interview",
+      "publisher": "SpaceComplexity",
       "retrievedAt": "2026-10-18",
       "revision": null
     },
@@ -525,66 +261,10 @@
       "revision": null
     },
     {
-      "id": "source-sendfile",
-      "title": "sendfile(2), Linux manual page",
-      "url": "https://man7.org/linux/man-pages/man2/sendfile.2.html",
-      "publisher": "Michael Kerrisk, Linux man-pages project",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-sigaction",
-      "title": "sigaction(2), Linux manual page",
-      "url": "https://man7.org/linux/man-pages/man2/sigaction.2.html",
-      "publisher": "Michael Kerrisk, Linux man-pages project",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-signal",
-      "title": "signal(7), Linux manual page",
-      "url": "https://man7.org/linux/man-pages/man7/signal.7.html",
-      "publisher": "Michael Kerrisk, Linux man-pages project",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-sigsafe",
-      "title": "signal-safety(7), Linux manual page",
-      "url": "https://man7.org/linux/man-pages/man7/signal-safety.7.html",
-      "publisher": "Michael Kerrisk, Linux man-pages project",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-strace",
-      "title": "strace(1), Linux manual page",
-      "url": "https://man7.org/linux/man-pages/man1/strace.1.html",
-      "publisher": "Michael Kerrisk, Linux man-pages project",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
       "id": "source-swap",
       "title": "OSTEP: Beyond Physical Memory: Mechanisms",
       "url": "https://pages.cs.wisc.edu/~remzi/OSTEP/vm-beyondphys.pdf",
       "publisher": "Remzi H. Arpaci-Dusseau and Andrea C. Arpaci-Dusseau",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-thp",
-      "title": "Linux kernel docs: Transparent Hugepage Support",
-      "url": "https://docs.kernel.org/admin-guide/mm/transhuge.html",
-      "publisher": "The Linux Kernel Organization",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-tini",
-      "title": "tini: a tiny but valid init for containers",
-      "url": "https://github.com/krallin/tini",
-      "publisher": "Thomas Orozco",
       "retrievedAt": "2026-10-18",
       "revision": null
     },
@@ -605,34 +285,10 @@
       "revision": null
     },
     {
-      "id": "source-unlink",
-      "title": "unlink(2), Linux manual page",
-      "url": "https://man7.org/linux/man-pages/man2/unlink.2.html",
-      "publisher": "Michael Kerrisk, Linux man-pages project",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
       "id": "source-use",
       "title": "The USE Method",
       "url": "https://www.brendangregg.com/usemethod.html",
       "publisher": "Brendan Gregg",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-wait",
-      "title": "wait(2), Linux manual page",
-      "url": "https://man7.org/linux/man-pages/man2/wait.2.html",
-      "publisher": "Michael Kerrisk, Linux man-pages project",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-write",
-      "title": "write(2), Linux manual page",
-      "url": "https://man7.org/linux/man-pages/man2/write.2.html",
-      "publisher": "Michael Kerrisk, Linux man-pages project",
       "retrievedAt": "2026-10-18",
       "revision": null
     }
@@ -641,13 +297,14 @@
   "stamps": [],
   "bertSchemaVersion": 1,
   "sections": {
-    "concurrency-coding": "Concurrency coding problems",
-    "races-deadlocks": "Races and deadlocks",
-    "sync-primitives": "Choosing synchronization primitives",
+    "crawler": "Concurrent web crawler",
+    "blocking-queue": "Producer consumer and blocking queues",
+    "thread-safe-structures": "Thread safe data structures",
+    "rate-limiter": "Concurrent rate limiting",
     "concurrency-models": "Threads, processes and async",
-    "memory": "Memory and virtual memory",
-    "scheduling-performance": "Scheduling and CPU performance",
-    "files-durability": "Files, I/O and durability",
-    "processes-signals": "Processes and signals"
+    "races-deadlocks": "Spotting races and deadlocks",
+    "pools-backpressure": "Thread pools and backpressure",
+    "durability": "Files and durability",
+    "os-debugging": "OS for backend debugging"
   }
 }
