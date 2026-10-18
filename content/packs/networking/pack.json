@@ -1,21 +1,133 @@
 {
   "packId": "networking",
-  "version": "2.0.0-draft.1",
+  "version": "3.0.0-draft.1",
   "official": true,
   "title": "Networking Interview Practice",
   "subtitle": "Networking questions software engineering interviewers actually ask",
   "category": "programming",
   "subcategory": "networking",
   "accentColor": "#3E5C8A",
-  "coverMedia": null,
+  "coverMedia": "cover.png",
   "languages": [
     "en"
   ],
   "sources": [
     {
+      "id": "source-awsbackoff",
+      "title": "AWS Architecture Blog, Exponential Backoff and Jitter",
+      "url": "https://aws.amazon.com/blogs/architecture/exponential-backoff-and-jitter/",
+      "publisher": "Amazon Web Services",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-awselb",
+      "title": "AWS Elastic Load Balancing, How it works",
+      "url": "https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/how-elastic-load-balancing-works.html",
+      "publisher": "Amazon Web Services",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-awstimeouts",
+      "title": "Amazon Builders' Library, Timeouts, retries and backoff with jitter",
+      "url": "https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/",
+      "publisher": "Amazon Web Services",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-bbg",
+      "title": "ByteByteGo, What happens when you type google.com",
+      "url": "https://bytebytego.com/guides/what-happens-when-you-type-google/",
+      "publisher": "ByteByteGo",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-ctolb",
+      "title": "Crack the Offer, System Design Load Balancing",
+      "url": "https://www.cracktheoffer.com/system-design-load-balancing",
+      "publisher": "Crack the Offer",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-envoylb",
+      "title": "Envoy docs, Load balancing",
+      "url": "https://www.envoyproxy.io/docs/envoy/latest/intro/arch_overview/upstream/load_balancing/load_balancing",
+      "publisher": "Envoy Project",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-hello",
+      "title": "Hello Interview, Networking Essentials",
+      "url": "https://www.hellointerview.com/learn/system-design/core-concepts/networking-essentials",
+      "publisher": "Hello Interview",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-hpbn",
+      "title": "High Performance Browser Networking, Ilya Grigorik",
+      "url": "https://hpbn.co/",
+      "publisher": "O'Reilly",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-prachub",
+      "title": "PracHub, Cloudflare Software Engineer Interview Questions Guide",
+      "url": "https://prachub.com/interview-guide/cloudflare-software-engineer-interview-questions-guide-2026",
+      "publisher": "PracHub",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
       "id": "source-rfc1034",
       "title": "RFC 1034 Domain Names, Concepts and Facilities",
       "url": "https://www.rfc-editor.org/rfc/rfc1034",
+      "publisher": "IETF",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-rfc2308",
+      "title": "RFC 2308 Negative Caching of DNS Queries",
+      "url": "https://www.rfc-editor.org/rfc/rfc2308",
+      "publisher": "IETF",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-rfc6455",
+      "title": "RFC 6455 The WebSocket Protocol",
+      "url": "https://www.rfc-editor.org/rfc/rfc6455",
+      "publisher": "IETF",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-rfc6585",
+      "title": "RFC 6585 Additional HTTP Status Codes",
+      "url": "https://www.rfc-editor.org/rfc/rfc6585",
+      "publisher": "IETF",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-rfc6797",
+      "title": "RFC 6797 HTTP Strict Transport Security",
+      "url": "https://www.rfc-editor.org/rfc/rfc6797",
+      "publisher": "IETF",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "source-rfc8085",
+      "title": "RFC 8085 UDP Usage Guidelines",
+      "url": "https://www.rfc-editor.org/rfc/rfc8085",
       "publisher": "IETF",
       "retrievedAt": "2026-10-18",
       "revision": null
@@ -29,26 +141,18 @@
       "revision": null
     },
     {
-      "id": "source-rfc9110",
-      "title": "RFC 9110 HTTP Semantics",
-      "url": "https://www.rfc-editor.org/rfc/rfc9110",
+      "id": "source-rfc9000",
+      "title": "RFC 9000 QUIC",
+      "url": "https://www.rfc-editor.org/rfc/rfc9000",
       "publisher": "IETF",
       "retrievedAt": "2026-10-18",
       "revision": null
     },
     {
-      "id": "source-hpbn",
-      "title": "High Performance Browser Networking, Ilya Grigorik",
-      "url": "https://hpbn.co/",
-      "publisher": "O'Reilly",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-curl",
-      "title": "curl manual",
-      "url": "https://curl.se/docs/manpage.html",
-      "publisher": "curl project",
+      "id": "source-rfc9110",
+      "title": "RFC 9110 HTTP Semantics",
+      "url": "https://www.rfc-editor.org/rfc/rfc9110",
+      "publisher": "IETF",
       "retrievedAt": "2026-10-18",
       "revision": null
     },
@@ -69,242 +173,10 @@
       "revision": null
     },
     {
-      "id": "source-ss",
-      "title": "ss manual",
-      "url": "https://man7.org/linux/man-pages/man8/ss.8.html",
-      "publisher": "Linux man-pages project",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-rfc8305",
-      "title": "RFC 8305 Happy Eyeballs Version 2",
-      "url": "https://www.rfc-editor.org/rfc/rfc8305",
-      "publisher": "IETF",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-pysocket",
-      "title": "Python docs, socket",
-      "url": "https://docs.python.org/3/library/socket.html",
-      "publisher": "Python Software Foundation",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-rfc9111",
-      "title": "RFC 9111 HTTP Caching",
-      "url": "https://www.rfc-editor.org/rfc/rfc9111",
-      "publisher": "IETF",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-rfc768",
-      "title": "RFC 768 User Datagram Protocol",
-      "url": "https://www.rfc-editor.org/rfc/rfc768",
-      "publisher": "IETF",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-rfc8085",
-      "title": "RFC 8085 UDP Usage Guidelines",
-      "url": "https://www.rfc-editor.org/rfc/rfc8085",
-      "publisher": "IETF",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-rfc9000",
-      "title": "RFC 9000 QUIC",
-      "url": "https://www.rfc-editor.org/rfc/rfc9000",
-      "publisher": "IETF",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-tcp7",
-      "title": "Linux tcp(7) manual",
-      "url": "https://man7.org/linux/man-pages/man7/tcp.7.html",
-      "publisher": "Linux man-pages project",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-rfc6455",
-      "title": "RFC 6455 The WebSocket Protocol",
-      "url": "https://www.rfc-editor.org/rfc/rfc6455",
-      "publisher": "IETF",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-rfc5681",
-      "title": "RFC 5681 TCP Congestion Control",
-      "url": "https://www.rfc-editor.org/rfc/rfc5681",
-      "publisher": "IETF",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-rfc5280",
-      "title": "RFC 5280 X.509 PKI Certificate Profile",
-      "url": "https://www.rfc-editor.org/rfc/rfc5280",
-      "publisher": "IETF",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-openssl",
-      "title": "openssl s_client manual",
-      "url": "https://docs.openssl.org/master/man1/openssl-s_client/",
-      "publisher": "OpenSSL Project",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-rfc6066",
-      "title": "RFC 6066 TLS Extensions (SNI)",
-      "url": "https://www.rfc-editor.org/rfc/rfc6066",
-      "publisher": "IETF",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-rfc6797",
-      "title": "RFC 6797 HTTP Strict Transport Security",
-      "url": "https://www.rfc-editor.org/rfc/rfc6797",
-      "publisher": "IETF",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-awselb",
-      "title": "AWS Elastic Load Balancing, How it works",
-      "url": "https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/how-elastic-load-balancing-works.html",
-      "publisher": "Amazon Web Services",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-rfc1035",
-      "title": "RFC 1035 Domain Names, Implementation and Specification",
-      "url": "https://www.rfc-editor.org/rfc/rfc1035",
-      "publisher": "IETF",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-rfc2308",
-      "title": "RFC 2308 Negative Caching of DNS Queries",
-      "url": "https://www.rfc-editor.org/rfc/rfc2308",
-      "publisher": "IETF",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-dig",
-      "title": "BIND 9 manual pages (dig)",
-      "url": "https://bind9.readthedocs.io/en/latest/manpages.html",
-      "publisher": "Internet Systems Consortium",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-tcpdump",
-      "title": "tcpdump manual",
-      "url": "https://www.tcpdump.org/manpages/tcpdump.1.html",
-      "publisher": "Tcpdump Group",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-envoylb",
-      "title": "Envoy docs, Load balancing",
-      "url": "https://www.envoyproxy.io/docs/envoy/latest/intro/arch_overview/upstream/load_balancing/load_balancing",
-      "publisher": "Envoy Project",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-rfc9113",
-      "title": "RFC 9113 HTTP/2",
-      "url": "https://www.rfc-editor.org/rfc/rfc9113",
-      "publisher": "IETF",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-rfc9114",
-      "title": "RFC 9114 HTTP/3",
-      "url": "https://www.rfc-editor.org/rfc/rfc9114",
-      "publisher": "IETF",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-stripeidem",
-      "title": "Stripe API docs, Idempotent requests",
-      "url": "https://docs.stripe.com/api/idempotent_requests",
-      "publisher": "Stripe",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-rfc6585",
-      "title": "RFC 6585 Additional HTTP Status Codes",
-      "url": "https://www.rfc-editor.org/rfc/rfc6585",
-      "publisher": "IETF",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-rfc9457",
-      "title": "RFC 9457 Problem Details for HTTP APIs",
-      "url": "https://www.rfc-editor.org/rfc/rfc9457",
-      "publisher": "IETF",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-mdncache",
-      "title": "MDN HTTP caching",
-      "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Caching",
-      "publisher": "Mozilla",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-grpc",
-      "title": "gRPC docs, Core concepts",
-      "url": "https://grpc.io/docs/what-is-grpc/core-concepts/",
-      "publisher": "gRPC Authors",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-fetch",
-      "title": "WHATWG Fetch Standard (CORS protocol)",
-      "url": "https://fetch.spec.whatwg.org/#http-cors-protocol",
-      "publisher": "WHATWG",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-mdncors",
-      "title": "MDN Cross-Origin Resource Sharing",
-      "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS",
-      "publisher": "Mozilla",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-rfc6265",
-      "title": "RFC 6265 HTTP State Management (Cookies)",
-      "url": "https://www.rfc-editor.org/rfc/rfc6265",
-      "publisher": "IETF",
+      "id": "source-srecascade",
+      "title": "Google SRE Book, Addressing Cascading Failures",
+      "url": "https://sre.google/sre-book/addressing-cascading-failures/",
+      "publisher": "Google",
       "retrievedAt": "2026-10-18",
       "revision": null
     },
@@ -317,79 +189,15 @@
       "revision": null
     },
     {
-      "id": "source-awsbackoff",
-      "title": "AWS Architecture Blog, Exponential Backoff and Jitter",
-      "url": "https://aws.amazon.com/blogs/architecture/exponential-backoff-and-jitter/",
-      "publisher": "Amazon Web Services",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-rfc8441",
-      "title": "RFC 8441 Bootstrapping WebSockets with HTTP/2",
-      "url": "https://www.rfc-editor.org/rfc/rfc8441",
-      "publisher": "IETF",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-haproxyproxy",
-      "title": "HAProxy PROXY protocol specification",
-      "url": "https://www.haproxy.org/download/2.9/doc/proxy-protocol.txt",
-      "publisher": "HAProxy",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-sre",
-      "title": "Google SRE Book, Handling Overload",
-      "url": "https://sre.google/sre-book/handling-overload/",
-      "publisher": "Google",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-srecascade",
-      "title": "Google SRE Book, Addressing Cascading Failures",
-      "url": "https://sre.google/sre-book/addressing-cascading-failures/",
-      "publisher": "Google",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-karger",
-      "title": "Karger et al., Consistent Hashing and Random Trees (STOC 1997)",
-      "url": "https://dl.acm.org/doi/10.1145/258533.258660",
-      "publisher": "ACM",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-awstimeouts",
-      "title": "Amazon Builders' Library, Timeouts, retries and backoff with jitter",
-      "url": "https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/",
-      "publisher": "Amazon Web Services",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-fowlercb",
-      "title": "Martin Fowler, CircuitBreaker",
-      "url": "https://martinfowler.com/bliki/CircuitBreaker.html",
-      "publisher": "Martin Fowler",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-webhooksig",
-      "title": "Stripe docs, Check webhook signatures",
-      "url": "https://docs.stripe.com/webhooks#verify-events",
+      "id": "source-stripeidem",
+      "title": "Stripe API docs, Idempotent requests",
+      "url": "https://docs.stripe.com/api/idempotent_requests",
       "publisher": "Stripe",
       "retrievedAt": "2026-10-18",
       "revision": null
     },
     {
-      "id": "source-hedge",
+      "id": "source-tail",
       "title": "Dean and Barroso, The Tail at Scale (CACM 2013)",
       "url": "https://cacm.acm.org/research/the-tail-at-scale/",
       "publisher": "ACM",
@@ -397,42 +205,18 @@
       "revision": null
     },
     {
-      "id": "source-rfc1191",
-      "title": "RFC 1191 Path MTU Discovery",
-      "url": "https://www.rfc-editor.org/rfc/rfc1191",
-      "publisher": "IETF",
+      "id": "source-tcp7",
+      "title": "Linux tcp(7) manual",
+      "url": "https://man7.org/linux/man-pages/man7/tcp.7.html",
+      "publisher": "Linux man-pages project",
       "retrievedAt": "2026-10-18",
       "revision": null
     },
     {
-      "id": "source-rfc3022",
-      "title": "RFC 3022 Traditional IP NAT",
-      "url": "https://www.rfc-editor.org/rfc/rfc3022",
-      "publisher": "IETF",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-pyasyncio",
-      "title": "Python docs, asyncio Streams",
-      "url": "https://docs.python.org/3/library/asyncio-stream.html",
-      "publisher": "Python Software Foundation",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-rfc4632",
-      "title": "RFC 4632 CIDR",
-      "url": "https://www.rfc-editor.org/rfc/rfc4632",
-      "publisher": "IETF",
-      "retrievedAt": "2026-10-18",
-      "revision": null
-    },
-    {
-      "id": "source-pyipaddress",
-      "title": "Python docs, ipaddress",
-      "url": "https://docs.python.org/3/library/ipaddress.html",
-      "publisher": "Python Software Foundation",
+      "id": "source-timewait",
+      "title": "Michal Drozd, TCP TIME_WAIT and port exhaustion",
+      "url": "https://www.michal-drozd.com/en/blog/tcp-time-wait-port-exhaustion/",
+      "publisher": "Michal Drozd",
       "retrievedAt": "2026-10-18",
       "revision": null
     }
@@ -441,16 +225,12 @@
   "stamps": [],
   "bertSchemaVersion": 1,
   "sections": {
-    "lifecycle": "Request lifecycle and latency",
-    "transport": "TCP, UDP and sockets",
-    "tls": "TLS and certificates",
-    "dns": "DNS",
-    "http": "HTTP and API design",
-    "browser": "Browser security: CORS, cookies, HSTS",
-    "realtime": "Real time: WebSockets, SSE, polling",
-    "loadbalancing": "Load balancing and proxies",
-    "reliability": "Timeouts, retries and resilience",
-    "debugging": "Debugging scenarios",
-    "coding": "Coding questions"
+    "urlpath": "URL to page: DNS, handshakes, caching",
+    "realtime": "Real time: polling, SSE, WebSockets",
+    "loadbalancing": "Load balancing",
+    "reliability": "Timeouts, retries and status codes",
+    "latency": "Latency budget and geography",
+    "connections": "Connection pools and port exhaustion",
+    "transport": "TCP vs UDP and QUIC"
   }
 }

@@ -1,1039 +1,702 @@
 {
   "cards": [
     {
-      "guid": "913cc4e1-eecb-56b7-a696-164afe2bc724",
-      "noteType": "Bert Basic",
-      "section": "lifecycle",
+      "guid": "77500a48-c62f-5bf5-b1eb-ab945a72798d",
+      "noteType": "Bert Choice",
+      "section": "urlpath",
       "fields": {
-        "Question": "Walk me through what happens, end to end, when a user types https://shop.example.com/cart into a browser and presses Enter.",
-        "Answer": "<p>A strong answer is ordered, names the caches at each step, and says where latency goes.</p><ul><li>URL parsing: scheme https, host, path. Check HSTS list, so http would be upgraded before any request leaves.</li><li>Caches first: HTTP cache (fresh response may skip the network), an existing pooled connection to that origin, then DNS caches (browser, OS stub resolver).</li><li>DNS: stub asks a recursive resolver, which walks root, .com, then the example.com authoritative servers on a miss, and caches by TTL. A and AAAA are often raced (Happy Eyeballs).</li><li>TCP three way handshake to port 443 (1 RTT), or a QUIC handshake over UDP if the origin advertised HTTP/3 via Alt-Svc or an HTTPS DNS record.</li><li>TLS 1.3 handshake (1 RTT): ClientHello with SNI and ALPN (h2, http/1.1), server certificate chain validated against trusted roots and the hostname, keys derived.</li><li>HTTP request: GET /cart with Host, cookies, Accept-Encoding. Often hits a CDN or load balancer that terminates TLS and forwards to an app server.</li><li>Server work: routing, auth via session cookie, DB or cache lookups, renders HTML or JSON, returns status, headers (Cache-Control, Set-Cookie, Content-Encoding) and body.</li><li>Browser parses HTML, discovers CSS, JS, images, fetches them (multiplexed on the same h2 or h3 connection), builds DOM and CSSOM, lays out and paints.</li></ul><p><b>Latency budget:</b> cold start costs roughly DNS + 1 RTT TCP + 1 RTT TLS before the first request byte, so CDNs, connection reuse and HTTP/3 matter most for far away users.</p><p><b>Follow-ups:</b> where would you add caching, what changes on a mobile network, what if DNS returns a stale IP, how does a redirect or a 304 change the flow.</p>",
-        "Aliases": "",
-        "Hint": "Go layer by layer: name resolution, connection, security, request, response, render.",
-        "Fact": "Cold HTTPS over TCP and TLS 1.3 costs about 2 RTTs plus DNS before the first byte of the request.",
-        "Source": "RFC 1034 Domain Names, Concepts and Facilities (https://www.rfc-editor.org/rfc/rfc1034)\nRFC 8446 TLS 1.3 (https://www.rfc-editor.org/rfc/rfc8446)\nRFC 9110 HTTP Semantics (https://www.rfc-editor.org/rfc/rfc9110)\nHigh Performance Browser Networking, Ilya Grigorik (https://hpbn.co/)",
-        "BertMeta": ""
+        "Question": "You moved shop.example.com to a new IP and updated the A record. The old record had a TTL of 86400. Hours later some users still hit the old server. What is the most likely cause?",
+        "Choices": "DNS propagation between authoritative servers is broken\nResolvers and clients cached the old record and will keep it until the 86400 second TTL expires\nBrowsers ignore DNS TTLs entirely\nThe new A record needs a matching PTR record before it is used",
+        "Correct": "Resolvers and clients cached the old record and will keep it until the 86400 second TTL expires",
+        "Explanation": "Recursive resolvers, OS stubs and browsers may cache an answer for up to its TTL, so a one day TTL means up to a day of stale answers. Lower the TTL well before a migration. Propagation is not a push process between authoritative servers, it is cache expiry. Browsers do honor TTLs (often capping them shorter). PTR records are for reverse lookups and play no part in forward resolution.",
+        "Hint": "Nothing pushes DNS changes; caches just expire.",
+        "Source": "RFC 1034 Domain Names, Concepts and Facilities (https://www.rfc-editor.org/rfc/rfc1034)\nByteByteGo, What happens when you type google.com (https://bytebytego.com/guides/what-happens-when-you-type-google/)",
+        "BertMeta": {
+          "flipOnly": false
+        }
       },
       "tags": [
+        "bert::level::mid",
         "bert::status::draft"
       ]
     },
     {
-      "guid": "81391004-4eb4-56b6-99e1-afd53406ff74",
-      "noteType": "Bert Basic",
-      "section": "lifecycle",
+      "guid": "769e99c7-d3c7-536c-b30a-f6fbdefeb0dc",
+      "noteType": "Bert Choice",
+      "section": "urlpath",
       "fields": {
-        "Question": "A page feels slow only for users in Australia while your servers are in us-east. How do you figure out where the time goes and what do you change?",
-        "Answer": "<p>Measure the phases instead of guessing, then attack round trips, because RTT from Sydney to Virginia is around 200 ms and every handshake pays it.</p><pre><code class=\"language-python\"># curl gives phase timings in seconds\n# curl -o /dev/null -s -w &quot;dns=%{time_namelookup} connect=%{time_connect} \\\n#   tls=%{time_appconnect} ttfb=%{time_starttransfer} total=%{time_total}\\n&quot; URL</code></pre><ul><li>Big connect and tls deltas: RTT bound. Fix with a CDN or edge PoP that terminates TCP and TLS close to the user, keep-alive and connection reuse, TLS 1.3, session resumption, HTTP/3.</li><li>Big ttfb minus tls: server or backend latency, or the edge has to go to origin. Cache at the edge, regional replicas, avoid chatty sequential backend calls.</li><li>Big total minus ttfb: payload size or bandwidth. Compress, shrink, paginate, use a CDN for static assets.</li><li>Many sequential requests: each one adds an RTT. Batch, preload, or bundle.</li></ul><p><b>Pitfall:</b> optimizing server CPU when 80 percent of the time is handshakes over a long path.</p><p><b>Follow-ups:</b> real user monitoring with Navigation Timing, how TCP slow start hurts the first large response, why a CDN helps even for dynamic content.</p>",
-        "Aliases": "",
-        "Hint": "Split the request into DNS, connect, TLS, TTFB, download. Distance multiplies RTTs.",
-        "Fact": "Over long paths, removing round trips beats making the server faster.",
-        "Source": "curl manual (https://curl.se/docs/manpage.html)\nHigh Performance Browser Networking, Ilya Grigorik (https://hpbn.co/)",
-        "BertMeta": ""
+        "Question": "A client in Sydney makes its first HTTPS request (HTTP/1.1 over TCP, TLS 1.3, DNS already cached) to a server with 150 ms RTT. Roughly how long until the first response byte arrives, ignoring server time?",
+        "Choices": "450 ms\n150 ms\n300 ms\n600 ms",
+        "Correct": "450 ms",
+        "Explanation": "TCP handshake costs 1 RTT, the TLS 1.3 handshake 1 RTT, then the request and response 1 RTT: 3 x 150 = 450 ms. 150 ms ignores both handshakes. 300 ms forgets one of them (often candidates assume TLS is free). 600 ms is the TLS 1.2 number, which needed 2 RTTs for the full handshake.",
+        "Hint": "Count handshakes, then add the request itself.",
+        "Source": "High Performance Browser Networking, Ilya Grigorik (https://hpbn.co/)\nRFC 8446 TLS 1.3 (https://www.rfc-editor.org/rfc/rfc8446)",
+        "BertMeta": {
+          "flipOnly": false
+        }
       },
       "tags": [
+        "bert::level::mid",
         "bert::status::draft"
       ]
     },
     {
-      "guid": "2ed3273a-3efc-5fdf-910f-b6cd7850c557",
-      "noteType": "Bert Basic",
-      "section": "lifecycle",
+      "guid": "614dc837-afc3-5653-8dd5-4896266e8386",
+      "noteType": "Bert Choice",
+      "section": "urlpath",
       "fields": {
-        "Question": "Your service calls another internal HTTP API 2,000 times per second and p99 latency is bad. Profiling shows a lot of time in connect and TLS. What is going on and how do you fix it?",
-        "Answer": "<p>Most likely the client creates a fresh connection (often a new HTTP client object per call), paying TCP and TLS handshakes every time and burning ephemeral ports.</p><ul><li>Reuse one long lived client with a connection pool (requests.Session, httpx.Client, a shared Go http.Client). HTTP/1.1 keep-alive is the default.</li><li>Size the pool to the concurrency you need; too small queues requests, too big overloads the server.</li><li>Prefer HTTP/2 for internal calls so many concurrent requests share a few connections.</li><li>Set idle timeouts on the client shorter than the server or load balancer idle timeout, otherwise you reuse a connection the other side just closed and get resets.</li></ul><pre><code class=\"language-python\">import httpx\n\nclient = httpx.Client(timeout=httpx.Timeout(2.0, connect=0.5),\n                      limits=httpx.Limits(max_connections=100, max_keepalive_connections=50))\n\ndef get_user(user_id):\n    return client.get(f&quot;https://users.internal/users/{user_id}&quot;).json()</code></pre><p><b>Signals:</b> many sockets in TIME_WAIT on the client (ss -tan state time-wait), high TLS CPU on the server, connect time visible in traces.</p><p><b>Follow-ups:</b> why TIME_WAIT lives on the side that closes first, what happens with HTTP/2 and a single connection behind an L4 load balancer.</p>",
-        "Aliases": "",
-        "Hint": "Are you opening a new connection per request?",
-        "Fact": "Create the HTTP client once and reuse it; per request clients turn every call into a full handshake.",
-        "Source": "RFC 9112 HTTP/1.1 (https://www.rfc-editor.org/rfc/rfc9112)\nRFC 9293 Transmission Control Protocol (https://www.rfc-editor.org/rfc/rfc9293)\nss manual (https://man7.org/linux/man-pages/man8/ss.8.html)",
-        "BertMeta": ""
+        "Question": "A page loads 20 small API calls to the same origin over HTTPS. After the first call, the rest are noticeably faster even though the server time is unchanged. What explains this best?",
+        "Choices": "The server JIT compiled its handlers\nDNS answers are smaller after the first lookup\nTCP slow start makes later connections start with a larger window\nThe browser reused the already established TCP and TLS connection, skipping the handshakes",
+        "Correct": "The browser reused the already established TCP and TLS connection, skipping the handshakes",
+        "Explanation": "Persistent connections (keep-alive in HTTP/1.1, multiplexing in HTTP/2) let later requests skip DNS, TCP and TLS setup, saving 1 to 2 RTTs each. Server time was stated unchanged, so JIT is ruled out. DNS answer size does not change. Slow start applies per connection; a new connection starts small again, so it argues for reuse rather than explaining new connections being faster.",
+        "Hint": "What did the first request pay for that the others did not?",
+        "Source": "RFC 9112 HTTP/1.1 (https://www.rfc-editor.org/rfc/rfc9112)\nHigh Performance Browser Networking, Ilya Grigorik (https://hpbn.co/)",
+        "BertMeta": {
+          "flipOnly": false
+        }
       },
       "tags": [
+        "bert::level::mid",
         "bert::status::draft"
       ]
     },
     {
-      "guid": "fe5e2ed3-2988-5ab8-ad2e-bf90043a13d8",
-      "noteType": "Bert Basic",
-      "section": "lifecycle",
+      "guid": "418b33e6-7118-5be3-80ba-835178a6902c",
+      "noteType": "Bert Choice",
+      "section": "urlpath",
       "fields": {
-        "Question": "Some users report the app takes 20 or more seconds to connect, then works. It started after you published AAAA records. What is happening?",
-        "Answer": "<p>Clients that prefer IPv6 try the AAAA address first. If IPv6 is advertised but broken somewhere on the path (firewall, bad route, unreachable server listener), a naive client waits for the TCP connect timeout before trying IPv4.</p><ul><li>Verify the service actually listens and is reachable on IPv6: curl -6 -v, check security groups and the load balancer's IPv6 listener.</li><li>Clients should implement Happy Eyeballs (RFC 8305): start IPv6, then start IPv4 about 250 ms later if no answer, use whichever connects first. Browsers and most modern stacks do; custom socket code often does not.</li><li>In your own code, resolve with getaddrinfo, iterate all addresses, use short per-attempt connect timeouts or race them.</li></ul><p><b>Pitfall:</b> only removing AAAA records hides the bug; fixing the IPv6 path or the client is the real fix.</p><p><b>Follow-ups:</b> how asyncio exposes this (happy_eyeballs_delay in open_connection), why a short connect timeout differs from a request timeout.</p>",
-        "Aliases": "",
-        "Hint": "IPv6 path is broken for some networks; the client waits for a timeout before falling back.",
-        "Fact": "Advertising an address family you cannot serve turns into connect timeouts for clients without Happy Eyeballs.",
-        "Source": "RFC 8305 Happy Eyeballs Version 2 (https://www.rfc-editor.org/rfc/rfc8305)\nPython docs, socket (https://docs.python.org/3/library/socket.html)",
-        "BertMeta": ""
+        "Question": "Users in Europe load a static JS bundle from an origin in us-east. You put a CDN in front with a long Cache-Control max-age. Why does p50 load time drop most for repeat requests from Europe?",
+        "Choices": "The CDN compresses files better than the origin\nCDNs use UDP so there is no handshake\nThe edge serves the cached file from a nearby POP, so handshakes and transfer cross a much shorter RTT\nThe browser stops validating the TLS certificate for CDN domains",
+        "Correct": "The edge serves the cached file from a nearby POP, so handshakes and transfer cross a much shorter RTT",
+        "Explanation": "Latency is dominated by round trips times distance. A cache hit at a nearby POP turns a transatlantic RTT of around 80 to 100 ms into a few ms for every handshake and data round trip. Compression may help but is not the main effect and origins can compress too. CDNs mostly serve HTTP over TCP and TLS; even with HTTP/3 there is still a handshake. Certificate validation is never skipped.",
+        "Hint": "Speed of light, not bandwidth.",
+        "Source": "ByteByteGo, What happens when you type google.com (https://bytebytego.com/guides/what-happens-when-you-type-google/)\nHigh Performance Browser Networking, Ilya Grigorik (https://hpbn.co/)",
+        "BertMeta": {
+          "flipOnly": false
+        }
       },
       "tags": [
+        "bert::level::mid",
         "bert::status::draft"
       ]
     },
     {
-      "guid": "bd240159-d469-5df6-80e6-5cfb4434ee23",
-      "noteType": "Bert Basic",
-      "section": "lifecycle",
+      "guid": "39885e37-e22e-563d-b0ce-acccac26d5f9",
+      "noteType": "Bert Choice",
+      "section": "urlpath",
       "fields": {
-        "Question": "How does a CDN make a site faster, and what would you put behind it for a mostly dynamic, logged-in web app?",
-        "Answer": "<ul><li>Users connect to a nearby edge (via anycast or GeoDNS), so TCP and TLS handshakes happen over a short RTT.</li><li>The edge keeps warm, long lived, often multiplexed connections to your origin, so the long haul has no handshake cost per user.</li><li>Cache static assets (versioned, immutable) at the edge; the origin never sees those requests.</li><li>For dynamic, logged-in pages: do not cache personalized HTML in shared caches; still route through the CDN for connection termination, compression, HTTP/2 and HTTP/3, WAF and DDoS protection. Cache public API responses briefly (s-maxage, stale-while-revalidate).</li></ul><p><b>Pitfalls:</b> caching responses with Set-Cookie, cache key missing a header the response varies on, origin exposed directly so attackers skip the CDN (restrict origin to CDN IPs or authenticate the edge).</p><p><b>Follow-ups:</b> cache invalidation strategy, edge compute for auth checks, origin shielding.</p>",
-        "Aliases": "",
-        "Hint": "Proximity cuts RTTs even when nothing is cacheable.",
-        "Fact": "A CDN helps dynamic sites too, by terminating connections close to users.",
-        "Source": "High Performance Browser Networking, Ilya Grigorik (https://hpbn.co/)\nRFC 9111 HTTP Caching (https://www.rfc-editor.org/rfc/rfc9111)",
-        "BertMeta": ""
+        "Question": "A user types shop.example.com (no scheme). The site sends Strict-Transport-Security on HTTPS responses and is not on the browser preload list. On the very first visit, which statement is true?",
+        "Choices": "HSTS forces HTTPS on the first visit because the header is sent by DNS\nThe first request can go out over plain HTTP and is then redirected; HSTS only protects later visits\nThe browser always tries HTTPS first, so HSTS is redundant\nHSTS encrypts the DNS query for the host",
+        "Correct": "The first request can go out over plain HTTP and is then redirected; HSTS only protects later visits",
+        "Explanation": "HSTS is trust on first use: the browser learns the policy from an HTTPS response, so the first plain HTTP request is exposed to downgrade attacks. Preloading closes that gap. The header is an HTTP response header, not DNS. Many browsers now try HTTPS first, but HSTS still matters because it forbids falling back and blocks click-through on certificate errors. HSTS has nothing to do with DNS encryption.",
+        "Hint": "Where does the browser learn the policy from?",
+        "Source": "RFC 6797 HTTP Strict Transport Security (https://www.rfc-editor.org/rfc/rfc6797)",
+        "BertMeta": {
+          "flipOnly": false
+        }
       },
       "tags": [
+        "bert::level::senior",
         "bert::status::draft"
       ]
     },
     {
-      "guid": "3d2aec03-fb36-5200-8db0-e335b465bf52",
-      "noteType": "Bert Basic",
-      "section": "transport",
+      "guid": "19740d2f-60a5-57e1-805c-b8b1a05d14e6",
+      "noteType": "Bert Choice",
+      "section": "urlpath",
       "fields": {
-        "Question": "You are designing a real time multiplayer game that sends player positions 30 times a second. TCP or UDP, and why?",
-        "Answer": "<p>UDP, with a small reliability layer only where you need it. Position updates are superseded 33 ms later, so retransmitting an old one is worse than dropping it.</p><ul><li>TCP head of line blocking: one lost segment stalls every later byte until retransmission arrives, which shows up as lag spikes.</li><li>With UDP send state snapshots with a sequence number; the receiver drops anything older than what it has and interpolates.</li><li>Use reliable delivery (acks and resends) only for events that must arrive: chat, purchases, match results. Or run those over a separate TCP or QUIC stream.</li><li>You now own congestion control and pacing; do not blast the network. Keep datagrams under the path MTU (about 1200 bytes is a safe target) to avoid fragmentation.</li></ul><p><b>Tradeoffs:</b> UDP is blocked on some corporate networks, so have a TCP or WebSocket fallback. QUIC gives you streams without cross-stream head of line blocking and is a reasonable middle ground.</p><p><b>Follow-ups:</b> how you would handle NAT traversal, anti cheat with an authoritative server, what you do for clients behind UDP-blocking firewalls.</p>",
-        "Aliases": "",
-        "Hint": "Is a late position update still useful?",
-        "Fact": "Use UDP when stale data is worthless; use TCP when every byte must arrive in order.",
-        "Source": "RFC 768 User Datagram Protocol (https://www.rfc-editor.org/rfc/rfc768)\nRFC 8085 UDP Usage Guidelines (https://www.rfc-editor.org/rfc/rfc8085)\nRFC 9293 Transmission Control Protocol (https://www.rfc-editor.org/rfc/rfc9293)\nRFC 9000 QUIC (https://www.rfc-editor.org/rfc/rfc9000)",
-        "BertMeta": ""
+        "Question": "You create api2.example.com. A teammate queried it five minutes before you created it and got NXDOMAIN. They still get NXDOMAIN now while you resolve it fine. What governs how long their resolver keeps the NXDOMAIN?",
+        "Choices": "Negative caching, bounded by the zone SOA record (minimum field and SOA TTL)\nThe TTL of the new A record\nNXDOMAIN is never cached\nThe browser HSTS max-age",
+        "Correct": "Negative caching, bounded by the zone SOA record (minimum field and SOA TTL)",
+        "Explanation": "RFC 2308 lets resolvers cache NXDOMAIN for the lesser of the SOA TTL and the SOA minimum field. Their resolver has not asked again. The new A record TTL is irrelevant because their resolver never fetched that record. Saying NXDOMAIN is never cached is the common misconception that causes this confusion. HSTS concerns HTTPS policy, not DNS.",
+        "Hint": "Answers that say 'does not exist' are cached too.",
+        "Source": "RFC 2308 Negative Caching of DNS Queries (https://www.rfc-editor.org/rfc/rfc2308)",
+        "BertMeta": {
+          "flipOnly": false
+        }
       },
       "tags": [
+        "bert::level::senior",
         "bert::status::draft"
       ]
     },
     {
-      "guid": "a41f1009-6528-5c9b-ab15-ebd8ab867bdb",
-      "noteType": "Bert Basic",
-      "section": "transport",
+      "guid": "55338fd0-5bfb-5788-bdef-52827acca41f",
+      "noteType": "Bert Choice",
+      "section": "realtime",
       "fields": {
-        "Question": "Netflix-style video on demand and a Zoom-style video call: would you pick the same transport for both? Explain.",
-        "Answer": "<p>No. They have opposite latency budgets.</p><ul><li>Video on demand: TCP (HTTP over TCP, or HTTP/3 over QUIC) with adaptive bitrate (HLS or DASH). The player buffers several seconds, so retransmissions are hidden, and you get CDN caching and firewall friendliness for free.</li><li>Video call: UDP based (WebRTC uses RTP over UDP with SRTP). Glass to glass latency must stay around 150 to 300 ms, so a retransmitted frame that arrives late is useless. Use forward error correction, jitter buffers, and lower the bitrate on loss instead of resending.</li><li>Calls still need a fallback: TURN relays over TCP or TLS 443 when UDP is blocked.</li></ul><p><b>Key insight:</b> the choice follows from whether the app can tolerate added delay in exchange for completeness.</p><p><b>Follow-ups:</b> how ABR chooses a bitrate, what a jitter buffer trades off, why live streaming with low latency HLS sits between the two.</p>",
-        "Aliases": "",
-        "Hint": "One can buffer seconds of video, the other cannot.",
-        "Fact": "Buffered playback tolerates retransmission delay; interactive media does not.",
-        "Source": "RFC 8085 UDP Usage Guidelines (https://www.rfc-editor.org/rfc/rfc8085)\nRFC 9000 QUIC (https://www.rfc-editor.org/rfc/rfc9000)\nHigh Performance Browser Networking, Ilya Grigorik (https://hpbn.co/)",
-        "BertMeta": ""
+        "Question": "You push live score updates one way, server to browser, to millions of clients. Clients never send data back on that channel, and you want automatic reconnect with resume. Which transport fits best?",
+        "Choices": "WebSockets\nShort polling every second\nLong polling\nServer-Sent Events",
+        "Correct": "Server-Sent Events",
+        "Explanation": "SSE is a one way stream over plain HTTP with built in reconnect and Last-Event-ID resume, and it works through ordinary HTTP infrastructure. WebSockets work but add a bidirectional protocol you do not need and you must build reconnect and resume yourself; picking them by default is the classic mistake. Short polling wastes requests and adds up to a second of lag. Long polling costs a new request per update and is a fallback, not the first choice.",
+        "Hint": "Which option has resume built into the browser API?",
+        "Source": "WHATWG HTML Standard, Server-sent events (https://html.spec.whatwg.org/multipage/server-sent-events.html)\nHello Interview, Networking Essentials (https://www.hellointerview.com/learn/system-design/core-concepts/networking-essentials)",
+        "BertMeta": {
+          "flipOnly": false
+        }
       },
       "tags": [
+        "bert::level::mid",
         "bert::status::draft"
       ]
     },
     {
-      "guid": "0e0eb7ae-5c86-5396-8298-c36535c852f5",
-      "noteType": "Bert Basic",
-      "section": "transport",
+      "guid": "b30cb01d-03f6-5e91-a909-bd63fed34952",
+      "noteType": "Bert Choice",
+      "section": "realtime",
       "fields": {
-        "Question": "A teammate's TCP client sends two JSON messages with two send() calls, but the server sometimes receives them merged into one recv(), or one message split across two. Is TCP broken? How do you fix it?",
-        "Answer": "<p>TCP is working as designed. It delivers an ordered byte stream with no message boundaries, so send and recv sizes are unrelated. You must add framing at the application layer.</p><ul><li>Length prefix: write a fixed size length header then the payload; read exactly that many bytes.</li><li>Delimiter: newline delimited JSON, which requires escaping or a guarantee the delimiter cannot appear.</li><li>Or use a protocol that frames for you: HTTP, WebSocket, gRPC.</li></ul><pre><code class=\"language-python\">import struct\n\ndef send_msg(sock, payload: bytes):\n    sock.sendall(struct.pack(&quot;!I&quot;, len(payload)) + payload)\n\ndef recv_exact(sock, n):\n    buf = bytearray()\n    while len(buf) &lt; n:\n        chunk = sock.recv(n - len(buf))\n        if not chunk:\n            raise ConnectionError(&quot;peer closed mid message&quot;)\n        buf += chunk\n    return bytes(buf)\n\ndef recv_msg(sock):\n    (length,) = struct.unpack(&quot;!I&quot;, recv_exact(sock, 4))\n    return recv_exact(sock, length)</code></pre><p><b>Pitfalls:</b> using send instead of sendall (send may write partially), no max length check (a bogus header makes you allocate gigabytes), treating recv returning b'' as anything but EOF.</p><p><b>Follow-ups:</b> UDP preserves datagram boundaries but not order or delivery; why Nagle's algorithm can delay small writes.</p>",
-        "Aliases": "",
-        "Hint": "TCP is a byte stream, not a message stream.",
-        "Fact": "TCP has no message boundaries; always frame messages yourself.",
-        "Source": "RFC 9293 Transmission Control Protocol (https://www.rfc-editor.org/rfc/rfc9293)\nPython docs, socket (https://docs.python.org/3/library/socket.html)",
-        "BertMeta": ""
+        "Question": "A chat app needs low latency messages in both directions, typing indicators, and presence, on web and mobile. Which transport fits best?",
+        "Choices": "Server-Sent Events plus a POST per typing keystroke\nShort polling every 500 ms\nWebSockets\nHTTP/2 server push",
+        "Correct": "WebSockets",
+        "Explanation": "Frequent bidirectional small messages are what WebSockets are for: one long lived connection, low per message overhead. SSE plus POSTs works for occasional client sends but a POST per keystroke adds request overhead and ordering complexity. Short polling at 500 ms adds latency and load. HTTP/2 server push pushes resources into the browser cache, was never a message API, and browsers have removed it.",
+        "Hint": "Both directions, often, small messages.",
+        "Source": "RFC 6455 The WebSocket Protocol (https://www.rfc-editor.org/rfc/rfc6455)\nHello Interview, Networking Essentials (https://www.hellointerview.com/learn/system-design/core-concepts/networking-essentials)",
+        "BertMeta": {
+          "flipOnly": false
+        }
       },
       "tags": [
+        "bert::level::mid",
         "bert::status::draft"
       ]
     },
     {
-      "guid": "d798c936-1ca9-5f6c-9729-f05555150f50",
-      "noteType": "Bert Basic",
-      "section": "transport",
+      "guid": "0e785a96-a52f-5509-ab3e-a14e16dcaea9",
+      "noteType": "Bert Choice",
+      "section": "realtime",
       "fields": {
-        "Question": "An RPC that writes a small header then a small body in two writes shows a consistent 40 ms extra latency on Linux. What is the likely cause and the fix?",
-        "Answer": "<p>Classic Nagle plus delayed ACK interaction. Nagle holds the second small write until the first is acknowledged; the receiver delays its ACK (up to about 40 ms on Linux) hoping to piggyback it. Both wait on each other.</p><ul><li>Best fix: coalesce into one write (build the full message, or use writev or sendall on one buffer).</li><li>For latency sensitive request response protocols set TCP_NODELAY on the socket. Most HTTP and RPC libraries already do.</li><li>Do not disable Nagle and then do many tiny writes, you will flood the network with small packets.</li></ul><pre><code class=\"language-python\">import socket\nsock.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1)</code></pre><p><b>Follow-ups:</b> TCP_CORK on Linux, how you would confirm this with tcpdump timestamps.</p>",
-        "Aliases": "",
-        "Hint": "Two small-packet optimizations interacting.",
-        "Fact": "Write a whole message at once; set TCP_NODELAY for request response traffic.",
-        "Source": "RFC 9293 Transmission Control Protocol (https://www.rfc-editor.org/rfc/rfc9293)\nLinux tcp(7) manual (https://man7.org/linux/man-pages/man7/tcp.7.html)",
-        "BertMeta": ""
+        "Question": "Mobile clients hold a WebSocket to a notification service. Phones drop connections when switching networks. Users complain they miss notifications sent while reconnecting. What is the correct fix?",
+        "Choices": "Increase the WebSocket ping interval\nGive each message a per user sequence number, persist recent messages, and on reconnect the client sends its last seen sequence so the server replays the gap\nSwitch to TCP keepalive with a shorter timer\nSend each notification twice",
+        "Correct": "Give each message a per user sequence number, persist recent messages, and on reconnect the client sends its last seen sequence so the server replays the gap",
+        "Explanation": "A connection is not a delivery guarantee. Anything sent while the socket is down is lost unless it is stored and replayed from a cursor. Ping intervals and TCP keepalive only detect dead connections faster; they cannot recover messages already lost. Sending twice still loses both copies if the client is offline for both, and creates duplicates otherwise.",
+        "Hint": "The socket was down; where do the messages live?",
+        "Source": "Hello Interview, Networking Essentials (https://www.hellointerview.com/learn/system-design/core-concepts/networking-essentials)\nWHATWG HTML Standard, Server-sent events (https://html.spec.whatwg.org/multipage/server-sent-events.html)",
+        "BertMeta": {
+          "flipOnly": false
+        }
       },
       "tags": [
+        "bert::level::senior",
         "bert::status::draft"
       ]
     },
     {
-      "guid": "12d30430-6c16-57c1-a30d-05de3fc72f3a",
-      "noteType": "Bert Basic",
-      "section": "transport",
+      "guid": "c870c25f-9323-5cf9-b9ff-66b1c5164274",
+      "noteType": "Bert Choice",
+      "section": "realtime",
       "fields": {
-        "Question": "Under load your client service starts failing with 'cannot assign requested address' when calling one backend. ss shows tens of thousands of sockets in TIME_WAIT. Explain and fix.",
-        "Answer": "<p>Each outbound connection uses a unique 4-tuple. To one backend ip:port the only free variable is the local ephemeral port (Linux default range is about 28,000 ports). The side that closes first holds TIME_WAIT for about 60 seconds on Linux, so opening and closing a connection per request runs out of ports.</p><ul><li>Real fix: connection reuse (keep-alive pooling, HTTP/2). This removes the churn.</li><li>Mitigations: widen net.ipv4.ip_local_port_range, enable net.ipv4.tcp_tw_reuse for outgoing connections, spread across more backend IPs.</li><li>Do not use SO_LINGER with zero timeout to kill TIME_WAIT; it sends RST and risks old segments corrupting a new connection.</li><li>Never rely on the removed tcp_tw_recycle; it broke clients behind NAT.</li></ul><p><b>Why TIME_WAIT exists:</b> to absorb delayed duplicate segments from the old connection and to resend the final ACK if it was lost.</p><p><b>Follow-ups:</b> same problem through a NAT gateway (SNAT port exhaustion in cloud NATs).</p>",
-        "Aliases": "",
-        "Hint": "Ephemeral ports to one destination ip:port are finite.",
-        "Fact": "TIME_WAIT pileups are a symptom of not reusing connections.",
-        "Source": "RFC 9293 Transmission Control Protocol (https://www.rfc-editor.org/rfc/rfc9293)\nLinux tcp(7) manual (https://man7.org/linux/man-pages/man7/tcp.7.html)\nss manual (https://man7.org/linux/man-pages/man8/ss.8.html)",
-        "BertMeta": ""
+        "Question": "Your enterprise customers sit behind proxies that break WebSocket upgrades but allow normal HTTP. You need near real time order status updates, a few per minute per user. What is the pragmatic choice?",
+        "Choices": "Long polling or SSE over regular HTTP\nInsist on WebSockets and ask customers to change proxies\nRaw UDP from the browser\nPoll every 30 seconds",
+        "Correct": "Long polling or SSE over regular HTTP",
+        "Explanation": "Both run over standard HTTP requests and responses, so they pass through proxies that drop Upgrade, and a few updates per minute is well within their cost. Telling customers to fix their network is not a design answer. Browsers cannot open raw UDP sockets. Polling every 30 seconds misses the near real time requirement.",
+        "Hint": "What survives a proxy that only understands plain HTTP?",
+        "Source": "Hello Interview, Networking Essentials (https://www.hellointerview.com/learn/system-design/core-concepts/networking-essentials)",
+        "BertMeta": {
+          "flipOnly": false
+        }
       },
       "tags": [
+        "bert::level::mid",
         "bert::status::draft"
       ]
     },
     {
-      "guid": "d43dcebe-477a-545e-a4a5-59c96dd08111",
-      "noteType": "Bert Basic",
-      "section": "transport",
+      "guid": "73dcbcc6-55df-5819-915b-9702aa561e47",
+      "noteType": "Bert Choice",
+      "section": "realtime",
       "fields": {
-        "Question": "During a traffic spike clients see connection timeouts but the server's CPU is idle. What would you check on the server's networking side?",
-        "Answer": "<p>Look at the kernel queues in front of the application. If the accept queue overflows the kernel drops or ignores new handshakes, clients retry SYNs with backoff (1s, 3s...), and it looks like a timeout while the app is idle.</p><ul><li>ss -ltn shows Recv-Q (current accept queue) vs Send-Q (backlog limit) per listening socket.</li><li>netstat -s or nstat: 'times the listen queue of a socket overflowed', 'SYNs to LISTEN sockets dropped'.</li><li>Fixes: larger listen backlog in the app and net.core.somaxconn, accept faster (more workers, async accept loop), more instances behind the load balancer.</li><li>Also check file descriptor limits (ulimit -n), conntrack table full on the host or NAT, and load balancer surge queues.</li></ul><p><b>Pitfall:</b> scaling CPU when the bottleneck is a single threaded accept loop or a tiny backlog.</p><p><b>Follow-ups:</b> SYN cookies and SYN floods, SO_REUSEPORT to spread accepts across processes.</p>",
-        "Aliases": "",
-        "Hint": "Connections can be dropped before your app ever calls accept().",
-        "Fact": "Idle CPU plus connect timeouts usually points at a full accept queue or an fd limit.",
-        "Source": "ss manual (https://man7.org/linux/man-pages/man8/ss.8.html)\nLinux tcp(7) manual (https://man7.org/linux/man-pages/man7/tcp.7.html)",
-        "BertMeta": ""
+        "Question": "A WebSocket gateway fleet of 50 nodes holds user connections. A message for user U can be produced by any backend service. How should a producer reach the node that holds U's socket?",
+        "Choices": "Broadcast every message to all 50 nodes over HTTP\nUse sticky sessions on the producer side\nStore messages in the gateway's local memory and let the client poll\nKeep a connection registry (user to gateway node) or use a pub/sub channel per user or shard that the owning gateway subscribes to",
+        "Correct": "Keep a connection registry (user to gateway node) or use a pub/sub channel per user or shard that the owning gateway subscribes to",
+        "Explanation": "The gateway that owns the socket must be found by lookup or subscription; that decouples producers from where users are connected. Broadcasting to all nodes makes every node do 50x work and does not scale. Sticky sessions pin a client to a backend, they do nothing for a producer that is a different service. Local memory plus polling throws away the point of a push channel.",
+        "Hint": "Producers do not know where the socket is.",
+        "Source": "Hello Interview, Networking Essentials (https://www.hellointerview.com/learn/system-design/core-concepts/networking-essentials)",
+        "BertMeta": {
+          "flipOnly": false
+        }
       },
       "tags": [
+        "bert::level::senior",
         "bert::status::draft"
       ]
     },
     {
-      "guid": "e496322d-0a68-56ef-a655-025823b4cb6f",
-      "noteType": "Bert Basic",
-      "section": "transport",
+      "guid": "f3a38dcf-57c5-5c14-8054-cbf42ec4dd65",
+      "noteType": "Bert Choice",
+      "section": "realtime",
       "fields": {
-        "Question": "A long lived TCP connection between two services silently stops delivering data after an idle period; neither side gets an error until it writes. Why, and how do you design around it?",
-        "Answer": "<p>A NAT gateway, firewall or load balancer between them dropped the idle flow from its state table. TCP itself has no traffic on an idle connection, so both ends believe it is open (half open). The next write may vanish or get a RST much later.</p><ul><li>Send application level heartbeats (ping and pong) more often than the shortest idle timeout on the path, and treat a missed pong as dead.</li><li>Or enable TCP keepalive with tuned values (TCP_KEEPIDLE, TCP_KEEPINTVL, TCP_KEEPCNT); Linux defaults wait 2 hours, far too long.</li><li>Set read deadlines so a stuck read fails instead of hanging forever.</li><li>Make reconnect plus resume (with sequence numbers or offsets) a normal path, not an exception.</li></ul><p><b>Typical numbers:</b> cloud NAT and load balancer idle timeouts are often in the 60 to 350 second range, so a 30 second heartbeat is common.</p><p><b>Follow-ups:</b> how WebSockets and gRPC handle this with ping frames.</p>",
-        "Aliases": "",
-        "Hint": "Middleboxes forget idle flows.",
-        "Fact": "Never assume an idle TCP connection is alive; heartbeat below the path's idle timeout.",
-        "Source": "RFC 9293 Transmission Control Protocol (https://www.rfc-editor.org/rfc/rfc9293)\nLinux tcp(7) manual (https://man7.org/linux/man-pages/man7/tcp.7.html)\nRFC 6455 The WebSocket Protocol (https://www.rfc-editor.org/rfc/rfc6455)",
-        "BertMeta": ""
+        "Question": "A dashboard polls GET /status every 2 seconds. 100,000 users keep it open, and status changes about once a minute. What is the main problem with this design?",
+        "Choices": "Polling cannot work through load balancers\nHTTP GET cannot be cached\nAbout 50,000 requests per second, almost all returning unchanged data\nPolling requires WebSocket support on the server",
+        "Correct": "About 50,000 requests per second, almost all returning unchanged data",
+        "Explanation": "100,000 / 2 s = 50,000 rps, and with one change per minute around 97 percent of responses are wasted. Long polling, SSE or conditional requests fix that. Polling is plain HTTP and works fine through load balancers. GET responses can be cached and conditional (ETag), which helps but does not remove the request rate. Polling needs nothing beyond HTTP.",
+        "Hint": "Do the arithmetic.",
+        "Source": "Hello Interview, Networking Essentials (https://www.hellointerview.com/learn/system-design/core-concepts/networking-essentials)",
+        "BertMeta": {
+          "flipOnly": false
+        }
       },
       "tags": [
+        "bert::level::mid",
         "bert::status::draft"
       ]
     },
     {
-      "guid": "b5282495-1ef7-56ee-881b-1b1ff455935e",
-      "noteType": "Bert Basic",
-      "section": "transport",
-      "fields": {
-        "Question": "Copying a large file between two data centers 100 ms apart only reaches 50 Mbit/s on a 10 Gbit/s link with no loss. What limits it?",
-        "Answer": "<p>TCP can have at most one window of unacknowledged data in flight, so throughput is bounded by window / RTT. To fill 10 Gbit/s at 100 ms you need a window equal to the bandwidth delay product: 10e9 / 8 * 0.1 = 125 MB. 50 Mbit/s at 100 ms implies a window of only about 625 KB.</p><ul><li>Check socket buffer limits (net.ipv4.tcp_rmem and tcp_wmem max) and that window scaling is on; an app that sets a small SO_RCVBUF also disables autotuning.</li><li>Check if there is actually loss; loss based congestion control (Reno, CUBIC) backs off hard on long paths. BBR handles this better.</li><li>Parallel streams (multiple connections) are a common practical workaround for bulk transfer.</li></ul><p><b>Pitfall:</b> blaming bandwidth when the problem is latency times window.</p><p><b>Follow-ups:</b> why slow start makes short transfers on long paths RTT bound regardless of bandwidth.</p>",
-        "Aliases": "",
-        "Hint": "Throughput is at most window divided by RTT.",
-        "Fact": "Max TCP throughput is roughly window / RTT; size buffers to the bandwidth delay product.",
-        "Source": "RFC 5681 TCP Congestion Control (https://www.rfc-editor.org/rfc/rfc5681)\nRFC 9293 Transmission Control Protocol (https://www.rfc-editor.org/rfc/rfc9293)\nLinux tcp(7) manual (https://man7.org/linux/man-pages/man7/tcp.7.html)",
-        "BertMeta": ""
-      },
-      "tags": [
-        "bert::status::draft"
-      ]
-    },
-    {
-      "guid": "69b3e08b-08e9-5106-b8df-b70d30076876",
-      "noteType": "Bert Basic",
-      "section": "tls",
-      "fields": {
-        "Question": "Explain the TLS 1.3 handshake to me as if I were a new engineer on your team. What does each side prove, and how many round trips does it take?",
-        "Answer": "<ul><li>ClientHello: supported cipher suites, an ephemeral (EC)DHE key share, SNI (the hostname), ALPN (h2, http/1.1), a random nonce.</li><li>ServerHello: picks the suite and sends its own key share. Both sides now compute the same shared secret via Diffie-Hellman; everything after this is encrypted.</li><li>Server sends EncryptedExtensions, its Certificate chain, CertificateVerify (a signature over the handshake transcript with the certificate's private key, proving it owns the key) and Finished (a MAC over the transcript).</li><li>Client validates the chain to a trusted root, checks the hostname matches the SAN, expiry and revocation policy, verifies the signature, sends its Finished, and can send application data.</li></ul><p><b>Round trips:</b> 1 RTT for a full handshake (TLS 1.2 needed 2). With a resumption PSK the client may send 0-RTT early data.</p><p><b>Security properties:</b> ephemeral keys give forward secrecy: stealing the server's private key later does not decrypt recorded traffic. The certificate only authenticates; it does not encrypt the session.</p><p><b>Pitfalls:</b> 0-RTT data can be replayed, so only allow it for idempotent requests. Mutual TLS adds a client certificate request.</p><p><b>Follow-ups:</b> what changes in QUIC (TLS is integrated, transport and crypto handshake together), what a MITM proxy has to do to inspect TLS.</p>",
-        "Aliases": "",
-        "Hint": "Key share in the first flight; certificate proves identity; Finished proves nothing was tampered with.",
-        "Fact": "TLS 1.3 is 1 RTT; the key exchange gives secrecy, the certificate plus CertificateVerify gives identity.",
-        "Source": "RFC 8446 TLS 1.3 (https://www.rfc-editor.org/rfc/rfc8446)\nRFC 5280 X.509 PKI Certificate Profile (https://www.rfc-editor.org/rfc/rfc5280)",
-        "BertMeta": ""
-      },
-      "tags": [
-        "bert::status::draft"
-      ]
-    },
-    {
-      "guid": "f7c8c1d8-25a1-53c3-8c35-856a81f7ea02",
-      "noteType": "Bert Basic",
-      "section": "tls",
-      "fields": {
-        "Question": "Your service's calls to a partner API suddenly fail with 'certificate verify failed', but it works from your laptop's browser. How do you debug it?",
-        "Answer": "<p>Inspect exactly what the server presents and compare with what your client trusts.</p><pre><code class=\"language-python\"># openssl s_client -connect api.partner.com:443 -servername api.partner.com -showcerts\n# look at: the chain sent, &quot;Verify return code&quot;, notAfter dates, SAN entries</code></pre><ul><li>Missing intermediate: server sends only the leaf. Browsers often fetch the intermediate (AIA) or have it cached; most libraries do not. Fix is on the server: serve the full chain.</li><li>Outdated trust store in your container image (old ca-certificates package) or a pinned CA bundle that lacks a new root.</li><li>Expired leaf or intermediate, or your host clock is wrong.</li><li>Hostname mismatch: you call an IP or a different name than the SAN; or you forgot SNI so the server returned its default certificate.</li><li>Corporate MITM proxy re-signing traffic with a private CA your service does not trust.</li></ul><p><b>Never:</b> turn off verification (verify=False) as the fix. That removes the only protection against MITM.</p><p><b>Follow-ups:</b> certificate pinning tradeoffs, how you would monitor expiry across many endpoints.</p>",
-        "Aliases": "",
-        "Hint": "Browsers paper over missing intermediates and have different trust stores.",
-        "Fact": "When a browser works and a library fails, suspect the chain or the trust store, not the network.",
-        "Source": "openssl s_client manual (https://docs.openssl.org/master/man1/openssl-s_client/)\nRFC 5280 X.509 PKI Certificate Profile (https://www.rfc-editor.org/rfc/rfc5280)\nRFC 6066 TLS Extensions (SNI) (https://www.rfc-editor.org/rfc/rfc6066)",
-        "BertMeta": ""
-      },
-      "tags": [
-        "bert::status::draft"
-      ]
-    },
-    {
-      "guid": "107f558f-0930-584e-9c22-90cd46cfde7d",
-      "noteType": "Bert Basic",
-      "section": "tls",
-      "fields": {
-        "Question": "One load balancer IP serves 500 customer domains over HTTPS. How does it know which certificate to present, and what breaks for clients that do not do it right?",
-        "Answer": "<p>The client puts the hostname in the Server Name Indication extension of the ClientHello. The server or load balancer picks the matching certificate before the encrypted part of the handshake. HTTP Host headers arrive too late since they are inside the encrypted stream.</p><ul><li>Clients without SNI (very old ones, or raw socket code that does not pass server_hostname) get a default certificate and a hostname mismatch.</li><li>SNI is sent in clear text in TLS 1.3 unless Encrypted Client Hello is used, so on-path observers see the hostname.</li><li>Operationally: wildcard or multi-SAN certificates reduce count; automate issuance and renewal with ACME.</li></ul><pre><code class=\"language-python\">import socket, ssl\nctx = ssl.create_default_context()\nwith socket.create_connection((&quot;lb.example.net&quot;, 443)) as raw:\n    with ctx.wrap_socket(raw, server_hostname=&quot;customer42.com&quot;) as tls:\n        print(tls.getpeercert()[&quot;subjectAltName&quot;])</code></pre><p><b>Follow-ups:</b> how an L4 load balancer can still route by SNI without terminating TLS (SNI passthrough), and what ECH changes for that.</p>",
-        "Aliases": "",
-        "Hint": "The hostname has to be known before the certificate is sent.",
-        "Fact": "SNI in the ClientHello lets one IP serve many certificates.",
-        "Source": "RFC 6066 TLS Extensions (SNI) (https://www.rfc-editor.org/rfc/rfc6066)\nRFC 8446 TLS 1.3 (https://www.rfc-editor.org/rfc/rfc8446)",
-        "BertMeta": ""
-      },
-      "tags": [
-        "bert::status::draft"
-      ]
-    },
-    {
-      "guid": "9c167c2a-0765-50f6-b6bd-3e1a9ae1cda6",
-      "noteType": "Bert Basic",
-      "section": "tls",
-      "fields": {
-        "Question": "Where should TLS terminate in your architecture: at the CDN, at the load balancer, or at each service? Defend a choice.",
-        "Answer": "<ul><li>Terminate at the edge (CDN or L7 load balancer): enables caching, WAF, header based routing, HTTP/2 to clients, central certificate management. Cost: traffic behind it is plaintext unless re-encrypted.</li><li>Re-encrypt to backends (TLS from load balancer to service, often mTLS via a service mesh): needed for zero trust networks and compliance (PCI, HIPAA). Costs CPU and certificate management, which a mesh automates.</li><li>TLS passthrough (L4, terminate at the service): true end to end, but the load balancer cannot see paths or headers, cannot do L7 routing, retries or caching.</li></ul><p><b>Typical answer:</b> terminate at the edge for public traffic, re-encrypt with mTLS internally, keep private keys in a managed store, automate rotation.</p><p><b>Pitfalls:</b> losing the client IP (use X-Forwarded-For or PROXY protocol), trusting X-Forwarded-Proto from anyone, mixed content redirect loops when the app thinks the request was http.</p><p><b>Follow-ups:</b> how you rotate a certificate with zero downtime, how HSTS interacts with this.</p>",
-        "Aliases": "",
-        "Hint": "Tradeoff between L7 features and end to end encryption.",
-        "Fact": "Terminating at the edge buys L7 features; re-encrypting inside buys defense in depth.",
-        "Source": "RFC 8446 TLS 1.3 (https://www.rfc-editor.org/rfc/rfc8446)\nRFC 6797 HTTP Strict Transport Security (https://www.rfc-editor.org/rfc/rfc6797)\nAWS Elastic Load Balancing, How it works (https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/how-elastic-load-balancing-works.html)",
-        "BertMeta": ""
-      },
-      "tags": [
-        "bert::status::draft"
-      ]
-    },
-    {
-      "guid": "0a64bab6-292e-56d0-850d-58376dbbd980",
-      "noteType": "Bert Basic",
-      "section": "tls",
-      "fields": {
-        "Question": "How would you authenticate service to service calls inside your cluster, and why might mutual TLS be better than shared API keys?",
-        "Answer": "<ul><li>mTLS: both sides present certificates. The server verifies the client's certificate against an internal CA and maps the identity (for example a SPIFFE ID in the SAN) to authorization rules.</li><li>Benefits over API keys: secrets never travel in requests, certificates can be short lived and auto rotated, encryption comes for free, identity is per workload.</li><li>Costs: you run a CA and issuance pipeline, debugging handshake failures is harder, clock skew breaks validation. A service mesh (Istio, Linkerd) or SPIFFE/SPIRE automates this.</li><li>Authentication is not authorization: still check which identity may call which endpoint.</li></ul><p><b>Follow-ups:</b> how you revoke a compromised workload (short lifetimes beat CRLs), what you do for calls leaving the mesh.</p>",
-        "Aliases": "",
-        "Hint": "Identity bound to a short lived private key, not a copyable secret.",
-        "Fact": "mTLS gives each workload a rotatable cryptographic identity instead of a shared secret.",
-        "Source": "RFC 8446 TLS 1.3 (https://www.rfc-editor.org/rfc/rfc8446)\nRFC 5280 X.509 PKI Certificate Profile (https://www.rfc-editor.org/rfc/rfc5280)",
-        "BertMeta": ""
-      },
-      "tags": [
-        "bert::status::draft"
-      ]
-    },
-    {
-      "guid": "b69fa6ea-b64e-5273-a691-7cd150e4cb13",
-      "noteType": "Bert Basic",
-      "section": "dns",
-      "fields": {
-        "Question": "Explain how DNS resolution works for api.example.com from an application's point of view, including every cache involved.",
-        "Answer": "<ul><li>The app calls getaddrinfo. Language runtimes may cache too (the JVM caches successful lookups, sometimes forever with a security manager).</li><li>The OS stub resolver checks /etc/hosts and its local cache (systemd-resolved, nscd, mDNSResponder), then asks the configured recursive resolver (ISP, 8.8.8.8, VPC resolver, kube-dns).</li><li>The recursive resolver checks its cache; on a miss it asks a root server for .com, the .com TLD server for example.com's nameservers, then the authoritative server for api.example.com, following CNAMEs.</li><li>Every answer is cached by TTL at each layer. NXDOMAIN is cached too (negative caching, bounded by the SOA).</li></ul><p><b>Transport:</b> UDP port 53 normally, TCP for truncated large responses and zone transfers; DoH and DoT encrypt it.</p><p><b>Interview insight:</b> you cannot force clients to refresh, so changes propagate on the slowest cache's schedule, which is why you lower TTLs before a migration.</p><p><b>Follow-ups:</b> what ndots does in Kubernetes, why DNS based load balancing is coarse.</p>",
-        "Aliases": "",
-        "Hint": "Stub, recursive, root, TLD, authoritative, and TTL caching at each step.",
-        "Fact": "DNS is a hierarchy of caches; the TTL you set is a promise every layer may hold you to.",
-        "Source": "RFC 1034 Domain Names, Concepts and Facilities (https://www.rfc-editor.org/rfc/rfc1034)\nRFC 1035 Domain Names, Implementation and Specification (https://www.rfc-editor.org/rfc/rfc1035)\nRFC 2308 Negative Caching of DNS Queries (https://www.rfc-editor.org/rfc/rfc2308)\nBIND 9 manual pages (dig) (https://bind9.readthedocs.io/en/latest/manpages.html)",
-        "BertMeta": ""
-      },
-      "tags": [
-        "bert::status::draft"
-      ]
-    },
-    {
-      "guid": "6f8fffcc-d8ed-59b8-9c1d-2c7f334ab6b6",
-      "noteType": "Bert Basic",
-      "section": "dns",
-      "fields": {
-        "Question": "You need to move api.example.com to a new IP with minimal disruption. Describe the plan.",
-        "Answer": "<ul><li>Days ahead: lower the record's TTL (say from 3600 to 60) and wait at least the old TTL so every cache holds the short TTL.</li><li>Bring the new endpoint up and verify it directly (curl --resolve api.example.com:443:NEW_IP https://api.example.com/health).</li><li>Switch the record. Keep the old endpoint serving (or proxying to the new one) for longer than the TTL, because some resolvers and clients ignore TTLs.</li><li>Monitor traffic on the old IP until it drains, then decommission. Raise the TTL again.</li></ul><p><b>Pitfalls:</b> long lived clients that resolved once at startup (JVM caching, connection pools that never reconnect) keep hitting the old IP; negative caching if the record briefly disappears; forgetting AAAA records.</p><p><b>Better:</b> put a stable anycast load balancer or CDN in front so the IP rarely changes.</p><p><b>Follow-ups:</b> weighted DNS for gradual cutover, how health checked DNS failover is bounded by TTL.</p>",
-        "Aliases": "",
-        "Hint": "Lower the TTL well before the change, not at the change.",
-        "Fact": "Lower TTL first, wait out the old TTL, switch, and keep the old target alive until traffic drains.",
-        "Source": "RFC 1034 Domain Names, Concepts and Facilities (https://www.rfc-editor.org/rfc/rfc1034)\nRFC 2308 Negative Caching of DNS Queries (https://www.rfc-editor.org/rfc/rfc2308)\ncurl manual (https://curl.se/docs/manpage.html)",
-        "BertMeta": ""
-      },
-      "tags": [
-        "bert::status::draft"
-      ]
-    },
-    {
-      "guid": "eed502d1-c3c9-5e97-ae1d-d9f1aa86f78a",
-      "noteType": "Bert Basic",
-      "section": "dns",
-      "fields": {
-        "Question": "A service intermittently fails with 'Temporary failure in name resolution' or 5 second stalls on requests, only inside Kubernetes. How do you investigate?",
-        "Answer": "<ul><li>Look at /etc/resolv.conf in the pod. With ndots:5, a name like api.example.com (two dots) is first tried with every search suffix, so one lookup becomes several queries, each for A and AAAA.</li><li>5 second stalls are the resolver timeout: a UDP query or reply was dropped (conntrack races for parallel A and AAAA from the same socket were a known Linux issue) and the client retried.</li><li>Check CoreDNS: CPU, error metrics, upstream timeouts, replica count.</li><li>Reproduce with dig from inside the pod and time it; capture with tcpdump port 53.</li></ul><p><b>Fixes:</b> use fully qualified names with a trailing dot or lower ndots, run NodeLocal DNSCache, scale CoreDNS, add 'options single-request-reopen' or use TCP for DNS where appropriate, cache in the app for hot names.</p><p><b>Pitfall:</b> blaming the network when the multiplication of queries from search domains is overwhelming DNS.</p><p><b>Follow-ups:</b> what the timeout and attempts options in resolv.conf do.</p>",
-        "Aliases": "",
-        "Hint": "Search domains, ndots, and UDP packet drops at the resolver.",
-        "Fact": "In Kubernetes, ndots and search domains can turn one lookup into ten queries.",
-        "Source": "RFC 1034 Domain Names, Concepts and Facilities (https://www.rfc-editor.org/rfc/rfc1034)\nBIND 9 manual pages (dig) (https://bind9.readthedocs.io/en/latest/manpages.html)\ntcpdump manual (https://www.tcpdump.org/manpages/tcpdump.1.html)",
-        "BertMeta": ""
-      },
-      "tags": [
-        "bert::status::draft"
-      ]
-    },
-    {
-      "guid": "e4aa0b2a-6b5e-52ca-b215-5406bde824c4",
-      "noteType": "Bert Basic",
-      "section": "dns",
-      "fields": {
-        "Question": "Would you use DNS round robin to load balance and fail over between servers? What are its limits?",
-        "Answer": "<ul><li>It spreads load coarsely: resolvers and clients cache answers, many clients pick the first address, so distribution is uneven.</li><li>Failover is slow: a dead IP stays in caches for the TTL, and plain DNS has no health checks. Managed DNS with health checks only removes it from new answers.</li><li>Clients must try other addresses on failure; many do not.</li><li>Good uses: global traffic steering between regions (GeoDNS, latency based), pointing at load balancers that are themselves highly available, or anycast IPs.</li></ul><p><b>Answer:</b> use DNS for coarse regional steering, and real load balancers (L4 or L7 with health checks) for per-request distribution and fast failover.</p><p><b>Follow-ups:</b> how anycast differs (BGP routes to the nearest site, IP stays the same).</p>",
-        "Aliases": "",
-        "Hint": "Clients cache answers and pick addresses unpredictably.",
-        "Fact": "DNS steers traffic to a region; load balancers handle health and per-request balancing.",
-        "Source": "RFC 1034 Domain Names, Concepts and Facilities (https://www.rfc-editor.org/rfc/rfc1034)\nRFC 1035 Domain Names, Implementation and Specification (https://www.rfc-editor.org/rfc/rfc1035)\nEnvoy docs, Load balancing (https://www.envoyproxy.io/docs/envoy/latest/intro/arch_overview/upstream/load_balancing/load_balancing)",
-        "BertMeta": ""
-      },
-      "tags": [
-        "bert::status::draft"
-      ]
-    },
-    {
-      "guid": "8399fac0-4bb2-5077-aef1-215cbc411e39",
-      "noteType": "Bert Basic",
-      "section": "http",
-      "fields": {
-        "Question": "Compare HTTP/1.1, HTTP/2 and HTTP/3. When does upgrading actually help, and when does it not?",
-        "Answer": "<ul><li>HTTP/1.1: text protocol, one outstanding request per connection in practice (pipelining is unusable), so browsers open about 6 connections per origin. Head of line blocking at the HTTP layer.</li><li>HTTP/2: binary framing, many concurrent streams multiplexed on one TCP connection, HPACK header compression, stream priorities. Fixes HTTP level HOL blocking, but one lost TCP packet still stalls all streams.</li><li>HTTP/3: HTTP over QUIC on UDP. Streams are independent at the transport, so loss on one does not block others. Combined transport and TLS 1.3 handshake (1 RTT, 0-RTT on resumption), connection migration across IP changes (Wi-Fi to cellular).</li></ul><p><b>Helps most:</b> many small requests, high latency or lossy mobile networks, pages with lots of assets.</p><p><b>Helps little:</b> a single large download on a clean network, server bound latency, internal low latency links (HTTP/2 is usually enough there).</p><p><b>Pitfalls:</b> HTTP/1 era hacks (domain sharding, sprite sheets) can hurt on HTTP/2; UDP may be blocked so HTTP/3 needs a TCP fallback; one HTTP/2 connection behind an L4 load balancer pins all traffic to one backend.</p><p><b>Follow-ups:</b> how the client discovers HTTP/3 (Alt-Svc header or HTTPS DNS record), why gRPC needs HTTP/2.</p>",
-        "Aliases": "",
-        "Hint": "Each version removes a head of line blocking layer.",
-        "Fact": "HTTP/2 fixed head of line blocking in HTTP; HTTP/3 fixed it in transport.",
-        "Source": "RFC 9112 HTTP/1.1 (https://www.rfc-editor.org/rfc/rfc9112)\nRFC 9113 HTTP/2 (https://www.rfc-editor.org/rfc/rfc9113)\nRFC 9114 HTTP/3 (https://www.rfc-editor.org/rfc/rfc9114)\nRFC 9000 QUIC (https://www.rfc-editor.org/rfc/rfc9000)",
-        "BertMeta": ""
-      },
-      "tags": [
-        "bert::status::draft"
-      ]
-    },
-    {
-      "guid": "6c417711-bce1-554d-af0c-4bde3b012477",
-      "noteType": "Bert Basic",
-      "section": "http",
-      "fields": {
-        "Question": "Your API's POST /payments sometimes double charges when the mobile client retries after a timeout. How do you fix it?",
-        "Answer": "<p>A timeout does not mean the server did not process it. POST is not idempotent, so a blind retry can repeat the side effect. Make the operation idempotent with a client generated key.</p><ul><li>Client generates a unique Idempotency-Key per logical payment and sends it on every retry.</li><li>Server stores key with request fingerprint and result, inside the same transaction as the side effect or with a unique constraint.</li><li>Retry with same key returns the stored result; a concurrent duplicate waits or gets 409; same key with a different body is rejected.</li><li>Expire keys after a window (Stripe keeps them about 24 hours).</li></ul><pre><code class=\"language-python\">def create_payment(db, key, request):\n    with db.transaction():\n        existing = db.get_idempotency(key)\n        if existing:\n            if existing.fingerprint != fingerprint(request):\n                raise Conflict(&quot;key reused with different body&quot;)\n            return existing.response\n        response = charge(request)\n        db.save_idempotency(key, fingerprint(request), response)\n        return response</code></pre><p><b>Background:</b> GET, HEAD, PUT and DELETE are idempotent by HTTP semantics; POST and PATCH are not.</p><p><b>Follow-ups:</b> what if charge calls an external provider (pass the key downstream), exactly once is really at least once plus dedupe.</p>",
-        "Aliases": "",
-        "Hint": "The client cannot tell 'request lost' from 'response lost'.",
-        "Fact": "Retries are only safe on idempotent operations; make writes idempotent with keys.",
-        "Source": "RFC 9110 HTTP Semantics (https://www.rfc-editor.org/rfc/rfc9110)\nStripe API docs, Idempotent requests (https://docs.stripe.com/api/idempotent_requests)",
-        "BertMeta": ""
-      },
-      "tags": [
-        "bert::status::draft"
-      ]
-    },
-    {
-      "guid": "92b47e2c-fc71-5c97-b222-a8b27116b6ae",
-      "noteType": "Bert Basic",
-      "section": "http",
-      "fields": {
-        "Question": "You are designing error responses for a public REST API. Which status codes do you use for validation errors, auth failures, missing resources, rate limiting and server overload, and why does it matter?",
-        "Answer": "<ul><li>400 malformed request; 422 semantically invalid body (validation) is common. Not retryable as is.</li><li>401 not authenticated (missing or bad credentials, include WWW-Authenticate); 403 authenticated but not allowed. 404 not found, also used to hide existence of forbidden resources.</li><li>409 conflict (version mismatch, duplicate); 412 failed If-Match precondition for optimistic concurrency.</li><li>429 too many requests with Retry-After; 503 overloaded or in maintenance with Retry-After; 502 and 504 for upstream failures at a gateway.</li><li>500 for bugs. Retryable: 408, 429, 502, 503, 504 and network errors, ideally only for idempotent requests.</li></ul><p><b>Body:</b> a consistent machine readable error shape (RFC 9457 problem details: type, title, status, detail) plus a request id.</p><p><b>Pitfalls:</b> 200 with an error in the body breaks caches, monitoring and retry logic; 500 for client errors pages your on-call.</p><p><b>Follow-ups:</b> how a client SDK should map these to retry decisions.</p>",
-        "Aliases": "",
-        "Hint": "Clients and proxies make decisions (retry or not) from the status code.",
-        "Fact": "Status codes are a contract for retries, caches and alerts; use them precisely.",
-        "Source": "RFC 9110 HTTP Semantics (https://www.rfc-editor.org/rfc/rfc9110)\nRFC 6585 Additional HTTP Status Codes (https://www.rfc-editor.org/rfc/rfc6585)\nRFC 9457 Problem Details for HTTP APIs (https://www.rfc-editor.org/rfc/rfc9457)",
-        "BertMeta": ""
-      },
-      "tags": [
-        "bert::status::draft"
-      ]
-    },
-    {
-      "guid": "66fc50d2-8183-5966-aafa-24d4dba104dc",
-      "noteType": "Bert Basic",
-      "section": "http",
-      "fields": {
-        "Question": "How would you set caching headers for (a) hashed static assets like app.3f9a.js, (b) the HTML page that references them, and (c) a per-user API response?",
-        "Answer": "<ul><li>Fingerprinted assets: Cache-Control: public, max-age=31536000, immutable. A new deploy changes the filename, so stale cache is never a problem.</li><li>HTML entry page: Cache-Control: no-cache (store but revalidate every time) with an ETag or Last-Modified, so the browser gets a cheap 304 when unchanged and a new page right after a deploy.</li><li>Per user API: Cache-Control: private, no-store if sensitive, or private, max-age short. Never let a shared cache (CDN) store it; if a CDN must cache by user, Vary on the right header, which usually kills hit rate.</li></ul><p><b>Mechanics:</b> max-age sets freshness; after that the client sends If-None-Match with the ETag and the server returns 304 Not Modified with no body.</p><p><b>Pitfalls:</b> no-cache does not mean do not store (no-store does); Set-Cookie on a cacheable response leaking sessions through a CDN; caching error pages; forgetting Vary: Accept-Encoding.</p><p><b>Follow-ups:</b> stale-while-revalidate, CDN purge vs versioned URLs, s-maxage for shared caches.</p>",
-        "Aliases": "",
-        "Hint": "Immutable for fingerprinted files, revalidate for entry points, private for personal data.",
-        "Fact": "Version the URL and cache forever; revalidate entry points; keep personal data private.",
-        "Source": "RFC 9111 HTTP Caching (https://www.rfc-editor.org/rfc/rfc9111)\nMDN HTTP caching (https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Caching)",
-        "BertMeta": ""
-      },
-      "tags": [
-        "bert::status::draft"
-      ]
-    },
-    {
-      "guid": "eea063fc-ce12-5c96-b025-1f529aa8cdcd",
-      "noteType": "Bert Basic",
-      "section": "http",
-      "fields": {
-        "Question": "A GET endpoint returns 200 MB of JSON and clients time out. How do you redesign it?",
-        "Answer": "<ul><li>Paginate. Prefer cursor (keyset) pagination: return an opaque next cursor encoding the last sort key. Offset pagination gets slow on deep pages and skips or duplicates rows when data changes.</li><li>Let clients filter and select fields to shrink payloads.</li><li>Compress (gzip or br via Accept-Encoding); JSON usually compresses well.</li><li>For true bulk exports, make it async: POST creates an export job, client polls or gets a webhook, downloads a file from object storage with range requests support.</li><li>If streaming is required, stream newline delimited JSON with chunked transfer so the client can process incrementally.</li></ul><p><b>Pitfalls:</b> raising timeouts everywhere instead of fixing the shape; loading all rows in server memory before writing.</p><p><b>Follow-ups:</b> how to make cursors stable and tamper proof, rate limiting export jobs.</p>",
-        "Aliases": "",
-        "Hint": "Bound the response size.",
-        "Fact": "Bound every response: paginate with cursors, compress, and move bulk data to async exports.",
-        "Source": "RFC 9110 HTTP Semantics (https://www.rfc-editor.org/rfc/rfc9110)\nRFC 9112 HTTP/1.1 (https://www.rfc-editor.org/rfc/rfc9112)",
-        "BertMeta": ""
-      },
-      "tags": [
-        "bert::status::draft"
-      ]
-    },
-    {
-      "guid": "29538af1-8ac4-5a9f-9345-20d510657f01",
-      "noteType": "Bert Basic",
-      "section": "http",
-      "fields": {
-        "Question": "For communication between your internal microservices, would you pick gRPC or REST over JSON? What about for a public API used from browsers?",
-        "Answer": "<ul><li>Internal: gRPC is a strong default. Protobuf schemas give typed contracts and code generation, compact binary encoding, HTTP/2 multiplexing, streaming in both directions, deadlines and cancellation built in.</li><li>Public and browser: REST with JSON. Works with any client and curl, cacheable by HTTP caches and CDNs, easy to debug. Browsers cannot speak native gRPC (they need gRPC-Web through a proxy).</li><li>gRPC costs: needs L7 or client side load balancing (long lived HTTP/2 connections), harder to inspect on the wire, schema evolution rules (never reuse field numbers).</li></ul><p><b>Follow-ups:</b> how you version each, how gRPC deadlines propagate, when you would use GraphQL instead.</p>",
-        "Aliases": "",
-        "Hint": "Contracts and performance internally; reach and tooling publicly.",
-        "Fact": "gRPC for typed, fast internal calls; REST and JSON for broad public reach.",
-        "Source": "gRPC docs, Core concepts (https://grpc.io/docs/what-is-grpc/core-concepts/)\nRFC 9113 HTTP/2 (https://www.rfc-editor.org/rfc/rfc9113)\nRFC 9110 HTTP Semantics (https://www.rfc-editor.org/rfc/rfc9110)",
-        "BertMeta": ""
-      },
-      "tags": [
-        "bert::status::draft"
-      ]
-    },
-    {
-      "guid": "f52b081b-b99f-59d8-bdb3-a35bce20e458",
-      "noteType": "Bert Basic",
-      "section": "browser",
-      "fields": {
-        "Question": "Your frontend at https://app.example.com calls https://api.example.com and the browser console says the request was blocked by CORS policy, but curl works fine. Explain what is going on and how you fix it.",
-        "Answer": "<p>Different origin (scheme, host or port differ), so the browser applies the CORS protocol. curl does not enforce CORS, which is why it works. The server is either not sending the right headers or failing the preflight.</p><ul><li>Non-simple requests (JSON content type, custom headers like Authorization, PUT or DELETE) first send an OPTIONS preflight with Origin, Access-Control-Request-Method and -Headers.</li><li>The server must answer the preflight with 2xx and Access-Control-Allow-Origin: https://app.example.com, Access-Control-Allow-Methods, Access-Control-Allow-Headers, optionally Access-Control-Max-Age to cache it.</li><li>The actual response also needs Access-Control-Allow-Origin.</li><li>With cookies or credentials: client uses credentials: 'include', server sends Access-Control-Allow-Credentials: true and must echo a specific origin, never *.</li></ul><p><b>Common causes:</b> auth middleware rejecting OPTIONS with 401, the header missing on error responses (so a 500 shows as a CORS error), reflecting any Origin (a security hole), not sending Vary: Origin so a CDN caches one origin's answer for everyone.</p><p><b>Key insight:</b> CORS protects users, not servers; it is not an auth mechanism and does not stop server to server calls.</p><p><b>Follow-ups:</b> why a same-site reverse proxy (/api on the same origin) removes CORS entirely.</p>",
-        "Aliases": "",
-        "Hint": "CORS is enforced by the browser, configured by the server.",
-        "Fact": "CORS errors are fixed on the server's response headers, and preflights must pass before auth.",
-        "Source": "WHATWG Fetch Standard (CORS protocol) (https://fetch.spec.whatwg.org/#http-cors-protocol)\nMDN Cross-Origin Resource Sharing (https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS)",
-        "BertMeta": ""
-      },
-      "tags": [
-        "bert::status::draft"
-      ]
-    },
-    {
-      "guid": "29342cd7-9482-51a4-b53d-5fba7c17f14d",
-      "noteType": "Bert Basic",
-      "section": "browser",
-      "fields": {
-        "Question": "How do you configure a session cookie for a web app, and what attacks does each attribute defend against?",
-        "Answer": "<ul><li>Secure: only sent over HTTPS, so it cannot leak on a plaintext hop.</li><li>HttpOnly: not readable from JavaScript, limits session theft through XSS (XSS can still act as the user).</li><li>SameSite=Lax (default in modern browsers) or Strict: not sent on most cross-site requests, a strong CSRF defense. SameSite=None requires Secure and is for real cross-site embeds.</li><li>Scope narrowly: host-only (no Domain attribute) and Path=/; the __Host- prefix enforces Secure, no Domain, Path=/.</li><li>Short lifetime plus server side session revocation; rotate the session id on login (session fixation).</li></ul><p><b>Pair with:</b> HSTS so the first request is never plaintext, CSRF tokens for state changing requests if SameSite is not enough.</p><p><b>Follow-ups:</b> cookies vs bearer tokens in localStorage (XSS readable), third party cookie restrictions.</p>",
-        "Aliases": "",
-        "Hint": "Secure, HttpOnly, SameSite, scope.",
-        "Fact": "Secure, HttpOnly, SameSite and host-only scope cover leakage, XSS theft and CSRF.",
-        "Source": "RFC 6265 HTTP State Management (Cookies) (https://www.rfc-editor.org/rfc/rfc6265)\nRFC 6797 HTTP Strict Transport Security (https://www.rfc-editor.org/rfc/rfc6797)",
-        "BertMeta": ""
-      },
-      "tags": [
-        "bert::status::draft"
-      ]
-    },
-    {
-      "guid": "9e153f2a-4be3-5121-af31-9fe5e4ecf32e",
-      "noteType": "Bert Basic",
-      "section": "browser",
-      "fields": {
-        "Question": "You redirect http:// to https:// on your site. Is that enough to protect users from downgrade attacks on public Wi-Fi?",
-        "Answer": "<p>No. The initial http request and the redirect travel in plaintext, so an attacker on the network can intercept it and keep the user on http while proxying to your https site (SSL stripping).</p><ul><li>Send Strict-Transport-Security: max-age=31536000; includeSubDomains on HTTPS responses. After the first visit the browser rewrites http to https itself and refuses to click through certificate errors.</li><li>Submit to the browser HSTS preload list (requires includeSubDomains and preload) so even the first visit is protected.</li><li>Mark cookies Secure so they never go over http.</li></ul><p><b>Pitfalls:</b> includeSubDomains breaks any subdomain still on http; preload is hard to undo, so roll out with a short max-age first.</p><p><b>Follow-ups:</b> HTTPS DNS records, how HSTS interacts with local development domains.</p>",
-        "Aliases": "",
-        "Hint": "The first plaintext request can be intercepted.",
-        "Fact": "Redirects alone are strippable; HSTS and preload make the browser refuse plaintext.",
-        "Source": "RFC 6797 HTTP Strict Transport Security (https://www.rfc-editor.org/rfc/rfc6797)\nRFC 6265 HTTP State Management (Cookies) (https://www.rfc-editor.org/rfc/rfc6265)",
-        "BertMeta": ""
-      },
-      "tags": [
-        "bert::status::draft"
-      ]
-    },
-    {
-      "guid": "5d192e38-804a-5b93-8cd1-7dd1b5619abb",
+      "guid": "ada31355-c171-5edb-a44b-80cca6296616",
       "noteType": "Bert Basic",
       "section": "realtime",
       "fields": {
-        "Question": "You are building (a) a live sports score feed, (b) a collaborative document editor and (c) an order status page that changes a few times an hour. Would you use polling, long polling, SSE or WebSockets for each?",
-        "Answer": "<ul><li>Score feed: Server-Sent Events. Server to client only, plain HTTP so it works through proxies and HTTP/2, automatic reconnect with Last-Event-ID in the browser's EventSource.</li><li>Collaborative editor: WebSockets. Low latency in both directions, many small messages, binary support.</li><li>Order status: short polling every 30 to 60 seconds, or a push notification. Simplest, cacheable, stateless servers, and the update rate does not justify a persistent connection.</li></ul><p><b>Long polling:</b> the client holds a request until there is data or a timeout, then immediately re-requests. A fallback when SSE or WebSockets are not available; costs a request per message.</p><p><b>Tradeoffs:</b> persistent connections need sticky or connection aware load balancing, heartbeats, reconnect with backoff and resume, and a pub/sub backbone (Redis, Kafka) so any server can deliver to any client. Over HTTP/1.1 browsers limit SSE to about 6 connections per origin; HTTP/2 removes that.</p><p><b>Follow-ups:</b> how many concurrent connections a server can hold and what limits it (memory per connection, file descriptors), how you deploy without dropping everyone at once.</p>",
+        "Question": "Design the delivery path for real time in app notifications for 10 million daily users across web and mobile. Talk through transport, connection routing, missed messages and scale.",
+        "Answer": "<p>Transport: SSE for web if it is one way, WebSockets if the app already needs client sends; mobile uses the socket while foregrounded and APNs or FCM push when backgrounded.</p><p>Routing: gateway fleet holds connections; a registry or pub/sub keyed by user lets producers reach the owning node. Gateways are mostly stateless besides the sockets.</p><p>Missed messages: persist notifications with a per user sequence; client reconnects with last seen id and the server replays. Dedup on the client by id.</p><p>Scale: estimate concurrent connections (say 20 to 30 percent of DAU), memory per connection, use L4 or connection aware balancing, drain gateways on deploy with jittered client reconnect to avoid a thundering herd.</p><p>Follow ups: ordering, fan out for group notifications, read receipts, rate limiting noisy producers.</p>",
         "Aliases": "",
-        "Hint": "Direction of data and update frequency decide it.",
-        "Fact": "Poll for rare updates, SSE for server push, WebSockets for chatty two way traffic.",
-        "Source": "RFC 6455 The WebSocket Protocol (https://www.rfc-editor.org/rfc/rfc6455)\nWHATWG HTML Standard, Server-sent events (https://html.spec.whatwg.org/multipage/server-sent-events.html)\nHigh Performance Browser Networking, Ilya Grigorik (https://hpbn.co/)",
-        "BertMeta": ""
+        "Hint": "Transport, routing, replay, then capacity.",
+        "Fact": "",
+        "Source": "Hello Interview, Networking Essentials (https://www.hellointerview.com/learn/system-design/core-concepts/networking-essentials)\nWHATWG HTML Standard, Server-sent events (https://html.spec.whatwg.org/multipage/server-sent-events.html)",
+        "BertMeta": {
+          "flipOnly": true
+        }
       },
       "tags": [
+        "bert::level::senior",
         "bert::status::draft"
       ]
     },
     {
-      "guid": "bd70925a-0995-5e6d-b48b-098e37808976",
-      "noteType": "Bert Basic",
-      "section": "realtime",
+      "guid": "6bafdb92-88ea-5e76-ab5f-e3b7f8becc3a",
+      "noteType": "Bert Choice",
+      "section": "loadbalancing",
       "fields": {
-        "Question": "Design the connection layer for a chat app with 1 million concurrent WebSocket users. What are the key networking concerns?",
-        "Answer": "<ul><li>Gateway tier: dedicated servers that only hold connections (each holds tens to hundreds of thousands with async IO; budget memory per connection and raise fd limits). Business logic lives elsewhere.</li><li>Routing messages: a presence service or pub/sub maps user to gateway; a message for user X is published to the gateway that holds X's socket.</li><li>Load balancer must support WebSocket upgrade and long idle times; heartbeat (ping frames every 20 to 30 seconds) below every idle timeout on the path.</li><li>Reconnect storms: when a gateway dies or deploys, its users reconnect at once. Use jittered exponential backoff on clients and drain connections gradually on deploys.</li><li>Delivery guarantees: messages get ids and are stored; on reconnect the client sends its last seen id and the server replays the gap.</li></ul><p><b>Follow-ups:</b> why least connections balancing beats round robin here, how you authenticate the upgrade request (token in the first message or a cookie, not in the URL logs).</p>",
-        "Aliases": "",
-        "Hint": "Stateful connections: routing, fan out, heartbeats and reconnect storms.",
-        "Fact": "Persistent connections make routing, heartbeats and reconnect storms the hard parts.",
-        "Source": "RFC 6455 The WebSocket Protocol (https://www.rfc-editor.org/rfc/rfc6455)\nAWS Architecture Blog, Exponential Backoff and Jitter (https://aws.amazon.com/blogs/architecture/exponential-backoff-and-jitter/)",
-        "BertMeta": ""
+        "Question": "Chat clients hold WebSockets behind an L7 load balancer using round robin. After a rolling deploy, the first nodes to come back hold most connections while the newest nodes sit nearly idle. What actually fixes the imbalance?",
+        "Choices": "Balance on active connections (least connections) and have overloaded nodes gradually shed connections so clients reconnect with jitter\nEnable sticky sessions\nSwitch the LB to L4\nIncrease the health check interval",
+        "Correct": "Balance on active connections (least connections) and have overloaded nodes gradually shed connections so clients reconnect with jitter",
+        "Explanation": "Round robin balances new connections, not existing ones, and long lived sockets never move on their own. Least connections steers new ones to idle nodes and controlled shedding redistributes the old ones. Sticky sessions make it worse by pinning clients to where they already are; it is the common wrong full fix. L4 versus L7 does not change that connections are long lived. Health check intervals affect failure detection, not distribution.",
+        "Hint": "Long lived connections never get rebalanced by themselves.",
+        "Source": "Envoy docs, Load balancing (https://www.envoyproxy.io/docs/envoy/latest/intro/arch_overview/upstream/load_balancing/load_balancing)\nCrack the Offer, System Design Load Balancing (https://www.cracktheoffer.com/system-design-load-balancing)",
+        "BertMeta": {
+          "flipOnly": false
+        }
       },
       "tags": [
-        "bert::status::draft"
-      ]
-    },
-    {
-      "guid": "b401d2fd-c781-52da-9126-39808b68683b",
-      "noteType": "Bert Basic",
-      "section": "realtime",
-      "fields": {
-        "Question": "How does a WebSocket connection get established, and why does it sometimes fail behind corporate proxies or a misconfigured load balancer?",
-        "Answer": "<ul><li>Client sends GET with Upgrade: websocket, Connection: Upgrade, Sec-WebSocket-Key and Sec-WebSocket-Version: 13. Server replies 101 Switching Protocols with Sec-WebSocket-Accept (SHA-1 of the key plus a fixed GUID, base64). After that, the TCP connection carries WebSocket frames.</li><li>Over HTTP/2 it uses an extended CONNECT (RFC 8441) instead, which proxies must support.</li><li>Failures: proxies that strip Upgrade or Connection hop-by-hop headers, load balancers or nginx not configured to forward them (proxy_set_header Upgrade and Connection), idle timeouts killing quiet connections, plaintext ws:// being tampered with by middleboxes.</li></ul><p><b>Fix:</b> always use wss:// (TLS makes middleboxes pass it through), configure upgrade forwarding and long timeouts, heartbeat.</p><p><b>Follow-ups:</b> why the Accept hash exists (proves the server understood WebSocket, not a security feature), validating the Origin header to stop cross-site WebSocket hijacking.</p>",
-        "Aliases": "",
-        "Hint": "It starts life as an HTTP/1.1 request asking to switch protocols.",
-        "Fact": "WebSocket is an HTTP upgrade; proxies must forward the upgrade and tolerate long lived connections.",
-        "Source": "RFC 6455 The WebSocket Protocol (https://www.rfc-editor.org/rfc/rfc6455)\nRFC 8441 Bootstrapping WebSockets with HTTP/2 (https://www.rfc-editor.org/rfc/rfc8441)",
-        "BertMeta": ""
-      },
-      "tags": [
+        "bert::level::senior",
         "bert::status::draft"
       ]
     },
     {
       "guid": "38d55814-8602-5c9f-b68b-091cf39d79db",
-      "noteType": "Bert Basic",
+      "noteType": "Bert Choice",
       "section": "loadbalancing",
       "fields": {
-        "Question": "When would you choose an L4 load balancer over an L7 one, and vice versa?",
-        "Answer": "<ul><li>L4 (TCP or UDP): forwards connections by IP and port without parsing the payload. Very fast, protocol agnostic (databases, MQTT, game UDP, TLS passthrough), preserves end to end TLS. Balancing is per connection.</li><li>L7 (HTTP): terminates the connection and parses requests. Routes by host, path, header or cookie, does TLS termination, retries, rate limiting, auth, compression, canary splits, and balances per request.</li><li>Choose L4 for non-HTTP protocols, extreme throughput, or when you must not decrypt. Choose L7 for HTTP microservices, gRPC, and anything needing request aware routing or observability.</li></ul><p><b>Classic gotcha:</b> gRPC or HTTP/2 behind an L4 balancer: one long lived connection carries all requests, so all load lands on one backend. Use L7 balancing or client side balancing.</p><p><b>Other pitfalls:</b> L7 adds a hop and latency; L4 hides the client IP unless you use PROXY protocol or direct server return.</p><p><b>Follow-ups:</b> how health checks differ (TCP connect vs HTTP /healthz), sticky sessions and why to avoid them.</p>",
-        "Aliases": "",
-        "Hint": "What does the balancer need to see: packets and ports, or HTTP requests?",
-        "Fact": "L4 balances connections; L7 balances requests.",
-        "Source": "Envoy docs, Load balancing (https://www.envoyproxy.io/docs/envoy/latest/intro/arch_overview/upstream/load_balancing/load_balancing)\nAWS Elastic Load Balancing, How it works (https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/how-elastic-load-balancing-works.html)\nHAProxy PROXY protocol specification (https://www.haproxy.org/download/2.9/doc/proxy-protocol.txt)",
-        "BertMeta": ""
+        "Question": "You need to route /api/* to one service and /images/* to another, and add a header with the client's request id. Which load balancer type is required?",
+        "Choices": "L4 (TCP) load balancer\nDNS round robin\nAnycast\nL7 (HTTP) load balancer",
+        "Correct": "L7 (HTTP) load balancer",
+        "Explanation": "Path routing and header rewriting need the balancer to parse HTTP, which is L7. An L4 balancer forwards TCP or UDP flows by address and port and never sees the path. DNS round robin only picks an IP per lookup. Anycast routes packets to the nearest site and knows nothing about HTTP.",
+        "Hint": "Who can read the URL path?",
+        "Source": "AWS Elastic Load Balancing, How it works (https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/how-elastic-load-balancing-works.html)\nCrack the Offer, System Design Load Balancing (https://www.cracktheoffer.com/system-design-load-balancing)",
+        "BertMeta": {
+          "flipOnly": false
+        }
       },
       "tags": [
+        "bert::level::mid",
         "bert::status::draft"
       ]
     },
     {
-      "guid": "c403bb34-a046-54ac-b6f0-220017e2bfe2",
-      "noteType": "Bert Basic",
+      "guid": "3af3dd0c-425e-5ec3-b126-163d035c1e3f",
+      "noteType": "Bert Choice",
       "section": "loadbalancing",
       "fields": {
-        "Question": "Backends have uneven request costs and some are slower than others. Which load balancing algorithm would you use and why not plain round robin?",
-        "Answer": "<ul><li>Round robin assumes equal backends and equal requests; a slow node keeps getting its share and its queue grows.</li><li>Least outstanding requests (least connections) routes to the backend with the fewest in flight requests, which naturally adapts to slow nodes.</li><li>Power of two choices: pick two random backends and send to the less loaded. Nearly as good as global least loaded, cheap, and avoids herding when many balancers have stale views.</li><li>Weighted variants for heterogeneous hardware; consistent hashing when you need affinity (caches, sharded state).</li></ul><p><b>Also:</b> slow start for newly added instances so a cold JVM is not flooded, outlier detection to eject nodes with high error rates.</p><p><b>Follow-ups:</b> why every balancer picking the globally least loaded node causes herding, how health checks interact with this.</p>",
-        "Aliases": "",
-        "Hint": "Use a signal of current load, not just a turn order.",
-        "Fact": "Least outstanding requests or power of two choices beats round robin when work is uneven.",
-        "Source": "Envoy docs, Load balancing (https://www.envoyproxy.io/docs/envoy/latest/intro/arch_overview/upstream/load_balancing/load_balancing)\nGoogle SRE Book, Handling Overload (https://sre.google/sre-book/handling-overload/)",
-        "BertMeta": ""
+        "Question": "A legacy app stores sessions in process memory, so the team enables cookie based sticky sessions. Which problem does this introduce?",
+        "Choices": "Requests can no longer be encrypted with TLS\nSticky sessions require L4 load balancing\nLoad skews toward nodes with heavy users, and when a node dies or is drained its users lose their sessions\nSticky sessions double request latency",
+        "Correct": "Load skews toward nodes with heavy users, and when a node dies or is drained its users lose their sessions",
+        "Explanation": "Affinity trades even balancing for locality: hot users pile on one node, autoscaling helps only new users, and a node failure takes its sessions with it. The usual fix is an external session store. TLS still works, the L7 balancer terminates it to read the cookie. Cookie stickiness actually requires L7, not L4. It adds no meaningful latency.",
+        "Hint": "What happens to the session when the node goes away?",
+        "Source": "AWS Elastic Load Balancing, How it works (https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/how-elastic-load-balancing-works.html)\nCrack the Offer, System Design Load Balancing (https://www.cracktheoffer.com/system-design-load-balancing)",
+        "BertMeta": {
+          "flipOnly": false
+        }
       },
       "tags": [
+        "bert::level::senior",
         "bert::status::draft"
       ]
     },
     {
-      "guid": "846684fc-6ccd-5587-bd62-44b5a4bd7b03",
-      "noteType": "Bert Basic",
+      "guid": "7efe3e20-1475-5c1d-bab3-6c74827090b9",
+      "noteType": "Bert Choice",
       "section": "loadbalancing",
       "fields": {
-        "Question": "What should a service's health check endpoint actually check, and how can a bad health check cause an outage?",
-        "Answer": "<ul><li>Liveness: is the process able to make progress at all (not deadlocked). Failing it restarts the instance. Keep it trivial.</li><li>Readiness: should this instance receive traffic now (warmed up, connected, not draining). Failing it removes the instance from rotation.</li><li>Avoid deep checks on shared dependencies in readiness. If the database is slow and every instance's check fails, the balancer removes all of them and a partial outage becomes a total one.</li><li>Many load balancers fail open (route to all) when every target is unhealthy, for this reason.</li></ul><p><b>Graceful shutdown:</b> on SIGTERM fail readiness, keep serving in flight requests for longer than the balancer's deregistration delay, then exit.</p><p><b>Follow-ups:</b> health check timeouts and thresholds, why a check that needs a cold cache can flap.</p>",
-        "Aliases": "",
-        "Hint": "Liveness vs readiness; do not fail everything because a shared dependency blipped.",
-        "Fact": "Readiness gates traffic, liveness gates restarts; neither should fail on a shared dependency.",
-        "Source": "Envoy docs, Load balancing (https://www.envoyproxy.io/docs/envoy/latest/intro/arch_overview/upstream/load_balancing/load_balancing)\nAWS Elastic Load Balancing, How it works (https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/how-elastic-load-balancing-works.html)\nGoogle SRE Book, Addressing Cascading Failures (https://sre.google/sre-book/addressing-cascading-failures/)",
-        "BertMeta": ""
+        "Question": "Your LB health check hits /health, which queries the shared database. The database has a 10 second slowdown and every app node fails its check at once. What is the problem with this design?",
+        "Choices": "Health checks should use UDP\nA deep check tied to a shared dependency can mark the whole fleet unhealthy at once, so the LB has nowhere to send traffic\nThe check interval should be 1 ms\nHealth checks should run only at deploy time",
+        "Correct": "A deep check tied to a shared dependency can mark the whole fleet unhealthy at once, so the LB has nowhere to send traffic",
+        "Explanation": "Liveness checks for load balancing should reflect whether this node can serve, not whether a shared dependency is slow, otherwise a dependency blip removes every node and turns a partial outage into a total one. Many LBs fail open when all targets are unhealthy, but you should not rely on it. Transport protocol is irrelevant. A 1 ms interval only adds load. Checks must run continuously to catch node failures.",
+        "Hint": "If every node depends on it, every node fails together.",
+        "Source": "AWS Elastic Load Balancing, How it works (https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/how-elastic-load-balancing-works.html)\nGoogle SRE Book, Addressing Cascading Failures (https://sre.google/sre-book/addressing-cascading-failures/)",
+        "BertMeta": {
+          "flipOnly": false
+        }
       },
       "tags": [
+        "bert::level::senior",
         "bert::status::draft"
       ]
     },
     {
-      "guid": "def5cf75-5461-5d09-aea9-efe152615023",
-      "noteType": "Bert Basic",
+      "guid": "a7bbbb9a-6870-5ac1-9de6-1584c30955e1",
+      "noteType": "Bert Choice",
       "section": "loadbalancing",
       "fields": {
-        "Question": "Behind your load balancer every request shows the load balancer's IP as the client. How do you get the real client IP safely?",
-        "Answer": "<ul><li>L7 proxies append X-Forwarded-For (or the standard Forwarded header). L4 balancers can use PROXY protocol to prepend the original address.</li><li>Trust only entries added by proxies you control: walk X-Forwarded-For from the right, skipping your known proxy hops, and take the first untrusted address.</li><li>Taking the leftmost value is a bug: clients can send their own X-Forwarded-For and spoof IPs to bypass rate limits or IP allow lists.</li><li>Same for X-Forwarded-Proto and Host: only trust them from your proxies.</li></ul><p><b>Follow-ups:</b> why IP based rate limiting breaks behind carrier grade NAT, IPv6 privacy addresses.</p>",
-        "Aliases": "",
-        "Hint": "Proxies add headers, but anyone can forge them.",
-        "Fact": "Parse forwarding headers from the right and trust only your own proxy hops.",
-        "Source": "RFC 9110 HTTP Semantics (https://www.rfc-editor.org/rfc/rfc9110)\nHAProxy PROXY protocol specification (https://www.haproxy.org/download/2.9/doc/proxy-protocol.txt)",
-        "BertMeta": ""
+        "Question": "Requests to a service vary wildly in cost: most take 5 ms but some take 2 s. With plain round robin, some backends build long queues while others are idle. Which algorithm usually helps most?",
+        "Choices": "Least outstanding requests (or power of two choices on active requests)\nRandom\nIP hash\nWeighted round robin with equal weights",
+        "Correct": "Least outstanding requests (or power of two choices on active requests)",
+        "Explanation": "Picking the backend with fewer in flight requests reacts to actual load, so slow requests do not stack up on one node. Random has the same blindness as round robin. IP hash pins clients to backends and ignores load. Weighted round robin with equal weights is just round robin.",
+        "Hint": "Pick based on what the backend is doing right now.",
+        "Source": "Envoy docs, Load balancing (https://www.envoyproxy.io/docs/envoy/latest/intro/arch_overview/upstream/load_balancing/load_balancing)",
+        "BertMeta": {
+          "flipOnly": false
+        }
       },
       "tags": [
+        "bert::level::senior",
         "bert::status::draft"
       ]
     },
     {
-      "guid": "67aaf560-d1f4-5d7b-a130-969facc349a4",
-      "noteType": "Bert Basic",
+      "guid": "11be0c86-f872-5f10-b7ab-719a90fc3817",
+      "noteType": "Bert Choice",
       "section": "loadbalancing",
       "fields": {
-        "Question": "You have a cache tier of N nodes and route keys with hash(key) % N. Adding a node causes a cache stampede. Why, and what do you use instead?",
-        "Answer": "<p>With modulo, changing N to N+1 moves about N/(N+1) of keys to a different node, so nearly the whole cache misses at once and the database gets hammered. Consistent hashing moves only about 1/(N+1).</p><pre><code class=\"language-python\">import bisect, hashlib\n\nclass HashRing:\n    def __init__(self, nodes, vnodes=100):\n        self.ring = sorted((self._h(f&quot;{n}#{i}&quot;), n) for n in nodes for i in range(vnodes))\n        self.keys = [h for h, _ in self.ring]\n\n    @staticmethod\n    def _h(s):\n        return int.from_bytes(hashlib.md5(s.encode()).digest()[:8], &quot;big&quot;)\n\n    def node_for(self, key):\n        i = bisect.bisect(self.keys, self._h(key)) % len(self.ring)\n        return self.ring[i][1]</code></pre><p><b>Complexity:</b> lookup O(log(N*V)) with binary search; build O(N*V log(N*V)) with V virtual nodes per server. Virtual nodes even out the load.</p><p><b>Alternatives:</b> rendezvous (highest random weight) hashing, Maglev hashing in load balancers, jump consistent hash for numbered buckets.</p><p><b>Follow-ups:</b> handling hot keys, replication to the next k nodes on the ring.</p>",
-        "Aliases": "",
-        "Hint": "Modulo remaps almost every key when N changes.",
-        "Fact": "Consistent hashing moves about 1/N of keys on a membership change instead of nearly all.",
-        "Source": "Karger et al., Consistent Hashing and Random Trees (STOC 1997) (https://dl.acm.org/doi/10.1145/258533.258660)\nEnvoy docs, Load balancing (https://www.envoyproxy.io/docs/envoy/latest/intro/arch_overview/upstream/load_balancing/load_balancing)",
-        "BertMeta": ""
+        "Question": "Behind an L7 load balancer, your app logs every request as coming from 10.0.3.7, the LB's address. How do you get the real client IP?",
+        "Choices": "Read the TCP source address more carefully\nAsk the client to send its IP in the body\nSwitch DNS to round robin\nRead X-Forwarded-For (or Forwarded) set by the LB, trusting only the entry your own LB appended",
+        "Correct": "Read X-Forwarded-For (or Forwarded) set by the LB, trusting only the entry your own LB appended",
+        "Explanation": "An L7 proxy opens its own connection to the app, so the TCP source is the proxy. It records the client in X-Forwarded-For or Forwarded. Clients can spoof earlier entries, so trust only what your proxy added. The TCP source address is accurate, it is just the LB. A client sent IP is untrustworthy and often a private NAT address. DNS changes nothing here.",
+        "Hint": "The LB opened a new connection.",
+        "Source": "AWS Elastic Load Balancing, How it works (https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/how-elastic-load-balancing-works.html)\nRFC 9110 HTTP Semantics (https://www.rfc-editor.org/rfc/rfc9110)",
+        "BertMeta": {
+          "flipOnly": false
+        }
       },
       "tags": [
+        "bert::level::mid",
         "bert::status::draft"
       ]
     },
     {
-      "guid": "6985ace3-a362-5728-8cc3-177bb2fa67c1",
-      "noteType": "Bert Basic",
+      "guid": "d150c0e9-5d91-5282-852a-797f925df522",
+      "noteType": "Bert Choice",
       "section": "reliability",
       "fields": {
-        "Question": "Service A calls B, which calls C. How do you choose timeouts for these calls?",
-        "Answer": "<ul><li>Set both a connect timeout (short, like 100 ms to 1 s in a data center) and a request or read timeout. Libraries often default to none, which means a stuck dependency hangs threads forever.</li><li>Base the timeout on the dependency's latency distribution, for example a bit above p99.9, not a round number.</li><li>Propagate a deadline: A has 1 s total, B gets what remains minus its own work, C less again. gRPC deadlines do this automatically. An inner timeout longer than the outer one wastes work nobody waits for.</li><li>Account for retries inside the budget: 3 attempts at 1 s each do not fit in a 1 s SLA.</li></ul><p><b>Pitfalls:</b> a timeout that is too long ties up threads and connection pools so one slow dependency exhausts A; too short causes false failures and retry load.</p><p><b>Follow-ups:</b> how you cancel downstream work when the caller gives up, timeouts for streaming or long polling endpoints.</p>",
-        "Aliases": "",
-        "Hint": "Timeouts should shrink as you go deeper, and be derived from measured latency.",
-        "Fact": "Every network call needs a timeout, and nested calls should share one shrinking deadline.",
-        "Source": "Amazon Builders' Library, Timeouts, retries and backoff with jitter (https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/)\nGoogle SRE Book, Addressing Cascading Failures (https://sre.google/sre-book/addressing-cascading-failures/)",
-        "BertMeta": ""
-      },
-      "tags": [
-        "bert::status::draft"
-      ]
-    },
-    {
-      "guid": "cfcb684c-b9e2-5b19-b8dc-3ec1b045d946",
-      "noteType": "Bert Basic",
-      "section": "reliability",
-      "fields": {
-        "Question": "A dependency had a 30 second blip but your system stayed down for 20 minutes afterwards. Retries were enabled at every layer. Explain what happened and how to design retries properly.",
-        "Answer": "<p>Retry amplification and a metastable failure. With 3 retries at each of 3 layers, one user request can become 4 x 4 x 4 = 64 calls at the bottom. Clients retrying in lockstep keep load above capacity, so the dependency cannot recover even after the original cause is gone.</p><ul><li>Retry at one layer only (usually closest to the caller or at the edge), not at every hop.</li><li>Exponential backoff with jitter so retries spread out.</li><li>Retry budget: cap retries to a fraction of traffic (say 10 percent) per client so retries cannot multiply load.</li><li>Retry only retryable errors (timeouts, 503, 429 with Retry-After, connection resets) and only idempotent operations.</li><li>Circuit breakers and load shedding on the server (fail fast with 503 rather than queueing).</li></ul><p><b>Follow-ups:</b> hedged requests for tail latency, and why they need the same budgets.</p>",
-        "Aliases": "",
-        "Hint": "Retries multiply; synchronized retries keep the dependency overloaded.",
-        "Fact": "Retry at one layer, with jittered backoff and a budget, or retries become the outage.",
-        "Source": "Amazon Builders' Library, Timeouts, retries and backoff with jitter (https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/)\nAWS Architecture Blog, Exponential Backoff and Jitter (https://aws.amazon.com/blogs/architecture/exponential-backoff-and-jitter/)\nGoogle SRE Book, Handling Overload (https://sre.google/sre-book/handling-overload/)\nGoogle SRE Book, Addressing Cascading Failures (https://sre.google/sre-book/addressing-cascading-failures/)",
-        "BertMeta": ""
-      },
-      "tags": [
-        "bert::status::draft"
-      ]
-    },
-    {
-      "guid": "b353cf37-694e-5be9-8cfb-1a796eb68847",
-      "noteType": "Bert Basic",
-      "section": "reliability",
-      "fields": {
-        "Question": "Explain the circuit breaker pattern and when you would use it instead of just retrying.",
-        "Answer": "<ul><li>Closed: calls flow, failures counted over a rolling window.</li><li>Open: when the failure rate passes a threshold, fail fast (or serve a fallback) without calling the dependency, for a cool down period.</li><li>Half open: after the cool down, allow a few trial calls; success closes the breaker, failure reopens it.</li></ul><p>It protects the caller's threads and pools from piling up on a dead dependency, and gives the dependency room to recover. Retries handle brief transient errors; breakers handle sustained failure.</p><pre><code class=\"language-python\">import time\n\nclass CircuitBreaker:\n    def __init__(self, failure_threshold=5, reset_after=30.0):\n        self.failure_threshold = failure_threshold\n        self.reset_after = reset_after\n        self.failures = 0\n        self.opened_at = None\n\n    def call(self, fn, *args):\n        if self.opened_at is not None:\n            if time.monotonic() - self.opened_at &lt; self.reset_after:\n                raise RuntimeError(&quot;circuit open&quot;)\n            self.opened_at = None\n            self.failures = self.failure_threshold - 1\n        try:\n            result = fn(*args)\n        except Exception:\n            self.failures += 1\n            if self.failures &gt;= self.failure_threshold:\n                self.opened_at = time.monotonic()\n            raise\n        self.failures = 0\n        return result</code></pre><p><b>Pitfalls:</b> counting 4xx client errors as failures, one global breaker for a dependency where only one shard is down, no metrics on breaker state.</p><p><b>Follow-ups:</b> make it thread safe, use a rolling error rate instead of a consecutive count, what fallback is acceptable for the product.</p>",
-        "Aliases": "",
-        "Hint": "Stop calling a dependency that is clearly failing; probe occasionally.",
-        "Fact": "Retries ride out blips; circuit breakers stop you hammering a dependency that is down.",
-        "Source": "Martin Fowler, CircuitBreaker (https://martinfowler.com/bliki/CircuitBreaker.html)\nGoogle SRE Book, Addressing Cascading Failures (https://sre.google/sre-book/addressing-cascading-failures/)",
-        "BertMeta": ""
-      },
-      "tags": [
-        "bert::status::draft"
-      ]
-    },
-    {
-      "guid": "95ff7546-58c2-59b1-b6c3-2a8eaaab9790",
-      "noteType": "Bert Basic",
-      "section": "reliability",
-      "fields": {
-        "Question": "Your API is getting 3x its capacity during a launch. What should the servers do, and what should the clients do?",
-        "Answer": "<ul><li>Servers: bound queues and concurrency; reject excess early and cheaply with 503 or 429 plus Retry-After instead of letting latency grow until everything times out.</li><li>Prioritize: shed low priority traffic (batch jobs, prefetch) before user facing requests; drop requests whose deadline has already passed.</li><li>Rate limit per client or tenant so one caller cannot starve others.</li><li>Clients: honour Retry-After, exponential backoff with jitter, retry budgets, degrade gracefully (cached data, hide non essential widgets).</li><li>Autoscaling helps but is too slow for a sudden spike; shedding protects you while it catches up.</li></ul><p><b>Key insight:</b> an overloaded server with an unbounded queue has throughput collapse: it spends its time on requests whose clients already gave up.</p><p><b>Follow-ups:</b> LIFO queueing under overload, adaptive concurrency limits.</p>",
-        "Aliases": "",
-        "Hint": "Doing some work well beats doing all work badly.",
-        "Fact": "Reject early and cheaply under overload so the work you accept still succeeds.",
-        "Source": "Google SRE Book, Handling Overload (https://sre.google/sre-book/handling-overload/)\nGoogle SRE Book, Addressing Cascading Failures (https://sre.google/sre-book/addressing-cascading-failures/)\nRFC 6585 Additional HTTP Status Codes (https://www.rfc-editor.org/rfc/rfc6585)",
-        "BertMeta": ""
-      },
-      "tags": [
-        "bert::status::draft"
-      ]
-    },
-    {
-      "guid": "b82e4080-b08a-5fb7-8275-502cd4ab84c5",
-      "noteType": "Bert Basic",
-      "section": "reliability",
-      "fields": {
-        "Question": "Design how your platform delivers webhooks to customer endpoints reliably and securely.",
-        "Answer": "<ul><li>Persist each event before attempting delivery; a queue of delivery jobs per endpoint.</li><li>POST with a short timeout (for example 10 s); any 2xx is success. Everything else, including timeouts, is retried with exponential backoff and jitter over hours to days, then marked failed and surfaced to the customer.</li><li>Delivery is at least once and may be out of order: include an event id and timestamp so consumers dedupe and order.</li><li>Sign the payload with an HMAC of timestamp plus body using a per endpoint secret; the receiver verifies with a constant time compare and rejects old timestamps to stop replays.</li><li>Isolate customers: per endpoint concurrency limits and circuit breaking so one slow endpoint cannot back up everyone.</li><li>Security: block deliveries to private and link local IPs (SSRF), resolve and pin the IP you validated.</li></ul><p><b>Follow-ups:</b> how a consumer should process (ack fast, process async), replay tools, secret rotation with two valid secrets.</p>",
-        "Aliases": "",
-        "Hint": "At least once delivery, signed payloads, retries with backoff, idempotent consumers.",
-        "Fact": "Webhooks are at least once; sign them, retry with backoff, and make consumers dedupe.",
-        "Source": "AWS Architecture Blog, Exponential Backoff and Jitter (https://aws.amazon.com/blogs/architecture/exponential-backoff-and-jitter/)\nStripe docs, Check webhook signatures (https://docs.stripe.com/webhooks#verify-events)",
-        "BertMeta": ""
-      },
-      "tags": [
-        "bert::status::draft"
-      ]
-    },
-    {
-      "guid": "f0e04f5b-595b-5372-b5e6-c461ed335cc6",
-      "noteType": "Bert Basic",
-      "section": "reliability",
-      "fields": {
-        "Question": "Your service fans out to 100 backend shards per request and p99 latency is terrible even though each shard's p99 is fine. Why, and what can you do?",
-        "Answer": "<p>If each shard is slow 1 percent of the time, the chance at least one of 100 is slow is 1 - 0.99^100, about 63 percent. Fan out turns per-shard tail latency into typical latency.</p><ul><li>Hedged requests: send to one replica, and if no answer by about the p95 latency, send a second copy to another replica and take the first response. Adds only a few percent load.</li><li>Tied requests: send to two replicas that cancel each other when one starts.</li><li>Reduce variability at the source: avoid GC pauses, background compaction during serving, noisy neighbours.</li><li>Return partial results when the product allows it, with a deadline.</li></ul><p><b>Pitfalls:</b> hedging non-idempotent operations, hedging without a budget so overload doubles traffic.</p><p><b>Follow-ups:</b> how you pick the hedge delay, cancellation propagation.</p>",
-        "Aliases": "",
-        "Hint": "With fan out, the slowest of many dominates.",
-        "Fact": "Fan out makes tail latency the common case; hedge reads with a budget.",
-        "Source": "Dean and Barroso, The Tail at Scale (CACM 2013) (https://cacm.acm.org/research/the-tail-at-scale/)\nAmazon Builders' Library, Timeouts, retries and backoff with jitter (https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/)",
-        "BertMeta": ""
-      },
-      "tags": [
-        "bert::status::draft"
-      ]
-    },
-    {
-      "guid": "9fe824c7-ca9a-5ca8-a180-8385b11d1ff4",
-      "noteType": "Bert Basic",
-      "section": "debugging",
-      "fields": {
-        "Question": "A user says 'the API is slow'. Walk me through how you narrow down where the latency is.",
-        "Answer": "<ul><li>Reproduce and quantify: which endpoint, all users or some, since when, p50 vs p99. Check dashboards for a correlated deploy or traffic change.</li><li>Phase timing from the client side: curl -w with time_namelookup, time_connect, time_appconnect, time_starttransfer, time_total. DNS, connect, TLS, server or transfer.</li><li>Distributed tracing: find the span that grew (DB query, downstream call, lock wait, GC pause).</li><li>Server side: queueing (thread pool or connection pool saturation shows as wait time before work starts), CPU, slow queries, N+1 calls.</li><li>Network: packet loss and retransmissions (ss -ti shows retrans and rtt per socket; tcpdump), a cross region hop that was added, MTU issues for large responses only.</li></ul><p><b>Key insight:</b> tail latency is often queueing, not slow code: when utilization nears 100 percent, waits grow sharply.</p><p><b>Follow-ups:</b> how you tell server think time from network time in a packet capture, what you do if it is only one region.</p>",
-        "Aliases": "",
-        "Hint": "Reproduce, split into phases, then follow the request across hops.",
-        "Fact": "Split latency into phases before touching code; queueing explains most tail latency.",
-        "Source": "curl manual (https://curl.se/docs/manpage.html)\nss manual (https://man7.org/linux/man-pages/man8/ss.8.html)\ntcpdump manual (https://www.tcpdump.org/manpages/tcpdump.1.html)",
-        "BertMeta": ""
-      },
-      "tags": [
-        "bert::status::draft"
-      ]
-    },
-    {
-      "guid": "a6d33e3b-6714-532e-8c88-bd9d4f158ede",
-      "noteType": "Bert Basic",
-      "section": "debugging",
-      "fields": {
-        "Question": "Calls from service A to B fail. Some logs say 'connection refused', others 'connection timed out', others 'connection reset by peer'. What does each tell you?",
-        "Answer": "<ul><li>Connection refused: the host answered with a RST to the SYN. The machine is reachable but nothing listens on that port (service down, wrong port, bound to 127.0.0.1 only).</li><li>Connection timed out: no answer to the SYN. A firewall or security group silently drops, the host is down, wrong IP or route, or the accept queue is full.</li><li>Connection reset by peer: an established connection was aborted by a RST. Server crashed or closed with unread data, an idle timeout on a load balancer or NAT expired, or you reused a pooled connection the server had already closed.</li><li>Read timeout (after connecting): server accepted but is slow, or deadlocked.</li></ul><p><b>Tools:</b> nc -vz host port or curl -v for quick checks, ss -ltn on the target to see what listens and where, tcpdump to see SYN, SYN-ACK, RST.</p><p><b>Follow-ups:</b> why a reset right after an idle period is usually an idle timeout mismatch between client pool and server keep-alive.</p>",
-        "Aliases": "",
-        "Hint": "Who answered, and how?",
-        "Fact": "Refused means nobody is listening, timeout means packets vanish, reset means someone aborted a live connection.",
-        "Source": "RFC 9293 Transmission Control Protocol (https://www.rfc-editor.org/rfc/rfc9293)\nss manual (https://man7.org/linux/man-pages/man8/ss.8.html)\ntcpdump manual (https://www.tcpdump.org/manpages/tcpdump.1.html)\ncurl manual (https://curl.se/docs/manpage.html)",
-        "BertMeta": ""
-      },
-      "tags": [
-        "bert::status::draft"
-      ]
-    },
-    {
-      "guid": "0c6a2d39-b1d7-5ed2-8efd-7463dd2b5d9e",
-      "noteType": "Bert Basic",
-      "section": "debugging",
-      "fields": {
-        "Question": "Your load balancer returns occasional 502s, about 0.1 percent of requests, with no errors in the app logs. What is the most likely cause?",
-        "Answer": "<p>A keep-alive race: the backend's idle timeout is shorter than the load balancer's. The backend closes an idle connection just as the balancer sends a new request on it, the balancer gets a reset or EOF, and returns 502. The app never saw the request, so there is nothing in its logs.</p><ul><li>Fix: set the backend keep-alive timeout longer than the balancer's idle timeout (for example backend 75 s, balancer 60 s).</li><li>Other causes to check: backend crashing or restarting during deploys without graceful drain, response headers too large for the proxy, backend closing on oversized requests, health checks lagging behind a dead instance.</li><li>Confirm with balancer logs (which target, error type) and correlate with backend connection close events.</li></ul><p><b>Follow-ups:</b> same pattern between your service's HTTP client pool and an upstream: clients should retry idempotent requests once on a reused connection failure.</p>",
-        "Aliases": "",
-        "Hint": "Who closes an idle keep-alive connection first?",
-        "Fact": "The side that keeps connections alive longest should be the one that closes them; otherwise you get 502 races.",
-        "Source": "RFC 9112 HTTP/1.1 (https://www.rfc-editor.org/rfc/rfc9112)\nAWS Elastic Load Balancing, How it works (https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/how-elastic-load-balancing-works.html)",
-        "BertMeta": ""
-      },
-      "tags": [
-        "bert::status::draft"
-      ]
-    },
-    {
-      "guid": "828ab7de-5745-59e4-9d17-39af86c36d00",
-      "noteType": "Bert Basic",
-      "section": "debugging",
-      "fields": {
-        "Question": "Over a new VPN, small API requests work but large responses hang forever. SSH connects but stalls when you run a command with lots of output. What is happening?",
-        "Answer": "<p>Path MTU problem. The tunnel adds overhead so the path MTU is below 1500. Large packets sent with Don't Fragment need ICMP 'fragmentation needed' messages to trigger Path MTU Discovery; if a firewall drops those ICMP messages, the big packets vanish silently (a PMTUD black hole).</p><ul><li>Test: ping -M do -s 1472 host (1472 + 28 header bytes = 1500) and lower the size until it works.</li><li>Fixes: allow ICMP type 3 code 4 (and ICMPv6 Packet Too Big) through firewalls, clamp TCP MSS on the tunnel (iptables TCPMSS --clamp-mss-to-pmtu), or lower the interface MTU.</li><li>Linux can also probe with net.ipv4.tcp_mtu_probing.</li></ul><p><b>Pitfall:</b> blocking all ICMP 'for security' breaks networking in subtle ways.</p><p><b>Follow-ups:</b> why QUIC requires at least 1200 byte datagrams and does its own path MTU probing.</p>",
-        "Aliases": "",
-        "Hint": "Small packets pass, full size packets disappear.",
-        "Fact": "Small works, large hangs is the signature of an MTU black hole.",
-        "Source": "RFC 1191 Path MTU Discovery (https://www.rfc-editor.org/rfc/rfc1191)\nRFC 9000 QUIC (https://www.rfc-editor.org/rfc/rfc9000)",
-        "BertMeta": ""
-      },
-      "tags": [
-        "bert::status::draft"
-      ]
-    },
-    {
-      "guid": "8c98359c-eb48-520f-a1c8-cdb8cb5e1112",
-      "noteType": "Bert Basic",
-      "section": "debugging",
-      "fields": {
-        "Question": "You are on call and a service on a Linux host cannot reach its database. Which commands do you run, in what order, and what does each tell you?",
-        "Answer": "<ul><li>dig db.internal (or getent hosts): does the name resolve, and to the IP you expect?</li><li>ip route get DB_IP: which interface and gateway would be used.</li><li>nc -vz DB_IP 5432 or curl -v telnet://DB_IP:5432: refused, timeout or connected.</li><li>ss -tnp state established '( dport = :5432 )': existing connections and which process owns them; ss -s for counts; ss -ti for retransmits.</li><li>tcpdump -ni any host DB_IP and port 5432: are SYNs going out, is anything coming back, any RSTs.</li><li>Then check the other side: is the DB listening on that interface, security groups, network ACLs, the DB's max connections, and credentials or TLS errors in the DB log.</li></ul><p><b>Key insight:</b> each step halves the search space: name, then route, then L4 reachability, then the application protocol.</p><p><b>Follow-ups:</b> why traceroute often shows stars without a real problem, how you debug from inside a container without tools (nsenter or an ephemeral debug container).</p>",
-        "Aliases": "",
-        "Hint": "Bottom up: name, route, port, protocol.",
-        "Fact": "Debug connectivity bottom up: resolve, route, connect, then speak the protocol.",
-        "Source": "BIND 9 manual pages (dig) (https://bind9.readthedocs.io/en/latest/manpages.html)\nss manual (https://man7.org/linux/man-pages/man8/ss.8.html)\ntcpdump manual (https://www.tcpdump.org/manpages/tcpdump.1.html)\ncurl manual (https://curl.se/docs/manpage.html)",
-        "BertMeta": ""
-      },
-      "tags": [
-        "bert::status::draft"
-      ]
-    },
-    {
-      "guid": "5b543b88-4734-5fbe-994d-87c6ac66dcd8",
-      "noteType": "Bert Basic",
-      "section": "debugging",
-      "fields": {
-        "Question": "Your service in a private subnet can call public APIs but a partner says they need a single fixed IP to allow list. Also, at high volume, calls start failing even though the partner is fine. Explain both.",
-        "Answer": "<ul><li>Private hosts have RFC 1918 addresses; a NAT gateway rewrites the source to its public IP and a port. Give the partner the NAT gateway's static (elastic) IP.</li><li>NAT port exhaustion: a NAT maps each flow to a public IP and port. To a single destination ip:port, one public IP supports a limited number of concurrent flows (cloud NATs often cap around 55,000 per destination per public IP). Opening new connections per request burns through them.</li><li>Fixes: connection reuse and pooling, more NAT IPs, spread calls, or private connectivity to the partner.</li></ul><p><b>Follow-ups:</b> why inbound connections cannot reach the private host without a load balancer or port forward, how NAT breaks peer to peer and why STUN and TURN exist.</p>",
-        "Aliases": "",
-        "Hint": "Outbound traffic from private subnets goes through a NAT gateway.",
-        "Fact": "Outbound NAT gives you a stable egress IP and a finite port pool per destination.",
-        "Source": "RFC 3022 Traditional IP NAT (https://www.rfc-editor.org/rfc/rfc3022)\nRFC 9293 Transmission Control Protocol (https://www.rfc-editor.org/rfc/rfc9293)",
-        "BertMeta": ""
-      },
-      "tags": [
-        "bert::status::draft"
-      ]
-    },
-    {
-      "guid": "cf4eb197-7327-5238-ae14-7c12e4356613",
-      "noteType": "Bert Basic",
-      "section": "coding",
-      "fields": {
-        "Question": "Coding: write a function that calls an unreliable network operation and retries transient failures with exponential backoff. What else does a production version need?",
-        "Answer": "<pre><code class=\"language-python\">import random, time\n\nclass TransientError(Exception):\n    pass\n\ndef call_with_retries(op, max_attempts=5, base=0.1, cap=5.0, deadline=None):\n    for attempt in range(max_attempts):\n        try:\n            return op()\n        except TransientError:\n            if attempt == max_attempts - 1:\n                raise\n            sleep = random.uniform(0, min(cap, base * 2 ** attempt))\n            if deadline is not None and time.monotonic() + sleep &gt; deadline:\n                raise\n            time.sleep(sleep)</code></pre><p><b>Why full jitter:</b> without randomness, every client that failed at the same moment retries at the same moment, recreating the spike. Full jitter (uniform between 0 and the backoff) spreads retries best in AWS's analysis.</p><p><b>Production needs:</b> retry only idempotent operations, classify errors (timeouts, 503, 429, resets yes; 400, 401, 404 no), honour Retry-After, respect an overall deadline, a retry budget across calls, metrics on attempts.</p><p><b>Complexity:</b> O(max_attempts) calls; worst case wait is bounded by the sum of capped backoffs.</p><p><b>Follow-ups:</b> make it a decorator, async version with asyncio.sleep, how you test it without real sleeps (inject the clock and random source).</p>",
-        "Aliases": "",
-        "Hint": "Exponential backoff with full jitter, capped, only for retryable errors.",
-        "Fact": "Backoff spreads retries over time; jitter spreads them across clients.",
+        "Question": "A client retries every 100 ms on 503 from a struggling service. Thousands of clients do the same. What is the correct client behavior?",
+        "Choices": "Retry immediately since GET is idempotent\nRetry on a fixed 1 second interval forever\nExponential backoff with jitter, honor Retry-After, and cap retries with a retry budget\nNever retry any error",
+        "Correct": "Exponential backoff with jitter, honor Retry-After, and cap retries with a retry budget",
+        "Explanation": "503 means the server is overloaded or down; synchronized fast retries multiply load and keep it down. Backoff spreads retries over time, jitter breaks synchronization, a budget caps the total extra load. Idempotency makes a retry safe, not cheap. A fixed interval still synchronizes clients and never stops. Never retrying gives up on transient failures that a retry would fix.",
+        "Hint": "Safe to retry is not the same as good to retry now.",
         "Source": "AWS Architecture Blog, Exponential Backoff and Jitter (https://aws.amazon.com/blogs/architecture/exponential-backoff-and-jitter/)\nAmazon Builders' Library, Timeouts, retries and backoff with jitter (https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/)",
-        "BertMeta": ""
+        "BertMeta": {
+          "flipOnly": false
+        }
       },
       "tags": [
+        "bert::level::mid",
         "bert::status::draft"
       ]
     },
     {
-      "guid": "3ede3e57-277c-5ad0-a54b-da6d351c9649",
-      "noteType": "Bert Basic",
-      "section": "coding",
+      "guid": "75a0e4d8-8d01-5e9f-b3c8-92b93dcb62fe",
+      "noteType": "Bert Choice",
+      "section": "reliability",
       "fields": {
-        "Question": "Coding: implement a rate limiter that allows bursts of up to B requests and a sustained rate of R requests per second per client.",
-        "Answer": "<pre><code class=\"language-python\">import time\n\nclass TokenBucket:\n    def __init__(self, rate, capacity, clock=time.monotonic):\n        self.rate = rate\n        self.capacity = capacity\n        self.clock = clock\n        self.tokens = capacity\n        self.updated = clock()\n\n    def allow(self, cost=1):\n        now = self.clock()\n        self.tokens = min(self.capacity, self.tokens + (now - self.updated) * self.rate)\n        self.updated = now\n        if self.tokens &gt;= cost:\n            self.tokens -= cost\n            return True\n        return False\n\nbuckets = {}\n\ndef allow_request(client_id, rate=10, burst=20):\n    bucket = buckets.setdefault(client_id, TokenBucket(rate, burst))\n    return bucket.allow()</code></pre><p><b>Complexity:</b> O(1) time per request, O(clients) space. Lazy refill means no background timer.</p><p><b>Tradeoffs:</b> token bucket allows bursts; leaky bucket smooths output; fixed window counters are simplest but allow 2x bursts at window edges; sliding window log is exact but O(requests) memory.</p><p><b>Distributed version:</b> store tokens and timestamp in Redis and update atomically with a Lua script, or accept approximate per-node limits. Return 429 with Retry-After and X-RateLimit headers.</p><p><b>Follow-ups:</b> thread safety (a lock per bucket), evicting idle buckets, limiting by API key vs IP.</p>",
-        "Aliases": "",
-        "Hint": "Token bucket with lazy refill on each request.",
-        "Fact": "A token bucket is two numbers per client refilled lazily on each request.",
-        "Source": "RFC 6585 Additional HTTP Status Codes (https://www.rfc-editor.org/rfc/rfc6585)\nGoogle SRE Book, Handling Overload (https://sre.google/sre-book/handling-overload/)",
-        "BertMeta": ""
+        "Question": "Your API rejects a client because it exceeded its rate limit. Which response is correct?",
+        "Choices": "500 Internal Server Error\n429 Too Many Requests with a Retry-After header\n503 Service Unavailable with no headers\n400 Bad Request",
+        "Correct": "429 Too Many Requests with a Retry-After header",
+        "Explanation": "429 says the client sent too many requests and Retry-After tells it when to come back. 500 claims a server bug, which pages your on call and makes clients retry blindly. 503 signals the whole service is unavailable, not this client's quota. 400 says the request itself is malformed, which it is not.",
+        "Hint": "Whose fault is it, and when can they try again?",
+        "Source": "RFC 6585 Additional HTTP Status Codes (https://www.rfc-editor.org/rfc/rfc6585)\nPracHub, Cloudflare Software Engineer Interview Questions Guide (https://prachub.com/interview-guide/cloudflare-software-engineer-interview-questions-guide-2026)",
+        "BertMeta": {
+          "flipOnly": false
+        }
       },
       "tags": [
+        "bert::level::mid",
         "bert::status::draft"
       ]
     },
     {
-      "guid": "0d87c0ff-61c7-5817-bbc2-075321b98660",
-      "noteType": "Bert Basic",
-      "section": "coding",
+      "guid": "8e23310b-510b-575e-af6f-639d698e4648",
+      "noteType": "Bert Choice",
+      "section": "reliability",
       "fields": {
-        "Question": "Coding: fetch 10,000 URLs as fast as possible without overwhelming the network or the servers. Each fetch should time out after 5 seconds. Return the status per URL.",
-        "Answer": "<pre><code class=\"language-python\">import asyncio\nimport httpx\n\nasync def fetch_all(urls, concurrency=100, timeout=5.0):\n    limit = asyncio.Semaphore(concurrency)\n    async with httpx.AsyncClient(timeout=timeout,\n                                 limits=httpx.Limits(max_connections=concurrency)) as client:\n        async def fetch(url):\n            async with limit:\n                try:\n                    response = await client.get(url)\n                    return url, response.status_code\n                except httpx.HTTPError as error:\n                    return url, type(error).__name__\n        return dict(await asyncio.gather(*(fetch(u) for u in urls)))\n\n# results = asyncio.run(fetch_all(urls))</code></pre><p><b>Key points:</b> one shared client for connection pooling and keep-alive; a semaphore bounds in flight requests so you do not open 10,000 sockets and run out of fds or ports; per request timeout; errors captured per URL so one failure does not cancel the batch.</p><p><b>Complexity:</b> total time about ceil(N / concurrency) times average latency; memory O(N) for results plus O(concurrency) in flight.</p><p><b>Follow-ups:</b> per host concurrency limits to be polite, retries with backoff, streaming results instead of gathering, the threads alternative (ThreadPoolExecutor) and why the GIL is fine for IO bound work.</p>",
-        "Aliases": "",
-        "Hint": "asyncio with a semaphore to bound concurrency, one shared client.",
-        "Fact": "Bound concurrency with a semaphore and reuse one pooled client.",
-        "Source": "Python docs, asyncio Streams (https://docs.python.org/3/library/asyncio-stream.html)\nAmazon Builders' Library, Timeouts, retries and backoff with jitter (https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/)",
-        "BertMeta": ""
+        "Question": "A payment POST times out on the client. The client does not know if the charge happened. How do you make the retry safe?",
+        "Choices": "Send a client generated idempotency key; the server stores the result per key and returns the stored result on a repeat\nRetry with PUT instead of POST\nRetry only after 24 hours\nHave the client check its logs first",
+        "Correct": "Send a client generated idempotency key; the server stores the result per key and returns the stored result on a repeat",
+        "Explanation": "A timeout is ambiguous: the request may have succeeded. An idempotency key lets the server detect the duplicate and replay the original outcome instead of charging twice. Switching verbs does not make the server logic idempotent. Waiting does not resolve the ambiguity. The client logs only show that the response never arrived.",
+        "Hint": "A timeout does not mean it failed.",
+        "Source": "Stripe API docs, Idempotent requests (https://docs.stripe.com/api/idempotent_requests)",
+        "BertMeta": {
+          "flipOnly": false
+        }
       },
       "tags": [
+        "bert::level::mid",
         "bert::status::draft"
       ]
     },
     {
-      "guid": "e2831888-9382-5736-b198-264052a17b00",
-      "noteType": "Bert Basic",
-      "section": "coding",
+      "guid": "2b525e89-6a93-59bb-937f-537be14c3199",
+      "noteType": "Bert Choice",
+      "section": "reliability",
       "fields": {
-        "Question": "Coding: write a TCP server that handles many clients concurrently and echoes back each newline terminated line it receives.",
-        "Answer": "<pre><code class=\"language-python\">import asyncio\n\nasync def handle(reader, writer):\n    peer = writer.get_extra_info(&quot;peername&quot;)\n    try:\n        while line := await reader.readline():\n            writer.write(line)\n            await writer.drain()\n    except ConnectionResetError:\n        pass\n    finally:\n        writer.close()\n        await writer.wait_closed()\n\nasync def main(host=&quot;0.0.0.0&quot;, port=9000):\n    server = await asyncio.start_server(handle, host, port)\n    async with server:\n        await server.serve_forever()\n\n# asyncio.run(main())</code></pre><p><b>Why async:</b> one event loop multiplexes thousands of sockets with epoll or kqueue, without a thread per connection.</p><p><b>Details that matter:</b> readline gives line framing on top of the byte stream; drain applies backpressure so a slow reader cannot make you buffer unbounded data; readline returns b'' at EOF; set a limit on line length (StreamReader limit) to stop memory abuse; add read timeouts with asyncio.wait_for for idle clients.</p><p><b>Follow-ups:</b> turn it into a chat server (keep a set of writers and broadcast), graceful shutdown, how you would load test it.</p>",
-        "Aliases": "",
-        "Hint": "asyncio streams: one coroutine per connection, readline handles framing.",
-        "Fact": "Async IO plus backpressure (drain) is the core of a scalable socket server.",
-        "Source": "Python docs, asyncio Streams (https://docs.python.org/3/library/asyncio-stream.html)\nRFC 9293 Transmission Control Protocol (https://www.rfc-editor.org/rfc/rfc9293)",
-        "BertMeta": ""
+        "Question": "A request flows through 4 service layers. Each layer retries a failing call to the layer below up to 3 times (4 attempts total). The bottom service is down. How many attempts can hit the bottom service for one user request?",
+        "Choices": "4\n12\n16\n256",
+        "Correct": "256",
+        "Explanation": "Retries multiply across layers: 4 attempts at each of 4 layers gives 4^4 = 256 attempts on the bottom service. This is how retry storms keep an outage going. The fix is retrying at one layer only (usually the edge or the caller nearest the failure) plus retry budgets. 4 counts a single layer. 12 adds instead of multiplying. 16 covers only two layers.",
+        "Hint": "Each attempt above triggers a full set below.",
+        "Source": "Amazon Builders' Library, Timeouts, retries and backoff with jitter (https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/)\nGoogle SRE Book, Addressing Cascading Failures (https://sre.google/sre-book/addressing-cascading-failures/)",
+        "BertMeta": {
+          "flipOnly": false
+        }
       },
       "tags": [
+        "bert::level::senior",
         "bert::status::draft"
       ]
     },
     {
-      "guid": "e1893c33-44c9-551c-abc7-c611fe91a414",
-      "noteType": "Bert Basic",
-      "section": "coding",
+      "guid": "b5695aec-fc51-57fa-b50b-b4a9e1e5d707",
+      "noteType": "Bert Choice",
+      "section": "reliability",
       "fields": {
-        "Question": "Coding: given the raw bytes of an HTTP/1.1 request, parse the method, path, headers and body. What edge cases do you handle?",
-        "Answer": "<pre><code class=\"language-python\">def parse_request(raw: bytes):\n    head, sep, rest = raw.partition(b&quot;\\r\\n\\r\\n&quot;)\n    if not sep:\n        raise ValueError(&quot;incomplete headers&quot;)\n    lines = head.decode(&quot;iso-8859-1&quot;).split(&quot;\\r\\n&quot;)\n    method, target, version = lines[0].split(&quot; &quot;)\n    if not version.startswith(&quot;HTTP/1.&quot;):\n        raise ValueError(&quot;unsupported version&quot;)\n    headers = {}\n    for line in lines[1:]:\n        name, colon, value = line.partition(&quot;:&quot;)\n        if not colon or not name or name != name.strip():\n            raise ValueError(&quot;bad header line&quot;)\n        key = name.lower()\n        value = value.strip()\n        headers[key] = f&quot;{headers[key]}, {value}&quot; if key in headers else value\n    if &quot;transfer-encoding&quot; in headers:\n        raise NotImplementedError(&quot;chunked body&quot;)\n    length = int(headers.get(&quot;content-length&quot;, &quot;0&quot;))\n    if len(rest) &lt; length:\n        raise ValueError(&quot;incomplete body&quot;)\n    return method, target, headers, rest[:length]</code></pre><p><b>Edge cases:</b> header names are case insensitive; repeated headers combine with commas (except Set-Cookie); whitespace before the colon is invalid; both Transfer-Encoding and Content-Length present is a request smuggling risk and must be rejected or handled per the RFC; limit header size and count; on a keep-alive connection the remaining bytes after the body belong to the next request.</p><p><b>Complexity:</b> O(n) in request size.</p><p><b>Follow-ups:</b> make it incremental for a streaming socket (a state machine), add chunked decoding, why proxies and servers disagreeing on parsing causes smuggling.</p>",
-        "Aliases": "",
-        "Hint": "Split head and body at CRLF CRLF; headers are case insensitive; body length comes from Content-Length.",
-        "Fact": "HTTP/1.1 framing is CRLF delimited headers plus Content-Length or chunked; ambiguity is a security bug.",
-        "Source": "RFC 9112 HTTP/1.1 (https://www.rfc-editor.org/rfc/rfc9112)\nRFC 9110 HTTP Semantics (https://www.rfc-editor.org/rfc/rfc9110)",
-        "BertMeta": ""
+        "Question": "The edge has a 2 s timeout for a user request. It calls service A, which calls B with its own default 30 s timeout. B hangs. What goes wrong and what is the fix?",
+        "Choices": "Nothing, the edge timeout protects everything\nB should have a longer timeout\nA keeps waiting on B for 30 s after the user is gone, tying up threads and connections; propagate a deadline so each hop uses the remaining budget\nSet every timeout to 30 s for consistency",
+        "Correct": "A keeps waiting on B for 30 s after the user is gone, tying up threads and connections; propagate a deadline so each hop uses the remaining budget",
+        "Explanation": "Timeouts must shrink as you go deeper. Without deadline propagation, work continues long after the caller gave up, and a hanging dependency exhausts A's resources, cascading upward. The edge timeout only frees the edge. Longer timeouts make the pile up worse. Uniform 30 s timeouts ignore that the user budget is 2 s.",
+        "Hint": "Who is still waiting after the user leaves?",
+        "Source": "Amazon Builders' Library, Timeouts, retries and backoff with jitter (https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/)\nGoogle SRE Book, Addressing Cascading Failures (https://sre.google/sre-book/addressing-cascading-failures/)",
+        "BertMeta": {
+          "flipOnly": false
+        }
       },
       "tags": [
+        "bert::level::senior",
         "bert::status::draft"
       ]
     },
     {
-      "guid": "f8394deb-bcdb-5bae-b2ed-4013c6f466d1",
-      "noteType": "Bert Basic",
-      "section": "coding",
+      "guid": "6072cd1d-b9ba-5eed-81ff-b8b081acef52",
+      "noteType": "Bert Choice",
+      "section": "reliability",
       "fields": {
-        "Question": "Coding: decode a body sent with Transfer-Encoding: chunked.",
-        "Answer": "<pre><code class=\"language-python\">def decode_chunked(data: bytes) -&gt; bytes:\n    body = bytearray()\n    pos = 0\n    while True:\n        line_end = data.index(b&quot;\\r\\n&quot;, pos)\n        size = int(data[pos:line_end].split(b&quot;;&quot;)[0], 16)\n        pos = line_end + 2\n        if size == 0:\n            return bytes(body)\n        body += data[pos:pos + size]\n        if data[pos + size:pos + size + 2] != b&quot;\\r\\n&quot;:\n            raise ValueError(&quot;missing CRLF after chunk&quot;)\n        pos += size + 2</code></pre><p><b>Format:</b> each chunk is a hexadecimal size (optionally followed by ;extensions), CRLF, that many bytes, CRLF. A 0 size chunk ends the body, optionally followed by trailer fields and a final CRLF.</p><p><b>Why it exists:</b> lets a server stream a response whose length it does not know in advance while keeping the connection reusable. HTTP/2 and HTTP/3 do not use it; their framing replaces it.</p><p><b>Edge cases:</b> chunk extensions, trailers, data split across socket reads (real decoders are incremental), absurd sizes (cap them).</p><p><b>Complexity:</b> O(n).</p><p><b>Follow-ups:</b> make it a generator over a socket, what happens when a proxy and a server disagree on Content-Length vs chunked.</p>",
-        "Aliases": "",
-        "Hint": "Hex size line, data, CRLF, repeat until a zero size chunk.",
-        "Fact": "Chunked encoding frames a stream of unknown length so the connection can be reused.",
-        "Source": "RFC 9112 HTTP/1.1 (https://www.rfc-editor.org/rfc/rfc9112)",
-        "BertMeta": ""
+        "Question": "Your load balancer returns errors. In case one, no healthy backend exists. In case two, a backend accepted the request but did not respond in time. Which pair of codes is correct?",
+        "Choices": "502 then 500\n503 then 504\n504 then 503\n500 then 502",
+        "Correct": "503 then 504",
+        "Explanation": "503 Service Unavailable means the server or gateway cannot handle it now, which is what an LB returns with no healthy targets. 504 Gateway Timeout means the upstream did not answer in time. 502 means the upstream sent an invalid response or reset the connection. 500 is a generic error in the server itself. Swapping 503 and 504 is the common slip.",
+        "Hint": "One is about availability, the other about waiting.",
+        "Source": "RFC 9110 HTTP Semantics (https://www.rfc-editor.org/rfc/rfc9110)\nAWS Elastic Load Balancing, How it works (https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/how-elastic-load-balancing-works.html)",
+        "BertMeta": {
+          "flipOnly": false
+        }
       },
       "tags": [
+        "bert::level::mid",
         "bert::status::draft"
       ]
     },
     {
-      "guid": "118ddeb3-5e5f-5fd2-b8e6-d81cb9b79c93",
-      "noteType": "Bert Basic",
-      "section": "coding",
+      "guid": "257a5649-e00d-5741-9d82-ff8008e613a8",
+      "noteType": "Bert Choice",
+      "section": "latency",
       "fields": {
-        "Question": "Coding: implement a function that checks whether an IPv4 address belongs to a CIDR block like 10.1.0.0/16, without the ipaddress module. Then extend it to find the most specific matching route from a list.",
-        "Answer": "<pre><code class=\"language-python\">def ip_to_int(ip: str) -&gt; int:\n    parts = ip.split(&quot;.&quot;)\n    if len(parts) != 4:\n        raise ValueError(ip)\n    value = 0\n    for part in parts:\n        if not part.isdigit() or int(part) &gt; 255 or (len(part) &gt; 1 and part[0] == &quot;0&quot;):\n            raise ValueError(ip)\n        value = value &lt;&lt; 8 | int(part)\n    return value\n\ndef in_cidr(ip: str, cidr: str) -&gt; bool:\n    network, prefix = cidr.split(&quot;/&quot;)\n    prefix = int(prefix)\n    mask = (0xFFFFFFFF &lt;&lt; (32 - prefix)) &amp; 0xFFFFFFFF\n    return ip_to_int(ip) &amp; mask == ip_to_int(network) &amp; mask\n\ndef best_route(ip: str, routes: dict[str, str]):\n    matches = [(int(c.split(&quot;/&quot;)[1]), hop) for c, hop in routes.items() if in_cidr(ip, c)]\n    return max(matches, default=(None, None))[1]</code></pre><p><b>Complexity:</b> in_cidr is O(1); best_route is O(R) per lookup. Real routers use a trie (binary or compressed) keyed by prefix bits for O(32) lookups.</p><p><b>Edge cases:</b> /0 (mask 0, matches everything), /32, leading zeros (ambiguous octal in some parsers, reject them), network address with host bits set.</p><p><b>In practice:</b> use ipaddress.ip_address(ip) in ipaddress.ip_network(cidr), which also handles IPv6.</p><p><b>Follow-ups:</b> build the trie, check if two CIDR blocks overlap, split a block into subnets.</p>",
-        "Aliases": "",
-        "Hint": "Convert to a 32-bit integer and compare under a mask; longest prefix wins.",
-        "Fact": "CIDR matching is a bitmask compare; routing picks the longest matching prefix.",
-        "Source": "RFC 4632 CIDR (https://www.rfc-editor.org/rfc/rfc4632)\nPython docs, ipaddress (https://docs.python.org/3/library/ipaddress.html)",
-        "BertMeta": ""
+        "Question": "New York to Sydney is about 16,000 km. Light in fiber travels roughly 200,000 km/s. What is the best possible RTT, ignoring routing detours and processing?",
+        "Choices": "About 160 ms\nAbout 40 ms\nAbout 80 ms\nAbout 320 ms",
+        "Correct": "About 160 ms",
+        "Explanation": "One way is 16,000 / 200,000 = 80 ms, so a round trip is at least 160 ms. Real RTTs are higher because cables do not follow great circles. 80 ms is the one way figure, the most common mistake. 40 ms would need faster than light. 320 ms double counts the round trip.",
+        "Hint": "Round trip means there and back.",
+        "Source": "High Performance Browser Networking, Ilya Grigorik (https://hpbn.co/)",
+        "BertMeta": {
+          "flipOnly": false
+        }
       },
       "tags": [
+        "bert::level::mid",
         "bert::status::draft"
       ]
     },
     {
-      "guid": "00d0cbaf-35e7-5324-b669-0f5356d3beb5",
-      "noteType": "Bert Basic",
-      "section": "coding",
+      "guid": "7422baee-de2d-5b96-b08a-499c06908f87",
+      "noteType": "Bert Choice",
+      "section": "latency",
       "fields": {
-        "Question": "Coding: given a string, return 'IPv4', 'IPv6' or 'Neither' (LeetCode 468 style). Valid IPv4 is four decimal octets 0 to 255 without leading zeros; valid IPv6 here is eight groups of 1 to 4 hex digits.",
-        "Answer": "<pre><code class=\"language-python\">HEX = set(&quot;0123456789abcdefABCDEF&quot;)\n\ndef valid_ip_address(s: str) -&gt; str:\n    if s.count(&quot;.&quot;) == 3:\n        parts = s.split(&quot;.&quot;)\n        if all(p.isdigit() and p.isascii() and len(p) &lt;= 3 and int(p) &lt;= 255\n               and (p == &quot;0&quot; or p[0] != &quot;0&quot;) for p in parts):\n            return &quot;IPv4&quot;\n    elif s.count(&quot;:&quot;) == 7:\n        parts = s.split(&quot;:&quot;)\n        if all(1 &lt;= len(p) &lt;= 4 and set(p) &lt;= HEX for p in parts):\n            return &quot;IPv6&quot;\n    return &quot;Neither&quot;</code></pre><p><b>Complexity:</b> O(n) time, O(n) space for the split.</p><p><b>Edge cases:</b> empty parts ('1..2.3', trailing dot), leading zeros ('01'), signs and spaces, non ASCII digits (str.isdigit accepts other scripts, hence isascii), more than 4 hex digits.</p><p><b>Real world caveat:</b> real IPv6 allows :: compression and embedded IPv4; production code should use ipaddress, and say so in the interview.</p><p><b>Follow-ups:</b> support :: compression, canonicalize an IPv6 address.</p>",
-        "Aliases": "",
-        "Hint": "Split on the separator and validate each part strictly.",
-        "Fact": "Validate by splitting and checking each part strictly; production code uses a library.",
-        "Source": "Python docs, ipaddress (https://docs.python.org/3/library/ipaddress.html)\nRFC 4632 CIDR (https://www.rfc-editor.org/rfc/rfc4632)",
-        "BertMeta": ""
+        "Question": "An app server is in us-east. A user in Singapore (RTT 230 ms) loads a page that makes 3 sequential API calls, each needing one round trip on an already warm connection. The product team wants under 300 ms. What is the effective fix?",
+        "Choices": "Buy more bandwidth for the user\nUse a faster JSON library\nEnable gzip\nServe from a region near Singapore (or collapse the 3 calls into one and cache at the edge), because 3 x 230 ms is already 690 ms of pure RTT",
+        "Correct": "Serve from a region near Singapore (or collapse the 3 calls into one and cache at the edge), because 3 x 230 ms is already 690 ms of pure RTT",
+        "Explanation": "Sequential round trips over a long RTT dominate; only fewer round trips or a shorter distance helps. Bandwidth does not reduce RTT for small requests. Faster serialization saves microseconds to milliseconds. Gzip shrinks bytes but small API responses already fit in a few packets.",
+        "Hint": "Latency, not bandwidth.",
+        "Source": "High Performance Browser Networking, Ilya Grigorik (https://hpbn.co/)\nHello Interview, Networking Essentials (https://www.hellointerview.com/learn/system-design/core-concepts/networking-essentials)",
+        "BertMeta": {
+          "flipOnly": false
+        }
       },
       "tags": [
+        "bert::level::senior",
         "bert::status::draft"
       ]
     },
     {
-      "guid": "4058dcfb-04f1-5173-8bef-0c1e5853c04b",
-      "noteType": "Bert Basic",
-      "section": "coding",
+      "guid": "79661e1f-2913-53f9-be0c-8951fbe622aa",
+      "noteType": "Bert Choice",
+      "section": "latency",
       "fields": {
-        "Question": "Coding: implement an in-process DNS cache for a resolver function that respects TTLs, caches failures briefly, and bounds memory.",
-        "Answer": "<pre><code class=\"language-python\">import time\nfrom collections import OrderedDict\n\nclass DnsCache:\n    def __init__(self, resolve, max_entries=10_000, negative_ttl=5.0, clock=time.monotonic):\n        self.resolve = resolve\n        self.max_entries = max_entries\n        self.negative_ttl = negative_ttl\n        self.clock = clock\n        self.entries = OrderedDict()\n\n    def lookup(self, name):\n        now = self.clock()\n        entry = self.entries.get(name)\n        if entry and entry[1] &gt; now:\n            self.entries.move_to_end(name)\n            if isinstance(entry[0], Exception):\n                raise entry[0]\n            return entry[0]\n        try:\n            addresses, ttl = self.resolve(name)\n            self._store(name, addresses, now + ttl)\n            return addresses\n        except LookupError as error:\n            self._store(name, error, now + self.negative_ttl)\n            raise\n\n    def _store(self, name, value, expires):\n        self.entries[name] = (value, expires)\n        self.entries.move_to_end(name)\n        if len(self.entries) &gt; self.max_entries:\n            self.entries.popitem(last=False)</code></pre><p><b>Complexity:</b> O(1) average per lookup and insert; O(max_entries) memory.</p><p><b>Design points:</b> negative caching stops hammering the resolver for a missing name, but keep it short so a newly created record shows up fast; cap TTLs both ways (a min avoids hot loops, a max limits staleness); concurrent misses for the same name should share one in flight lookup (single flight) to avoid a stampede; serve stale on resolver failure is a useful resilience option.</p><p><b>Follow-ups:</b> thread safety, prefetching popular names before expiry, why JVM style cache-forever breaks failover.</p>",
-        "Aliases": "",
-        "Hint": "Map name to (value, expiry); LRU eviction; shorter TTL for negative answers.",
-        "Fact": "A good DNS cache honours TTLs, caches failures briefly and coalesces concurrent misses.",
-        "Source": "RFC 1035 Domain Names, Implementation and Specification (https://www.rfc-editor.org/rfc/rfc1035)\nRFC 2308 Negative Caching of DNS Queries (https://www.rfc-editor.org/rfc/rfc2308)",
-        "BertMeta": ""
+        "Question": "Mobile users reconnect often and each new connection costs TCP plus TLS handshakes on a 200 ms RTT. Which change cuts the most connection setup time for returning clients?",
+        "Choices": "Increase the certificate key size\nTurn off TCP Nagle\nUse TLS 1.3 session resumption, optionally with 0-RTT for idempotent requests, or HTTP/3 which combines transport and TLS setup\nShorten the DNS TTL",
+        "Correct": "Use TLS 1.3 session resumption, optionally with 0-RTT for idempotent requests, or HTTP/3 which combines transport and TLS setup",
+        "Explanation": "Resumption skips certificate work and 0-RTT lets data go with the first flight; QUIC merges the transport and crypto handshakes into 1 RTT. 0-RTT data can be replayed, so it is only for idempotent requests. Larger keys make the handshake slower. Nagle affects small writes on an open connection, not setup. A shorter TTL causes more DNS lookups, not fewer.",
+        "Hint": "Remember the previous session.",
+        "Source": "RFC 8446 TLS 1.3 (https://www.rfc-editor.org/rfc/rfc8446)\nRFC 9000 QUIC (https://www.rfc-editor.org/rfc/rfc9000)",
+        "BertMeta": {
+          "flipOnly": false
+        }
       },
       "tags": [
+        "bert::level::senior",
         "bert::status::draft"
       ]
     },
     {
-      "guid": "8c417022-05ec-5545-bd0e-9f9338feb2d2",
+      "guid": "ff0241ab-99ee-5620-9285-561ac6475283",
       "noteType": "Bert Basic",
-      "section": "coding",
+      "section": "latency",
       "fields": {
-        "Question": "Coding: without an HTTP library, write code that performs an HTTPS GET for a URL and returns the status code and body. What does the library normally handle for you?",
-        "Answer": "<pre><code class=\"language-python\">import socket, ssl\nfrom urllib.parse import urlsplit\n\ndef https_get(url, timeout=5.0):\n    parts = urlsplit(url)\n    host, port = parts.hostname, parts.port or 443\n    path = (parts.path or &quot;/&quot;) + (f&quot;?{parts.query}&quot; if parts.query else &quot;&quot;)\n    ctx = ssl.create_default_context()\n    with socket.create_connection((host, port), timeout=timeout) as raw:\n        with ctx.wrap_socket(raw, server_hostname=host) as tls:\n            request = (f&quot;GET {path} HTTP/1.1\\r\\nHost: {host}\\r\\n&quot;\n                       &quot;Connection: close\\r\\nAccept-Encoding: identity\\r\\n\\r\\n&quot;)\n            tls.sendall(request.encode(&quot;ascii&quot;))\n            chunks = []\n            while data := tls.recv(65536):\n                chunks.append(data)\n    head, _, body = b&quot;&quot;.join(chunks).partition(b&quot;\\r\\n\\r\\n&quot;)\n    status = int(head.split(b&quot; &quot;, 2)[1])\n    return status, body</code></pre><p><b>Why it works:</b> create_connection does getaddrinfo and tries each address; wrap_socket with server_hostname sends SNI and verifies the certificate and hostname; Connection: close lets us read until EOF instead of parsing framing.</p><p><b>What libraries add:</b> connection pooling and keep-alive, Content-Length and chunked parsing, redirects, decompression, proxies, HTTP/2, retries, cookies, timeouts per phase.</p><p><b>Pitfall:</b> the body may be chunked even with Connection: close, so this simplified reader returns raw chunked data in that case.</p><p><b>Follow-ups:</b> add chunked decoding, support keep-alive reuse, why you must never pass check_hostname=False.</p>",
+        "Question": "An interviewer asks: a page in Mumbai takes 1.8 s to first byte from your us-west origin. Break down where that time likely goes and what you would change first.",
+        "Answer": "<p>Start with RTT (around 250 ms Mumbai to us-west). Cold path: DNS (maybe 1 RTT to a resolver plus authoritative), TCP 1 RTT, TLS 1 RTT, request 1 RTT, so roughly 1 s before server time. Add redirects (http to https, apex to www) at 1 RTT each, and slow server or DB work.</p><p>Fixes in order: CDN or edge termination near users (handshakes become local), remove redirects, connection reuse, TLS 1.3 or HTTP/3, then a regional deploy or edge cache for dynamic parts. Measure with timing breakdowns (curl -w or browser timing) before guessing.</p>",
         "Aliases": "",
-        "Hint": "socket plus ssl, write a request, read until the server closes.",
-        "Fact": "An HTTP client is a socket, TLS with SNI and verification, and careful framing.",
-        "Source": "Python docs, socket (https://docs.python.org/3/library/socket.html)\nRFC 9112 HTTP/1.1 (https://www.rfc-editor.org/rfc/rfc9112)\nRFC 6066 TLS Extensions (SNI) (https://www.rfc-editor.org/rfc/rfc6066)",
-        "BertMeta": ""
+        "Hint": "Count round trips times RTT before touching the server.",
+        "Fact": "",
+        "Source": "High Performance Browser Networking, Ilya Grigorik (https://hpbn.co/)\nByteByteGo, What happens when you type google.com (https://bytebytego.com/guides/what-happens-when-you-type-google/)",
+        "BertMeta": {
+          "flipOnly": true
+        }
       },
       "tags": [
+        "bert::level::mid",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "d2c61b56-6a05-5092-a83b-b4c4f0289316",
+      "noteType": "Bert Choice",
+      "section": "connections",
+      "fields": {
+        "Question": "A service creates a new HTTP client per outbound request to one downstream host. Under load, calls fail with 'cannot assign requested address' while CPU sits at 20 percent. What is the fix?",
+        "Choices": "Reuse a shared client with a pooled keep-alive connection set, so you stop burning ephemeral ports that sit in TIME_WAIT\nRaise the thread count\nIncrease the downstream timeout\nAdd more memory",
+        "Correct": "Reuse a shared client with a pooled keep-alive connection set, so you stop burning ephemeral ports that sit in TIME_WAIT",
+        "Explanation": "Each short lived connection to the same destination uses an ephemeral port that stays in TIME_WAIT on the side that closed first (typically around 60 s on Linux), so a high request rate exhausts the port range. Reusing connections removes the churn. More threads create even more connections. Timeouts do not free ports in TIME_WAIT. Memory is not the bottleneck.",
+        "Hint": "Each new connection eats a port for a while after it closes.",
+        "Source": "Michal Drozd, TCP TIME_WAIT and port exhaustion (https://www.michal-drozd.com/en/blog/tcp-time-wait-port-exhaustion/)\nLinux tcp(7) manual (https://man7.org/linux/man-pages/man7/tcp.7.html)",
+        "BertMeta": {
+          "flipOnly": false
+        }
+      },
+      "tags": [
+        "bert::level::senior",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "d5b5f5df-a375-5834-a1a9-72189fb9c864",
+      "noteType": "Bert Choice",
+      "section": "connections",
+      "fields": {
+        "Question": "A service's p50 to the database is 3 ms but p99 jumps to 400 ms during peaks. Database query time p99 stays at 5 ms. The connection pool max is 10 and 200 request threads share it. What is the most likely cause?",
+        "Choices": "The database is slow\nDNS lookups on every query\nTCP slow start on each query\nRequests wait in the pool queue for a free connection; the tail is pool wait time, not query time",
+        "Correct": "Requests wait in the pool queue for a free connection; the tail is pool wait time, not query time",
+        "Explanation": "When concurrency exceeds pool size, requests queue for a connection, and that wait shows up only in the tail. Measure pool acquire time; size the pool from concurrency and query time (Little's law), within what the database can handle. The database is ruled out by its own 5 ms p99. Pooled connections do not do DNS per query. Slow start affects new connections, and a pool reuses them.",
+        "Hint": "The database says it is fast. Where else can time hide?",
+        "Source": "Dean and Barroso, The Tail at Scale (CACM 2013) (https://cacm.acm.org/research/the-tail-at-scale/)",
+        "BertMeta": {
+          "flipOnly": false
+        }
+      },
+      "tags": [
+        "bert::level::senior",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "2d513e05-5826-5284-b6c6-c3a68e729121",
+      "noteType": "Bert Choice",
+      "section": "connections",
+      "fields": {
+        "Question": "Which side of a TCP connection ends up in TIME_WAIT?",
+        "Choices": "Always the server\nAlways the client\nThe side that sends the first FIN (the active closer)\nNeither, TIME_WAIT is only used for UDP",
+        "Correct": "The side that sends the first FIN (the active closer)",
+        "Explanation": "TIME_WAIT belongs to the active closer and lasts 2 x MSL to absorb delayed segments and ensure the final ACK. That is why servers that close connections themselves can accumulate TIME_WAIT sockets, and clients that close accumulate them on their side. It is not fixed to client or server. UDP has no connection state at all.",
+        "Hint": "Who said goodbye first?",
+        "Source": "RFC 9293 Transmission Control Protocol (https://www.rfc-editor.org/rfc/rfc9293)",
+        "BertMeta": {
+          "flipOnly": false
+        }
+      },
+      "tags": [
+        "bert::level::senior",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "d784798c-eaa3-58f4-abf1-be7143708d92",
+      "noteType": "Bert Choice",
+      "section": "connections",
+      "fields": {
+        "Question": "A service handles 1,000 requests per second; each request holds a DB connection for 20 ms. Roughly how many connections are busy on average?",
+        "Choices": "2\n20\n200\n1,000",
+        "Correct": "20",
+        "Explanation": "Little's law: concurrency = arrival rate x time in system = 1,000 x 0.02 s = 20. Size the pool above that for bursts, not to the request rate. 2 slips a decimal. 200 is 10x too high and can overload the database. 1,000 confuses throughput with concurrency.",
+        "Hint": "Rate times duration.",
+        "Source": "Dean and Barroso, The Tail at Scale (CACM 2013) (https://cacm.acm.org/research/the-tail-at-scale/)",
+        "BertMeta": {
+          "flipOnly": false
+        }
+      },
+      "tags": [
+        "bert::level::mid",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "911d2880-3969-59b8-ab2d-722ff0944a43",
+      "noteType": "Bert Choice",
+      "section": "transport",
+      "fields": {
+        "Question": "A multiplayer game sends player positions 30 times a second. Why do many games use UDP (or QUIC datagrams) instead of TCP for this?",
+        "Choices": "TCP head of line blocking would hold new positions behind a lost old one; with UDP the game drops stale updates and uses the latest\nUDP packets travel faster through the network\nUDP is encrypted by default\nTCP cannot send small packets",
+        "Correct": "TCP head of line blocking would hold new positions behind a lost old one; with UDP the game drops stale updates and uses the latest",
+        "Explanation": "TCP delivers bytes in order, so one lost segment stalls everything after it until retransmission, and a retransmitted old position is useless. UDP lets the app skip it. UDP packets do not travel faster on the wire; the 'faster' claim is the common wrong answer. UDP has no encryption. TCP can send small segments fine.",
+        "Hint": "Is the old position worth waiting for?",
+        "Source": "RFC 8085 UDP Usage Guidelines (https://www.rfc-editor.org/rfc/rfc8085)\nRFC 9293 Transmission Control Protocol (https://www.rfc-editor.org/rfc/rfc9293)",
+        "BertMeta": {
+          "flipOnly": false
+        }
+      },
+      "tags": [
+        "bert::level::mid",
+        "bert::status::draft"
+      ]
+    },
+    {
+      "guid": "233a8cd5-dd1d-5abb-8c67-5285e875c1da",
+      "noteType": "Bert Choice",
+      "section": "transport",
+      "fields": {
+        "Question": "HTTP/2 multiplexes many streams over one TCP connection. On a lossy mobile network, one lost packet stalls all streams. What does HTTP/3 over QUIC change?",
+        "Choices": "It removes encryption to save time\nIt uses multiple TCP connections\nIt disables congestion control\nStreams are independent at the transport layer, so a loss stalls only the affected stream, and connection setup combines transport and TLS",
+        "Correct": "Streams are independent at the transport layer, so a loss stalls only the affected stream, and connection setup combines transport and TLS",
+        "Explanation": "QUIC runs over UDP and does its own per stream reliable delivery, removing TCP level head of line blocking, and integrates TLS 1.3 into its 1 RTT handshake. QUIC is always encrypted. HTTP/3 uses one QUIC connection, not many TCP connections. QUIC has congestion control like TCP.",
+        "Hint": "Where did the head of line blocking come from?",
+        "Source": "RFC 9000 QUIC (https://www.rfc-editor.org/rfc/rfc9000)",
+        "BertMeta": {
+          "flipOnly": false
+        }
+      },
+      "tags": [
+        "bert::level::senior",
         "bert::status::draft"
       ]
     }

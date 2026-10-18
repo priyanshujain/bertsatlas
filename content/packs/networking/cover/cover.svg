@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#EEF2F8"/>
+  <rect x="60" y="45" width="1080" height="540" rx="48" fill="#3E5C8A"/>
+  <g stroke="#C9D6EA" stroke-width="10" stroke-linecap="round">
+    <line x1="600" y1="315" x2="400" y2="190"/>
+    <line x1="600" y1="315" x2="800" y2="190"/>
+    <line x1="600" y1="315" x2="400" y2="440"/>
+    <line x1="600" y1="315" x2="800" y2="440"/>
+    <line x1="400" y1="190" x2="800" y2="190"/>
+    <line x1="400" y1="440" x2="800" y2="440"/>
+  </g>
+  <circle cx="600" cy="315" r="70" fill="#FFFFFF"/>
+  <circle cx="600" cy="315" r="34" fill="#3E5C8A"/>
+  <circle cx="400" cy="190" r="42" fill="#FFFFFF"/>
+  <circle cx="800" cy="190" r="42" fill="#FFFFFF"/>
+  <circle cx="400" cy="440" r="42" fill="#FFFFFF"/>
+  <circle cx="800" cy="440" r="42" fill="#FFFFFF"/>
+  <circle cx="400" cy="190" r="16" fill="#F2B84B"/>
+  <circle cx="800" cy="190" r="16" fill="#5FB3A1"/>
+  <circle cx="400" cy="440" r="16" fill="#5FB3A1"/>
+  <circle cx="800" cy="440" r="16" fill="#F2B84B"/>
+</svg>
