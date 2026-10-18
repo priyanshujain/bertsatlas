@@ -7,7 +7,20 @@ enum class EditorialStatus(val tagValue: String) {
     Approved("approved"),
 }
 
+enum class LevelSetting(val tagValue: String?) {
+    Mid("mid"),
+    Senior("senior"),
+    All(null);
+
+    fun admits(tags: Collection<String>): Boolean {
+        if (this == All) return true
+        val levels = BertTags.levels(tags)
+        return levels.isEmpty() || this in levels
+    }
+}
+
 object BertTags {
+    const val LEVEL_PREFIX = "bert::level::"
     const val SIMILAR_PREFIX = "bert::similar::"
     const val STATUS_PREFIX = "bert::status::"
     const val RETIRED = "bert::retired"
@@ -25,6 +38,15 @@ object BertTags {
         .firstOrNull { it.startsWith(STATUS_PREFIX) }
         ?.let { tag -> EditorialStatus.entries.firstOrNull { it.tagValue == tag.removePrefix(STATUS_PREFIX) } }
 
+    fun levelTag(level: LevelSetting): String? = level.tagValue?.let { LEVEL_PREFIX + it }
+
+    fun levels(tags: Collection<String>): Set<LevelSetting> = tags
+        .filter { it.startsWith(LEVEL_PREFIX) }
+        .mapNotNullTo(linkedSetOf()) { tag -> taggedLevel(tag.removePrefix(LEVEL_PREFIX)) }
+
+    private fun taggedLevel(value: String): LevelSetting? =
+        LevelSetting.entries.firstOrNull { it.tagValue != null && it.tagValue == value }
+
     fun isWellFormed(tag: String): Boolean = tag.isNotEmpty() && tag.none { it.isWhitespace() }
 
     fun bertTagProblem(tag: String): String? = when {
@@ -34,6 +56,8 @@ object BertTags {
             if (groupIdPattern.matches(tag.removePrefix(SIMILAR_PREFIX))) null else "similar group id is malformed"
         tag.startsWith(STATUS_PREFIX) ->
             if (EditorialStatus.entries.any { it.tagValue == tag.removePrefix(STATUS_PREFIX) }) null else "unknown editorial status"
+        tag.startsWith(LEVEL_PREFIX) ->
+            if (taggedLevel(tag.removePrefix(LEVEL_PREFIX)) != null) null else "level must be mid or senior"
         else -> "unknown bert tag namespace"
     }
 

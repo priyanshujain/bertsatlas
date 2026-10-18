@@ -101,7 +101,10 @@ object PackValidator {
         }
         note.tags.forEach { tag ->
             if (!BertTags.isWellFormed(tag)) add(warning(IssueCode.TagMalformed, "tag '$tag' is malformed", note.guid))
-            BertTags.bertTagProblem(tag)?.let { add(warning(IssueCode.BertTagInvalid, "tag '$tag': $it", note.guid)) }
+            BertTags.bertTagProblem(tag)?.let { problem ->
+                val issue = if (tag.startsWith(BertTags.LEVEL_PREFIX)) ::error else ::warning
+                add(issue(IssueCode.BertTagInvalid, "tag '$tag': $problem", note.guid, null))
+            }
         }
         if (knownSimilarGroups.isNotEmpty()) {
             BertTags.similarGroupIds(note.tags).filterNot { it in knownSimilarGroups }.forEach {
