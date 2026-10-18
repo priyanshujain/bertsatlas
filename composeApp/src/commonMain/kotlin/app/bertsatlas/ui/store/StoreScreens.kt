@@ -79,6 +79,7 @@ import app.bertsatlas.ui.AtlasText
 import app.bertsatlas.ui.AtlasTheme
 import app.bertsatlas.ui.BertIllustration
 import app.bertsatlas.ui.BertPose
+import app.bertsatlas.ui.CoverImage
 import app.bertsatlas.ui.PackCover
 import app.bertsatlas.ui.PackCoverArt
 import app.bertsatlas.ui.WIDE_CONTENT_WIDTH
@@ -207,7 +208,7 @@ private fun StorePackScreen(store: StoreController, state: StoreState, navigatio
 
 @Composable
 private fun PackHeader(pack: StorePack, index: StoreIndex, state: StoreState, store: StoreController, navigation: StoreNavigation) {
-    PackCoverArt(pack.accent(), pack.cover(), Modifier.fillMaxWidth().aspectRatio(1.9f), RoundedCornerShape(28.dp), pack.title)
+    PackCoverArt(pack.accent(), pack.cover(), Modifier.fillMaxWidth().aspectRatio(1.9f), RoundedCornerShape(28.dp), pack.title, state.coverImages[pack.packId])
     Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
         AtlasText(pack.title, Modifier.semantics { heading() }, AtlasTheme.typography.display)
         if (pack.subtitle.isNotBlank()) AtlasText(pack.subtitle, color = AtlasTheme.colors.mutedPlum)
@@ -422,6 +423,7 @@ private fun FeaturedHero(headline: String, blurb: String, item: StoreItem, state
                 modifier = Modifier.size(110.dp),
                 shape = RoundedCornerShape(24.dp),
                 title = item.title(),
+                image = item.coverImage(state),
             )
             Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(6.dp)) {
                 AtlasText(item.title(), style = AtlasTheme.typography.title, color = AtlasTheme.colors.white)
@@ -502,7 +504,7 @@ private fun StoreTile(item: StoreItem, state: StoreState, store: StoreController
             .padding(bottom = 6.dp),
         verticalArrangement = Arrangement.spacedBy(6.dp),
     ) {
-        PackCoverArt(item.accent(), item.cover(), Modifier.size(168.dp), RoundedCornerShape(26.dp), item.title())
+        PackCoverArt(item.accent(), item.cover(), Modifier.size(168.dp), RoundedCornerShape(26.dp), item.title(), item.coverImage(state))
         ClampedText(item.title(), style = AtlasTheme.typography.label, maxLines = 2)
         ClampedText(item.subtitle(), style = AtlasTheme.typography.detail, color = AtlasTheme.colors.mutedPlum, maxLines = 2)
         when (item) {
@@ -533,7 +535,7 @@ private fun PackRow(rank: Int?, pack: StorePack, index: StoreIndex, state: Store
         horizontalArrangement = Arrangement.spacedBy(12.dp),
     ) {
         rank?.let { AtlasText(it.toString(), Modifier.width(28.dp), AtlasTheme.typography.heading, AtlasTheme.colors.mutedPlum, TextAlign.Center) }
-        PackCoverArt(pack.accent(), pack.cover(), Modifier.size(64.dp), RoundedCornerShape(16.dp), pack.title)
+        PackCoverArt(pack.accent(), pack.cover(), Modifier.size(64.dp), RoundedCornerShape(16.dp), pack.title, state.coverImages[pack.packId])
         Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(2.dp)) {
             ClampedText(pack.title, style = AtlasTheme.typography.label, maxLines = 2)
             ClampedText(pack.subtitle.ifBlank { index.placementName(pack) }, style = AtlasTheme.typography.detail, color = AtlasTheme.colors.mutedPlum, maxLines = 2)
@@ -728,6 +730,8 @@ private fun StoreItem.cover(): PackCover = when (this) {
     is StoreItem.Pack -> pack.cover()
     is StoreItem.Mix -> if (mix.mixId == BundledMixes.Geography.mixId) PackCover.Mix else PackCover.Generic
 }
+
+private fun StoreItem.coverImage(state: StoreState): CoverImage? = (this as? StoreItem.Pack)?.let { state.coverImages[it.pack.packId] }
 
 @Composable
 private fun StorePack.accent(): Color = accentColor.toColorOr(AtlasTheme.colors.atlasBlue)

@@ -21,6 +21,7 @@ import app.bertsatlas.domain.store.StorePack
 import app.bertsatlas.domain.store.StoreUrls
 import app.bertsatlas.domain.store.platformStoreTransport
 import app.bertsatlas.domain.taxonomy.Taxonomy
+import app.bertsatlas.ui.CoverImage
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -56,6 +57,7 @@ data class StoreState(
     val downloads: Map<String, PackDownload> = emptyMap(),
     val packMessages: Map<String, String> = emptyMap(),
     val sampleMediaDirectories: Map<String, String> = emptyMap(),
+    val coverImages: Map<String, CoverImage> = emptyMap(),
     val export: PackExportRequest? = null,
     val exporting: Boolean = false,
     val exportMessage: String? = null,
@@ -97,6 +99,7 @@ class StoreController(
     private val installer = OfficialPackInstaller(libraryDirectory, Path(workingDirectory, "install").toString())
     private val exporter = PackExporter(libraryDirectory, Path(workingDirectory, "export").toString())
     private val downloadJobs = mutableMapOf<String, Job>()
+    private var coverJob: Job? = null
     private val _state = MutableStateFlow(StoreState(index = runCatching { cache.readIndex() }.getOrNull()))
     val state: StateFlow<StoreState> = _state.asStateFlow()
 
@@ -217,6 +220,34 @@ class StoreController(
     private fun publishIndex(index: StoreIndex) {
         val taxonomy = index.taxonomy()
         onIndexChanged(taxonomy, index.mixes.map { it.toMix() })
+        prepareCovers(index)
+    }
+
+    private fun prepareCovers(index: StoreIndex) {
+        val directory = Path(storeDirectory, COVERS_DIRECTORY).toString()
+        coverJob?.cancel()
+        coverJob = scope.launch {
+            val covers = withContext(Dispatchers.Default) {
+                LibraryFiles.createDirectories(directory)
+                index.packs.mapNotNull { pack ->
+                    val url = pack.coverUrl ?: return@mapNotNull null
+                    val name = url.substringAfterLast('/').takeIf(::isSafeMediaName) ?: return@mapNotNull null
+                    val path = Path(directory, name).toString()
+                    if (!LibraryFiles.exists(path)) downloadCover(url, path)
+                    if (LibraryFiles.exists(path)) pack.packId to CoverImage(directory, name) else null
+                }.toMap()
+            }
+            _state.value = _state.value.copy(coverImages = covers)
+        }
+    }
+
+    private suspend fun downloadCover(url: String, path: String) {
+        val partialPath = "$path.part"
+        runCatching {
+            transport.download(StoreUrls.resolve(baseUrl, url), partialPath) { _, _ -> }
+            LibraryFiles.move(partialPath, path)
+        }
+        if (LibraryFiles.exists(partialPath)) LibraryFiles.delete(partialPath)
     }
 
     private suspend fun refreshInstalledVersions() {
@@ -321,6 +352,7 @@ class StoreController(
 
     private companion object {
         const val STORE_DIRECTORY = "store"
+        const val COVERS_DIRECTORY = "covers"
         const val DEBUG_BASE_URL_FILE = "debug-base-url.txt"
     }
 }
