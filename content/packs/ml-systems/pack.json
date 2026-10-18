@@ -1,0 +1,100 @@
+{
+  "packId": "ml-systems",
+  "version": "1.0.0-draft.1",
+  "official": true,
+  "title": "ML Systems Interview Practice",
+  "subtitle": "LLM inference, serving and distributed training questions for AI lab and infra roles",
+  "category": "programming",
+  "subcategory": "ml-systems",
+  "accentColor": "#3E5C8A",
+  "coverMedia": "cover.png",
+  "languages": [
+    "en"
+  ],
+  "sources": [
+    {
+      "id": "arxiv-vllm",
+      "title": "Efficient Memory Management for Large Language Model Serving with PagedAttention",
+      "url": "https://arxiv.org/abs/2309.06180",
+      "publisher": "arXiv",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "osdi-orca",
+      "title": "Orca: A Distributed Serving System for Transformer-Based Generative Models",
+      "url": "https://www.usenix.org/conference/osdi22/presentation/yu",
+      "publisher": "USENIX",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "scaling-book",
+      "title": "How to Scale Your Model",
+      "url": "https://jax-ml.github.io/scaling-book/",
+      "publisher": "Google DeepMind",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "arxiv-zero",
+      "title": "ZeRO: Memory Optimizations Toward Training Trillion Parameter Models",
+      "url": "https://arxiv.org/abs/1910.02054",
+      "publisher": "arXiv",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "arxiv-megatron",
+      "title": "Efficient Large-Scale Language Model Training on GPU Clusters Using Megatron-LM",
+      "url": "https://arxiv.org/abs/2104.04473",
+      "publisher": "arXiv",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "arxiv-llama3",
+      "title": "The Llama 3 Herd of Models",
+      "url": "https://arxiv.org/abs/2407.21783",
+      "publisher": "arXiv",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "nccl-tests",
+      "title": "NCCL tests performance notes",
+      "url": "https://github.com/NVIDIA/nccl-tests/blob/master/doc/PERFORMANCE.md",
+      "publisher": "NVIDIA",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "pytorch-dcp",
+      "title": "PyTorch Distributed Checkpoint",
+      "url": "https://pytorch.org/docs/stable/distributed.checkpoint.html",
+      "publisher": "PyTorch",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    },
+    {
+      "id": "prachub-anthropic",
+      "title": "Anthropic software engineer interview guide",
+      "url": "https://prachub.com/interview-guide/anthropic-software-engineer-interview-guide",
+      "publisher": "PracHub",
+      "retrievedAt": "2026-10-18",
+      "revision": null
+    }
+  ],
+  "assetLicenses": [],
+  "stamps": [],
+  "bertSchemaVersion": 1,
+  "sections": {
+    "inference": "LLM inference",
+    "serving": "Serving and batching",
+    "training": "Distributed training",
+    "memory": "GPU memory and estimation",
+    "reliability": "Reliability at scale",
+    "communication": "Communication",
+    "design": "Design prompts"
+  }
+}
