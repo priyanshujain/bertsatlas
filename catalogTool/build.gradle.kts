@@ -10,6 +10,8 @@ kotlin {
 
 dependencies {
     implementation(libs.kotlinx.serialization.json)
+    implementation(libs.batik.transcoder)
+    runtimeOnly(libs.batik.codec)
     implementation(project(":domain"))
     implementation(project(":anki"))
 }
@@ -35,11 +37,20 @@ tasks.register<JavaExec>("validateCatalogForRelease") {
     workingDir = rootProject.projectDir
 }
 
+val renderCovers = tasks.register<JavaExec>("renderCovers") {
+    group = "build"
+    description = "Renders content/packs/<id>/cover/cover.svg to cover.png."
+    classpath = sourceSets.main.get().runtimeClasspath
+    mainClass.set("app.bertsatlas.catalogtool.CoverRendererKt")
+    workingDir = rootProject.projectDir
+}
+
 tasks.register<JavaExec>("buildPacks") {
     group = "build"
     description = "Compiles content/packs sources into bundled .apkg packs."
     classpath = sourceSets.main.get().runtimeClasspath
     mainClass.set("app.bertsatlas.catalogtool.PackBuilderKt")
+    dependsOn(renderCovers)
     workingDir = rootProject.projectDir
 }
 
@@ -48,6 +59,7 @@ tasks.register<JavaExec>("buildStore") {
     description = "Builds the store index.json and versioned official packs into build/store."
     classpath = sourceSets.main.get().runtimeClasspath
     mainClass.set("app.bertsatlas.catalogtool.StoreBuilderKt")
+    dependsOn(renderCovers)
     workingDir = rootProject.projectDir
     providers.gradleProperty("storeBaseUrl").orNull?.let { args("--base-url", it) }
 }
